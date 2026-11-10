@@ -801,13 +801,8 @@
         "note": "Covers the Province of Trento only, not Bolzano"
       },
       "more": {
-        "kind": "table",
-        "target": "InsideAirbnb_Trentino_2026-09-28_listings_summary.csv",
-        "columns": [
-          "name",
-          "neighbourhood",
-          "latitude"
-        ]
+        "kind": "file",
+        "label": "Open the file →"
       }
     }
   ]
