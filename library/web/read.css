@@ -28,7 +28,7 @@ main > h1 { margin: 26px 0 40px; max-width: 26em; overflow-wrap: break-word; }
 .read figcaption { margin-top: 8px; font-size: var(--size-meta); line-height: 1.4; color: var(--grey); }
 .read p > img { margin: 1.8em 0 0; }
 
-.read .sources, .read h2.about-heading { margin-top: 3em; }
+.read .sources { margin-top: 3em; }
 .read .sources ul { list-style: none; padding: 0; margin: 0; }
 .read .sources li { margin: 0; padding: 6px 0; border-top: var(--rule); }
 .read .sources li:last-child { border-bottom: var(--rule); }
