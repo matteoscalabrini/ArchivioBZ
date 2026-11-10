@@ -44,7 +44,9 @@ Paths (`file`, `images[].file`, a local `more.target`) are relative to the folde
 - **Sidecars fold in.** An `_OCR.txt`, or a `.txt`/`.html` pair of the same document, belongs to
   the row of the scan or PDF it came from: no row of its own. Name the scan or PDF as `file`.
 - **Several pictures of one thing are one row** with several `images`: front and back of a
-  postcard, crops of the same newspaper page, pages of the same guidebook.
+  postcard, crops of the same newspaper page, pages of the same guidebook, and also the same
+  building, monument or work seen by day and at night, whole and in detail, before and after.
+  One thing, one row (the author, 2026-11-10).
 - **Record dumps compress to one row of type `Table`.** Catalogue exports (CSV), sets of
   catalogue-record text files, portal snapshots, statistical tables. `more` is
   `{ "kind": "table", "target": "<the csv>", "columns": ["…", "…", "…"] }` naming the three

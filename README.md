@@ -25,6 +25,8 @@ Add `-- --present` to the build for a showing: it hides a stand-in idea text and
 
 What gets a row: anything we hold material for. A catalogue export, a set of record files or a statistical table is one row of type Table that opens to the table. An OCR or text copy belongs to the row of the scan it came from.
 
+One thing, one row. Several views of the same thing are one row with several pictures, which the reader steps through with the arrows under the picture: by day and at night, the whole and a detail, before and after, front and back, the same document as a gazette scan and as a consolidated text. Before adding a row, check whether the thing already has one, and add the picture there.
+
 Where the shared lists live: keywords in `library/content/keywords.json` (rename or merge a keyword there, in one line, never by editing records), places in `library/content/places.json`, the idea in `library/content/idea.md`. The idea is the author's text; a word is made a keyword by writing `[[word|Keyword]]`.
 
 A third investigation was added on 10 November 2026: `research_notes/Defusing by form/`, the references on defusing charged material by changing its form. Its notes file is the conversation in which that direction was worked out.
