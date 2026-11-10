@@ -90,9 +90,29 @@ test('no <img src> inside a closed row', async () => {
   const photo = row(html, '5.01').inner;
   assert.match(photo, /<figcaption>A picture wider than 1600 pixels\.<\/figcaption>/);
   assert.match(photo, /<a href="\/source\/wide\.jpg"><img /);
-  const switches = [...photo.matchAll(/<button type="button" data-pic="(\d)" aria-pressed="(true|false)">(\d)<\/button>/g)];
-  assert.deepEqual(switches.map((m) => [m[1], m[2], m[3]]), [['0', 'true', '1'], ['1', 'false', '2']]);
-  assert.doesNotMatch(row(html, '5.02').inner, /data-pic/, 'one picture or none: no switch');
+});
+
+test('several pictures: ← n / N → under each picture and above its caption; one picture: no switcher', async () => {
+  const pictures = (n) => Array.from({ length: n }, (_, i) => ({ src: `img/x-${i + 1}.jpg`, w: 40, h: 30, caption: `Picture ${i + 1}.`, original: `/source/p${i + 1}.jpg` }));
+  const html = await render({
+    edit(lib) {
+      entry(lib, '5.01').pictures = pictures(3);
+      entry(lib, '5.02').pictures = pictures(1);
+    },
+  });
+  const figures = [...row(html, '5.01').inner.matchAll(/<figure( hidden)?>([\s\S]*?)<\/figure>/g)];
+  assert.deepEqual(figures.map((m) => Boolean(m[1])), [false, true, true], 'the first picture shows');
+  figures.forEach(([, , inner], n) => {
+    assert.equal(/<p class="pic-nav">([\s\S]*?)<\/p>/.exec(inner)?.[1],
+      `<button type="button" data-step="-1" aria-label="Previous picture"${n === 0 ? ' disabled' : ''}>←</button>`
+      + `<span class="pic-n">${n + 1} / 3</span>`
+      + `<button type="button" data-step="1" aria-label="Next picture"${n === 2 ? ' disabled' : ''}>→</button>`);
+    const at = ['<a href="/source/p', '<img ', '<p class="pic-nav">', `<figcaption>Picture ${n + 1}.</figcaption>`].map((part) => inner.indexOf(part));
+    assert.ok(at.every((i, k) => i >= 0 && (k === 0 || i > at[k - 1])), `picture ${n + 1}: link, picture, switcher, caption, in that order`);
+  });
+  const single = row(html, '5.02').inner;
+  assert.match(single, /<figcaption>Picture 1\.<\/figcaption>/);
+  assert.doesNotMatch(single, /pic-nav|data-step|Previous picture|Next picture/);
 });
 
 test('a row with empty text and no picture still renders a body', async () => {

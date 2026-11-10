@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { parseState, formatState, matches, compare } from '../web/state.js';
+import { parseState, formatState, matches, compare, pictureAt } from '../web/state.js';
 
 const known = { keywords: new Set(['press', 'typeface']), rows: new Set(['5.01', '5.02', '5.21']) };
 
@@ -36,6 +36,15 @@ test('matches keeps every row without a keyword, and only rows carrying it with 
   assert.equal(matches(row, { k: 'typeface', o: [], s: 'no' }), true);
   assert.equal(matches(row, { k: 'removal', o: [], s: 'no' }), false);
   assert.equal(matches({ kw: [] }, { k: 'press', o: [], s: 'no' }), false);
+});
+
+test('pictureAt steps one picture either way and stops at the first and the last', () => {
+  assert.equal(pictureAt(0, 1, 6), 1);
+  assert.equal(pictureAt(3, -1, 6), 2);
+  assert.equal(pictureAt(0, -1, 6), 0, 'no step back from the first');
+  assert.equal(pictureAt(5, 1, 6), 5, 'no step on from the last');
+  assert.equal(pictureAt(5, -1, 6), 4);
+  assert.equal(pictureAt(0, 1, 1), 0);
 });
 
 test('compare sorts 12.01 after 5.02 by number, and by year with number as tie-break', () => {

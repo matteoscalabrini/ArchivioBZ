@@ -94,10 +94,14 @@ html { scroll-padding-top: 48px; } /* keeps a focused row clear of the sticky st
 .pics a { display: inline-block; vertical-align: top; }
 .pics img { display: block; width: auto; height: auto; max-width: 100%; max-height: 520px; }
 .pics figcaption { margin-top: 8px; max-width: 60ch; font-size: var(--size-meta); color: var(--grey); }
-.pic-nav { display: flex; gap: 14px; margin: 8px 0 0; font-size: var(--size-meta); }
-.pic-nav button { font-variant-numeric: tabular-nums; }
-.pic-nav button:hover,
-.pic-nav button[aria-pressed="true"] { text-decoration: underline; text-underline-offset: 3px; }
+/* Several pictures: "← 2 / 6 →" on one line under the picture, above its caption, so a caption
+   of another length moves only what is below it. The padding widens what a pointer can hit; the
+   negative margin keeps the line where it was. */
+.pic-nav { display: flex; align-items: baseline; gap: 14px; margin: 8px 0 0; }
+.pic-nav button { margin: -4px -6px; padding: 4px 6px; font: 400 var(--size-text)/1.2 var(--sans); }
+.pic-nav button:hover { text-decoration: underline; text-underline-offset: 3px; }
+.pic-nav button:disabled { color: var(--grey); text-decoration: none; cursor: default; }
+.pic-n { font-size: var(--size-meta); color: var(--grey); font-variant-numeric: tabular-nums; }
 
 dl.meta { display: grid; grid-template-columns: 92px minmax(0, 1fr); row-gap: 5px; margin: 22px 0 0; font-size: var(--size-meta); }
 .txt > dl.meta:first-child { margin-top: 0; }

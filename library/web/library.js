@@ -1,6 +1,6 @@
 // The Library page in the browser: the keyword filter, the sort, rows that open in place, pictures
 // that load when their row first opens, and the address kept in step with all of it (state.js).
-import { parseState, formatState, matches, compare } from './state.js';
+import { parseState, formatState, matches, compare, pictureAt } from './state.js';
 
 const list = document.querySelector('.list');
 const status = document.querySelector('.status');
@@ -42,8 +42,8 @@ document.addEventListener('click', (event) => {
     state.s = sort.dataset.sort;
     return render();
   }
-  const picture = target.closest('button[data-pic]');
-  if (picture) return showPicture(picture);
+  const arrow = target.closest('.pic-nav button[data-step]');
+  if (arrow) return stepPicture(arrow, Number(arrow.dataset.step));
   const jump = target.closest('a[data-jump]');
   if (jump && byNo.has(jump.dataset.jump) && !(event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)) {
     event.preventDefault();
@@ -51,6 +51,16 @@ document.addEventListener('click', (event) => {
   }
   const head = target.closest('.row-head');
   if (head && !target.closest('a') && !selecting(head)) toggle(byNo.get(head.parentElement.dataset.no));
+});
+
+// With focus on a picture arrow, the Left and Right keys step too.
+document.addEventListener('keydown', (event) => {
+  if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+  if (event.altKey || event.metaKey || event.ctrlKey || event.shiftKey) return;
+  const arrow = event.target instanceof Element ? event.target.closest('.pic-nav button[data-step]') : null;
+  if (!arrow) return;
+  event.preventDefault();
+  stepPicture(arrow, event.key === 'ArrowLeft' ? -1 : 1);
 });
 
 // The state as the address gives it, applied without animation, the first open row in view.
@@ -116,14 +126,20 @@ function setOpen(row, open) {
   if (open) load(row.el.querySelector('.pics figure:not([hidden]) img'));
 }
 
-function showPicture(button) {
-  const pics = button.closest('.pics');
-  const n = Number(button.dataset.pic);
-  pics.querySelectorAll('figure').forEach((figure, i) => {
-    figure.hidden = i !== n;
-    if (i === n) load(figure.querySelector('img'));
-  });
-  for (const other of pics.querySelectorAll('button[data-pic]')) other.setAttribute('aria-pressed', String(other === button));
+// One picture on (+1) or back (-1) from the one whose arrow was used. Each picture carries its own
+// "← n / N →"; if the arrow used had the focus, the focus moves to the same arrow under the picture
+// now shown, or to the other one where that is disabled, at the first or the last.
+function stepPicture(arrow, step) {
+  const figures = [...arrow.closest('.pics').querySelectorAll('figure')];
+  const from = figures.indexOf(arrow.closest('figure'));
+  const to = pictureAt(from, step, figures.length);
+  if (from < 0 || to === from) return;
+  const focused = document.activeElement === arrow;
+  figures.forEach((figure, i) => (figure.hidden = i !== to));
+  load(figures[to].querySelector('img'));
+  if (!focused) return;
+  const arrows = [...figures[to].querySelectorAll('.pic-nav button[data-step]')].filter((button) => !button.disabled);
+  (arrows.find((button) => button.dataset.step === arrow.dataset.step) ?? arrows[0])?.focus({ preventScroll: true });
 }
 
 function setText(el, text) {

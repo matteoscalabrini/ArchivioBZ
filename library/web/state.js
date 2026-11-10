@@ -1,5 +1,5 @@
-// The Library's state as it lives in the address: #k=<keyword id>&o=<no,no>&s=<no|type|date>.
-// Pure functions, shared by library.js and the tests.
+// The Library's state as it lives in the address: #k=<keyword id>&o=<no,no>&s=<no|type|date>,
+// and which of a row's pictures a step leads to. Pure functions, shared by library.js and the tests.
 
 const SORTS = ['no', 'type', 'date'];
 
@@ -41,6 +41,11 @@ export function compare(a, b, key) {
   if (key === 'type') return a.type.localeCompare(b.type, 'en') || byNumber(a, b);
   if (key === 'date') return a.year - b.year || byNumber(a, b);
   return byNumber(a, b);
+}
+
+// The picture `step` places on from `index` among `count`, held at the first and the last.
+export function pictureAt(index, step, count) {
+  return Math.min(count - 1, Math.max(0, index + step));
 }
 
 function byNumber(a, b) {

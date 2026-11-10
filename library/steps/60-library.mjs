@@ -96,20 +96,24 @@ ${head}
 </article>`;
 }
 
-// The first picture shows; with several, buttons 1 2 3 under it switch. No `src` until the row
-// opens: library.js copies `data-src` across then.
+// The first picture shows. With several, each picture has under it, above its caption, a line
+// "← 2 / 6 →" whose arrows step to the picture before and after (library.js), the first's "←"
+// and the last's "→" disabled. No `src` until the row opens: library.js copies `data-src` across then.
 function pictureBlock(pictures) {
+  const count = pictures.length;
   const figures = pictures.map((picture, n) => {
     const size = Number.isInteger(picture.w) && Number.isInteger(picture.h) ? ` width="${picture.w}" height="${picture.h}"` : '';
     let image = `<img data-src="${esc(encodePath(picture.src))}" alt=""${size}>`;
     if (picture.original) image = `<a href="${esc(picture.original)}">${image}</a>`;
+    const nav = count < 2 ? '' : '<p class="pic-nav">'
+      + `<button type="button" data-step="-1" aria-label="Previous picture"${n === 0 ? ' disabled' : ''}>←</button>`
+      + `<span class="pic-n">${n + 1} / ${count}</span>`
+      + `<button type="button" data-step="1" aria-label="Next picture"${n === count - 1 ? ' disabled' : ''}>→</button>`
+      + '</p>';
     const caption = picture.caption ? `<figcaption>${esc(picture.caption)}</figcaption>` : '';
-    return `<figure${n ? ' hidden' : ''}>${image}${caption}</figure>`;
+    return `<figure${n ? ' hidden' : ''}>${image}${nav}${caption}</figure>`;
   });
-  const switches = pictures.length < 2 ? '' : `<p class="pic-nav">${pictures
-    .map((_, n) => `<button type="button" data-pic="${n}" aria-pressed="${n === 0}">${n + 1}</button>`)
-    .join('')}</p>`;
-  return `<div class="pics">${figures.join('')}${switches}</div>`;
+  return `<div class="pics">${figures.join('')}</div>`;
 }
 
 function previewTable({ columns = [], rows, total }) {
