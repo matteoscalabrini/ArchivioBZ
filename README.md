@@ -2,6 +2,33 @@
 
 Research base for the studio project. Everything here was gathered on 22 October 2026 from online archives, catalogues, newspaper libraries and statistical portals, and is organised so it can be cited and extended.
 
+## The library (from 10 November 2026)
+
+`library/` is a private website that shows everything in this folder as one list of rows, one row per item held, with the project's idea as the way in. Why it is built the way it is: `docs/superpowers/specs/2026-11-10-research-library-design.md`.
+
+```sh
+npm install        # once
+npm run build      # checks every record, then writes library/dist/
+npm run serve      # http://127.0.0.1:5180, works offline
+npm run check      # checks the records without building
+```
+
+Add `-- --present` to the build for a showing: it hides a stand-in idea text and puts the keyword index in its place.
+
+### Adding material
+
+1. **File it.** Put the download in the matching `files/` folder and add its line to that folder's `manifest.md`: file, source address, maker, date, rights. Nothing changes here from before.
+2. **Record it.** Add one record to the `entries.json` in the same folder. The fields are explained in the design document under "The entry record"; the cataloguing rules are in `docs/superpowers/plans/2026-11-10-catalogue-brief.md`.
+3. **Number it.** Give it the next free number of its section. Numbers were set in date order on 10 November 2026 and never change after that, so that a row can be cited. A later addition takes the next number, not a slot in between.
+4. **Write its text.** Thirty to ninety words from the manifest and the notes, nothing the notes do not support, doubt carried over.
+5. `npm run check`, then `npm run build`.
+
+What gets a row: anything we hold material for. A catalogue export, a set of record files or a statistical table is one row of type Table that opens to the table. An OCR or text copy belongs to the row of the scan it came from.
+
+Where the shared lists live: keywords in `library/content/keywords.json` (rename or merge a keyword there, in one line, never by editing records), places in `library/content/places.json`, the idea in `library/content/idea.md`. The idea is the author's text; a word is made a keyword by writing `[[word|Keyword]]`.
+
+A third investigation was added on 10 November 2026: `research_notes/Defusing by form/`, the references on defusing charged material by changing its form. Its notes file is the conversation in which that direction was worked out.
+
 ## Start here
 
 Word versions of both reports, with figures from the gathered material, are in `reports/`:

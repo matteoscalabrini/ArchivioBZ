@@ -1,0 +1,507 @@
+{
+  "keywords_proposed": {},
+  "places_proposed": {},
+  "entries": [
+    {
+      "no": "12.01",
+      "title": "Guy Debord and Gil Wolman, Mode d'emploi du détournement",
+      "type": "Reference",
+      "date": "May 1956",
+      "year": 1956,
+      "keywords": [
+        "theory",
+        "wording"
+      ],
+      "text": [
+        "The 1956 text by Guy Debord and Gil Wolman on détournement, the reuse of existing material against its first meaning. Two of its rules bear directly on this project. “Détournement by simple reversal is always the most direct and the least effective.” And the effect is “directly related to the conscious or semiconscious recollection of the original contexts”: the audience has to remember what is being turned.",
+        "Its own example is a fascist poster, “Union makes strength”, with a smaller sheet added: “and coalitions make war”. No picture that could be used was found."
+      ],
+      "facts": [
+        "Chat: Debord and Wolman's 1956 manual 'is the theory behind most of this list' (reference chat). The page confirms the text and its date: 'Date: 1956'. It first appeared as 'Mode d'emploi du détournement' in Les Lèvres Nues #8 (May 1956); the English is Ken Knabb's translation (https://theanarchistlibrary.org/library/guy-debord-gil-j-wolman-a-user-s-guide-to-detournement). 'The theory behind most of this list' is the chat's own reading; no source could confirm it.",
+        "Chat: simple reversal is the most direct form and the least effective. Confirmed by https://theanarchistlibrary.org/library/guy-debord-gil-j-wolman-a-user-s-guide-to-detournement: 'Détournement by simple reversal is always the most direct and the least effective.'",
+        "Chat: the effect depends on the audience remembering the original. Confirmed by the same page: the impact is 'directly related to the conscious or semiconscious recollection of the original contexts'; 'one must determine one's public before devising a détournement'.",
+        "The text's own example comes from fascist material: a poster of the fascist organisation 'Peace and Liberty' ('Union makes strength'), with a smaller sheet added that reads 'and coalitions make war' (same page).",
+        "The page states the rights of the translation as 'No copyright.'",
+        "No picture: Commons holds no licensed image of the text or of Les Lèvres Nues no. 8, and Yale's Beinecke copy of the journal is only partly digitized (manifest)."
+      ],
+      "source": {
+        "label": "The Anarchist Library",
+        "url": "https://theanarchistlibrary.org/library/guy-debord-gil-j-wolman-a-user-s-guide-to-detournement"
+      },
+      "creator": "Guy Debord, Gil J Wolman",
+      "confidence": {
+        "level": "read",
+        "note": "Confirmed on The Anarchist Library page; 'the theory behind most of this list' is the chat's framing, not a sourced claim."
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://theanarchistlibrary.org/library/guy-debord-gil-j-wolman-a-user-s-guide-to-detournement"
+      }
+    },
+    {
+      "no": "12.02",
+      "title": "Komar & Melamid, Sots Art: Soviet slogans signed with their names",
+      "type": "Reference",
+      "date": "1972",
+      "year": 1972,
+      "keywords": [
+        "wording",
+        "voice",
+        "humour"
+      ],
+      "text": [
+        "In 1972 the artists Komar and Melamid painted official slogans in white on red cloth, “OUR GOAL IS COMMUNISM!”, and signed them with their own names as if they were the authors. Nothing in the wording changes. A signature turns an order into a quotation.",
+        "Komar called it “self-cleansing” from the hypnosis of Soviet propaganda and, above all, “self-irony”. He has also said that the only Soviet slogans that survived “are slogans that are signed ‘Komar and Melamid’”. The museum that holds this banner does not allow its picture to be reproduced."
+      ],
+      "facts": [
+        "Chat: 'They stamped their own names under dry Soviet exhortations, turning them into ironic word art' (reference chat). Confirmed by https://news.artnet.com/art-world/komar-and-melamid-2303263 (Ben Davis, 7 June 2023): they 'stamped their own names beneath these arid exhortations', making them 'arch works of word art'.",
+        "Artnet names the banners: white-on-red slogans such as 'OUR GOAL IS COMMUNISM!' and 'WE WERE BORN TO MAKE THE FAIRYTALE COME TRUE'. Komar says the only Soviet slogans that survived 'are slogans that are signed “Komar and Melamid”'.",
+        "Chat: Komar called it self-cleansing from the hypnosis of propaganda, and self-irony first of all. Confirmed by https://theartstory.org/artist/komar-and-melamid/: Sots Art as \"'self-cleansing' from the hypnosis of Soviet propaganda\" and \"above all, a 'self-irony'\".",
+        "Dates conflict within The Art Story page. It calls Sots-Art 'a term coined by Komar and Melamid in 1972', but also says 'In 1967 the two friends founded the Sots-Art movement'. Artnet dates Sots-Art to 1972.",
+        "The banner in the picture is 'Our Goal is Communism!', 1972, tempera on cotton fabric, 38.5 × 195.5 cm, Zimmerli Art Museum object 1999.0715, in the Norton and Nancy Dodge Collection (https://zimmerli.emuseum.com/objects/37174/our-goal-is-communism-komar-and-melamid).",
+        "Seen in the image: a long red cloth banner with the white Cyrillic slogan 'НАША ЦЕЛЬ - КОММУНИЗМ!' and, small at lower right, the handwritten signature 'Комар, Меламид'.",
+        "Picture rights: the Zimmerli shows its images 'as a fair use educational, non-commercial, scholarly resource only', and reproduction from the site is prohibited. The copy is a browser capture of an 800 × 162 image (manifest)."
+      ],
+      "images": [
+        {
+          "file": "komar-melamid-our-goal-is-communism-1972.jpg",
+          "caption": "Komar & Melamid, Our Goal is Communism!, 1972. Zimmerli Art Museum: fair-use educational display only, reproduction prohibited."
+        }
+      ],
+      "file": "komar-melamid-our-goal-is-communism-1972.jpg",
+      "source": {
+        "label": "Artnet News, Ben Davis, 7 June 2023",
+        "url": "https://news.artnet.com/art-world/komar-and-melamid-2303263"
+      },
+      "creator": "Vitaly Komar and Alexander Melamid",
+      "holder": "Zimmerli Art Museum, Rutgers University (Norton and Nancy Dodge Collection)",
+      "rights": "Zimmerli Art Museum: displayed as fair use educational, non-commercial, scholarly resource only; reproduction from the website prohibited",
+      "confidence": {
+        "level": "read",
+        "note": "Both chat statements are confirmed: the names under the slogans on Artnet, and Komar's words on https://theartstory.org/artist/komar-and-melamid/."
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://news.artnet.com/art-world/komar-and-melamid-2303263"
+      }
+    },
+    {
+      "no": "12.03",
+      "title": "Il Male, fake front pages of national dailies",
+      "type": "Reference",
+      "date": "1978–82",
+      "year": 1978,
+      "keywords": [
+        "press",
+        "layout",
+        "typeface",
+        "wording",
+        "humour"
+      ],
+      "text": [
+        "Between 1978 and 1982 the Italian satirical weekly Il Male printed counterfeit front pages of the national dailies. Fake editions of Paese Sera, Il Giorno and La Stampa announced the arrest of the actor Ugo Tognazzi as head of the Red Brigades. A fake Repubblica, in the days of Aldo Moro's funeral, ran the headline “Lo Stato si è estinto”. They worked “per l'ottima somiglianza della impaginazione e la grafica con gli originali”, and by one account the fake sold better than the original.",
+        "The picture shows another of their fakes, a Trybuna Ludu distributed in Poland during the Pope's visit in 1979."
+      ],
+      "facts": [
+        "Chat: Il Male's fake front pages (1978–82): counterfeit Paese Sera, La Stampa and Il Giorno announced Ugo Tognazzi's arrest as head of the Red Brigades (reference chat). Confirmed by https://it.wikipedia.org/wiki/Il_Male: 'su falsi di diversi quotidiani (Paese Sera, Il Giorno e La Stampa)', Tognazzi 'presentato come capo delle Brigate Rosse'.",
+        "Chat: a fake Repubblica ran 'Lo Stato si è estinto' during Moro's funeral. Confirmed by https://it.wikipedia.org/wiki/Il_Male: a copy of la Repubblica 'che, nei giorni del funerale di Aldo Moro, titolava: “Lo Stato si è estinto”'. The same page says the idea came from the graphic designer Marcello Borsetti.",
+        "Chat: 'The typography of authority carries absurd content.' This is the chat's reading. It is supported by https://it.wikipedia.org/wiki/Il_Male: the fakes were credible 'per l'ottima somiglianza della impaginazione e la grafica con gli originali'.",
+        "Dates: it.wikipedia gives February 1978 for the founding and 1982 for the closure, and dates the Tognazzi issue to 1979. https://www.internazionale.it/magazine/salvatore-aloise/2025/04/30/gli-anni-del-male says only 'tra la fine degli anni settanta e i primi anni ottanta'.",
+        "Internazionale (Salvatore Aloïse, 30 April 2025, a review of a book on Il Male) confirms 'la famosa prima pagina di Paese Sera sull'arresto di Ugo Tognazzi, “capo delle Br”' and says 'il falso vendeva più dell'originale'. It does not name La Stampa, Il Giorno, la Repubblica or Moro. Only an excerpt is free; the rest is behind a paywall.",
+        "The picture is not the Tognazzi fake. It is Il Male's fake Trybuna Ludu of 9 June 1979, which it.wikipedia says Vincenzo Sparagna prepared and distributed secretly in Poland during the Pope's first visit (https://it.wikipedia.org/wiki/Il_Male; manifest).",
+        "Seen in the image: a front page with the masthead 'Trybuna Ludu', the banner 'WYDANIE NADZWYCZAJNE' and the dateline 'WARSZAWA, sobota 9 czerwca 1979 r.'; a red headline across the page announces that Edward Gierek has resigned, that the PZPR is dissolved and that Karol Wojtyła is on the Polish throne; there is a photograph of the Pope at lower left.",
+        "Picture rights: Commons tags it PD-ineligible, with the uploader's note 'Unreadable copy of communist-state owned newspaper'. That rationale is doubtful for a 1979 Italian satirical print, so check it before publishing (manifest)."
+      ],
+      "images": [
+        {
+          "file": "il-male-fake-trybuna-ludu-1979.jpg",
+          "caption": "Il Male, fake Trybuna Ludu, 9 June 1979. Public domain (PD-ineligible, as declared), Wikimedia Commons."
+        }
+      ],
+      "file": "il-male-fake-trybuna-ludu-1979.jpg",
+      "source": {
+        "label": "Wikipedia (it), Il Male",
+        "url": "https://it.wikipedia.org/wiki/Il_Male"
+      },
+      "creator": "Il Male",
+      "rights": "Public domain (PD-ineligible, as declared on Wikimedia Commons)",
+      "confidence": {
+        "level": "read",
+        "note": "Every chat statement is confirmed on https://it.wikipedia.org/wiki/Il_Male; the chat's source, Internazionale, confirms only the Paese Sera/Tognazzi page."
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://it.wikipedia.org/wiki/Il_Male"
+      }
+    },
+    {
+      "no": "12.06",
+      "title": "The Silence = Death Project, SILENCE = DEATH",
+      "type": "Reference",
+      "date": "1987",
+      "year": 1987,
+      "keywords": [
+        "symbol",
+        "posters"
+      ],
+      "text": [
+        "The poster of the Silence = Death Project, 1987, later given to the AIDS activists of ACT UP. The pink triangle was the badge the Nazis used to identify homosexuals, and it pointed down. Here it is turned upright, over “SILENCE = DEATH” in white on black.",
+        "The smallest change of form in this library: a rotation."
+      ],
+      "facts": [
+        "Chat: ACT UP, Silence = Death (1987): the Nazi downward pink triangle was turned to point up (reference chat). Confirmed by https://designobserver.com/not-queer-but-human/ (Andy Chen, 28 October 2010): the pink triangle, 'a downward-pointing version once used by the Nazis to identify homosexuals', was 'turned … upright'.",
+        "Chat: 'A simple orientation flip.' This matches Design Observer's 'turned it upright'. The same page frames the flip as reclaiming 'a symbol of shame and discrimination'.",
+        "Accounts of authorship differ. Design Observer says ACT UP 'invented the tagline'. The Wellcome record on Commons quotes the Encyclopedia of AIDS: six activists formed the Silence = Death Project in 1987 and later offered the logo to ACT UP. The poster reads '© 1987 The Silence = Death Project. Used by permission by ACT-UP'.",
+        "The date 1987 is not on the Design Observer page; it comes from the Wellcome record ('Colour lithograph, 1987').",
+        "Design Observer: 'SILENCE = DEATH' was 'set in stark white type on a solid black background'.",
+        "Seen in the image: a black poster with a pink triangle pointing upward in the upper half and 'SILENCE=DEATH' in large white condensed capitals across the bottom, with a line of small print beneath.",
+        "Picture rights as stated: Commons PD-shape and PD-text; the Wellcome Collection gallery gives CC-BY-NC-4.0. The file's embedded caption belongs to another Wellcome image (manifest)."
+      ],
+      "images": [
+        {
+          "file": "act-up-silence-equals-death-poster-1987.jpg",
+          "caption": "The Silence = Death Project for ACT UP, SILENCE = DEATH, colour lithograph, 1987. Public domain on Commons (PD-shape, PD-text); Wellcome Collection gives CC-BY-NC-4.0."
+        }
+      ],
+      "file": "act-up-silence-equals-death-poster-1987.jpg",
+      "source": {
+        "label": "Design Observer, Andy Chen, Not Queer, But Human (28 October 2010)",
+        "url": "https://designobserver.com/not-queer-but-human/"
+      },
+      "creator": "The Silence = Death Project; used by ACT UP",
+      "holder": "Wellcome Collection (copy pictured)",
+      "rights": "Public domain on Commons (PD-shape, PD-text); Wellcome Collection: CC-BY-NC-4.0",
+      "confidence": {
+        "level": "read",
+        "note": "Confirmed on Design Observer; the 1987 date comes from the Wellcome record on Commons."
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://designobserver.com/not-queer-but-human/"
+      }
+    },
+    {
+      "no": "12.08",
+      "title": "David Černý, Pink Tank, Prague",
+      "type": "Reference",
+      "date": "27–28 April 1991",
+      "year": 1991,
+      "keywords": [
+        "colour",
+        "symbol",
+        "humour",
+        "removal"
+      ],
+      "text": [
+        "On the night of 27 to 28 April 1991 David Černý and friends painted the Soviet tank monument in Prague pink and put a large raised finger on its turret. He was arrested. After a Soviet protest the tank was repainted green, and then painted pink again by fifteen members of parliament.",
+        "Its status as a cultural monument was abolished and it was taken away. The monument did not survive a change of colour. The tank is now in a military museum."
+      ],
+      "facts": [
+        "Chat: Černý painted the Soviet tank monument pink and mounted a giant finger on it (reference chat). Confirmed by https://en.wikipedia.org/wiki/Monument_to_Soviet_Tank_Crews: on the night of 27/28 April 1991 he and friends 'painted the tank pink and erected a large finger suggesting an obscene gesture on its turret'.",
+        "Chat: the monument status was later abolished, and the tank was removed after repeated repaintings. Confirmed by the same page: 'The cultural monument status was abolished', and the tank 'was removed after being repeatedly painted green, then pink again'.",
+        "The same page: Černý was arrested; after a Soviet protest the tank was repainted green; fifteen members of parliament painted it pink again on 16 May. The tank is now at the Military Museum Lešany.",
+        "The maker's own site https://www.davidcerny.cz/ says only: '1991 Painted a Soviet tank monument pink. Briefly arrested. International notoriety.' It does not mention the finger.",
+        "The chat cited a 4everland mirror of the Wikipedia article; the article itself was read instead.",
+        "Seen in the image: a tank painted pink on a tall grey stone plinth, with a white sign on its turret, in front of a yellow building with a dome and clock; people stand at the foot of the plinth. No finger is visible from this angle.",
+        "Picture: CC0, Meloun1212, Commons, described as tank no. 23 on Kinský square painted pink in 1991. The file date, 2024-04-23, is the scan date (manifest)."
+      ],
+      "images": [
+        {
+          "file": "cerny-pink-tank-prague-1991.jpg",
+          "caption": "The pink tank on Kinský square, Prague, 1991, photograph by Meloun1212. CC0, Wikimedia Commons."
+        }
+      ],
+      "file": "cerny-pink-tank-prague-1991.jpg",
+      "source": {
+        "label": "Wikipedia (en), Monument to Soviet Tank Crews",
+        "url": "https://en.wikipedia.org/wiki/Monument_to_Soviet_Tank_Crews"
+      },
+      "creator": "David Černý",
+      "holder": "Military Museum Lešany (the tank today)",
+      "rights": "CC0",
+      "confidence": {
+        "level": "read",
+        "note": "Every chat statement is confirmed on https://en.wikipedia.org/wiki/Monument_to_Soviet_Tank_Crews."
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://en.wikipedia.org/wiki/Monument_to_Soviet_Tank_Crews"
+      }
+    },
+    {
+      "no": "12.12",
+      "title": "The Yes Men and others, The New York Times Special Edition",
+      "type": "Reference",
+      "date": "November 2008",
+      "year": 2008,
+      "keywords": [
+        "press",
+        "layout",
+        "typeface",
+        "wording",
+        "humour"
+      ],
+      "text": [
+        "A fourteen-page New York Times handed out free in Manhattan in November 2008 and dated 4 July 2009. Headline: “IRAQ WAR ENDS”. The motto in the corner reads “All the News We Hope to Print”. Nameplate, columns and typography are the paper's own. Only the news is different.",
+        "The makers say it took six months and hundreds of writers and artists. The Guardian credits journalists from New York dailies and says the Yes Men “had helped with distribution”."
+      ],
+      "facts": [
+        "Chat: 'A 14-page fake Times dated July 2009, with the motto bent into “All the news we hope to print”' (reference chat). Confirmed by https://press.theyesmen.org/press-archive/nytse-guardian.html (Guardian, Ed Pilkington, 12 November 2008): 'a spoof 14-page “special edition”', 'Dated July 4 2009', with the motto 'All the news we hope to print'.",
+        "The makers' page https://theyesmen.org/project/nytimes: released 'a week after the historic presidential election', a project 'six months in the making' with 'hundreds of independent writers, artists, and activists'. The partners listed include Steve Lambert and the Anti-Advertising Agency.",
+        "Accounts of who made it differ. The Guardian says the paper was produced by writers from New York dailies and that the Yes Men 'had helped with distribution'. It calls the organisers 'connected at least to some degree to the Yes Men'.",
+        "The makers' PDF (https://theyesmen.org/sites/default/files/2020-04/NYTimes-SE.pdf) has 14 pages. Its file metadata gives a creation date of 8 November 2008.",
+        "Guardian: the fake 'looks forward to the day the war ends', and the copies were 'circulating free in Manhattan'.",
+        "Seen in the image: the Times' blackletter nameplate with an ear box reading '“All the News We Hope to Print”', the label 'Special Edition', the dateline 'NEW YORK, SATURDAY, JULY 4, 2009' and the price 'FREE'; the headline 'IRAQ WAR ENDS' over a photograph of helicopters; other headlines include 'Nation Sets Its Sights on Building Sane Economy' and 'Maximum Wage Law Succeeds'.",
+        "Picture: page 1 of the makers' PDF, rendered on 10 November 2026. Neither the page nor the PDF states any rights (manifest)."
+      ],
+      "images": [
+        {
+          "file": "yes-men-new-york-times-special-edition-front-page.jpg",
+          "caption": "The Yes Men and others, The New York Times Special Edition, front page dated 4 July 2009, distributed November 2008. No rights statement; page 1 of the PDF on theyesmen.org."
+        }
+      ],
+      "file": "yes-men-new-york-times-special-edition-front-page.jpg",
+      "source": {
+        "label": "The Guardian (12 November 2008), via the Yes Men press archive",
+        "url": "https://press.theyesmen.org/press-archive/nytse-guardian.html"
+      },
+      "creator": "The Yes Men, with Steve Lambert, the Anti-Advertising Agency and others",
+      "rights": "No rights statement on theyesmen.org",
+      "confidence": {
+        "level": "read",
+        "note": "Every chat statement is confirmed on the Guardian article in the Yes Men press archive; the page count is also on the makers' PDF."
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://press.theyesmen.org/press-archive/nytse-guardian.html"
+      }
+    },
+    {
+      "no": "12.13",
+      "title": "Destructive Creation, the Soviet Army monument in Sofia repainted",
+      "type": "Reference",
+      "date": "17 June 2011",
+      "year": 2011,
+      "keywords": [
+        "colour",
+        "wording",
+        "humour"
+      ],
+      "text": [
+        "On the night of 17 June 2011 the group Destructive Creation painted the bronze soldiers of the Soviet Army monument in Sofia as Superman, Captain America, Robin, the Joker, Santa Claus and Ronald McDonald, and wrote underneath: “В крак с времето”, in step with the times. The paint was cleaned off within four days, and the culture minister called it vandalism.",
+        "The monument was painted again in 2013, pink, for the anniversary of the Prague Spring and with a nod to Černý's tank, and in Ukrainian colours in 2014 and 2022. The sculptures were dismantled in December 2023."
+      ],
+      "facts": [
+        "Chat: the collective Destructive Creation repainted the soldiers overnight as Superman, Joker, Robin, Captain America and others (reference chat). Confirmed by https://en.wikipedia.org/wiki/Monument_to_the_Soviet_Army,_Sofia: 'On June 17, 2011, the monument was painted overnight' by 'Destructive Creation'. The characters listed are Superman, Joker, Robin, Captain America, Ronald McDonald, Santa Claus, Wolverine, The Mask and Wonder Woman.",
+        "Chat: the plinth got the caption 'in step with the times'. Confirmed, with a different translation: 'A caption was painted underneath which translates as “In pace with the times”' (Bulgarian 'В крак с времето'). The documentary about it is titled 'In Step with the Time' (same page).",
+        "The paint was removed on 20–21 June 2011, and the culture minister, Vezhdi Rashidov, called it vandalism. The page cites an AFP report headed 'Russian embassy irate over pop art on Sofia monument' (same page).",
+        "Chat: it was later repainted pink for the Prague Spring anniversary and in Ukrainian colours. Confirmed: on 21 August 2013 it was painted pink 'in honour of the anniversary of the 1968 Prague Spring', with 'Bulgaria apologizes', in reference to Černý's pink tank. On 23 February 2014 a soldier and the flag were painted in Ukrainian colours, and this happened again in 2022. The page credits these later actions to unknown artists, not to Destructive Creation.",
+        "The main sculptures were dismantled in December 2023 (same page, image caption).",
+        "Seen in the image: the bronze group of soldiers painted in bright colours as comic and pop figures, among them Superman, Captain America with his shield, Santa Claus, Robin, a green-faced figure in yellow and a figure in a purple coat, with a stars-and-stripes flag behind them. Below, painted in black on the plinth: 'В КРАК С ВРЕМЕТО'.",
+        "Picture: CC BY 3.0, Ignat Ignev, Commons, 18 June 2011 (manifest)."
+      ],
+      "images": [
+        {
+          "file": "sofia-soviet-army-monument-superheroes-2011.jpg",
+          "caption": "Monument to the Soviet Army, Sofia, painted by Destructive Creation, photograph by Ignat Ignev, 18 June 2011. CC BY 3.0, Wikimedia Commons."
+        }
+      ],
+      "file": "sofia-soviet-army-monument-superheroes-2011.jpg",
+      "source": {
+        "label": "Wikipedia (en), Monument to the Soviet Army, Sofia",
+        "url": "https://en.wikipedia.org/wiki/Monument_to_the_Soviet_Army,_Sofia"
+      },
+      "creator": "Destructive Creation",
+      "rights": "CC BY 3.0",
+      "confidence": {
+        "level": "read",
+        "note": "Every chat statement is confirmed on https://en.wikipedia.org/wiki/Monument_to_the_Soviet_Army,_Sofia, which translates the caption as 'In pace with the times'."
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://en.wikipedia.org/wiki/Monument_to_the_Soviet_Army,_Sofia"
+      }
+    },
+    {
+      "no": "12.14",
+      "title": "EXIT-Deutschland, the Trojan T-shirt",
+      "type": "Reference",
+      "date": "6 August 2011",
+      "year": 2011,
+      "keywords": [
+        "wording",
+        "symbol",
+        "removal"
+      ],
+      "text": [
+        "For a neo-Nazi rock festival in Gera in August 2011, the exit programme EXIT-Deutschland had 250 T-shirts donated to the organisers under a false name. They carried a skull and the words “Hardcore Rebellen”. In the washing machine that print came off. Underneath was another that does not wash out: “Was dein T-Shirt kann, kannst Du auch. Wir helfen Dir, Dich vom Rechtsextremismus zu lösen”, with the programme's contact details.",
+        "The message changed in the owner's own home, where nobody was watching."
+      ],
+      "facts": [
+        "Chat: shirts donated to an NPD rock festival with a 'Hardcore Rebels' print (reference chat). Confirmed by https://www.exit-deutschland.de/meldungen/operation-trojaner-t-hemd (9 August 2011): 250 shirts with a washable print showing a skull, 'Hardcore Rebellen' and flags. A fictitious person offered them as a donation to the organiser, the NPD Thüringen, for 'Rock für Deutschland' in Gera on 6 August.",
+        "Chat: after the first wash the print vanished and revealed 'If your T-shirt can do it, so can you', plus Exit's contact number. Confirmed in substance: under it was a non-washable print, 'Was dein T-Shirt kann, kannst Du auch – Wir helfen Dir Dich vom Rechtsextremismus zu lösen', with 'den EXIT Kontaktdaten' (contact details, not a number as such). The page's English gives 'You, too, can accomplish what your T-shirt can do'.",
+        "The words 'first wash' appear only in the neo-Nazi SMS warning quoted on the page ('after the item has been washed for the first time'). EXIT's own text says 'erst beim Waschen in der Waschmaschine'.",
+        "Chat: 'Here the text change is triggered by time.' Not found on https://www.exit-deutschland.de/meldungen/operation-trojaner-t-hemd: the trigger the page names is washing. The delay is implied only: the shirts revealed their intent 'erst in den eigenen vier Wänden'.",
+        "EXIT adds that it is not a state programme and that no tax money was used; about 600 neo-Nazis attended the festival (same page).",
+        "Seen in the image: the same black T-shirt print twice, side by side. On the left, a skull with flags over a shield reading 'HARDCORE REBELLEN' and 'NATIONAL UND FREI'. On the right, the faded skull under a white panel reading 'WAS DEIN T-SHIRT KANN, KANNST DU AUCH', with the EXIT Deutschland logo and 'WIR HELFEN DIR, DICH VOM RECHTSEXTREMISMUS ZU LÖSEN'.",
+        "Picture: CC BY-SA 3.0. EXIT-Deutschland uploaded it to Commons as its own work in 2013; a smaller copy of the same picture is on EXIT's page (manifest)."
+      ],
+      "images": [
+        {
+          "file": "exit-deutschland-trojan-t-shirt-before-after-wash.jpg",
+          "caption": "EXIT-Deutschland, Trojan T-shirt before and after washing, 2011. CC BY-SA 3.0, Wikimedia Commons."
+        }
+      ],
+      "file": "exit-deutschland-trojan-t-shirt-before-after-wash.jpg",
+      "source": {
+        "label": "EXIT-Deutschland, Operation Trojaner T-Hemd",
+        "url": "https://www.exit-deutschland.de/meldungen/operation-trojaner-t-hemd"
+      },
+      "creator": "EXIT-Deutschland",
+      "rights": "CC BY-SA 3.0",
+      "confidence": {
+        "level": "read",
+        "note": "The facts are confirmed on EXIT-Deutschland's own page. The chat's gloss 'triggered by time' does not match it: the page names washing as the trigger."
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://www.exit-deutschland.de/meldungen/operation-trojaner-t-hemd"
+      }
+    },
+    {
+      "no": "12.21",
+      "title": "Alexander Milov, Lenin turned into Darth Vader, Odesa",
+      "type": "Reference",
+      "date": "October 2015",
+      "year": 2015,
+      "keywords": [
+        "symbol",
+        "humour"
+      ],
+      "text": [
+        "In Odesa in 2015 a statue of Lenin that the law on communist symbols had condemned was turned into Darth Vader by the artist Alexander Milov. The head became a helmet and the overcoat a cape. The pose stayed, “with the left hand clenched into a fist”. A Wi-Fi router sits in the helmet.",
+        "It was done at the request of the workers of the factory in whose yard it stands. The city's answer to an order to remove was to change the costume."
+      ],
+      "facts": [
+        "Chat: this was the city's answer to the decommunization law (reference chat). Confirmed by https://www.themoscowtimes.com/2015/10/23/darth-vader-sculpture-replaces-soviet-leader-lenin-in-ukraines-odessa-a50442 (Anna Dolgov, 23 October 2015): 'the city's response to a law requiring the eradication of Communist Party symbols'.",
+        "Chat: Lenin's clenched-fist pose stays the same. Confirmed by the same page: the statue 'maintains the classic pose struck by Lenin', 'with the left hand clenched into a fist'.",
+        "The Moscow Times, citing Dumskaya.net: Lenin's head was replaced with Vader's helmet and his overcoat lengthened into a cape. The new parts are titanium alloy, and a Wi-Fi router sits in the head. The statue stands in the yard of the Pressmash plant and was changed at the request of the plant's employees and nearby residents.",
+        "The Moscow Times: the Lenin statue 'was destined to be dismantled'; Odesa chose to transform it instead.",
+        "Seen in the image: a dark statue of Darth Vader with helmet and long cape on a stone pedestal among trees; a plaque on the pedestal reads 'ДАРТ ВЕЙДЕР' above smaller text.",
+        "Picture: the artist's own image from his former site, milova.net, on its Tilda CDN. en.wikipedia uses the same image as non-free (fair use) and says it was published by the author, who holds the rights. milova.net now redirects to an unrelated site (manifest)."
+      ],
+      "images": [
+        {
+          "file": "milov-darth-vader-statue-odesa.jpg",
+          "caption": "Alexander Milov, Darth Vader, Odesa, 2015, the artist's photograph. Non-free (fair use per en.wikipedia), from the artist's former site."
+        }
+      ],
+      "file": "milov-darth-vader-statue-odesa.jpg",
+      "source": {
+        "label": "The Moscow Times, 23 October 2015",
+        "url": "https://www.themoscowtimes.com/2015/10/23/darth-vader-sculpture-replaces-soviet-leader-lenin-in-ukraines-odessa-a50442"
+      },
+      "creator": "Alexander Milov",
+      "rights": "Non-free (fair use, as declared on en.wikipedia); rights with the artist",
+      "confidence": {
+        "level": "read",
+        "note": "Every chat statement is confirmed on the Moscow Times article of 23 October 2015."
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://www.themoscowtimes.com/2015/10/23/darth-vader-sculpture-replaces-soviet-leader-lenin-in-ukraines-odessa-a50442"
+      }
+    },
+    {
+      "no": "12.22",
+      "title": "Tom Royal, Make America Kittens Again",
+      "type": "Reference",
+      "date": "2016",
+      "year": 2016,
+      "keywords": [
+        "removal",
+        "wording",
+        "humour"
+      ],
+      "text": [
+        "A browser extension by Tom Royal, published in 2016, that “will change every picture of President Elect Trump to a cute, adorable feline”. The page stays as it was, headline and photo credit included. Only the face is gone. Another extension of the time replaced the name with “Someone With Tiny Hands”.",
+        "It reached more than 40,000 users. Here it is the reader, not the publisher, who changes the form."
+      ],
+      "facts": [
+        "Chat: Make America Kittens Again (2016), a browser extension that swaps photos of Trump for kittens (reference chat). Confirmed by https://www.shortlist.com/news/new-google-chrome-extension-changes-pictures-of-trump-to-kittens (Jamie Carson, 12 January 2017): it 'will change every picture of President Elect Trump to a cute, adorable feline'.",
+        "The maker's page https://tomroyal.com/2016/12/18/make-america-kittens-again/ (18 December 2016) says the extension went into the Chrome store in February 2016 as a Trump version of his UKIP-blocking plugin. Press attention came in December 2016, bringing 'around 34,000 users' and then 'well over 40k'.",
+        "Dates: the work dates from February 2016 (maker's page). Grazia covered it on 16 December 2016; the Shortlist article the chat cites is dated 12 January 2017.",
+        "Chat: a companion extension replaced his name with 'Someone With Tiny Hands'. Confirmed by https://graziadaily.co.uk/life/real-life/make-kittens-great-google-chrome-extension-replaces-pictures-trump-kittens: 'another extension exist which changes all mentions of Trump to ‘Someone With Tiny Hands’'. Grazia does not name its maker; 'companion' is the chat's word.",
+        "The maker's own Chrome Web Store description reads 'Replaces Donald Trump with kittens'; the listing was still live on 10 November 2026 (https://chromewebstore.google.com/detail/make-america-kittens-agai/klchnmggepghlcolikgaekpibclpmgcm).",
+        "Seen in the image: a New York Times web article headed 'Chris Christie Endorses Donald Trump and Calls Marco Rubio ‘Desperate’'. Its lead photograph shows a white kitten on a grey sofa, credited 'Tom Pennington/Getty Images', beside an 'ELECTION 2016' sidebar.",
+        "Picture: the maker's screenshot from the Chrome Web Store listing, which states no rights (manifest)."
+      ],
+      "images": [
+        {
+          "file": "make-america-kittens-again-screenshot.jpg",
+          "caption": "Tom Royal, Make America Kittens Again, screenshot of the extension at work, 2016. No rights statement; Chrome Web Store listing."
+        }
+      ],
+      "file": "make-america-kittens-again-screenshot.jpg",
+      "source": {
+        "label": "tomroyal.com, Make America Kittens Again (18 December 2016)",
+        "url": "https://tomroyal.com/2016/12/18/make-america-kittens-again/"
+      },
+      "creator": "Tom Royal (tomroyal.com)",
+      "rights": "No rights statement on the Chrome Web Store listing",
+      "confidence": {
+        "level": "read",
+        "note": "Confirmed on Shortlist, the maker's page and Grazia; 'companion' is the chat's word, since Grazia says only 'another extension'."
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://tomroyal.com/2016/12/18/make-america-kittens-again/"
+      }
+    },
+    {
+      "no": "12.29",
+      "title": "Kehinde Wiley, Rumors of War",
+      "type": "Reference",
+      "date": "2019",
+      "year": 2019,
+      "keywords": [
+        "scale",
+        "symbol"
+      ],
+      "text": [
+        "Kehinde Wiley's bronze of a young Black man in ripped jeans and Nike high-tops on a rearing horse, unveiled in Richmond, Virginia, in December 2019. It is modelled on the monument to the Confederate general J.E.B. Stuart that then stood nearby, and is “one foot taller than the Stuart statue”.",
+        "The form of the monument is kept and the rider is changed. The Confederate statues on the avenue have since been removed."
+      ],
+      "facts": [
+        "Chat: it copies the J.E.B. Stuart equestrian statue (reference chat). Confirmed by https://rvamag.com/art/rumors-of-war-arrives-in-richmond.html (Jimmy O'Keefe, December 2019): 'modeled after the J.E.B. Stuart monument' at Monument Ave. and Lombardy St.",
+        "Chat: a young Black man in ripped jeans and Nikes. RVA Mag says only 'a young black man in streetwear riding a horse'. The jeans and Nikes are confirmed by https://en.wikipedia.org/wiki/Rumors_of_War: 'jeans ripped at the knees and Nike high-top sneakers'.",
+        "Chat: it stands one foot taller than the original. Confirmed by RVA Mag: 'It is 27 feet tall — one foot taller than the Stuart statue'. Further down, the same article calls it 'the 29-foot statue'.",
+        "RVA Mag: unveiled on the lawn of the Virginia Museum of Fine Arts after its first showing in Times Square in September 2019. Wikipedia gives 10 December 2019 for the Richmond unveiling, and says all the Confederate statues on Monument Avenue have since been removed.",
+        "Seen in the image: a bronze equestrian statue of a young man with tied-up dreadlocks on a rearing horse, on a pale stone pedestal inscribed 'RUMORS OF WAR' and 'KEHINDE WILEY', against a sunset sky, with a modern glass building at left.",
+        "Picture: CC BY-SA 4.0, William Spencer, 2022, Commons (manifest)."
+      ],
+      "images": [
+        {
+          "file": "wiley-rumors-of-war-richmond.jpg",
+          "caption": "Kehinde Wiley, Rumors of War, Richmond, photograph by William Spencer, 2022. CC BY-SA 4.0, Wikimedia Commons."
+        }
+      ],
+      "file": "wiley-rumors-of-war-richmond.jpg",
+      "source": {
+        "label": "RVA Mag, 'Rumors Of War' Arrives In Richmond",
+        "url": "https://rvamag.com/art/rumors-of-war-arrives-in-richmond.html"
+      },
+      "creator": "Kehinde Wiley",
+      "holder": "Virginia Museum of Fine Arts",
+      "rights": "CC BY-SA 4.0",
+      "confidence": {
+        "level": "read",
+        "note": "Confirmed on RVA Mag (the model and the height) and on https://en.wikipedia.org/wiki/Rumors_of_War (the jeans and Nikes); RVA Mag gives both 27 and 29 feet."
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://rvamag.com/art/rumors-of-war-arrives-in-richmond.html"
+      }
+    }
+  ]
+}

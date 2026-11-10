@@ -1,10 +1,4 @@
 {
-  "keywords_proposed": {
-    "planning": {
-      "label": "Town planning"
-    }
-  },
-  "places_proposed": {},
   "entries": [
     {
       "no": "11.00",
@@ -417,6 +411,41 @@
     },
     {
       "no": "11.10",
+      "title": "Terminal station of the Massawa–Asmara cableway at Campo Marte, Asmara",
+      "type": "Photograph",
+      "date": "1939",
+      "year": 1939,
+      "keywords": [
+        "eritrea"
+      ],
+      "text": [
+        "The Asmara end of the cableway from Massawa, at Campo Marte, in 1939: a lattice steel tower, a long open shed, oil drums and tyres on bare ground. Held as a picture of the colony's infrastructure. The notes do not discuss the cableway."
+      ],
+      "facts": [
+        "Photograph of the Massawa-Asmara cableway terminal at Campo Marte, photographer unknown, 1939 (manifest).",
+        "The Commons file is titled '14 - Stazione terminale Campo Marte Asmara' (manifest, source URL).",
+        "The thread's notes do not discuss the cableway (notes 04, searched).",
+        "Seen in the image: a tall lattice steel tower with a sign board on top, a long open shed with a corrugated roof, cables running in from the left, oil drums and tyres in the foreground on bare ground."
+      ],
+      "images": [
+        {
+          "file": "commons/Asmara_stazione_teleferica_Campo_Marte_1939.jpg",
+          "caption": "Photographer unknown, 1939. Public domain per Commons, Wikimedia Commons."
+        }
+      ],
+      "file": "commons/Asmara_stazione_teleferica_Campo_Marte_1939.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:14_-_Stazione_terminale_Campo_Marte_Asmara.jpg"
+      },
+      "rights": "Public domain per Commons",
+      "confidence": {
+        "level": "read",
+        "note": "Photographer unknown (manifest)."
+      }
+    },
+    {
+      "no": "11.11",
       "title": "Legge 29 giugno 1939, n. 1004. Sanzioni penali per la difesa del prestigio di razza di fronte ai nativi dell'Africa Italiana",
       "type": "Law text",
       "date": "29 June 1939",
@@ -451,41 +480,6 @@
       },
       "more": {
         "kind": "file"
-      }
-    },
-    {
-      "no": "11.11",
-      "title": "Terminal station of the Massawa–Asmara cableway at Campo Marte, Asmara",
-      "type": "Photograph",
-      "date": "1939",
-      "year": 1939,
-      "keywords": [
-        "eritrea"
-      ],
-      "text": [
-        "The Asmara end of the cableway from Massawa, at Campo Marte, in 1939: a lattice steel tower, a long open shed, oil drums and tyres on bare ground. Held as a picture of the colony's infrastructure. The notes do not discuss the cableway."
-      ],
-      "facts": [
-        "Photograph of the Massawa-Asmara cableway terminal at Campo Marte, photographer unknown, 1939 (manifest).",
-        "The Commons file is titled '14 - Stazione terminale Campo Marte Asmara' (manifest, source URL).",
-        "The thread's notes do not discuss the cableway (notes 04, searched).",
-        "Seen in the image: a tall lattice steel tower with a sign board on top, a long open shed with a corrugated roof, cables running in from the left, oil drums and tyres in the foreground on bare ground."
-      ],
-      "images": [
-        {
-          "file": "commons/Asmara_stazione_teleferica_Campo_Marte_1939.jpg",
-          "caption": "Photographer unknown, 1939. Public domain per Commons, Wikimedia Commons."
-        }
-      ],
-      "file": "commons/Asmara_stazione_teleferica_Campo_Marte_1939.jpg",
-      "source": {
-        "label": "Wikimedia Commons",
-        "url": "https://commons.wikimedia.org/wiki/File:14_-_Stazione_terminale_Campo_Marte_Asmara.jpg"
-      },
-      "rights": "Public domain per Commons",
-      "confidence": {
-        "level": "read",
-        "note": "Photographer unknown (manifest)."
       }
     },
     {
@@ -711,47 +705,6 @@
     },
     {
       "no": "11.18",
-      "title": "Asmara: Africa's Modernist City. Nomination dossier, nomination text",
-      "type": "Book",
-      "date": "January 2016",
-      "year": 2016,
-      "keywords": [
-        "eritrea",
-        "heritage",
-        "race",
-        "planning"
-      ],
-      "text": [
-        "The 204-page text of the nomination. It says plainly that in the plan of 1938–39 “Central to the plan was the separation of the races”, with a mixed quarter as “a buffer zone”, and that Eritreans “were forbidden from using or crossing Viale Mussolini”.",
-        "One trace of the regime survives in the paving of Mosque Square, a mosaic with three fasces and the year XVI: “The date has since been erased, but the fasces still exist.” The dossier credits the 1937 competition brief to Marcello Piacentini, who drew Bolzano's plan of 1935. That attribution rests on this document alone."
-      ],
-      "facts": [
-        "Nomination text by the State of Eritrea / Asmara Heritage Project, Jan 2016 (PDF modified Jan 2017), 204 pp.; photographs © Edward Denison unless credited; WHC document 155767 via a Wayback capture (manifest).",
-        "Key parts: §2.a.2.1 'Urban Planning' (PDF pp. 22-30) and §2.b 'History and Development'; Annexes (445 MB) and Maps (74 MB) were not downloaded (manifest).",
-        "On Cafiero's plan: the mixed quarter as 'a buffer zone'; densities of 380 inhabitants/ha in the native quarter against 140 in the Italian one (cited 'Teruzzi, p.391', source unidentified); 'Central to the plan was the separation of the races' (notes 04, §1, [S], pp. 50-51).",
-        "'During the Italian period, Eritreans were forbidden from using or crossing Viale Mussolini' (notes 04, §1, [S], p. 63).",
-        "It names Marcello Piacentini as author of the 1937 competition's terms of reference; Canali does not, and the attribution is unconfirmed by a second source (notes 04, §1, [S]). Piacentini drew Bolzano's 1935 plan (notes 04, §1, [INF]).",
-        "Mosque Square was paved with 'a central mosaic motif with three fasces and the year \"XVI\"'; 'The date has since been erased, but the fasces still exist' (notes 04, §5, [S], pp. 50-51).",
-        "Edward Denison co-authored the dossier and did its photography and design (the file, acknowledgements; notes 04, §1, [V])."
-      ],
-      "file": "unesco/UNESCO_1550_Asmara_Nomination_Text_2016.pdf",
-      "source": {
-        "label": "UNESCO World Heritage Centre, document 155767 (Wayback Machine copy)",
-        "url": "http://web.archive.org/web/20200705140326id_/https://whc.unesco.org/document/155767"
-      },
-      "creator": "State of Eritrea / Asmara Heritage Project",
-      "holder": "UNESCO World Heritage Centre",
-      "rights": "Published by the World Heritage Centre \"to ensure transparency\"; copyright stays with the State Party and photographers. Study use.",
-      "confidence": {
-        "level": "read",
-        "note": "The Piacentini attribution and the 380/140 densities rest on this document alone (notes 04, §1)."
-      },
-      "more": {
-        "kind": "file"
-      }
-    },
-    {
-      "no": "11.19",
       "title": "“Urbanistica coloniale” moderna e piani regolatori nelle città italiane d'oltremare. Asmara e i piani regolatori funzionalisti di Guido Ferrazza e Vittorio Cafiero (1936-1939)",
       "type": "Article",
       "date": "2016",
@@ -786,6 +739,47 @@
       "rights": "Open access in the Florence FLORE repository; licence not stated in the file. Free to read; cite.",
       "confidence": {
         "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "11.19",
+      "title": "Asmara: Africa's Modernist City. Nomination dossier, nomination text",
+      "type": "Book",
+      "date": "January 2016",
+      "year": 2016,
+      "keywords": [
+        "eritrea",
+        "heritage",
+        "race",
+        "planning"
+      ],
+      "text": [
+        "The 204-page text of the nomination. It says plainly that in the plan of 1938–39 “Central to the plan was the separation of the races”, with a mixed quarter as “a buffer zone”, and that Eritreans “were forbidden from using or crossing Viale Mussolini”.",
+        "One trace of the regime survives in the paving of Mosque Square, a mosaic with three fasces and the year XVI: “The date has since been erased, but the fasces still exist.” The dossier credits the 1937 competition brief to Marcello Piacentini, who drew Bolzano's plan of 1935. That attribution rests on this document alone."
+      ],
+      "facts": [
+        "Nomination text by the State of Eritrea / Asmara Heritage Project, Jan 2016 (PDF modified Jan 2017), 204 pp.; photographs © Edward Denison unless credited; WHC document 155767 via a Wayback capture (manifest).",
+        "Key parts: §2.a.2.1 'Urban Planning' (PDF pp. 22-30) and §2.b 'History and Development'; Annexes (445 MB) and Maps (74 MB) were not downloaded (manifest).",
+        "On Cafiero's plan: the mixed quarter as 'a buffer zone'; densities of 380 inhabitants/ha in the native quarter against 140 in the Italian one (cited 'Teruzzi, p.391', source unidentified); 'Central to the plan was the separation of the races' (notes 04, §1, [S], pp. 50-51).",
+        "'During the Italian period, Eritreans were forbidden from using or crossing Viale Mussolini' (notes 04, §1, [S], p. 63).",
+        "It names Marcello Piacentini as author of the 1937 competition's terms of reference; Canali does not, and the attribution is unconfirmed by a second source (notes 04, §1, [S]). Piacentini drew Bolzano's 1935 plan (notes 04, §1, [INF]).",
+        "Mosque Square was paved with 'a central mosaic motif with three fasces and the year \"XVI\"'; 'The date has since been erased, but the fasces still exist' (notes 04, §5, [S], pp. 50-51).",
+        "Edward Denison co-authored the dossier and did its photography and design (the file, acknowledgements; notes 04, §1, [V])."
+      ],
+      "file": "unesco/UNESCO_1550_Asmara_Nomination_Text_2016.pdf",
+      "source": {
+        "label": "UNESCO World Heritage Centre, document 155767 (Wayback Machine copy)",
+        "url": "http://web.archive.org/web/20200705140326id_/https://whc.unesco.org/document/155767"
+      },
+      "creator": "State of Eritrea / Asmara Heritage Project",
+      "holder": "UNESCO World Heritage Centre",
+      "rights": "Published by the World Heritage Centre \"to ensure transparency\"; copyright stays with the State Party and photographers. Study use.",
+      "confidence": {
+        "level": "read",
+        "note": "The Piacentini attribution and the 380/140 densities rest on this document alone (notes 04, §1)."
       },
       "more": {
         "kind": "file"

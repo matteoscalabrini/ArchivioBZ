@@ -1,9 +1,4 @@
 {
-  "keywords_proposed": {
-    "architecture": {
-      "label": "Architecture and planning"
-    }
-  },
   "entries": [
     {
       "no": "9.00",
@@ -133,47 +128,6 @@
     },
     {
       "no": "9.03",
-      "title": "Genova 28.10.1938. Imbarco dei 20.000 coloni per la Libia",
-      "type": "Photograph",
-      "date": "28 October 1938",
-      "year": 1938,
-      "keywords": [
-        "libya",
-        "colonization"
-      ],
-      "text": [
-        "Settlers boarding at Genoa for Libya: a woman in a headscarf, children, men in caps with badges and armbands, a crowd behind. Italo Balbo fixed the departure for 28 October 1938, the sixteenth anniversary of the March on Rome, and nine steamers sailed the next day.",
-        "The colonization office had chosen whole, large peasant families, most of them from the north and above all the Veneto."
-      ],
-      "facts": [
-        "Istituto Luce photograph, via the Archivio Storico Capitolino; public domain per Commons (manifest; notes 02, §1, [V, metadata]).",
-        "Balbo fixed the departure for 28 Oct. 1938, the 16th anniversary of the March on Rome; nine steamers left Genoa on 29 Oct. (notes 02, §1, [S]).",
-        "The CMCI selected the \"fanteria rurale\" as whole, large peasant families; in 1938 most came from the north, above all the Veneto (notes 02, §3, [S]).",
-        "Seen in the image: a woman in a dark headscarf, children and men in berets and caps, with badges and armbands, behind a canvas screen lettered \"LOYD\" and hung with light bulbs; a crowd with uniformed men and a bus behind; \"LUCE\" at lower left."
-      ],
-      "images": [
-        {
-          "file": "commons/Genova_1938-10-28_imbarco_20000_coloni_Luce.png",
-          "caption": "Istituto Luce (via Archivio Storico Capitolino), Genoa, 28 October 1938. Public domain per Commons. Wikimedia Commons."
-        }
-      ],
-      "file": "commons/Genova_1938-10-28_imbarco_20000_coloni_Luce.png",
-      "source": {
-        "label": "Wikimedia Commons",
-        "url": "https://commons.wikimedia.org/wiki/File:1938_-_coloni.png"
-      },
-      "creator": "Istituto Luce (via Archivio Storico Capitolino)",
-      "rights": "Public domain per Commons",
-      "confidence": {
-        "level": "read"
-      },
-      "more": {
-        "kind": "source",
-        "target": "https://commons.wikimedia.org/wiki/File:1938_-_coloni.png"
-      }
-    },
-    {
-      "no": "9.04",
       "title": "Unknown photographer, Italian settlers in Libya on a lorry",
       "type": "Photograph",
       "date": "1938",
@@ -214,7 +168,7 @@
       }
     },
     {
-      "no": "9.05",
+      "no": "9.04",
       "title": "Unknown photographer, the centro rurale D'Annunzio in Cyrenaica from the air",
       "type": "Photograph",
       "date": "1938",
@@ -257,6 +211,47 @@
       }
     },
     {
+      "no": "9.05",
+      "title": "Genova 28.10.1938. Imbarco dei 20.000 coloni per la Libia",
+      "type": "Photograph",
+      "date": "28 October 1938",
+      "year": 1938,
+      "keywords": [
+        "libya",
+        "colonization"
+      ],
+      "text": [
+        "Settlers boarding at Genoa for Libya: a woman in a headscarf, children, men in caps with badges and armbands, a crowd behind. Italo Balbo fixed the departure for 28 October 1938, the sixteenth anniversary of the March on Rome, and nine steamers sailed the next day.",
+        "The colonization office had chosen whole, large peasant families, most of them from the north and above all the Veneto."
+      ],
+      "facts": [
+        "Istituto Luce photograph, via the Archivio Storico Capitolino; public domain per Commons (manifest; notes 02, §1, [V, metadata]).",
+        "Balbo fixed the departure for 28 Oct. 1938, the 16th anniversary of the March on Rome; nine steamers left Genoa on 29 Oct. (notes 02, §1, [S]).",
+        "The CMCI selected the \"fanteria rurale\" as whole, large peasant families; in 1938 most came from the north, above all the Veneto (notes 02, §3, [S]).",
+        "Seen in the image: a woman in a dark headscarf, children and men in berets and caps, with badges and armbands, behind a canvas screen lettered \"LOYD\" and hung with light bulbs; a crowd with uniformed men and a bus behind; \"LUCE\" at lower left."
+      ],
+      "images": [
+        {
+          "file": "commons/Genova_1938-10-28_imbarco_20000_coloni_Luce.png",
+          "caption": "Istituto Luce (via Archivio Storico Capitolino), Genoa, 28 October 1938. Public domain per Commons. Wikimedia Commons."
+        }
+      ],
+      "file": "commons/Genova_1938-10-28_imbarco_20000_coloni_Luce.png",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:1938_-_coloni.png"
+      },
+      "creator": "Istituto Luce (via Archivio Storico Capitolino)",
+      "rights": "Public domain per Commons",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://commons.wikimedia.org/wiki/File:1938_-_coloni.png"
+      }
+    },
+    {
       "no": "9.06",
       "title": "Frank Hurley, the church of Massah (village Luigi Razza) in Cyrenaica",
       "type": "Photograph",
@@ -269,7 +264,7 @@
       ],
       "text": [
         "The small white church of the village Luigi Razza in Cyrenaica, photographed by Frank Hurley in 1940. The village dates from 1933–34, 112 farms for 914 people.",
-        "It was named for the first head of the colonization office, who had once been secretary of the Fascist party in the Trentino and who, as minister, proposed the expropriation decree for Bolzano's industrial zone (row 10.04)."
+        "It was named for the first head of the colonization office, who had once been secretary of the Fascist party in the Trentino and who, as minister, proposed the expropriation decree for Bolzano's industrial zone (row 10.03)."
       ],
       "facts": [
         "Frank Hurley, 1940 (National Library of Australia); public domain per Commons (manifest).",

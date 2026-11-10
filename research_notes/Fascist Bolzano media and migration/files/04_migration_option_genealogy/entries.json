@@ -1,6 +1,4 @@
 {
-  "keywords_proposed": {},
-  "places_proposed": {},
   "entries": [
     {
       "no": "4.00",
@@ -348,44 +346,6 @@
     },
     {
       "no": "4.09",
-      "title": "Bolzano. Percorso nell'industrializzazione",
-      "type": "Booklet",
-      "date": "September 2004",
-      "year": 2004,
-      "keywords": [
-        "zona-industriale",
-        "semirurali",
-        "guidebooks"
-      ],
-      "text": [
-        "A municipal leaflet of 2004: an industrial-history route by bicycle through the zone. The Montecatini aluminium works “entrò in funzione il 29 aprile 1937” and employed 1,700 by 1943. The steelworks was “fondata nel 1935 dal gruppo Falk”.",
-        "The Semirurali are given as 328 small houses on 20 hectares, “denominato ‘Dux’”. The leaflet dates their start to 1937, a year earlier than the other sources."
-      ],
-      "facts": [
-        "Comune / Archivio Storico leaflet, printed September 2004: an industrial-history route by bicycle, with firms, dates and the Rione Dux (manifest; file).",
-        "Montecatini aluminium (INA) 'entrò in funzione il 29 aprile 1937'; 'Appena avviata la fabbrica dava lavoro a più di 900 operai che arrivarono a 1700 nel 1943' (notes 04, §1, [VERIFIED-DOC]).",
-        "Acciaierie: 'Industria siderurgica fondata nel 1935 dal gruppo Falk', special steels from 1938 (notes 04, §1, [VERIFIED-DOC]).",
-        "Semirurali: '20 ettari con 328 casette e oltre 1147 alloggi, fu denominato ‘Dux’' (notes 04, §3, [VERIFIED-DOC]).",
-        "Dates the start of the Semirurali to 1937, where the 2015 booklet, Giacomozzi and Di Michele give 1938 (notes 04, §3).",
-        "Its 'more than 900' INA workers at start-up conflict with NOI's '100 workers' for 1937 (notes 04, §1)."
-      ],
-      "file": "ComuneBZ_2004_Bolzano_Percorso_nell_industrializzazione.pdf",
-      "source": {
-        "label": "bassorilievomonumentale-bolzano.com",
-        "url": "https://www.bassorilievomonumentale-bolzano.com/fileadmin/user_upload/pdfs/Gedenkorte/Bolzano.Percorso_nell_industrializzazione.pdf"
-      },
-      "creator": "Archivio Storico della Città di Bolzano",
-      "holder": "Comune di Bolzano",
-      "rights": "© Comune di Bolzano.",
-      "confidence": {
-        "level": "read"
-      },
-      "more": {
-        "kind": "file"
-      }
-    },
-    {
-      "no": "4.10",
       "title": "Immagini delle Semirurali dal fondo fotografico ATER di Venezia",
       "type": "Article",
       "date": "2004",
@@ -423,7 +383,7 @@
       }
     },
     {
-      "no": "4.11",
+      "no": "4.10",
       "title": "La fabbrica dell'identità. Il fascismo e gli italiani dell'Alto Adige tra uso pubblico della storia, memoria e autorappresentazione",
       "type": "Article",
       "date": "2004",
@@ -452,6 +412,44 @@
       "creator": "Andrea Di Michele",
       "holder": "Geschichte und Region / Storia e regione",
       "rights": "Open access.",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "4.11",
+      "title": "Bolzano. Percorso nell'industrializzazione",
+      "type": "Booklet",
+      "date": "September 2004",
+      "year": 2004,
+      "keywords": [
+        "zona-industriale",
+        "semirurali",
+        "guidebooks"
+      ],
+      "text": [
+        "A municipal leaflet of 2004: an industrial-history route by bicycle through the zone. The Montecatini aluminium works “entrò in funzione il 29 aprile 1937” and employed 1,700 by 1943. The steelworks was “fondata nel 1935 dal gruppo Falk”.",
+        "The Semirurali are given as 328 small houses on 20 hectares, “denominato ‘Dux’”. The leaflet dates their start to 1937, a year earlier than the other sources."
+      ],
+      "facts": [
+        "Comune / Archivio Storico leaflet, printed September 2004: an industrial-history route by bicycle, with firms, dates and the Rione Dux (manifest; file).",
+        "Montecatini aluminium (INA) 'entrò in funzione il 29 aprile 1937'; 'Appena avviata la fabbrica dava lavoro a più di 900 operai che arrivarono a 1700 nel 1943' (notes 04, §1, [VERIFIED-DOC]).",
+        "Acciaierie: 'Industria siderurgica fondata nel 1935 dal gruppo Falk', special steels from 1938 (notes 04, §1, [VERIFIED-DOC]).",
+        "Semirurali: '20 ettari con 328 casette e oltre 1147 alloggi, fu denominato ‘Dux’' (notes 04, §3, [VERIFIED-DOC]).",
+        "Dates the start of the Semirurali to 1937, where the 2015 booklet, Giacomozzi and Di Michele give 1938 (notes 04, §3).",
+        "Its 'more than 900' INA workers at start-up conflict with NOI's '100 workers' for 1937 (notes 04, §1)."
+      ],
+      "file": "ComuneBZ_2004_Bolzano_Percorso_nell_industrializzazione.pdf",
+      "source": {
+        "label": "bassorilievomonumentale-bolzano.com",
+        "url": "https://www.bassorilievomonumentale-bolzano.com/fileadmin/user_upload/pdfs/Gedenkorte/Bolzano.Percorso_nell_industrializzazione.pdf"
+      },
+      "creator": "Archivio Storico della Città di Bolzano",
+      "holder": "Comune di Bolzano",
+      "rights": "© Comune di Bolzano.",
       "confidence": {
         "level": "read"
       },
@@ -1167,6 +1165,42 @@
     },
     {
       "no": "4.31",
+      "title": "Semirurali. Percorso espositivo, Ausstellungsparcours, Exhibition space",
+      "type": "Booklet",
+      "date": "2025",
+      "year": 2025,
+      "keywords": [
+        "semirurali",
+        "heritage"
+      ],
+      "text": [
+        "The current fold-out leaflet for the exhibition in the house at via Bari 11, one of the few Semirurali houses left, in Italian, German and English, with a map of the quarter. The exhibition opened in 2015."
+      ],
+      "facts": [
+        "2025 leaflet for the Casa Semirurale exhibition; image-only PDF with no text layer (manifest).",
+        "A two-sheet fold-out in Italian, German and English; the cover reads 'SEMIRURALI – Percorso espositivo – Ausstellungsparcours – Exhibition space' (file).",
+        "Text: the house at via Bari 11 is one of the few surviving 'case semirurali' built in the late 1930s and demolished from the 1980s; the exhibition opened in 2015 (file).",
+        "Carries a map of the quarter marking the Casa Semirurale / Semirurali-Haus, and opening hours (file).",
+        "The manifest calls it a booklet; it is a two-page leaflet (manifest; file)."
+      ],
+      "file": "ComuneBZ_Booklet_Semirurali_2025.pdf",
+      "source": {
+        "label": "Comune di Bolzano",
+        "url": "https://dev.comune.bolzano.it/content/download/21584/1198482/file/Semirurali_2025.pdf"
+      },
+      "creator": "Comune di Bolzano",
+      "holder": "Comune di Bolzano",
+      "rights": "CC BY 4.0.",
+      "confidence": {
+        "level": "read"
+      },
+      "place": "semirurali",
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "4.32",
       "title": "Elenco deportat* nel Lager di Bolzano 1944-45. Aggiornamento aprile 2025",
       "type": "Table",
       "date": "April 2025",
@@ -1205,7 +1239,7 @@
       }
     },
     {
-      "no": "4.32",
+      "no": "4.33",
       "title": "Genealogische Recherchen",
       "type": "Archive guide",
       "date": "April 2025",
@@ -1240,80 +1274,7 @@
       }
     },
     {
-      "no": "4.33",
-      "title": "Semirurali. Percorso espositivo, Ausstellungsparcours, Exhibition space",
-      "type": "Booklet",
-      "date": "2025",
-      "year": 2025,
-      "keywords": [
-        "semirurali",
-        "heritage"
-      ],
-      "text": [
-        "The current fold-out leaflet for the exhibition in the house at via Bari 11, one of the few Semirurali houses left, in Italian, German and English, with a map of the quarter. The exhibition opened in 2015."
-      ],
-      "facts": [
-        "2025 leaflet for the Casa Semirurale exhibition; image-only PDF with no text layer (manifest).",
-        "A two-sheet fold-out in Italian, German and English; the cover reads 'SEMIRURALI – Percorso espositivo – Ausstellungsparcours – Exhibition space' (file).",
-        "Text: the house at via Bari 11 is one of the few surviving 'case semirurali' built in the late 1930s and demolished from the 1980s; the exhibition opened in 2015 (file).",
-        "Carries a map of the quarter marking the Casa Semirurale / Semirurali-Haus, and opening hours (file).",
-        "The manifest calls it a booklet; it is a two-page leaflet (manifest; file)."
-      ],
-      "file": "ComuneBZ_Booklet_Semirurali_2025.pdf",
-      "source": {
-        "label": "Comune di Bolzano",
-        "url": "https://dev.comune.bolzano.it/content/download/21584/1198482/file/Semirurali_2025.pdf"
-      },
-      "creator": "Comune di Bolzano",
-      "holder": "Comune di Bolzano",
-      "rights": "CC BY 4.0.",
-      "confidence": {
-        "level": "read"
-      },
-      "place": "semirurali",
-      "more": {
-        "kind": "file"
-      }
-    },
-    {
       "no": "4.34",
-      "title": "Die Heimkehrer. Dolomiten, 28 May 2026, page 17",
-      "type": "Press article",
-      "date": "28 May 2026",
-      "year": 2026,
-      "keywords": [
-        "option",
-        "press"
-      ],
-      "text": [
-        "An interview in the Dolomiten with the historian Eva Pfanzelter, on the day her co-edited book on the return of the optants was presented. On the famous 86 per cent she says it holds “in vielen Fällen”, and that in some villages the figure was higher.",
-        "And: “Wir können bis heute nicht genau sagen, wie viele Menschen letztendlich Südtirol im Zuge der Option verlassen haben.” The online database holds only about a third of the applications to return."
-      ],
-      "facts": [
-        "Dolomiten interview with the historian Eva Pfanzelter on the Option of 1939 and the re-option, 28 May 2026, p. 17; copy hosted by Uni Innsbruck (manifest; file).",
-        "Occasion: the book 'Endstation Heimkehr? Die Südtiroler Rückoption', edited by Pfanzelter and Sarah Oberbichler, presented that evening at the Teßmann library (file).",
-        "'die bekannten 86 Prozent … in vielen Fällen stimmen, in manchen Dörfern … war die Zahl aber sicher auch höher' (notes 04, §4, [SECONDARY]).",
-        "'Wir können bis heute nicht genau sagen, wie viele Menschen letztendlich Südtirol im Zuge der Option verlassen haben' (notes 04, §4, [SECONDARY]).",
-        "OptionDigital holds only about a third of the re-option applications, 'ca. 32.000 Karteikarten' (notes 04, §4, [SECONDARY]; file).",
-        "© Athesia; study use only (manifest)."
-      ],
-      "file": "Pfanzelter_Dolomiten_Interview_Option_2026-05-28.pdf",
-      "source": {
-        "label": "Universität Innsbruck",
-        "url": "https://www.uibk.ac.at/media/filer_public/d2/b1/d2b191c8-8095-488b-8ebb-341a25842458/sudtiroleroption_dolomiten280526.pdf"
-      },
-      "creator": "Dolomiten, interview with Eva Pfanzelter",
-      "holder": "Athesia (Dolomiten); copy hosted by Universität Innsbruck",
-      "rights": "© Athesia; study use only.",
-      "confidence": {
-        "level": "secondary"
-      },
-      "more": {
-        "kind": "file"
-      }
-    },
-    {
-      "no": "4.35",
       "title": "Erläuterungen zu den Karteikarten",
       "type": "Archive guide",
       "date": "c. 2026",
@@ -1347,6 +1308,43 @@
       "confidence": {
         "level": "secondary",
         "note": "Date from the file's metadata, not printed."
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "4.35",
+      "title": "Die Heimkehrer. Dolomiten, 28 May 2026, page 17",
+      "type": "Press article",
+      "date": "28 May 2026",
+      "year": 2026,
+      "keywords": [
+        "option",
+        "press"
+      ],
+      "text": [
+        "An interview in the Dolomiten with the historian Eva Pfanzelter, on the day her co-edited book on the return of the optants was presented. On the famous 86 per cent she says it holds “in vielen Fällen”, and that in some villages the figure was higher.",
+        "And: “Wir können bis heute nicht genau sagen, wie viele Menschen letztendlich Südtirol im Zuge der Option verlassen haben.” The online database holds only about a third of the applications to return."
+      ],
+      "facts": [
+        "Dolomiten interview with the historian Eva Pfanzelter on the Option of 1939 and the re-option, 28 May 2026, p. 17; copy hosted by Uni Innsbruck (manifest; file).",
+        "Occasion: the book 'Endstation Heimkehr? Die Südtiroler Rückoption', edited by Pfanzelter and Sarah Oberbichler, presented that evening at the Teßmann library (file).",
+        "'die bekannten 86 Prozent … in vielen Fällen stimmen, in manchen Dörfern … war die Zahl aber sicher auch höher' (notes 04, §4, [SECONDARY]).",
+        "'Wir können bis heute nicht genau sagen, wie viele Menschen letztendlich Südtirol im Zuge der Option verlassen haben' (notes 04, §4, [SECONDARY]).",
+        "OptionDigital holds only about a third of the re-option applications, 'ca. 32.000 Karteikarten' (notes 04, §4, [SECONDARY]; file).",
+        "© Athesia; study use only (manifest)."
+      ],
+      "file": "Pfanzelter_Dolomiten_Interview_Option_2026-05-28.pdf",
+      "source": {
+        "label": "Universität Innsbruck",
+        "url": "https://www.uibk.ac.at/media/filer_public/d2/b1/d2b191c8-8095-488b-8ebb-341a25842458/sudtiroleroption_dolomiten280526.pdf"
+      },
+      "creator": "Dolomiten, interview with Eva Pfanzelter",
+      "holder": "Athesia (Dolomiten); copy hosted by Universität Innsbruck",
+      "rights": "© Athesia; study use only.",
+      "confidence": {
+        "level": "secondary"
       },
       "more": {
         "kind": "file"

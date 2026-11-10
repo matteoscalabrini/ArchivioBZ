@@ -1,6 +1,4 @@
 {
-  "keywords_proposed": {},
-  "places_proposed": {},
   "entries": [
     {
       "no": "10.00",
@@ -112,40 +110,6 @@
     },
     {
       "no": "10.03",
-      "title": "Legge 3 giugno 1935, n. 1093: Conversione in legge del R. decreto-legge 7 marzo 1935-XIII, n. 234, con il quale sono stati dichiarati di pubblica utilità i lavori occorrenti per l'impianto e l'esercizio della zona industriale di Bolzano …",
-      "type": "Law text",
-      "date": "3 June 1935",
-      "year": 1935,
-      "keywords": [
-        "zona-industriale",
-        "law"
-      ],
-      "text": [
-        "The one-article law converting the decree of 7 March 1935 (row 10.04), which declared the works for Bolzano's industrial zone of public utility. Signed Mussolini, Razza, Di Revel.",
-        "Luigi Razza had founded the colonization office in 1930 and was by now Minister of Public Works. He died two months later in an air crash near Cairo, on his way to Eritrea."
-      ],
-      "facts": [
-        "Single-article law converting R.D.L. 7 March 1935 n. 234, which declared the works for Bolzano's industrial zone of public utility; Normattiva full text saved as HTML and TXT (file; manifest).",
-        "Signed 'Mussolini - Razza - Di Revel', like the decree it converts (notes 03, Q1, [V]).",
-        "Given at Rome on 3 June 1935, Anno XIII; seen by Guardasigilli Solmi (file).",
-        "Razza, founder of the CMCI in 1930, was Minister of Public Works from 24 Jan 1935 and died on 7 Aug 1935 in an air crash near Cairo, en route to Eritrea (notes 03, Q1, [S, tertiary])."
-      ],
-      "file": "normattiva_L1935_1093_Bolzano_zona_industriale_attoCompleto.html",
-      "source": {
-        "label": "Normattiva",
-        "url": "https://www.normattiva.it/eli/id/1935/07/04/035U1093/CONSOLIDATED/20091216"
-      },
-      "rights": "Official act, public domain",
-      "confidence": {
-        "level": "read"
-      },
-      "place": "zona-industriale",
-      "more": {
-        "kind": "file"
-      }
-    },
-    {
-      "no": "10.04",
       "title": "Regio decreto-legge 7 marzo 1935, n. 234: Dichiarazione di pubblica utilità dei lavori di impianto e d'esercizio della zona industriale di Bolzano, e relative norme di attuazione",
       "type": "Law text",
       "date": "7 March 1935",
@@ -171,6 +135,40 @@
       "source": {
         "label": "Normattiva",
         "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:regio.decreto.legge:1935-03-07;234"
+      },
+      "rights": "Official act, public domain",
+      "confidence": {
+        "level": "read"
+      },
+      "place": "zona-industriale",
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "10.04",
+      "title": "Legge 3 giugno 1935, n. 1093: Conversione in legge del R. decreto-legge 7 marzo 1935-XIII, n. 234, con il quale sono stati dichiarati di pubblica utilità i lavori occorrenti per l'impianto e l'esercizio della zona industriale di Bolzano …",
+      "type": "Law text",
+      "date": "3 June 1935",
+      "year": 1935,
+      "keywords": [
+        "zona-industriale",
+        "law"
+      ],
+      "text": [
+        "The one-article law converting the decree of 7 March 1935 (row 10.03), which declared the works for Bolzano's industrial zone of public utility. Signed Mussolini, Razza, Di Revel.",
+        "Luigi Razza had founded the colonization office in 1930 and was by now Minister of Public Works. He died two months later in an air crash near Cairo, on his way to Eritrea."
+      ],
+      "facts": [
+        "Single-article law converting R.D.L. 7 March 1935 n. 234, which declared the works for Bolzano's industrial zone of public utility; Normattiva full text saved as HTML and TXT (file; manifest).",
+        "Signed 'Mussolini - Razza - Di Revel', like the decree it converts (notes 03, Q1, [V]).",
+        "Given at Rome on 3 June 1935, Anno XIII; seen by Guardasigilli Solmi (file).",
+        "Razza, founder of the CMCI in 1930, was Minister of Public Works from 24 Jan 1935 and died on 7 Aug 1935 in an air crash near Cairo, en route to Eritrea (notes 03, Q1, [S, tertiary])."
+      ],
+      "file": "normattiva_L1935_1093_Bolzano_zona_industriale_attoCompleto.html",
+      "source": {
+        "label": "Normattiva",
+        "url": "https://www.normattiva.it/eli/id/1935/07/04/035U1093/CONSOLIDATED/20091216"
       },
       "rights": "Official act, public domain",
       "confidence": {
@@ -250,29 +248,32 @@
     },
     {
       "no": "10.07",
-      "title": "Gazzetta Ufficiale del Regno d'Italia, 12 dicembre 1939, n. 287",
+      "title": "Legge 6 luglio 1939, n. 1092: Provvedimenti contro l'urbanesimo",
       "type": "Law text",
-      "date": "12 December 1939",
+      "date": "6 July 1939",
       "year": 1939,
       "keywords": [
-        "option",
+        "migration",
         "colonization",
+        "semirurali",
         "law"
       ],
       "text": [
-        "A whole issue of the official gazette, 32 pages, kept because it prints the law that created the Ente nazionale per le Tre Venezie (row 10.08). The same issue's contents list a ministry notice striking a firm from the “elenco B delle aziende ebraiche”.",
-        "The scan's text layer is poor, so quotations should be taken from the page images."
+        "The anti-urbanism law. Nobody may move residence to a provincial capital, a town of over 25,000 or a comune “di notevole importanza industriale” without stable work, and farm workers who leave the land without cause cannot register for other work. Moves of workers between provinces need the colonization office's authorization.",
+        "It is the legal frame within which workers were admitted to Bolzano. It was repealed in 1961; the bill that sought the repeal called it contrary to article 16 of the Constitution."
       ],
       "facts": [
-        "The full issue of the Gazzetta Ufficiale, Parte prima, Tuesday 12 December 1939, n. 287, 32 pages as scanned (manifest; file).",
-        "Prints L. 27 Nov 1939 n. 1780, which turned the Ente di rinascita agraria per le Tre Venezie into the 'Ente nazionale per le Tre Venezie' (manifest; notes 03, Q3, [V]).",
-        "The issue's table of contents also lists a Ministero delle corporazioni notice cancelling a firm from the 'elenco B delle aziende ebraiche' (file, contents page, OCR).",
-        "The OCR text layer is poor (the masthead date reads '1989'); quotations should be taken from the page images or from the Normattiva text of L. 1780/1939 (file)."
+        "Law published in GU 9 Aug 1939 n. 185; given at San Rossore and signed 'MUSSOLINI - SOLMI - DI REVEL - ROSSONI - LANTINI'; Normattiva full text saved as HTML and TXT (manifest; file).",
+        "Art. 1: no one may move residence to provincial capitals, towns over 25,000 inhabitants or 'Comuni di notevole importanza industriale' without stable work; Art. 7: farm workers who leave 'la terra' without cause cannot register for other work (notes 03, Q5, [V]).",
+        "Arts. 2-3: the CMCI authorizes moves of workers between provinces, so the Commissariato still existed in July 1939 (notes 03, Q1, [V]).",
+        "Repeals and replaces L. 24 Dec 1928 n. 2961 and the 1933 decree, the earlier anti-urbanism measures (art. 12) (notes 03, Q5, [V]).",
+        "The notes list it as the anti-urbanism legal frame shared with the Semirurali thread (notes 03, Q7, [V]).",
+        "Repealed with L. 358/1931 by L. 10 Feb 1961 n. 5; the 1958 repeal bill called both laws contrary to art. 16 of the Constitution (notes 03, Q1, [V])."
       ],
-      "file": "GU_1939-12-12_n287.pdf",
+      "file": "normattiva_L1939_1092_urbanesimo_attoCompleto.html",
       "source": {
-        "label": "Gazzetta Ufficiale",
-        "url": "https://www.gazzettaufficiale.it/eli/gu/1939/12/12/287/sg/pdf"
+        "label": "Normattiva",
+        "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1939-07-06;1092"
       },
       "rights": "Official act, public domain",
       "confidence": {
@@ -321,32 +322,29 @@
     },
     {
       "no": "10.09",
-      "title": "Legge 6 luglio 1939, n. 1092: Provvedimenti contro l'urbanesimo",
+      "title": "Gazzetta Ufficiale del Regno d'Italia, 12 dicembre 1939, n. 287",
       "type": "Law text",
-      "date": "6 July 1939",
+      "date": "12 December 1939",
       "year": 1939,
       "keywords": [
-        "migration",
+        "option",
         "colonization",
-        "semirurali",
         "law"
       ],
       "text": [
-        "The anti-urbanism law. Nobody may move residence to a provincial capital, a town of over 25,000 or a comune “di notevole importanza industriale” without stable work, and farm workers who leave the land without cause cannot register for other work. Moves of workers between provinces need the colonization office's authorization.",
-        "It is the legal frame within which workers were admitted to Bolzano. It was repealed in 1961; the bill that sought the repeal called it contrary to article 16 of the Constitution."
+        "A whole issue of the official gazette, 32 pages, kept because it prints the law that created the Ente nazionale per le Tre Venezie (row 10.08). The same issue's contents list a ministry notice striking a firm from the “elenco B delle aziende ebraiche”.",
+        "The scan's text layer is poor, so quotations should be taken from the page images."
       ],
       "facts": [
-        "Law published in GU 9 Aug 1939 n. 185; given at San Rossore and signed 'MUSSOLINI - SOLMI - DI REVEL - ROSSONI - LANTINI'; Normattiva full text saved as HTML and TXT (manifest; file).",
-        "Art. 1: no one may move residence to provincial capitals, towns over 25,000 inhabitants or 'Comuni di notevole importanza industriale' without stable work; Art. 7: farm workers who leave 'la terra' without cause cannot register for other work (notes 03, Q5, [V]).",
-        "Arts. 2-3: the CMCI authorizes moves of workers between provinces, so the Commissariato still existed in July 1939 (notes 03, Q1, [V]).",
-        "Repeals and replaces L. 24 Dec 1928 n. 2961 and the 1933 decree, the earlier anti-urbanism measures (art. 12) (notes 03, Q5, [V]).",
-        "The notes list it as the anti-urbanism legal frame shared with the Semirurali thread (notes 03, Q7, [V]).",
-        "Repealed with L. 358/1931 by L. 10 Feb 1961 n. 5; the 1958 repeal bill called both laws contrary to art. 16 of the Constitution (notes 03, Q1, [V])."
+        "The full issue of the Gazzetta Ufficiale, Parte prima, Tuesday 12 December 1939, n. 287, 32 pages as scanned (manifest; file).",
+        "Prints L. 27 Nov 1939 n. 1780, which turned the Ente di rinascita agraria per le Tre Venezie into the 'Ente nazionale per le Tre Venezie' (manifest; notes 03, Q3, [V]).",
+        "The issue's table of contents also lists a Ministero delle corporazioni notice cancelling a firm from the 'elenco B delle aziende ebraiche' (file, contents page, OCR).",
+        "The OCR text layer is poor (the masthead date reads '1989'); quotations should be taken from the page images or from the Normattiva text of L. 1780/1939 (file)."
       ],
-      "file": "normattiva_L1939_1092_urbanesimo_attoCompleto.html",
+      "file": "GU_1939-12-12_n287.pdf",
       "source": {
-        "label": "Normattiva",
-        "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1939-07-06;1092"
+        "label": "Gazzetta Ufficiale",
+        "url": "https://www.gazzettaufficiale.it/eli/gu/1939/12/12/287/sg/pdf"
       },
       "rights": "Official act, public domain",
       "confidence": {

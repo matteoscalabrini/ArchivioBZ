@@ -68,8 +68,11 @@ Paths (`file`, `images[].file`, a local `more.target`) are relative to the folde
 ## Numbers
 
 `no` is `<section>.<two digits>`. `N.00` is the notes row. Items start at `N.01`, **except
-section 5, which starts at `5.02`** (`5.01` is reserved). Order items by `year`, then by title.
-Numbers are permanent: once written, never reshuffle them.
+section 5, which starts at `5.02`** (`5.01` is reserved). When a whole folder is
+catalogued at once, order its items by date: year, then month and day where known. An item added
+later takes the next free number of its section. Numbers are permanent: once written, never
+reshuffle them. (The first catalogue was put in date order once, on 2026-11-10, before any number
+had been cited.)
 
 ## Fields
 

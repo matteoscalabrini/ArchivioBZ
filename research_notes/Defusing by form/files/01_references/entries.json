@@ -1,0 +1,31 @@
+{
+  "entries": [
+    {
+      "no": "12.00",
+      "title": "Defusing by form: the reference chat",
+      "type": "Notes",
+      "date": "2026",
+      "year": 2026,
+      "keywords": [
+        "typeface",
+        "wording",
+        "colour",
+        "layout",
+        "voice"
+      ],
+      "text": [
+        "The conversation in which the direction of this project was worked out, kept word for word. It starts from one question, whether anyone has replaced the typefaces of fascist propaganda with funny ones, and widens to every way charged material has been defused by a change of form: typeface, wording, colour, scale, layout, voice.",
+        "It names 33 works, five of them counter-examples. Everything in it is a lead. The rows of this section say, work by work, what a source confirmed and what it did not."
+      ],
+      "file": "../../01_references.md",
+      "confidence": {
+        "level": "lead",
+        "note": "a conversation, not a source"
+      },
+      "more": {
+        "kind": "read",
+        "target": "../../01_references.md"
+      }
+    }
+  ]
+}

@@ -1,9 +1,4 @@
 {
-  "keywords_proposed": {
-    "autonomy": {
-      "label": "Autonomy"
-    }
-  },
   "entries": [
     {
       "no": "3.00",
@@ -15,7 +10,10 @@
         "press",
         "archives"
       ],
-      "text": [],
+      "text": [
+        "The working notes on the press of 1919–43 about Bolzano: what is digitized, where, how to search it, and a first harvest of dated articles. The German-language dailies Alpenzeitung and Dolomiten can be searched as full text. The Italian La Provincia di Bolzano is online only as page images.",
+        "One practical finding: the Alpenzeitung has to be searched in its own German calques. “Semirurali” returns nothing, “halbländlichen” fifty pages. The notes then compare how each paper reported the same events to its own readers."
+      ],
       "facts": [
         "Notes of 22 October 2026 on the 1919-43 press about Bolzano: what is digitized, where, how to search it, and a harvest of 48 dated Alpenzeitung and Dolomiten items, 31 pinned to a page and downloaded (notes 03, §1)",
         "Teßmann's own site blocked scripts, so all Teßmann content came through Europeana's 2019 copy under the Public Domain Mark; the web-search budget ran out partway (notes 03, method caveats, [V])",
@@ -42,7 +40,9 @@
       "keywords": [
         "statistics"
       ],
-      "text": [],
+      "text": [
+        "A geographical and statistical outline of Alto Adige by A. R. Toniolo, published by De Agostini in 1919. One of two period books found online that present the new province to Italian readers. The celebratory municipal and party volumes of the fascist years were not found."
+      ],
       "facts": [
         "A. R. Toniolo, Alto Adige: cenni geografici e statistici, Novara, Istituto Geografico De Agostini, 1919; scan from the University of Illinois on the Internet Archive (manifest)",
         "Listed among the period books 'presenting the province to Italians' on the Internet Archive; with Borgese 1921 one of the two most relevant, and downloaded because out of copyright (notes 03, §4, [V])",
@@ -73,7 +73,9 @@
       "keywords": [
         "autonomy"
       ],
-      "text": [],
+      "text": [
+        "G. A. Borgese, “Alto Adige against Italy”: four letters from Bolzano, followed by four programmes for an autonomous Alto Adige, published in Milan in 1921. The second of the two period books found online that present the province to Italians. It is known here by its title only and has not been read."
+      ],
       "facts": [
         "G. A. Borgese, L'Alto Adige contro l'Italia: quattro lettere da Bolzano con aggiunti quattro programmi di Alto Adige autonomo, Milano, Treves, 1921; Biblioteche civiche torinesi upload on the Internet Archive (manifest)",
         "Listed among the period books 'presenting the province to Italians'; with Toniolo 1919 one of the two most relevant, and downloaded because out of copyright (notes 03, §4, [V])",
@@ -107,7 +109,10 @@
         "inauguration",
         "typeface"
       ],
-      "text": [],
+      "text": [
+        "The Alpenzeitung on preparations for laying the foundation stone of the Monument to Victory. This was the regime's daily for German-speaking readers, and it looks the part: headings and text are set in Fraktur, the blackletter of German printing, with only some advertisements in roman type.",
+        "The search term “Siegesdenkmal” returns 82 pages in this paper for 1926–28."
+      ],
       "facts": [
         "Page 4 of 8: preparations for the foundation-stone ceremony of the Victory Monument (manifest)",
         "Item 'Grundsteinlegung zum Siegesdenkmal' (preparations of the festival committee); page located by full-text match (notes 03, §1C, item 1, [V])",
@@ -146,10 +151,11 @@
       "keywords": [
         "press",
         "monumento-vittoria",
-        "inauguration",
-        "typeface"
+        "inauguration"
       ],
-      "text": [],
+      "text": [
+        "Front page: “S. M. König Viktor Emanuel III. in Bolzano.” The King lays the first stone of the Monument to Victory, sprinkled, the paper says, with water from the Piave. La Stampa ran “L'Alto Adige acclama al Re” on its own front page the same day."
+      ],
       "facts": [
         "Front page (of 6): King Victor Emmanuel III in Bolzano; foundation stone of the Victory Monument (manifest)",
         "Headline 'S. M. König Viktor Emanuel III. in Bolzano. Das Volk unserer Bergwelt schart sich im hehren Friedensfeste des Sieges ... um seinen König'; the text says the first stone of the Siegesdenkmal is laid today, 'sprinkled with holy water of the Piave' (notes 03, §1C, item 2, [V])",
@@ -182,134 +188,6 @@
     },
     {
       "no": "3.05",
-      "title": "Alpenzeitung, 12 July 1928, page 2",
-      "type": "Newspaper page",
-      "date": "12 July 1928",
-      "year": 1928,
-      "keywords": [
-        "press",
-        "monumento-vittoria",
-        "inauguration",
-        "radio",
-        "typeface"
-      ],
-      "text": [],
-      "facts": [
-        "Page 2 (of 8): eve of the unveiling: urn with earth from the 'martyrs' graves' carried to the monument; the King's lodging (manifest)",
-        "'Die Überführung der Erde aus dem Grabe der Märtyrer zum Siegesdenkmal' and 'Der Kranz des Königs am Siegesdenkmal'; page located by full-text match (notes 03, §1C, item 4, [V])",
-        "Also on the page: 'Die Rundfunkstation von Bolzano beginnt heute ihre Tätigkeit', on the EIAR station starting that day (OCR); the notes date the EIAR station's opening to 12 July 1928 (notes 07, §1)",
-        "Seen in the image: the lead headline 'Zur Enthüllung des Siegesdenkmales in Bolzano' is set in a bold condensed roman (non-blackletter) type, the sub-heads and body text in Fraktur; the serial novel 'Die Spinne' runs across the foot of the page",
-        "The _OCR.txt sidecar is Europeana's raw, uncorrected full text of the page; check quotations against the image (manifest)"
-      ],
-      "images": [
-        {
-          "file": "AZ_1928-07-12_p2.jpg",
-          "caption": "Alpenzeitung, 12 July 1928, page 2. Teßmann scan via Europeana, Public Domain Mark 1.0."
-        }
-      ],
-      "file": "AZ_1928-07-12_p2.jpg",
-      "source": {
-        "label": "Europeana",
-        "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059045555"
-      },
-      "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
-      "rights": "Public Domain Mark 1.0 (Europeana)",
-      "confidence": {
-        "level": "read"
-      },
-      "more": {
-        "kind": "source",
-        "target": "https://digital.tessmann.it/tessmannDigital/Zeitungsarchiv/Tagesausgabe/Zeitung/26/12.07.1928"
-      },
-      "place": "monumento-vittoria"
-    },
-    {
-      "no": "3.06",
-      "title": "Alpenzeitung, 13 July 1928, page 3",
-      "type": "Newspaper page",
-      "date": "13 July 1928",
-      "year": 1928,
-      "keywords": [
-        "press",
-        "monumento-vittoria",
-        "inauguration",
-        "typeface"
-      ],
-      "text": [],
-      "facts": [
-        "Page 3 (of 6): report on the unveiling of the Victory Monument (12 July 1928), delegations incl. the Podestà of Bari (manifest)",
-        "Unveiling report: delegations from across Italy, e.g. a message from the Podestà of Bari; 'Besichtigung des Denkmals' (notes 03, §1C, item 5, [V])",
-        "Same event elsewhere: LPB speaks of the King's consecration and 'il diritto immortale d'Italia'; La Stampa headlines 'LA CONSACRAZIONE EROICA DI BOLZANO ITALIANA' (notes 03, §1E, [V-img][V])",
-        "Seen in the image: body text and sub-heads ('Besichtigung des Denkmals', 'Bei den Neubauten') in Fraktur; the column 'Nach der Feier', signed Giarratana, and the banner 'Eröffnung des V. Reichskongresses der Frontkämpfer' in heavy condensed roman type; an advertisement for the 'Hotel Restaurant Roma, Bolzano, Via Roma'",
-        "The _OCR.txt sidecar is Europeana's raw, uncorrected full text of the page; check quotations against the image (manifest)"
-      ],
-      "images": [
-        {
-          "file": "AZ_1928-07-13_p3.jpg",
-          "caption": "Alpenzeitung, 13 July 1928, page 3. Teßmann scan via Europeana, Public Domain Mark 1.0."
-        }
-      ],
-      "file": "AZ_1928-07-13_p3.jpg",
-      "source": {
-        "label": "Europeana",
-        "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059045590"
-      },
-      "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
-      "rights": "Public Domain Mark 1.0 (Europeana)",
-      "confidence": {
-        "level": "read"
-      },
-      "more": {
-        "kind": "source",
-        "target": "https://digital.tessmann.it/tessmannDigital/Zeitungsarchiv/Tagesausgabe/Zeitung/26/13.07.1928"
-      },
-      "place": "monumento-vittoria"
-    },
-    {
-      "no": "3.07",
-      "title": "Alpenzeitung, 15 July 1928, page 1",
-      "type": "Newspaper page",
-      "date": "15 July 1928",
-      "year": 1928,
-      "keywords": [
-        "press",
-        "monumento-vittoria",
-        "radio",
-        "typeface"
-      ],
-      "text": [],
-      "facts": [
-        "Front page (of 8): how German radio (Nauen) reported the unveiling; polemic on South Tyrol in German politics (manifest)",
-        "'Die Enthüllung des Siegesdenkmales in der Meldung der Funkstation von Nauen' (notes 03, §1C, item 7, [V])",
-        "The AZ reports how German radio covered the ceremony, next to a polemic about 'Südtirol' in German politics (notes 03, §1E, [V])",
-        "From 1928 the masthead reads 'politisches Tagblatt der Provinz Bolzano' (notes 03, §1F, [V OCR])",
-        "Seen in the image: blackletter masthead 'Alpenzeitung' over 'Politisches Tagblatt der Provinz Bolzano', 'Sonntag, den 15. Juli 1928 - Anno VI'; the Nauen item sits low in the left-hand column below 'Ein Interview mit Mussolini über die Frage des Alto Adige'; the main headline, on the Arctic rescue ('Der „Krassin\" setzt sein Rettungswerk fort'), is in a heavy roman display type; body text in Fraktur",
-        "The _OCR.txt sidecar is Europeana's raw, uncorrected full text of the page; check quotations against the image (manifest)"
-      ],
-      "images": [
-        {
-          "file": "AZ_1928-07-15_p1.jpg",
-          "caption": "Alpenzeitung, 15 July 1928, page 1. Teßmann scan via Europeana, Public Domain Mark 1.0."
-        }
-      ],
-      "file": "AZ_1928-07-15_p1.jpg",
-      "source": {
-        "label": "Europeana",
-        "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059045372"
-      },
-      "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
-      "rights": "Public Domain Mark 1.0 (Europeana)",
-      "confidence": {
-        "level": "read"
-      },
-      "more": {
-        "kind": "source",
-        "target": "https://digital.tessmann.it/tessmannDigital/Zeitungsarchiv/Tagesausgabe/Zeitung/26/15.07.1928"
-      },
-      "place": "monumento-vittoria"
-    },
-    {
-      "no": "3.08",
       "title": "Dolomiten, 9 July 1928, page 1",
       "type": "Newspaper page",
       "date": "9 July 1928",
@@ -317,10 +195,11 @@
       "keywords": [
         "press",
         "monumento-vittoria",
-        "inauguration",
-        "typeface"
+        "inauguration"
       ],
-      "text": [],
+      "text": [
+        "The Catholic German-language Dolomiten announces “Hohe Gäste bei der Enthüllung des Siegesdenkmals in Bolzano”. The paper appeared three times a week, sold about 30,000 copies and was heavily censored."
+      ],
       "facts": [
         "Front page (of 6): high guests at the unveiling of the Victory Monument (manifest)",
         "Headline 'Hohe Gäste bei der Enthüllung des Siegesdenkmals in Bolzano'; page located by full-text match (notes 03, §1C, item 3, [V])",
@@ -351,6 +230,138 @@
       "place": "monumento-vittoria"
     },
     {
+      "no": "3.06",
+      "title": "Alpenzeitung, 12 July 1928, page 2",
+      "type": "Newspaper page",
+      "date": "12 July 1928",
+      "year": 1928,
+      "keywords": [
+        "press",
+        "monumento-vittoria",
+        "inauguration",
+        "radio"
+      ],
+      "text": [
+        "The eve of the unveiling. An urn with earth from the “martyrs' graves” is carried to the monument, and the King's wreath is laid. On the same page: “Die Rundfunkstation von Bolzano beginnt heute ihre Tätigkeit.” The radio station went on air the day the monument was inaugurated."
+      ],
+      "facts": [
+        "Page 2 (of 8): eve of the unveiling: urn with earth from the 'martyrs' graves' carried to the monument; the King's lodging (manifest)",
+        "'Die Überführung der Erde aus dem Grabe der Märtyrer zum Siegesdenkmal' and 'Der Kranz des Königs am Siegesdenkmal'; page located by full-text match (notes 03, §1C, item 4, [V])",
+        "Also on the page: 'Die Rundfunkstation von Bolzano beginnt heute ihre Tätigkeit', on the EIAR station starting that day (OCR); the notes date the EIAR station's opening to 12 July 1928 (notes 07, §1)",
+        "Seen in the image: the lead headline 'Zur Enthüllung des Siegesdenkmales in Bolzano' is set in a bold condensed roman (non-blackletter) type, the sub-heads and body text in Fraktur; the serial novel 'Die Spinne' runs across the foot of the page",
+        "The _OCR.txt sidecar is Europeana's raw, uncorrected full text of the page; check quotations against the image (manifest)"
+      ],
+      "images": [
+        {
+          "file": "AZ_1928-07-12_p2.jpg",
+          "caption": "Alpenzeitung, 12 July 1928, page 2. Teßmann scan via Europeana, Public Domain Mark 1.0."
+        }
+      ],
+      "file": "AZ_1928-07-12_p2.jpg",
+      "source": {
+        "label": "Europeana",
+        "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059045555"
+      },
+      "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
+      "rights": "Public Domain Mark 1.0 (Europeana)",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://digital.tessmann.it/tessmannDigital/Zeitungsarchiv/Tagesausgabe/Zeitung/26/12.07.1928"
+      },
+      "place": "monumento-vittoria"
+    },
+    {
+      "no": "3.07",
+      "title": "Alpenzeitung, 13 July 1928, page 3",
+      "type": "Newspaper page",
+      "date": "13 July 1928",
+      "year": 1928,
+      "keywords": [
+        "press",
+        "monumento-vittoria",
+        "inauguration"
+      ],
+      "text": [
+        "The report on the unveiling of the Monument to Victory on 12 July 1928, with delegations from across Italy and a message from the Podestà of Bari. The Italian daily that day spoke of “il diritto immortale d'Italia”, and La Stampa headlined “LA CONSACRAZIONE EROICA DI BOLZANO ITALIANA”."
+      ],
+      "facts": [
+        "Page 3 (of 6): report on the unveiling of the Victory Monument (12 July 1928), delegations incl. the Podestà of Bari (manifest)",
+        "Unveiling report: delegations from across Italy, e.g. a message from the Podestà of Bari; 'Besichtigung des Denkmals' (notes 03, §1C, item 5, [V])",
+        "Same event elsewhere: LPB speaks of the King's consecration and 'il diritto immortale d'Italia'; La Stampa headlines 'LA CONSACRAZIONE EROICA DI BOLZANO ITALIANA' (notes 03, §1E, [V-img][V])",
+        "Seen in the image: body text and sub-heads ('Besichtigung des Denkmals', 'Bei den Neubauten') in Fraktur; the column 'Nach der Feier', signed Giarratana, and the banner 'Eröffnung des V. Reichskongresses der Frontkämpfer' in heavy condensed roman type; an advertisement for the 'Hotel Restaurant Roma, Bolzano, Via Roma'",
+        "The _OCR.txt sidecar is Europeana's raw, uncorrected full text of the page; check quotations against the image (manifest)"
+      ],
+      "images": [
+        {
+          "file": "AZ_1928-07-13_p3.jpg",
+          "caption": "Alpenzeitung, 13 July 1928, page 3. Teßmann scan via Europeana, Public Domain Mark 1.0."
+        }
+      ],
+      "file": "AZ_1928-07-13_p3.jpg",
+      "source": {
+        "label": "Europeana",
+        "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059045590"
+      },
+      "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
+      "rights": "Public Domain Mark 1.0 (Europeana)",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://digital.tessmann.it/tessmannDigital/Zeitungsarchiv/Tagesausgabe/Zeitung/26/13.07.1928"
+      },
+      "place": "monumento-vittoria"
+    },
+    {
+      "no": "3.08",
+      "title": "La Provincia di Bolzano, 13 July 1928, page 1",
+      "type": "Newspaper page",
+      "date": "13 July 1928",
+      "year": 1928,
+      "keywords": [
+        "press",
+        "monumento-vittoria",
+        "inauguration",
+        "typeface"
+      ],
+      "text": [
+        "The Italian daily of the Fascist federation on the same day: “IL GRANDIOSO RITO DI IERI IN BOLZANO FASCISTA. Il Sovrano consacra nel Monumento alla Vittoria il segno antico e nuovo del diritto immortale d'Italia.”",
+        "Masthead, headlines and text are all in roman type. Set beside the Alpenzeitung of that week, the two languages of the city are also two typefaces."
+      ],
+      "facts": [
+        "Front page (4 pages in the issue). Headline 'IL GRANDIOSO RITO DI IERI IN BOLZANO FASCISTA - Il Sovrano consacra nel Monumento alla Vittoria il segno antico e nuovo del diritto immortale d'Italia'; masthead: Quotidiano della Federazione Provinciale Fascista (manifest)",
+        "Also on the page: 'Il discorso di Giuriati' (notes 03, §1D, [V-img])",
+        "Same event elsewhere: La Stampa 'LA CONSACRAZIONE EROICA DI BOLZANO ITALIANA'; Dolomiten's appeasing line to 'abroad'; the AZ on German radio's coverage (notes 03, §1E)",
+        "Seen in the image: masthead, headlines and body text all in roman type, no blackletter; columns include 'Dopo la celebrazione', 'La memorabile giornata', 'Il duplice monumento' and 'L'arrivo di S. M. il Re'",
+        "Rights: out of copyright as a collective, unsigned issue (l. 633/1941, art. 26-27), but the gallery states no terms of use: treat as a study copy and ask the library before any publication; the Codice dei beni culturali (art. 108) may also apply (manifest)"
+      ],
+      "images": [
+        {
+          "file": "LPB_1928-07-13_p1.jpg",
+          "caption": "La Provincia di Bolzano, 13 July 1928, front page. Biblioteca Provinciale Italiana Claudia Augusta gallery; out of copyright, study copy."
+        }
+      ],
+      "file": "LPB_1928-07-13_p1.jpg",
+      "source": {
+        "label": "Biblioteca Provinciale Italiana Claudia Augusta, image gallery",
+        "url": "https://webaleph.bpi.claudiaugusta.it/La_Provincia_di_Bolzano_001-1928-1928_07_13_Nr_166.html"
+      },
+      "holder": "Biblioteca Provinciale Italiana Claudia Augusta, Bolzano",
+      "rights": "Newspaper out of copyright in Italy (collective work >70 yrs); library terms of use not stated; study copy",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://webaleph.bpi.claudiaugusta.it/La_Provincia_di_Bolzano_001-1928-1928_07_13_Nr_166.html"
+      },
+      "place": "monumento-vittoria"
+    },
+    {
       "no": "3.09",
       "title": "Dolomiten, 14 July 1928, page 2",
       "type": "Newspaper page",
@@ -361,7 +372,10 @@
         "monumento-vittoria",
         "inauguration"
       ],
-      "text": [],
+      "text": [
+        "The Dolomiten on the unveiling: “Angesichts der glanzvollen Feier am Siegesdenkmal möge man auswärts endlich auf die hartnäckige Anfeindung der faschistischen Regierung verzichten.” A censored paper tells the world abroad to drop its hostility.",
+        "The picture held is the wrong page: it shows page 11, advertisements. The text of page 2 is held, and is what is quoted here."
+      ],
       "facts": [
         "Page 2 (of 12): Dolomiten on the unveiling: 'abroad should finally renounce hostility to the fascist government' (manifest)",
         "Report on the veterans' congress and the unveiling: 'Angesichts der glanzvollen Feier am Siegesdenkmal möge man auswärts endlich auf die hartnäckige Anfeindung der faschistischen Regierung verzichten' (notes 03, §1C, item 6, [V])",
@@ -396,43 +410,45 @@
     },
     {
       "no": "3.10",
-      "title": "La Provincia di Bolzano, 13 July 1928, page 1",
+      "title": "Alpenzeitung, 15 July 1928, page 1",
       "type": "Newspaper page",
-      "date": "13 July 1928",
+      "date": "15 July 1928",
       "year": 1928,
       "keywords": [
         "press",
         "monumento-vittoria",
-        "inauguration",
-        "typeface"
+        "radio"
       ],
-      "text": [],
+      "text": [
+        "Three days after the unveiling the front page reports how German radio covered it, “in der Meldung der Funkstation von Nauen”, beside a polemic about South Tyrol in German politics. From 1928 the masthead calls the paper the “politisches Tagblatt der Provinz Bolzano”."
+      ],
       "facts": [
-        "Front page (4 pages in the issue). Headline 'IL GRANDIOSO RITO DI IERI IN BOLZANO FASCISTA - Il Sovrano consacra nel Monumento alla Vittoria il segno antico e nuovo del diritto immortale d'Italia'; masthead: Quotidiano della Federazione Provinciale Fascista (manifest)",
-        "Also on the page: 'Il discorso di Giuriati' (notes 03, §1D, [V-img])",
-        "Same event elsewhere: La Stampa 'LA CONSACRAZIONE EROICA DI BOLZANO ITALIANA'; Dolomiten's appeasing line to 'abroad'; the AZ on German radio's coverage (notes 03, §1E)",
-        "Seen in the image: masthead, headlines and body text all in roman type, no blackletter; columns include 'Dopo la celebrazione', 'La memorabile giornata', 'Il duplice monumento' and 'L'arrivo di S. M. il Re'",
-        "Rights: out of copyright as a collective, unsigned issue (l. 633/1941, art. 26-27), but the gallery states no terms of use: treat as a study copy and ask the library before any publication; the Codice dei beni culturali (art. 108) may also apply (manifest)"
+        "Front page (of 8): how German radio (Nauen) reported the unveiling; polemic on South Tyrol in German politics (manifest)",
+        "'Die Enthüllung des Siegesdenkmales in der Meldung der Funkstation von Nauen' (notes 03, §1C, item 7, [V])",
+        "The AZ reports how German radio covered the ceremony, next to a polemic about 'Südtirol' in German politics (notes 03, §1E, [V])",
+        "From 1928 the masthead reads 'politisches Tagblatt der Provinz Bolzano' (notes 03, §1F, [V OCR])",
+        "Seen in the image: blackletter masthead 'Alpenzeitung' over 'Politisches Tagblatt der Provinz Bolzano', 'Sonntag, den 15. Juli 1928 - Anno VI'; the Nauen item sits low in the left-hand column below 'Ein Interview mit Mussolini über die Frage des Alto Adige'; the main headline, on the Arctic rescue ('Der „Krassin\" setzt sein Rettungswerk fort'), is in a heavy roman display type; body text in Fraktur",
+        "The _OCR.txt sidecar is Europeana's raw, uncorrected full text of the page; check quotations against the image (manifest)"
       ],
       "images": [
         {
-          "file": "LPB_1928-07-13_p1.jpg",
-          "caption": "La Provincia di Bolzano, 13 July 1928, front page. Biblioteca Provinciale Italiana Claudia Augusta gallery; out of copyright, study copy."
+          "file": "AZ_1928-07-15_p1.jpg",
+          "caption": "Alpenzeitung, 15 July 1928, page 1. Teßmann scan via Europeana, Public Domain Mark 1.0."
         }
       ],
-      "file": "LPB_1928-07-13_p1.jpg",
+      "file": "AZ_1928-07-15_p1.jpg",
       "source": {
-        "label": "Biblioteca Provinciale Italiana Claudia Augusta, image gallery",
-        "url": "https://webaleph.bpi.claudiaugusta.it/La_Provincia_di_Bolzano_001-1928-1928_07_13_Nr_166.html"
+        "label": "Europeana",
+        "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059045372"
       },
-      "holder": "Biblioteca Provinciale Italiana Claudia Augusta, Bolzano",
-      "rights": "Newspaper out of copyright in Italy (collective work >70 yrs); library terms of use not stated; study copy",
+      "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
+      "rights": "Public Domain Mark 1.0 (Europeana)",
       "confidence": {
         "level": "read"
       },
       "more": {
         "kind": "source",
-        "target": "https://webaleph.bpi.claudiaugusta.it/La_Provincia_di_Bolzano_001-1928-1928_07_13_Nr_166.html"
+        "target": "https://digital.tessmann.it/tessmannDigital/Zeitungsarchiv/Tagesausgabe/Zeitung/26/15.07.1928"
       },
       "place": "monumento-vittoria"
     },
@@ -444,10 +460,11 @@
       "year": 1930,
       "keywords": [
         "press",
-        "new-city",
-        "typeface"
+        "new-city"
       ],
-      "text": [],
+      "text": [
+        "“Das Stadtbild von Neu-Bolzano im Plane des Architekten Galimberti”: an exhibition of the building-regulation projects for the new Bolzano."
+      ],
       "facts": [
         "Page 2 (of 8): 'Das Stadtbild von Neu-Bolzano im Plane des Architekten Galimberti' (master-plan exhibition) (manifest)",
         "'Ausstellung der Bauregulierungsprojekte: Das Stadtbild von Neu-Bolzano im Plane des Architekten Galimberti' (notes 03, §1C, item 8, [V])",
@@ -477,99 +494,17 @@
     },
     {
       "no": "3.12",
-      "title": "Alpenzeitung, 1 September 1931, page 2",
-      "type": "Newspaper page",
-      "date": "1 September 1931",
-      "year": 1931,
-      "keywords": [
-        "press",
-        "tourism",
-        "typeface"
-      ],
-      "text": [],
-      "facts": [
-        "Page 2 (of 8): 'Volkszug Torino-Bolzano' arrived (manifest)",
-        "'Volkszug Torino-Bolzano': on the previous Sunday a popular train from Turin arrived in Bolzano (notes 03, §1C, item 10, [V])",
-        "The item counts 997 people leaving Turin on the 0.50 train, 40 staying in Rovereto and 83 in Trento, the other 874 going on to Bolzano (OCR, uncorrected)",
-        "Read with the 1931 grape-festival trains as translocality material [I] (notes 03, §1, Inferences)",
-        "Seen in the image: the item 'Volkszug Torino-Bolzano' sits mid-page in the local column under the drawn 'Bolzano' vignette; Fraktur throughout",
-        "The _OCR.txt sidecar is Europeana's raw, uncorrected full text of the page; check quotations against the image (manifest)"
-      ],
-      "images": [
-        {
-          "file": "AZ_1931-09-01_p2.jpg",
-          "caption": "Alpenzeitung, 1 September 1931, page 2. Teßmann scan via Europeana, Public Domain Mark 1.0."
-        }
-      ],
-      "file": "AZ_1931-09-01_p2.jpg",
-      "source": {
-        "label": "Europeana",
-        "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059046780"
-      },
-      "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
-      "rights": "Public Domain Mark 1.0 (Europeana)",
-      "confidence": {
-        "level": "read"
-      },
-      "more": {
-        "kind": "source",
-        "target": "https://digital.tessmann.it/tessmannDigital/Zeitungsarchiv/Tagesausgabe/Zeitung/26/01.09.1931"
-      }
-    },
-    {
-      "no": "3.13",
-      "title": "Alpenzeitung, 13 November 1931, page 2",
-      "type": "Newspaper page",
-      "date": "13 November 1931",
-      "year": 1931,
-      "keywords": [
-        "press",
-        "ponte-druso",
-        "typeface"
-      ],
-      "text": [],
-      "facts": [
-        "Page 2 (of 8): 'Die Beleuchtung der Drususbrücke' - the 'cyclopean' new bridge admired (manifest)",
-        "'Allgemein wurde der geradezu zyklopische Neubau der Drususbrücke und deren einwandfreier Stil bewundert' (notes 03, §1C, item 12, [V])",
-        "The item is a reader's letter: after the praise it complains that the bridge and its approach roads lie in darkness at night ('Wie wärs mit ein paar Lampen?'), signed 'X. Y.'; the editors pass the wish on to the authorities (OCR, uncorrected)",
-        "A separate short item 'Die Drususbrücke' notes that the bridge, opened on 28 October, is pictured (Photo S. Platter) in the Vienna 'Interessantes Blatt' (OCR, uncorrected)",
-        "Seen in the image: the letter stands in the right-hand column under the heading 'Fragen und Antworten'; Fraktur throughout, under the drawn 'Bolzano' vignette",
-        "The _OCR.txt sidecar is Europeana's raw, uncorrected full text of the page; check quotations against the image (manifest)"
-      ],
-      "images": [
-        {
-          "file": "AZ_1931-11-13_p2.jpg",
-          "caption": "Alpenzeitung, 13 November 1931, page 2. Teßmann scan via Europeana, Public Domain Mark 1.0."
-        }
-      ],
-      "file": "AZ_1931-11-13_p2.jpg",
-      "source": {
-        "label": "Europeana",
-        "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059046820"
-      },
-      "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
-      "rights": "Public Domain Mark 1.0 (Europeana)",
-      "confidence": {
-        "level": "read"
-      },
-      "more": {
-        "kind": "source",
-        "target": "https://digital.tessmann.it/tessmannDigital/Zeitungsarchiv/Tagesausgabe/Zeitung/26/13.11.1931"
-      },
-      "place": "ponte-druso"
-    },
-    {
-      "no": "3.14",
       "title": "Alpenzeitung, 25 August 1931, page 2",
       "type": "Newspaper page",
       "date": "25 August 1931",
       "year": 1931,
       "keywords": [
         "press",
-        "tourism",
-        "typeface"
+        "tourism"
       ],
-      "text": [],
+      "text": [
+        "Planning for the grape festival: “mehrere Volkszüge aus den alten Provinzen nach Bolzano”. The page is also a lesson in searching this paper. “Treno popolare” returns nothing; “Volkszug” returns 297 pages."
+      ],
       "facts": [
         "Page 2 (of 8): grape festival planning: several 'Volkszüge' (treni popolari) from the old provinces to Bolzano (manifest)",
         "Planning of the Traubenfest: 'mehrere Volkszüge aus den alten Provinzen nach Bolzano' (notes 03, §1C, item 9, [V])",
@@ -600,7 +535,49 @@
       }
     },
     {
-      "no": "3.15",
+      "no": "3.13",
+      "title": "Alpenzeitung, 1 September 1931, page 2",
+      "type": "Newspaper page",
+      "date": "1 September 1931",
+      "year": 1931,
+      "keywords": [
+        "press",
+        "tourism"
+      ],
+      "text": [
+        "“Volkszug Torino–Bolzano.” A popular excursion train from Turin arrived the previous Sunday. By the paper's count 997 people left Turin and 874 of them came on to Bolzano. This research reads the popular trains as one of the ways Italians from the old provinces came to see the new one."
+      ],
+      "facts": [
+        "Page 2 (of 8): 'Volkszug Torino-Bolzano' arrived (manifest)",
+        "'Volkszug Torino-Bolzano': on the previous Sunday a popular train from Turin arrived in Bolzano (notes 03, §1C, item 10, [V])",
+        "The item counts 997 people leaving Turin on the 0.50 train, 40 staying in Rovereto and 83 in Trento, the other 874 going on to Bolzano (OCR, uncorrected)",
+        "Read with the 1931 grape-festival trains as translocality material [I] (notes 03, §1, Inferences)",
+        "Seen in the image: the item 'Volkszug Torino-Bolzano' sits mid-page in the local column under the drawn 'Bolzano' vignette; Fraktur throughout",
+        "The _OCR.txt sidecar is Europeana's raw, uncorrected full text of the page; check quotations against the image (manifest)"
+      ],
+      "images": [
+        {
+          "file": "AZ_1931-09-01_p2.jpg",
+          "caption": "Alpenzeitung, 1 September 1931, page 2. Teßmann scan via Europeana, Public Domain Mark 1.0."
+        }
+      ],
+      "file": "AZ_1931-09-01_p2.jpg",
+      "source": {
+        "label": "Europeana",
+        "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059046780"
+      },
+      "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
+      "rights": "Public Domain Mark 1.0 (Europeana)",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://digital.tessmann.it/tessmannDigital/Zeitungsarchiv/Tagesausgabe/Zeitung/26/01.09.1931"
+      }
+    },
+    {
+      "no": "3.14",
       "title": "Alpenzeitung, 29 October 1931, page 3",
       "type": "Newspaper page",
       "date": "29 October 1931",
@@ -612,7 +589,10 @@
         "romanita",
         "typeface"
       ],
-      "text": [],
+      "text": [
+        "“Die Feier des 9. Jahrestages der fascistischen Revolution in Bolzano.” The day after the anniversary the paper lists what was opened: Ponte Druso, the municipal baths, the health-insurance building, a radio transmitter, a power station, a barracks, a tram line. At nine in the morning Prefect Marziali cut the ribbon on the bridge.",
+        "A column headed “Werke des Regimes” gives the bridge's measurements and cost and describes the eagles on globes on fasces. The page is set in Fraktur. The pictures are the scan and five captures taken by hand from the library's viewer."
+      ],
       "facts": [
         "Page 3 (of 8): 'Eröffnung von Bauwerken des Regimes: Drususbrücke ...' (the 28 Oct. 1931 inaugurations) (manifest); the Europeana OCR is garbled (notes 03, §1C, item 11)",
         "Headline: 'Die Feier des 9. Jahrestages der fascistischen Revolution in Bolzano. Eröffnung von Bauwerken des Regimes: Drususbrücke, städt. Badeanstalt, Palast der Krankenkasse, Rundfunksender der „Eiar\", Elektrizitätswerk in Val d'Ega, Artilleriekaserne in Oltrisarco, Tramlinie von Vurza nach Laives usw. - Aushebung der Jungen Italienerinnen' (notes 07, §1, [T])",
@@ -666,17 +646,18 @@
       "place": "ponte-druso"
     },
     {
-      "no": "3.16",
+      "no": "3.15",
       "title": "La Provincia di Bolzano, 29 October 1931, page 1",
       "type": "Newspaper page",
       "date": "29 October 1931",
       "year": 1931,
       "keywords": [
         "press",
-        "inauguration",
-        "typeface"
+        "inauguration"
       ],
-      "text": [],
+      "text": [
+        "The Italian daily's front page for the same day. Its banner is national: “L'Italia fascista ha celebrato con riti austeri l'annuale della marcia su Roma.” The Bolzano inaugurations are not in the front-page headlines. The inside pages have not been read."
+      ],
       "facts": [
         "Front page (6 pages in the issue) of the issue covering the 28 Oct. 1931 inaugurations; headline not transcribed in the session (manifest)",
         "One of two downloaded LPB front pages left unread; the LPB coverage of the Ponte Druso inauguration still has to be read in the gallery (notes 03, §1, Gaps)",
@@ -707,6 +688,49 @@
       }
     },
     {
+      "no": "3.16",
+      "title": "Alpenzeitung, 13 November 1931, page 2",
+      "type": "Newspaper page",
+      "date": "13 November 1931",
+      "year": 1931,
+      "keywords": [
+        "press",
+        "ponte-druso"
+      ],
+      "text": [
+        "A reader's letter two weeks after the opening of Ponte Druso. It admires “der geradezu zyklopische Neubau der Drususbrücke”, then complains that the bridge lies in darkness at night: “Wie wärs mit ein paar Lampen?” A short item adds that the bridge is pictured in a Vienna illustrated paper."
+      ],
+      "facts": [
+        "Page 2 (of 8): 'Die Beleuchtung der Drususbrücke' - the 'cyclopean' new bridge admired (manifest)",
+        "'Allgemein wurde der geradezu zyklopische Neubau der Drususbrücke und deren einwandfreier Stil bewundert' (notes 03, §1C, item 12, [V])",
+        "The item is a reader's letter: after the praise it complains that the bridge and its approach roads lie in darkness at night ('Wie wärs mit ein paar Lampen?'), signed 'X. Y.'; the editors pass the wish on to the authorities (OCR, uncorrected)",
+        "A separate short item 'Die Drususbrücke' notes that the bridge, opened on 28 October, is pictured (Photo S. Platter) in the Vienna 'Interessantes Blatt' (OCR, uncorrected)",
+        "Seen in the image: the letter stands in the right-hand column under the heading 'Fragen und Antworten'; Fraktur throughout, under the drawn 'Bolzano' vignette",
+        "The _OCR.txt sidecar is Europeana's raw, uncorrected full text of the page; check quotations against the image (manifest)"
+      ],
+      "images": [
+        {
+          "file": "AZ_1931-11-13_p2.jpg",
+          "caption": "Alpenzeitung, 13 November 1931, page 2. Teßmann scan via Europeana, Public Domain Mark 1.0."
+        }
+      ],
+      "file": "AZ_1931-11-13_p2.jpg",
+      "source": {
+        "label": "Europeana",
+        "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059046820"
+      },
+      "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
+      "rights": "Public Domain Mark 1.0 (Europeana)",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://digital.tessmann.it/tessmannDigital/Zeitungsarchiv/Tagesausgabe/Zeitung/26/13.11.1931"
+      },
+      "place": "ponte-druso"
+    },
+    {
       "no": "3.17",
       "title": "Alpenzeitung, 21 February 1935, page 1",
       "type": "Newspaper page",
@@ -718,7 +742,10 @@
         "wording",
         "typeface"
       ],
-      "text": [],
+      "text": [
+        "“Mussolini für die Schaffung von Groß-Bolzano.” The Duce orders the industrial zone. The Italian daily's headline that day was “Il Duce per la più grande Bolzano”: the German is a word-for-word calque, which fits the claim that the Alpenzeitung largely translated its Italian sister paper.",
+        "One story, one publisher, two languages, two typefaces."
+      ],
       "facts": [
         "Front page (of 6): 'Mussolini für die Schaffung von Groß-Bolzano - Der Duce verfügt in einer bedeutsamen Sitzung über die Errichtung der Industriezone' (manifest; notes 03, §1C, item 13, [V])",
         "The same story under three headlines: LPB 'Il Duce per la più grande Bolzano', AZ 'Mussolini für die Schaffung von Groß-Bolzano', La Stampa 'Una zona industriale a Bolzano sorgerà per volontà del Duce' (notes 03, §1E, [V-img][V])",
@@ -760,7 +787,9 @@
         "wording",
         "typeface"
       ],
-      "text": [],
+      "text": [
+        "“Le direttive del Capo per l'immediata realizzazione della zona industriale. Il Duce per la più grande Bolzano.” The communiqué names the industrialists: Falck, Donegani, Lancia, Rivetti, Goisis. Condensed sans-serif headlines stand over roman text. The copy scanned carries the stamp of the municipal library of Trento."
+      ],
       "facts": [
         "Front page (6 pages in the issue). Headline 'LE DIRETTIVE DEL CAPO PER L'IMMEDIATA REALIZZAZIONE DELLA ZONA INDUSTRIALE - Il Duce per la più grande Bolzano'; the communiqué names Falck, Donegani, Lancia, Rivetti and Goisis; masthead: Quotidiano del Partito Nazionale Fascista (manifest)",
         "The subhead lists the chemical, automobile, steel and clothing industries (notes 03, §1D, [V-img])",
@@ -792,6 +821,91 @@
     },
     {
       "no": "3.19",
+      "title": "Alpenzeitung, 23 October 1936, page 5",
+      "type": "Newspaper page",
+      "date": "23 October 1936",
+      "year": 1936,
+      "keywords": [
+        "press",
+        "new-city",
+        "monumento-vittoria"
+      ],
+      "text": [
+        "The budget for the new city centre: “780.000 Lire für die Freilegung des Corso IX Maggio”, the insurance institute's buildings near the Monument to Victory, the Army Corps headquarters. “Corso IX Maggio”, the new monumental axis, appears in the paper from 1936."
+      ],
+      "facts": [
+        "Page 5 (of 6): new city centre budget: Corso IX Maggio, Army Corps HQ, link to the Victory Monument (manifest)",
+        "'780.000 Lire für die Freilegung des Corso IX Maggio', the INA buildings near the Siegesdenkmal, the Army Corps HQ (notes 03, §1C, item 14, [V])",
+        "'Corso IX Maggio' gives 33 full-text hits from 1936, for the new monumental axis (notes 03, §1B, [V])",
+        "Seen in the image: page head 'Aus Bolzano Stadt und Land' in large blackletter; the lead article 'Ueber 71 Millionen für öffentliche Arbeiten' under the kicker 'Das Regime für das Hochetsch'; Fraktur throughout",
+        "The _OCR.txt sidecar is Europeana's raw, uncorrected full text of the page; check quotations against the image (manifest)"
+      ],
+      "images": [
+        {
+          "file": "AZ_1936-10-23_p5.jpg",
+          "caption": "Alpenzeitung, 23 October 1936, page 5. Teßmann scan via Europeana, Public Domain Mark 1.0."
+        }
+      ],
+      "file": "AZ_1936-10-23_p5.jpg",
+      "source": {
+        "label": "Europeana",
+        "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059047189"
+      },
+      "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
+      "rights": "Public Domain Mark 1.0 (Europeana)",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://digital.tessmann.it/tessmannDigital/Zeitungsarchiv/Tagesausgabe/Zeitung/26/23.10.1936"
+      }
+    },
+    {
+      "no": "3.20",
+      "title": "Dolomiten, 14 December 1936, page 3",
+      "type": "Newspaper page",
+      "date": "14 December 1936",
+      "year": 1936,
+      "keywords": [
+        "press",
+        "zona-industriale",
+        "inauguration"
+      ],
+      "text": [
+        "The Dolomiten announces “Die Eröffnung der Industriezone” for 20 December. A Turin paper had given 10 December two weeks earlier."
+      ],
+      "facts": [
+        "Page 3 (of 6): 'Die Eröffnung der Industriezone' (announcement of the 20 Dec. ceremony) (manifest; notes 03, §1C, item 15, [V])",
+        "'Industriezone' gives 173 hits for 1934-43 in the AZ and 140 in Dolomiten (notes 03, §1B, [V])",
+        "Date check: Stampa Sera of 28.11.1936 gave the inauguration as 10 December (OCR snippet), the Dolomiten item 20 December (notes 03, §3, [V]; OCR)",
+        "Seen in the image: headed 'Montag, den 14. Dezember 1936/XV, „Dolomiten\", Nr. 149 - Seite 3'; columns 'Provinz Bolzano', 'Bolzano' and 'Merano' under blackletter heads, the item 'Die Eröffnung der Industriezone' opening the 'Bolzano' column; body text in Fraktur, large advertisements (e.g. Radio Telefunken) in roman",
+        "The _OCR.txt sidecar is Europeana's raw, uncorrected full text of the page; check quotations against the image (manifest)"
+      ],
+      "images": [
+        {
+          "file": "DOL_1936-12-14_p3.jpg",
+          "caption": "Dolomiten, 14 December 1936, page 3. Teßmann scan via Europeana, Public Domain Mark 1.0."
+        }
+      ],
+      "file": "DOL_1936-12-14_p3.jpg",
+      "source": {
+        "label": "Europeana",
+        "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000115204914"
+      },
+      "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
+      "rights": "Public Domain Mark 1.0 (Europeana)",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://digital.tessmann.it/tessmannDigital/Zeitungsarchiv/Tagesausgabe/Zeitung/4/14.12.1936"
+      },
+      "place": "zona-industriale"
+    },
+    {
+      "no": "3.21",
       "title": "Alpenzeitung, 20 December 1936, page 3",
       "type": "Newspaper page",
       "date": "20 December 1936",
@@ -800,10 +914,11 @@
         "press",
         "zona-industriale",
         "inauguration",
-        "new-city",
-        "typeface"
+        "new-city"
       ],
-      "text": [],
+      "text": [
+        "“Heute feierliche Inauguration der Industriezone.” The paper dates the city's rise from 1927: “Der Aufstieg Bolzanos wurde an dem Tage entschieden, als es im Jahre 1927 zur Provinzhauptstadt erhoben wurde.” La Stampa reported the ceremony the next day."
+      ],
       "facts": [
         "Page 3 (of 8): 'Das Regime für die Provinzhauptstadt - Heute feierliche Inauguration der Industriezone' (manifest)",
         "'Der Aufstieg Bolzanos wurde an dem Tage entschieden, als es im Jahre 1927 zur Provinzhauptstadt erhoben wurde' (notes 03, §1C, item 16, [V])",
@@ -835,7 +950,7 @@
       "place": "zona-industriale"
     },
     {
-      "no": "3.20",
+      "no": "3.22",
       "title": "Alpenzeitung, 22 December 1936, page 5",
       "type": "Newspaper page",
       "date": "22 December 1936",
@@ -843,10 +958,11 @@
       "keywords": [
         "press",
         "zona-industriale",
-        "inauguration",
-        "typeface"
+        "inauguration"
       ],
-      "text": [],
+      "text": [
+        "The inauguration tour of the industrial zone: the Montecatini aluminium works, “7000 Tonnen Aluminium ... 700 Arbeiter”, the Masonite plant, and then “zu der Arbeiterstadt am rechten Ufer des Isarco”, the workers' town on the right bank."
+      ],
       "facts": [
         "Page 5 (of 8): inauguration tour: Montecatini aluminium, Masonite-Feltrinelli, then the 'Arbeiterstadt' on the right bank of the Isarco (manifest)",
         "'7000 Tonnen Aluminium ... 700 Arbeiter'; 'zu der Arbeiterstadt am rechten Ufer des Isarco' (notes 03, §1C, item 17, [V])",
@@ -877,89 +993,6 @@
       "place": "zona-industriale"
     },
     {
-      "no": "3.21",
-      "title": "Alpenzeitung, 23 October 1936, page 5",
-      "type": "Newspaper page",
-      "date": "23 October 1936",
-      "year": 1936,
-      "keywords": [
-        "press",
-        "new-city",
-        "monumento-vittoria",
-        "typeface"
-      ],
-      "text": [],
-      "facts": [
-        "Page 5 (of 6): new city centre budget: Corso IX Maggio, Army Corps HQ, link to the Victory Monument (manifest)",
-        "'780.000 Lire für die Freilegung des Corso IX Maggio', the INA buildings near the Siegesdenkmal, the Army Corps HQ (notes 03, §1C, item 14, [V])",
-        "'Corso IX Maggio' gives 33 full-text hits from 1936, for the new monumental axis (notes 03, §1B, [V])",
-        "Seen in the image: page head 'Aus Bolzano Stadt und Land' in large blackletter; the lead article 'Ueber 71 Millionen für öffentliche Arbeiten' under the kicker 'Das Regime für das Hochetsch'; Fraktur throughout",
-        "The _OCR.txt sidecar is Europeana's raw, uncorrected full text of the page; check quotations against the image (manifest)"
-      ],
-      "images": [
-        {
-          "file": "AZ_1936-10-23_p5.jpg",
-          "caption": "Alpenzeitung, 23 October 1936, page 5. Teßmann scan via Europeana, Public Domain Mark 1.0."
-        }
-      ],
-      "file": "AZ_1936-10-23_p5.jpg",
-      "source": {
-        "label": "Europeana",
-        "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059047189"
-      },
-      "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
-      "rights": "Public Domain Mark 1.0 (Europeana)",
-      "confidence": {
-        "level": "read"
-      },
-      "more": {
-        "kind": "source",
-        "target": "https://digital.tessmann.it/tessmannDigital/Zeitungsarchiv/Tagesausgabe/Zeitung/26/23.10.1936"
-      }
-    },
-    {
-      "no": "3.22",
-      "title": "Dolomiten, 14 December 1936, page 3",
-      "type": "Newspaper page",
-      "date": "14 December 1936",
-      "year": 1936,
-      "keywords": [
-        "press",
-        "zona-industriale",
-        "inauguration",
-        "typeface"
-      ],
-      "text": [],
-      "facts": [
-        "Page 3 (of 6): 'Die Eröffnung der Industriezone' (announcement of the 20 Dec. ceremony) (manifest; notes 03, §1C, item 15, [V])",
-        "'Industriezone' gives 173 hits for 1934-43 in the AZ and 140 in Dolomiten (notes 03, §1B, [V])",
-        "Date check: Stampa Sera of 28.11.1936 gave the inauguration as 10 December (OCR snippet), the Dolomiten item 20 December (notes 03, §3, [V]; OCR)",
-        "Seen in the image: headed 'Montag, den 14. Dezember 1936/XV, „Dolomiten\", Nr. 149 - Seite 3'; columns 'Provinz Bolzano', 'Bolzano' and 'Merano' under blackletter heads, the item 'Die Eröffnung der Industriezone' opening the 'Bolzano' column; body text in Fraktur, large advertisements (e.g. Radio Telefunken) in roman",
-        "The _OCR.txt sidecar is Europeana's raw, uncorrected full text of the page; check quotations against the image (manifest)"
-      ],
-      "images": [
-        {
-          "file": "DOL_1936-12-14_p3.jpg",
-          "caption": "Dolomiten, 14 December 1936, page 3. Teßmann scan via Europeana, Public Domain Mark 1.0."
-        }
-      ],
-      "file": "DOL_1936-12-14_p3.jpg",
-      "source": {
-        "label": "Europeana",
-        "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000115204914"
-      },
-      "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
-      "rights": "Public Domain Mark 1.0 (Europeana)",
-      "confidence": {
-        "level": "read"
-      },
-      "more": {
-        "kind": "source",
-        "target": "https://digital.tessmann.it/tessmannDigital/Zeitungsarchiv/Tagesausgabe/Zeitung/4/14.12.1936"
-      },
-      "place": "zona-industriale"
-    },
-    {
       "no": "3.23",
       "title": "La Provincia di Bolzano, 22 December 1936, page 1",
       "type": "Newspaper page",
@@ -967,10 +1000,11 @@
       "year": 1936,
       "keywords": [
         "press",
-        "ethiopia",
-        "typeface"
+        "ethiopia"
       ],
-      "text": [],
+      "text": [
+        "Two days after the industrial zone opened, the Italian daily's front page is about Ethiopia: “Il tricolore sventola sull'intero territorio dell'Impero.” The report on the zone is on the inside pages, which have not been read."
+      ],
       "facts": [
         "Front page (8 pages in the issue), about Ethiopia: 'Il tricolore sventola sull'intero territorio dell'Impero'; the industrial-zone inauguration report is on the inside pages, not transcribed (manifest)",
         "No issue is listed for 21.12.1936 (notes 03, §1D)",
@@ -1008,10 +1042,11 @@
       "keywords": [
         "press",
         "zona-industriale",
-        "inauguration",
-        "typeface"
+        "inauguration"
       ],
-      "text": [],
+      "text": [
+        "The party secretary Starace addresses the province's leaders in the hall of the Lancia works: “In der Halle des Lanciawerkes hatten sich die Hierarchen der Provinz ... versammelt.” La Stampa the same day: “Vibrante giornata a Bolzano e a Merano.”"
+      ],
       "facts": [
         "Page 3 (of 8): party secretary Starace's rapport in the hall of the Lancia works (manifest)",
         "'In der Halle des Lanciawerkes hatten sich die Hierarchen der Provinz ... versammelt' (notes 03, §1C, item 18, [V])",
@@ -1049,10 +1084,11 @@
       "year": 1938,
       "keywords": [
         "press",
-        "new-city",
-        "typeface"
+        "new-city"
       ],
-      "text": [],
+      "text": [
+        "The travelling opera, the Carro di Tespi, plays Aida on “die Piazza dell'Impero, der schöne, weitgreifende Platz ... im aufstrebenden Neu-Bolzano”."
+      ],
       "facts": [
         "Page 5 (of 6): Carro di Tespi 'Aida' on Piazza dell'Impero in 'aufstrebenden Neu-Bolzano' (manifest)",
         "'die Piazza dell'Impero, der schöne, weitgreifende Platz ... im aufstrebenden Neu-Bolzano' (notes 03, §1C, item 19, [V])",
@@ -1082,46 +1118,6 @@
     },
     {
       "no": "3.26",
-      "title": "Alpenzeitung, 7 November 1939, page 2",
-      "type": "Newspaper page",
-      "date": "7 November 1939",
-      "year": 1939,
-      "keywords": [
-        "press",
-        "option",
-        "colour",
-        "typeface"
-      ],
-      "text": [],
-      "facts": [
-        "Page 2 (of 4): prefect's speech: 'no plebiscite' - white vs yellow-red option forms (manifest)",
-        "'es gibt keine Volksabstimmung ... es gibt die weißen Zettel, welche für die Option derjenigen dienen werden, die italienische Staatsbürger bleiben wollen, und es gibt die gelblichroten Zettel ...' (notes 03, §1C, item 25, [V])",
-        "Seen in the image: the speech runs down the left-hand columns; the right half is the section 'Merano und Umgebung' under a large blackletter head; Fraktur throughout, an 'ORCO' advertisement in roman at the foot",
-        "The _OCR.txt sidecar is Europeana's raw, uncorrected full text of the page; check quotations against the image (manifest)"
-      ],
-      "images": [
-        {
-          "file": "AZ_1939-11-07_p2.jpg",
-          "caption": "Alpenzeitung, 7 November 1939, page 2. Teßmann scan via Europeana, Public Domain Mark 1.0."
-        }
-      ],
-      "file": "AZ_1939-11-07_p2.jpg",
-      "source": {
-        "label": "Europeana",
-        "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059043492"
-      },
-      "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
-      "rights": "Public Domain Mark 1.0 (Europeana)",
-      "confidence": {
-        "level": "read"
-      },
-      "more": {
-        "kind": "source",
-        "target": "https://digital.tessmann.it/tessmannDigital/Zeitungsarchiv/Tagesausgabe/Zeitung/26/07.11.1939"
-      }
-    },
-    {
-      "no": "3.27",
       "title": "Alpenzeitung, 8 October 1939, page 5",
       "type": "Newspaper page",
       "date": "8 October 1939",
@@ -1129,10 +1125,11 @@
       "keywords": [
         "press",
         "semirurali",
-        "inauguration",
-        "typeface"
+        "inauguration"
       ],
-      "text": [],
+      "text": [
+        "The programme of Starace's visit, with the inauguration of the Rione Dux, “die halbländlichen Häuser, die nach dem Willen des Duce für die Arbeiter des Oberetsch errichtet wurden”. “Halbländlich” is this paper's word for semirurale."
+      ],
       "facts": [
         "Page 5 (of 8): programme of Starace's visit: inauguration of Rione 'Dux', the semirurali ('halbländliche Häuser') (manifest)",
         "'Im Stadtviertel Dux, längs der Straße, welche die halbländlichen Häuser, die nach dem Willen des Duce für die Arbeiter des Oberetsch errichtet wurden, umsäumen ...' (notes 03, §1C, item 20, [V])",
@@ -1164,7 +1161,7 @@
       "place": "semirurali"
     },
     {
-      "no": "3.28",
+      "no": "3.27",
       "title": "Alpenzeitung, 10 October 1939, page 5",
       "type": "Newspaper page",
       "date": "10 October 1939",
@@ -1173,10 +1170,11 @@
         "press",
         "semirurali",
         "inauguration",
-        "symbol",
-        "typeface"
+        "symbol"
       ],
-      "text": [],
+      "text": [
+        "Starace tours the Rione Dux: “fast dreihundert Häuser mit zirka tausend Wohnungen”. And: “Am Eingang des neuen Rione Dux war über der Straße ein Eingangsbogen in der Form eines M gespannt.” An arch in the shape of an M, for Mussolini, over the street."
+      ],
       "facts": [
         "Page 5 (of 6): report: Starace tours Rione Dux - 'almost 300 houses with c. 1000 flats' (manifest)",
         "'fast dreihundert Häuser mit zirka tausend Wohnungen' (notes 03, §1C, item 21, [V])",
@@ -1208,48 +1206,50 @@
       "place": "semirurali"
     },
     {
-      "no": "3.29",
-      "title": "Alpenzeitung, 23 November 1939, page 5",
+      "no": "3.28",
+      "title": "La Provincia di Bolzano, 10 October 1939, page 1",
       "type": "Newspaper page",
-      "date": "23 November 1939",
+      "date": "10 October 1939",
       "year": 1939,
       "keywords": [
         "press",
-        "option",
-        "typeface"
+        "semirurali",
+        "inauguration",
+        "symbol"
       ],
-      "text": [],
+      "text": [
+        "The lead story is a speech by Hitler. At the foot of the page a photograph shows “l'ingresso al rione Dux dopo il rito inaugurale”: a giant letter M spanning the road."
+      ],
       "facts": [
-        "Page 5 (of 6): recurring box 'Die Option der Atesiner' - staying means 'feeling Italian' (manifest)",
-        "'Die Option der Atesiner: Wer sich für die Beibehaltung der italienischen Staatsbürgerschaft entschließt und dadurch beweist, daß er sich als Italiener fühlt ... wird in seiner Heimat bleiben können' (notes 03, §1C, item 26, [V])",
-        "The AZ ran the box on 23.11, 26.11, 01.12, 12.12, 13.12, 14.12, 15.12, 17.12 and 21.12.1939, equating staying with feeling Italian (notes 03, §1E, [V])",
-        "The box cites 'Art. 2 der „Erläuterungen zum italienisch-deutschen Abkommen\"' (OCR)",
-        "Seen in the image: page head 'Aus Bolzano Stadt und Land' in large blackletter; the small boxed item 'Die Option der Atesiner' sits in the middle column; Fraktur throughout",
-        "The _OCR.txt sidecar is Europeana's raw, uncorrected full text of the page; check quotations against the image (manifest)"
+        "Front page (6 pages in the issue): the lead story is Hitler's speech; a photo captioned 'La vibrante giornata del Segretario del Partito a Bolzano: l'ingresso al rione Dux dopo il rito inaugurale (Foto Walsa)' shows the 'M' gateway (manifest; notes 03, §1D, [V-img])",
+        "Masthead: Quotidiano della Federazione dei Fasci di Combattimento; no issue is listed for 09.10.1939 (notes 03, §1D)",
+        "Seen in the image: the gateway photo sits at the foot of the page, a giant letter 'M' spanning the road; headlines in condensed sans-serif, body text in roman type; a Biblioteca Comunale Trento stamp over the masthead",
+        "Rights: out of copyright as a collective, unsigned issue (l. 633/1941, art. 26-27), but the gallery states no terms of use: treat as a study copy and ask the library before any publication; the Codice dei beni culturali (art. 108) may also apply (manifest)"
       ],
       "images": [
         {
-          "file": "AZ_1939-11-23_p5.jpg",
-          "caption": "Alpenzeitung, 23 November 1939, page 5. Teßmann scan via Europeana, Public Domain Mark 1.0."
+          "file": "LPB_1939-10-10_p1.jpg",
+          "caption": "La Provincia di Bolzano, 10 October 1939, front page. Biblioteca Provinciale Italiana Claudia Augusta gallery; out of copyright, study copy."
         }
       ],
-      "file": "AZ_1939-11-23_p5.jpg",
+      "file": "LPB_1939-10-10_p1.jpg",
       "source": {
-        "label": "Europeana",
-        "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059043441"
+        "label": "Biblioteca Provinciale Italiana Claudia Augusta, image gallery",
+        "url": "https://webaleph.bpi.claudiaugusta.it/La_Provincia_di_Bolzano_001-1939-1939_10_10_Nr_240.html"
       },
-      "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
-      "rights": "Public Domain Mark 1.0 (Europeana)",
+      "holder": "Biblioteca Provinciale Italiana Claudia Augusta, Bolzano",
+      "rights": "Newspaper out of copyright in Italy (collective work >70 yrs); library terms of use not stated; study copy",
       "confidence": {
         "level": "read"
       },
       "more": {
         "kind": "source",
-        "target": "https://digital.tessmann.it/tessmannDigital/Zeitungsarchiv/Tagesausgabe/Zeitung/26/23.11.1939"
-      }
+        "target": "https://webaleph.bpi.claudiaugusta.it/La_Provincia_di_Bolzano_001-1939-1939_10_10_Nr_240.html"
+      },
+      "place": "semirurali"
     },
     {
-      "no": "3.30",
+      "no": "3.29",
       "title": "Alpenzeitung, 26 October 1939, page 2",
       "type": "Newspaper page",
       "date": "26 October 1939",
@@ -1257,10 +1257,12 @@
       "keywords": [
         "press",
         "option",
-        "wording",
-        "typeface"
+        "wording"
       ],
-      "text": [],
+      "text": [
+        "The implementing rules for the Option, signed by Prefect Mastromattei and the German consul general Otto Bene on 21 October 1939, under the title “Durchführungsbestimmungen für die Option der Staatsbürgerschaft”.",
+        "The Italian daily printed the same text as rules for the “rimpatrio dei cittadini germanici” and the “emigrazione di allogeni tedeschi”. One text, and a different vocabulary for each readership."
+      ],
       "facts": [
         "Page 2 (of 6): Option implementing rules (Mastromattei / Otto Bene, 21 Oct. 1939) (manifest)",
         "'Durchführungsbestimmungen für die Option der Staatsbürgerschaft', signed by Prefect Mastromattei and Consul General Otto Bene, 21 Oct. 1939 (notes 03, §1C, item 22, [V])",
@@ -1291,6 +1293,51 @@
       }
     },
     {
+      "no": "3.30",
+      "title": "La Provincia di Bolzano, 26 October 1939, page 1",
+      "type": "Newspaper page",
+      "date": "26 October 1939",
+      "year": 1939,
+      "keywords": [
+        "press",
+        "option",
+        "language",
+        "wording"
+      ],
+      "text": [
+        "“L'applicazione degli accordi italo-tedeschi. Le norme per il rimpatrio dei cittadini germanici e per l'emigrazione di allogeni tedeschi dall'Alto Adige in Germania.”",
+        "For Italian readers the Option is a repatriation and an emigration of “allogeni”, people of another stock. The German-language papers called the same text an option of citizenship."
+      ],
+      "facts": [
+        "Front page (6 pages in the issue). Headline 'L'APPLICAZIONE DEGLI ACCORDI ITALO-TEDESCHI - Le norme per il rimpatrio dei cittadini germanici e per l'emigrazione di allogeni tedeschi dall'Alto Adige in Germania', then 'Il testo delle norme' (manifest)",
+        "Signed 'Giuseppe Mastromattei, Prefetto di Bolzano - Otto Bene, Console Generale di Germania a Milano' (notes 03, §1D, [V-img])",
+        "One text, three framings: LPB on p. 1 as 'rimpatrio' and 'emigrazione di allogeni tedeschi'; AZ and DOL as 'Durchführungs-/Ausführungsbestimmungen für die Option der Staatsbürgerschaft' (notes 03, §1E, [V-img][V])",
+        "LPB addresses Italian readers ('allogeni', 'rimpatrio'), AZ and DOL German speakers ('Option', 'Umsiedlung') [I] (notes 03, §1E)",
+        "Seen in the image: kicker and two-line banner in condensed sans-serif; a boxed preamble signed by Mastromattei and Bene; then 'Il testo delle „norme\"' in small roman type across the page, section 'Disposizioni relative alle persone'; a Biblioteca Comunale Trento stamp over the masthead",
+        "Rights: out of copyright as a collective, unsigned issue (l. 633/1941, art. 26-27), but the gallery states no terms of use: treat as a study copy and ask the library before any publication; the Codice dei beni culturali (art. 108) may also apply (manifest)"
+      ],
+      "images": [
+        {
+          "file": "LPB_1939-10-26_p1.jpg",
+          "caption": "La Provincia di Bolzano, 26 October 1939, front page. Biblioteca Provinciale Italiana Claudia Augusta gallery; out of copyright, study copy."
+        }
+      ],
+      "file": "LPB_1939-10-26_p1.jpg",
+      "source": {
+        "label": "Biblioteca Provinciale Italiana Claudia Augusta, image gallery",
+        "url": "https://webaleph.bpi.claudiaugusta.it/La_Provincia_di_Bolzano_001-1939-1939_10_26_Nr_254.html"
+      },
+      "holder": "Biblioteca Provinciale Italiana Claudia Augusta, Bolzano",
+      "rights": "Newspaper out of copyright in Italy (collective work >70 yrs); library terms of use not stated; study copy",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://webaleph.bpi.claudiaugusta.it/La_Provincia_di_Bolzano_001-1939-1939_10_26_Nr_254.html"
+      }
+    },
+    {
       "no": "3.31",
       "title": "Dolomiten, 27 October 1939, page 5",
       "type": "Newspaper page",
@@ -1300,10 +1347,11 @@
         "press",
         "option",
         "wording",
-        "colour",
-        "typeface"
+        "colour"
       ],
-      "text": [],
+      "text": [
+        "The Dolomiten prints the same rules as “Ausführungsbestimmungen für die Option der Staatsbürgerschaft”, with the two forms: white to keep Italian citizenship, yellow-red for German citizenship and emigration. The picture and the text held look like two different pages of the same article."
+      ],
       "facts": [
         "Page 5 (of 11): Dolomiten prints the same Option implementing rules (manifest)",
         "'Ausführungsbestimmungen für die Option der Staatsbürgerschaft' (same text, in Dolomiten) (notes 03, §1C, item 23, [V])",
@@ -1344,10 +1392,12 @@
       "keywords": [
         "press",
         "option",
-        "voice",
-        "typeface"
+        "voice"
       ],
-      "text": [],
+      "text": [
+        "The prefect's speech as the Dolomiten printed it. The Option is “nicht nur eine elementare Gewissenspflicht, sondern für alle ein kategorischer Imperativ”, and “nach zwanzig Jahren hat niemand mehr das Recht, am Fenster zu stehen”.",
+        "The paper adds glosses of its own in brackets, marked “D. Sch.”: a second voice printed inside the prefect's."
+      ],
       "facts": [
         "Page 4 (of 6): the prefect's speech: the option is 'a categorical imperative', no standing 'at the window' (manifest)",
         "'Die Option (Entscheidung, D. Sch.) ist nicht nur eine elementare Gewissenspflicht, sondern für alle ein kategorischer Imperativ'; 'nach zwanzig Jahren hat niemand mehr das Recht, am Fenster zu stehen' (notes 03, §1C, item 24, [V])",
@@ -1378,58 +1428,100 @@
     },
     {
       "no": "3.33",
-      "title": "La Provincia di Bolzano, 10 October 1939, page 1",
+      "title": "Alpenzeitung, 7 November 1939, page 2",
       "type": "Newspaper page",
-      "date": "10 October 1939",
+      "date": "7 November 1939",
       "year": 1939,
       "keywords": [
         "press",
-        "semirurali",
-        "inauguration",
-        "symbol",
-        "typeface"
+        "option",
+        "colour"
       ],
-      "text": [],
+      "text": [
+        "The prefect on the Option: “es gibt keine Volksabstimmung”. There are white forms for those who want to remain Italian citizens and yellow-red forms for the others. The choice was given a colour."
+      ],
       "facts": [
-        "Front page (6 pages in the issue): the lead story is Hitler's speech; a photo captioned 'La vibrante giornata del Segretario del Partito a Bolzano: l'ingresso al rione Dux dopo il rito inaugurale (Foto Walsa)' shows the 'M' gateway (manifest; notes 03, §1D, [V-img])",
-        "Masthead: Quotidiano della Federazione dei Fasci di Combattimento; no issue is listed for 09.10.1939 (notes 03, §1D)",
-        "Seen in the image: the gateway photo sits at the foot of the page, a giant letter 'M' spanning the road; headlines in condensed sans-serif, body text in roman type; a Biblioteca Comunale Trento stamp over the masthead",
-        "Rights: out of copyright as a collective, unsigned issue (l. 633/1941, art. 26-27), but the gallery states no terms of use: treat as a study copy and ask the library before any publication; the Codice dei beni culturali (art. 108) may also apply (manifest)"
+        "Page 2 (of 4): prefect's speech: 'no plebiscite' - white vs yellow-red option forms (manifest)",
+        "'es gibt keine Volksabstimmung ... es gibt die weißen Zettel, welche für die Option derjenigen dienen werden, die italienische Staatsbürger bleiben wollen, und es gibt die gelblichroten Zettel ...' (notes 03, §1C, item 25, [V])",
+        "Seen in the image: the speech runs down the left-hand columns; the right half is the section 'Merano und Umgebung' under a large blackletter head; Fraktur throughout, an 'ORCO' advertisement in roman at the foot",
+        "The _OCR.txt sidecar is Europeana's raw, uncorrected full text of the page; check quotations against the image (manifest)"
       ],
       "images": [
         {
-          "file": "LPB_1939-10-10_p1.jpg",
-          "caption": "La Provincia di Bolzano, 10 October 1939, front page. Biblioteca Provinciale Italiana Claudia Augusta gallery; out of copyright, study copy."
+          "file": "AZ_1939-11-07_p2.jpg",
+          "caption": "Alpenzeitung, 7 November 1939, page 2. Teßmann scan via Europeana, Public Domain Mark 1.0."
         }
       ],
-      "file": "LPB_1939-10-10_p1.jpg",
+      "file": "AZ_1939-11-07_p2.jpg",
       "source": {
-        "label": "Biblioteca Provinciale Italiana Claudia Augusta, image gallery",
-        "url": "https://webaleph.bpi.claudiaugusta.it/La_Provincia_di_Bolzano_001-1939-1939_10_10_Nr_240.html"
+        "label": "Europeana",
+        "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059043492"
       },
-      "holder": "Biblioteca Provinciale Italiana Claudia Augusta, Bolzano",
-      "rights": "Newspaper out of copyright in Italy (collective work >70 yrs); library terms of use not stated; study copy",
+      "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
+      "rights": "Public Domain Mark 1.0 (Europeana)",
       "confidence": {
         "level": "read"
       },
       "more": {
         "kind": "source",
-        "target": "https://webaleph.bpi.claudiaugusta.it/La_Provincia_di_Bolzano_001-1939-1939_10_10_Nr_240.html"
-      },
-      "place": "semirurali"
+        "target": "https://digital.tessmann.it/tessmannDigital/Zeitungsarchiv/Tagesausgabe/Zeitung/26/07.11.1939"
+      }
     },
     {
       "no": "3.34",
+      "title": "Alpenzeitung, 23 November 1939, page 5",
+      "type": "Newspaper page",
+      "date": "23 November 1939",
+      "year": 1939,
+      "keywords": [
+        "press",
+        "option"
+      ],
+      "text": [
+        "A boxed notice that the paper ran nine times in a month: “Die Option der Atesiner”. Whoever keeps Italian citizenship “und dadurch beweist, daß er sich als Italiener fühlt ... wird in seiner Heimat bleiben können”. To stay was to feel Italian."
+      ],
+      "facts": [
+        "Page 5 (of 6): recurring box 'Die Option der Atesiner' - staying means 'feeling Italian' (manifest)",
+        "'Die Option der Atesiner: Wer sich für die Beibehaltung der italienischen Staatsbürgerschaft entschließt und dadurch beweist, daß er sich als Italiener fühlt ... wird in seiner Heimat bleiben können' (notes 03, §1C, item 26, [V])",
+        "The AZ ran the box on 23.11, 26.11, 01.12, 12.12, 13.12, 14.12, 15.12, 17.12 and 21.12.1939, equating staying with feeling Italian (notes 03, §1E, [V])",
+        "The box cites 'Art. 2 der „Erläuterungen zum italienisch-deutschen Abkommen\"' (OCR)",
+        "Seen in the image: page head 'Aus Bolzano Stadt und Land' in large blackletter; the small boxed item 'Die Option der Atesiner' sits in the middle column; Fraktur throughout",
+        "The _OCR.txt sidecar is Europeana's raw, uncorrected full text of the page; check quotations against the image (manifest)"
+      ],
+      "images": [
+        {
+          "file": "AZ_1939-11-23_p5.jpg",
+          "caption": "Alpenzeitung, 23 November 1939, page 5. Teßmann scan via Europeana, Public Domain Mark 1.0."
+        }
+      ],
+      "file": "AZ_1939-11-23_p5.jpg",
+      "source": {
+        "label": "Europeana",
+        "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059043441"
+      },
+      "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
+      "rights": "Public Domain Mark 1.0 (Europeana)",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://digital.tessmann.it/tessmannDigital/Zeitungsarchiv/Tagesausgabe/Zeitung/26/23.11.1939"
+      }
+    },
+    {
+      "no": "3.35",
       "title": "La Provincia di Bolzano, 23 November 1939, page 1",
       "type": "Newspaper page",
       "date": "23 November 1939",
       "year": 1939,
       "keywords": [
         "press",
-        "option",
-        "typeface"
+        "option"
       ],
-      "text": [],
+      "text": [
+        "Downloaded to compare with the Alpenzeitung's Option notice of the same day. The Italian front page does not mention the Option in its headlines, which are the blockade proclaimed by London, the Munich bomb and Hungary. Not transcribed."
+      ],
       "facts": [
         "Front page (6 pages in the issue); not transcribed in the session; downloaded to compare with the AZ's recurring 'Die Option der Atesiner' box of the same day (manifest)",
         "One of two downloaded LPB front pages left unread (notes 03, §1, Gaps)",
@@ -1459,90 +1551,7 @@
       }
     },
     {
-      "no": "3.35",
-      "title": "La Provincia di Bolzano, 26 October 1939, page 1",
-      "type": "Newspaper page",
-      "date": "26 October 1939",
-      "year": 1939,
-      "keywords": [
-        "press",
-        "option",
-        "language",
-        "wording",
-        "typeface"
-      ],
-      "text": [],
-      "facts": [
-        "Front page (6 pages in the issue). Headline 'L'APPLICAZIONE DEGLI ACCORDI ITALO-TEDESCHI - Le norme per il rimpatrio dei cittadini germanici e per l'emigrazione di allogeni tedeschi dall'Alto Adige in Germania', then 'Il testo delle norme' (manifest)",
-        "Signed 'Giuseppe Mastromattei, Prefetto di Bolzano - Otto Bene, Console Generale di Germania a Milano' (notes 03, §1D, [V-img])",
-        "One text, three framings: LPB on p. 1 as 'rimpatrio' and 'emigrazione di allogeni tedeschi'; AZ and DOL as 'Durchführungs-/Ausführungsbestimmungen für die Option der Staatsbürgerschaft' (notes 03, §1E, [V-img][V])",
-        "LPB addresses Italian readers ('allogeni', 'rimpatrio'), AZ and DOL German speakers ('Option', 'Umsiedlung') [I] (notes 03, §1E)",
-        "Seen in the image: kicker and two-line banner in condensed sans-serif; a boxed preamble signed by Mastromattei and Bene; then 'Il testo delle „norme\"' in small roman type across the page, section 'Disposizioni relative alle persone'; a Biblioteca Comunale Trento stamp over the masthead",
-        "Rights: out of copyright as a collective, unsigned issue (l. 633/1941, art. 26-27), but the gallery states no terms of use: treat as a study copy and ask the library before any publication; the Codice dei beni culturali (art. 108) may also apply (manifest)"
-      ],
-      "images": [
-        {
-          "file": "LPB_1939-10-26_p1.jpg",
-          "caption": "La Provincia di Bolzano, 26 October 1939, front page. Biblioteca Provinciale Italiana Claudia Augusta gallery; out of copyright, study copy."
-        }
-      ],
-      "file": "LPB_1939-10-26_p1.jpg",
-      "source": {
-        "label": "Biblioteca Provinciale Italiana Claudia Augusta, image gallery",
-        "url": "https://webaleph.bpi.claudiaugusta.it/La_Provincia_di_Bolzano_001-1939-1939_10_26_Nr_254.html"
-      },
-      "holder": "Biblioteca Provinciale Italiana Claudia Augusta, Bolzano",
-      "rights": "Newspaper out of copyright in Italy (collective work >70 yrs); library terms of use not stated; study copy",
-      "confidence": {
-        "level": "read"
-      },
-      "more": {
-        "kind": "source",
-        "target": "https://webaleph.bpi.claudiaugusta.it/La_Provincia_di_Bolzano_001-1939-1939_10_26_Nr_254.html"
-      }
-    },
-    {
       "no": "3.36",
-      "title": "Alpenzeitung, 15 May 1940, page 5",
-      "type": "Newspaper page",
-      "date": "15 May 1940",
-      "year": 1940,
-      "keywords": [
-        "press",
-        "semirurali",
-        "typeface"
-      ],
-      "text": [],
-      "facts": [
-        "Page 5 (of 6): contents of 'Atesia Augusta' incl. 'Rione Dux der halbländlichen Häuser' (manifest)",
-        "Contents of the 'Atesia Augusta' issue: 'Rione Dux der halbländlichen Häuser', P. Pedrotti on the Dante Alighieri in Bolzano, 'Preiswerter Tourismus', etc. (notes 03, §1C, item 28, [V])",
-        "Atesia Augusta is the regime's monthly for Alto Adige (1939-43), described by the AZ as directed by Prefect Mastromattei; this May 1940 issue is not among the BPI gallery albums (notes 03, §4 and §1 Gaps)",
-        "Seen in the image: page head 'Aus Bolzano Stadt und Land' in large blackletter; the item 'Das Maiheft der Zeitschrift „Atesia Augusta\"' in the second column; Fraktur throughout",
-        "The _OCR.txt sidecar is Europeana's raw, uncorrected full text of the page; check quotations against the image (manifest)"
-      ],
-      "images": [
-        {
-          "file": "AZ_1940-05-15_p5.jpg",
-          "caption": "Alpenzeitung, 15 May 1940, page 5. Teßmann scan via Europeana, Public Domain Mark 1.0."
-        }
-      ],
-      "file": "AZ_1940-05-15_p5.jpg",
-      "source": {
-        "label": "Europeana",
-        "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059043696"
-      },
-      "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
-      "rights": "Public Domain Mark 1.0 (Europeana)",
-      "confidence": {
-        "level": "read"
-      },
-      "more": {
-        "kind": "source",
-        "target": "https://digital.tessmann.it/tessmannDigital/Zeitungsarchiv/Tagesausgabe/Zeitung/26/15.05.1940"
-      }
-    },
-    {
-      "no": "3.37",
       "title": "Dolomiten, 5 January 1940, page 3",
       "type": "Newspaper page",
       "date": "5 January 1940",
@@ -1550,10 +1559,11 @@
       "keywords": [
         "press",
         "option",
-        "statistics",
-        "typeface"
+        "statistics"
       ],
-      "text": [],
+      "text": [
+        "The Dolomiten relays the official news agency's communiqué on the “Gesamtzahl der Optionen für die Umsiedlung ins Reich”. Lower on the same page an advertisement offers “Arbeit in Deutschland”, and a Bolzano firm sells “Ahnenpässe”, certificates of ancestry."
+      ],
       "facts": [
         "Page 3 (of 8): Dolomiten prints the Stefani communiqué on the total result of the Option (manifest)",
         "'Gesamtzahl der Optionen für die Umsiedlung ins Reich', relaying the Stefani agency communiqué of 3 Jan. 1940 (notes 03, §1C, item 27, [V])",
@@ -1584,7 +1594,7 @@
       }
     },
     {
-      "no": "3.38",
+      "no": "3.37",
       "title": "La Provincia di Bolzano, 11 January 1940, page 1",
       "type": "Newspaper page",
       "date": "11 January 1940",
@@ -1592,10 +1602,12 @@
       "keywords": [
         "press",
         "option",
-        "statistics",
-        "typeface"
+        "statistics"
       ],
-      "text": [],
+      "text": [
+        "“I risultati ufficiali delle opzioni in Alto Adige comunicati al Duce e al Führer.” For the province of Bolzano: 166,488 for German citizenship, 27,712 for Italian, 35,300 with no declaration.",
+        "The box stands at the top right of a front page led by the war in Finland. La Stampa ran the identical headline the same day."
+      ],
       "facts": [
         "Front page (6 pages in the issue). Headline 'I RISULTATI UFFICIALI delle opzioni in Alto Adige comunicati al Duce e al Führer': province of Bolzano 166.488 for German citizenship, 27.712 for Italian, 35.300 no declaration; masthead: Quotidiano fascista dell'Alto Adige (manifest)",
         "For the Trento mixed-language zone: 24,453 eligible; 13,015 for Germany, 3,802 for Italy, 7,636 no declaration (notes 03, §1D, [V-img])",
@@ -1625,6 +1637,47 @@
       }
     },
     {
+      "no": "3.38",
+      "title": "Alpenzeitung, 15 May 1940, page 5",
+      "type": "Newspaper page",
+      "date": "15 May 1940",
+      "year": 1940,
+      "keywords": [
+        "press",
+        "semirurali"
+      ],
+      "text": [
+        "The contents of an issue of Atesia Augusta, the regime's monthly for Alto Adige: among them “Rione Dux der halbländlichen Häuser” and “Preiswerter Tourismus”. That issue itself has not been found."
+      ],
+      "facts": [
+        "Page 5 (of 6): contents of 'Atesia Augusta' incl. 'Rione Dux der halbländlichen Häuser' (manifest)",
+        "Contents of the 'Atesia Augusta' issue: 'Rione Dux der halbländlichen Häuser', P. Pedrotti on the Dante Alighieri in Bolzano, 'Preiswerter Tourismus', etc. (notes 03, §1C, item 28, [V])",
+        "Atesia Augusta is the regime's monthly for Alto Adige (1939-43), described by the AZ as directed by Prefect Mastromattei; this May 1940 issue is not among the BPI gallery albums (notes 03, §4 and §1 Gaps)",
+        "Seen in the image: page head 'Aus Bolzano Stadt und Land' in large blackletter; the item 'Das Maiheft der Zeitschrift „Atesia Augusta\"' in the second column; Fraktur throughout",
+        "The _OCR.txt sidecar is Europeana's raw, uncorrected full text of the page; check quotations against the image (manifest)"
+      ],
+      "images": [
+        {
+          "file": "AZ_1940-05-15_p5.jpg",
+          "caption": "Alpenzeitung, 15 May 1940, page 5. Teßmann scan via Europeana, Public Domain Mark 1.0."
+        }
+      ],
+      "file": "AZ_1940-05-15_p5.jpg",
+      "source": {
+        "label": "Europeana",
+        "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059043696"
+      },
+      "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
+      "rights": "Public Domain Mark 1.0 (Europeana)",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://digital.tessmann.it/tessmannDigital/Zeitungsarchiv/Tagesausgabe/Zeitung/26/15.05.1940"
+      }
+    },
+    {
       "no": "3.39",
       "title": "Alpenzeitung, 21 March 1941, page 3",
       "type": "Newspaper page",
@@ -1635,7 +1688,9 @@
         "semirurali",
         "typeface"
       ],
-      "text": [],
+      "text": [
+        "“Neue Häuser für das Volk”, in heavy blackletter: two workers' quarters “aus dem Nichts entstanden: Rione Dux und Rione Littoria”, the making of “Neu-Bolzano”. The page gives numbers of flats, rooms and working days."
+      ],
       "facts": [
         "Page 3 (of 4): 'Zwei Volkswohnviertel ... aus dem Nichts entstanden: Rione Dux und Rione Littoria' = 'Neu-Bolzano' (manifest)",
         "'Zwei Volkswohnviertel sind ... aus dem Nichts entstanden: Rione Dux und Rione Littoria ... das Entstehen dieses Teiles Neu-Bolzanos' (notes 03, §1C, item 29, [V])",
@@ -1667,6 +1722,47 @@
     },
     {
       "no": "3.40",
+      "title": "Alpenzeitung, 27 April 1941, page 5",
+      "type": "Newspaper page",
+      "date": "27 April 1941",
+      "year": 1941,
+      "keywords": [
+        "press",
+        "semirurali"
+      ],
+      "text": [
+        "“Arbeiterwohnungen zwischen dem Rione Littorio und Rione Dux.” More workers' housing between the two quarters, a block at the Brenner, and further projects."
+      ],
+      "facts": [
+        "Page 5 (of 6): 'Arbeiterwohnungen zwischen dem Rione Littorio und Rione Dux' (manifest)",
+        "'Arbeiterwohnungen zwischen dem Rione Littorio und Rione Dux. Ein Wohnbau am Brennero. Weitere Projekte' (notes 03, §1C, item 30, [V])",
+        "Seen in the image: page head 'Aus Bolzano Stadt und Land' in large blackletter; the headline 'Arbeiterwohnungen zwischen dem Rione „Littorio\" und Rione „Dux\"' in large Fraktur mid-page, subhead 'Ein Wohnbau am Brennero - Weitere Projekte'",
+        "The _OCR.txt sidecar is Europeana's raw, uncorrected full text of the page; check quotations against the image (manifest)"
+      ],
+      "images": [
+        {
+          "file": "AZ_1941-04-27_p5.jpg",
+          "caption": "Alpenzeitung, 27 April 1941, page 5. Teßmann scan via Europeana, Public Domain Mark 1.0."
+        }
+      ],
+      "file": "AZ_1941-04-27_p5.jpg",
+      "source": {
+        "label": "Europeana",
+        "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059044878"
+      },
+      "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
+      "rights": "Public Domain Mark 1.0 (Europeana)",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://digital.tessmann.it/tessmannDigital/Zeitungsarchiv/Tagesausgabe/Zeitung/26/27.04.1941"
+      },
+      "place": "semirurali"
+    },
+    {
+      "no": "3.41",
       "title": "Alpenzeitung, 22 July 1941, page 3",
       "type": "Newspaper page",
       "date": "22 July 1941",
@@ -1674,10 +1770,11 @@
       "keywords": [
         "press",
         "cinemas",
-        "semirurali",
-        "typeface"
+        "semirurali"
       ],
-      "text": [],
+      "text": [
+        "“Eröffnung des neuen Kinos Littorio im Rione Dux.” A cinema opens “im volkreichen Viertel Dux”. The notes list the city's other cinemas found in this paper: Cinema Roma, Central-Kino, Cine Luce."
+      ],
       "facts": [
         "Page 3 (of 4): 'Eröffnung des neuen Kinos Littorio im Rione Dux' (manifest)",
         "'das Kino ... befindet sich im volkreichen Viertel Dux' (notes 03, §1C, item 31, [V])",
@@ -1705,46 +1802,6 @@
       "more": {
         "kind": "source",
         "target": "https://digital.tessmann.it/tessmannDigital/Zeitungsarchiv/Tagesausgabe/Zeitung/26/22.07.1941"
-      },
-      "place": "semirurali"
-    },
-    {
-      "no": "3.41",
-      "title": "Alpenzeitung, 27 April 1941, page 5",
-      "type": "Newspaper page",
-      "date": "27 April 1941",
-      "year": 1941,
-      "keywords": [
-        "press",
-        "semirurali",
-        "typeface"
-      ],
-      "text": [],
-      "facts": [
-        "Page 5 (of 6): 'Arbeiterwohnungen zwischen dem Rione Littorio und Rione Dux' (manifest)",
-        "'Arbeiterwohnungen zwischen dem Rione Littorio und Rione Dux. Ein Wohnbau am Brennero. Weitere Projekte' (notes 03, §1C, item 30, [V])",
-        "Seen in the image: page head 'Aus Bolzano Stadt und Land' in large blackletter; the headline 'Arbeiterwohnungen zwischen dem Rione „Littorio\" und Rione „Dux\"' in large Fraktur mid-page, subhead 'Ein Wohnbau am Brennero - Weitere Projekte'",
-        "The _OCR.txt sidecar is Europeana's raw, uncorrected full text of the page; check quotations against the image (manifest)"
-      ],
-      "images": [
-        {
-          "file": "AZ_1941-04-27_p5.jpg",
-          "caption": "Alpenzeitung, 27 April 1941, page 5. Teßmann scan via Europeana, Public Domain Mark 1.0."
-        }
-      ],
-      "file": "AZ_1941-04-27_p5.jpg",
-      "source": {
-        "label": "Europeana",
-        "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059044878"
-      },
-      "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
-      "rights": "Public Domain Mark 1.0 (Europeana)",
-      "confidence": {
-        "level": "read"
-      },
-      "more": {
-        "kind": "source",
-        "target": "https://digital.tessmann.it/tessmannDigital/Zeitungsarchiv/Tagesausgabe/Zeitung/26/27.04.1941"
       },
       "place": "semirurali"
     }

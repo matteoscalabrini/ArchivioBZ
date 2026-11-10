@@ -1,9 +1,4 @@
 {
-  "keywords_proposed": {
-    "architecture": {
-      "label": "Architecture and planning"
-    }
-  },
   "entries": [
     {
       "no": "8.00",
@@ -74,39 +69,39 @@
     },
     {
       "no": "8.02",
-      "title": "Alpenzeitung, 14 December 1938, page 5",
-      "type": "Newspaper page",
-      "date": "14 December 1938",
+      "title": "R.D. 28 aprile 1938, n. 1165: Approvazione del testo unico delle disposizioni sull'edilizia popolare ed economica (Gazzetta Ufficiale n. 177, 5 agosto 1938, supplemento ordinario)",
+      "type": "Law text",
+      "date": "28 April 1938",
       "year": 1938,
       "keywords": [
-        "press",
+        "law",
         "semirurali"
       ],
       "text": [
-        "The Duchess of Pistoia visits the public housing of Bolzano. She is received by the housing institute's president, the engineer Rota, and its technical director, the engineer Garbini: the period confirmation of who ran the Semirurali. The institute already houses “900 Familien mit über 5000 Personen”, and the semi-rural houses will take 200 more.",
-        "The paper likens them to Mussolini's birthplace: “Jedes Häuschen hat seinen Garten und mit dem freien Aufgang erinnern die Bauten an das Geburtshaus des Duce.” Only the text is held, as rough OCR."
+        "The consolidated law on public housing of 1938, the general frame for the provincial housing institutes. It knows no “semirurale” category: “rural” appears only in a tax exemption and in one clause on bodies building “borgate rurali”. This research reads it as the legal vehicle of the Semirurali all the same, with ministerial subsidies on top.",
+        "The scan's two-column text is scrambled, and whether that clause stood in the 1938 original could not be confirmed."
       ],
       "facts": [
-        "Raw OCR of Alpenzeitung, 14 Dec. 1938, p. 5: the Duchess of Pistoia's visit (manifest).",
-        "She was received by \"dem Präsidenten des Institutes für Volkswohnbauten, Ing. Rota, dem technischen Direktor Ing. Garbini\": period confirmation of the two officers (notes 01, §1, [V]).",
-        "IFACP housing in the Rayon already holds \"900 Familien mit über 5000 Personen\", and the semirural houses will take \"weitere 200 Familien\" (file; notes 01, §4, [V]).",
-        "The Predappio trope: \"Jedes Häuschen hat seinen Garten und mit dem freien Aufgang erinnern die Bauten an das Geburtshaus des Duce\" (notes 01, §3, [V])."
+        "Gazzetta Ufficiale n. 177, 5 Aug. 1938, ordinary supplement, carrying R.D. 28 Apr. 1938, n. 1165, the T.U. on public and economic housing (manifest).",
+        "The general frame for the IFACPs: constitution and recognition, mortgages and state contributions, Ministry of Public Works oversight; art. 27: the president of each provincial institute \"è nominato con decreto Reale su proposta del Ministro pei lavori pubblici\" (notes 01, §1–2, [V]).",
+        "No \"semirurale\" category: \"rural\" appears only in the tax exemption for \"fabbricati rurali\" (art. 164) and in art. 16 n. 12° on bodies \"che provvedano alla costruzione di borgate rurali\" (notes 01, §2, [V]).",
+        "The OCR is scrambled by the two-column layout, so whether art. 16 n. 12° was in the 1938 original could not be confirmed (manifest; notes 01, §2).",
+        "The notes read it as the legal vehicle of the semirurale type, with ministerial subsidies (notes 01, §2, [INF])."
       ],
-      "file": "AZ_1938-12-14_p5_OCR_Rota_Garbini.txt",
+      "file": "GU_1938_08_05_177_SO_TU_1165_edilizia_popolare.pdf",
       "source": {
-        "label": "Europeana",
-        "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059047939"
+        "label": "Gazzetta Ufficiale",
+        "url": "https://www.gazzettaufficiale.it/eli/gu/1938/08/05/177/so/177/sg/pdf"
       },
-      "holder": "Europeana / Teßmann",
-      "rights": "Public Domain Mark (Europeana/Teßmann).",
+      "holder": "Gazzetta Ufficiale",
+      "rights": "An official act. Not protected by copyright (L. 633/1941, art. 5).",
       "confidence": {
         "level": "read",
-        "note": "Raw OCR only; the page image is online, not held."
+        "note": "The OCR is scrambled; whether art. 16 n. 12° stood in the 1938 original is not confirmed."
       },
       "more": {
         "kind": "file"
-      },
-      "place": "semirurali"
+      }
     },
     {
       "no": "8.03",
@@ -182,42 +177,78 @@
     },
     {
       "no": "8.05",
-      "title": "R.D. 28 aprile 1938, n. 1165: Approvazione del testo unico delle disposizioni sull'edilizia popolare ed economica (Gazzetta Ufficiale n. 177, 5 agosto 1938, supplemento ordinario)",
-      "type": "Law text",
-      "date": "28 April 1938",
+      "title": "Alpenzeitung, 14 December 1938, page 5",
+      "type": "Newspaper page",
+      "date": "14 December 1938",
       "year": 1938,
       "keywords": [
-        "law",
+        "press",
         "semirurali"
       ],
       "text": [
-        "The consolidated law on public housing of 1938, the general frame for the provincial housing institutes. It knows no “semirurale” category: “rural” appears only in a tax exemption and in one clause on bodies building “borgate rurali”. This research reads it as the legal vehicle of the Semirurali all the same, with ministerial subsidies on top.",
-        "The scan's two-column text is scrambled, and whether that clause stood in the 1938 original could not be confirmed."
+        "The Duchess of Pistoia visits the public housing of Bolzano. She is received by the housing institute's president, the engineer Rota, and its technical director, the engineer Garbini: the period confirmation of who ran the Semirurali. The institute already houses “900 Familien mit über 5000 Personen”, and the semi-rural houses will take 200 more.",
+        "The paper likens them to Mussolini's birthplace: “Jedes Häuschen hat seinen Garten und mit dem freien Aufgang erinnern die Bauten an das Geburtshaus des Duce.” Only the text is held, as rough OCR."
       ],
       "facts": [
-        "Gazzetta Ufficiale n. 177, 5 Aug. 1938, ordinary supplement, carrying R.D. 28 Apr. 1938, n. 1165, the T.U. on public and economic housing (manifest).",
-        "The general frame for the IFACPs: constitution and recognition, mortgages and state contributions, Ministry of Public Works oversight; art. 27: the president of each provincial institute \"è nominato con decreto Reale su proposta del Ministro pei lavori pubblici\" (notes 01, §1–2, [V]).",
-        "No \"semirurale\" category: \"rural\" appears only in the tax exemption for \"fabbricati rurali\" (art. 164) and in art. 16 n. 12° on bodies \"che provvedano alla costruzione di borgate rurali\" (notes 01, §2, [V]).",
-        "The OCR is scrambled by the two-column layout, so whether art. 16 n. 12° was in the 1938 original could not be confirmed (manifest; notes 01, §2).",
-        "The notes read it as the legal vehicle of the semirurale type, with ministerial subsidies (notes 01, §2, [INF])."
+        "Raw OCR of Alpenzeitung, 14 Dec. 1938, p. 5: the Duchess of Pistoia's visit (manifest).",
+        "She was received by \"dem Präsidenten des Institutes für Volkswohnbauten, Ing. Rota, dem technischen Direktor Ing. Garbini\": period confirmation of the two officers (notes 01, §1, [V]).",
+        "IFACP housing in the Rayon already holds \"900 Familien mit über 5000 Personen\", and the semirural houses will take \"weitere 200 Familien\" (file; notes 01, §4, [V]).",
+        "The Predappio trope: \"Jedes Häuschen hat seinen Garten und mit dem freien Aufgang erinnern die Bauten an das Geburtshaus des Duce\" (notes 01, §3, [V])."
       ],
-      "file": "GU_1938_08_05_177_SO_TU_1165_edilizia_popolare.pdf",
+      "file": "AZ_1938-12-14_p5_OCR_Rota_Garbini.txt",
+      "source": {
+        "label": "Europeana",
+        "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059047939"
+      },
+      "holder": "Europeana / Teßmann",
+      "rights": "Public Domain Mark (Europeana/Teßmann).",
+      "confidence": {
+        "level": "read",
+        "note": "Raw OCR only; the page image is online, not held."
+      },
+      "more": {
+        "kind": "file"
+      },
+      "place": "semirurali"
+    },
+    {
+      "no": "8.06",
+      "title": "Legge 6 luglio 1939, n. 1092: Provvedimenti contro l'urbanesimo (Gazzetta Ufficiale n. 185, 9 agosto 1939)",
+      "type": "Law text",
+      "date": "6 July 1939",
+      "year": 1939,
+      "keywords": [
+        "law",
+        "migration",
+        "colonization"
+      ],
+      "text": [
+        "The Gazzetta Ufficiale issue that printed the anti-urbanism law (its text is row 10.07). It contains nothing on housing or on ruralization. What it does is put the movement of workers between provinces under the Commissariato per le migrazioni e la colonizzazione.",
+        "For the Semirurali, then, the tie to colonization runs through who was allowed to move, not through the type of house."
+      ],
+      "facts": [
+        "Gazzetta Ufficiale n. 185, 9 Aug. 1939, carrying L. 6 July 1939, n. 1092, \"Provvedimenti contro l'urbanesimo\", pp. 3754–3755 (PDF pp. 2–3) (manifest).",
+        "Art. 1: \"Nessuno può trasferire la propria residenza in Comuni del Regno capoluoghi di Provincia …\" unless obliged by office or job or having \"una proficua occupazione stabile\" there (notes 01, §2, [V]).",
+        "Arts. 2–3 put interprovincial transfers of workers under \"il Commissariato per le migrazioni e la colonizzazione\" (notes 01, §2, [V]).",
+        "No housing or ruralization provisions; signed at San Rossore by Mussolini, Solmi, Di Revel, Rossoni and Lantini (notes 01, §2, [V]).",
+        "The notes see the bridge to colonization running through labour mobility, not house types (notes 01, §2, [INF])."
+      ],
+      "file": "GU_1939_08_09_185_sg.pdf",
       "source": {
         "label": "Gazzetta Ufficiale",
-        "url": "https://www.gazzettaufficiale.it/eli/gu/1938/08/05/177/so/177/sg/pdf"
+        "url": "https://www.gazzettaufficiale.it/eli/gu/1939/08/09/185/sg/pdf"
       },
       "holder": "Gazzetta Ufficiale",
       "rights": "An official act. Not protected by copyright (L. 633/1941, art. 5).",
       "confidence": {
-        "level": "read",
-        "note": "The OCR is scrambled; whether art. 16 n. 12° stood in the 1938 original is not confirmed."
+        "level": "read"
       },
       "more": {
         "kind": "file"
       }
     },
     {
-      "no": "8.06",
+      "no": "8.07",
       "title": "Alpenzeitung, 3 August 1939, page 5",
       "type": "Newspaper page",
       "date": "3 August 1939",
@@ -254,7 +285,7 @@
       "place": "semirurali"
     },
     {
-      "no": "8.07",
+      "no": "8.08",
       "title": "La Provincia di Bolzano, 10 October 1939, page 3",
       "type": "Newspaper page",
       "date": "10 October 1939",
@@ -300,42 +331,6 @@
         "target": "https://webaleph.bpi.claudiaugusta.it/La_Provincia_di_Bolzano_001-1939-1939_10_10_Nr_240.html"
       },
       "place": "semirurali"
-    },
-    {
-      "no": "8.08",
-      "title": "Legge 6 luglio 1939, n. 1092: Provvedimenti contro l'urbanesimo (Gazzetta Ufficiale n. 185, 9 agosto 1939)",
-      "type": "Law text",
-      "date": "6 July 1939",
-      "year": 1939,
-      "keywords": [
-        "law",
-        "migration",
-        "colonization"
-      ],
-      "text": [
-        "The Gazzetta Ufficiale issue that printed the anti-urbanism law (its text is row 10.09). It contains nothing on housing or on ruralization. What it does is put the movement of workers between provinces under the Commissariato per le migrazioni e la colonizzazione.",
-        "For the Semirurali, then, the tie to colonization runs through who was allowed to move, not through the type of house."
-      ],
-      "facts": [
-        "Gazzetta Ufficiale n. 185, 9 Aug. 1939, carrying L. 6 July 1939, n. 1092, \"Provvedimenti contro l'urbanesimo\", pp. 3754–3755 (PDF pp. 2–3) (manifest).",
-        "Art. 1: \"Nessuno può trasferire la propria residenza in Comuni del Regno capoluoghi di Provincia …\" unless obliged by office or job or having \"una proficua occupazione stabile\" there (notes 01, §2, [V]).",
-        "Arts. 2–3 put interprovincial transfers of workers under \"il Commissariato per le migrazioni e la colonizzazione\" (notes 01, §2, [V]).",
-        "No housing or ruralization provisions; signed at San Rossore by Mussolini, Solmi, Di Revel, Rossoni and Lantini (notes 01, §2, [V]).",
-        "The notes see the bridge to colonization running through labour mobility, not house types (notes 01, §2, [INF])."
-      ],
-      "file": "GU_1939_08_09_185_sg.pdf",
-      "source": {
-        "label": "Gazzetta Ufficiale",
-        "url": "https://www.gazzettaufficiale.it/eli/gu/1939/08/09/185/sg/pdf"
-      },
-      "holder": "Gazzetta Ufficiale",
-      "rights": "An official act. Not protected by copyright (L. 633/1941, art. 5).",
-      "confidence": {
-        "level": "read"
-      },
-      "more": {
-        "kind": "file"
-      }
     },
     {
       "no": "8.09",
