@@ -1,87 +1,121 @@
 {
   "ponte-druso": {
     "name": "Ponte Druso",
-    "lat": null,
-    "lon": null
+    "lat": 46.4948,
+    "lon": 11.34817,
+    "osm": "way/1005176285",
+    "source": "Centre of the bridge deck (man_made=bridge outline), OpenStreetMap way 1005176285 via Nominatim"
   },
   "ponte-talvera": {
     "name": "Ponte Talvera",
-    "lat": null,
-    "lon": null
+    "lat": 46.50023,
+    "lon": 11.34701,
+    "osm": "way/1016049488",
+    "source": "Centre of the bridge deck (man_made=bridge outline), OpenStreetMap way 1016049488 via Nominatim"
   },
   "monumento-vittoria": {
     "name": "Monumento alla Vittoria",
-    "lat": null,
-    "lon": null
+    "lat": 46.50052,
+    "lon": 11.345,
+    "osm": "way/161773745",
+    "source": "Centre of the monument's footprint on Piazza della Vittoria, OpenStreetMap way 161773745 via Nominatim"
   },
   "casa-del-fascio": {
     "name": "Casa del Fascio, Piazza Tribunale",
-    "lat": null,
-    "lon": null
+    "lat": 46.49738,
+    "lon": 11.3394,
+    "osm": "way/134112303",
+    "source": "Former Casa Littoria (Uffici Finanziari, Piazza del Tribunale 2): middle of its curved front wing on the square, OpenStreetMap way 134112303"
   },
   "palazzo-giustizia": {
     "name": "Palazzo di Giustizia",
-    "lat": null,
-    "lon": null
+    "lat": 46.49813,
+    "lon": 11.33945,
+    "osm": "way/34393483",
+    "source": "Courthouse (Tribunale di Bolzano) on the north side of Piazza del Tribunale: centre of its footprint, OpenStreetMap way 34393483 Moved 25 m east of the centre, onto the east part of the building, which the dot map covers."
   },
   "corso-liberta": {
     "name": "Corso Libertà",
-    "lat": null,
-    "lon": null
+    "lat": 46.50161,
+    "lon": 11.34022,
+    "osm": "way/1200432710",
+    "source": "Halfway along the arcaded stretch (Piazza della Vittoria to Via della Zecca), at the Corso Italia crossing, OpenStreetMap way 1200432710"
   },
   "cristo-re": {
     "name": "Cristo Re",
-    "lat": null,
-    "lon": null
+    "lat": 46.49674,
+    "lon": 11.34106,
+    "osm": "way/130469716",
+    "source": "Centre of the church footprint on Piazza Cristo Re, OpenStreetMap way 130469716 via Nominatim"
   },
   "stadio-druso": {
     "name": "Stadio Druso",
-    "lat": null,
-    "lon": null
+    "lat": 46.49206,
+    "lon": 11.34607,
+    "osm": "way/30342416",
+    "source": "Centre of the stadium area, Viale Trieste 19, OpenStreetMap way 30342416 via Nominatim"
   },
   "piazza-walther": {
     "name": "Piazza Walther",
-    "lat": null,
-    "lon": null
+    "lat": 46.4982,
+    "lon": 11.35481,
+    "osm": "relation/4003691",
+    "source": "Centre of the square's pedestrian area, OpenStreetMap relation 4003691 via Nominatim"
   },
   "stazione": {
     "name": "Bolzano station",
-    "lat": null,
-    "lon": null
+    "lat": 46.49653,
+    "lon": 11.35827,
+    "osm": "way/49810951",
+    "source": "Centre of the station building (building=train_station) on Piazza Stazione, OpenStreetMap way 49810951 via Overpass"
   },
   "semirurali": {
     "name": "Semirurali",
-    "lat": null,
-    "lon": null
+    "lat": 46.487,
+    "lon": 11.32563,
+    "osm": "node/2749562298",
+    "source": "Casa Semirurale, via Bari 11 (address point inside the surviving house), standing for the former quarter, OpenStreetMap node 2749562298"
   },
   "zona-industriale": {
     "name": "Zona industriale",
-    "lat": null,
-    "lon": null
+    "lat": 46.48121,
+    "lon": 11.333,
+    "osm": "way/244113053",
+    "source": "Former Lancia works on via Volta (today IDV Defence Vehicles), centre of the fenced site, standing for the zone's historical core, OpenStreetMap way 244113053"
   },
   "lager": {
     "name": "Lager, Via Resia",
-    "lat": null,
-    "lon": null
+    "lat": 46.48574,
+    "lon": 11.31798,
+    "osm": "way/126290071",
+    "source": "Midpoint of the surviving camp wall along the Passaggio della Memoria, via Resia (untagged barrier=wall), OpenStreetMap way 126290071"
   },
   "oltrisarco": {
     "name": "Oltrisarco / Oberau",
-    "lat": null,
-    "lon": null
+    "lat": 46.47848,
+    "lon": 11.32904,
+    "osm": "node/9088449826",
+    "source": "Place node of the Oltrisarco / Oberau suburb (mapped inside the industrial zone), OpenStreetMap node 9088449826 via Nominatim"
   },
   "lido": {
     "name": "Lido di Bolzano, municipal open-air pool",
-    "lat": null,
-    "lon": null
+    "lat": 46.4912,
+    "lon": 11.34443,
+    "osm": "way/25925169",
+    "source": "Centre of the Lido pool grounds (leisure=water_park) on Viale Trieste, OpenStreetMap way 25925169 via Overpass Moved 70 m north of the centre, onto the north part of the grounds, which the dot map covers."
   },
   "noi-techpark": {
     "name": "NOI Techpark (former Alumix aluminium plant)",
-    "lat": null,
-    "lon": null
+    "lat": 46.47853,
+    "lon": 11.33165,
+    "osm": "relation/17405562",
+    "source": "Centre of the NOI Techpark site on via Volta, OpenStreetMap relation 17405562 via Nominatim"
   },
   "sparkasse-sede": {
     "name": "Historic seat of the Cassa di Risparmio (Südtiroler Sparkasse)",
-    "lat": null,
-    "lon": null
+    "lat": 46.50027,
+    "lon": 11.34897,
+    "osm": "way/125987147",
+    "source": "Sparkasse head office, via Cassa di Risparmio 12 at the corner of Via Museo, centre of the building footprint, OpenStreetMap way 125987147"
   }
 }
