@@ -21,7 +21,7 @@
     "source": "Centre of the monument's footprint on Piazza della Vittoria, OpenStreetMap way 161773745 via Nominatim"
   },
   "casa-del-fascio": {
-    "name": "Casa del Fascio, Piazza Tribunale",
+    "name": "Casa del Fascio",
     "lat": 46.49738,
     "lon": 11.3394,
     "osm": "way/134112303",
@@ -63,7 +63,7 @@
     "source": "Centre of the square's pedestrian area, OpenStreetMap relation 4003691 via Nominatim"
   },
   "stazione": {
-    "name": "Bolzano station",
+    "name": "Station",
     "lat": 46.49653,
     "lon": 11.35827,
     "osm": "way/49810951",
@@ -84,35 +84,35 @@
     "source": "Former Lancia works on via Volta (today IDV Defence Vehicles), centre of the fenced site, standing for the zone's historical core, OpenStreetMap way 244113053"
   },
   "lager": {
-    "name": "Lager, Via Resia",
+    "name": "Lager",
     "lat": 46.48574,
     "lon": 11.31798,
     "osm": "way/126290071",
     "source": "Midpoint of the surviving camp wall along the Passaggio della Memoria, via Resia (untagged barrier=wall), OpenStreetMap way 126290071"
   },
   "oltrisarco": {
-    "name": "Oltrisarco / Oberau",
+    "name": "Oltrisarco",
     "lat": 46.47848,
     "lon": 11.32904,
     "osm": "node/9088449826",
     "source": "Place node of the Oltrisarco / Oberau suburb (mapped inside the industrial zone), OpenStreetMap node 9088449826 via Nominatim"
   },
   "lido": {
-    "name": "Lido di Bolzano, municipal open-air pool",
+    "name": "Lido",
     "lat": 46.4912,
     "lon": 11.34443,
     "osm": "way/25925169",
     "source": "Centre of the Lido pool grounds (leisure=water_park) on Viale Trieste, OpenStreetMap way 25925169 via Overpass Moved 70 m north of the centre, onto the north part of the grounds, which the dot map covers."
   },
   "noi-techpark": {
-    "name": "NOI Techpark (former Alumix aluminium plant)",
+    "name": "NOI Techpark",
     "lat": 46.47853,
     "lon": 11.33165,
     "osm": "relation/17405562",
     "source": "Centre of the NOI Techpark site on via Volta, OpenStreetMap relation 17405562 via Nominatim"
   },
   "sparkasse-sede": {
-    "name": "Historic seat of the Cassa di Risparmio (Südtiroler Sparkasse)",
+    "name": "Sparkasse",
     "lat": 46.50027,
     "lon": 11.34897,
     "osm": "way/125987147",

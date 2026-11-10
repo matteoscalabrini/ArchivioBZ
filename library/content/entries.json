@@ -84,7 +84,13 @@
       },
       "more": {
         "kind": "map"
-      }
+      },
+      "images": [
+        {
+          "file": "map.png",
+          "caption": "The dot map with the places that have entries in the library."
+        }
+      ]
     },
     {
       "no": "5.01",
