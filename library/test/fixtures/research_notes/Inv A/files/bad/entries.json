@@ -1,0 +1,66 @@
+{
+  "entries": [
+    {
+      "no": "9.01",
+      "title": "The first of two rows with one number",
+      "type": "Photograph",
+      "date": "1930",
+      "year": 1930,
+      "keywords": ["press"],
+      "text": ["A fixture row."],
+      "confidence": { "level": "read" }
+    },
+    {
+      "no": "9.01",
+      "title": "The second of two rows with one number",
+      "type": "Photograph",
+      "date": "1930",
+      "year": 1930,
+      "keywords": ["press"],
+      "text": ["A fixture row."],
+      "confidence": { "level": "read" }
+    },
+    {
+      "no": "9.02",
+      "title": "A type the list does not know",
+      "type": "Painting",
+      "date": "1930",
+      "year": 1930,
+      "keywords": ["press"],
+      "text": ["A fixture row."],
+      "confidence": { "level": "read" }
+    },
+    {
+      "no": "9.03",
+      "title": "A file that is not there",
+      "type": "Booklet",
+      "date": "1930",
+      "year": 1930,
+      "keywords": ["press"],
+      "text": ["A fixture row."],
+      "file": "missing.pdf",
+      "confidence": { "level": "read" }
+    },
+    {
+      "no": "9.04",
+      "title": "A keyword the vocabulary does not know",
+      "type": "Poster",
+      "date": "1930",
+      "year": 1930,
+      "keywords": ["nope"],
+      "text": ["A fixture row."],
+      "confidence": { "level": "read" }
+    },
+    {
+      "no": "9.05",
+      "title": "A story resting on a row that does not exist",
+      "type": "Story",
+      "date": "1930",
+      "year": 1930,
+      "keywords": ["press"],
+      "text": ["A fixture row."],
+      "confidence": { "level": "read" },
+      "sources": ["99.99"]
+    }
+  ]
+}

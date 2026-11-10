@@ -1,0 +1,15 @@
+{
+  "entries": [
+    {
+      "no": "0.01",
+      "title": "First study",
+      "type": "Report",
+      "date": "2026",
+      "year": 2026,
+      "keywords": ["theory"],
+      "text": ["A fixture long read."],
+      "confidence": { "level": "read" },
+      "more": { "kind": "read", "target": "../../reports/first study.md" }
+    }
+  ]
+}

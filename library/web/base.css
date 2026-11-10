@@ -1,0 +1,72 @@
+/* Tokens, the frame every page shares, and the rules every page keeps.
+   Black on white, one grey for secondary text, no other colour: pictures are the only colour.
+   Type sizes 12, 15, 22, 44 px, and 9 px for counts. Hairline rules, no boxes. */
+
+:root {
+  --ink: #000;
+  --paper: #fff;
+  --grey: #757575;
+  --serif: "Times New Roman", Times, serif;
+  --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --size-count: 9px;
+  --size-meta: 12px;
+  --size-text: 15px;
+  --size-title: 22px;
+  --size-idea: 44px;
+  --rule: 1px solid #000;
+  --gutter: 32px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { background: var(--paper); }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font: 400 var(--size-text)/1.45 var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4 { margin: 0; font-family: var(--serif); font-weight: 400; }
+a { color: inherit; }
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+}
+hr { border: 0; border-top: var(--rule); }
+::selection { background: var(--ink); color: var(--paper); }
+
+/* The frame: project title left, three tabs right. */
+header.site {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 24px;
+  padding: 30px var(--gutter) 0;
+}
+.wordmark { font: 400 var(--size-title)/1 var(--serif); text-decoration: none; }
+.tabs { display: flex; gap: 22px; font-size: var(--size-meta); }
+.tabs a { text-decoration: none; }
+.tabs a:hover,
+.tabs a[aria-current="page"] { text-decoration: underline; text-underline-offset: 4px; }
+
+:focus-visible { outline: 2px solid #000; outline-offset: 2px; }
+
+@media (max-width: 600px) {
+  :root { --gutter: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

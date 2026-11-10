@@ -1,0 +1,5 @@
+{
+  "ponte-druso": { "name": "Ponte Druso", "lat": 46.49477, "lon": 11.34827, "osm": "https://www.openstreetmap.org/", "source": "fixture" },
+  "semirurali": { "name": "Semirurali", "lat": 46.487, "lon": 11.325 },
+  "lager": { "name": "Lager, Via Resia", "lat": null, "lon": null }
+}

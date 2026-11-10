@@ -1,0 +1,10 @@
+{
+  "ponte-druso": { "label": "Ponte Druso" },
+  "press": { "label": "Press" },
+  "archives": { "label": "Archives" },
+  "statistics": { "label": "Statistics" },
+  "theory": { "label": "Theory" },
+  "typeface": { "label": "Typeface" },
+  "humour": { "label": "Humour" },
+  "fraktur": { "into": "typeface" }
+}

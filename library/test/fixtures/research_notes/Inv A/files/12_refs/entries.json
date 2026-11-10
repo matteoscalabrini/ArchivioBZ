@@ -1,0 +1,18 @@
+{
+  "keywords_proposed": { "irony": { "label": "Irony" } },
+  "places_proposed": { "piazza-erbe": { "name": "Piazza Erbe" } },
+  "entries": [
+    {
+      "no": "12.01",
+      "title": "A reference with nothing held yet",
+      "type": "Reference",
+      "date": "2000",
+      "year": 2000,
+      "keywords": ["humour", "irony"],
+      "text": [],
+      "source": { "label": "Example page", "url": "https://example.org/reference" },
+      "confidence": { "level": "lead", "note": "source not yet read" },
+      "place": "piazza-erbe"
+    }
+  ]
+}

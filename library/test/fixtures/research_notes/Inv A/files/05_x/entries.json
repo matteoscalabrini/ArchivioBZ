@@ -1,0 +1,60 @@
+{
+  "entries": [
+    {
+      "no": "5.00",
+      "title": "Thread five: fixture notes",
+      "type": "Notes",
+      "date": "2026",
+      "year": 2026,
+      "keywords": ["archives"],
+      "text": ["The notes of a fixture thread."],
+      "confidence": { "level": "read" },
+      "more": { "kind": "read", "target": "notes.md" }
+    },
+    {
+      "no": "5.01",
+      "title": "Two photographs of a bridge",
+      "type": "Photograph",
+      "date": "1960s",
+      "year": 1960,
+      "keywords": ["ponte-druso"],
+      "text": ["A fixture photograph row with two pictures."],
+      "facts": ["Seen in the image: a chequered test pattern (fixture)"],
+      "images": [
+        { "file": "wide.jpg", "caption": "A picture wider than 1600 pixels." },
+        { "file": "small.png", "caption": "A small picture." }
+      ],
+      "file": "Teßmann '60.jpg",
+      "creator": "Fixture maker",
+      "rights": "Public domain",
+      "confidence": { "level": "secondary", "note": "photographer unclear" },
+      "place": "ponte-druso"
+    },
+    {
+      "no": "5.02",
+      "title": "Alpenzeitung, 29 October 1931, page 3",
+      "type": "Newspaper page",
+      "date": "29 October 1931",
+      "year": 1931,
+      "keywords": ["press", "fraktur"],
+      "text": ["A fixture newspaper page, set in Fraktur.", "A second paragraph."],
+      "file": "page.pdf",
+      "source": { "label": "Example archive", "url": "https://example.org/az-1931" },
+      "holder": "Example library",
+      "rights": "Out of copyright",
+      "confidence": { "level": "read" },
+      "more": { "kind": "file" }
+    },
+    {
+      "no": "5.03",
+      "title": "A catalogue of seven records",
+      "type": "Table",
+      "date": "1928–38",
+      "year": 1928,
+      "keywords": ["archives", "statistics"],
+      "text": ["A fixture table of seven records."],
+      "confidence": { "level": "read" },
+      "more": { "kind": "table", "target": "table.csv", "columns": ["title", "date", "url"] }
+    }
+  ]
+}
