@@ -29,7 +29,11 @@ export async function cleanRoot() {
 
 // Runs build.mjs on a clean copy of the fixtures; `run` is the finished process.
 export async function buildFixtures(...args) {
-  const root = await cleanRoot();
+  return buildRoot(await cleanRoot(), ...args);
+}
+
+// Runs build.mjs on the library at `root`, into a new folder.
+export async function buildRoot(root, ...args) {
   const out = path.join(await tempDir('library-out-'), 'dist');
   const run = spawnSync(process.execPath, [BUILD, '--root', root, '--out', out, ...args], { encoding: 'utf8' });
   return { root, out, run };

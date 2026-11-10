@@ -1,6 +1,8 @@
 // Catalogue tables. For every row whose more.kind is 'table': entry.preview = {columns, rows, total}
 // for the Library page (more.columns or the first three columns, the first five records, long cells
 // cut short), and a page of its own, out/table/<no>.html, with the whole table; web/table.js sorts it.
+// entry.page names the page once it is written. A CSV that is missing, unreadable or empty is a
+// warning, and that row gets no page.
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { parseCsv } from '../lib/csv.mjs';
@@ -18,11 +20,13 @@ export default async function tables(ctx) {
     if (entry.more?.kind !== 'table') continue;
     const where = path.relative(ctx.root, path.join(entry.dir, 'entries.json')).split(path.sep).join('/');
     const fault = (message) => ctx.problems.push({ level: 'error', where, message: `row ${entry.no}: ${message}` });
+    const noPage = (message) => ctx.problems.push({ level: 'warn', where, message: `row ${entry.no}: ${message}, so it has no page` });
 
     const target = entry.more.target;
     const file = typeof target === 'string' && target && !URL_LIKE.test(target) ? path.resolve(entry.dir, target) : entry.abs;
+    const shown = file && path.relative(ctx.root, file).split(path.sep).join('/');
     if (!file || !/\.csv$/i.test(file)) {
-      fault('a table row needs a CSV file in more.target or file');
+      noPage(file ? `${shown} is not a CSV file` : 'no CSV file in more.target or file');
       continue;
     }
     const name = path.basename(file);
@@ -30,12 +34,12 @@ export default async function tables(ctx) {
     try {
       text = await readFile(file, 'utf8');
     } catch (err) {
-      fault(`${name} cannot be read (${err.code ?? err.message})`);
+      noPage(`${shown} cannot be read (${err.code ?? err.message})`);
       continue;
     }
     const { columns, rows } = parseCsv(text);
     if (!columns.length) {
-      fault(`${name} is empty`);
+      noPage(`${shown} is empty`);
       continue;
     }
 
@@ -52,7 +56,9 @@ export default async function tables(ctx) {
       total: rows.length,
     };
 
-    await ctx.write(`table/${entry.no}.html`, tablePage(entry, columns, rows));
+    const page = `table/${entry.no}.html`;
+    await ctx.write(page, tablePage(entry, columns, rows));
+    entry.page = page;
   }
 }
 

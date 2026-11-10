@@ -109,7 +109,7 @@ test('a story closes with its Sources, each linking its row', async () => {
 });
 
 test('a file that cannot be rendered is a warning and writes no page', async () => {
-  const { written, problems } = await runStep({
+  const { written, problems, lib } = await runStep({
     setup: (root) => rm(path.join(root, 'reports', 'first study.md')),
     edit: ({ entries }) => (entries.find((e) => e.no === '5.00').more.target = 'gone.docx'),
   });
@@ -118,6 +118,25 @@ test('a file that cannot be rendered is a warning and writes no page', async () 
   assert.ok(problems.every((p) => p.level === 'warn'));
   assert.match(problems[0].message, /row 0\.01.*first study\.md/);
   assert.match(problems[1].message, /row 5\.00.*gone\.docx/);
+  for (const entry of lib.entries) assert.equal(entry.page, undefined, `${entry.no} has no page`);
+});
+
+test('the step records the page it wrote on the entry', async () => {
+  const { written, lib } = await runStep();
+  const pages = Object.fromEntries(lib.entries.filter((e) => e.page).map((e) => [e.no, e.page]));
+  assert.deepEqual(pages, { '0.01': 'read/0.01.html', '5.00': 'read/5.00.html' });
+  for (const page of Object.values(pages)) assert.ok(written.has(page));
+});
+
+test('a read row whose target is not Markdown or Word is a warning naming row and file, and has no page', async () => {
+  const { written, problems, lib } = await runStep({ edit: ({ entries }) => (entries.find((e) => e.no === '5.00').more.target = 'page.pdf') });
+  assert.deepEqual(problems, [{
+    level: 'warn',
+    where: 'research_notes/Inv A/files/05_x/entries.json',
+    message: 'row 5.00: research_notes/Inv A/files/05_x/page.pdf is not Markdown or Word, so it has no page',
+  }]);
+  assert.deepEqual([...written.keys()], ['read/0.01.html']);
+  assert.equal(lib.entries.find((e) => e.no === '5.00').page, undefined);
 });
 
 test('the build writes the read pages', async () => {
@@ -152,6 +171,30 @@ test('the first report keeps its 50 figures', { skip: !existsSync(FIRST) && 'the
 test('the second report keeps at least 25', { skip: !existsSync(SECOND) && 'the report is not here', timeout: 300000 }, async () => {
   const { html } = await docx(SECOND, 'b');
   assert.ok((html.match(/<img/g) ?? []).length >= 25);
+});
+
+test('a cached conversion missing a figure or its html is converted again', { skip: !existsSync(SECOND) && 'the report is not here', timeout: 300000 }, async () => {
+  const { html, cacheDir } = await docx(SECOND, 'b');
+  const [folder] = (await readdir(cacheDir)).filter((name) => name.startsWith('docx-')).map((name) => path.join(cacheDir, name));
+  const names = JSON.parse(await readFile(path.join(folder, 'images.json'), 'utf8'));
+  assert.ok(names.length >= 25);
+
+  for (const damage of [names[0], names.at(-1), 'body.html']) {
+    await rm(path.join(folder, damage));
+    const imageDir = await tempDir('library-img-');
+    const again = await renderDocx(SECOND, { imageDir, imageUrl: 'img/b/', cacheDir });
+    assert.equal(again, html, `without ${damage}`);
+    assert.ok(existsSync(path.join(folder, damage)), `${damage} is back in the cache`);
+    assert.deepEqual((await readdir(imageDir)).sort(), [...names].sort());
+  }
+});
+
+test('a heading left empty by the Word tidy is dropped', () => {
+  assert.equal(tidyWord('<p>a</p><h2><a id="_Toc1"></a></h2><h2>Next</h2><p>b</p>'), '<p>a</p><h2>Next</h2><p>b</p>');
+  assert.equal(tidyWord('<p>a</p><h2> </h2><h3>&nbsp;</h3><h2><strong></strong></h2><p>b</p>'), '<p>a</p><p>b</p>');
+  assert.equal(tidyWord('<h1></h1><h1>The title</h1><p>a</p>'), '<p>a</p>', 'an empty heading before the title does not hide it');
+  const picture = '<p>a</p><h2><img src="x.png" alt="" /></h2>';
+  assert.equal(tidyWord(picture), picture, 'a heading holding only a picture stays');
 });
 
 test('an image from the network is its alt text, not an img', () => {

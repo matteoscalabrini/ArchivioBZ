@@ -100,10 +100,14 @@ export async function renderDocx(absPath, { imageDir, imageUrl, cacheDir = CACHE
   return tidyWord(cached.html).replace(/(<img [^>]*src=")(fig-\d+\.\w+)"/g, (_, head, name) => `${head}${esc(imageUrl)}${name}"`);
 }
 
+// The cached conversion, or null when the folder lacks its html or any figure it lists: then it is
+// converted again and the folder replaced.
 async function readCache(folder) {
   try {
     const names = JSON.parse(await readFile(path.join(folder, 'images.json'), 'utf8'));
-    return { names, html: await readFile(path.join(folder, 'body.html'), 'utf8') };
+    const html = await readFile(path.join(folder, 'body.html'), 'utf8');
+    const figures = await Promise.all(names.map((name) => stat(path.join(folder, name))));
+    return figures.every((figure) => figure.isFile()) ? { names, html } : null;
   } catch {
     return null;
   }
@@ -117,7 +121,8 @@ function extension(contentType = '') {
 const textOf = (html) => html.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').trim();
 
 // What a Word report needs to read well on a page: no contents block (its page numbers mean
-// nothing here), figures in a single column with their captions, no title repeated as the first heading, no h1 below.
+// nothing here), no empty headings, figures in a single column with their captions, no title
+// repeated as the first heading, no h1 below.
 export function tidyWord(html) {
   let out = html;
   // Figure grids are laid out as tables; the page shows each figure on its own.
@@ -126,6 +131,8 @@ export function tidyWord(html) {
     return [...table.matchAll(/<td[^>]*>([\s\S]*?)<\/td>/g)].map((m) => m[1]).join('');
   });
   out = out.replace(/<a id="[^"]*"><\/a>/g, '');
+  // A heading that held only a bookmark, or nothing, is left with no text: it goes.
+  out = out.replace(/<(h[1-6])>((?:(?!<\/\1>)[\s\S])*)<\/\1>/g, (whole, _tag, inner) => (textOf(inner) || /<img\b/i.test(inner) ? whole : ''));
   out = dropContents(out);
   // A report opens with a cover and then its own title as the first heading: the page has that.
   if (/^(?:(?!<h[1-6]>)[\s\S])*?<h1>/.test(out)) out = out.replace(/<h1>[\s\S]*?<\/h1>/, '');

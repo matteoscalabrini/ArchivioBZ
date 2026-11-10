@@ -2,8 +2,9 @@
 // line, every row of the library in one list, closed, and all keywords at the foot. web/library.js
 // filters, sorts and opens the rows and keeps the address in step.
 //
-// What later steps add is optional here: entry.pictures (pictures), ctx.idea (the idea),
-// entry.preview (tables), place.inside (the map; undefined counts as inside).
+// What earlier steps add is optional here: entry.pictures (pictures), ctx.idea (the idea),
+// entry.preview and entry.page (tables, long reads), place.inside (the map; undefined counts as
+// inside). A read or table row links its page only when entry.page says it was written.
 import path from 'node:path';
 import { esc, page } from '../lib/shell.mjs';
 
@@ -148,23 +149,27 @@ function confidence({ level, note }) {
   return `${words}${/^\p{Lu}/u.test(note) ? '. ' : '; '}${note}`;
 }
 
-// The one link at the bottom of an open row, by more.kind; more.label overrides the wording.
+// The one link at the bottom of an open row, by more.kind; more.label overrides the wording. A
+// read or table row whose page was not written links the file it holds instead, or nothing.
 function more(entry, ctx) {
   const kind = entry.more?.kind;
   const target = entry.more?.target;
   let href;
   let words;
   let away = false;
+  if ((kind === 'read' || kind === 'table') && !entry.page) {
+    return entry.abs ? link(ctx.sourceUrl(entry.abs), openWords(entry.abs)) : '';
+  }
   if (kind === 'read') {
-    href = `read/${encodeURIComponent(entry.no)}.html`;
+    href = encodePath(entry.page);
     words = READ[entry.type] ?? READ.Story;
   } else if (kind === 'file') {
     const file = typeof target === 'string' && target && !WEB.test(target) ? path.resolve(entry.dir, target) : entry.abs;
     if (!file) return '';
     href = ctx.sourceUrl(file);
-    words = path.extname(file).toLowerCase() === '.pdf' ? 'Open the PDF →' : 'Open the file →';
+    words = openWords(file);
   } else if (kind === 'table') {
-    href = `table/${encodeURIComponent(entry.no)}.html`;
+    href = encodePath(entry.page);
     words = 'Open the full table →';
   } else if (kind === 'map') {
     href = 'map.html';
@@ -178,8 +183,11 @@ function more(entry, ctx) {
     return '';
   }
   if (entry.more.label) words = entry.more.label;
-  return `<a class="more" href="${esc(href)}"${away ? ' target="_blank" rel="noopener"' : ''}>${esc(words)}</a>`;
+  return link(href, words, away);
 }
+
+const link = (href, words, away = false) => `<a class="more" href="${esc(href)}"${away ? ' target="_blank" rel="noopener"' : ''}>${esc(words)}</a>`;
+const openWords = (file) => (path.extname(file).toLowerCase() === '.pdf' ? 'Open the PDF →' : 'Open the file →');
 
 function keywordButton(id, inner) {
   return `<button type="button" data-k="${esc(id)}" aria-pressed="false">${inner}</button>`;

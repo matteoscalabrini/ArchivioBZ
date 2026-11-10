@@ -1,9 +1,10 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import path from 'node:path';
-import { readFile } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
+import { readFile, rm, writeFile } from 'node:fs/promises';
 import { loadLibrary, sourceUrl } from '../lib/records.mjs';
-import { buildFixtures, cleanRoot } from './helpers.mjs';
+import { buildFixtures, buildRoot, cleanRoot } from './helpers.mjs';
 
 // The fixtures built by build.mjs, as the browser gets them.
 let built;
@@ -117,6 +118,8 @@ test('every other kind of bottom link, and a label that overrides', async () => 
   const html = await render({
     edit(lib) {
       entry(lib, '5.00').type = 'Story';
+      entry(lib, '5.00').page = 'read/5.00.html';
+      entry(lib, '5.03').page = 'table/5.03.html';
       entry(lib, '5.01').more = { kind: 'file' };
       entry(lib, '12.01').more = { kind: 'source' };
       Object.assign(entry(lib, '0.01'), { type: 'Map', more: { kind: 'map' } });
@@ -128,6 +131,97 @@ test('every other kind of bottom link, and a label that overrides', async () => 
   assert.deepEqual(more(html, '12.01'), ['Open the source →', 'https://example.org/reference']);
   assert.deepEqual(more(html, '0.01'), ['Open the map →', 'map.html']);
   assert.deepEqual(more(html, '5.03'), ['All seven →', 'table/5.03.html']);
+});
+
+test('a read or table row without its page links the file it holds, or nothing', async () => {
+  const html = await render({
+    edit(lib) {
+      entry(lib, '5.00').abs = path.join(entry(lib, '5.00').dir, 'page.pdf');
+      entry(lib, '5.03').abs = path.join(entry(lib, '5.03').dir, 'table.csv');
+      entry(lib, '5.03').more.label = 'All seven →';
+    },
+  });
+  assert.deepEqual(more(html, '5.00'), ['Open the PDF →', '/source/research_notes/Inv%20A/files/05_x/page.pdf']);
+  assert.deepEqual(more(html, '5.03'), ['Open the file →', '/source/research_notes/Inv%20A/files/05_x/table.csv']);
+  assert.equal(more(html, '0.01'), null, 'no page and no file held: no bottom link');
+  assert.doesNotMatch(html, /href="(read|table)\//);
+});
+
+// Steps run in order on the fixtures, as build.mjs runs them; `setup` changes the copy after the
+// loader has checked it, so a file it removes is gone by the time the steps look for it.
+async function runSteps(names, { setup = async () => {} } = {}) {
+  const root = await cleanRoot();
+  const lib = await loadLibrary(root);
+  await setup(root);
+  const written = new Map();
+  const ctx = {
+    root,
+    out: path.join(root, 'dist'),
+    lib,
+    options: { check: false, present: false },
+    problems: lib.problems,
+    write: async (relPath, content) => void written.set(relPath, String(content)),
+    copyFile: async () => {},
+    sourceUrl: (abs) => sourceUrl(root, abs),
+  };
+  const before = lib.problems.length;
+  for (const name of names) {
+    const { default: step } = await import(`../steps/${name}.mjs`);
+    await step(ctx);
+  }
+  return { written, problems: lib.problems.slice(before), html: written.get('index.html') };
+}
+
+test('a read row whose target is missing: a warning, no page, no read/ link', async () => {
+  const { written, problems, html } = await runSteps(['40-longreads', '60-library'], {
+    setup: (root) => rm(path.join(root, 'reports', 'first study.md')),
+  });
+  assert.equal(problems.length, 1);
+  assert.equal(problems[0].level, 'warn');
+  assert.equal(problems[0].where, 'library/content/entries.json');
+  assert.match(problems[0].message, /^row 0\.01: reports\/first study\.md cannot be rendered \(ENOENT\), so it has no page$/);
+  assert.deepEqual([...written.keys()].sort(), ['index.html', 'read/5.00.html']);
+  assert.doesNotMatch(html, /read\/0\.01\.html/);
+  assert.equal(more(html, '0.01'), null);
+  assert.deepEqual(more(html, '5.00'), ['Read the notes →', 'read/5.00.html']);
+});
+
+test('a table row whose CSV is missing: a warning, no page, no table/ link', async () => {
+  const { written, problems, html } = await runSteps(['30-tables', '60-library'], {
+    setup: (root) => rm(path.join(root, 'research_notes', 'Inv A', 'files', '05_x', 'table.csv')),
+  });
+  assert.deepEqual(problems, [{
+    level: 'warn',
+    where: 'research_notes/Inv A/files/05_x/entries.json',
+    message: 'row 5.03: research_notes/Inv A/files/05_x/table.csv cannot be read (ENOENT), so it has no page',
+  }]);
+  assert.deepEqual([...written.keys()], ['index.html']);
+  assert.doesNotMatch(html, /table\/5\.03\.html/);
+  assert.equal(more(html, '5.03'), null);
+  assert.match(row(html, '5.03').inner, /<div class="detail wide">/, 'no preview either');
+});
+
+test('the build goes on past a read and a table it cannot render, and links the files held instead', async () => {
+  const root = await cleanRoot();
+  const file = path.join(root, 'research_notes', 'Inv A', 'files', '05_x', 'entries.json');
+  const data = JSON.parse(await readFile(file, 'utf8'));
+  Object.assign(data.entries.find((e) => e.no === '5.00'), { file: 'page.pdf', more: { kind: 'read', target: 'page.pdf' } });
+  data.entries.find((e) => e.no === '5.03').file = 'table.csv';
+  await writeFile(file, JSON.stringify(data));
+  await writeFile(path.join(path.dirname(file), 'table.csv'), '');
+
+  const { out, run } = await buildRoot(root);
+  assert.equal(run.status, 0, run.stdout + run.stderr);
+  const where = 'WARN research_notes/Inv A/files/05_x/entries.json';
+  assert.ok(run.stdout.includes(`${where}: row 5.00: research_notes/Inv A/files/05_x/page.pdf is not Markdown or Word, so it has no page\n`), run.stdout);
+  assert.ok(run.stdout.includes(`${where}: row 5.03: research_notes/Inv A/files/05_x/table.csv is empty, so it has no page\n`), run.stdout);
+  assert.equal(existsSync(path.join(out, 'read', '5.00.html')), false);
+  assert.equal(existsSync(path.join(out, 'table', '5.03.html')), false);
+  const html = await readFile(path.join(out, 'index.html'), 'utf8');
+  assert.deepEqual(more(html, '5.00'), ['Open the PDF →', '/source/research_notes/Inv%20A/files/05_x/page.pdf']);
+  assert.deepEqual(more(html, '5.03'), ['Open the file →', '/source/research_notes/Inv%20A/files/05_x/table.csv']);
+  assert.deepEqual(more(html, '0.01'), ['Read the report →', 'read/0.01.html']);
+  assert.doesNotMatch(html, /read\/5\.00\.html|table\/5\.03\.html/);
 });
 
 test('keyword labels shown, ids in data-kw', async () => {
@@ -227,7 +321,7 @@ test('a table row reads preview, text, meta lines, then the bottom link', async 
   const records = [['One', '1928', ''], ['Two', '1929', '']];
   const html = await render({
     edit(lib) {
-      entry(lib, '5.03').preview = { columns: ['title', 'date', 'url'], rows: records, total: 7 };
+      Object.assign(entry(lib, '5.03'), { preview: { columns: ['title', 'date', 'url'], rows: records, total: 7 }, page: 'table/5.03.html' });
     },
   });
   const body = /<div class="row-body"[^>]*>([\s\S]*)<\/div>/.exec(row(html, '5.03').inner)[1];

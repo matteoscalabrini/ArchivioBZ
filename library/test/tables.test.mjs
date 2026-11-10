@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import path from 'node:path';
 import { existsSync } from 'node:fs';
-import { readFile, writeFile } from 'node:fs/promises';
+import { readFile, rm, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { loadLibrary, sourceUrl } from '../lib/records.mjs';
 import { parseCsv } from '../lib/csv.mjs';
@@ -15,10 +15,12 @@ const LUCE = path.join(REPO, 'research_notes', 'Fascist Bolzano media and migrat
   '02_newsreels_radio_mobilization', 'luce_newsreels_South_Tyrol_1927-1945_catalogue.csv');
 const TABLE = ['research_notes', 'Inv A', 'files', '05_x', 'table.csv'];
 
-// The tables step on the fixtures; `csv` replaces the table file of row 5.03 in the copy.
-async function runStep({ csv, edit = () => {} } = {}) {
+// The tables step on the fixtures; `csv` replaces the table file of row 5.03 in the copy, `setup`
+// may change the copy further.
+async function runStep({ csv, setup = async () => {}, edit = () => {} } = {}) {
   const root = await cleanRoot();
   if (csv !== undefined) await writeFile(path.join(root, ...TABLE), csv);
+  await setup(root);
   const lib = await loadLibrary(root);
   edit(lib);
   const written = new Map();
@@ -88,6 +90,30 @@ test('without more.columns the preview takes the first three; a column the file 
     where: 'research_notes/Inv A/files/05_x/entries.json',
     message: 'row 5.03: more.columns names "year", which table.csv does not have',
   }]);
+});
+
+test('the step records the page it wrote on the entry', async () => {
+  const { entry, written } = await runStep();
+  assert.equal(entry('5.03').page, 'table/5.03.html');
+  assert.ok(written.has(entry('5.03').page));
+  for (const no of ['0.01', '5.00', '5.01', '5.02', '12.01']) assert.equal(entry(no).page, undefined);
+});
+
+test('a CSV that is missing, empty or not a CSV is a warning naming row and file: no page, no entry.page', async () => {
+  const where = 'research_notes/Inv A/files/05_x/entries.json';
+  const cases = [
+    [{ setup: (root) => rm(path.join(root, ...TABLE)) }, 'row 5.03: research_notes/Inv A/files/05_x/table.csv cannot be read (ENOENT), so it has no page'],
+    [{ csv: '' }, 'row 5.03: research_notes/Inv A/files/05_x/table.csv is empty, so it has no page'],
+    [{ edit: (lib) => (lib.entries.find((e) => e.no === '5.03').more.target = 'page.pdf') },
+      'row 5.03: research_notes/Inv A/files/05_x/page.pdf is not a CSV file, so it has no page'],
+  ];
+  for (const [options, message] of cases) {
+    const { entry, written, problems } = await runStep(options);
+    assert.deepEqual(problems, [{ level: 'warn', where, message }]);
+    assert.deepEqual([...written.keys()], []);
+    assert.equal(entry('5.03').page, undefined);
+    assert.equal(entry('5.03').preview, undefined);
+  }
 });
 
 test('a preview cell longer than 160 characters is cut at a word boundary, with an ellipsis', async () => {
