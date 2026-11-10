@@ -25,7 +25,13 @@
       "more": {
         "kind": "read",
         "target": "../../reports/Fascist Bolzano media and migration.docx"
-      }
+      },
+      "images": [
+        {
+          "file": "../../research_notes/Fascist Bolzano media and migration/files/01_posters_graphics/1934_Lenhart_ENIT_Merano_poster_HNM_Europeana.png",
+          "caption": "Franz Lenhart, Merano, poster for the state tourist board, 1934 (row 1.10). The posters of these years leave the fascist city out."
+        }
+      ]
     },
     {
       "no": "0.02",
@@ -52,7 +58,13 @@
       "more": {
         "kind": "read",
         "target": "../../reports/Semirurali versus Libyan villages.docx"
-      }
+      },
+      "images": [
+        {
+          "file": "../../research_notes/Semirurali versus Libyan villages/files/01_semirurali_bolzano/TB01_p25_fig40_Planimetria_generale_case_semirurali_Garbini.jpg",
+          "caption": "General plan of the Semirurali, 1:2000, signed by the engineer Giulio Garbini, as reproduced in Turris Babel, 1985 (row 8.11)."
+        }
+      ]
     },
     {
       "no": "0.03",
