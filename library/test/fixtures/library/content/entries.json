@@ -9,6 +9,7 @@
       "keywords": ["theory"],
       "text": ["A fixture long read."],
       "confidence": { "level": "read" },
+      "images": [{ "file": "cover.png" }],
       "more": { "kind": "read", "target": "../../reports/first study.md" }
     }
   ]

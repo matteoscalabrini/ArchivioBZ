@@ -70,6 +70,11 @@ test('a small png becomes a jpg of the same size', async () => {
   assert.equal(entry('5.01').pictures.length, 2, 'the row\'s file, not an image, makes no picture');
 });
 
+test('a picture held in library/content links its original there', async () => {
+  const { entry } = await fixtures();
+  assert.deepEqual(entry('0.01').pictures, [{ src: 'img/0.01-1.jpg', w: 40, h: 30, caption: '', original: '/source/library/content/cover.png' }]);
+});
+
 test('a pdf-only row gets its first page', async () => {
   const { out, entry } = await fixtures();
   const pages = entry('5.02').pictures;
@@ -88,11 +93,11 @@ test('a second build converts nothing', async () => {
   const cache = path.join(root, 'library', '.cache', 'img');
   const once = await runStep(root);
   const converted = await mtimes(cache);
-  assert.equal(converted.size, 3, 'two images and one first page');
+  assert.equal(converted.size, 4, 'three images and one first page');
 
   const twice = await runStep(root);
   assert.deepEqual(await mtimes(cache), converted);
-  for (const no of ['5.01', '5.02']) {
+  for (const no of ['0.01', '5.01', '5.02']) {
     assert.deepEqual(twice.entry(no).pictures, once.entry(no).pictures);
     for (const picture of twice.entry(no).pictures) {
       assert.deepEqual(await readFile(path.join(twice.out, picture.src)), await readFile(path.join(once.out, picture.src)));
