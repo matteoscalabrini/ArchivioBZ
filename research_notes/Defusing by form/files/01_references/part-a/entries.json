@@ -232,54 +232,7 @@
       }
     },
     {
-      "no": "12.25",
-      "title": "Holzknecht and Bernardi, “No one has the right to obey”, Casa del Fascio, Bolzano",
-      "type": "Reference",
-      "date": "2017",
-      "year": 2017,
-      "keywords": [
-        "casa-del-fascio",
-        "wording",
-        "typeface",
-        "heritage"
-      ],
-      "text": [
-        "The reference that is already in Bolzano. In 2017 Arnold Holzknecht and Michele Bernardi hung a sentence by Hannah Arendt, lit, in Italian, German and Ladin, across the relief of Mussolini on horseback on the former Casa del Fascio, over its slogan “Credere, obbedire, combattere”. The artists set the “minimalism” of their intervention against the “grandiloquence” of the fascist style.",
-        "The Guardian noted that it almost completely failed to cause controversy. The same work appears among the landmarks in rows 5.28 and 5.29."
-      ],
-      "facts": [
-        "What it is: the 2017 intervention on the bas-relief of the former Casa del Fascio, made on the initiative of the South Tyrolean Provincial Administration, on a joint historical commission's proposal, to historicize and recontextualize the relief (https://en.wikipedia.org/wiki/Casa_del_Fascio_(Bolzano)).",
-        "Chat: Arnold Holzknecht and Michele Bernardi placed an illuminated Hannah Arendt quote, 'No one has the right to obey', in Italian, German and Ladin. Confirmed by Wikipedia: an illuminated inscription on their project, 'in three languages (Italian, German, Ladin)'; the Guardian gives the sentence as 'Nobody has the right to obey' and calls the inscription LED-illuminated (https://en.wikipedia.org/wiki/Casa_del_Fascio_(Bolzano); https://www.theguardian.com/commentisfree/2017/dec/06/bolzano-italian-town-defuse-controversial-monuments).",
-        "Chat: placed over the 'Credere, obbedire, combattere' relief. Confirmed by both pages: the Guardian says it is superimposed upon the bas-relief of Mussolini on horseback bearing that slogan (https://www.theguardian.com/commentisfree/2017/dec/06/bolzano-italian-town-defuse-controversial-monuments).",
-        "Chat: their minimal lettering was deliberately set against the grandiloquence of the fascist style. Confirmed by the Guardian, citing the artists' explanatory text: the 'minimalism' of the intervention is meant to contrast the 'grandiloquence' of the fascist-era style. The Guardian says 'intervention' where the chat says 'lettering' (https://www.theguardian.com/commentisfree/2017/dec/06/bolzano-italian-town-defuse-controversial-monuments).",
-        "The Guardian (Carlo Invernizzi-Accetti, 6 December 2017): the quotation is meant as a 'direct answer' to the slogan's 'invitation to blind obedience'; the intervention almost completely failed to generate controversy (https://www.theguardian.com/commentisfree/2017/dec/06/bolzano-italian-town-defuse-controversial-monuments).",
-        "The picture is the photograph already held in the Bolzano landmarks folder, Bartleby08, CC BY-SA 4.0, Wikimedia Commons (05_landmarks_heritage manifest); used here through a relative path, not downloaded again (manifest).",
-        "Seen in the image: large white block letters '...ECHT ZU GE...' fixed to a steel bar that runs across the carved relief; behind them the carved letters 'PNF' and a figure on horseback (manifest)."
-      ],
-      "images": [
-        {
-          "file": "../../../../Fascist Bolzano media and migration/files/05_landmarks_heritage/images/04_casafascio__Arendt_vs_Mussolini_Bozen-Bolzano_2017.jpg",
-          "caption": "Bartleby08, Arendt vs Mussolini Bozen-Bolzano 2017. CC BY-SA 4.0, Wikimedia Commons."
-        }
-      ],
-      "source": {
-        "label": "Carlo Invernizzi-Accetti, 'A small Italian town can teach the world how to defuse controversial monuments', The Guardian, 6 December 2017",
-        "url": "https://www.theguardian.com/commentisfree/2017/dec/06/bolzano-italian-town-defuse-controversial-monuments"
-      },
-      "creator": "Arnold Holzknecht and Michele Bernardi",
-      "rights": "CC BY-SA 4.0 (photograph, Bartleby08, Wikimedia Commons)",
-      "confidence": {
-        "level": "read",
-        "note": "Every statement confirmed on Wikipedia, 'Casa del Fascio (Bolzano)', and The Guardian, 6 December 2017."
-      },
-      "place": "casa-del-fascio",
-      "more": {
-        "kind": "source",
-        "target": "https://www.theguardian.com/commentisfree/2017/dec/06/bolzano-italian-town-defuse-controversial-monuments"
-      }
-    },
-    {
-      "no": "12.28",
+      "no": "12.27",
       "title": "Archigraphiæ. Rationalist Lettering and Architecture in Fascist Rome",
       "type": "Reference",
       "date": "2018 (book 2020)",
@@ -325,7 +278,7 @@
       }
     },
     {
-      "no": "12.30",
+      "no": "12.29",
       "title": "The Communist Manifesto (In Comic Sans)",
       "type": "Reference",
       "date": "2020",
@@ -370,7 +323,7 @@
       }
     },
     {
-      "no": "12.31",
+      "no": "12.30",
       "title": "Andrea Lo Giudice, A + G",
       "type": "Reference",
       "date": "6–18 September 2022",
@@ -416,7 +369,7 @@
       }
     },
     {
-      "no": "12.32",
+      "no": "12.31",
       "title": "Rada Musikarat, Hitler Archive: The Unpublished Design",
       "type": "Reference",
       "date": "January 2023",
@@ -462,7 +415,7 @@
       }
     },
     {
-      "no": "12.33",
+      "no": "12.32",
       "title": "Tommy Robinson and Peter McLoughlin, Manifesto: a cover in Comic Sans",
       "type": "Counter-reference",
       "date": "2024",

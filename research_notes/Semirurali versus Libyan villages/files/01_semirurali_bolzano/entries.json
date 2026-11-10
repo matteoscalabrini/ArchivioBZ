@@ -34,41 +34,6 @@
     },
     {
       "no": "8.01",
-      "title": "R.D.L. 28 settembre 1934, n. 1621: Provvedimenti per lo sviluppo industriale del comune di Bolzano (Gazzetta Ufficiale n. 243, 16 ottobre 1934)",
-      "type": "Law text",
-      "date": "28 September 1934",
-      "year": 1934,
-      "keywords": [
-        "law",
-        "zona-industriale"
-      ],
-      "text": [
-        "The issue of the Gazzetta Ufficiale that printed the 1934 decree for Bolzano's industrial development (its text is row 10.02). Read here for what it does not contain: no article on housing, and none on expropriation.",
-        "One account speaks of a 1934 decree to acquire about 300 hectares for the industrial zone. This decree does not provide for that, so it is either another act or shorthand."
-      ],
-      "facts": [
-        "Gazzetta Ufficiale n. 243, 16 Oct. 1934, carrying R.D.L. 28 Sept. 1934, n. 1621, \"Provvedimenti per lo sviluppo industriale del comune di Bolzano\", p. 4708 (PDF p. 4) (manifest).",
-        "Art. 1 covers \"stabilimenti industriali tecnicamente organizzati, che entro il 30 giugno 1944 sorgeranno nel territorio del comune di Bolzano\"; customs and ten-year tax exemptions; state contributions up to 25 million lire (notes 01, §2, [V]).",
-        "It has no housing article (notes 01, §2, [V]).",
-        "Azzolini speaks of a 1934 decree-law to acquire about 300 ha for the industrial zone, but n. 1621 does not provide for expropriation: either another act or Azzolini's shorthand (notes 01, §2, [V]/[INF]).",
-        "Official act, not protected by copyright (manifest)."
-      ],
-      "file": "GU_1934_10_16_243_sg.pdf",
-      "source": {
-        "label": "Gazzetta Ufficiale",
-        "url": "https://www.gazzettaufficiale.it/eli/gu/1934/10/16/243/sg/pdf"
-      },
-      "holder": "Gazzetta Ufficiale",
-      "rights": "An official act. Not protected by copyright (L. 633/1941, art. 5).",
-      "confidence": {
-        "level": "read"
-      },
-      "more": {
-        "kind": "file"
-      }
-    },
-    {
-      "no": "8.02",
       "title": "R.D. 28 aprile 1938, n. 1165: Approvazione del testo unico delle disposizioni sull'edilizia popolare ed economica (Gazzetta Ufficiale n. 177, 5 agosto 1938, supplemento ordinario)",
       "type": "Law text",
       "date": "28 April 1938",
@@ -104,7 +69,7 @@
       }
     },
     {
-      "no": "8.03",
+      "no": "8.02",
       "title": "Alpenzeitung, 28 June 1938, page 4",
       "type": "Newspaper page",
       "date": "28 June 1938",
@@ -140,7 +105,7 @@
       }
     },
     {
-      "no": "8.04",
+      "no": "8.03",
       "title": "Alpenzeitung, 7 October 1938, page 5",
       "type": "Newspaper page",
       "date": "7 October 1938",
@@ -176,7 +141,7 @@
       "place": "semirurali"
     },
     {
-      "no": "8.05",
+      "no": "8.04",
       "title": "Alpenzeitung, 14 December 1938, page 5",
       "type": "Newspaper page",
       "date": "14 December 1938",
@@ -212,43 +177,7 @@
       "place": "semirurali"
     },
     {
-      "no": "8.06",
-      "title": "Legge 6 luglio 1939, n. 1092: Provvedimenti contro l'urbanesimo (Gazzetta Ufficiale n. 185, 9 agosto 1939)",
-      "type": "Law text",
-      "date": "6 July 1939",
-      "year": 1939,
-      "keywords": [
-        "law",
-        "migration",
-        "colonization"
-      ],
-      "text": [
-        "The Gazzetta Ufficiale issue that printed the anti-urbanism law (its text is row 10.07). It contains nothing on housing or on ruralization. What it does is put the movement of workers between provinces under the Commissariato per le migrazioni e la colonizzazione.",
-        "For the Semirurali, then, the tie to colonization runs through who was allowed to move, not through the type of house."
-      ],
-      "facts": [
-        "Gazzetta Ufficiale n. 185, 9 Aug. 1939, carrying L. 6 July 1939, n. 1092, \"Provvedimenti contro l'urbanesimo\", pp. 3754–3755 (PDF pp. 2–3) (manifest).",
-        "Art. 1: \"Nessuno può trasferire la propria residenza in Comuni del Regno capoluoghi di Provincia …\" unless obliged by office or job or having \"una proficua occupazione stabile\" there (notes 01, §2, [V]).",
-        "Arts. 2–3 put interprovincial transfers of workers under \"il Commissariato per le migrazioni e la colonizzazione\" (notes 01, §2, [V]).",
-        "No housing or ruralization provisions; signed at San Rossore by Mussolini, Solmi, Di Revel, Rossoni and Lantini (notes 01, §2, [V]).",
-        "The notes see the bridge to colonization running through labour mobility, not house types (notes 01, §2, [INF])."
-      ],
-      "file": "GU_1939_08_09_185_sg.pdf",
-      "source": {
-        "label": "Gazzetta Ufficiale",
-        "url": "https://www.gazzettaufficiale.it/eli/gu/1939/08/09/185/sg/pdf"
-      },
-      "holder": "Gazzetta Ufficiale",
-      "rights": "An official act. Not protected by copyright (L. 633/1941, art. 5).",
-      "confidence": {
-        "level": "read"
-      },
-      "more": {
-        "kind": "file"
-      }
-    },
-    {
-      "no": "8.07",
+      "no": "8.05",
       "title": "Alpenzeitung, 3 August 1939, page 5",
       "type": "Newspaper page",
       "date": "3 August 1939",
@@ -285,7 +214,7 @@
       "place": "semirurali"
     },
     {
-      "no": "8.08",
+      "no": "8.06",
       "title": "La Provincia di Bolzano, 10 October 1939, page 3",
       "type": "Newspaper page",
       "date": "10 October 1939",
@@ -333,7 +262,7 @@
       "place": "semirurali"
     },
     {
-      "no": "8.09",
+      "no": "8.07",
       "title": "Alpenzeitung, 25 October 1940, page 1",
       "type": "Newspaper page",
       "date": "25 October 1940",
@@ -370,7 +299,7 @@
       "place": "semirurali"
     },
     {
-      "no": "8.10",
+      "no": "8.08",
       "title": "Alpenzeitung, 11 May 1941, page 5",
       "type": "Newspaper page",
       "date": "11 May 1941",
@@ -407,7 +336,7 @@
       "place": "semirurali"
     },
     {
-      "no": "8.11",
+      "no": "8.09",
       "title": "Turris Babel, no. 1, March 1985: Semirurali – prima parte",
       "type": "Article",
       "date": "March 1985",
@@ -472,7 +401,7 @@
       "place": "semirurali"
     },
     {
-      "no": "8.12",
+      "no": "8.10",
       "title": "Turris Babel, no. 2, June 1985: Semirurali – seconda parte",
       "type": "Article",
       "date": "June 1985",
@@ -508,7 +437,7 @@
       "place": "semirurali"
     },
     {
-      "no": "8.13",
+      "no": "8.11",
       "title": "Turris Babel, no. 15, December 1988: Semirurali III",
       "type": "Article",
       "date": "December 1988",

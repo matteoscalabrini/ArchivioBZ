@@ -85,7 +85,8 @@
       ],
       "text": [
         "The decree that launched Bolzano's industrial zone: exemptions from duties and taxes for plants founded in the comune by 30 June 1944, and up to 25 million lire in state contributions, handed out by a commission under the Ministry of Corporations.",
-        "The phrase “manodopera regnicola e non allogena”, often quoted as if it stood in this decree, is not in it. The text was read in full to check. The preference for workers from the old provinces belongs to the commission's practice, as the secondary literature reports it."
+        "The phrase “manodopera regnicola e non allogena”, often quoted as if it stood in this decree, is not in it. The text was read in full to check. The preference for workers from the old provinces belongs to the commission's practice, as the secondary literature reports it.",
+        "It also has no article on housing and none on expropriation. One account speaks of a 1934 decree to acquire about 300 hectares for the zone; that is either another act or shorthand. Held as the Gazzetta Ufficiale of 16 October 1934 and as the consolidated text."
       ],
       "facts": [
         "Decree-law published in GU 16 Oct 1934, proposed by the Capo del Governo and signed 'MUSSOLINI - JUNG'; Normattiva full text saved as HTML and TXT (manifest; file).",
@@ -93,9 +94,14 @@
         "Art. 7: a commission under the Ministry of Corporations allocates the contributions; it includes a representative 'della Confederazione fascista dei lavoratori dell'industria' (notes 03, Q5, [V]).",
         "The phrase 'manodopera regnicola e non allogena' is not in the text: the researcher read it in full and could not verify the phrase anywhere (notes 03, correction 5 and Q5, [V]).",
         "Secondary literature puts the preference for workers from the old provinces in the commission's practice; Dunajtschik and Steinacher call the subsidy a 'Kopfgeld' for each 'echten' Italian brought to South Tyrol (notes 03, Q5, [S]).",
-        "Converted by L. 11 Apr 1935 n. 604 (notes 03, Q5, [V], from the recital of R.D.L. 1368/1936)."
+        "Converted by L. 11 Apr 1935 n. 604 (notes 03, Q5, [V], from the recital of R.D.L. 1368/1936).",
+        "Gazzetta Ufficiale n. 243, 16 Oct. 1934, carrying R.D.L. 28 Sept. 1934, n. 1621, \"Provvedimenti per lo sviluppo industriale del comune di Bolzano\", p. 4708 (PDF p. 4) (manifest).",
+        "Art. 1 covers \"stabilimenti industriali tecnicamente organizzati, che entro il 30 giugno 1944 sorgeranno nel territorio del comune di Bolzano\"; customs and ten-year tax exemptions; state contributions up to 25 million lire (notes 01, §2, [V]).",
+        "It has no housing article (notes 01, §2, [V]).",
+        "Azzolini speaks of a 1934 decree-law to acquire about 300 ha for the industrial zone, but n. 1621 does not provide for expropriation: either another act or Azzolini's shorthand (notes 01, §2, [V]/[INF]).",
+        "Official act, not protected by copyright (manifest)."
       ],
-      "file": "normattiva_RDL1934_1621_Bolzano_industria_attoCompleto.html",
+      "file": "../01_semirurali_bolzano/GU_1934_10_16_243_sg.pdf",
       "source": {
         "label": "Normattiva",
         "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:regio.decreto.legge:1934-09-28;1621"
@@ -106,7 +112,8 @@
       },
       "more": {
         "kind": "file"
-      }
+      },
+      "images": []
     },
     {
       "no": "10.03",
@@ -260,7 +267,8 @@
       ],
       "text": [
         "The anti-urbanism law. Nobody may move residence to a provincial capital, a town of over 25,000 or a comune “di notevole importanza industriale” without stable work, and farm workers who leave the land without cause cannot register for other work. Moves of workers between provinces need the colonization office's authorization.",
-        "It is the legal frame within which workers were admitted to Bolzano. It was repealed in 1961; the bill that sought the repeal called it contrary to article 16 of the Constitution."
+        "It is the legal frame within which workers were admitted to Bolzano. It was repealed in 1961; the bill that sought the repeal called it contrary to article 16 of the Constitution.",
+        "It contains nothing on housing or on ruralization: for the Semirurali the tie to colonization runs through who was allowed to move, not through the type of house. Held as the Gazzetta Ufficiale of 9 August 1939 and as the consolidated text."
       ],
       "facts": [
         "Law published in GU 9 Aug 1939 n. 185; given at San Rossore and signed 'MUSSOLINI - SOLMI - DI REVEL - ROSSONI - LANTINI'; Normattiva full text saved as HTML and TXT (manifest; file).",
@@ -268,9 +276,14 @@
         "Arts. 2-3: the CMCI authorizes moves of workers between provinces, so the Commissariato still existed in July 1939 (notes 03, Q1, [V]).",
         "Repeals and replaces L. 24 Dec 1928 n. 2961 and the 1933 decree, the earlier anti-urbanism measures (art. 12) (notes 03, Q5, [V]).",
         "The notes list it as the anti-urbanism legal frame shared with the Semirurali thread (notes 03, Q7, [V]).",
-        "Repealed with L. 358/1931 by L. 10 Feb 1961 n. 5; the 1958 repeal bill called both laws contrary to art. 16 of the Constitution (notes 03, Q1, [V])."
+        "Repealed with L. 358/1931 by L. 10 Feb 1961 n. 5; the 1958 repeal bill called both laws contrary to art. 16 of the Constitution (notes 03, Q1, [V]).",
+        "Gazzetta Ufficiale n. 185, 9 Aug. 1939, carrying L. 6 July 1939, n. 1092, \"Provvedimenti contro l'urbanesimo\", pp. 3754–3755 (PDF pp. 2–3) (manifest).",
+        "Art. 1: \"Nessuno può trasferire la propria residenza in Comuni del Regno capoluoghi di Provincia …\" unless obliged by office or job or having \"una proficua occupazione stabile\" there (notes 01, §2, [V]).",
+        "Arts. 2–3 put interprovincial transfers of workers under \"il Commissariato per le migrazioni e la colonizzazione\" (notes 01, §2, [V]).",
+        "No housing or ruralization provisions; signed at San Rossore by Mussolini, Solmi, Di Revel, Rossoni and Lantini (notes 01, §2, [V]).",
+        "The notes see the bridge to colonization running through labour mobility, not house types (notes 01, §2, [INF])."
       ],
-      "file": "normattiva_L1939_1092_urbanesimo_attoCompleto.html",
+      "file": "../01_semirurali_bolzano/GU_1939_08_09_185_sg.pdf",
       "source": {
         "label": "Normattiva",
         "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1939-07-06;1092"
@@ -281,7 +294,8 @@
       },
       "more": {
         "kind": "file"
-      }
+      },
+      "images": []
     },
     {
       "no": "10.08",
@@ -297,7 +311,8 @@
       ],
       "text": [
         "The law that turned a regional land agency into the Ente nazionale per le Tre Venezie, seated in Rome at the Prime Minister's office, with the power to “chiedere il trasferimento in sua proprietà di immobili, a chiunque appartengano”. Its task was to take over and resell the property of South Tyroleans who opted to leave.",
-        "The text never says so. It names neither Alto Adige nor the Option nor the optants, and speaks only of “trasferimento all'estero del valore di beni”. This research reads the euphemism as evidence in itself."
+        "The text never says so. It names neither Alto Adige nor the Option nor the optants, and speaks only of “trasferimento all'estero del valore di beni”. This research reads the euphemism as evidence in itself.",
+        "Held as the whole issue of the Gazzetta Ufficiale of 12 December 1939, 32 pages, and as the consolidated text. The same issue's contents list a ministry notice striking a firm from the “elenco B delle aziende ebraiche”. The scan's text layer is poor, so quotations should be taken from the page images."
       ],
       "facts": [
         "Law published in GU 12 Dec 1939 n. 287; Normattiva full text saved as HTML and TXT (manifest; notes 03, Q3, [V]).",
@@ -305,9 +320,13 @@
         "Art. 1: the ERA, 'eretto in ente morale col R. decreto 8 settembre 1921, n. 1343', extends its action 'ad ogni forma di attività economica sociale ed educativa', with its seat in Rome 'presso la Presidenza del Consiglio dei Ministri' and a jurisdiction that includes the province of Zara (notes 03, Q3, [V]).",
         "Art. 3: the Ente 'può chiedere il trasferimento in sua proprietà di immobili, a chiunque appartengano' (notes 03, Q3, [V]).",
         "Wording: the text never names Alto Adige, the Option or the optants; it speaks of 'trasferimento all'estero del valore di beni' (arts. 14, 21). The notes read this statutory euphemism as evidence in itself (notes 03, Q3, [V]; reading [INF]).",
-        "Di Michele: the law gave the ENTV 'il delicatissimo e impegnativo compito di prendere in consegna i beni immobili degli optanti per poi rivenderli attraverso aste o trattative private' (notes 03, Q3, [V], unibz project text)."
+        "Di Michele: the law gave the ENTV 'il delicatissimo e impegnativo compito di prendere in consegna i beni immobili degli optanti per poi rivenderli attraverso aste o trattative private' (notes 03, Q3, [V], unibz project text).",
+        "The full issue of the Gazzetta Ufficiale, Parte prima, Tuesday 12 December 1939, n. 287, 32 pages as scanned (manifest; file).",
+        "Prints L. 27 Nov 1939 n. 1780, which turned the Ente di rinascita agraria per le Tre Venezie into the 'Ente nazionale per le Tre Venezie' (manifest; notes 03, Q3, [V]).",
+        "The issue's table of contents also lists a Ministero delle corporazioni notice cancelling a firm from the 'elenco B delle aziende ebraiche' (file, contents page, OCR).",
+        "The OCR text layer is poor (the masthead date reads '1989'); quotations should be taken from the page images or from the Normattiva text of L. 1780/1939 (file)."
       ],
-      "file": "normattiva_L1939_1780_ENTV_attoCompleto.html",
+      "file": "GU_1939-12-12_n287.pdf",
       "source": {
         "label": "Normattiva",
         "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1939-11-27;1780"
@@ -318,44 +337,11 @@
       },
       "more": {
         "kind": "file"
-      }
+      },
+      "images": []
     },
     {
       "no": "10.09",
-      "title": "Gazzetta Ufficiale del Regno d'Italia, 12 dicembre 1939, n. 287",
-      "type": "Law text",
-      "date": "12 December 1939",
-      "year": 1939,
-      "keywords": [
-        "option",
-        "colonization",
-        "law"
-      ],
-      "text": [
-        "A whole issue of the official gazette, 32 pages, kept because it prints the law that created the Ente nazionale per le Tre Venezie (row 10.08). The same issue's contents list a ministry notice striking a firm from the “elenco B delle aziende ebraiche”.",
-        "The scan's text layer is poor, so quotations should be taken from the page images."
-      ],
-      "facts": [
-        "The full issue of the Gazzetta Ufficiale, Parte prima, Tuesday 12 December 1939, n. 287, 32 pages as scanned (manifest; file).",
-        "Prints L. 27 Nov 1939 n. 1780, which turned the Ente di rinascita agraria per le Tre Venezie into the 'Ente nazionale per le Tre Venezie' (manifest; notes 03, Q3, [V]).",
-        "The issue's table of contents also lists a Ministero delle corporazioni notice cancelling a firm from the 'elenco B delle aziende ebraiche' (file, contents page, OCR).",
-        "The OCR text layer is poor (the masthead date reads '1989'); quotations should be taken from the page images or from the Normattiva text of L. 1780/1939 (file)."
-      ],
-      "file": "GU_1939-12-12_n287.pdf",
-      "source": {
-        "label": "Gazzetta Ufficiale",
-        "url": "https://www.gazzettaufficiale.it/eli/gu/1939/12/12/287/sg/pdf"
-      },
-      "rights": "Official act, public domain",
-      "confidence": {
-        "level": "read"
-      },
-      "more": {
-        "kind": "file"
-      }
-    },
-    {
-      "no": "10.10",
       "title": "Senato della Repubblica, disegno di legge n. 188: Autorizzazione alla Cassa depositi e prestiti a concedere all'Ente Nazionale per le Tre Venezie un mutuo di lire 80.000.000",
       "type": "Law text",
       "date": "14 December 1948",
@@ -388,7 +374,7 @@
       }
     },
     {
-      "no": "10.11",
+      "no": "10.10",
       "title": "Senato della Repubblica, disegno di legge n. 773: Diniego di ratifica del decreto legislativo 6 dicembre 1946, n. 718: Costituzione di una sezione autonoma di ricostruzione e rinascita agraria in seno all'Ente autonomo per le Tre Venezie",
       "type": "Law text",
       "date": "14 December 1949",
@@ -422,7 +408,7 @@
       }
     },
     {
-      "no": "10.12",
+      "no": "10.11",
       "title": "Senato della Repubblica, disegno di legge n. 977: Erogazione di cinque miliardi di lire all'Ente nazionale per le Tre Venezie, per l'esecuzione di un programma di trasformazione fondiaria e di stabile sistemazione produttiva dei profughi dai territori della Venezia Giulia amministrati o posseduti dalla Repubblica Popolare Federativa Jugoslava",
       "type": "Law text",
       "date": "4 March 1955",
@@ -455,7 +441,7 @@
       }
     },
     {
-      "no": "10.13",
+      "no": "10.12",
       "title": "Senato della Repubblica, disegno di legge n. 143: Abrogazione della legge 9 aprile 1931, n. 358, e della legge 6 luglio 1939, n. 1092",
       "type": "Law text",
       "date": "29 September 1958",
@@ -491,7 +477,7 @@
       }
     },
     {
-      "no": "10.14",
+      "no": "10.13",
       "title": "Senato della Repubblica, disegno di legge n. 178: Modifiche alla legge 27 novembre 1939, n. 1780, istitutiva dell'Ente nazionale per le Tre Venezie",
       "type": "Law text",
       "date": "October 1958",
@@ -524,7 +510,7 @@
       }
     },
     {
-      "no": "10.15",
+      "no": "10.14",
       "title": "Bonifica ed insediamenti rurali in una zona della Calabria durante il fascismo",
       "type": "Article",
       "date": "1981 (reprinted 2016)",
@@ -559,7 +545,7 @@
       }
     },
     {
-      "no": "10.16",
+      "no": "10.15",
       "title": "Fondo del Genio Civile, Ufficio di Latina, Serie dei Comuni: Prefazione",
       "type": "Archive guide",
       "date": "2006–08",
@@ -598,7 +584,7 @@
       }
     },
     {
-      "no": "10.17",
+      "no": "10.16",
       "title": "Stile Novecento. La lingua negli anni Trenta e la restituzione del “cognome atesino” nell'Alto Adige-Sudtirolo",
       "type": "Article",
       "date": "January–April 2006",
@@ -635,7 +621,7 @@
       }
     },
     {
-      "no": "10.18",
+      "no": "10.17",
       "title": "Il Commissariato per le migrazioni e la colonizzazione interna (1930-1940). Per una storia della politica migratoria del fascismo: Indice",
       "type": "Book",
       "date": "2015",
@@ -674,7 +660,7 @@
       }
     },
     {
-      "no": "10.19",
+      "no": "10.18",
       "title": "Presentazione del libro di Stefano Gallo, Il Commissariato per le migrazioni e la colonizzazione interna (1930-1940), Napoli, 30 giugno 2015",
       "type": "Booklet",
       "date": "30 June 2015",
@@ -705,7 +691,7 @@
       }
     },
     {
-      "no": "10.20",
+      "no": "10.19",
       "title": "Mussolini's Nation-Empire: Sovereignty and Settlement in Italy's Borderlands, 1922–1943, Index",
       "type": "Book",
       "date": "2017",
@@ -744,7 +730,7 @@
       }
     },
     {
-      "no": "10.21",
+      "no": "10.20",
       "title": "Mussolini's Nation-Empire: Sovereignty and Settlement in Italy's Borderlands, 1922–1943, Introduction (excerpt)",
       "type": "Book",
       "date": "2017",
@@ -783,7 +769,7 @@
       }
     },
     {
-      "no": "10.22",
+      "no": "10.21",
       "title": "The 1939 Option Agreement and the ‘Consistent Ambivalence’ of Fascist Policies towards Minorities in the Italian New Provinces",
       "type": "Article",
       "date": "2023",
@@ -822,7 +808,7 @@
       }
     },
     {
-      "no": "10.23",
+      "no": "10.22",
       "title": "The Fascist view of the ‘allogeni’ in the border regions",
       "type": "Article",
       "date": "2023",
@@ -860,7 +846,7 @@
       }
     },
     {
-      "no": "10.24",
+      "no": "10.23",
       "title": "Andrea Di Michele, Terra italiana. Possedere il suolo per assicurare i confini 1915–1954, review by Giulio Taccetti",
       "type": "Article",
       "date": "2024",
@@ -897,7 +883,7 @@
       }
     },
     {
-      "no": "10.25",
+      "no": "10.24",
       "title": "Lingue di terra. Geografie e linguistic landscape nel territorio dell'Agro Pontino",
       "type": "Article",
       "date": "2025",

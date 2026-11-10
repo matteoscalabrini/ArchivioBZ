@@ -231,25 +231,35 @@
     },
     {
       "no": "11.06",
-      "title": "Asmara – Palazzo del Governo",
+      "title": "Ricordo Africa Orientale Italiana: Asmara, the Palazzo del Governo and a panorama",
       "type": "Photograph",
       "date": "1937–38",
       "year": 1937,
       "keywords": [
-        "eritrea"
+        "eritrea",
+        "architecture"
       ],
       "text": [
-        "The Governor's palace in Asmara, from a souvenir album of Italian East Africa of 1937–38: a pedimented portico behind iron railings, a sentry box on each side, three guards in white. Cafiero's plan made the palace part of a “Zona governativa” around a new square. Photographer unknown."
+        "Two views of Asmara from a souvenir album of Italian East Africa, 1937–38, photographer unknown. The Governor's palace: a pedimented portico behind iron railings, a sentry box on each side, three guards in white. And the city from above: low pitched roofs and a straight street running to a tall pointed bell tower.",
+        "The Touring Club's guide of 1938 describes the second view: “La città italiana ... dominata dal campanile della Cattedrale, è disposta a vie regolari rettilinee a S della città indigena.” Cafiero's plan made the palace part of a “Zona governativa” around a new square."
       ],
       "facts": [
         "Photograph from the album 'Ricordo Africa Orientale Italiana', photographer unknown, 1937-1938; a 3840 px derivative (manifest).",
         "Cafiero's plan set a 'Zona governativa' around a new 'piazza De Cristoforis', with the Governor's palace and two head buildings on viale De Bono (notes 04, §1, [S]).",
         "The Luce record A051504 (Feb 1930), 'Un ricevimento al palazzo del Governo di Asmara', lists 'le guardie indigene avvolte nei caratteristici drappi bianchi' (luce_records/Luce_IL5000014923.txt).",
-        "Seen in the image: a low building with a pedimented portico of columns behind iron railings and an open gate, a sentry box on each side, three guards in white uniforms, palms, a flag on a tall pole and two tall ornamental posts; printed caption 'ASMARA - Palazzo del Governo'."
+        "Seen in the image: a low building with a pedimented portico of columns behind iron railings and an open gate, a sentry box on each side, three guards in white uniforms, palms, a flag on a tall pole and two tall ornamental posts; printed caption 'ASMARA - Palazzo del Governo'.",
+        "Photograph from the album 'Ricordo Africa Orientale Italiana', photographer unknown, 1937-1938; a 3840 px derivative (manifest).",
+        "The 1938 CTI guide: 'La città italiana, ricca di edifici notevoli e di giardini perennem. fioriti e dominata dal campanile della Cattedrale, è disposta a vie regolari rettilinee a S della città indigena' (notes 04, §1, [V], CTI p. 199).",
+        "The same guide: 'Dal 1935 Asmára è tutta un cantiere' (notes 04, §1, [V], CTI p. 199).",
+        "Seen in the image: a view over low houses with pitched roofs toward a tall pointed bell tower; a straight street runs to it; at lower right a square with a round basin and a flag; printed caption 'ASMARA Panorama'."
       ],
       "images": [
         {
           "file": "commons/ASMARA_Palazzo_del_Governo_1937-38_3840px.jpg",
+          "caption": "Photographer unknown, album 'Ricordo Africa Orientale Italiana', 1937–38. Public domain per Commons, Wikimedia Commons."
+        },
+        {
+          "file": "commons/ASMARA_Panorama_1937-38_3840px.jpg",
           "caption": "Photographer unknown, album 'Ricordo Africa Orientale Italiana', 1937–38. Public domain per Commons, Wikimedia Commons."
         }
       ],
@@ -266,41 +276,6 @@
     },
     {
       "no": "11.07",
-      "title": "Asmara – Panorama",
-      "type": "Photograph",
-      "date": "1937–38",
-      "year": 1937,
-      "keywords": [
-        "eritrea"
-      ],
-      "text": [
-        "Asmara from above, from the same souvenir album: low pitched roofs and a straight street running to a tall pointed bell tower. The Touring Club's guide of 1938 describes this view: “La città italiana ... dominata dal campanile della Cattedrale, è disposta a vie regolari rettilinee a S della città indigena.”"
-      ],
-      "facts": [
-        "Photograph from the album 'Ricordo Africa Orientale Italiana', photographer unknown, 1937-1938; a 3840 px derivative (manifest).",
-        "The 1938 CTI guide: 'La città italiana, ricca di edifici notevoli e di giardini perennem. fioriti e dominata dal campanile della Cattedrale, è disposta a vie regolari rettilinee a S della città indigena' (notes 04, §1, [V], CTI p. 199).",
-        "The same guide: 'Dal 1935 Asmára è tutta un cantiere' (notes 04, §1, [V], CTI p. 199).",
-        "Seen in the image: a view over low houses with pitched roofs toward a tall pointed bell tower; a straight street runs to it; at lower right a square with a round basin and a flag; printed caption 'ASMARA Panorama'."
-      ],
-      "images": [
-        {
-          "file": "commons/ASMARA_Panorama_1937-38_3840px.jpg",
-          "caption": "Photographer unknown, album 'Ricordo Africa Orientale Italiana', 1937–38. Public domain per Commons, Wikimedia Commons."
-        }
-      ],
-      "file": "commons/ASMARA_Panorama_1937-38_3840px.jpg",
-      "source": {
-        "label": "Wikimedia Commons",
-        "url": "https://commons.wikimedia.org/wiki/File:ASMARA_-_Panorama.jpg"
-      },
-      "rights": "Public domain per Commons",
-      "confidence": {
-        "level": "read",
-        "note": "Photographer unknown (manifest)."
-      }
-    },
-    {
-      "no": "11.08",
       "title": "Regio decreto-legge 19 aprile 1937, n. 880. Sanzioni per i rapporti d'indole coniugale fra cittadini e sudditi",
       "type": "Law text",
       "date": "19 April 1937",
@@ -337,7 +312,7 @@
       }
     },
     {
-      "no": "11.09",
+      "no": "11.08",
       "title": "Guida dell'Africa Orientale Italiana",
       "type": "Book",
       "date": "1938",
@@ -410,7 +385,7 @@
       }
     },
     {
-      "no": "11.10",
+      "no": "11.09",
       "title": "Terminal station of the Massawa–Asmara cableway at Campo Marte, Asmara",
       "type": "Photograph",
       "date": "1939",
@@ -445,7 +420,7 @@
       }
     },
     {
-      "no": "11.11",
+      "no": "11.10",
       "title": "Legge 29 giugno 1939, n. 1004. Sanzioni penali per la difesa del prestigio di razza di fronte ai nativi dell'Africa Italiana",
       "type": "Law text",
       "date": "29 June 1939",
@@ -483,7 +458,7 @@
       }
     },
     {
-      "no": "11.12",
+      "no": "11.11",
       "title": "Legge 13 maggio 1940, n. 822. Norme relative ai meticci",
       "type": "Law text",
       "date": "13 May 1940",
@@ -521,7 +496,7 @@
       }
     },
     {
-      "no": "11.13",
+      "no": "11.12",
       "title": "Dangerous Liaisons: Colonial Concubinage in Eritrea, 1890–1941",
       "type": "Article",
       "date": "1996",
@@ -560,7 +535,7 @@
       }
     },
     {
-      "no": "11.14",
+      "no": "11.13",
       "title": "Asmara, Afrikas heimliche Stadt der klassischen Moderne",
       "type": "Article",
       "date": "2008",
@@ -598,7 +573,7 @@
       }
     },
     {
-      "no": "11.15",
+      "no": "11.14",
       "title": "L'altra faccia del colonialismo. L'architettura italiana in Eritrea",
       "type": "Article",
       "date": "2010",
@@ -633,7 +608,7 @@
       }
     },
     {
-      "no": "11.16",
+      "no": "11.15",
       "title": "Italy's Colonial Futures: Colonial Inertia and Postcolonial Capital in Asmara",
       "type": "Article",
       "date": "2011",
@@ -671,7 +646,7 @@
       }
     },
     {
-      "no": "11.17",
+      "no": "11.16",
       "title": "Asmara: Africa's Modernist City. Executive summary",
       "type": "Booklet",
       "date": "2016",
@@ -704,7 +679,7 @@
       }
     },
     {
-      "no": "11.18",
+      "no": "11.17",
       "title": "“Urbanistica coloniale” moderna e piani regolatori nelle città italiane d'oltremare. Asmara e i piani regolatori funzionalisti di Guido Ferrazza e Vittorio Cafiero (1936-1939)",
       "type": "Article",
       "date": "2016",
@@ -745,7 +720,7 @@
       }
     },
     {
-      "no": "11.19",
+      "no": "11.18",
       "title": "Asmara: Africa's Modernist City. Nomination dossier, nomination text",
       "type": "Book",
       "date": "January 2016",
@@ -786,7 +761,7 @@
       }
     },
     {
-      "no": "11.20",
+      "no": "11.19",
       "title": "Asmara (Eritrea) No 1550. ICOMOS evaluation",
       "type": "Booklet",
       "date": "2017",
@@ -825,7 +800,7 @@
       }
     },
     {
-      "no": "11.21",
+      "no": "11.20",
       "title": "Tessenei (1905-1941): intensive farming shaping landscape and social relations in colonial Eritrea",
       "type": "Article",
       "date": "2019",
@@ -861,7 +836,7 @@
       }
     },
     {
-      "no": "11.22",
+      "no": "11.21",
       "title": "Italiani in Eritrea, dai manuali per l'alfabetizzazione coloniale (1912-1930) alle ultime voci",
       "type": "Article",
       "date": "2023",

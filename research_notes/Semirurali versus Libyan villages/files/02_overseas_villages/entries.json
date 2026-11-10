@@ -169,9 +169,9 @@
     },
     {
       "no": "9.04",
-      "title": "Unknown photographer, the centro rurale D'Annunzio in Cyrenaica from the air",
+      "title": "The village D'Annunzio in Cyrenaica, from the air in 1938 and from the road in 1943",
       "type": "Photograph",
-      "date": "1938",
+      "date": "1938–43",
       "year": 1938,
       "keywords": [
         "libya",
@@ -179,7 +179,7 @@
         "architecture"
       ],
       "text": [
-        "The village centre of D'Annunzio in Cyrenaica from the air, from the official photobook of the 1938 migration: a walled piazza framed by low arcaded wings with pitched tiled roofs, and a church with a square tower. Built in 1938 to designs by Florestano Di Fausto, 75 farms for 525 people.",
+        "The village D'Annunzio in Cyrenaica, twice. From the air in 1938, in the official photobook of that year's migration: a walled piazza framed by low arcaded wings with pitched tiled roofs, and a church with a square tower. And from the road in 1943: the tower and roofs on a rise, and the name “D'ANNUNZIO” on a long board along the retaining wall. It was built in 1938 to designs by Florestano Di Fausto, 75 farms for 525 people.",
         "The historian Vittoria Capresi reads the pitched roofs as a “ponte semantico” for peasants arriving from the Abruzzi: something that looked like home."
       ],
       "facts": [
@@ -187,12 +187,20 @@
         "D'Annunzio [Al Bayyadah], Bengasi province, built 1938 by the ECL to designs by Florestano Di Fausto; 75 poderi, 525 persons (notes 02, §1, [S]).",
         "Capresi reads its pitched roofs as a \"ponte semantico\" for peasants \"provenienti dagli Abruzzi\"; Wikipedia notes \"accenti vernacolari padani\" here (notes 02, §2, [S]).",
         "Di Fausto turned the Casa del Fascio's balcony and symbols outward to the access road at D'Annunzio (notes 02, §2, [S]).",
-        "Seen in the image: an aerial view of a walled, paved rectangular piazza framed by low arcaded wings with pitched tiled roofs, a church with a tall square bell tower, a lorry and a few people."
+        "Seen in the image: an aerial view of a walled, paved rectangular piazza framed by low arcaded wings with pitched tiled roofs, a church with a tall square bell tower, a lorry and a few people.",
+        "Bitmuna archive, 1943; public domain per Commons; the Commons file name reads \"D_Annuzio_8-10-1943_btm11077.jpeg\" (manifest).",
+        "D'Annunzio, Bengasi province, built 1938 by the ECL to designs by Di Fausto (notes 02, §1, [S]).",
+        "Luce newsreel B1410 (16/11/1938) shows lorries of settlers arriving at D'Annunzio (notes 02, §1, [V, catalogue]).",
+        "Seen in the image: the village on a rise with its square tower and white buildings with tiled roofs, a long board reading \"D'ANNUNZIO\" on the retaining wall, a rounded vehicle wing in the lower right corner; the print is spotted."
       ],
       "images": [
         {
           "file": "commons/Centro_rurale_DAnnunzio_in_Libia_1938.jpg",
           "caption": "Unknown photographer, 1938, from \"I Ventimila\" (Maggi, Tripoli 1938). Public domain per Commons. Wikimedia Commons."
+        },
+        {
+          "file": "commons/DAnnunzio_village_1943_Bitmuna.jpeg",
+          "caption": "Bitmuna archive, 1943. Public domain per Commons. Wikimedia Commons."
         }
       ],
       "file": "commons/Centro_rurale_DAnnunzio_in_Libia_1938.jpg",
@@ -200,7 +208,7 @@
         "label": "Wikimedia Commons",
         "url": "https://commons.wikimedia.org/wiki/File:Centro_rurale_D%27Annunzio_in_Libia.jpg"
       },
-      "creator": "Unknown (from \"I Ventimila. Documentario fotografico...\", Maggi, Tripoli 1938)",
+      "creator": "Unknown photographer; Bitmuna archive",
       "rights": "Public domain per Commons",
       "confidence": {
         "level": "read"
@@ -297,46 +305,6 @@
     },
     {
       "no": "9.07",
-      "title": "Bitmuna archive, the village D'Annunzio in Cyrenaica seen from the road",
-      "type": "Photograph",
-      "date": "1943",
-      "year": 1943,
-      "keywords": [
-        "libya",
-        "colonization"
-      ],
-      "text": [
-        "The village D'Annunzio seen from the road in 1943: the square tower and tiled roofs on a rise, and the name “D'ANNUNZIO” on a long board along the retaining wall."
-      ],
-      "facts": [
-        "Bitmuna archive, 1943; public domain per Commons; the Commons file name reads \"D_Annuzio_8-10-1943_btm11077.jpeg\" (manifest).",
-        "D'Annunzio, Bengasi province, built 1938 by the ECL to designs by Di Fausto (notes 02, §1, [S]).",
-        "Luce newsreel B1410 (16/11/1938) shows lorries of settlers arriving at D'Annunzio (notes 02, §1, [V, catalogue]).",
-        "Seen in the image: the village on a rise with its square tower and white buildings with tiled roofs, a long board reading \"D'ANNUNZIO\" on the retaining wall, a rounded vehicle wing in the lower right corner; the print is spotted."
-      ],
-      "images": [
-        {
-          "file": "commons/DAnnunzio_village_1943_Bitmuna.jpeg",
-          "caption": "Bitmuna archive, 1943. Public domain per Commons. Wikimedia Commons."
-        }
-      ],
-      "file": "commons/DAnnunzio_village_1943_Bitmuna.jpeg",
-      "source": {
-        "label": "Wikimedia Commons",
-        "url": "https://commons.wikimedia.org/wiki/File:D_Annuzio_8-10-1943_btm11077.jpeg"
-      },
-      "creator": "Bitmuna archive",
-      "rights": "Public domain per Commons",
-      "confidence": {
-        "level": "read"
-      },
-      "more": {
-        "kind": "source",
-        "target": "https://commons.wikimedia.org/wiki/File:D_Annuzio_8-10-1943_btm11077.jpeg"
-      }
-    },
-    {
-      "no": "9.08",
       "title": "I centri rurali libici. L'architettura dei centri rurali di fondazione costruiti in Libia – colonia italiana – durante il fascismo (1934-1940)",
       "type": "Article",
       "date": "2007",
@@ -375,7 +343,7 @@
       }
     },
     {
-      "no": "9.09",
+      "no": "9.08",
       "title": "L'Impero immaginario. I coloni italiani in Etiopia, 1936-1941",
       "type": "Article",
       "date": "c. 2014",
@@ -411,7 +379,7 @@
       }
     },
     {
-      "no": "9.10",
+      "no": "9.09",
       "title": "La ri-fondazione della Libia balbiana (1933-1939). Il poderoso racconto fotografico dei \"Ventimila\"",
       "type": "Article",
       "date": "2014",
@@ -447,7 +415,7 @@
       }
     },
     {
-      "no": "9.11",
+      "no": "9.10",
       "title": "Colonies on the cover: Italo Balbo's Libia",
       "type": "Article",
       "date": "2022",
@@ -482,7 +450,7 @@
       }
     },
     {
-      "no": "9.12",
+      "no": "9.11",
       "title": "L'emigrazione dal Trentino. Dalla Grande guerra alla sconfitta del nazifascismo",
       "type": "Book",
       "date": "2023",
