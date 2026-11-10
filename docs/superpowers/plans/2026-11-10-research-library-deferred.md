@@ -1,0 +1,37 @@
+# Deferred minor findings from the task reviews (for triage by the final review)
+
+- Task 1: minor (deferred): base.css headings keep browser sizes, code/pre fall back to monospace — handed to Task 2 to fix
+- Task 1: minor (deferred): engines says >=24 but import.meta.main needs 24.2
+- Task 1: minor (deferred): rebuild test never plants a stale file to prove emptying
+- Task 1: minor (deferred): loader accepts file/target outside research_notes/ and reports/ (silently broken link)
+- Task 1: minor (deferred): serve.mjs serves dir/index.html without redirecting /dir to /dir/
+- Task 1: minor (deferred): ctx.copyFile shadows the imported copyFile name
+- Task 2: minor (deferred): pictures are wrapped in a link to the original with alt="" (tab stop without a name)
+- Task 2: minor (deferred): "Show all" hides itself on activation and drops keyboard focus to body
+- Task 2: minor (deferred): scroll-padding-top fixed at 48px while the sticky status line can wrap
+- Task 2: minor (deferred): no test pins HTML escaping of free text
+- Task 2: minor (deferred): browser behaviour (lazy pictures, stale address, hashchange, Sources jump) checked only by scratch scripts; cdp.mjs for 390 px emulation not in the repo
+- Task 2: minor (deferred): a long unbroken cell (a URL) in a table preview can overflow at 390 px and be clipped silently; real-table-390.png predates the wrap fix
+- Task 2: minor (deferred): `total` interpolated without esc in the preview caption (a number)
+- Tasks 3-5: minor (deferred): picture w/h ignore EXIF orientation 5-8
+- Tasks 3-5: minor (deferred): picture cache never pruned; key includes the absolute path
+- Tasks 3-5: minor (deferred): preview cut at 160 chars can drop a long token after an early space
+- Tasks 3-5: minor (deferred): more.columns with duplicated names uses the first match
+- Tasks 3-5: minor (deferred): table.js date detection matches coordinates; mixed-column comparison not guaranteed transitive
+- Tasks 3-5: minor (deferred): an interior blank CSV line counts as a record
+- Tasks 3-5: minor (deferred): sticky table header lost at <=800 px because of the inner scroll
+- Tasks 3-5: minor (deferred): two keywords sharing a label resolve to the last; null keyword value throws in idea.mjs
+- Tasks 3-5: minor (deferred): CSV error paths and a 400+ row table page are untested
+- Tasks 3-5: to check at the end: the Library page must not link to table/<no>.html when the tables step reported an error for that row
+- Task 7: minor (deferred): if the three import fails (404, no import-map support) the module dies before the flat-list fallback; without JS the place list is invisible
+- Task 7: minor (deferred): renderer not released if draw() throws after creation; no teardown or context-loss handling
+- Task 7: minor (deferred): pin() forces a layout per place per frame
+- Task 7: minor (deferred): a place panned off screen is not reachable by keyboard until panned back
+- Task 7: minor (deferred): map.js behaviour (state, filter, focus, fallback) covered only by screenshots
+- Task 7: minor (deferred): the white "Beyond this map" block cuts a rectangle out of the dot field; labels crowd at 390 px
+- Tasks 6+8: minor (deferred): Word h1 drop removes the first h1 even when paragraphs precede it (heuristic that fits the real reports)
+- Tasks 6+8: minor (deferred): caption pairing is greedy; a table containing an image is flattened
+- Tasks 6+8: minor (deferred): old docx cache folders never pruned; a missing cached figure warns on every build until the file changes
+- Tasks 6+8: minor (deferred): About page has no h1
+- Tasks 6+8: minor (deferred): no test for cache invalidation; tidy logic tested only through the real reports
+- Tasks 6+8: minor (deferred): a paragraph or heading whose whole text is "Contents" but is not a contents block would be removed
