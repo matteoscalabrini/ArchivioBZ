@@ -1,0 +1,20 @@
+# generated
+node_modules/
+library/dist/
+library/.cache/
+.superpowers/
+.DS_Store
+
+# downloads stay on disk, out of git: records, manifests, notes and tables are versioned
+research_notes/**/*.pdf
+research_notes/**/*.djvu
+research_notes/**/*.jpg
+research_notes/**/*.jpeg
+research_notes/**/*.png
+research_notes/**/*.gif
+research_notes/**/*.webp
+research_notes/**/*.tif
+research_notes/**/*.html
+research_notes/**/*.txt
+research_notes/**/*.xlsx
+reports/*.docx

@@ -1,0 +1,15 @@
+{
+  "ponte-druso": { "name": "Ponte Druso", "lat": null, "lon": null },
+  "ponte-talvera": { "name": "Ponte Talvera", "lat": null, "lon": null },
+  "monumento-vittoria": { "name": "Monumento alla Vittoria", "lat": null, "lon": null },
+  "casa-del-fascio": { "name": "Casa del Fascio, Piazza Tribunale", "lat": null, "lon": null },
+  "palazzo-giustizia": { "name": "Palazzo di Giustizia", "lat": null, "lon": null },
+  "corso-liberta": { "name": "Corso Libertà", "lat": null, "lon": null },
+  "cristo-re": { "name": "Cristo Re", "lat": null, "lon": null },
+  "stadio-druso": { "name": "Stadio Druso", "lat": null, "lon": null },
+  "piazza-walther": { "name": "Piazza Walther", "lat": null, "lon": null },
+  "stazione": { "name": "Bolzano station", "lat": null, "lon": null },
+  "semirurali": { "name": "Semirurali", "lat": null, "lon": null },
+  "zona-industriale": { "name": "Zona industriale", "lat": null, "lon": null },
+  "lager": { "name": "Lager, Via Resia", "lat": null, "lon": null }
+}
