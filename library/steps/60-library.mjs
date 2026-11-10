@@ -81,7 +81,7 @@ function row(entry, { ctx, label, places }) {
   const link = more(entry, ctx);
   const txt = `<div class="txt">${text}${lines}${link}</div>`;
   const detail = pictures.length ? `<div class="detail">${pictureBlock(pictures)}${txt}</div>`
-    : preview ? `<div class="detail table">${txt}${previewTable(preview)}</div>`
+    : preview ? `<div class="detail table">${previewTable(preview)}${txt}</div>`
     : `<div class="detail wide">${txt}</div>`;
 
   return `<article class="row" data-no="${no}" data-kw="${esc(entry.keywords.join(' '))}" data-type="${esc(entry.type)}" data-year="${esc(entry.year)}">

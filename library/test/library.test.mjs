@@ -223,6 +223,24 @@ test('a table row shows its first records beside the text', async () => {
   assert.match(table, /<td>One<\/td><td>1928<\/td><td>https:\/\/example\.org\/1<\/td>/);
 });
 
+test('a table row reads preview, text, meta lines, then the bottom link', async () => {
+  const records = [['One', '1928', ''], ['Two', '1929', '']];
+  const html = await render({
+    edit(lib) {
+      entry(lib, '5.03').preview = { columns: ['title', 'date', 'url'], rows: records, total: 7 };
+    },
+  });
+  const body = /<div class="row-body"[^>]*>([\s\S]*)<\/div>/.exec(row(html, '5.03').inner)[1];
+  const at = (marker) => {
+    const index = body.indexOf(marker);
+    assert.notEqual(index, -1, `no ${marker}`);
+    return index;
+  };
+  assert.ok(at('<table class="recs">') < at('<p>'), 'the preview comes before the text');
+  assert.ok(at('<p>') < at('<dl class="meta">'), 'the text comes before the meta lines');
+  assert.ok(at('</dl>') < at('<a class="more"'), 'the bottom link comes after the meta lines');
+});
+
 test('status line, sortable column heads and every keyword at the foot', async () => {
   const html = await builtIndex();
   assert.match(html, /<a href="index.html" aria-current="page">Library<\/a>/);
