@@ -1,0 +1,1421 @@
+{
+  "places_proposed": {
+    "lido": {
+      "name": "Lido di Bolzano, municipal open-air pool"
+    },
+    "noi-techpark": {
+      "name": "NOI Techpark (former Alumix aluminium plant)"
+    },
+    "sparkasse-sede": {
+      "name": "Historic seat of the Cassa di Risparmio (Südtiroler Sparkasse)"
+    }
+  },
+  "entries": [
+    {
+      "no": "5.00",
+      "title": "Fascist-era landmarks in Bolzano/Bozen: Ponte Druso, the lost cinemas near Corso Italia, and the fate of the fascist built heritage (1926–2026)",
+      "type": "Notes",
+      "date": "2026",
+      "year": 2026,
+      "keywords": [
+        "ponte-druso",
+        "cinemas",
+        "new-city",
+        "heritage",
+        "monumento-vittoria"
+      ],
+      "text": [],
+      "facts": [
+        "Thread 05 notes, research date 22 October 2026: Ponte Druso and its eagles, the lost cinemas near Corso Italia, an inventory of fascist-era buildings and street names, their postwar defusing, and tourist use today (notes 05)",
+        "Tags: [V] read in the cited page or PDF; [S] search summary or secondary aggregator; [W] Wikipedia text and footnotes (notes 05, header)",
+        "Bolzano's approach is to add rather than remove: BZ '18–'45 with the LED ring (2014) and the Arendt sentence over the Piffrader relief (2017) (notes 05, §4, Takeaway)",
+        "Most of the fascist new town survives in use; the losses are the Cinema Corso (1988), most of the Semirurali, part of the heavy industry, the Ponte Druso sculpture (1970s), the Concordia (2018) and, in July 2026, the centre of the Palazzo di Giustizia (notes 05, §3, Takeaway)",
+        "Downloads: 10 PDFs and 28 images (README; manifest)"
+      ],
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "read",
+        "target": "../../05_landmarks_heritage.md"
+      }
+    },
+    {
+      "no": "5.02",
+      "title": "Kaiserjäger monument to the war dead in Bolzano",
+      "type": "Photograph",
+      "date": "c. 1917–20",
+      "year": 1917,
+      "keywords": [
+        "monumento-vittoria",
+        "removal"
+      ],
+      "text": [],
+      "facts": [
+        "Commons: 'Kaiserjäger monument to war dead, built in 1917 and demolished 1920 to make way for the Victory Monument in Bolzano'; photographer unknown, dated ca. 1917–1920 (manifest)",
+        "The Victory Monument replaced the unfinished Kaiserjäger monument (Karl Ernstberger, begun 1917), which was demolished [W] (notes 05, §3)",
+        "Seen in the image: a round drum of rough-hewn stone blocks with a dark doorway, square blocks standing on its top, a low stone wall in front and a carved figure under an arch at left; bare trees behind.",
+        "The Alpenzeitung of 13 July 1928 says the Victory Monument stands 'dort am Grunde der Talferbrücke, wo einst auch die Oesterreicher in voreiligem Siegesbewußtsein ihr Denkmal errichten wollten' (file images/03_vittoria__AZ_1928_07_13_1_SiD.png)"
+      ],
+      "images": [
+        {
+          "file": "images/03_vittoria__KaiserjaegerBozen.jpg",
+          "caption": "Unknown photographer, c. 1917–20. Public domain, Wikimedia Commons."
+        }
+      ],
+      "file": "images/03_vittoria__KaiserjaegerBozen.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:KaiserjaegerBozen.jpg"
+      },
+      "rights": "Public domain",
+      "confidence": {
+        "level": "read",
+        "note": "Commons says the monument was 'built in 1917'; the notes call it unfinished [W]."
+      },
+      "place": "monumento-vittoria"
+    },
+    {
+      "no": "5.03",
+      "title": "Sergio Perdomi, first stone of the Victory Monument laid in the presence of Vittorio Emanuele III",
+      "type": "Photograph",
+      "date": "12 July 1926",
+      "year": 1926,
+      "keywords": [
+        "monumento-vittoria",
+        "inauguration"
+      ],
+      "text": [],
+      "facts": [
+        "Commons: 'Sergio Perdomi - Groundbreaking of the Monument to Victory in Bolzano with king Victor Emmanuel III', dated 1926 (manifest)",
+        "Decided on 10 Feb 1926 and designed by Marcello Piacentini; first stone 12 July 1926; inaugurated 12 July 1928 by Vittorio Emanuele III [W] (notes 05, §3)",
+        "Seen in the image: a dressed stone block hangs on chains from a lifting frame; a bishop in mitre and vestments bows over it, men in uniform and in dark suits stand round, festoons hang behind; printed along the bottom: 'BOLZANO 12 LUGLIO 1926'.",
+        "The funding subscription raised 3 million lire [V] (notes 05, §3)"
+      ],
+      "images": [
+        {
+          "file": "images/03_vittoria__Sergio_Perdomi_-_Posa_della_prima_pietra_del_monumento_alla_Vittora_di_Bolzano_a.jpg",
+          "caption": "Sergio Perdomi, 12 July 1926. Public domain, Wikimedia Commons."
+        }
+      ],
+      "file": "images/03_vittoria__Sergio_Perdomi_-_Posa_della_prima_pietra_del_monumento_alla_Vittora_di_Bolzano_a.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Sergio_Perdomi_-_Posa_della_prima_pietra_del_monumento_alla_Vittora_di_Bolzano_alla_presenza_di_Vittorio_Emanuele_III.jpg"
+      },
+      "creator": "Sergio Perdomi",
+      "rights": "Public domain",
+      "confidence": {
+        "level": "read"
+      },
+      "place": "monumento-vittoria"
+    },
+    {
+      "no": "5.04",
+      "title": "Alpenzeitung, 13 July 1928, page 1",
+      "type": "Newspaper page",
+      "date": "13 July 1928",
+      "year": 1928,
+      "keywords": [
+        "monumento-vittoria",
+        "press",
+        "inauguration",
+        "typeface",
+        "romanita"
+      ],
+      "text": [],
+      "facts": [
+        "Commons: 'The fascist newspaper Alpenzeitung commemorating the inauguration of the Monument to Victory in Bozen-Bolzano, on July 12, 1928 (edition of the following day), explaining also the latin inscriptions'; author unknown (manifest)",
+        "Seen in the image: blackletter masthead 'Alpenzeitung', 'Politisches Tagblatt der Provinz Bolzano', 'Freitag, den 13. Juli 1928 – Anno VI', headline 'Die Enthüllung des Siegesdenkmals'; the body text is set in Fraktur, the headlines and the Latin lines in roman type.",
+        "Seen in the image: under 'Beim Siegesdenkmal' the page prints 'Hic patriae fines, siste signa / Hinc ceteros excoluimus lingua legibus artibus' and says the monument stands 'am Grunde der Talferbrücke, wo einst auch die Oesterreicher … ihr Denkmal errichten wollten'.",
+        "The inscription was dictated by Pietro Fedele; an earlier draft had 'barbaros' [W] (notes 05, §3)",
+        "Inaugurated 12 July 1928 by Vittorio Emanuele III [W] (notes 05, §3)",
+        "The manifest lists this Teßmann page as held only through the Commons copy (manifest, period newspaper pages)"
+      ],
+      "images": [
+        {
+          "file": "images/03_vittoria__AZ_1928_07_13_1_SiD.png",
+          "caption": "Alpenzeitung, 13 July 1928, page 1. CC BY-SA 4.0 as declared on Commons, Wikimedia Commons."
+        }
+      ],
+      "file": "images/03_vittoria__AZ_1928_07_13_1_SiD.png",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:AZ_1928_07_13_1_SiD.png"
+      },
+      "rights": "CC BY-SA 4.0",
+      "confidence": {
+        "level": "read",
+        "note": "Rights unclear: the manifest table gives CC BY-SA 4.0, its rights caveat says the 1928 page is declared public domain on Commons."
+      },
+      "place": "monumento-vittoria"
+    },
+    {
+      "no": "5.05",
+      "title": "Mario Gabinio, Ponte Druso, detail of a bridge-head with a votive altar",
+      "type": "Photograph",
+      "date": "1932–35",
+      "year": 1932,
+      "keywords": [
+        "ponte-druso",
+        "romanita",
+        "symbol"
+      ],
+      "text": [],
+      "facts": [
+        "Catalogue description: '… Particolare Di Una Testata Con Ara Votiva Recante La Data Mxmxv; 1932-1935; stampa alla gelatina bromuro d'argento' (manifest)",
+        "The notes take 'Mxmxv' for the catalogue's garbled transcription of a Roman numeral and say to read the photo itself [V, Commons metadata] (notes 05, §1)",
+        "Seen in the image: a stone block topped by a shallow round basin resting on helmets; the inscription under the basin appears to read 'MCMXV'; a relief sword on each visible face; a flagpole beside it and, far off at left, an eagle on a pylon.",
+        "The end blocks carried imperial shields resting on four helmets, and the sides were decorated with Roman swords [V] (notes 05, §1)",
+        "The text of the inscriptions (votive altar date, other inscriptions) was not found (notes 05, §1, Gaps)",
+        "Credit 'Mario Gabinio / Fondazione Torino Musei' (manifest, rights caveats)"
+      ],
+      "images": [
+        {
+          "file": "images/01_pontedruso__Gabinio.Bolzano_Ponte_Druso_-Ponte_In_Pietra_A_Tre_Arcate_Con_Gruppi_Scultorei_R.jpg",
+          "caption": "Mario Gabinio, 1932–35. CC BY 3.0 IT, Fondazione Torino Musei via Wikimedia Commons."
+        }
+      ],
+      "file": "images/01_pontedruso__Gabinio.Bolzano_Ponte_Druso_-Ponte_In_Pietra_A_Tre_Arcate_Con_Gruppi_Scultorei_R.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Gabinio.Bolzano,_Ponte_Druso_-Ponte_In_Pietra_A_Tre_Arcate_Con_Gruppi_Scultorei_Raffiguranti_Aquile_Poggiate_Su_Fasci_Litt_116B24.jpg"
+      },
+      "creator": "Mario Gabinio",
+      "holder": "Fondazione Torino Musei (GAM archive)",
+      "rights": "CC BY 3.0 it",
+      "confidence": {
+        "level": "read"
+      },
+      "place": "ponte-druso"
+    },
+    {
+      "no": "5.06",
+      "title": "Mario Gabinio, Ponte Druso, three stone arches with eagles on fasces",
+      "type": "Photograph",
+      "date": "1932–35",
+      "year": 1932,
+      "keywords": [
+        "ponte-druso",
+        "romanita",
+        "symbol"
+      ],
+      "text": [],
+      "facts": [
+        "Catalogue description: 'Bolzano, Ponte Druso - Ponte In Pietra A Tre Arcate Con Gruppi Scultorei Raffiguranti Aquile Poggiate Su Fasci Littori; 1932-1935; stampa alla gelatina bromuro d'argento' (manifest)",
+        "Seen in the image: a three-arched stone bridge over a dry riverbed; eagle statues stand on tall stepped pylons above the piers, with a pierced stone parapet between them; houses and a mountain behind.",
+        "The four central piers carried sculptures more than 8 m high: fasces holding globes, on which 'troneggiavano gigantesche aquile romane' [V] (notes 05, §1)",
+        "Four eagles, sculpted in 1931 by Vittorio Morelli of Ancona [V] (notes 05, §1)",
+        "The sources disagree on placement (four corners vs four central piers); the Gabinio photos are the best way to settle it visually (notes 05, §1, Inferences)",
+        "Credit 'Mario Gabinio / Fondazione Torino Musei' (manifest, rights caveats)"
+      ],
+      "images": [
+        {
+          "file": "images/01_pontedruso__Gabinio.Bolzano_Ponte_Druso-Ponte_In_Pietra_A_Tre_Arcate_Con_Gruppi_Scultorei_Ra.jpg",
+          "caption": "Mario Gabinio, 1932–35. CC BY 3.0 IT, Fondazione Torino Musei via Wikimedia Commons."
+        }
+      ],
+      "file": "images/01_pontedruso__Gabinio.Bolzano_Ponte_Druso-Ponte_In_Pietra_A_Tre_Arcate_Con_Gruppi_Scultorei_Ra.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Gabinio.Bolzano,_Ponte_Druso-Ponte_In_Pietra_A_Tre_Arcate_Con_Gruppi_Scultorei_Raffiguranti_Aquile_Poggiate_Su_Fasci_Littori_116B17.jpg"
+      },
+      "creator": "Mario Gabinio",
+      "holder": "Fondazione Torino Musei (GAM archive)",
+      "rights": "CC BY 3.0 it",
+      "confidence": {
+        "level": "read"
+      },
+      "place": "ponte-druso"
+    },
+    {
+      "no": "5.07",
+      "title": "Theodor Eicke and Italian fascist authorities at the Victory Monument",
+      "type": "Photograph",
+      "date": "28 October 1932",
+      "year": 1932,
+      "keywords": [
+        "monumento-vittoria",
+        "inauguration"
+      ],
+      "text": [],
+      "facts": [
+        "Commons: 'Theodor Eicke and Italian fascist authorities at the inauguration of the fascist monument of victory in Bolzano, Italy. While hiding from German police in Italy, Eicke took part in a celebration of the 10th anniversary of the fascist \"March on Rome\"'; dated 1932, scaled copy (manifest)",
+        "On 28 Oct 1932 the SS leader Theodor Eicke and 30 SS men took part in the March-on-Rome tenth-anniversary ceremony at the monument [W] (notes 05, §3)",
+        "Seen in the image: a man in uniform with a swastika armband and a peaked cap shakes hands with an Italian officer in a tall cap; officers in fur caps and dress uniforms with swords and men in civilian coats stand round; a pillar of the monument with a niche rises behind.",
+        "Declared PD as an anonymous work; check the Italian and EU rules for anonymous photographs before publication (manifest, rights caveats)"
+      ],
+      "images": [
+        {
+          "file": "images/03_vittoria__Faschos_und_Nazis_am_Siegesdenkmal_1932.jpg",
+          "caption": "Unknown photographer, 1932. Public domain, Wikimedia Commons."
+        }
+      ],
+      "file": "images/03_vittoria__Faschos_und_Nazis_am_Siegesdenkmal_1932.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Faschos_und_Nazis_am_Siegesdenkmal_1932.tif"
+      },
+      "rights": "Public domain",
+      "confidence": {
+        "level": "read",
+        "note": "The Commons description calls the event both the monument's inauguration (1928) and the 10th anniversary of the March on Rome (1932); the date 28 October 1932 comes from it.wikipedia [W]."
+      },
+      "place": "monumento-vittoria"
+    },
+    {
+      "no": "5.08",
+      "title": "Ponte Druso seen from the riverbed, with the eagles",
+      "type": "Photograph",
+      "date": "1933",
+      "year": 1933,
+      "keywords": [
+        "ponte-druso",
+        "romanita",
+        "symbol"
+      ],
+      "text": [],
+      "facts": [
+        "Commons: 'Drususbrücke 1933', dated 1933-01-01, CC BY 4.0, uploader Bartleby08 (manifest)",
+        "Tagged CC BY 4.0 'own work' by Bartleby08 although it shows a 1933 view; real author and rights unclear, verify before reuse (manifest, rights caveats; notes 05, §1)",
+        "Seen in the image: the three-arched stone bridge seen from the gravel riverbed; eagle statues on tall stepped pylons rise above the piers; a pierced stone parapet; a small round stamp in the lower left corner.",
+        "The bridge opened to traffic on 28 October 1931, the ninth anniversary of the March on Rome [V] (notes 05, §1)",
+        "Four eagles by Vittorio Morelli (1931) stood on fasces holding globes over the four central piers [V] (notes 05, §1)"
+      ],
+      "images": [
+        {
+          "file": "images/01_pontedruso__Drususbr_cke_1933.png",
+          "caption": "Unknown photographer, 1933; uploaded by Bartleby08 as CC BY 4.0, Wikimedia Commons."
+        }
+      ],
+      "file": "images/01_pontedruso__Drususbr_cke_1933.png",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Drususbr%C3%BCcke_1933.png"
+      },
+      "rights": "CC BY 4.0",
+      "confidence": {
+        "level": "read",
+        "note": "Photographer and rights unclear: tagged CC BY 4.0 'own work' by Bartleby08 for a 1933 view (manifest)."
+      },
+      "place": "ponte-druso"
+    },
+    {
+      "no": "5.09",
+      "title": "Advertisement “Während der Bozner Messe”, 10 September 1948",
+      "type": "Newspaper page",
+      "date": "10 September 1948",
+      "year": 1948,
+      "keywords": [
+        "casa-del-fascio",
+        "press",
+        "tourism"
+      ],
+      "text": [],
+      "facts": [
+        "Commons: 'Bozner Messe Gerichtsplatz 1948', Bartleby08, CC BY 4.0, dated 1949-09-10 (manifest)",
+        "The notes list it as 'the 1948 fair on Piazza Tribunale (Dolomiten)' (notes 05, §3, images)",
+        "The Palazzo di Giustizia hosted the first postwar Bolzano Fair on 12 Sept 1948 [W] (notes 05, §3)",
+        "Seen in the image: a drawn banner 'Während der Bozner Messe –' over flags on poles, a car, strolling visitors and a colonnaded building, mountains behind; a lower ribbon reads 'Gute Unterkünfte: Unterhaltung · gepflegte Küche · Ausflugsziele'."
+      ],
+      "images": [
+        {
+          "file": "images/04_casafascio__DS_1948_09_10_16_Bozner_Messe_Gerichtsplatz_1.png",
+          "caption": "Newspaper advertisement, 10 September 1948; uploaded by Bartleby08 as CC BY 4.0, Wikimedia Commons."
+        }
+      ],
+      "file": "images/04_casafascio__DS_1948_09_10_16_Bozner_Messe_Gerichtsplatz_1.png",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:DS_1948_09_10_16_Bozner_Messe_Gerichtsplatz_1.png"
+      },
+      "rights": "CC BY 4.0",
+      "confidence": {
+        "level": "read",
+        "note": "Commons credits Bartleby08 with CC BY 4.0 for a 1948 advertisement; the manifest dates it 1949-09-10 against 1948 in its description and file name; the notes name Dolomiten, the file code is DS."
+      },
+      "place": "casa-del-fascio"
+    },
+    {
+      "no": "5.10",
+      "title": "Postcard of Ponte Druso with the eagles, 1960s",
+      "type": "Postcard",
+      "date": "1960s",
+      "year": 1960,
+      "keywords": [
+        "ponte-druso",
+        "postcards",
+        "romanita",
+        "symbol"
+      ],
+      "text": [],
+      "facts": [
+        "Commons: 'postcard - bolzano - ponte druso - anni '60', public domain via Flickr; author given as 'paolo from tv, preganziol', date 2024-07-12 (manifest)",
+        "A 1960s postcard with the eagles still in place [V] (notes 05, §1)",
+        "Seen in the image: a colour view along the bridge roadway; on both sides eagle statues stand on balls atop tall ribbed pylons of reddish stone; small cars on the cobbled road, a man walking on the pavement, a long yellow building at the far end and jagged mountains behind.",
+        "The eagles came down in the 1970s renovation; the year is unresolved: 1972, early 1970s, around 1970 or mid-1970s (notes 05, §1)",
+        "Declared public domain on Commons; check the Italian and EU rules before publication (manifest, rights caveats)"
+      ],
+      "images": [
+        {
+          "file": "images/01_pontedruso__Postcard_-_bolzano_-_ponte_druso_-_anni_60_53851921130_.jpg",
+          "caption": "Postcard, 1960s; scan by paolo from tv, preganziol. Public domain, Wikimedia Commons."
+        }
+      ],
+      "file": "images/01_pontedruso__Postcard_-_bolzano_-_ponte_druso_-_anni_60_53851921130_.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Postcard_-_bolzano_-_ponte_druso_-_anni_%2760_(53851921130).jpg"
+      },
+      "rights": "Public domain",
+      "confidence": {
+        "level": "read"
+      },
+      "place": "ponte-druso"
+    },
+    {
+      "no": "5.11",
+      "title": "Città di Bolzano, explanatory plaques for the Victory Monument in four languages",
+      "type": "Intervention",
+      "date": "2004",
+      "year": 2004,
+      "keywords": [
+        "monumento-vittoria",
+        "heritage",
+        "wording",
+        "language"
+      ],
+      "text": [],
+      "facts": [
+        "Commons: 'Erklärtafeln zum Bozner Siegesdenkmal von 2004', photographed 2023-11-02 by Zintosch7, CC0 (manifest)",
+        "it.wikipedia lists 'the 2005 explanatory plaques in four languages placed about 50 m away' in the monument's later history [W] (notes 05, §3)",
+        "Seen in the image: four steel plaques on dark posts in a flowerbed, each headed 'Città di Bolzano – Stadt Bozen' and dated 2004, in Italian, German, Ladin and English; across the road stands the monument, a red band round one of its columns.",
+        "Seen in the image: the Italian plaque reads 'Questo monumento fu eretto durante il regime fascista per celebrare la vittoria dell'Italia nella Prima Guerra Mondiale. Essa comportò anche la divisione del Tirolo …' and 'La Città di Bolzano, libera e democratica, condanna le divisioni e le discriminazioni del passato e ogni forma di nazionalismo …'.",
+        "Before the 2011 Bondi–SVP agreement came a 1978 bomb, the 2002 referendum and the 2005 plaques (notes 05, §4, Takeaway)"
+      ],
+      "images": [
+        {
+          "file": "images/03_vittoria__Erkl_rtafeln_zum_Bozner_Siegesdenkmal_von_2004.jpg",
+          "caption": "Zintosch7, 2 November 2023. CC0, Wikimedia Commons."
+        }
+      ],
+      "file": "images/03_vittoria__Erkl_rtafeln_zum_Bozner_Siegesdenkmal_von_2004.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Erkl%C3%A4rtafeln_zum_Bozner_Siegesdenkmal_von_2004.jpg"
+      },
+      "creator": "Zintosch7",
+      "rights": "CC0",
+      "confidence": {
+        "level": "read",
+        "note": "The plaques themselves read 2004; the notes give 2005 from it.wikipedia [W]."
+      },
+      "place": "monumento-vittoria"
+    },
+    {
+      "no": "5.12",
+      "title": "Bolzano. Percorso tra architettura e fascismo",
+      "type": "Booklet",
+      "date": "November 2007",
+      "year": 2007,
+      "keywords": [
+        "new-city",
+        "guidebooks",
+        "heritage",
+        "ponte-druso",
+        "cinemas"
+      ],
+      "text": [],
+      "facts": [
+        "The Comune's self-guided route, texts by Martha Verdorfer: route 1 on foot or by bike (station → Ponte Druso → Piazza Vittoria) and cycling route 2 (Semirurali, Rione Littorio); 'the most complete \"dark heritage\" itinerary found' [V] (notes 05, §5)",
+        "Imprint: 'Arti Grafiche Saturnia s.a.s. - TN, novembre 2007', 'Testi: Martha Verdorfer', '© Comune di Bolzano, Assessorato alla Cultura, Ufficio Servizi museali e storico-artistici' (file, p. 1)",
+        "Main source on Ponte Druso: work began in March 1930 for the A.A.S.S.; fasces holding globes with 'gigantesche aquile romane'; 'Alla metà degli anni Settanta … furono eliminate tutte le parti con riferimenti ideologici' [V] (notes 05, §1)",
+        "On the Cinema Corso (Armando Ronca, 1938): 'Nel 1988 l'edificio fu demolito'; 'La demolizione dell'edificio nel 1988 fu deplorata da molti cittadini' [V] (notes 05, §2)",
+        "Calls the stadium's Drusus name 'uno dei molti esempi di strumentalizzazione fascista della storia romana' [V] (notes 05, §1)"
+      ],
+      "file": "basrelief_Bolzano_Percorso_tra_architettura_e_fascismo.pdf",
+      "source": {
+        "label": "basrelief-bolzano.com",
+        "url": "https://www.basrelief-bolzano.com/fileadmin/user_upload/pdfs/Gedenkorte/Bolzano.Percorso_tra_architettura_e_fascismo.pdf"
+      },
+      "creator": "Comune di Bolzano, Ufficio Servizi museali; texts Martha Verdorfer",
+      "holder": "Comune di Bolzano",
+      "rights": "© Comune di Bolzano; free public brochure, study use only",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "5.13",
+      "title": "Die Architektur für ein italienisches Südtirol 1922–1943",
+      "type": "Article",
+      "date": "2008",
+      "year": 2008,
+      "keywords": [
+        "new-city",
+        "romanita",
+        "casa-del-fascio",
+        "zona-industriale",
+        "semirurali"
+      ],
+      "text": [],
+      "facts": [
+        "H. Dunajtschik & G. Steinacher, 'Die Architektur für ein italienisches Südtirol 1922–1943', Geschichte und Region/Storia e regione 17 (2008) 1, pp. 101–137 (notes 05, §1)",
+        "Fascist propaganda claimed Bozen was founded by Drusus; Tolomei demanded a Drusus monument in place of the Walther statue; Mussolini refused, and in 1926 Piazza Walther was only renamed 'Piazza Vittorio Emanuele III' [V] (notes 05, §1)",
+        "The Piffrader relief is dated 'EF XX' (1942) and shows the Duce on horseback with the PNF, GIL, GUF, OND and MVSN acronyms and 'credere, obbedire, combattere' [V] (notes 05, §3)",
+        "Zona Industriale opened 20 Dec 1936 (Lancia, Falck, Montecatini); Rione Littorio from 1935; Rione Dux / 'Semirurali' from 1937, stigmatised by German speakers as 'Schanghai' [V] (notes 05, §3)",
+        "'Eine herausragende Rolle spielte dabei die Architektur. Das mehrheitlich deutschsprachige Südtirol sollte mehrheitlich italienisch werden.' (file, p. 1)"
+      ],
+      "file": "Dunajtschik_Steinacher_2008_Architektur_italienisches_Suedtirol_GR.pdf",
+      "source": {
+        "label": "geschichteundregion.eu",
+        "url": "https://geschichteundregion.eu/attachment/get/up_90_16520957026012.pdf"
+      },
+      "creator": "Harald Dunajtschik, Gerald Steinacher",
+      "holder": "Geschichte und Region/Storia e regione 17/1",
+      "rights": "Free PDF from journal site; © authors/journal",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "5.14",
+      "title": "Street sign “Piazza della Vittoria (già Piazza della Pace) / Siegesplatz (ehem. Friedensplatz)”",
+      "type": "Photograph",
+      "date": "22 May 2009",
+      "year": 2009,
+      "keywords": [
+        "monumento-vittoria",
+        "language",
+        "wording"
+      ],
+      "text": [],
+      "facts": [
+        "Commons: 'Strassenschild der Gemeinde Bozen am Siegesplatz (ehemaliger Friedensplatz)', HaTe, 2009-05-22, scaled copy (manifest)",
+        "In December 2001 the city government renamed Piazza della Vittoria 'Piazza della Pace'; after a consultative referendum in October 2002, which most German speakers boycotted, 'Sì' won with 61.94% and the old name was restored; a sign was added: 'Già della Pace' [W] (notes 05, §3)",
+        "Carlà & Mitterhofer date the council decision to 2002 [V] (notes 05, §3)",
+        "Seen in the image: a pale plaque on a pebble-render wall reading 'PIAZZA della VITTORIA (già Piazza della Pace) / SIEGESPLATZ (ehem. Friedensplatz)'."
+      ],
+      "images": [
+        {
+          "file": "images/03_vittoria__SiegesplatzEhemFriedensplatz.png",
+          "caption": "HaTe, 22 May 2009. CC BY-SA 3.0, Wikimedia Commons."
+        }
+      ],
+      "file": "images/03_vittoria__SiegesplatzEhemFriedensplatz.png",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:SiegesplatzEhemFriedensplatz.png"
+      },
+      "creator": "HaTe",
+      "rights": "CC BY-SA 3.0",
+      "confidence": {
+        "level": "read"
+      },
+      "place": "monumento-vittoria"
+    },
+    {
+      "no": "5.15",
+      "title": "Commissione per il percorso espositivo all'interno del Monumento alla Vittoria di Bolzano",
+      "type": "Booklet",
+      "date": "2 May 2011",
+      "year": 2011,
+      "keywords": [
+        "monumento-vittoria",
+        "heritage"
+      ],
+      "text": [],
+      "facts": [
+        "Project document of the historical commission; scanned, no text layer; PDF created February 2012 (manifest)",
+        "Signed 'Bolzano, 2 maggio 2011' by Ugo Soragni (Presidente), Andrea Di Michele, Hannes Obermair, Christine Roilo and Silvia Spada (file, pp. 1, 5)",
+        "The commission was appointed in March 2011 by the State, the Province and the Comune [V] (notes 05, §4)",
+        "Its approach: not 'ipotesi iconoclaste' but 'un intervento di spiegazione e contestualizzazione storica del manufatto' (file, p. 1)",
+        "The manifest dates it '2011-12'; the document is dated 2 May 2011 (manifest; file, p. 5)"
+      ],
+      "file": "MAV_Commissione_progetto_scientifico_IT.pdf",
+      "source": {
+        "label": "monumentoallavittoria.com",
+        "url": "https://www.monumentoallavittoria.com/fileadmin/user_upload/pdfs/Wissenschaftskonzept-IT.pdf"
+      },
+      "creator": "Commissione storica (Di Michele, Obermair, Roilo, Soragni, Spada)",
+      "holder": "Comune di Bolzano",
+      "rights": "© Comune di Bolzano; published project document",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "5.16",
+      "title": "Vollmond11, the Lido of Bolzano from above",
+      "type": "Photograph",
+      "date": "22 September 2013",
+      "year": 2013,
+      "keywords": [
+        "new-city"
+      ],
+      "text": [],
+      "facts": [
+        "Commons: 'Bozner Lido - städtisches Freibad Bozen', 2013-09-22 (manifest)",
+        "Lido by Ettore Sottsass sr. and Willy Weyhenmeyer, opened 1932, capacity 2,000 [V] (notes 05, §3)",
+        "Seen in the image: a pool complex among lawns and trees beside a river, seen from above: a long lane pool, a large pool with a diving tower, smaller pools with a slide, low buildings along the street and a large hall at right; apartment blocks behind."
+      ],
+      "images": [
+        {
+          "file": "images/08_altri__Bozner_Lido_-_st_dtisches_Freibad_Bozen.jpg",
+          "caption": "Vollmond11, 22 September 2013. CC BY-SA 3.0, Wikimedia Commons."
+        }
+      ],
+      "file": "images/08_altri__Bozner_Lido_-_st_dtisches_Freibad_Bozen.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Bozner_Lido_-_st%C3%A4dtisches_Freibad_Bozen.JPG"
+      },
+      "creator": "Vollmond11",
+      "rights": "CC BY-SA 3.0",
+      "confidence": {
+        "level": "read"
+      },
+      "place": "lido"
+    },
+    {
+      "no": "5.17",
+      "title": "Gruppe Gut with Jeffrey T. Schnapp, LED ring around a fasces column of the Victory Monument",
+      "type": "Intervention",
+      "date": "2014",
+      "year": 2014,
+      "keywords": [
+        "monumento-vittoria",
+        "heritage",
+        "wording",
+        "symbol"
+      ],
+      "text": [],
+      "facts": [
+        "Commons: 'The Led sign indicating the permanent historical exhibition within the Monument to Victory in Bolzano-Bozen', Bartleby08, 2014-07-29 (manifest)",
+        "The LED ring on one fasces column is a 'nose ring for Fascist rhetoric' (Schnapp: 'by unbalancing, the ring rebalances'), chosen partly because it was cheaper than the alternatives [V] (notes 05, §4)",
+        "Gruppe Gut: 'Una scritta led ad anello attorno a una colonna littoria … incide sulla monumentalità e la vanifica' [V] (notes 05, §4)",
+        "Seen in the image: a dark ring carrying red light lettering (…Z'18- visible, the first letter cut by its curve) fixed round a fluted white column; at left a pale sculpted head on a pedestal, at right a dark bronze nude figure in a niche.",
+        "The exhibition BZ '18–'45 opened on 21 July 2014 [V] (notes 05, §4)"
+      ],
+      "images": [
+        {
+          "file": "images/03_vittoria__Leuchtring_siegesdenkmal_bozen.jpg",
+          "caption": "Bartleby08, 29 July 2014. Public domain, Wikimedia Commons."
+        }
+      ],
+      "file": "images/03_vittoria__Leuchtring_siegesdenkmal_bozen.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Leuchtring_siegesdenkmal_bozen.JPG"
+      },
+      "creator": "Bartleby08",
+      "rights": "Public domain",
+      "confidence": {
+        "level": "read"
+      },
+      "place": "monumento-vittoria"
+    },
+    {
+      "no": "5.18",
+      "title": "Gruppe Gut with Jeffrey T. Schnapp, LED ring on the Victory Monument at night",
+      "type": "Intervention",
+      "date": "2014",
+      "year": 2014,
+      "keywords": [
+        "monumento-vittoria",
+        "heritage",
+        "wording",
+        "language",
+        "romanita"
+      ],
+      "text": [],
+      "facts": [
+        "Commons: 'The Monument to Victory in Bozen-Bolzano at night', Bartleby08, 2018-01-23 (manifest)",
+        "Seen in the image: the floodlit monument at night, across the top 'HIC PATRIAE FINES SISTE SIGNA / HINC CETEROS EXCOLVIMVS LINGVA LEGIBVS ARTIBVS'; low on one column the ring runs red text: 'ONE MONUMENT, ONE CITY, T…', 'UN MONUMENT…', '…STADT, ZWEI DIKTATUREN'; a blurred flare of light covers the upper left.",
+        "The Latin inscription was dictated by Pietro Fedele; an earlier draft had 'barbaros' [W] (notes 05, §3)",
+        "English is placed first on signs to avoid giving primacy to either local language; Ladin was added later [V] (notes 05, §4)",
+        "The ring is a 'nose ring for Fascist rhetoric' (Schnapp: 'by unbalancing, the ring rebalances') [V] (notes 05, §4)"
+      ],
+      "images": [
+        {
+          "file": "images/03_vittoria__Siegesdenkmal_bozen_mit_leuchtring_bei_nacht.jpg",
+          "caption": "Bartleby08, 23 January 2018. CC BY-SA 4.0, Wikimedia Commons."
+        }
+      ],
+      "file": "images/03_vittoria__Siegesdenkmal_bozen_mit_leuchtring_bei_nacht.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Siegesdenkmal_bozen_mit_leuchtring_bei_nacht.jpg"
+      },
+      "creator": "Bartleby08",
+      "rights": "CC BY-SA 4.0",
+      "confidence": {
+        "level": "read"
+      },
+      "place": "monumento-vittoria"
+    },
+    {
+      "no": "5.19",
+      "title": "Progetto di allestimento per un percorso espositivo nel Monumento alla Vittoria di Bolzano",
+      "type": "Booklet",
+      "date": "21 July 2014",
+      "year": 2014,
+      "keywords": [
+        "monumento-vittoria",
+        "heritage",
+        "wording",
+        "symbol"
+      ],
+      "text": [],
+      "facts": [
+        "Gruppe Gut's design document: 'Una scritta led ad anello attorno a una colonna littoria … incide sulla monumentalità e la vanifica' [V] (notes 05, §4)",
+        "Imprint '© gruppe gut gestaltung, bolzano 21.07.2014'; Uli Prugger & Alfons Demetz with Jeffrey T. Schnapp, Harvard University, as consultant (file, p. 1)",
+        "Builds on the scientific project of the committee (Di Michele, Obermair, Roilo, Soragni, Spada), in three parts: 'Percorso interno', 'Percorso esterno' and 'Cos'é un monumento?' (file, p. 1)",
+        "The LED ring was chosen partly because it was cheaper than the alternatives; Schnapp: 'by unbalancing, the ring rebalances' [V] (notes 05, §4)",
+        "The exhibition opened on 21 July 2014, inaugurated by Minister Dario Franceschini [V] (notes 05, §4)"
+      ],
+      "file": "MAV_GruppeGut_progetto_allestimento_IT.pdf",
+      "source": {
+        "label": "monumentoallavittoria.com",
+        "url": "https://www.monumentoallavittoria.com/fileadmin/user_upload/pdfs/GGG_MaV_Concetto_ITA.2.pdf"
+      },
+      "creator": "Gruppe Gut (with J. T. Schnapp)",
+      "holder": "Comune di Bolzano",
+      "rights": "© Gruppe Gut / Comune di Bolzano; published project document",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "5.20",
+      "title": "PtrQs, Ponte Druso today, looking towards the Eurac buildings",
+      "type": "Photograph",
+      "date": "14 August 2014",
+      "year": 2014,
+      "keywords": [
+        "ponte-druso",
+        "removal",
+        "heritage"
+      ],
+      "text": [],
+      "facts": [
+        "Commons: 'Bolzano, buildings of Eurac Research in Italian Rationalist architecture', 2014-08-14, scaled copy (manifest)",
+        "Seen in the image: the bridge roadway and a pavement of reddish slabs; the pale balustrade is broken by square stone posts topped with shallow bowls, and by modern lamp posts; no statues on the posts; a red building with a tower stands at the far end.",
+        "The eagles came down during the 1970s renovation; in the 1990s the bridge was widened and given a new parapet in imitation of the old one (notes 05, §1, Takeaway)",
+        "The 1970s 'stylistic washing' removed the stone parapet and Morelli's statues; after public criticism a 1990s widening added a parapet and ornaments resembling the originals [V, abstract] (notes 05, §1)",
+        "The ex-GIL by Mansutti and Miozzo, in 'rosso pompeiano', was refurbished for Eurac from the end of 1998 [V] (notes 05, §2)"
+      ],
+      "images": [
+        {
+          "file": "images/01_pontedruso__20140814_Bozen_Eurac_DrususBruecke_DSC02205_PtrQs.jpg",
+          "caption": "PtrQs, 14 August 2014. CC BY-SA 4.0, Wikimedia Commons."
+        }
+      ],
+      "file": "images/01_pontedruso__20140814_Bozen_Eurac_DrususBruecke_DSC02205_PtrQs.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:20140814_Bozen_Eurac_DrususBruecke_DSC02205_PtrQs.jpg"
+      },
+      "creator": "PtrQs",
+      "rights": "CC BY-SA 4.0",
+      "confidence": {
+        "level": "read"
+      },
+      "place": "ponte-druso"
+    },
+    {
+      "no": "5.21",
+      "title": "BZ '18–'45, multilingual signpost of the exhibition in the Victory Monument",
+      "type": "Intervention",
+      "date": "2016",
+      "year": 2016,
+      "keywords": [
+        "monumento-vittoria",
+        "heritage",
+        "language",
+        "layout"
+      ],
+      "text": [],
+      "facts": [
+        "Commons: 'Multilingual Signpost of the Permanent Exhibition \"BZ '18-'45: One Monument, One City, Two Dictatorships\" established within Bozen-Bolzano's Monument to Victory, 2016', scaled copy (manifest)",
+        "Seen in the image: a tall white signpost by a flowerbed; at the top a red block 'BZ '18–'45 one monument one city two dictatorships' and 'A permanent exhibition within the Monument to Victory', then the same in Italian, German and Ladin ('Na mostra-documentazion tl Monumënt ala Vitoria'); opening hours, a site map and institutional logos below.",
+        "English is placed first on signs to avoid giving primacy to either local language; Ladin was added later [V] (notes 05, §4)",
+        "The exhibition BZ '18–'45 opened under the monument on 21 July 2014; three 'paths': regional macro-history, the monument's micro-history, and 'what is a monument' [V] (notes 05, §4)"
+      ],
+      "images": [
+        {
+          "file": "images/03_vittoria__Tafel_Dokuausstellung_BZ18-45_im_Bozener_Siegesdenkmal_1_.jpg",
+          "caption": "Bartleby08, 1 May 2016. CC BY-SA 4.0, Wikimedia Commons."
+        }
+      ],
+      "file": "images/03_vittoria__Tafel_Dokuausstellung_BZ18-45_im_Bozener_Siegesdenkmal_1_.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Tafel_Dokuausstellung_BZ18-45_im_Bozener_Siegesdenkmal_(1).jpg"
+      },
+      "creator": "Bartleby08",
+      "rights": "CC BY-SA 4.0",
+      "confidence": {
+        "level": "read"
+      },
+      "place": "monumento-vittoria"
+    },
+    {
+      "no": "5.22",
+      "title": "Menzione speciale della giuria al percorso espositivo nel Monumento alla Vittoria",
+      "type": "Press article",
+      "date": "2016",
+      "year": 2016,
+      "keywords": [
+        "monumento-vittoria",
+        "heritage"
+      ],
+      "text": [],
+      "facts": [
+        "Press release of the Comune di Bolzano on the EMYA 2016 Special Commendation (manifest)",
+        "EMYA 2016 Special Commendation (49 candidates from 24 countries): the jury praised it as a reintegration of a controversial monument and 'a highly courageous and professional initiative' [V] (notes 05, §4)",
+        "The release gives the exhibition as 13 rooms and 700 m², which the notes cite to the Comune's page [S] (file, p. 1; notes 05, §3)",
+        "No date in the text ('lo scorso week end'); the PDF was made on 20 April 2016 (file)"
+      ],
+      "file": "MAV_cs_EMYA2016_menzione_speciale.pdf",
+      "source": {
+        "label": "monumentoallavittoria.com",
+        "url": "https://www.monumentoallavittoria.com/fileadmin/user_upload/presse/_cs_premio_menzione_speciale_us.pdf"
+      },
+      "creator": "Comune di Bolzano press office",
+      "holder": "Comune di Bolzano",
+      "rights": "Press release",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "5.23",
+      "title": "Arnold Holzknecht and Michele Bernardi, Hannah Arendt's sentence across the Piffrader relief at night",
+      "type": "Intervention",
+      "date": "November 2017",
+      "year": 2017,
+      "keywords": [
+        "casa-del-fascio",
+        "heritage",
+        "wording",
+        "language",
+        "layout"
+      ],
+      "text": [],
+      "facts": [
+        "Commons: 'Facade of the former headquarter of the Fascist party in Bozen-Bolzano now displaying a quote by Hannah Arendt (2018)', 2018-11-06, scaled copy (manifest)",
+        "Seen in the image: at night a line of lit white capitals runs the full length of the relief, 'DEGUNI NE À L DËRT DE ULGHÉ – KEIN MENSCH HAT DAS RECHT ZU GEHORCHEN – NESSUNO HA IL DIRITTO DI OBBEDIRE'; below the relief, 'PALAZZO DEGLI UFFICI FINANZIARI / GEBÄUDE DER FINANZÄMTER'.",
+        "The notes give the Ladin line as 'Degnu n'a l dërt de ulghè' [V] (notes 05, §4)",
+        "An illuminated Hannah Arendt quotation in three languages over the Piffrader relief (November 2017); Bolzano's approach is to add rather than remove (notes 05, §4, Takeaway)",
+        "Before it: a legal complaint (esposto) to the prosecutor (Oct 2016), and opposition from Italia Nostra and from Vittorio Sgarbi (Sept 2017) [W] (notes 05, §4)"
+      ],
+      "images": [
+        {
+          "file": "images/04_casafascio__Fassade_finanzamt_bozen_2018.jpg",
+          "caption": "Bartleby08, 6 November 2018. CC BY-SA 4.0, Wikimedia Commons."
+        }
+      ],
+      "file": "images/04_casafascio__Fassade_finanzamt_bozen_2018.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Fassade_finanzamt_bozen_2018.jpg"
+      },
+      "creator": "Bartleby08",
+      "rights": "CC BY-SA 4.0",
+      "confidence": {
+        "level": "read",
+        "note": "The facade reads 'DEGUNI NE À L DËRT DE ULGHÉ'; the notes quote the Ladin line as 'Degnu n'a l dërt de ulghè'."
+      },
+      "place": "casa-del-fascio"
+    },
+    {
+      "no": "5.24",
+      "title": "Arnold Holzknecht and Michele Bernardi, Hannah Arendt's sentence over the Piffrader relief, detail",
+      "type": "Intervention",
+      "date": "November 2017",
+      "year": 2017,
+      "keywords": [
+        "casa-del-fascio",
+        "heritage",
+        "wording",
+        "typeface",
+        "layout"
+      ],
+      "text": [],
+      "facts": [
+        "Commons: 'Arendt vs Mussolini Bozen-Bolzano 2017', Bartleby08, dated 2019-05-24 (manifest)",
+        "Seen in the image: white three-dimensional sans-serif capitals 'ECHT ZU GE' fixed on a metal bar held by cables, in front of the travertine relief; behind them the carved letters 'PNF' and 'OND' and carved figures.",
+        "Text: 'Kein Mensch hat das Recht zu gehorchen – Nessuno ha il diritto di obbedire – Degnu n'a l dërt de ulghè', from Arendt's radio interview with Joachim C. Fest of 9 Nov 1964, set against the relief's 'credere, obbedire, combattere' [V] (notes 05, §4)",
+        "Chosen from 486 entries to the 2011 ideas competition, the Holzknecht–Bernardi project was built with modifications; the installation dates from November 2017, with an info point [V] (notes 05, §4)",
+        "The relief, dated EF XX (1942), shows the Duce on horseback with the PNF, GIL, GUF, OND and MVSN acronyms [V] (notes 05, §3)"
+      ],
+      "images": [
+        {
+          "file": "images/04_casafascio__Arendt_vs_Mussolini_Bozen-Bolzano_2017.jpg",
+          "caption": "Bartleby08, Commons date 24 May 2019. CC BY-SA 4.0, Wikimedia Commons."
+        }
+      ],
+      "file": "images/04_casafascio__Arendt_vs_Mussolini_Bozen-Bolzano_2017.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Arendt_vs_Mussolini_Bozen-Bolzano_2017.jpg"
+      },
+      "creator": "Bartleby08",
+      "rights": "CC BY-SA 4.0",
+      "confidence": {
+        "level": "read",
+        "note": "The Commons title says 2017, its date field 24 May 2019 (manifest)."
+      },
+      "place": "casa-del-fascio"
+    },
+    {
+      "no": "5.25",
+      "title": "Bartleby08, NOI Techpark in the former Alumix aluminium plant",
+      "type": "Photograph",
+      "date": "21 October 2017",
+      "year": 2017,
+      "keywords": [
+        "zona-industriale",
+        "heritage"
+      ],
+      "text": [],
+      "facts": [
+        "Commons: 'Techpark Bozen Bolzano-South Tyrol, former Alumix buildings', 2017-10-21 (manifest)",
+        "The Montecatini/Alumix aluminium plant (dated variously 1936, 1937 or 1938) was decommissioned in the early 1990s; its remaining buildings were listed in 2004 and reused for NOI Techpark, opened 2017 [S] (notes 05, §3)",
+        "Seen in the image: a brick industrial building with tall windows beside a black block banded in dark stone and glass; a water tower painted with black-and-white patterns; wooden pavilions with tables on a lawn, people; a crane at right, a mountain cliff behind.",
+        "The losses of the fascist city came from speculation, housing renewal, deindustrialisation (Alumix) and, in 2026, structural failure (notes 05, §3, Inferences)"
+      ],
+      "images": [
+        {
+          "file": "images/08_altri__NOI_Techpark_S_dtirol_5.jpg",
+          "caption": "Bartleby08, 21 October 2017. CC BY-SA 4.0, Wikimedia Commons."
+        }
+      ],
+      "file": "images/08_altri__NOI_Techpark_S_dtirol_5.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:NOI_Techpark_S%C3%BCdtirol_5.jpg"
+      },
+      "creator": "Bartleby08",
+      "rights": "CC BY-SA 4.0",
+      "confidence": {
+        "level": "read"
+      },
+      "place": "noi-techpark"
+    },
+    {
+      "no": "5.26",
+      "title": "Information bench “BZ ’Light on dictatorships” for the Piffrader relief on Piazza Tribunale",
+      "type": "Intervention",
+      "date": "November 2017",
+      "year": 2017,
+      "keywords": [
+        "casa-del-fascio",
+        "heritage",
+        "language",
+        "wording"
+      ],
+      "text": [],
+      "facts": [
+        "Commons: 'Description of the Bas-Relief in Bozen-Bolzano', Bartleby08, 2017-11-06, scaled copy (manifest)",
+        "Seen in the image: a long white bench-like block on the cobbles; a red label 'BZ 'Light on dictatorships / Lum su la ditatures / Licht auf Diktaturen / Luce sulle dittature'; the heading 'The monumental bas-relief in Bozen-Bolzano: from Hans Piffrader to Hannah Arendt' in English, Italian, German and Ladin; 'The bas-relief: the history of fascism in images'; a QR code; large letters 'DEGUNI NE À L DËRT' along the front.",
+        "The installation dates from November 2017, with an info point [V] (notes 05, §4)",
+        "At the Victory Monument, English is placed first on signs to give primacy to neither local language [V] (notes 05, §4)"
+      ],
+      "images": [
+        {
+          "file": "images/04_casafascio__Infotafeln_Gerichtsplatz_Bozen_1.jpg",
+          "caption": "Bartleby08, 6 November 2017. CC BY-SA 4.0, Wikimedia Commons."
+        }
+      ],
+      "file": "images/04_casafascio__Infotafeln_Gerichtsplatz_Bozen_1.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Infotafeln_Gerichtsplatz_Bozen_1.jpg"
+      },
+      "creator": "Bartleby08",
+      "rights": "CC BY-SA 4.0",
+      "confidence": {
+        "level": "read"
+      },
+      "place": "casa-del-fascio"
+    },
+    {
+      "no": "5.27",
+      "title": "Start frei für die Restaurierung der Fassade des historischen Sitzes der Sparkasse",
+      "type": "Press article",
+      "date": "20 September 2017",
+      "year": 2017,
+      "keywords": [
+        "old-town",
+        "heritage"
+      ],
+      "text": [],
+      "facts": [
+        "'Pressemitteilung vom 20. September 2017' of the Südtiroler Sparkasse on restoring the facade of its historic seat (manifest; file, p. 1)",
+        "The Cassa di Risparmio headquarters (Wilhelm Kürschner, 1904–07) was stripped and re-clad in the 1930s with Piffrader reliefs of fascist symbols; listed since 1988; restored 2017–18 [V] (notes 05, §3)",
+        "The press release says nothing about contextualisation; the facade is counted among what was not defused [V] (notes 05, §4)",
+        "The release describes the 1930s rebuilding in rationalist style with clinker brick and travertine, and clinker bricks coming loose in May 2016 (file, p. 1)"
+      ],
+      "file": "Sparkasse_2017-09-20_PM_Restaurierung_Fassade_Sitz.pdf",
+      "source": {
+        "label": "sparkasse.it",
+        "url": "https://www.sparkasse.it/wp-content/uploads/Fassade-Sitz-Sparkasse.pdf"
+      },
+      "creator": "Südtiroler Sparkasse AG, Abteilung Kommunikation",
+      "holder": "Südtiroler Sparkasse",
+      "rights": "Press release",
+      "confidence": {
+        "level": "read"
+      },
+      "place": "sparkasse-sede",
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "5.28",
+      "title": "Transforming a Controversial Heritage: The Case of the Fascist Victory Monument in South Tyrol",
+      "type": "Article",
+      "date": "2017",
+      "year": 2017,
+      "keywords": [
+        "monumento-vittoria",
+        "heritage",
+        "language",
+        "symbol"
+      ],
+      "text": [],
+      "facts": [
+        "A. Carlà & J. Mitterhofer, AUC Studia Territorialia 17/2 (2017), pp. 11–34, DOI 10.14712/23363231.2018.1; published 2017, online 2018 (notes 05, §4; manifest)",
+        "The 2014 opening followed a 2012 co-funding agreement of the three governments; a non-interference clause shielded the commission [V] (notes 05, §4)",
+        "English placed first on signs, Ladin added later; three 'paths'; quotes from Arendt, Brecht and Paine projected over Cadorin's crypt frescoes [V] (notes 05, §4)",
+        "The LED ring is a 'nose ring for Fascist rhetoric' (Schnapp: 'by unbalancing, the ring rebalances'), chosen partly because it was cheaper [V] (notes 05, §4)",
+        "Dates the council's renaming of Piazza della Vittoria to 2002, where it.wikipedia has December 2001 (notes 05, §3)"
+      ],
+      "file": "Carla_Mitterhofer_2017_Transforming_Controversial_Heritage_Victory_Monument.pdf",
+      "source": {
+        "label": "Karolinum",
+        "url": "https://karolinum.cz/data/clanek/6122/ST_17_2_0011.pdf"
+      },
+      "creator": "Andrea Carlà, Johanna Mitterhofer (Eurac Research)",
+      "holder": "AUC Studia Territorialia 17/2 (Karolinum)",
+      "rights": "Open-access journal article (Karolinum); check article licence before redistribution",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "5.29",
+      "title": "Wolfgang Moroder, the church of Cristo Re",
+      "type": "Photograph",
+      "date": "27 March 2017",
+      "year": 2017,
+      "keywords": [
+        "new-city"
+      ],
+      "text": [],
+      "facts": [
+        "Commons: 'Christ the King Church in Bolzano South Tyrol.', 2017-03-27 (manifest)",
+        "Guido Pelizzari and Luigi Colombo, 1938–40; the bell tower was added after the war; the façade Trinity is by Ignaz Gabloner (1939–40), and Christ's blessing gesture has been read as a disguised Roman salute [W] (notes 05, §3)",
+        "With the Casa Littoria and the courthouse it forms the fascist 'triade' [W]; the only protected building of the ensemble [V] (notes 05, §2, §3)",
+        "Seen in the image: a tall round bell tower of rough stone with a green copper spire; the church front, half hidden by a tree, with a round window and a sculpted group above the door; parked cars in front.",
+        "Moroder asks to be credited as author (manifest, creator field)"
+      ],
+      "images": [
+        {
+          "file": "images/06_cristore__Chiesa_di_Cristo_Re_a_Bolzano_Bozen.jpg",
+          "caption": "Wolfgang Moroder, 27 March 2017. CC BY-SA 3.0, Wikimedia Commons."
+        }
+      ],
+      "file": "images/06_cristore__Chiesa_di_Cristo_Re_a_Bolzano_Bozen.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Chiesa_di_Cristo_Re_a_Bolzano_Bozen.jpg"
+      },
+      "creator": "Wolfgang Moroder",
+      "rights": "CC BY-SA 3.0",
+      "confidence": {
+        "level": "read"
+      },
+      "place": "cristo-re"
+    },
+    {
+      "no": "5.30",
+      "title": "Wolfgang Moroder, the former Casa Littoria on Piazza Tribunale, now Palazzo degli Uffici Finanziari",
+      "type": "Photograph",
+      "date": "27 March 2017",
+      "year": 2017,
+      "keywords": [
+        "casa-del-fascio",
+        "heritage"
+      ],
+      "text": [],
+      "facts": [
+        "Commons: 'Palazzo degli Uffici Finanziari Palace on Piazza del Tribunale, Bozen, South Tyrol. (en:Casa del Fascio (Bolzano))', 2017-03-27, scaled copy (manifest)",
+        "The notes list it as the Casa Littoria 'before 2017' (notes 05, §3, images)",
+        "Seen in the image: the travertine front with the long relief in two rows under a deep cornice, nothing written across it; below, 'PALAZZO DEGLI UFFICI FINANZIARI / GEBÄUDE DER FINANZÄMTER'; red site fencing in front of the entrance; a green-spired bell tower behind at left.",
+        "Built 1939–42 by Guido Pelizzari, Francesco Rossi and Luis Plattner; State finance offices since the war; Piffrader's travertine relief has 57 panels, 36 m long, 198 m², about 95 t; 3 panels were installed only in 1957 [V/W] (notes 05, §3)",
+        "Moroder asks to be credited as author; the image 'is not in the public domain' (manifest, creator field)"
+      ],
+      "images": [
+        {
+          "file": "images/04_casafascio__Palazzo_degli_Uffici_Finanziari_Bolzano.jpg",
+          "caption": "Wolfgang Moroder, 27 March 2017. CC BY-SA 3.0, Wikimedia Commons."
+        }
+      ],
+      "file": "images/04_casafascio__Palazzo_degli_Uffici_Finanziari_Bolzano.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Palazzo_degli_Uffici_Finanziari_Bolzano.jpg"
+      },
+      "creator": "Wolfgang Moroder",
+      "rights": "CC BY-SA 3.0",
+      "confidence": {
+        "level": "read"
+      },
+      "place": "casa-del-fascio"
+    },
+    {
+      "no": "5.31",
+      "title": "Bartleby08, Corso Libertà at night",
+      "type": "Photograph",
+      "date": "25 November 2019",
+      "year": 2019,
+      "keywords": [
+        "new-city",
+        "language"
+      ],
+      "text": [],
+      "facts": [
+        "Commons: 'View of Bozen-Bolzano's Liberty Boulevard 2019', 2019-11-25, scaled copy (manifest)",
+        "Laid out from 1935/36 under Piacentini's plan; opened to traffic in 1938 with arcades 'molto più grandi' than the medieval ones [W/V] (notes 05, §3)",
+        "Named Corso Littorio, Corso dell'Impero, 'Corso IX Maggio' (after the 9 May 1936 proclamation of the Empire), '9.-Mai-Straße' in 1943–45; Corso della Libertà only after 1945 [W/V] (notes 05, §3)",
+        "Seen in the image: a night view along a street of arcaded stone buildings; on an arcade pier a bilingual sign 'via P. R. Giuliani / P.-R.-Giuliani-Str.'; lit decorations hang over the street.",
+        "Padre Reginaldo Giuliani is among the nationalist and war names kept after 1945 [W] (notes 05, §3)"
+      ],
+      "images": [
+        {
+          "file": "images/07_corsoliberta__Bozen_Freiheitsstra_e_2019.jpg",
+          "caption": "Bartleby08, 25 November 2019. CC BY-SA 4.0, Wikimedia Commons."
+        }
+      ],
+      "file": "images/07_corsoliberta__Bozen_Freiheitsstra_e_2019.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Bozen_Freiheitsstra%C3%9Fe_2019.jpg"
+      },
+      "creator": "Bartleby08",
+      "rights": "CC BY-SA 4.0",
+      "confidence": {
+        "level": "read"
+      },
+      "place": "corso-liberta"
+    },
+    {
+      "no": "5.32",
+      "title": "Bartleby08, the Justitia relief on the Palazzo di Giustizia",
+      "type": "Photograph",
+      "date": "3 February 2020",
+      "year": 2020,
+      "keywords": [
+        "new-city",
+        "romanita",
+        "symbol"
+      ],
+      "text": [],
+      "facts": [
+        "Commons: 'Justitia bas-relief on Bozen-Bolzano's courthouse 1939', 2020-02-03 (manifest)",
+        "The Justitia pediment by Alcide Ticò has no blindfold and looks across at the Mussolini relief [W] (notes 05, §3)",
+        "Seen in the image: three carved figures in a frame, a bearded man holding a tablet 'LEX', a seated woman with open, uncovered eyes holding scales, and a young man with a sword; below, 'IVSTITIA' in large capitals.",
+        "An it.wikipedia caption credits the Ponte Druso symbolism to Ticò rather than Morelli, which may be a mix-up with this relief [W] (notes 05, §1)"
+      ],
+      "images": [
+        {
+          "file": "images/05_giustizia__Justitia_justizpalast_bz.jpg",
+          "caption": "Bartleby08, 3 February 2020. Public domain, Wikimedia Commons."
+        }
+      ],
+      "file": "images/05_giustizia__Justitia_justizpalast_bz.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Justitia_justizpalast_bz.jpg"
+      },
+      "creator": "Bartleby08",
+      "rights": "Public domain",
+      "confidence": {
+        "level": "read"
+      },
+      "place": "palazzo-giustizia"
+    },
+    {
+      "no": "5.33",
+      "title": "Boboseiptu, the Stadio Druso entrance after the 2020–22 renovation",
+      "type": "Photograph",
+      "date": "23 August 2022",
+      "year": 2022,
+      "keywords": [
+        "new-city",
+        "romanita"
+      ],
+      "text": [],
+      "facts": [
+        "Commons: 'Facciata dello stadio Druso di Bolzano dopo la ristrutturazione del 2020-2022', 23 August 2022 by Exif data (manifest)",
+        "Inaugurated in 1931 with the bridge, its name referring to Drusus: 'uno dei molti esempi di strumentalizzazione fascista della storia romana' [V]; en.wikipedia says it opened in 1930 [S] (notes 05, §1)",
+        "A. Nolli, municipal technical office; 1,000-seat stand, 3,000 capacity [V] (notes 05, §3)",
+        "Ponte Druso and Stadio Druso kept their names after 1945 [W] (notes 05, §3)",
+        "Seen in the image: an entrance block with pink pilasters and three arched windows, a plaque 'CAMPO SPORTIVO DRUSO / SPORTPLATZ' under a coat of arms above the gate, flanked by grey modern grandstand wings and floodlight masts; vans and cars parked in front."
+      ],
+      "images": [
+        {
+          "file": "images/08_altri__Stadio_Druso_2022_-_facciata.jpg",
+          "caption": "Boboseiptu, 23 August 2022. CC BY-SA 4.0, Wikimedia Commons."
+        }
+      ],
+      "file": "images/08_altri__Stadio_Druso_2022_-_facciata.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Stadio_Druso_2022_-_facciata.jpg"
+      },
+      "creator": "Boboseiptu",
+      "rights": "CC BY-SA 4.0",
+      "confidence": {
+        "level": "read"
+      },
+      "place": "stadio-druso"
+    },
+    {
+      "no": "5.34",
+      "title": "Città di Bolzano, BZ '18–'45, visitor brochure in four languages",
+      "type": "Booklet",
+      "date": "August 2024",
+      "year": 2024,
+      "keywords": [
+        "monumento-vittoria",
+        "heritage",
+        "guidebooks",
+        "language"
+      ],
+      "text": [],
+      "facts": [
+        "Free four-language brochure of BZ '18–'45 (manifest)",
+        "In English, Italian, German and Ladin, English first ('ENTRANCE / ENTRATA / ZUGANG / NTREDA'); imprint '© 08/2024'; photos and infographics South Tyrol Regional Archives / A. Campaner, Gruppe Gut (file)",
+        "English is placed first on signs to give primacy to neither local language; Ladin was added later [V] (notes 05, §4)",
+        "The manifest and the file's address date it 2025 (manifest)"
+      ],
+      "file": "MAV_2025_Brochure_4_lingue.pdf",
+      "source": {
+        "label": "monumentoallavittoria.com",
+        "url": "https://www.monumentoallavittoria.com/fileadmin/user_upload/pdfs/2025_Brochure_MAV_4_lingue.pdf"
+      },
+      "creator": "Città di Bolzano, BZ '18-'45",
+      "holder": "Comune di Bolzano",
+      "rights": "© Comune di Bolzano; free brochure",
+      "confidence": {
+        "level": "read",
+        "note": "The manifest and the file's address date it 2025; its imprint reads © 08/2024."
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "5.35",
+      "title": "Il percorso espositivo nel Monumento alla Vittoria. Guida all'esposizione",
+      "type": "Booklet",
+      "date": "August 2024",
+      "year": 2024,
+      "keywords": [
+        "monumento-vittoria",
+        "heritage",
+        "guidebooks"
+      ],
+      "text": [],
+      "facts": [
+        "Free visitor guide of BZ '18–'45, in Italian (manifest)",
+        "Imprint '© 08/2024'; the PDF's title field reads '2024 Guida_MAV_ITA' (file)",
+        "Describes 'BZ '18–'45. Un monumento, una città, due dittature', open since July 2014; the decision to open the monument was taken jointly in 2012 by the State, the Province and the Comune (file, p. 1)",
+        "The guide does not mention the two Ponte Druso eagle heads; whether they are still on display in 2026 is unverified [V] (notes 05, §1, Gaps)",
+        "Hours on the 2026 site: Tuesday–Sunday 10:00–18:00, free entry [V] (notes 05, §4)"
+      ],
+      "file": "MAV_2025_Guida_ITA.pdf",
+      "source": {
+        "label": "monumentoallavittoria.com",
+        "url": "https://www.monumentoallavittoria.com/fileadmin/user_upload/temp/2025_Guida_MAV_ITA.pdf"
+      },
+      "creator": "Città di Bolzano, BZ '18-'45",
+      "holder": "Comune di Bolzano",
+      "rights": "© Comune di Bolzano; free visitor guide",
+      "confidence": {
+        "level": "read",
+        "note": "The manifest and the file's address date it 2025; its imprint reads © 08/2024."
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "5.36",
+      "title": "Aciarium, west front of the Palazzo di Giustizia",
+      "type": "Photograph",
+      "date": "3 November 2025",
+      "year": 2025,
+      "keywords": [
+        "new-city",
+        "romanita",
+        "wording"
+      ],
+      "text": [],
+      "facts": [
+        "Commons: 'Facciata rivolta verso ovest del palazzo di giustizia di Bolzano', 2025-11-03 (manifest)",
+        "By Paolo Rossi de Paoli and Michele Busiri Vici; begun 1939, halted 1942, resumed 1951, inaugurated 15 Sept 1956 by President Gronchi; passed from the State to the Province in December 2017 [W] (notes 05, §3)",
+        "Seen in the image: across the top 'PRO ITALICO IMPERIO VIRTVTE IVSTITIA HIERARCHIA VNGVIBVS ET ROSTRIS'; a colonnade of eight square pillars, a relief over the central door, a tall pillar with round medallions on each side of a broad flight of steps; people sitting on the steps.",
+        "The courthouse inscription 'has never been contextualized' [V] (notes 05, §4)",
+        "Photographed before the partial collapse of 16 July 2026 (manifest; notes 05, §3)"
+      ],
+      "images": [
+        {
+          "file": "images/05_giustizia__Fassade_Justizpalast_Bozen_11-2025_01.jpg",
+          "caption": "Aciarium, 3 November 2025. Public domain, Wikimedia Commons."
+        }
+      ],
+      "file": "images/05_giustizia__Fassade_Justizpalast_Bozen_11-2025_01.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Fassade_Justizpalast_Bozen_11-2025_01.jpg"
+      },
+      "creator": "Aciarium",
+      "rights": "Public domain",
+      "confidence": {
+        "level": "read"
+      },
+      "place": "palazzo-giustizia"
+    },
+    {
+      "no": "5.37",
+      "title": "Bartleby08, fracture in the architrave of the Victory Monument",
+      "type": "Photograph",
+      "date": "7 August 2025",
+      "year": 2025,
+      "keywords": [
+        "monumento-vittoria",
+        "heritage"
+      ],
+      "text": [],
+      "facts": [
+        "Commons: 'Fracture at the fascist Victory Monument in Bolzano', 2025-08-07 (manifest)",
+        "A crack in the architrave has been open since 2019 [W] (notes 05, §3)",
+        "2025: the Soprintendenza announced a restoration for structural damage; the Heimatbund demanded demolition instead (16 Sept 2025); historians welcomed the restoration while criticising the Comune's neglect of the exhibition [W] (notes 05, §5)",
+        "Seen in the image: an upper corner of the monument against a blue sky; a section of the stone facing is missing, exposing brickwork, beside a carved helmeted head; below, fluted fasces columns with an axe blade at the right edge.",
+        "The 2025 restoration details were not verified in primary sources (notes 05, §5, Gaps)"
+      ],
+      "images": [
+        {
+          "file": "images/03_vittoria__Bruchstelle_Siegesdenkmal_Architrav_1.jpg",
+          "caption": "Bartleby08, 7 August 2025. CC BY 4.0, Wikimedia Commons."
+        }
+      ],
+      "file": "images/03_vittoria__Bruchstelle_Siegesdenkmal_Architrav_1.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Bruchstelle_Siegesdenkmal_Architrav_1.jpg"
+      },
+      "creator": "Bartleby08",
+      "rights": "CC BY 4.0",
+      "confidence": {
+        "level": "read"
+      },
+      "place": "monumento-vittoria"
+    },
+    {
+      "no": "5.38",
+      "title": "Bartleby08, the Palazzo di Giustizia after the collapse of July 2026",
+      "type": "Photograph",
+      "date": "17 July 2026",
+      "year": 2026,
+      "keywords": [
+        "new-city",
+        "heritage",
+        "wording"
+      ],
+      "text": [],
+      "facts": [
+        "Commons: 'Gerichtsgebäude Bozen Juli 2026 nach Einsturz', 2026-07-17, scaled copy (manifest)",
+        "On 16 July 2026 the central four-storey courtroom wing behind the colonnade collapsed shortly after 6 a.m. during work on the load-bearing columns; one cleaner was slightly injured [V] (notes 05, §3)",
+        "Günther Pallaver: the fascist monuments were never really de-fascistised after 1945, and 'das rächt sich jetzt' [V] (notes 05, §3)",
+        "Seen in the image: the colonnade still stands with '…VIRTVTE IVSTITIA HIERARCHIA VNGVIBVS ET ROSTRIS' intact above it; behind the pillars the building has fallen into a heap of rubble, timber and twisted roofing, with terraced green hills visible through the gap; debris on the steps, a fence and red-and-white tape in front.",
+        "Five people were placed under investigation for negligent disaster (Aug 2026) [S]; proposals followed for a 'kritische Rekonstruktion' and an institute for fascism research [W] (notes 05, §3)"
+      ],
+      "images": [
+        {
+          "file": "images/05_giustizia__Gerichtsgeb_ude_Bozen_Juli_2026.jpg",
+          "caption": "Bartleby08, 17 July 2026. CC BY 4.0, Wikimedia Commons."
+        }
+      ],
+      "file": "images/05_giustizia__Gerichtsgeb_ude_Bozen_Juli_2026.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Gerichtsgeb%C3%A4ude_Bozen_Juli_2026.jpg"
+      },
+      "creator": "Bartleby08",
+      "rights": "CC BY 4.0",
+      "confidence": {
+        "level": "read"
+      },
+      "place": "palazzo-giustizia"
+    },
+    {
+      "no": "5.39",
+      "title": "Italien im Ersten Weltkrieg, im Faschismus und unter deutscher Besatzung (1915–1945): Geschichte, Erinnerung und Vermittlung. Bericht zur Exkursion 24.05.–30.05.2026",
+      "type": "Article",
+      "date": "June 2026",
+      "year": 2026,
+      "keywords": [
+        "heritage",
+        "monumento-vittoria"
+      ],
+      "text": [],
+      "facts": [
+        "Student excursion report of the FAU Erlangen-Nürnberg chair of history didactics; excursion 24–30 May 2026 to Bozen, Passo Pordoi, Rovereto, Fossoli, Cumiana and Turin; lecturers Nadja Bennewitz and Leonard Stöcklein (manifest; file, p. 1)",
+        "The group visited BZ '18–'45 on 24 May 2026 and criticised some uncritically quoted fascist 'civilising' language and the lack of context for the videos [V] (notes 05, §4)",
+        "The colonial 'Ehrensäule' (1938) and the Virgil inscription on the INA building on Piazza Vittoria are 'nicht erklärt', with colonial crimes not named [V] (notes 05, §4)",
+        "Describes Hannes Obermair as 'der das Museum konzipierte' [V] (notes 05, §4)",
+        "An SVP city councillor told the students of a 'spürbare Rechtsruck seit 2025' [V] (notes 05, §5)",
+        "Mentions a visit to the 'Militärfriedhof St. Jakob', which needs follow-up (notes 05, §3, Gaps)"
+      ],
+      "file": "FAU_Erlangen_2026_Exkursionsbericht_Bozen_Rovereto_Turin.pdf",
+      "source": {
+        "label": "FAU Erlangen-Nürnberg, Geschichtsdidaktik",
+        "url": "https://www.geschichtsdidaktik.phil.fau.de/files/2026/06/Exkursionsbericht_gesamt.pdf"
+      },
+      "creator": "FAU Erlangen-Nürnberg, Geschichtsdidaktik, student excursion report",
+      "holder": "FAU Erlangen-Nürnberg",
+      "rights": "© FAU / authors; public web PDF",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    }
+  ]
+}

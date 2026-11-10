@@ -103,6 +103,8 @@ Each file holds the catalogue text only (title, date, film code, credits, sequen
 | Luce_IL5000022261.txt | B159907 | 11/10/1939 | Bolzano: Rione Dux, "228 casette con 808 appartamenti" |
 | Luce_IL5000020037.txt | B074101 | 04/09/1935 | Mussolini visits Bolzano |
 
+Derived on 2026-11-10 from the 40 files above: `luce_records/luce_records_index.csv`, one line per file (file, film code, date, title, Giornale Luce issue, place keywords, source URL), each value as the file states it; nothing added.
+
 ## Not downloaded (record for hand-opening)
 
 - ISTAT 1931 colonial census volume, "Le popolazioni delle Colonie e dei Possedimenti": https://ebiblio.istat.it/digibib/Censimenti%20popolazione/censpop1931/Le_popolazioni_delle_Colonie_e_dei_Possedimenti+OCRottimizz.pdf (redirected to avvisi.istat.it on 2026-10-26).

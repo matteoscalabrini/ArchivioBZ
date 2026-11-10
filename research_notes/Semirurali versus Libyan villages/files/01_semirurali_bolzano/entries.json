@@ -1,0 +1,554 @@
+{
+  "keywords_proposed": {
+    "architecture": {
+      "label": "Architecture and planning"
+    }
+  },
+  "entries": [
+    {
+      "no": "8.00",
+      "title": "The Semirurali of Bolzano (\"Rione Dux\", 1936–1943) as a designed and administered object",
+      "type": "Notes",
+      "date": "2026",
+      "year": 2026,
+      "keywords": [
+        "semirurali",
+        "architecture",
+        "migration",
+        "colonization"
+      ],
+      "text": [
+        "The working notes on the Semirurali as a designed and administered object. They were planned in-house by the provincial housing institute; the only designer the documents name is its technical director, the engineer Giulio Garbini, “chiamato da Venezia”. No national law creates a “casa semirurale”: the vehicle was ordinary public-housing law.",
+        "The period sources agree on 228 houses and 808 dwellings at the inauguration of 8 October 1939; the Comune's final total is 327 houses and 1,151 dwellings. No period use of “colonia”, “colonizzazione” or “bonifica” for the Semirurali was found."
+      ],
+      "facts": [
+        "Thread notes in six questions: authorship and office; legal basis; typology, plots, costs and names; chronology and numbers; allocation and the vocabulary of colonization; afterlife (notes 01, headings).",
+        "The Semirurali were planned and designed in-house by the provincial housing institute (IFACP); the only designer the documents name is its technical director, Ing. Giulio Garbini, \"chiamato da Venezia\" (notes 01, §1).",
+        "No national law creates a \"casa semirurale\" category; the legal vehicle was ordinary public-housing law, T.U. 1165/1938, plus ruralist \"direttive\" (notes 01, §2).",
+        "Period sources agree on 228 houses and 808 dwellings at the inauguration of 8 Oct. 1939; the Comune's final total is 327 houses and 1,151 dwellings, and the 2015 booklet's lot breakdown conflicts with the period press (notes 01, §4).",
+        "No period use of \"colonia\", \"colonizzazione\" or \"bonifica\" for the Semirurali was found; the clearest bridge is the Commissario per le migrazioni e la colonizzazione chairing a Bolzano meeting in Jan. 1940 on replacing optants (notes 01, §5).",
+        "Tags used: [V] primary, [S] full secondary, [SS] snippet, [INF] inference (notes 01, header)."
+      ],
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "read",
+        "target": "../../01_semirurali_bolzano.md"
+      }
+    },
+    {
+      "no": "8.01",
+      "title": "R.D.L. 28 settembre 1934, n. 1621: Provvedimenti per lo sviluppo industriale del comune di Bolzano (Gazzetta Ufficiale n. 243, 16 ottobre 1934)",
+      "type": "Law text",
+      "date": "28 September 1934",
+      "year": 1934,
+      "keywords": [
+        "law",
+        "zona-industriale"
+      ],
+      "text": [
+        "The issue of the Gazzetta Ufficiale that printed the 1934 decree for Bolzano's industrial development (its text is row 10.02). Read here for what it does not contain: no article on housing, and none on expropriation.",
+        "One account speaks of a 1934 decree to acquire about 300 hectares for the industrial zone. This decree does not provide for that, so it is either another act or shorthand."
+      ],
+      "facts": [
+        "Gazzetta Ufficiale n. 243, 16 Oct. 1934, carrying R.D.L. 28 Sept. 1934, n. 1621, \"Provvedimenti per lo sviluppo industriale del comune di Bolzano\", p. 4708 (PDF p. 4) (manifest).",
+        "Art. 1 covers \"stabilimenti industriali tecnicamente organizzati, che entro il 30 giugno 1944 sorgeranno nel territorio del comune di Bolzano\"; customs and ten-year tax exemptions; state contributions up to 25 million lire (notes 01, §2, [V]).",
+        "It has no housing article (notes 01, §2, [V]).",
+        "Azzolini speaks of a 1934 decree-law to acquire about 300 ha for the industrial zone, but n. 1621 does not provide for expropriation: either another act or Azzolini's shorthand (notes 01, §2, [V]/[INF]).",
+        "Official act, not protected by copyright (manifest)."
+      ],
+      "file": "GU_1934_10_16_243_sg.pdf",
+      "source": {
+        "label": "Gazzetta Ufficiale",
+        "url": "https://www.gazzettaufficiale.it/eli/gu/1934/10/16/243/sg/pdf"
+      },
+      "holder": "Gazzetta Ufficiale",
+      "rights": "An official act. Not protected by copyright (L. 633/1941, art. 5).",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "8.02",
+      "title": "Alpenzeitung, 14 December 1938, page 5",
+      "type": "Newspaper page",
+      "date": "14 December 1938",
+      "year": 1938,
+      "keywords": [
+        "press",
+        "semirurali"
+      ],
+      "text": [
+        "The Duchess of Pistoia visits the public housing of Bolzano. She is received by the housing institute's president, the engineer Rota, and its technical director, the engineer Garbini: the period confirmation of who ran the Semirurali. The institute already houses “900 Familien mit über 5000 Personen”, and the semi-rural houses will take 200 more.",
+        "The paper likens them to Mussolini's birthplace: “Jedes Häuschen hat seinen Garten und mit dem freien Aufgang erinnern die Bauten an das Geburtshaus des Duce.” Only the text is held, as rough OCR."
+      ],
+      "facts": [
+        "Raw OCR of Alpenzeitung, 14 Dec. 1938, p. 5: the Duchess of Pistoia's visit (manifest).",
+        "She was received by \"dem Präsidenten des Institutes für Volkswohnbauten, Ing. Rota, dem technischen Direktor Ing. Garbini\": period confirmation of the two officers (notes 01, §1, [V]).",
+        "IFACP housing in the Rayon already holds \"900 Familien mit über 5000 Personen\", and the semirural houses will take \"weitere 200 Familien\" (file; notes 01, §4, [V]).",
+        "The Predappio trope: \"Jedes Häuschen hat seinen Garten und mit dem freien Aufgang erinnern die Bauten an das Geburtshaus des Duce\" (notes 01, §3, [V])."
+      ],
+      "file": "AZ_1938-12-14_p5_OCR_Rota_Garbini.txt",
+      "source": {
+        "label": "Europeana",
+        "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059047939"
+      },
+      "holder": "Europeana / Teßmann",
+      "rights": "Public Domain Mark (Europeana/Teßmann).",
+      "confidence": {
+        "level": "read",
+        "note": "Raw OCR only; the page image is online, not held."
+      },
+      "more": {
+        "kind": "file"
+      },
+      "place": "semirurali"
+    },
+    {
+      "no": "8.03",
+      "title": "Alpenzeitung, 28 June 1938, page 4",
+      "type": "Newspaper page",
+      "date": "28 June 1938",
+      "year": 1938,
+      "keywords": [
+        "press",
+        "semirurali"
+      ],
+      "text": [
+        "The housing institute is to build “fünf Objekte mit zweiunddreißig Wohnungen” of a “halbländlichen Typs” at Bressanone. Three-room flats with a hundred square metres of vegetable ground cost about 125 lire a month, two-room flats about 95.",
+        "These are the only rents found for the semi-rural type. None were found for the Bolzano Semirurali themselves. Text only, as rough OCR."
+      ],
+      "facts": [
+        "Raw OCR of Alpenzeitung, 28 June 1938, p. 4, on an IFACP Bolzano semirural lot at Bressanone, with rents; the page image is not held here (manifest).",
+        "The IFACP is to build \"fünf Objekte mit zweiunddreißig Wohnungen\" at Bressanone, houses \"eines halbländlichen Typs\" (file; notes 01, §2, [V]).",
+        "Three houses of four three-room flats \"nebst 100 Quadratmeter Grund für Gemüseanbau\" at \"monatlich etwa 125 Lire\"; one house of two-room flats at about 95 lire (file; notes 01, §3, [V]).",
+        "The only rent figures found for the semirural type; none were found for the Bolzano Semirurali themselves (notes 01, §3).",
+        "The 225 lire a month on the same page is for a separate civil servants' house (Beamtenwohnhaus), not the semirural lot (file)."
+      ],
+      "file": "AZ_1938-06-28_p4_OCR_Bressanone_halblaendliche.txt",
+      "source": {
+        "label": "Europeana",
+        "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059047966"
+      },
+      "holder": "Europeana / Teßmann",
+      "rights": "Public Domain Mark (Europeana/Teßmann).",
+      "confidence": {
+        "level": "read",
+        "note": "Raw OCR only; the page image is online, not held."
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "8.04",
+      "title": "Alpenzeitung, 7 October 1938, page 5",
+      "type": "Newspaper page",
+      "date": "7 October 1938",
+      "year": 1938,
+      "keywords": [
+        "press",
+        "semirurali"
+      ],
+      "text": [
+        "The municipal council approves streets and sewers for the “Viertel der halbländlichen Volkswohnbauten in San Quirino”: five streets, more than two kilometres, 996,400 lire. The first lot of 92 small houses is being finished.",
+        "The quarter is still filed under “Rayon Littorio”, a year before it was inaugurated as Rione Dux. The number of dwellings is garbled in the OCR."
+      ],
+      "facts": [
+        "Raw OCR of Alpenzeitung, 7 Oct. 1938, p. 5: the Comune's streets and sewers for the semirural quarter; the first lot of 92 houses (manifest).",
+        "The Gemeindebeirat approved \"die Anlage der Straßen und der Kanalisation im Viertel der halbländlichen Volkswohnbauten in San Quirino\": five streets of over 2 km, at \"L. 996.400\" (notes 01, §1, [V]).",
+        "\"Im Rayon Littoria wird das erste Baulos der halbländlichen Wohnbauten … fertiggestellt … 92 Häuschen mit 3?0 Wohnungen\"; the OCR garbles the number (notes 01, §4, [V]).",
+        "The quarter was then still filed under \"Rayon Littorio\" (notes 01, §4)."
+      ],
+      "file": "AZ_1938-10-07_p5_OCR_Strassen_halblaendliche.txt",
+      "source": {
+        "label": "Europeana",
+        "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059048114"
+      },
+      "holder": "Europeana / Teßmann",
+      "rights": "Public Domain Mark (Europeana/Teßmann).",
+      "confidence": {
+        "level": "read",
+        "note": "Raw OCR only; the dwelling count is garbled in the OCR."
+      },
+      "more": {
+        "kind": "file"
+      },
+      "place": "semirurali"
+    },
+    {
+      "no": "8.05",
+      "title": "R.D. 28 aprile 1938, n. 1165: Approvazione del testo unico delle disposizioni sull'edilizia popolare ed economica (Gazzetta Ufficiale n. 177, 5 agosto 1938, supplemento ordinario)",
+      "type": "Law text",
+      "date": "28 April 1938",
+      "year": 1938,
+      "keywords": [
+        "law",
+        "semirurali"
+      ],
+      "text": [
+        "The consolidated law on public housing of 1938, the general frame for the provincial housing institutes. It knows no “semirurale” category: “rural” appears only in a tax exemption and in one clause on bodies building “borgate rurali”. This research reads it as the legal vehicle of the Semirurali all the same, with ministerial subsidies on top.",
+        "The scan's two-column text is scrambled, and whether that clause stood in the 1938 original could not be confirmed."
+      ],
+      "facts": [
+        "Gazzetta Ufficiale n. 177, 5 Aug. 1938, ordinary supplement, carrying R.D. 28 Apr. 1938, n. 1165, the T.U. on public and economic housing (manifest).",
+        "The general frame for the IFACPs: constitution and recognition, mortgages and state contributions, Ministry of Public Works oversight; art. 27: the president of each provincial institute \"è nominato con decreto Reale su proposta del Ministro pei lavori pubblici\" (notes 01, §1–2, [V]).",
+        "No \"semirurale\" category: \"rural\" appears only in the tax exemption for \"fabbricati rurali\" (art. 164) and in art. 16 n. 12° on bodies \"che provvedano alla costruzione di borgate rurali\" (notes 01, §2, [V]).",
+        "The OCR is scrambled by the two-column layout, so whether art. 16 n. 12° was in the 1938 original could not be confirmed (manifest; notes 01, §2).",
+        "The notes read it as the legal vehicle of the semirurale type, with ministerial subsidies (notes 01, §2, [INF])."
+      ],
+      "file": "GU_1938_08_05_177_SO_TU_1165_edilizia_popolare.pdf",
+      "source": {
+        "label": "Gazzetta Ufficiale",
+        "url": "https://www.gazzettaufficiale.it/eli/gu/1938/08/05/177/so/177/sg/pdf"
+      },
+      "holder": "Gazzetta Ufficiale",
+      "rights": "An official act. Not protected by copyright (L. 633/1941, art. 5).",
+      "confidence": {
+        "level": "read",
+        "note": "The OCR is scrambled; whether art. 16 n. 12° stood in the 1938 original is not confirmed."
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "8.06",
+      "title": "Alpenzeitung, 3 August 1939, page 5",
+      "type": "Newspaper page",
+      "date": "3 August 1939",
+      "year": 1939,
+      "keywords": [
+        "press",
+        "semirurali"
+      ],
+      "text": [
+        "The Dopolavoro holds a competition for the best gardens and vegetable plots among “alle Bewohner der halbländlichen Häuser im neuen Rione Littorio”. Residents had been given “ein kleines Stück Grund”, free seed and a gardening booklet, and Garbini sat on the jury.",
+        "The page uses the word “Kolonie” once, for a children's summer camp. Text only, as rough OCR."
+      ],
+      "facts": [
+        "Raw OCR of Alpenzeitung, 3 Aug. 1939, p. 5: the Dopolavoro garden competition (manifest).",
+        "A competition for gardens and vegetable plots \"für alle Bewohner der halbländlichen Häuser im neuen Rione Littorio\" (file).",
+        "The jury included \"dem technischen Direktor des Institutes für Volkswohnhäuser Ing. Garbini\" (notes 01, §1, [V]).",
+        "Residents had received \"ein kleines Stück Grund\"; the Dopolavoro gave seed free, and the IFACP saw to irrigation and handed out a gardening booklet (notes 01, §3, [V]).",
+        "The page uses \"Kolonie\" only for a children's summer camp (notes 01, §5, [V])."
+      ],
+      "file": "AZ_1939-08-03_p5_OCR_Gartenwettbewerb.txt",
+      "source": {
+        "label": "Europeana",
+        "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059043504"
+      },
+      "holder": "Europeana / Teßmann",
+      "rights": "Public Domain Mark (Europeana/Teßmann).",
+      "confidence": {
+        "level": "read",
+        "note": "Raw OCR only; the page image is online, not held."
+      },
+      "more": {
+        "kind": "file"
+      },
+      "place": "semirurali"
+    },
+    {
+      "no": "8.07",
+      "title": "La Provincia di Bolzano, 10 October 1939, page 3",
+      "type": "Newspaper page",
+      "date": "10 October 1939",
+      "year": 1939,
+      "keywords": [
+        "press",
+        "semirurali",
+        "inauguration",
+        "symbol"
+      ],
+      "text": [
+        "The Italian daily on the inauguration of the Semirurali by the party secretary Starace: “il rione Dux delle case semi-rurali, che ospita in salubri ed economiche abitazioni, un migliaio di famiglie operaie”. At the entrance to the quarter “una grande «M» mussoliniana era stata eretta”.",
+        "The paper rounds up to three hundred villas and a thousand flats, where the Alpenzeitung and the Luce newsreel count 228 houses and 808 dwellings. A family with twelve children was presented to Starace."
+      ],
+      "facts": [
+        "La Provincia di Bolzano, 10 Oct. 1939, p. 3: \"Il Segretario del Partito inaugura nel nome del Duce l'imponente complesso delle case semirurali\" (manifest).",
+        "Its framing: \"il rione Dux delle case semi-rurali, che ospita in salubri ed economiche abitazioni, un migliaio di famiglie operaie\"; \"trecento graziose villette con un complesso di un migliaio di appartamenti\" (notes 01, §3, [V]).",
+        "Symbol: \"All'ingresso del rione … una grande «M» mussoliniana era stata eretta\" (notes 01, §3, [V]).",
+        "Starace was accompanied by \"il presidente dell'Istituto per le case popolari ing. Rota\"; \"la famiglia dei coniugi Turati … di ben dodici figli\" was presented to him (notes 01, §1, §5, [V]).",
+        "The press rounds up to \"trecento\" villette and \"un migliaio\" of flats; the Alpenzeitung and the Luce record give 228 houses and 808 dwellings (notes 01, §4).",
+        "Photos credited \"Foto Walsa\"; check the library's reuse terms before publishing (manifest).",
+        "Seen in the image: under the banner \"LE GRANDI REALIZZAZIONI SOCIALI DEL REGIME IN ALTO ADIGE\", the headline on the case semirurali, two inauguration photos credited Foto Walsa (piazza Littorio; blackshirts lined up in via Cagliari), the Gran Premio Merano report on the right, and a broad grey diagonal band across the scan."
+      ],
+      "images": [
+        {
+          "file": "LPB_1939-10-10_p3_inaugurazione_rione_Dux.jpg",
+          "caption": "La Provincia di Bolzano, 10 October 1939, p. 3; photos Foto Walsa. Unsigned text very probably public domain; check reuse terms. Scan: Biblioteca provinciale italiana \"Claudia Augusta\"."
+        }
+      ],
+      "file": "LPB_1939-10-10_p3_inaugurazione_rione_Dux.jpg",
+      "source": {
+        "label": "Biblioteca provinciale italiana \"Claudia Augusta\", La Provincia di Bolzano 1939",
+        "url": "https://webaleph.bpi.claudiaugusta.it/La_Provincia_di_Bolzano_001-1939-1939_10_10_Nr_240.html"
+      },
+      "creator": "Unsigned text; photographs Foto Walsa",
+      "holder": "Biblioteca provinciale italiana \"Claudia Augusta\"",
+      "rights": "A 1939 newspaper. The unsigned text is very probably public domain in Italy (70 years from publication). Photos are credited \"Foto Walsa\". The scan comes from Biblioteca provinciale italiana \"Claudia Augusta\". Check its reuse terms before publishing.",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://webaleph.bpi.claudiaugusta.it/La_Provincia_di_Bolzano_001-1939-1939_10_10_Nr_240.html"
+      },
+      "place": "semirurali"
+    },
+    {
+      "no": "8.08",
+      "title": "Legge 6 luglio 1939, n. 1092: Provvedimenti contro l'urbanesimo (Gazzetta Ufficiale n. 185, 9 agosto 1939)",
+      "type": "Law text",
+      "date": "6 July 1939",
+      "year": 1939,
+      "keywords": [
+        "law",
+        "migration",
+        "colonization"
+      ],
+      "text": [
+        "The Gazzetta Ufficiale issue that printed the anti-urbanism law (its text is row 10.09). It contains nothing on housing or on ruralization. What it does is put the movement of workers between provinces under the Commissariato per le migrazioni e la colonizzazione.",
+        "For the Semirurali, then, the tie to colonization runs through who was allowed to move, not through the type of house."
+      ],
+      "facts": [
+        "Gazzetta Ufficiale n. 185, 9 Aug. 1939, carrying L. 6 July 1939, n. 1092, \"Provvedimenti contro l'urbanesimo\", pp. 3754–3755 (PDF pp. 2–3) (manifest).",
+        "Art. 1: \"Nessuno può trasferire la propria residenza in Comuni del Regno capoluoghi di Provincia …\" unless obliged by office or job or having \"una proficua occupazione stabile\" there (notes 01, §2, [V]).",
+        "Arts. 2–3 put interprovincial transfers of workers under \"il Commissariato per le migrazioni e la colonizzazione\" (notes 01, §2, [V]).",
+        "No housing or ruralization provisions; signed at San Rossore by Mussolini, Solmi, Di Revel, Rossoni and Lantini (notes 01, §2, [V]).",
+        "The notes see the bridge to colonization running through labour mobility, not house types (notes 01, §2, [INF])."
+      ],
+      "file": "GU_1939_08_09_185_sg.pdf",
+      "source": {
+        "label": "Gazzetta Ufficiale",
+        "url": "https://www.gazzettaufficiale.it/eli/gu/1939/08/09/185/sg/pdf"
+      },
+      "holder": "Gazzetta Ufficiale",
+      "rights": "An official act. Not protected by copyright (L. 633/1941, art. 5).",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "8.09",
+      "title": "Alpenzeitung, 25 October 1940, page 1",
+      "type": "Newspaper page",
+      "date": "25 October 1940",
+      "year": 1940,
+      "keywords": [
+        "press",
+        "semirurali",
+        "wording"
+      ],
+      "text": [
+        "The Ministry of Public Works' annual report as the Alpenzeitung summarised it: 8,790 dwellings built nationwide by the housing institutes with state contributions, and Bolzano listed with the second lot of its semi-rural houses, handed over on 28 October 1940.",
+        "The German word used for them is garbled in the OCR and is probably “Siedlerhäuser”, settlers' houses. Without the Italian original of the report it should not be read as the regime calling the Semirurali a colony."
+      ],
+      "facts": [
+        "Raw OCR of Alpenzeitung, 25 Oct. 1940, p. 1: the Ministry of Public Works' annual report for year XVIII (manifest).",
+        "Nationwide, \"von den Instituten für Volkswohnhäuser mit staatlichen Beiträgen 8790 Wohnungen … geschaffen\" (notes 01, §1, [V]).",
+        "\"Bolzano scheint mit dem zweiten Baulos der halbländlichen Sied-lechäufer auf\" among works handed over on 28 Oct. 1940 (file; notes 01, §1, [V]).",
+        "Wording: the OCR \"Sied-lechäufer\" is read as Siedlerhäuser or Siedlungshäuser; the notes warn that this German \"Siedler/Siedlung\" usage should not be read as an Italian \"colonizzazione\" label without the Italian original of the report (notes 01, §5, [INF])."
+      ],
+      "file": "AZ_1940-10-25_p1_OCR_LLPP_Jahresbericht.txt",
+      "source": {
+        "label": "Europeana",
+        "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059043678"
+      },
+      "holder": "Europeana / Teßmann",
+      "rights": "Public Domain Mark (Europeana/Teßmann).",
+      "confidence": {
+        "level": "read",
+        "note": "Raw OCR only; the key word is garbled and its reading is an inference."
+      },
+      "more": {
+        "kind": "file"
+      },
+      "place": "semirurali"
+    },
+    {
+      "no": "8.10",
+      "title": "Alpenzeitung, 11 May 1941, page 5",
+      "type": "Newspaper page",
+      "date": "11 May 1941",
+      "year": 1941,
+      "keywords": [
+        "press",
+        "semirurali"
+      ],
+      "text": [
+        "The municipal budget session of 1941. It gives the cost of the quarter's streets, about 2.5 million lire for each group of lots, a school planned at 3,550,000 lire, and “950 Wohnungen” still under construction. There are 1,050 primary pupils in Rione Dux and Littorio.",
+        "A trolleybus from the station to Rione Dux is put off until after the war. Text only, as rough OCR."
+      ],
+      "facts": [
+        "Raw OCR of Alpenzeitung, 11 May 1941, p. 5: the Comune budget session; eight lots in Rione Dux, street costs, a school with a Ministry grant, 950 dwellings under construction (manifest).",
+        "Street costs: 2,574,709 lire for the five streets of lot 1, 2,590,000 for lots 2–3, 2,520,000 for lots 4–5; a 10-million-lire loan under negotiation (notes 01, §3, [V]).",
+        "A school for Rione Dux planned at 3,550,000 lire, with a grant from the Ministry of National Education (file; notes 01, §3, [V]).",
+        "\"Da noch weitere 950 Wohnungen im genannten Viertel sich im Bau befinden\": 1,050 primary pupils in Rione Dux and Littorio (file; notes 01, §4, [V]).",
+        "A trolleybus from the station to Rione Dux was put off until after the war (notes 01, §3, [V])."
+      ],
+      "file": "AZ_1941-05-11_p5_OCR_Gemeindehaushalt_Rione_Dux.txt",
+      "source": {
+        "label": "Europeana",
+        "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059044952"
+      },
+      "holder": "Europeana / Teßmann",
+      "rights": "Public Domain Mark (Europeana/Teßmann).",
+      "confidence": {
+        "level": "read",
+        "note": "Raw OCR only; the page image is online, not held."
+      },
+      "more": {
+        "kind": "file"
+      },
+      "place": "semirurali"
+    },
+    {
+      "no": "8.11",
+      "title": "Turris Babel, no. 1, March 1985: Semirurali – prima parte",
+      "type": "Article",
+      "date": "March 1985",
+      "year": 1985,
+      "keywords": [
+        "semirurali",
+        "architecture",
+        "language",
+        "agro-pontino"
+      ],
+      "text": [
+        "The first of three issues of the architects' journal Turris Babel on the Semirurali, with Carlo Azzolini's account of the 1930s and facsimiles of the housing institute's drawings. The general plan at 1:2000 is signed “Ing. Giulio Garbini”. Its streets are named after Italian cities and meet at a Piazza Pontinia, a name taken from the reclaimed marshes south of Rome.",
+        "The elevations show two-storey houses with pitched roofs and outside stairs. Plots were cut at 600 square metres for four dwellings. The pictures here are crops from the scan."
+      ],
+      "facts": [
+        "Turris Babel no. 1, March 1985, with Carlo Azzolini, \"Semirurali – prima parte\", pp. 7–34, on the 1930s, and facsimiles of the IFACP site plan, type elevations, plans and sections; the scan has no text layer (manifest).",
+        "The site plan \"PLANIMETRIA GENERALE – CASE SEMIRURALI – BOLZANO – SCALA 1:2000\" is signed \"Ing. Giulio Garbini\"; its streets are named after Italian cities, around PIAZZA PONTINIA (notes 01, §1, §3, [V]); the square's name is Agro Pontino toponymy (notes 01, §5, [S]).",
+        "Azzolini: the institute was founded on 10 April 1934 to house the workforce of the new industrial zone; Garbini cut the plots at \"600 mq per 4 alloggi\" (notes 01, §1, §3, [S]).",
+        "Seen in the image (p. 25, fig. 40): a grid of small house plots between VIA MILANO and the river ISARCO, PIAZZA PONTINIA at the west end, two north arrows, the legend \"I° LOTTO / II° / III° / LAVATOI\" and a handwritten signature at lower right.",
+        "Seen in the image (p. 27, figs. 42–45): elevations \"PROSPETTI SCALA 1:100\" of two-storey houses with pitched roofs and external stairs, a handwritten signature under figs. 44 and 45, and text quoting the comparison with \"la piccola casa di Predappio\".",
+        "Seen in the image (p. 28, figs. 46–49): four symmetrical ground-floor plans drawn in heavy black walls, beside text on the first lot of 340 dwellings inaugurated on 8 October 1939.",
+        "Seen in the image (p. 31, figs. 60–70): two sections, one marked \"SEZIONE A-B SCALA 1:50\", and nine 1939 photographs of finished houses with fenced gardens, people digging a vegetable plot and a shop signed \"SPACCIO COOPERATIVO N 37\".",
+        "Seen in the image (fig. 61, detail): a round stamp, \"IL DIRETTORE TECNICO\", the signature \"Ing. Giulio Garbini\" and \"BOLZANO FEB…\" with the year unclear."
+      ],
+      "images": [
+        {
+          "file": "TB01_p25_fig40_Planimetria_generale_case_semirurali_Garbini.jpg",
+          "caption": "Ing. Giulio Garbini, Planimetria generale – Case semirurali – Bolzano, 1:2000, c. 1938/39. Facsimile in Turris Babel 1 (1985), p. 25, fig. 40. Study use; © Ordine/Fondazione Architetti Provincia di Bolzano."
+        },
+        {
+          "file": "TB01_p27_figs42-45_prospetti_tipi_1-2-4-5.jpg",
+          "caption": "Elevations of house types 1, 2, 4 and 5, scale 1:100. Turris Babel 1 (1985), p. 27, figs. 42–45. Study use; © Ordine/Fondazione Architetti Provincia di Bolzano."
+        },
+        {
+          "file": "TB01_p28_figs46-49_piante_tipi_1-2-4-5.jpg",
+          "caption": "Ground-floor plans of house types 1, 2, 4 and 5. Turris Babel 1 (1985), p. 28, figs. 46–49. Study use; © Ordine/Fondazione Architetti Provincia di Bolzano."
+        },
+        {
+          "file": "TB01_p31_figs60-70_sezioni_e_foto_1939.jpg",
+          "caption": "Sections of house types 5 and 3, and photographs of the finished quarter, 1939. Turris Babel 1 (1985), p. 31, figs. 60–70. Study use; © Ordine/Fondazione Architetti Provincia di Bolzano."
+        },
+        {
+          "file": "TB01_p31_fig61_stamp_IFACP_Garbini.jpg",
+          "caption": "Stamp \"Istituto Fascista Autonomo per le C.P. della Provincia di Bolzano\" and signature of Ing. Giulio Garbini, technical director, \"Bolzano Febb. 193[9?]\". Turris Babel 1 (1985), p. 31, fig. 61, detail. Study use."
+        }
+      ],
+      "file": "TurrisBabel_01.pdf",
+      "source": {
+        "label": "Architects' Chamber of the Province of Bolzano, Turris Babel archive",
+        "url": "https://oappcbz.learnhub24.com/bprofile/public_download/6KRGH_L-NCZFpy6zueXNybCj0rYuoWThPdqpfW0oRVE/?mode=inline"
+      },
+      "creator": "Carlo Azzolini (article); drawings signed Ing. Giulio Garbini",
+      "holder": "Ordine/Fondazione Architetti Provincia di Bolzano",
+      "rights": "© Ordine/Fondazione Architetti Provincia di Bolzano and the authors. The Chamber offers it as a free public download. It is not openly licensed, so keep it for study use.",
+      "confidence": {
+        "level": "read",
+        "note": "The year on the fig. 61 stamp is illegible; 1939 is an inference."
+      },
+      "more": {
+        "kind": "file"
+      },
+      "place": "semirurali"
+    },
+    {
+      "no": "8.12",
+      "title": "Turris Babel, no. 2, June 1985: Semirurali – seconda parte",
+      "type": "Article",
+      "date": "June 1985",
+      "year": 1985,
+      "keywords": [
+        "semirurali",
+        "architecture",
+        "heritage"
+      ],
+      "text": [
+        "The second issue, on the redevelopment of 1976–83 that replaced the Semirurali: commissions to Aymonino and to Darbourne & Darke, and in December 1983 a cut in density “da 5,0 a 3,5 mc/mq”. Its interviews are a lead for the biography of Garbini."
+      ],
+      "facts": [
+        "Turris Babel no. 2, June 1985: F. Bortolotti, G. Plaickner and F. Anesi, \"Semirurali – seconda parte\", on the redevelopment of 1976–83; the scan has no text layer (manifest).",
+        "Lot chronology: Oct. 1978 Aymonino commissioned for lot 1; Nov. 1978 competition for lot 2, won by Darbourne & Darke in Apr. 1981; Mar. 1982 lot 3 to Darbourne & Darke, Abram & Schnabl and Planungsgruppe Meran (notes 01, §6, [S]).",
+        "Dec. 1983: the Piano di Attuazione is modified, density cut \"da 5,0 a 3,5 mc/mq\" (notes 01, §6, [S]).",
+        "One of three primary-rich Turris Babel issues on the Semirurali; its interviews are named as a lead for Garbini's biography (notes 01, §1, §6)."
+      ],
+      "file": "TurrisBabel_02.pdf",
+      "source": {
+        "label": "Architects' Chamber of the Province of Bolzano, Turris Babel archive",
+        "url": "https://oappcbz.learnhub24.com/bprofile/public_download/NcksIEBM3EV6Xab8kRO1c6nRdiPSFsIYIw4M80KROtk/?mode=inline"
+      },
+      "creator": "F. Bortolotti, G. Plaickner and F. Anesi",
+      "holder": "Ordine/Fondazione Architetti Provincia di Bolzano",
+      "rights": "© Ordine/Fondazione Architetti Provincia di Bolzano and the authors. The Chamber offers it as a free public download. It is not openly licensed, so keep it for study use.",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      },
+      "place": "semirurali"
+    },
+    {
+      "no": "8.13",
+      "title": "Turris Babel, no. 15, December 1988: Semirurali III",
+      "type": "Article",
+      "date": "December 1988",
+      "year": 1988,
+      "keywords": [
+        "semirurali",
+        "architecture",
+        "heritage"
+      ],
+      "text": [
+        "The third issue. The housing institute looks back on a quarter built “con gli evidenti riferimenti della ‘città giardino’” to ease “il problema psicologico dell'inurbamento di popolazioni rurali chiamate specialmente dalle provincie venete”. The redevelopment plan of 1976–78 foresaw “ca. 2.000 alloggi in sostituzione degli attuali 800”.",
+        "Its bibliography corrects a date: the Italian daily's series on the workers' city ran in autumn 1937, not in 1936."
+      ],
+      "facts": [
+        "Turris Babel no. 15, Dec. 1988, \"Semirurali III\": the IPEAA account \"Le Semirurali dell'Istituto\", the fourth-lot competition and a \"Repertorio bibliografico\"; it has an OCR text layer (manifest).",
+        "The IPEAA looks back on a quarter built \"con gli evidenti riferimenti della 'città giardino'\" for \"il problema psicologico dell'inurbamento di popolazioni rurali chiamate specialmente dalle provincie venete\" (notes 01, §3, [S]).",
+        "The 1976–78 Piano di Attuazione: \"ca. 2.000 alloggi in sostituzione degli attuali 800\", about 250 billion lire (notes 01, §6, [S]).",
+        "The Repertorio dates LPB's \"Le case per il Popolo. Crescita della città operaia\" to autumn 1937, against the \"1936\" given in the secondary literature (notes 01, §3, [S]).",
+        "A German-language article, probably Plaickner's, quotes Franz Seldte on the small settlement as \"die beste Form der Arbeiterwohnstätte\": a 1980s editorial comparison, not a period Bolzano source (notes 01, §5, [S]).",
+        "1981 census for Don Bosco: 2,402 of 4,855 occupied dwellings public; 1,112 German-speakers; the OCR layout leaves the attribution of these notes uncertain (notes 01, §5–6, [S])."
+      ],
+      "file": "TurrisBabel_15.pdf",
+      "source": {
+        "label": "Architects' Chamber of the Province of Bolzano, Turris Babel archive",
+        "url": "https://oappcbz.learnhub24.com/bprofile/public_download/_R3baE_vs-sVh5zQ_JzTBj7PVXXXuNjsRoBuswc-4q8/?mode=inline"
+      },
+      "holder": "Ordine/Fondazione Architetti Provincia di Bolzano",
+      "rights": "© Ordine/Fondazione Architetti Provincia di Bolzano and the authors. The Chamber offers it as a free public download. It is not openly licensed, so keep it for study use.",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      },
+      "place": "semirurali"
+    }
+  ]
+}

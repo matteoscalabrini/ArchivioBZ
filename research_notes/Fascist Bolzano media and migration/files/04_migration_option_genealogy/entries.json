@@ -1,0 +1,1402 @@
+{
+  "keywords_proposed": {},
+  "places_proposed": {},
+  "entries": [
+    {
+      "no": "4.00",
+      "title": "Migration into fascist Bolzano (1934–1943), the 1939 Option, and tracing the people: numbers, timeline, and a tested portal guide",
+      "type": "Notes",
+      "date": "2026",
+      "year": 2026,
+      "keywords": [
+        "migration",
+        "option",
+        "tracing-people",
+        "zona-industriale",
+        "semirurali"
+      ],
+      "text": [
+        "The working notes on who came to fascist Bolzano, who left in the Option of 1939, and how to trace either by name. They cover the industrial zone, the origins of the immigrants, the Semirurali, the Option and its land agency, the genealogy portals tested one by one, and the Lager as a model of tracing people by name.",
+        "The last section is a step-by-step guide for following one family back from Bolzano to its village of origin."
+      ],
+      "facts": [
+        "Research date 2026-10-22; notes in English, original titles and archive names kept (notes 04, head).",
+        "Seven sections: the Zona industriale (laws, firms, workforce, hiring policy, the Commissariato); where the immigrants came from and Bolzano's population by census and language group; the Semirurali; the 1939 Option, ADERSt/AdO and the ENTV; genealogy portals tested; the Lager Bozen as a model of name-level tracing; a guide to tracing a Polesine family that came to the Semirurali in 1938 (notes 04, §§1–7).",
+        "Labels used throughout: [VERIFIED-PORTAL], [VERIFIED-DOC], [SECONDARY], [INFERENCE] (notes 04, head).",
+        "Most cited files are in files/04_migration_option_genealogy, listed in its manifest.md (notes 04, head)."
+      ],
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "read",
+        "target": "../../04_migration_option_genealogy.md"
+      }
+    },
+    {
+      "no": "4.01",
+      "title": "Andamento demografico nella provincia di Bolzano e nei più grandi centri della provincia, 1811–2017 (ASTAT, Annuario statistico 2018, tab. 3.2)",
+      "type": "Table",
+      "date": "1811–2017",
+      "year": 1811,
+      "keywords": [
+        "statistics",
+        "migration"
+      ],
+      "text": [
+        "Population of the province and its largest towns from 1811 to 2017, extracted from the provincial statistical yearbook. Bolzano had 32,679 inhabitants in 1921, 37,351 in 1931, 45,505 in 1936 and 70,898 in 1951.",
+        "No census was held in 1939 or 1941, so the years of fastest growth fall in a gap. The municipal register gives 56,812 for January 1939 and 64,494 for January 1943."
+      ],
+      "facts": [
+        "Own CSV extraction of table 3.2 of the ASTAT yearbook 2018: province total and Bolzano, Merano, Bressanone, Laives, Brunico at 18 dates, 1811–2017 (manifest; file).",
+        "Up to 1910 the figures count present population; from 1921, resident population; 1991 boundaries (manifest).",
+        "Bolzano city: 30,424 (1910), 32,679 (1921), 37,351 (1931), 45,505 (1936), 70,898 (1951), 88,799 (1961) (notes 04, §2, [VERIFIED-DOC]).",
+        "No census was held in 1939; 1941 was skipped (notes 04, §2).",
+        "Municipal-register values, not in this table: 56,812 on 1 January 1939 and 64,494 on 1 January 1943, per Mezzalira 2006 (notes 04, §2, [VERIFIED-DOC]).",
+        "The yearbook's own title for the table runs 1754–2017; the extraction starts at 1811 (yearbook index, file).",
+        "No ASTAT XLS or CSV of the historical tables was found online; this CSV is the researcher's extraction from the yearbook PDF (notes 04, §2, Gaps)."
+      ],
+      "file": "ASTAT_2018_Tab3.2_popolazione_provincia_Bolzano_citta_1811-2017.csv",
+      "source": {
+        "label": "ASTAT, Statistisches Jahrbuch / Annuario statistico 2018, tab. 3.2 (Wayback copy)",
+        "url": "https://web.archive.org/web/20191109134418/https://astat.provinz.bz.it/downloads/Jahrbuch_2018.pdf"
+      },
+      "creator": "ASTAT – Istituto provinciale di statistica",
+      "holder": "ASTAT, Provincia autonoma di Bolzano",
+      "rights": "Own extraction from the ASTAT yearbook. ASTAT publications may be reproduced with source citation; verify the current ASTAT terms.",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "table",
+        "target": "ASTAT_2018_Tab3.2_popolazione_provincia_Bolzano_citta_1811-2017.csv",
+        "columns": [
+          "year",
+          "province_total",
+          "Bolzano"
+        ]
+      }
+    },
+    {
+      "no": "4.02",
+      "title": "Popolazione residente per gruppo linguistico ai censimenti dal 1880 al 2011 (ASTAT, Annuario statistico 2018, tab. 3.17)",
+      "type": "Table",
+      "date": "1880–2011",
+      "year": 1880,
+      "keywords": [
+        "statistics",
+        "language",
+        "migration"
+      ],
+      "text": [
+        "Residents of the province by language group at each census from 1880 to 2011. Italians numbered 7,339 in 1910 and 27,048 in 1921. By 1961 they were 128,271.",
+        "For the decades in between there is nothing: the censuses from 1931 to 1951 left the language question out. The decades in which the balance changed were not counted."
+      ],
+      "facts": [
+        "Own CSV extraction of table 3.17: Italians, Germans, Ladins, others and total for the province at each census, 1880–2011 (manifest; file).",
+        "Up to 1921 the figures count present population. No language data for 1931–1951 (manifest).",
+        "Italians: 7,339 in 1910, 27,048 in 1921, 128,271 in 1961 (notes 04, §2, [VERIFIED-DOC]).",
+        "Mezzalira (after Alexander) gives 20,306 Italians for 1921 against ASTAT's 27,048, probably because ASTAT counts present population (notes 04, §2, [VERIFIED-DOC]).",
+        "The 1921 total here, 254,735 (present population), differs from 256,610 in table 3.2 (resident population) (file; manifest).",
+        "Leidlmair: the official counts up to 1951 left out the language question (notes 04, §2, [SECONDARY])."
+      ],
+      "file": "ASTAT_2018_Tab3.17_gruppi_linguistici_provincia_1880-2011.csv",
+      "source": {
+        "label": "ASTAT, Statistisches Jahrbuch / Annuario statistico 2018, tab. 3.17 (Wayback copy)",
+        "url": "https://web.archive.org/web/20191109134418/https://astat.provinz.bz.it/downloads/Jahrbuch_2018.pdf"
+      },
+      "creator": "ASTAT – Istituto provinciale di statistica",
+      "holder": "ASTAT, Provincia autonoma di Bolzano",
+      "rights": "Own extraction from the ASTAT yearbook. ASTAT publications may be reproduced with source citation; verify the current ASTAT terms.",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "table",
+        "target": "ASTAT_2018_Tab3.17_gruppi_linguistici_provincia_1880-2011.csv",
+        "columns": [
+          "census_year",
+          "italiani",
+          "tedeschi"
+        ]
+      }
+    },
+    {
+      "no": "4.03",
+      "title": "Elenco sovversivi e sospetti politici – Schedario – Div. I – Cat. A-8",
+      "type": "Table",
+      "date": "c. 1930",
+      "year": 1930,
+      "keywords": [
+        "tracing-people",
+        "archives",
+        "migration"
+      ],
+      "text": [
+        "A register of “subversives and political suspects” kept by the Bolzano police around 1930: 68 handwritten pages, with a legend on the cover that codes each person's politics, from anarchists to “irredentisti antitaliani” and “pangermanisti”. The columns record name, parents, birthplace, occupation, party and street address. Most entries appear to be Italian railway workers.",
+        "It is catalogued here as a document. No names are copied out, and the handwriting has only been sampled."
+      ],
+      "facts": [
+        "Questura di Bolzano register 'Elenco sovversivi e sospetti politici', Gabinetto, Div. I, Cat. A8, busta 493: 68 scanned pages, no OCR (manifest; notes 04, §5e, [VERIFIED-PORTAL]).",
+        "The cover carries a legend coding political colour: anarchists, socialists, republicans, communists, 'irredentisti antitaliani', 'pangermanisti' and others (notes 04, §5e, [VERIFIED-DOC], pages 1–5 viewed).",
+        "A Carabinieri letter of 20 January 1926 explains that information was requested 'ai paesi di nascita' (notes 04, §5e, [VERIFIED-DOC]).",
+        "Ledger columns: surname and name, father, mother, place and date of birth, domicile (pertinenza), occupation, party, residence by street and number (notes 04, §5e, [VERIFIED-DOC]).",
+        "Entries are largely Italian railway workers; the researcher's readings of the handwriting are uncertain (notes 04, §5e).",
+        "Antenati lists it among the Bolzano 'fonti online' as 'elenco dei sovversivi politici anni 1930 ca'; the tracing guide dates it 1920s–30s (notes 04, §5a, [VERIFIED-PORTAL]; §7).",
+        "A register of named political suspects: catalogued here as a whole; no individual's name is copied into this record (cataloguing rule).",
+        "State archive publication; check MiC reproduction rules before re-publishing (manifest)."
+      ],
+      "file": "ASBZ_Questura_busta493_elenco_sovversivi_politici_c1930.pdf",
+      "source": {
+        "label": "Archivio di Stato di Bolzano",
+        "url": "https://archiviodistatobolzano.cultura.gov.it/fileadmin/risorse/PDF/asbz_questbz_493_sovvpolit.pdf"
+      },
+      "creator": "Questura di Bolzano",
+      "holder": "Archivio di Stato di Bolzano",
+      "rights": "State archive publication; check MiC reproduction rules before re-publishing.",
+      "confidence": {
+        "level": "read",
+        "note": "Handwriting readings uncertain; 'c. 1930' is the archive's dating, and the register holds a 1926 letter."
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "4.04",
+      "title": "Norme aggiuntive al decreto legislativo 24 febbraio 1948, n. 114, recante provvidenze a favore della piccola proprietà contadina (Senato, disegno di legge n. 328)",
+      "type": "Law text",
+      "date": "26 March 1949",
+      "year": 1949,
+      "keywords": [
+        "option",
+        "colonization",
+        "law"
+      ],
+      "text": [
+        "A Senate bill of 1949 on small peasant property. Its report describes what the Ente Nazionale per le Tre Venezie still held ten years after the Option: in the Adige valley “52 unità rurali organiche, fra 12 ed i 20 ettari”, worth an estimated 200 million lire, and 112 smaller plots, let year by year to tenants “provenienti da diverse zone”.",
+        "The agency was meant to sell the optants' property quickly. War and its aftermath had made that difficult."
+      ],
+      "facts": [
+        "Senate bill no. 328 (1949), communicated to the Presidency on 26 March 1949; public parliamentary record (file; manifest).",
+        "Its articles extend tax relief to land sold to direct cultivators by the Ente Nazionale per le Tre Venezie, the colonization bodies, the bonifica consortia and other public bodies, to form small peasant property (file).",
+        "The report names the ENTV first: it administers the property of those who opted for German citizenship and was to sell it quickly, but war and post-war conditions made sales difficult (file).",
+        "The ENTV administered 'nella Val d'Adige 52 unità rurali organiche, fra 12 ed i 20 ettari … del presunto valore di 200 milioni di lire, nonchè 112 appezzamenti di circa 1 ettaro' (notes 04, §4, [VERIFIED-DOC, OCR text]).",
+        "The land was leased year by year to tenants 'provenienti da diverse zone' (notes 04, §4, [VERIFIED-DOC]).",
+        "It also lists 229 farm units in Valcanale (Udine) (file).",
+        "The manifest calls it a bill 'on ENTV optant property'; its title concerns small peasant property in general, with the ENTV as the first case (manifest; file).",
+        "Held twice: the copy in 03_internal_colonization_bridge gets no row of its own (catalogue brief)."
+      ],
+      "file": "Senato_1949_DDL_328_ENTV_beni_optanti.pdf",
+      "source": {
+        "label": "Senato della Repubblica",
+        "url": "https://www.parlamento.it/service/PDF/PDFServer/DF/353447.pdf"
+      },
+      "creator": "Senato della Repubblica",
+      "holder": "Senato della Repubblica",
+      "rights": "Public parliamentary record.",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "4.05",
+      "title": "Sprachgruppen in Südtirol 1910 und 1971 (Karten J 61 und J 62)",
+      "type": "Article",
+      "date": "early 1980s",
+      "year": 1981,
+      "keywords": [
+        "language",
+        "statistics"
+      ],
+      "text": [
+        "Adolf Leidlmair's commentary to two maps of the Tirol-Atlas, language groups in 1910 and in 1971. It states a basic limit of this research: the official counts up to 1951 “haben … die Frage nach der sprachlichen Zugehörigkeit ausgeklammert”. The counts made for the Option, by Italy in 1939 and by Germany in 1943, do not meet statistical standards.",
+        "Undated; written in the early 1980s."
+      ],
+      "facts": [
+        "Adolf Leidlmair's commentary to the Tirol-Atlas maps J 61 and J 62, language groups in South Tyrol in 1910 and 1971 (manifest; file).",
+        "'Alle späteren offiziellen Erhebungen bis zum Jahre 1951 haben … die Frage nach der sprachlichen Zugehörigkeit ausgeklammert' (notes 04, §2, [SECONDARY]).",
+        "The counts made for the Option and resettlement, by the Italian side in 1939 and the German side in 1943, do not meet official statistical norms and are no full substitute (file).",
+        "Undated: the text expects the final results of the 1981 census 'in zwei bis drei Jahren', so it was written in the early 1980s (file)."
+      ],
+      "file": "Leidlmair_TirolAtlas_Sprachgruppen_1910_1971_J61_J62.pdf",
+      "source": {
+        "label": "Tirol-Atlas, Universität Innsbruck",
+        "url": "https://tirolatlas.uibk.ac.at/analog/docs/j61_j62.pdf"
+      },
+      "creator": "Adolf Leidlmair",
+      "holder": "Tirol-Atlas, Universität Innsbruck",
+      "rights": "© Univ. Innsbruck / Tirol-Atlas.",
+      "confidence": {
+        "level": "secondary",
+        "note": "Date inferred from the text, not printed."
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "4.06",
+      "title": "Option – Heimat – Opzioni. Eine Geschichte Südtirols. Una storia dell'Alto Adige",
+      "type": "Article",
+      "date": "1990",
+      "year": 1990,
+      "keywords": [
+        "option"
+      ],
+      "text": [
+        "Hans Heiss on the exhibition “Option – Heimat – Opzioni”, shown in Bolzano from November 1989, fifty years after the Option. He gives “über 85 Prozent” of eligible South Tyroleans opting for Germany, and “rund 15.000 von 75.000” returning, the lowest of the estimates this research collected.",
+        "His date for the implementing rules, 26 October 1939, differs from the Tiroler Landesarchiv's 21 October."
+      ],
+      "facts": [
+        "Hans Heiss in ÖZG 1/1990 on the exhibition 'Option – Heimat – Opzioni'; open access journal (manifest).",
+        "The exhibition ran 17 November 1989 – 24 February 1990 in Bolzano, organised by the Tiroler Landesinstitut and the Tiroler Geschichtsverein (Sektion Bozen); curator Benedikt Erhard, catalogue 1989 (notes 04, §4, [SECONDARY]).",
+        "Gives 'Durchführungsbestimmungen vom 26. Oktober 1939', which conflicts with the 21 October 1939 of the Tiroler Landesarchiv (notes 04, §4, [SECONDARY]).",
+        "'Über 85 Prozent der zur Option zugelassenen Südtiroler' (notes 04, §4, [SECONDARY]).",
+        "Returns: 'rund 15.000 von 75.000', the lowest of the estimates collected (notes 04, §4, [SECONDARY])."
+      ],
+      "file": "Heiss_1990_OeZG_Option.pdf",
+      "source": {
+        "label": "Österreichische Zeitschrift für Geschichtswissenschaften (ÖZG) 1/1990",
+        "url": "https://journals.univie.ac.at/index.php/oezg/article/download/5441/5369/11321"
+      },
+      "creator": "Hans Heiss",
+      "holder": "Österreichische Zeitschrift für Geschichtswissenschaften (ÖZG)",
+      "rights": "Open access journal.",
+      "confidence": {
+        "level": "secondary"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "4.07",
+      "title": "La popolazione italiana nella Zona di Operazioni delle Prealpi (1943-45)",
+      "type": "Article",
+      "date": "1994",
+      "year": 1994,
+      "keywords": [
+        "migration"
+      ],
+      "text": [
+        "Carlo Romeo on the Italian population of the province in 1943–45. By region of origin, “al primo posto il Trentino, seguito dal Veneto e dalla Lombardia”. In the twenties and thirties most worked in services and public employment; “a partire dal 1935/36 soprattutto immigrazione operaia”.",
+        "The Trentino's first place reflects the civil servants of the early years. It does not contradict the Veneto's first place among the factory workers of 1937–40."
+      ],
+      "facts": [
+        "Carlo Romeo, Geschichte und Region / Storia e regione 3/1994, pp. 75–82, on the regional origins of the Italians (Trentino, Veneto, Lombardy) (manifest).",
+        "Italians in Alto Adige by 'provenienza regionale (al primo posto il Trentino, seguito dal Veneto e dalla Lombardia)' (notes 04, §2, [VERIFIED-DOC]).",
+        "Employed 'negli anni Venti e Trenta in prevalenza terziario e pubblico impiego; a partire dal 1935/36 soprattutto immigrazione operaia' (notes 04, §2, [VERIFIED-DOC]).",
+        "Romeo describes the whole interwar Italian population of the province, many of them Trentino civil servants, so 'Trentino first' does not contradict 'Veneto first' for the 1937–40 worker wave (notes 04, §2, [INFERENCE])."
+      ],
+      "file": "GRSR_1994_Romeo_popolazione_italiana_ZOP.pdf",
+      "source": {
+        "label": "Geschichte und Region / Storia e regione 3/1994",
+        "url": "https://geschichteundregion.eu/attachment/get/up_154_16232251572713.pdf"
+      },
+      "creator": "Carlo Romeo",
+      "holder": "Geschichte und Region / Storia e regione",
+      "rights": "Open access journal archive. © authors.",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "4.08",
+      "title": "Appunti per una storia urbanistica delle Semirurali",
+      "type": "Article",
+      "date": "2004",
+      "year": 2004,
+      "keywords": [
+        "semirurali",
+        "zona-industriale",
+        "migration"
+      ],
+      "text": [
+        "Carlo Azzolini's notes towards a planning history of the Semirurali, which he calls “uno dei simboli più forti dell'italianizzazione”. The industrial area covered about 300 hectares, and the first plots went in 1935 to Lancia, the steelworks, Montecatini, Masonite and Magnesio.",
+        "The housing institute's whole programme of 1935–42 came to 2,300 dwellings, enough for “l'immigrazione a Bolzano di circa 10.000 persone”. His counts for the Semirurali differ from the Comune's."
+      ],
+      "facts": [
+        "Chapter by Carlo Azzolini in Semirurali e dintorni (Bolzano, 2004), saved from a Wayback copy (manifest).",
+        "Opens: the Semirurali were 'uno dei simboli più forti dell'italianizzazione' in Alto Adige (file).",
+        "The industrial area was 'circa 300 ettari'; 'già nel 1935 vengono assegnati i primi lotti alla Lancia, alle Acciaierie, alla Montecatini, alla Masonite, alla Magnesio' (notes 04, §1, [VERIFIED-DOC]).",
+        "First lot '340 alloggi … inaugurato l'8 ottobre del 1939'; in 1957 'circa 5.000 persone in 1.100 alloggi'; the whole IFACP programme 1935–42 had '2.300 alloggi', allowing 'l'immigrazione a Bolzano di circa 10.000 persone' (notes 04, §3, [VERIFIED-DOC]).",
+        "1910 Bolzano: '1.300 italiani contro 29.000 tedeschi', one of three disagreeing figures for that year (notes 04, §2, [VERIFIED-DOC]).",
+        "His counts differ from the Comune's 2015 synthesis of 327 houses and 1,151 dwellings (notes 04, §3)."
+      ],
+      "file": "Semirurali_e_dintorni_2004_Azzolini_cap_wayback.pdf",
+      "source": {
+        "label": "Comune di Bolzano (Wayback copy)",
+        "url": "https://web.archive.org/web/20071008090923id_/http://www.comune.bolzano.it/UploadDocs/2729_Azzolini_ita.pdf"
+      },
+      "creator": "Carlo Azzolini",
+      "holder": "Comune di Bolzano",
+      "rights": "© Comune di Bolzano / author.",
+      "confidence": {
+        "level": "read"
+      },
+      "place": "semirurali",
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "4.09",
+      "title": "Bolzano. Percorso nell'industrializzazione",
+      "type": "Booklet",
+      "date": "September 2004",
+      "year": 2004,
+      "keywords": [
+        "zona-industriale",
+        "semirurali",
+        "guidebooks"
+      ],
+      "text": [
+        "A municipal leaflet of 2004: an industrial-history route by bicycle through the zone. The Montecatini aluminium works “entrò in funzione il 29 aprile 1937” and employed 1,700 by 1943. The steelworks was “fondata nel 1935 dal gruppo Falk”.",
+        "The Semirurali are given as 328 small houses on 20 hectares, “denominato ‘Dux’”. The leaflet dates their start to 1937, a year earlier than the other sources."
+      ],
+      "facts": [
+        "Comune / Archivio Storico leaflet, printed September 2004: an industrial-history route by bicycle, with firms, dates and the Rione Dux (manifest; file).",
+        "Montecatini aluminium (INA) 'entrò in funzione il 29 aprile 1937'; 'Appena avviata la fabbrica dava lavoro a più di 900 operai che arrivarono a 1700 nel 1943' (notes 04, §1, [VERIFIED-DOC]).",
+        "Acciaierie: 'Industria siderurgica fondata nel 1935 dal gruppo Falk', special steels from 1938 (notes 04, §1, [VERIFIED-DOC]).",
+        "Semirurali: '20 ettari con 328 casette e oltre 1147 alloggi, fu denominato ‘Dux’' (notes 04, §3, [VERIFIED-DOC]).",
+        "Dates the start of the Semirurali to 1937, where the 2015 booklet, Giacomozzi and Di Michele give 1938 (notes 04, §3).",
+        "Its 'more than 900' INA workers at start-up conflict with NOI's '100 workers' for 1937 (notes 04, §1)."
+      ],
+      "file": "ComuneBZ_2004_Bolzano_Percorso_nell_industrializzazione.pdf",
+      "source": {
+        "label": "bassorilievomonumentale-bolzano.com",
+        "url": "https://www.bassorilievomonumentale-bolzano.com/fileadmin/user_upload/pdfs/Gedenkorte/Bolzano.Percorso_nell_industrializzazione.pdf"
+      },
+      "creator": "Archivio Storico della Città di Bolzano",
+      "holder": "Comune di Bolzano",
+      "rights": "© Comune di Bolzano.",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "4.10",
+      "title": "Immagini delle Semirurali dal fondo fotografico ATER di Venezia",
+      "type": "Article",
+      "date": "2004",
+      "year": 2004,
+      "keywords": [
+        "semirurali",
+        "archives",
+        "migration"
+      ],
+      "text": [
+        "Carla Giacomozzi on the photographs of the Venice housing authority, which the Comune received in 2002: an album titled “Istituto Fascista Autonomo per le Case Popolari della Provincia di Bolzano 1935–1943” with 280 photographs, and 38 loose prints. She names the streets of the four lots built between 1938 and 1940, all after Italian cities.",
+        "The housing institute was set up in 1934 “allo scopo di costruire in Alto Adige gli alloggi per i lavoratori dell'industria provenienti da altre province italiane”."
+      ],
+      "facts": [
+        "Carla Giacomozzi's chapter in Semirurali e dintorni (2004) on the ATER Venezia / IFACP photo fund, Wayback copy (manifest).",
+        "'i quattro lotti di ‘case semirurali’, costruiti fra il 1938 ed il 1940', in vie Palermo, Milano, Cagliari, Brescia, Genova, Vercelli, Belluno, Mantova, Alessandria and Udine (notes 04, §3, [VERIFIED-DOC]).",
+        "'Nel 1934 anche a Bolzano fu costituito uno IFACP allo scopo di costruire in Alto Adige gli alloggi per i lavoratori dell'industria provenienti da altre province italiane' (notes 04, §3, [VERIFIED-DOC]).",
+        "The Comune received the fund in 2002: an album titled 'Istituto Fascista Autonomo per le Case Popolari della Provincia di Bolzano 1935–1943' with 280 photographs, and 38 loose photos; now at the Archivio Storico (notes 04, §3, [VERIFIED-DOC]).",
+        "The IFACP of Venezia built flats in Bolzano from 1928 in S. Quirino, opening a new street named viale Venezia (file)."
+      ],
+      "file": "Semirurali_e_dintorni_2004_Giacomozzi_fondo_ATER_wayback.pdf",
+      "source": {
+        "label": "Comune di Bolzano (Wayback copy)",
+        "url": "https://web.archive.org/web/20071008090923id_/http://www.comune.bolzano.it/UploadDocs/2746_Giacomozzi2_ita.pdf"
+      },
+      "creator": "Carla Giacomozzi",
+      "holder": "Comune di Bolzano",
+      "rights": "© Comune di Bolzano / author.",
+      "confidence": {
+        "level": "read"
+      },
+      "place": "semirurali",
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "4.11",
+      "title": "La fabbrica dell'identità. Il fascismo e gli italiani dell'Alto Adige tra uso pubblico della storia, memoria e autorappresentazione",
+      "type": "Article",
+      "date": "2004",
+      "year": 2004,
+      "keywords": [
+        "semirurali",
+        "zona-industriale",
+        "heritage"
+      ],
+      "text": [
+        "Andrea Di Michele on how the Italians of Alto Adige remember Fascism. Accounts of the Semirurali and of the factory workers are mostly “improntata alla nostalgia e all'idealizzazione”.",
+        "An honest analysis, he writes, “non può non sottolineare gli aspetti legati alla volontà fascista di controllo sociale di masse ghettizzate, votate esclusivamente al lavoro di fabbrica”, nor the regime's final aim, “l'italianizzazione della città”."
+      ],
+      "facts": [
+        "Andrea Di Michele in Geschichte und Region / Storia e regione 13 (2004); open access (manifest).",
+        "The Semirurali 'sorto ai margini della zona industriale a partire dal 1938' (file, p. 86).",
+        "Accounts of the Semirurali and the industrial-zone workers are mostly 'improntata alla nostalgia e all'idealizzazione' (file).",
+        "An analysis without ulterior motives 'non può non sottolineare gli aspetti legati alla volontà fascista di controllo sociale di masse ghettizzate, votate esclusivamente al lavoro di fabbrica', nor the regime's final aim, 'l'italianizzazione della città' (file).",
+        "One of the sources giving 1938 for the start of the Semirurali, against 1937 in Comune 2004 and Mezzalira (notes 04, §3)."
+      ],
+      "file": "GRSR_2004_DiMichele_La_fabbrica_dell_identita.pdf",
+      "source": {
+        "label": "Geschichte und Region / Storia e regione 13 (2004)",
+        "url": "https://storiaeregione.eu/attachment/get/up_126_16520955686792.pdf"
+      },
+      "creator": "Andrea Di Michele",
+      "holder": "Geschichte und Region / Storia e regione",
+      "rights": "Open access.",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "4.12",
+      "title": "Giorgio Mezzalira, review of Semirurali e dintorni (Bolzano 2004)",
+      "type": "Article",
+      "date": "2005",
+      "year": 2005,
+      "keywords": [
+        "semirurali",
+        "migration",
+        "heritage"
+      ],
+      "text": [
+        "Giorgio Mezzalira's review of the 2004 volume on the Semirurali. The quarter was built “per ospitare famiglie operaie provenienti prevalentemente dal Veneto”, on the regime's model of the “piccola città giardino”, also used at Marghera and in the reclamation towns.",
+        "In March 1986 the building site that replaced it uncovered the first remains of S. Maria in Augia, founded in the 1160s."
+      ],
+      "facts": [
+        "Review in Geschichte und Region / Storia e regione 14 (2005) 2, pp. 203–207, of Semirurali e dintorni, ed. Gruppo di lavoro 'Per un Museo nelle Semirurali', Bolzano 2004, 238 pp.; open access (manifest; notes 04, §3).",
+        "The quarter was built 'per ospitare famiglie operaie provenienti prevalentemente dal Veneto' (notes 04, §2, [VERIFIED-DOC]).",
+        "Quotes the regime's 'piccola città giardino', a model also used in Marghera, Tresigallo and other centres of the bonifica integrale (notes 04, §3, [VERIFIED-DOC]; file).",
+        "Speaks of a 'profonda ristrutturazione' in the 1970s, where the Comune dates demolition from the 1980s (notes 04, §3, [VERIFIED-DOC]).",
+        "In March 1986 the Semirurali building site uncovered the first remains of S. Maria in Augia (notes 04, §3, [VERIFIED-DOC]).",
+        "Names the volume's contributors, among them Albertoni, von Hartungen, Delle Donne, Azzolini, Petri, Giacomozzi, Verdorfer and Marcelli (notes 04, §3, [VERIFIED-DOC])."
+      ],
+      "file": "GRSR_2005_Mezzalira_recensione_Semirurali_e_dintorni.pdf",
+      "source": {
+        "label": "Geschichte und Region / Storia e regione 14 (2005) 2",
+        "url": "https://geschichteundregion.eu/attachment/get/up_280_14691027890002.pdf"
+      },
+      "creator": "Giorgio Mezzalira",
+      "holder": "Geschichte und Region / Storia e regione",
+      "rights": "Open access.",
+      "confidence": {
+        "level": "read"
+      },
+      "place": "semirurali",
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "4.13",
+      "title": "Uomini, donne e bambini nel Lager di Bolzano",
+      "type": "Book",
+      "date": "2005",
+      "year": 2005,
+      "keywords": [
+        "lager",
+        "tracing-people",
+        "zona-industriale",
+        "semirurali"
+      ],
+      "text": [
+        "Dario Venegoni's register of the prisoners of the Bolzano Lager, second edition: 7,982 names, each with birthplace, occupation, arrest, number, block, transport and fate.",
+        "It ties the camp to the rest of this research. Forced labourers worked in the industrial zone, at Magnesio, Lancia and Feltrinelli. People living in the Semirurali “riuscirono più volte a dare sostegno e aiuto ai prigionieri”, smuggling in food and letters. And among the dead are Lancia workers arrested in Bolzano in December 1944."
+      ],
+      "facts": [
+        "Dario Venegoni, 2nd edition 2005, 414 pp., 7,982 name entries; freely posted by ANED/deportati.it (manifest).",
+        "'così 7.982 nomi, 173 in più rispetto alla prima edizione'; the first edition of June 2004 had 7,809 (notes 04, §6, [VERIFIED-DOC]; file).",
+        "Entries give birthplace, date, occupation, arrest, matricola, block, transport and fate (notes 04, §6).",
+        "Barbara Pfeifer (transl. Andrea Felis), pp. 398ff.: forced labourers worked in the industrial zone 'presso la ‘Magnesio AG’, la ‘Lancia’ e la ‘Feltrinelli’' and in the Virgolo tunnel IMI ball-bearing plant (notes 04, §6, [VERIFIED-DOC]).",
+        "Civilians living in the Semirurali 'riuscirono più volte a dare sostegno e aiuto ai prigionieri', smuggling in food and letters (notes 04, §6, [VERIFIED-DOC]).",
+        "Entries for Lancia workers arrested in Bolzano in December 1944 and dead at Gusen in 1945 link the Lager to the industrial-zone migrants (notes 04, §6, [VERIFIED-DOC]).",
+        "Filtering 'Arrestato a Bolzano' plus a Veneto birthplace would give a reproducible list of industrial-zone immigrants caught in the 1944 repression (notes 04, §6, [INFERENCE]).",
+        "A list of named deportees: catalogued here as a whole; no individual's name is copied into this record (cataloguing rule)."
+      ],
+      "file": "Venegoni_Uomini_donne_bambini_Lager_Bolzano_2a_ed_2005_deportati_it.pdf",
+      "source": {
+        "label": "deportati.it (ANED)",
+        "url": "https://deportati.it/static/pdf/libri/venegoni_sec.pdf"
+      },
+      "creator": "Dario Venegoni",
+      "holder": "Mimesis / Fondazione Memoria della Deportazione; posted by ANED",
+      "rights": "Freely posted by ANED/deportati.it. © author / Mimesis / Fondazione Memoria della Deportazione.",
+      "confidence": {
+        "level": "read"
+      },
+      "place": "lager",
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "4.14",
+      "title": "Il Lager di Bolzano / NS-Lager Bozen. Immagini e documenti del Lager nazista di Bolzano (1944–1945)",
+      "type": "Booklet",
+      "date": "c. 2006",
+      "year": 2006,
+      "keywords": [
+        "lager",
+        "archives"
+      ],
+      "text": [
+        "A municipal booklet of images and documents from the Nazi camp of Bolzano, 1944–45, in Italian and German. It comes out of the Comune's project “Storia e Memoria: il Lager di Bolzano”, which since 1995 has collected original documents and filmed testimonies. Undated; about 2006."
+      ],
+      "facts": [
+        "'Immagini e documenti del Lager nazista di Bolzano (1944-1945)', 34 pp., image-only, Italian and German (manifest; file).",
+        "Issued by the Città di Bolzano, Assessorato alla Cultura ed allo Spettacolo, Ufficio Beni Culturali, with the Archivio Storico (file, cover and last page).",
+        "Its closing bibliography points to www.testimonianzedailager.rai.it, made with the Archivio Storico (file, p. 33).",
+        "The Comune's project 'Storia e Memoria: il Lager di Bolzano', begun in 1995, collects donated original documents and video testimonies (notes 04, §6, [VERIFIED-PORTAL]).",
+        "Undated: the bibliography cites works up to 2003 and the PDF was made in March 2006 (file)."
+      ],
+      "file": "ComuneBZ_Il_Lager_di_Bolzano_scheda.pdf",
+      "source": {
+        "label": "Comune di Bolzano",
+        "url": "https://www.comune.bolzano.bz.it/ocmultibinary/download/21118/1152923/27/59a26dd4a97f729c3fe36b51d3d81168.pdf/file/794240ef22dbded1f6afa7ad86448bc6.pdf"
+      },
+      "creator": "Città di Bolzano, Archivio Storico",
+      "holder": "Comune di Bolzano",
+      "rights": "CC BY 4.0.",
+      "confidence": {
+        "level": "read",
+        "note": "Date not printed; inferred from the bibliography and the file."
+      },
+      "place": "lager",
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "4.15",
+      "title": "Die Option der Südtiroler",
+      "type": "Booklet",
+      "date": "c. 2010",
+      "year": 2010,
+      "keywords": [
+        "option"
+      ],
+      "text": [
+        "Teaching material on the Option by Franz Melichar, with source extracts and classroom tasks. Used here for one number among several: about 25,000 people returned after 1948, following the historian Rolf Steininger. The other estimates collected run from about 9,000 legal re-options to 25,000."
+      ],
+      "facts": [
+        "Teaching material by Franz G. Melichar for erinnern.at, 27 pp., with source extracts and group-work tasks, using Steininger's figures (manifest; file).",
+        "Steininger via Melichar: about 25,000 returned after 1948 (notes 04, §4, [SECONDARY]).",
+        "Other return estimates collected: Heiss about 15,000 of 75,000; Lechner 20,000–25,000; Tiroler Landesarchiv about 9,000 legal re-options 1949–1955 (notes 04, §4).",
+        "Undated: the pages carry a typesetting stamp of 5 March 2010 (file)."
+      ],
+      "file": "Melichar_erinnern_at_Die_Option_der_Suedtiroler.pdf",
+      "source": {
+        "label": "erinnern.at",
+        "url": "https://www.erinnern.at/media/cf375d9181f792d33461120985b39ef9/4_-franz-g-melichar-die-option-der-sa1-4dtiroler/@@download/file/4_%20Franz%20G.%20Melichar,%20Die%20Option%20der%20S%C3%BCdtiroler.pdf"
+      },
+      "creator": "Franz G. Melichar",
+      "holder": "erinnern.at",
+      "rights": "© erinnern.at.",
+      "confidence": {
+        "level": "secondary",
+        "note": "Date from the file, not printed as such."
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "4.16",
+      "title": "Documentazione riguardante gli Internati Militari Italiani (I.M.I.), conservata nel fondo Commissariato del Governo per la provincia di Bolzano (ex Prefettura)",
+      "type": "Archive guide",
+      "date": "after 2012",
+      "year": 2012,
+      "keywords": [
+        "archives",
+        "tracing-people"
+      ],
+      "text": [
+        "A guide to the papers on Italian military internees held at the Archivio di Stato di Bolzano, from the offices that assisted returnees after 1945. The archive has put lists online by initial letter and warns that the material is “incompleta, disomogenea, non inventariata”.",
+        "In the tracing guide this is the place to look when a son of the family was a soldier interned after 8 September 1943."
+      ],
+      "facts": [
+        "Guide to the IMI / CAR documentation at the Archivio di Stato di Bolzano, 16 pp., watermarked (manifest).",
+        "The IMI papers belong to two sub-fonds of the Commissariato del Governo: Centro assistenza rimpatriati (C.A.R. 1945–1947) and Ufficio provinciale assistenza post-bellica (1945–1954); deposited from 1990 and never reordered (file).",
+        "Reproduces the 2006 analytical list by Armida Zaccaria and an extract of the Guida alle fonti per lo studio degli IMI by Paolo Formiconi and Daniela Martino, published 2012 (file).",
+        "The archive has posted OCR'd PDFs by initial letter: 'Elenchi internati con relativa sorte', 'Ricerche di persone … per corrispondenza', clinical files of the Bolzano civil hospital, lists of IMI who died at Flossenbürg, Zeithain, Luckenwalde and Langwasser (notes 04, §5e, [VERIFIED-PORTAL]).",
+        "The archive warns that the material is 'incompleta, disomogenea, non inventariata' (notes 04, §5e, [VERIFIED-PORTAL]).",
+        "Tracing guide, step 3: use the IMI/CAR lists if a son was a soldier interned after 8 September 1943 (notes 04, §7, [VERIFIED-PORTAL]).",
+        "Undated; it cites the 2012 guide (file)."
+      ],
+      "file": "ASBZ_IMI_CAR_guida.pdf",
+      "source": {
+        "label": "Archivio di Stato di Bolzano",
+        "url": "https://archiviodistatobolzano.cultura.gov.it/fileadmin/risorse/PDF/IMI-CAR/IMI_Revisione_CAR_WM.pdf"
+      },
+      "creator": "Archivio di Stato di Bolzano",
+      "holder": "Archivio di Stato di Bolzano",
+      "rights": "State archive publication; check MiC reproduction rules before re-publishing.",
+      "confidence": {
+        "level": "read",
+        "note": "Date not printed; after 2012."
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "4.17",
+      "title": "Economic History. Südtirols Wirtschaftsgeschichte unter der Lupe",
+      "type": "Booklet",
+      "date": "2014",
+      "year": 2014,
+      "keywords": [
+        "zona-industriale",
+        "migration"
+      ],
+      "text": [
+        "School material from the Chamber of Commerce on the economic history of South Tyrol. It says the industrial zone “brachte … kaum neue Perspektiven für die deutschsprachige Bevölkerung”, because firms preferred workers from other regions, and counts more than 6,500 employed there in 1942.",
+        "Its figure for the state grant, 800 lire per person at first, has no reference and is unconfirmed."
+      ],
+      "facts": [
+        "Chamber of Commerce school material, 2014, 23 pp., with no references (manifest; notes 04, §1).",
+        "The per-head grant was 'anfangs bei 800 Lire pro Person … etwa eineinhalb Monatsgehältern'; unreferenced, so the figure is unconfirmed (notes 04, §1, [VERIFIED-DOC]).",
+        "The industrial zone 'brachte … kaum neue Perspektiven für die deutschsprachige Bevölkerung', because firms preferred workers from other regions (notes 04, §1, [VERIFIED-DOC]).",
+        "1942: 'mehr als 6’500 Beschäftigte' (notes 04, §1, [VERIFIED-DOC])."
+      ],
+      "file": "Handelskammer_BZ_2014_Economic_History_DE.pdf",
+      "source": {
+        "label": "Handelskammer Bozen",
+        "url": "https://www.handelskammer.bz.it/sites/default/files/uploaded_files/Scuola_economia/20181_materiale_didattico2014_ECONOMIC_HISTORY_de.pdf"
+      },
+      "creator": "Handelskammer Bozen",
+      "holder": "Handelskammer Bozen",
+      "rights": "© Handelskammer Bozen.",
+      "confidence": {
+        "level": "read",
+        "note": "School material without references; the 800-lire figure is unconfirmed."
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "4.18",
+      "title": "La “conquista del suolo”. Politiche d'insediamento nazionale in Alto Adige tra fascismo e Repubblica",
+      "type": "Article",
+      "date": "c. 2014",
+      "year": 2014,
+      "keywords": [
+        "colonization",
+        "option"
+      ],
+      "text": [
+        "One page describing Andrea Di Michele's research project on land policy in Alto Adige from Fascism to the Republic. Within two years of 1939 the Ente nazionale per le Tre Venezie held “masi e terreni agricoli, ma anche case, appartamenti, alberghi, esercizi commerciali e studi professionali”, and it lasted until the 1970s.",
+        "He leaves open a question this research also asks: whether there were coherent plans to bring settlers from particular regions."
+      ],
+      "facts": [
+        "One-page research project by Andrea Di Michele on the ERA/ENTV and land policy in Alto Adige from fascism to the Republic (manifest; file).",
+        "'l'Ente Rinascita Agraria (ERA) fondato nel 1921'; L. 27 novembre 1939 n. 1780 renamed it Ente nazionale per le Tre Venezie and gave it the task 'di prendere in consegna i beni immobili degli optanti per poi rivenderli' (notes 04, §4, [VERIFIED-DOC]).",
+        "Within two years the ENTV held 'masi e terreni agricoli, ma anche case, appartamenti, alberghi, esercizi commerciali e studi professionali', and it lasted until the 1970s (notes 04, §4, [VERIFIED-DOC]).",
+        "His open question: 'Interessante sarà verificare se vennero approntati coerenti piani di trasferimento, individuando determinate aree geografiche di provenienza dei coloni' (notes 04, §4, [VERIFIED-DOC]).",
+        "ENTV totals and settler origins were not found; Di Michele's Terra italiana (Laterza 2023) is the likely place (notes 04, §4, Gaps).",
+        "Undated: the PDF was made in January 2014 (file).",
+        "Held twice: the copy in 03_internal_colonization_bridge gets no row of its own (catalogue brief)."
+      ],
+      "file": "DiMichele_unibz_Conquista_del_suolo_progetto.pdf",
+      "source": {
+        "label": "unibz",
+        "url": "https://www.unibz.it/assets/Documents/Competence-Centres/unibz-storiaregionale-DiMichele-Conquista-del-suolo.pdf"
+      },
+      "creator": "Andrea Di Michele",
+      "holder": "Libera Università di Bolzano (unibz)",
+      "rights": "© unibz.",
+      "confidence": {
+        "level": "read",
+        "note": "Date from the file's metadata, not printed."
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "4.19",
+      "title": "CGIL-AGB, history of the union in Alto Adige / Südtirol, from the post-war reconstruction to the 2000s",
+      "type": "Book",
+      "date": "c. 2015",
+      "year": 2015,
+      "keywords": [
+        "zona-industriale",
+        "migration"
+      ],
+      "text": [
+        "A history of the CGIL trade union in Alto Adige from the post-war years to the 2000s. It quotes figures for the Lancia workforce: “da 400 nel 1936 a 600 nel 1940, a 2.000 nel 1942”. In the forties and fifties the union's members were almost all Italian speakers. The file has no title page and no date."
+      ],
+      "facts": [
+        "Union history of the CGIL-AGB, 87 pp., six chapters from 'La ricostruzione' to 'Gli anni Novanta e le sfide del Duemila', with a name index (manifest; file).",
+        "Quotes Rolf Steininger (Alto Adige/Sudtirolo 1918–1999, 1999, p. 40) on Lancia staff: 'da 400 nel 1936 a 600 nel 1940, a 2.000 nel 1942 ed infine a 6.000', the last figure undated (notes 04, §1, [VERIFIED-DOC]; file).",
+        "In the 1940s and 1950s the union's members were almost all Italian speakers (file).",
+        "No title page and no printed date: the PDF was made in January 2015 and the narrative reaches 2011 (file)."
+      ],
+      "file": "CGIL-AGB_storia_sindacato_Alto_Adige.pdf",
+      "source": {
+        "label": "CGIL-AGB",
+        "url": "https://www.cgil-agb.it/images/news/pdf/STORIA_CGIL-AGB_SITO.pdf"
+      },
+      "creator": "CGIL-AGB",
+      "holder": "CGIL-AGB",
+      "rights": "© CGIL-AGB.",
+      "confidence": {
+        "level": "read",
+        "note": "Title and date not printed; both described from the file."
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "4.20",
+      "title": "Semirurali – Percorso espositivo / Semirurali – Ausstellungsparcours",
+      "type": "Booklet",
+      "date": "2015",
+      "year": 2015,
+      "keywords": [
+        "semirurali",
+        "migration",
+        "heritage",
+        "option"
+      ],
+      "text": [
+        "The booklet of the exhibition in one of the few surviving Semirurali houses. Building of the Rione Dux began in spring 1938. The final count was 327 houses and 1,151 dwellings for about 5,500 people, who came “in larga parte dalle campagne venete”. Each dwelling of 40 to 60 square metres had a vegetable plot, “secondo l'ideologia ruralista del fascismo”.",
+        "It carries the testimonies of eighteen residents, among them a family of returning optants housed there in 1949."
+      ],
+      "facts": [
+        "Casa Semirurale exhibition booklet, Italian and German, 23 pp.: 327 houses, 1,151 dwellings, about 5,500 inhabitants; lists the narrators (manifest).",
+        "'La costruzione del Rione Dux, progettato dall'Istituto Fascista Autonomo Case Popolari, ha inizio nella primavera del 1938 … di 92 edifici per 342 alloggi, inaugurato l'8 ottobre dell'anno successivo' (notes 04, §3, [VERIFIED-DOC]).",
+        "Dwellings of '40-60m2 e 74m2 per le famiglie numerose', each with a vegetable plot, 'secondo l'ideologia ruralista del fascismo'; propaganda likened them to 'la piccola casa di Predappio' (notes 04, §3, [VERIFIED-DOC]).",
+        "Families came 'in larga parte dalle campagne venete' (notes 04, §2, [VERIFIED-DOC]).",
+        "Testimonies by 18 named narrators, among them a family of Rückoptanten from Graz housed in via Bari in October 1949 (notes 04, §3, [VERIFIED-DOC]).",
+        "'La zona industriale di Bolzano nacque ufficialmente con il regio decreto nr. 1621 del 28 settembre 1934' (notes 04, §1, [VERIFIED-DOC]).",
+        "Gives 'circa 11.000' people deported to the Lager on 13 transports, which conflicts with 'circa 9.500' from the Fondazione Memoria della Deportazione (notes 04, §6, [VERIFIED-DOC]).",
+        "CC BY 4.0 per the Comune page (manifest)."
+      ],
+      "file": "ComuneBZ_Booklet_Semirurali_percorso_espositivo_2015.pdf",
+      "source": {
+        "label": "Comune di Bolzano",
+        "url": "https://dev.comune.bolzano.it/content/download/22494/1276894/file/BOOKLET_SEMIRURALI-2015-it.pdf"
+      },
+      "creator": "Comune di Bolzano, Assessorato alla Cultura e alla Convivenza",
+      "holder": "Comune di Bolzano",
+      "rights": "CC BY 4.0 per the Comune page.",
+      "confidence": {
+        "level": "read"
+      },
+      "place": "semirurali",
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "4.21",
+      "title": "Episodio di Bolzano, 3-05-1945",
+      "type": "Article",
+      "date": "c. 2016",
+      "year": 2016,
+      "keywords": [
+        "zona-industriale",
+        "tracing-people",
+        "migration"
+      ],
+      "text": [
+        "The entry of the Atlas of Nazi and Fascist massacres for the killings in Bolzano on 3 May 1945: 41 dead, 17 civilians and 24 partisans. A plaque marks the wall of the Lancia factory, “che aveva visto cadere oltre 20 persone”.",
+        "The registry gives each victim's place of origin. Fifteen came from the Veneto, six from the Trentino, four from South Tyrol. The sample matches the ranking of origins found elsewhere in this research."
+      ],
+      "facts": [
+        "Scheda of the Atlante delle stragi naziste e fasciste in Italia on the killings in Bolzano on 3 May 1945; author Lorenzo Gardumi (manifest; file).",
+        "41 dead, 17 civilians and 24 partisans, listed with origin, parents, age, occupation and spouse, from the Ufficio anagrafe of Bolzano (notes 04, §6, [VERIFIED-DOC]).",
+        "Origins, the researcher's count: Veneto 15 (Padova 5, Verona 5, Rovigo 3, Vicenza 1, Venezia 1), Trentino 6, South Tyrol 4, ten others from elsewhere in Italy, one each (notes 04, §2, [VERIFIED-DOC]).",
+        "A plaque was placed on the Lancia wall, 'che aveva visto cadere oltre 20 persone' (notes 04, §6, [VERIFIED-DOC]).",
+        "The sample, Padova, Verona and Rovigo first, then Trentino, matches Gallo's ranking of origins (notes 04, §2, [INFERENCE]).",
+        "Lists named victims: catalogued here as a whole; no individual's name is copied into this record (cataloguing rule).",
+        "Undated: the PDF was made in January 2016 (file)."
+      ],
+      "file": "Atlante_stragi_scheda_Bolzano_3-05-1945.pdf",
+      "source": {
+        "label": "Atlante delle stragi naziste e fasciste in Italia",
+        "url": "https://www.straginazifasciste.it/wp-content/uploads/schede/Bolzano,%203-05-1945.pdf"
+      },
+      "creator": "Lorenzo Gardumi",
+      "holder": "Atlante delle stragi naziste e fasciste in Italia (INSMLI–ANPI)",
+      "rights": "© INSMLI-ANPI project.",
+      "confidence": {
+        "level": "read",
+        "note": "Date from the file's metadata, not printed."
+      },
+      "place": "zona-industriale",
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "4.22",
+      "title": "Statistisches Jahrbuch für Südtirol 2018 / Annuario statistico della Provincia di Bolzano 2018",
+      "type": "Book",
+      "date": "2018",
+      "year": 2018,
+      "keywords": [
+        "statistics",
+        "language"
+      ],
+      "text": [
+        "The provincial statistical yearbook for 2018, 544 pages, saved from a web archive because the original address is gone. Two of its tables are extracted in this library: population by town (row 4.01) and by language group (row 4.02)."
+      ],
+      "facts": [
+        "ASTAT yearbook 2018, 544 pp., saved from a Wayback copy; the original URL now returns 404 (manifest; file).",
+        "Tables used: 3.2, population of the province and its largest towns, and 3.17, resident population by language group at the censuses 1880–2011; both extracted to CSV in this folder (manifest; file).",
+        "Footnote (a) to table 3.2: up to 1910 'popolazione presente', from 1921 'popolazione residente' (notes 04, §2, [VERIFIED-DOC]).",
+        "No ASTAT XLS or CSV of the historical tables was found; the ASTAT site is now JavaScript-rendered and the old /downloads/ URLs return 404 (notes 04, §2, Gaps).",
+        "ASTAT publications may be reproduced with source citation; verify the current ASTAT terms (manifest)."
+      ],
+      "file": "ASTAT_Statistisches_Jahrbuch_Annuario_2018_wayback.pdf",
+      "source": {
+        "label": "ASTAT (Wayback copy)",
+        "url": "https://web.archive.org/web/20191109134418/https://astat.provinz.bz.it/downloads/Jahrbuch_2018.pdf"
+      },
+      "creator": "ASTAT – Landesinstitut für Statistik / Istituto provinciale di statistica",
+      "holder": "ASTAT, Provincia autonoma di Bolzano",
+      "rights": "ASTAT publications may be reproduced with source citation; verify the current ASTAT terms.",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "4.23",
+      "title": "Lo Stato civile in Polesine",
+      "type": "Archive guide",
+      "date": "c. 2019",
+      "year": 2019,
+      "keywords": [
+        "tracing-people",
+        "archives",
+        "migration"
+      ],
+      "text": [
+        "A two-page guide from the Archivio di Stato di Rovigo on where the birth, marriage and death records of the Polesine are kept, period by period. It is the key to the last step of tracing a family that came from there to the Semirurali: the online copies run “in generale al solo periodo compreso tra il 1 settembre 1871 al 1937”, and for missing years one writes to the comune of birth."
+      ],
+      "facts": [
+        "Archivio di Stato di Rovigo guide, 2 pp.: where the Polesine's civil-status acts of each period are held (manifest; file).",
+        "FamilySearch reproduces the Tribunale copies 'in generale al solo periodo compreso tra il 1 settembre 1871 al 1937' (collection 1482864) (notes 04, §5b, [VERIFIED-DOC]).",
+        "1816 to 31 August 1871: parish registers and the Archivio della Diocesi di Adria-Rovigo; 1806–1815: Napoleonic stato civile, free on Antenati (notes 04, §7, [VERIFIED-DOC]).",
+        "For missing years, write to the Comune of birth, which keeps the other copy (notes 04, §7, [VERIFIED-DOC]).",
+        "The key source for step 6 of the guide to tracing a Polesine family that came to the Semirurali (notes 04, §7).",
+        "Undated: the PDF was made in December 2019 (file)."
+      ],
+      "file": "ASRovigo_Note_ricerca_genealogica.pdf",
+      "source": {
+        "label": "Archivio di Stato di Rovigo",
+        "url": "https://archiviodistatorovigo.cultura.gov.it/fileadmin/risorse/Moduli_e_risorse/Risorse/00_NoteRicercaGenealogica.pdf"
+      },
+      "creator": "Archivio di Stato di Rovigo",
+      "holder": "Archivio di Stato di Rovigo",
+      "rights": "© MiC.",
+      "confidence": {
+        "level": "read",
+        "note": "Date from the file's metadata, not printed."
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "4.24",
+      "title": "Racconti di vita da una terra di confine. Valorizzazione dell'Archivio orale della Biblioteca Provinciale Italiana “Claudia Augusta” di Bolzano: le videointerviste del progetto Verba manent (2003-2007)",
+      "type": "Article",
+      "date": "2021–22",
+      "year": 2021,
+      "keywords": [
+        "tracing-people",
+        "migration",
+        "semirurali"
+      ],
+      "text": [
+        "Patrick Urru's doctoral thesis cataloguing the oral archive of the Italian provincial library in Bolzano: 148 filmed interviews recorded between 2003 and 2007. Each summary names the person, the birthplace and the year of arrival. Among them are migrants from the Polesine who settled in Bolzano and the Semirurali from 1937. In the tracing guide it is step four."
+      ],
+      "facts": [
+        "Patrick Urru, PhD thesis, Università di Trento, academic year 2021/2022, 477 pp.: a catalogue of the oral archive of the Biblioteca 'Claudia Augusta', with named migrants; open access on IRIS (manifest; file).",
+        "The archive began with 148 interviews by Giorgio Delle Donne in 2003–2007 (notes 04, §3, [SECONDARY via IFLA paper]).",
+        "Interview summaries ('Riassunto del contenuto') name people, birthplaces and arrival years, among them migrants from the Polesine who settled in Bolzano and the Semirurali from 1937 (notes 04, §3 and §7, [VERIFIED-DOC]).",
+        "Tracing guide, step 4: check this oral archive (notes 04, §7, [VERIFIED-DOC])."
+      ],
+      "file": "Urru_2022_Racconti_di_vita_da_una_terra_di_confine_PhD_UniTN.pdf",
+      "source": {
+        "label": "IRIS, Università di Trento",
+        "url": "https://iris.unitn.it/retrieve/9b6d62c6-9dc5-44df-9774-4307b40ce1c7/Racconti%20di%20vita%20da%20una%20terra%20di%20confine.pdf"
+      },
+      "creator": "Patrick Urru",
+      "holder": "Università di Trento",
+      "rights": "Open access on IRIS; © author.",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "4.25",
+      "title": "Archivführer Rückoption der Südtiroler Optant:innen",
+      "type": "Archive guide",
+      "date": "2023",
+      "year": 2023,
+      "keywords": [
+        "option",
+        "archives",
+        "tracing-people"
+      ],
+      "text": [
+        "An archive guide to the files on South Tyroleans who opted for Germany and then sought to return, covering Innsbruck, Bolzano and Rome. It notes that the files on contested options at the Archivio di Stato di Bolzano had still not been systematically surveyed in 2022. About a third of the emigrants returned, it says, citing an earlier study."
+      ],
+      "facts": [
+        "Sarah Oberbichler and Valerio Larcher (eds.), archive guide to the re-option files in Innsbruck, Bozen and Rome, 2023, 214 pp. (manifest; file).",
+        "Made in the ReMIGRA project of the Institut für Zeitgeschichte, Universität Innsbruck, with the Free University of Bozen in Brixen (file).",
+        "The ASBZ sub-fonds 'Commissariato del Governo – Ufficio per la revoca opzioni' holds ADERSt files on contested options, still not systematically surveyed in 2022 (notes 04, §4, [SECONDARY]).",
+        "Lists Archivio Centrale dello Stato fonds: Presidenza del Consiglio (Gabinetto; Ufficio per le Zone di Confine), Ministero dell'Interno, Direzione generale di Pubblica Sicurezza (notes 04, §4, [SECONDARY]).",
+        "Citing Lechner 2001, 'Etwa ein Drittel' of the emigrants returned (notes 04, §4, [SECONDARY]).",
+        "The Italian version's old URL returned 404 and was not saved (manifest, Not downloaded)."
+      ],
+      "file": "ReMIGRA_Archivfuehrer_Rueckoption_2023_DE.pdf",
+      "source": {
+        "label": "Universität Innsbruck",
+        "url": "https://www.uibk.ac.at/media/filer_public/09/b5/09b5a3c7-a013-4b46-8641-e55c8268a937/findbuch_v1_14-3-23_4.pdf"
+      },
+      "creator": "Sarah Oberbichler and Valerio Larcher (eds.)",
+      "holder": "Universität Innsbruck, Institut für Zeitgeschichte",
+      "rights": "© Univ. Innsbruck.",
+      "confidence": {
+        "level": "secondary"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "4.26",
+      "title": "Bestände des Südtiroler Landesarchiv",
+      "type": "Archive guide",
+      "date": "2023",
+      "year": 2023,
+      "keywords": [
+        "archives",
+        "tracing-people",
+        "option"
+      ],
+      "text": [
+        "Seven slides from a talk on the holdings of the provincial archive of South Tyrol. Under the Option it lists resettlement files for the Val Gardena and return-migration files, and sends readers to other archives for most of the rest."
+      ],
+      "facts": [
+        "Talk slides by Angelika Schmalbach on the holdings of the Südtiroler Landesarchiv, 7 pp.; the source file name is dated 2023-09-14 (manifest).",
+        "Mentions DUS files for Gröden and ADERSt files at the Landesarchiv (notes 04, §4, [SECONDARY]).",
+        "Under 'Optionsakten während des 2. Weltkriegs' the slides list DUS resettlement files for the Grödental and ADERSt files '(Rückwanderung nach dem 2. Weltkrieg)'; for the 'Größter Teil der DUS-Akten' they point on to other archives (file).",
+        "Other holdings listed: Verfachbücher and cadastre, military records, fragments of the archives of dissolved monasteries (file)."
+      ],
+      "file": "FamiliaAustria_Schmalbach_2023_Bestaende_Suedtiroler_Landesarchiv.pdf",
+      "source": {
+        "label": "Familia Austria",
+        "url": "https://www.familia-austria.at/images/inhalte/aktuell/Bestaende_des_Suedtiroler_Landesarchivs_Angelika_Schmalbach_2023-09-14.pdf"
+      },
+      "creator": "Angelika Schmalbach",
+      "holder": "Familia Austria",
+      "rights": "© author.",
+      "confidence": {
+        "level": "secondary"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "4.27",
+      "title": "I progetti tecnici di opere pubbliche del Comune di Bolzano",
+      "type": "Archive guide",
+      "date": "c. 2023",
+      "year": 2023,
+      "keywords": [
+        "archives"
+      ],
+      "text": [
+        "A two-page description of the public-works series in the Bolzano city archive: the technical projects of the municipal engineering office from the mid-nineteenth century to the 1970s. Its photographs are among the archive's holdings for 1922–1945."
+      ],
+      "facts": [
+        "Description of the public-works fonds of the Archivio Storico della Città di Bolzano, 2 pp., German and Italian (manifest; file).",
+        "The series holds the technical projects of the Comune's Ufficio tecnico from the mid-19th century to the 1970s, many of them collected by the office draughtsman Eligio Miori (file).",
+        "Public-works photographs are among the Archivio Storico fonds relevant to 1922–1945 (notes 04, §5d, [VERIFIED-PORTAL]).",
+        "Undated: the PDF was made in September 2023 (file)."
+      ],
+      "file": "ASCBZ_inventario_Opere_pubbliche.pdf",
+      "source": {
+        "label": "Comune di Bolzano, Archivio Storico",
+        "url": "https://www.comune.bolzano.bz.it/ocmultibinary/download/21142/1153451/10/608f6274c549fe7e227fef33333518b6.pdf/file/75c4e464887e9e43100f3d3d593924ea.pdf"
+      },
+      "creator": "Archivio Storico della Città di Bolzano",
+      "holder": "Comune di Bolzano",
+      "rights": "CC BY 4.0.",
+      "confidence": {
+        "level": "read",
+        "note": "Date from the file's metadata, not printed."
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "4.28",
+      "title": "Il fondo “Zona industriale”",
+      "type": "Archive guide",
+      "date": "c. 2023",
+      "year": 2023,
+      "keywords": [
+        "zona-industriale",
+        "archives"
+      ],
+      "text": [
+        "A description of the “Zona industriale” papers in the Bolzano city archive, 1935 to the early 1980s: land purchases and expropriations, owners' appeals for higher compensation, firms' requests for plots, the rail link, power and water.",
+        "Read beside the decree of 1934, these plot files would show industrial policy turning into population policy. That is an inference; the files have not been opened."
+      ],
+      "facts": [
+        "Description of the fonds 'Zona industriale', 1935 to the early 1980s, 2 pp., German and Italian (manifest; file).",
+        "It holds the papers of the 'Ufficio tecnico per la zona industriale', which began at the 'Ufficio provinciale dell'economia corporativa' and later became a municipal office (notes 04, §1, [VERIFIED-DOC]).",
+        "Covers land purchases and expropriations, owners' appeals and lawsuits for higher compensation, firms' requests for plots, the road and rail links, the goods yard, power, water, lighting, sewers and gas (notes 04, §1, [VERIFIED-DOC]).",
+        "Pairing the 1934 decree with these plot-allocation files would show industrial policy turning into population policy (notes 04, §1, [INFERENCE]).",
+        "Undated: the PDF was made in September 2023 (file)."
+      ],
+      "file": "ASCBZ_inventario_fondo_Zona_industriale.pdf",
+      "source": {
+        "label": "Comune di Bolzano, Archivio Storico",
+        "url": "https://www.comune.bolzano.bz.it/ocmultibinary/download/21142/1153451/10/c0bffbb0730db032fa3e3e6031170c45.pdf/file/77be80ccd23153640d6bd928a8b8bc05.pdf"
+      },
+      "creator": "Archivio Storico della Città di Bolzano",
+      "holder": "Comune di Bolzano",
+      "rights": "CC BY 4.0.",
+      "confidence": {
+        "level": "read",
+        "note": "Date from the file's metadata, not printed."
+      },
+      "place": "zona-industriale",
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "4.29",
+      "title": "Le concessioni edilizie di Bolzano, Gries e Dodiciville",
+      "type": "Archive guide",
+      "date": "c. 2023",
+      "year": 2023,
+      "keywords": [
+        "archives"
+      ],
+      "text": [
+        "A description of the building-permit series in the Bolzano city archive, with separate runs for the former communes of Gries, to 1925, and Dodiciville, to 1910. One copy of each application, with its drawings, went to the archive."
+      ],
+      "facts": [
+        "Description of the building-permits fonds of the Archivio Storico della Città di Bolzano, 2 pp., German and Italian (manifest; file).",
+        "Separate series for Gries (to 1925) and Dodiciville (to 1910) (notes 04, §5d, [VERIFIED-PORTAL]).",
+        "The applicant kept one copy of each permit request with its drawings; the second copy went to the city archive (file).",
+        "Undated: the PDF was made in September 2023 (file)."
+      ],
+      "file": "ASCBZ_inventario_Concessioni_edilizie.pdf",
+      "source": {
+        "label": "Comune di Bolzano, Archivio Storico",
+        "url": "https://www.comune.bolzano.bz.it/ocmultibinary/download/21142/1153451/10/a9ef0a5fc7800480d99da56d552221d0.pdf/file/c88dc3ba80c8422ddb6445283dbdc6df.pdf"
+      },
+      "creator": "Archivio Storico della Città di Bolzano",
+      "holder": "Comune di Bolzano",
+      "rights": "CC BY 4.0.",
+      "confidence": {
+        "level": "read",
+        "note": "Date from the file's metadata, not printed."
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "4.30",
+      "title": "Bolzano. Il Parco delle Semirurali",
+      "type": "Booklet",
+      "date": "December 2024",
+      "year": 2024,
+      "keywords": [
+        "semirurali",
+        "heritage"
+      ],
+      "text": [
+        "The leaflet for the park laid out in 2007 where the Semirurali stood. In the Comune's wording the houses were “demolite a partire dagli anni Ottanta”. The park also holds the remains of S. Maria in Augia, found under the building site.",
+        "One house survives as a small museum, open on Saturday afternoons from April to September."
+      ],
+      "facts": [
+        "Parco delle Semirurali leaflet, '1ª edizione, dicembre 2024' (file); the manifest and the file name date it 2025 (manifest).",
+        "The park opened in 2007 and holds the remains of S. Maria in Augia, founded 1163/1166 (notes 04, §3, [VERIFIED-PORTAL]).",
+        "The Comune says the houses were 'demolite a partire dagli anni Ottanta' (notes 04, §3, [VERIFIED-PORTAL]).",
+        "Casa Semirurale hours: April–September, Saturday 15:00–18:00; October–March by booking only; free entry (file)."
+      ],
+      "file": "ComuneBZ_Parco_Semirurali_depliant_2025.pdf",
+      "source": {
+        "label": "Comune di Bolzano",
+        "url": "https://www.comune.bolzano.bz.it/ocmultibinary/download/21223/1155233/5/7bdc9bca832bbcca6459ae1365797f04.pdf/file/162e73d79d6140227d76de72e1c154e2.pdf"
+      },
+      "creator": "Comune di Bolzano",
+      "holder": "Comune di Bolzano",
+      "rights": "CC BY 4.0.",
+      "confidence": {
+        "level": "read"
+      },
+      "place": "semirurali",
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "4.31",
+      "title": "Elenco deportat* nel Lager di Bolzano 1944-45. Aggiornamento aprile 2025",
+      "type": "Table",
+      "date": "April 2025",
+      "year": 2025,
+      "keywords": [
+        "lager",
+        "tracing-people"
+      ],
+      "text": [
+        "The Comune's list of people deported to the Bolzano Lager, as updated in April 2025: 8,294 entries, surname and first name only, in alphabetical order. Venegoni's register of 2005 has 7,982 names, and estimates of the total run from about 9,500 to about 11,000.",
+        "The distance between the names and the totals is a finding in itself. Reconstruction by name leaves a remainder nobody has identified."
+      ],
+      "facts": [
+        "'Elenco deportat* nel Lager di Bolzano 1944-45 – Aggiornamento aprile 2025', Italian and German, 154 pages (notes 04, §6, [VERIFIED-DOC]; file).",
+        "8,294 entries, surname and first name only, numbered in alphabetical order and not by matricola (manifest; notes 04, §6, [VERIFIED-DOC]).",
+        "The Passaggio della Memoria memorial shows the names with audio testimonies; made with ANED, ANPI and the Jewish Community (notes 04, §6, [VERIFIED-PORTAL]).",
+        "Venegoni's 2005 book has 7,982 names; total prisoners are put at about 9,500 (Fondazione Memoria della Deportazione) or about 11,000 (Comune) (notes 04, §6).",
+        "The gap between the name lists and the totals is itself a finding: name-level reconstruction leaves an unidentified remainder (notes 04, §6, [INFERENCE]).",
+        "Exported from a spreadsheet: the PDF was made with Excel on 14 April 2025 (file).",
+        "A list of named deportees: catalogued here as a whole; no individual's name is copied into this record (cataloguing rule)."
+      ],
+      "file": "ComuneBZ_Elenco_deportati_Lager_Bolzano_1944-45.pdf",
+      "source": {
+        "label": "Comune di Bolzano",
+        "url": "https://www.comune.bolzano.bz.it/ocmultibinary/download/10069/265785/19/9ca07b740b4ff58b263432b17c887055.pdf/file/645ce31e8dd0a343cab57ebf09a4357c.pdf"
+      },
+      "creator": "Comune di Bolzano",
+      "holder": "Comune di Bolzano",
+      "rights": "CC BY 4.0.",
+      "confidence": {
+        "level": "read"
+      },
+      "place": "lager",
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "4.32",
+      "title": "Genealogische Recherchen",
+      "type": "Archive guide",
+      "date": "April 2025",
+      "year": 2025,
+      "keywords": [
+        "tracing-people",
+        "archives"
+      ],
+      "text": [
+        "A one-page sheet from the provincial archive of South Tyrol on family research. Church registers are online up to 1 January 1924; from that date the municipal registry offices are responsible. Civil registration began in South Tyrol only then, which is why the national genealogy portal has nothing for Bolzano. The sheet does not mention the Option."
+      ],
+      "facts": [
+        "Südtiroler Landesarchiv genealogy sheet, April 2025, one page (manifest; file).",
+        "Church books online to 1 January 1924; from 1924 the municipal registry and civil-status offices are responsible (manifest; notes 04, §4, [VERIFIED-DOC]).",
+        "Also points to the Verfachbücher, the court books that preceded the land register, for house and farm histories (file; notes 04, §4).",
+        "Does not mention the Option (notes 04, §4, [VERIFIED-DOC]).",
+        "Civil registration in South Tyrol began only on 1 January 1924, which is why Antenati has nothing for Bolzano (notes 04, §5)."
+      ],
+      "file": "Suedtiroler_Landesarchiv_Genealogische_Recherchen_2025.pdf",
+      "source": {
+        "label": "Südtiroler Landesarchiv",
+        "url": "https://assets-eu-01.kc-usercontent.com/44b7f882-4744-0136-9e89-b6d058bc834e/68d2c1f6-975c-4b13-a52d-99a14d58edf6/Genealogische_Recherchen_2025_04_b.pdf"
+      },
+      "creator": "Südtiroler Landesarchiv",
+      "holder": "Autonome Provinz Bozen – Südtiroler Landesarchiv",
+      "rights": "© Autonome Provinz Bozen.",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "4.33",
+      "title": "Semirurali. Percorso espositivo, Ausstellungsparcours, Exhibition space",
+      "type": "Booklet",
+      "date": "2025",
+      "year": 2025,
+      "keywords": [
+        "semirurali",
+        "heritage"
+      ],
+      "text": [
+        "The current fold-out leaflet for the exhibition in the house at via Bari 11, one of the few Semirurali houses left, in Italian, German and English, with a map of the quarter. The exhibition opened in 2015."
+      ],
+      "facts": [
+        "2025 leaflet for the Casa Semirurale exhibition; image-only PDF with no text layer (manifest).",
+        "A two-sheet fold-out in Italian, German and English; the cover reads 'SEMIRURALI – Percorso espositivo – Ausstellungsparcours – Exhibition space' (file).",
+        "Text: the house at via Bari 11 is one of the few surviving 'case semirurali' built in the late 1930s and demolished from the 1980s; the exhibition opened in 2015 (file).",
+        "Carries a map of the quarter marking the Casa Semirurale / Semirurali-Haus, and opening hours (file).",
+        "The manifest calls it a booklet; it is a two-page leaflet (manifest; file)."
+      ],
+      "file": "ComuneBZ_Booklet_Semirurali_2025.pdf",
+      "source": {
+        "label": "Comune di Bolzano",
+        "url": "https://dev.comune.bolzano.it/content/download/21584/1198482/file/Semirurali_2025.pdf"
+      },
+      "creator": "Comune di Bolzano",
+      "holder": "Comune di Bolzano",
+      "rights": "CC BY 4.0.",
+      "confidence": {
+        "level": "read"
+      },
+      "place": "semirurali",
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "4.34",
+      "title": "Die Heimkehrer. Dolomiten, 28 May 2026, page 17",
+      "type": "Press article",
+      "date": "28 May 2026",
+      "year": 2026,
+      "keywords": [
+        "option",
+        "press"
+      ],
+      "text": [
+        "An interview in the Dolomiten with the historian Eva Pfanzelter, on the day her co-edited book on the return of the optants was presented. On the famous 86 per cent she says it holds “in vielen Fällen”, and that in some villages the figure was higher.",
+        "And: “Wir können bis heute nicht genau sagen, wie viele Menschen letztendlich Südtirol im Zuge der Option verlassen haben.” The online database holds only about a third of the applications to return."
+      ],
+      "facts": [
+        "Dolomiten interview with the historian Eva Pfanzelter on the Option of 1939 and the re-option, 28 May 2026, p. 17; copy hosted by Uni Innsbruck (manifest; file).",
+        "Occasion: the book 'Endstation Heimkehr? Die Südtiroler Rückoption', edited by Pfanzelter and Sarah Oberbichler, presented that evening at the Teßmann library (file).",
+        "'die bekannten 86 Prozent … in vielen Fällen stimmen, in manchen Dörfern … war die Zahl aber sicher auch höher' (notes 04, §4, [SECONDARY]).",
+        "'Wir können bis heute nicht genau sagen, wie viele Menschen letztendlich Südtirol im Zuge der Option verlassen haben' (notes 04, §4, [SECONDARY]).",
+        "OptionDigital holds only about a third of the re-option applications, 'ca. 32.000 Karteikarten' (notes 04, §4, [SECONDARY]; file).",
+        "© Athesia; study use only (manifest)."
+      ],
+      "file": "Pfanzelter_Dolomiten_Interview_Option_2026-05-28.pdf",
+      "source": {
+        "label": "Universität Innsbruck",
+        "url": "https://www.uibk.ac.at/media/filer_public/d2/b1/d2b191c8-8095-488b-8ebb-341a25842458/sudtiroleroption_dolomiten280526.pdf"
+      },
+      "creator": "Dolomiten, interview with Eva Pfanzelter",
+      "holder": "Athesia (Dolomiten); copy hosted by Universität Innsbruck",
+      "rights": "© Athesia; study use only.",
+      "confidence": {
+        "level": "secondary"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "4.35",
+      "title": "Erläuterungen zu den Karteikarten",
+      "type": "Archive guide",
+      "date": "c. 2026",
+      "year": 2026,
+      "keywords": [
+        "option",
+        "tracing-people",
+        "archives"
+      ],
+      "text": [
+        "The key to the index cards in the OptionDigital database: what each field and stamp means. A card gives name, birth, citizenship, “Volkszugehörigkeit”, religion, occupation, wife and children. The back carries stamps such as “Reoptiert”, “Ausgereist”, “Wiedereingeb.”.",
+        "Only this legend was saved, because the database forbids bulk use. The card counts conflict: one count gives 24,936 Bolzano cards, a 2026 interview about 32,000."
+      ],
+      "facts": [
+        "Legend to the Tiroler Landesarchiv and ASBZ index cards in OptionDigital, 11 pp. (manifest; file).",
+        "Kennziffer: the ADERSt identification number under which the personal file is kept at the Tiroler Landesarchiv; Bozen-district numbers fall in the 100,000 block (file; notes 04, §4, [SECONDARY]).",
+        "TLA card fields: name, birth date and place, citizenship, 'Volkszugehörigkeit', religion, marital status, address, learned and practised occupation, wife and children, naturalisation (notes 04, §4, [SECONDARY]).",
+        "Card backs carry stamps such as 'Reoptiert', 'Ausgereist', 'Wiedereingeb.'; ASBZ re-option cards carry 'Trasferitosi in Germania' with the date of departure (notes 04, §4, [SECONDARY]).",
+        "Counts conflict: 24,936 ASBZ cards in the assistant's count, 'ca. 32.000' in Pfanzelter 2026; 113,379 TLA cards (notes 04, §4, [SECONDARY]).",
+        "Database terms: all rights reserved; excerpts for teaching and research with citation; bulk use is not permitted, so only this legend was saved (manifest).",
+        "Undated: the PDF was made in January 2026 (file)."
+      ],
+      "file": "OptionDigital_Karteikarten_Legende.pdf",
+      "source": {
+        "label": "OptionDigital, Universität Innsbruck",
+        "url": "https://explore-research.uibk.ac.at/p/optiondigital/static/karteikarten_info.pdf"
+      },
+      "creator": "OptionDigital, Universität Innsbruck",
+      "holder": "Universität Innsbruck",
+      "rights": "Database terms: all rights reserved; excerpts for teaching and research with citation.",
+      "confidence": {
+        "level": "secondary",
+        "note": "Date from the file's metadata, not printed."
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "4.36",
+      "title": "Portale Antenati, pages of the Archivio di Stato di Bolzano and eleven origin archives, with registry searches for nine, 22 October 2026",
+      "type": "Table",
+      "date": "22 October 2026",
+      "year": 2026,
+      "keywords": [
+        "tracing-people",
+        "archives",
+        "migration"
+      ],
+      "text": [
+        "Twenty-one pages saved from the national genealogy portal on 22 October 2026: the page of the Archivio di Stato di Bolzano, eleven archives of the provinces the migrants came from, and registry searches for nine of them. The table summarises the nine searches.",
+        "For Bolzano the portal has nothing. For the provinces of origin the coverage is uneven: Verona has 35,290 registers covering 1870 to 1946, while Rovigo, Treviso, Venezia and Belluno are almost only Napoleonic. A family from the Polesine cannot be followed there."
+      ],
+      "facts": [
+        "21 saved pages of the Portale Antenati, 22 October 2026: 12 archive description pages and 9 registry-search result pages with facet counts; the CSV, the researcher's own extraction, summarises the 9 searches (manifest; folder).",
+        "Antenati has nothing for Bolzano: digitization 'Non prevista', 'L'Istituto non possiede le fonti in oggetto'; civil registration in South Tyrol began only on 1 January 1924 (notes 04, §5, [VERIFIED-PORTAL]).",
+        "Coverage of the origin provinces is uneven: Verona 35,290 registers, all Italian stato civile 1870–1946; Mantova 32,970; Rovigo, Treviso, Venezia and Belluno almost only Napoleonic, 1806–1815 (notes 04, §5a, [VERIFIED-PORTAL]; CSV).",
+        "Rovigo: 690 registers, only 30 of the Italian period (notes 04, §5a, [VERIFIED-PORTAL]; CSV).",
+        "No liste di leva or ruoli matricolari are online on Antenati for the nine origin archives parsed (notes 04, §5a, [VERIFIED-PORTAL]).",
+        "The AS Bolzano page lists as 'fonti online' the 'elenco dei sovversivi politici anni 1930 ca' and part of the IMI documentation (notes 04, §5a, [VERIFIED-PORTAL]).",
+        "The Rovigo and Padova pages disagree on the Ufficio di leva di Rovigo: classes 1855–1910 against 1855–1944 (notes 04, §5a).",
+        "The 12 archive pages, Bolzano, Trento and Ferrara among them, have no line in the CSV; the manifest says not to open the HTML as active pages (manifest; CSV)."
+      ],
+      "file": "antenati_pages/antenati_registry_facets_summary_2026-10-22.csv",
+      "source": {
+        "label": "Portale Antenati (MiC, Direzione Generale Archivi)",
+        "url": "https://antenati.cultura.gov.it/"
+      },
+      "creator": "Ministero della Cultura, Direzione Generale Archivi",
+      "holder": "Ministero della Cultura",
+      "rights": "© MiC (saved pages). The summary CSV is the researcher's own extraction, free to reuse.",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "table",
+        "target": "antenati_pages/antenati_registry_facets_summary_2026-10-22.csv",
+        "columns": [
+          "archive",
+          "registers_total",
+          "register_year_hits_1900_1945"
+        ]
+      }
+    }
+  ]
+}

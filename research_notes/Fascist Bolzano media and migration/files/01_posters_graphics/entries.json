@@ -1,0 +1,587 @@
+{
+  "keywords_proposed": {},
+  "places_proposed": {
+    "oltrisarco": {
+      "name": "Oltrisarco / Oberau"
+    }
+  },
+  "entries": [
+    {
+      "no": "1.00",
+      "title": "Posters, graphic advertising, postcards and illustrated promotion of Bolzano/Bozen, Merano/Meran and Alto Adige/Südtirol, 1919–1943",
+      "type": "Notes",
+      "date": "2026",
+      "year": 2026,
+      "keywords": [
+        "posters",
+        "postcards",
+        "tourism"
+      ],
+      "text": [
+        "The working notes on posters, postcards and illustrated promotion of Bolzano, Merano and the province between the wars. About fifty posters are documented from the provincial museum portal.",
+        "The main finding is an absence. Rome, Drusus, the Monument to Victory and the new fascist city appear on none of them. The regime enters through the emblems of the state tourist board and the railways, fascist-era dating, approval stamps and Italian place names. The new city shows up on postcards, not on posters."
+      ],
+      "facts": [
+        "Six questions: which posters exist (Q1), the artists (Q2), where they are held (Q3), iconography (Q4), postcards (Q5), scholarly literature (Q6) (notes 01)",
+        "About 50 posters of 1919–1943 for Merano, Bolzano-Gries, the Dolomites, Val Gardena, Carezza, Renon and the Brenner line documented from the provincial OMA portal with record URLs; the images stay under museum rights (notes 01, Q1, [DB✓])",
+        "Romanità, Drusus, the Victory Monument and the new fascist city do not appear on any tourist poster found; the regime enters through ENIT and FS logos, fascist dating, approval stamps and Italian toponyms; the new city surfaces in postcards, not posters (notes 01, Q4)",
+        "Franz Lenhart dominates the corpus and is read as the hinge figure for 'Bolzano seen from elsewhere' (notes 01, Q2, [INF])",
+        "Gaps: Collezione Salce records known only from index snippets [IDX]; no 1919–43 poster for a Fiera di Bolzano found (notes 01, Q1)"
+      ],
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "read",
+        "target": "../../01_posters_graphics.md"
+      }
+    },
+    {
+      "no": "1.01",
+      "title": "Elektrische Bahn Lana–Meran",
+      "type": "Poster",
+      "date": "1906",
+      "year": 1906,
+      "keywords": [
+        "posters",
+        "tourism"
+      ],
+      "text": [
+        "A poster for the electric railway from Lana to Merano by Anton Reckziegel, 1906: a painted river valley with a castle on a cliff. Kept as a point of comparison from before the war, when the province was Austrian. The copy carries a dealer's watermark."
+      ],
+      "facts": [
+        "Habsburg-era comparison: poster 'Elektrische Bahn Lana–Meran' by Anton Reckziegel, 1906 (manifest)",
+        "Commons gives its source as artifiche.com (manifest)",
+        "One of the two Habsburg-era comparison posters among the openly licensed images (notes 01, Q1 §E)",
+        "Seen in the image: a painted view down a river valley, a castle on a cliff at left, a town on both banks of the river and mountains behind; 'Elektrische Bahn Lana-Meran' and 'Kunstanstalt Müller & Zürich' at the foot; an 'Artifiche – Swiss Poster Gallery' watermark across the picture"
+      ],
+      "images": [
+        {
+          "file": "1906_Reckziegel_Lana-Meran_railway_poster_Commons.jpg",
+          "caption": "Anton Reckziegel, 1906. Public domain. Wikimedia Commons (from artifiche.com)."
+        }
+      ],
+      "file": "1906_Reckziegel_Lana-Meran_railway_poster_Commons.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Anton_Reckziegel_-_Poster_Elektrische_Bahn_Lana-Meran.jpg"
+      },
+      "creator": "Anton Reckziegel",
+      "rights": "Public domain (author died more than 70 years ago)",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://commons.wikimedia.org/wiki/File:Anton_Reckziegel_-_Poster_Elektrische_Bahn_Lana-Meran.jpg"
+      }
+    },
+    {
+      "no": "1.02",
+      "title": "Gruss aus der Elektrischen Schwebebahn von Bozen (265 m.) nach Kohlern (1140 m.)",
+      "type": "Poster",
+      "date": "c. 1908–10",
+      "year": 1908,
+      "keywords": [
+        "posters",
+        "tourism"
+      ],
+      "text": [
+        "A print for the cable car from Bozen up to Kohlern, about 1908–10, photographed where it hangs in the Zeughaus in Innsbruck: a cabin with curtained windows and passengers above a ridge. The second pre-war comparison piece.",
+        "The manifest calls it a poster. Its heading, “Gruss aus …”, is the formula of a picture postcard."
+      ],
+      "facts": [
+        "Habsburg-era comparison: photo (2020) of the poster for the Kohlerer Bahn (Funivia del Colle), Bozen, c. 1908–10, on display at the Zeughaus Innsbruck; poster anonymous (manifest)",
+        "One of the two Habsburg-era comparison posters among the openly licensed images (notes 01, Q1 §E)",
+        "Seen in the image: a sepia print photographed against a grey wall: a cable-car cabin with curtained, latticed windows and passengers, hanging from cables above a mountain ridge; heading 'Gruss aus der Elektrischen Schwebebahn von Bozen (265 m.) nach Kohlern (1140 m.)'",
+        "Doubt: the 'Gruss aus …' greeting heading is the formula of a picture postcard; the manifest and the Commons file name call the object a poster (image vs manifest)"
+      ],
+      "images": [
+        {
+          "file": "1908-10_Kohlerer_Bahn_poster_photo_Zeughaus_Commons.jpg",
+          "caption": "Anonymous, c. 1908–10; photo by Asurnipal, 2020, at the Zeughaus Innsbruck. CC BY-SA 4.0. Wikimedia Commons."
+        }
+      ],
+      "file": "1908-10_Kohlerer_Bahn_poster_photo_Zeughaus_Commons.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Innsbruck-Museum_Zeughaus-Poster_Kohlerer_Bahn_Bozen-01ASD.jpg"
+      },
+      "creator": "Anonymous; photo: Asurnipal",
+      "holder": "Zeughaus, Innsbruck",
+      "rights": "CC BY-SA 4.0 (photographer)",
+      "confidence": {
+        "level": "read",
+        "note": "the manifest calls it a poster; its 'Gruss aus' heading reads like a postcard"
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://commons.wikimedia.org/wiki/File:Innsbruck-Museum_Zeughaus-Poster_Kohlerer_Bahn_Bozen-01ASD.jpg"
+      }
+    },
+    {
+      "no": "1.03",
+      "title": "Objekte Museen Archive Südtirol: 414 records of posters, postcards, brochures and guides dated 1919–1943",
+      "type": "Table",
+      "date": "1919–1943",
+      "year": 1919,
+      "keywords": [
+        "posters",
+        "postcards",
+        "tourism",
+        "archives"
+      ],
+      "text": [
+        "Every poster, postcard, brochure, guide and map dated 1919 to 1943 that keyword searches found in the provincial portal of museum objects: 414 records, among them 77 posters, 191 picture postcards and 84 brochures. Most are held by the Touriseum in Merano.",
+        "The records were built from the portal's results lists, so descriptions are cut short where the lists cut them. No images are included; they stay under the museums' rights."
+      ],
+      "facts": [
+        "Catalogue metadata (record URL, inventory no., type, title, date, makers, institution, description excerpt, search term) for every poster, postcard, brochure, guide, map or programme dated 1919–1943 found in keyword searches of the provincial portal on 2026-10-22 (manifest)",
+        "Measured: 414 rows; by type 191 Ansichtskarte, 84 Prospekt, 77 Plakat, 13 Werbeprospekt, 11 Zeichnung, 6 Grafik, 6 Landkarte, 5 Zeitschrift, 4 Werbekarte, 4 Postkarte and 13 others; this matches the notes' 414 records, 77 posters, 191 picture postcards plus 4 other postcards, 84 brochures plus 13 leaflets (file; notes 01, Q1 §F)",
+        "Measured: 273 rows from the Touriseum, 89 from the Amt für Film und Medien, 39 from Palais Mamming, 13 from six other institutions (file)",
+        "Built from the portal's results lists [DB✓, results-list level]; descriptions are truncated where the results list truncates them; 96 rows have no title, so the description excerpt carries them (notes 01, Q1 §F; manifest; file)",
+        "Catalogue date ranges are loose: some rows run from 1800 or 1900, and several Amt für Film und Medien datings look too early for their subjects (file; notes 01, Q5, [INF])",
+        "Images are not included; rights rest with the holding institutions (manifest)"
+      ],
+      "file": "oma_records_1919-1943.csv",
+      "source": {
+        "label": "Objekte Museen Archive Südtirol",
+        "url": "https://objekte-museen-archive.provinz.bz.it"
+      },
+      "holder": "Touriseum, Palais Mamming Museum, Amt für Film und Medien and six other institutions, via Objekte Museen Archive Südtirol",
+      "rights": "Images are not included; rights rest with the holding institutions.",
+      "confidence": {
+        "level": "read",
+        "note": "built at results-list level; descriptions truncated"
+      },
+      "more": {
+        "kind": "table",
+        "target": "oma_records_1919-1943.csv",
+        "columns": [
+          "type",
+          "date",
+          "description_excerpt"
+        ]
+      }
+    },
+    {
+      "no": "1.04",
+      "title": "Bozner Nachrichten, 20 April 1921: advertisement for the Bozner Messe",
+      "type": "Newspaper page",
+      "date": "20 April 1921",
+      "year": 1921,
+      "keywords": [
+        "press"
+      ],
+      "text": [
+        "A newspaper advertisement for the Bolzano fair of 19 to 26 April 1921, signed by the association “Bozner Messe”: exhibitions, concerts on the Waltherplatz, a procession in traditional dress, special trains from Franzensfeste, Trento and Merano.",
+        "The fair's own poster of that year is the only fair poster of the period. It was not downloaded, being in copyright until 2033. No inter-war poster for a “Fiera di Bolzano” was found."
+      ],
+      "facts": [
+        "Newspaper advertisement for the Bozner Messe (Bolzano fair), Bozner Nachrichten, 20 April 1921; crop from digital.tessmann.it (manifest)",
+        "The 1921 Bozner Messe is the only fair poster of the period; no interwar poster for a 'Fiera di Bolzano' was found, and the Salce fair posters date from 1951 on (notes 01, Q1)",
+        "The Bozner Messe poster itself (Otto Zoff, 1921, PMM 11334) was not downloaded: Zoff died 1963, so in the EU it is in copyright until 2033 (manifest; notes 01, Q1 #3, [DB✓])",
+        "Seen in the image: a bordered advertisement headed 'BOZNER MESSE (19.–26. April 1921.)' beside a 'BM' emblem; it lists exhibitions in the Messe-Palast, Freiturnplatz, Museum and Bürgersaal, concerts on the Waltherplatz, a 'Südtiroler Trachtenzug' on Sunday 24 April and 'Messe-Züge' from Franzensfeste, Trient and Meran, and is signed 'Verein „Bozner Messe“'"
+      ],
+      "images": [
+        {
+          "file": "1921-04-20_BoznerNachrichten_Bozner_Messe_ad_Commons.png",
+          "caption": "Bozner Nachrichten, 20 April 1921. CC BY-SA 4.0, crop from digital.tessmann.it via Wikimedia Commons."
+        }
+      ],
+      "file": "1921-04-20_BoznerNachrichten_Bozner_Messe_ad_Commons.png",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:BZN_1921_04_20_8_Bozner_Messe_croppped.png"
+      },
+      "holder": "Teßmann digital (digital.tessmann.it)",
+      "rights": "CC BY-SA 4.0 (crop from digital.tessmann.it)",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://commons.wikimedia.org/wiki/File:BZN_1921_04_20_8_Bozner_Messe_croppped.png"
+      }
+    },
+    {
+      "no": "1.05",
+      "title": "Municipio di Bolzano – Cittadini! / Bürger!",
+      "type": "Poster",
+      "date": "19 May 1925",
+      "year": 1925,
+      "keywords": [
+        "posters",
+        "language",
+        "inauguration"
+      ],
+      "text": [
+        "A bilingual notice from the town hall of Bolzano, 19 May 1925, signed by the prefectural commissioner Steffanini. It orders every house on the route of a visit by Italian war invalids to fly the tricolour, and calls Bolzano “die Königin des Hochetsch”, the official German for Alto Adige. The territory, in the research's translation, is “designated as ours by natural borders and history”.",
+        "In the photograph only the German column is whole. The Italian one is cut off at the edge."
+      ],
+      "facts": [
+        "Photo (2020) of a bilingual municipal public notice 'Municipio di Bolzano – Cittadini! / Bürger!', 19 May 1925, signed by Prefectural Commissioner Steffanini; it orders tricolour flags for the visit of Italian war invalids; at the left edge, part of a Fränzl-printed tourist poster (manifest)",
+        "A civic propaganda poster: it orders every house on the invalids' route to fly a tricolour and calls Bolzano 'die Königin des Hochetsch', the German official rendering of 'Alto Adige' (notes 01, Q4, [IMG✓])",
+        "The territory is 'designated as ours by natural borders and history … sealed by the long sacrifices and shining victories of our legions' (notes 01, Q4, [IMG✓])",
+        "Seen in the image: the notice on a pale wall inside a border of red fruit and green leaves; only the German column is whole ('Bürger!', 'Vom Rathause Bolzano, 19. Mai 1925', 'Der Präfekturskommissär STEFFANINI'); the Italian column is cut off at the left edge, where part of a blue-framed tourist poster shows"
+      ],
+      "images": [
+        {
+          "file": "1925_Bolzano_public_appeal_bilingual_poster_photo_Commons.jpg",
+          "caption": "Comune di Bolzano, 19 May 1925; photo by Rikki Mitterer, 2020. CC BY-SA 4.0. Wikimedia Commons."
+        }
+      ],
+      "file": "1925_Bolzano_public_appeal_bilingual_poster_photo_Commons.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Innsbruck-Museum_Zeughaus-Poster_Bozen_1925-01ESD.jpg"
+      },
+      "creator": "Comune di Bolzano (Prefectural Commissioner Steffanini); photo: Rikki Mitterer",
+      "rights": "CC BY-SA 4.0 (photographer)",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://commons.wikimedia.org/wiki/File:Innsbruck-Museum_Zeughaus-Poster_Bozen_1925-01ESD.jpg"
+      }
+    },
+    {
+      "no": "1.06",
+      "title": "Bolzano: Ferrovia del Renon e S. Maddalena verso la Mendola",
+      "type": "Postcard",
+      "date": "1930s–40s",
+      "year": 1930,
+      "keywords": [
+        "postcards",
+        "tourism"
+      ],
+      "text": [
+        "A postcard of the Renon rack railway above Bolzano: a single railcar climbing past dry-stone walls, the town in the valley below. The publisher is unknown, and the date of the 1930s or 40s is the uploader's."
+      ],
+      "facts": [
+        "Postcard 'Bolzano: Ferrovia del Renon e S. Maddalena verso la Mendola' (Renon rack railway above Bolzano); publisher unknown; dated 1930s–40s per the uploader (manifest)",
+        "One of the Commons public-domain postcards of Bolzano [IMG✓] (notes 01, Q5)",
+        "Seen in the image: a monochrome view of a single railcar climbing a curved track past dry-stone walls, a small church with a pointed spire at lower left, the town spread in the valley below and a long mountain ridge behind; caption in script along the foot"
+      ],
+      "images": [
+        {
+          "file": "1930s-40s_Bolzano_Grimagliera_Renon_postcard_Commons.jpg",
+          "caption": "Unknown publisher, 1930s–40s. Public domain (PD-Italy). Wikimedia Commons."
+        }
+      ],
+      "file": "1930s-40s_Bolzano_Grimagliera_Renon_postcard_Commons.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Postcard_-_bolzano_-_la_grimagliera_del_renon_-_anni_%2730-40_(53848953697).jpg"
+      },
+      "rights": "Public domain (PD-Italy 20 years)",
+      "confidence": {
+        "level": "read",
+        "note": "date per the uploader only"
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://commons.wikimedia.org/wiki/File:Postcard_-_bolzano_-_la_grimagliera_del_renon_-_anni_%2730-40_(53848953697).jpg"
+      }
+    },
+    {
+      "no": "1.07",
+      "title": "Bozen-Gries (Bolzano-Gries) und Umgebung",
+      "type": "Book",
+      "date": "1930",
+      "year": 1930,
+      "keywords": [
+        "guidebooks",
+        "tourism",
+        "language"
+      ],
+      "text": [
+        "The cover of the German Grieben travel guide to “Bozen-Gries (Bolzano-Gries) und Umgebung”, 1930. On a guide sold to German tourists the German name still comes first and the Italian one follows in brackets."
+      ],
+      "facts": [
+        "Cover of the German Grieben travel guide 'Bozen-Gries' (1930): the German-language international market (manifest)",
+        "Among the openly licensed images downloaded (notes 01, Q1 §E)",
+        "The cover design's own rights status is unclear; CC BY 4.0 covers the uploader's photo (manifest)",
+        "Seen in the image: a buff cloth cover with dark-blue lettering 'Grieben – Band 50 – Bozen-Gries (Bolzano-Gries) und Umgebung – 1930 – Reiseführer'; the Italian name follows the German one in brackets"
+      ],
+      "images": [
+        {
+          "file": "1930_Grieben_Bozen-Gries_guidebook_cover_Commons.jpg",
+          "caption": "Grieben-Verlag, 1930; photo by Bartleby08. CC BY 4.0 (photo). Wikimedia Commons."
+        }
+      ],
+      "file": "1930_Grieben_Bozen-Gries_guidebook_cover_Commons.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Grieben_Bozen-Gries_1930-Reisef%C3%BChrer.jpg"
+      },
+      "creator": "Grieben-Verlag; photo: Bartleby08",
+      "rights": "CC BY 4.0 (uploader's photo). The cover design's own status is unclear.",
+      "confidence": {
+        "level": "read",
+        "note": "the cover design's own rights status is unclear"
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://commons.wikimedia.org/wiki/File:Grieben_Bozen-Gries_1930-Reisef%C3%BChrer.jpg"
+      }
+    },
+    {
+      "no": "1.08",
+      "title": "Dolomiten, 27 June 1932, page 8: advertisement for La Rinascente",
+      "type": "Newspaper page",
+      "date": "27 June 1932",
+      "year": 1932,
+      "keywords": [
+        "press",
+        "language",
+        "typeface"
+      ],
+      "text": [
+        "An advertisement in the Catholic German-language daily Dolomiten for a clearance sale at La Rinascente, the Italian department store in Bolzano: “10.000 Paar Herren-, Damen- u. Kinder-Schuhe zum Selbstkosten-Preis”. An Italian chain sells to German-speaking readers in their own language, under a running head set in Fraktur."
+      ],
+      "facts": [
+        "German-language ad for the Italian department store 'La Rinascente' (Bolzano), in the Catholic-German daily Dolomiten, 27 June 1932 (manifest)",
+        "Teßmann newspaper crops on Commons are labelled CC BY-SA 4.0 from digital.tessmann.it (notes 01, Q3)",
+        "Seen in the image: running head 'Seite 8 — Nr. 77 „Dolomiten“ Montag, den 27. Juni 1932' in Fraktur; a framed ad in heavy display type: '10.000 Paar Herren-, Damen- u. Kinder-Schuhe zum Selbstkosten-Preis – Montag, 27. Juni: Beginn der großartigen Rekord-Liquidation! „LA RINASCENTE“'"
+      ],
+      "images": [
+        {
+          "file": "1932-06-27_Dolomiten_LaRinascente_Bozen_ad_Commons.png",
+          "caption": "Dolomiten, 27 June 1932. CC BY-SA 4.0, from Teßmann via Wikimedia Commons."
+        }
+      ],
+      "file": "1932-06-27_Dolomiten_LaRinascente_Bozen_ad_Commons.png",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:La_Rinascente_1932_Bozen_South_Tyrol.png"
+      },
+      "holder": "Teßmann digital (digital.tessmann.it)",
+      "rights": "CC BY-SA 4.0 (from Dolomiten via Tessmann)",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://commons.wikimedia.org/wiki/File:La_Rinascente_1932_Bozen_South_Tyrol.png"
+      }
+    },
+    {
+      "no": "1.09",
+      "title": "Oltrisarco, postcard with its German caption struck out",
+      "type": "Postcard",
+      "date": "1933",
+      "year": 1933,
+      "keywords": [
+        "postcards",
+        "language",
+        "wording",
+        "removal"
+      ],
+      "text": [
+        "A coloured postcard of the Oltrisarco housing district from 1933. The German place name in the caption has been covered with a black bar and “Oltrisarco” printed beside it. It is the Italianization of place names made visible: a correction applied to a card that already existed."
+      ],
+      "facts": [
+        "Coloured postcard of the Oltrisarco/Oberau housing district: the German place name is struck through with black bars and 'Oltrisarco' is overprinted, a visible trace of toponymic Italianisation (manifest)",
+        "Cited as Italianisation recorded physically on the card, beside Amonn cards whose German names were overstamped with Italian ones (notes 01, Q5, [IMG✓])",
+        "Publisher unknown; scan by Flickr user 'paolo from tv' (manifest)",
+        "Seen in the image: a hand-coloured bird's-eye view of a block of three- and four-storey houses with red roofs among green fields, a river and the town across it, mountains behind; at top left an italic caption is covered by a black bar and 'Oltrisarco' is printed in bold beside it"
+      ],
+      "images": [
+        {
+          "file": "1933_Bolzano_Oltrisarco_postcard_Commons.jpg",
+          "caption": "Unknown publisher, 1933; scan by 'paolo from tv' (Flickr). Public domain (PD-Italy). Wikimedia Commons."
+        }
+      ],
+      "file": "1933_Bolzano_Oltrisarco_postcard_Commons.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Postcard_-_bolzano_-_oltrisarco_-_1933_(53850205879).jpg"
+      },
+      "rights": "Public domain (PD-Italy 20 years; PD US no notice)",
+      "confidence": {
+        "level": "read"
+      },
+      "place": "oltrisarco",
+      "more": {
+        "kind": "source",
+        "target": "https://commons.wikimedia.org/wiki/File:Postcard_-_bolzano_-_oltrisarco_-_1933_(53850205879).jpg"
+      }
+    },
+    {
+      "no": "1.10",
+      "title": "Merano",
+      "type": "Poster",
+      "date": "1934",
+      "year": 1934,
+      "keywords": [
+        "posters",
+        "tourism",
+        "symbol"
+      ],
+      "text": [
+        "Franz Lenhart's poster for Merano, published by the state tourist board ENIT in 1934: a woman's tanned face in a cone of light, palm fronds, a white mountain over the town. No traditional dress and no monument. The regime is present only in the two emblems at the foot, ENIT's and the state railways'.",
+        "This copy is the Hungarian National Museum's. The artwork is in copyright until 2062."
+      ],
+      "facts": [
+        "ENIT poster 'MERANO': woman's head in a beam of light, palm fronds, Merano townscape; ENIT and FS crowned-wreath logos; matches Touriseum inv. 4070493 (1934, Off. Grafiche Coen & C., Milano) (manifest)",
+        "The Touriseum record names ENIT as publisher ('Herausgeber'); this copy is the Hungarian National Museum's (notes 01, Q1 #23, [DB✓], [IMG✓])",
+        "A modern female head in a cone of light, with no Tracht (notes 01, Q4, [IMG✓])",
+        "The regime enters the tourist posters through logos, ENIT and FS with the Savoy crown, rather than through monuments (notes 01, Q4)",
+        "Rights: the artwork is in copyright until 2062 (Lenhart died 1992), so non-commercial academic use only, with attribution (manifest)",
+        "Lenhart's dates conflict between sources: 1898–1992 in the OMA authority record, 1892–1992 at the Hungarian National Museum (notes 01, Q2)",
+        "Seen in the image: a woman's tanned face at lower right, looking up; pale palm fronds and a white mountain above a small town with a church tower; 'MERANO' in large light-blue capitals on dark green; an ENIT emblem at lower left, an FS monogram emblem at lower right, the signature 'Lenhart' at top right"
+      ],
+      "images": [
+        {
+          "file": "1934_Lenhart_ENIT_Merano_poster_HNM_Europeana.png",
+          "caption": "Franz Lenhart, 1934. CC BY-NC-SA 4.0, Hungarian National Museum via Europeana; the artwork is in copyright until 2062."
+        }
+      ],
+      "file": "1934_Lenhart_ENIT_Merano_poster_HNM_Europeana.png",
+      "source": {
+        "label": "Europeana (Hungarian National Museum)",
+        "url": "https://www.europeana.eu/item/1090/MNMMUSEUM1706901"
+      },
+      "creator": "Franz Lenhart",
+      "holder": "Hungarian National Museum",
+      "rights": "CC BY-NC-SA 4.0 (Hungarian National Museum, via Europeana)",
+      "confidence": {
+        "level": "read",
+        "note": "artwork in copyright until 2062: non-commercial use only"
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://www.europeana.eu/item/1090/MNMMUSEUM1706901"
+      }
+    },
+    {
+      "no": "1.11",
+      "title": "Merano",
+      "type": "Poster",
+      "date": "1935",
+      "year": 1935,
+      "keywords": [
+        "posters",
+        "tourism"
+      ],
+      "text": [
+        "A tourist poster for Merano: a blossoming tree, the gorge of the Passer with its stone bridge, the state railways' “ITALIA” emblem. The date comes from the copy in the Touriseum. This is a small dealer's scan with a watermark."
+      ],
+      "facts": [
+        "Tourist poster 'MERANO': Passer gorge, Steinerner Steg, blossoming tree; FS 'ITALIA' logo; printer Richter & C. Napoli; the Touriseum holds a copy dated 1935 (inv. 4090390) (manifest)",
+        "The date comes from the Touriseum copy (manifest; notes 01, Q1 #37, [DB✓])",
+        "The Commons source is 'unknown' and the scan carries a '© Tous droits réservés' watermark from a dealer site, which claims the photo, not the PD artwork; low-res, 361×500 (manifest)",
+        "Blossom branch as a Merano motif: Lenhart 1938–39, Borgoni 1935, the Barabino & Graeve Dirndl poster 1935 (notes 01, Q4, [DB✓, IMG✓])",
+        "Seen in the image: a blossoming tree fills the left foreground; behind it a gorge with an arched stone bridge, towers and terraced slopes under mountains; 'MERANO' in cream capitals at lower left; a circular FS monogram above 'ITALIA' and 'Richter & C. Napoli' at lower right; '© Tous droits réservés' in the bottom corner"
+      ],
+      "images": [
+        {
+          "file": "1935c_Borgoni_Merano_poster_Commons.jpg",
+          "caption": "Mario Borgoni, dated 1935. Public domain (PD-old-80). Wikimedia Commons; dealer watermark on the scan."
+        }
+      ],
+      "file": "1935c_Borgoni_Merano_poster_Commons.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Manifesto_Merano,_Borgoni.jpg"
+      },
+      "creator": "Mario Borgoni",
+      "holder": "Touriseum, Merano (copy inv. 4090390)",
+      "rights": "Public domain (PD-old-80; artist died 1936)",
+      "confidence": {
+        "level": "read",
+        "note": "low-resolution dealer scan with a watermark; date from the Touriseum copy"
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://commons.wikimedia.org/wiki/File:Manifesto_Merano,_Borgoni.jpg"
+      }
+    },
+    {
+      "no": "1.12",
+      "title": "Ortisei – Val Gardena",
+      "type": "Poster",
+      "date": "1935",
+      "year": 1935,
+      "keywords": [
+        "posters",
+        "tourism"
+      ],
+      "text": [
+        "Erwin Merlet's poster for Ortisei in the Val Gardena, 1935: an orange cable-car cabin, skiers, a smiling man in yellow. It was published in Bolzano by Amonn.",
+        "The province's image was mostly drawn locally and then made national through emblems, approval stamps and national printers. The small print here seems to record the ministry's approval of the sketch."
+      ],
+      "facts": [
+        "Tourist poster 'ORTISEI – VAL Gardena': cable car, Sassolungo, skiers; imprint 'Edizione J. F. Amonn S.A. Bolzano' (manifest)",
+        "Commons source: artnet; low-res, 331×470 (manifest)",
+        "Erwin Merlet (Wien 1886 – Südtirol 1939): 'Colle Isarco' (ENIT/FS, 1939) [DB✓]; this 'Ortisei – Val Gardena' (1935, Edizione J. F. Amonn, Bolzano) [IMG✓] (notes 01, Q2)",
+        "The province's image was mostly made locally (Lenhart, Merlet, Tscholl, Bährendt, Fränzl) and then nationalised through ENIT/FS logos, approval stamps and national printers (notes 01, Q2, [INF])",
+        "Seen in the image: an orange cable-car cabin at upper left against a pale rock tower; skiers on snowfields below, a smiling man in a yellow cap and jacket at lower right; 'ORTISEI' in white capitals at top, 'VAL Gardena' at lower left; a line of small print under the imprint seems to read 'Bozzetto approvato dal Ministero per la Stampa e la Propaganda – Direzione Generale per il Turismo …' (low resolution)"
+      ],
+      "images": [
+        {
+          "file": "1935_Merlet_Ortisei_ValGardena_poster_Commons.jpg",
+          "caption": "Erwin Merlet, 1935. Public domain. Wikimedia Commons (from artnet)."
+        }
+      ],
+      "file": "1935_Merlet_Ortisei_ValGardena_poster_Commons.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Erwin_Merlet_-_Poster_Ortisei_Val_Gardena.jpg"
+      },
+      "creator": "Erwin Merlet",
+      "holder": "J. F. Amonn S.A., Bolzano (publisher)",
+      "rights": "Public domain (author died more than 70 years ago)",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://commons.wikimedia.org/wiki/File:Erwin_Merlet_-_Poster_Ortisei_Val_Gardena.jpg"
+      }
+    },
+    {
+      "no": "1.13",
+      "title": "700-166. Bolzano: Panorama verso le Dolomiti",
+      "type": "Postcard",
+      "date": "1940",
+      "year": 1940,
+      "keywords": [
+        "postcards",
+        "new-city"
+      ],
+      "text": [
+        "A photographic postcard of 1940, “Bolzano: Panorama verso le Dolomiti”. Rows of large new blocks fill the valley floor in front of the old town. The new city, missing from every poster, is the foreground of a postcard.",
+        "Going by its series number it is very probably a card by the Bolzano publisher Fränzl."
+      ],
+      "facts": [
+        "Real-photo postcard '700-166. BOLZANO: Panorama verso le DOLOMITI', with the new Gries/Neustadt blocks in the foreground (manifest)",
+        "The '700-' numbering matches Fränzl's series (700-64, 700-91, 700-181, 700-422), so it is very probably a Fränzl card (notes 01, Q5, [INF])",
+        "Division of labour between media: postcards and the press carried the new state's monuments and infrastructure, posters a timeless alpine Alto Adige (notes 01, Q4, [INF])",
+        "Seen in the image: a black-and-white view over orchards and villas to rows of large new blocks across the valley floor, the town beyond and a jagged snow-covered range on the horizon at upper left; caption '700-166. BOLZANO: Panorama verso le DOLOMITI' at lower left"
+      ],
+      "images": [
+        {
+          "file": "1940_Bolzano_panorama_verso_Dolomiti_postcard_Commons.jpg",
+          "caption": "Unknown publisher (probably Fränzl), 1940. Public domain (PD-Italy). Wikimedia Commons."
+        }
+      ],
+      "file": "1940_Bolzano_panorama_verso_Dolomiti_postcard_Commons.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:BZ-Bolzano-1940-Panorama.jpg"
+      },
+      "rights": "Public domain (PD-Italy, simple photographs 20 years; PD-1996)",
+      "confidence": {
+        "level": "read",
+        "note": "publisher not stated; Fränzl is an inference from the series number"
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://commons.wikimedia.org/wiki/File:BZ-Bolzano-1940-Panorama.jpg"
+      }
+    }
+  ]
+}

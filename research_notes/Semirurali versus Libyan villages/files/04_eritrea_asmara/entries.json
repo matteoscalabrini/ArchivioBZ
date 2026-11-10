@@ -1,0 +1,909 @@
+{
+  "keywords_proposed": {
+    "planning": {
+      "label": "Town planning"
+    }
+  },
+  "places_proposed": {},
+  "entries": [
+    {
+      "no": "11.00",
+      "title": "Italian Eritrea and Asmara, 1890-1941 (afterlife to 2017): the control case for Fascist Bolzano as a colonial dual city",
+      "type": "Notes",
+      "date": "2026",
+      "year": 2026,
+      "keywords": [
+        "eritrea",
+        "race",
+        "colonization",
+        "planning",
+        "heritage"
+      ],
+      "text": [
+        "The working notes on Italian Eritrea and its capital, kept as the control case for Bolzano. Asmara was a dual city by law: decrees of 1908 reserved zones “esclusivamente” by legal status, and the plans of the 1930s built on them. Bolzano's new city never had a legal ban on German speakers living in it.",
+        "What the two cities shared was an office. The Commissariato per le migrazioni e la colonizzazione interna had a delegation in Asmara and ran the quotas for Pontine settlers, for workers bound for East Africa, and for Bolzano."
+      ],
+      "facts": [
+        "Thread 04 of the second investigation: Eritrea and Asmara as control case, covering 1908 racial zoning, the Cavagnari and Cafiero plans, the 1938-39 Italian majority, the CMCI worker flow, villaggi operai, UNESCO 2017 (README).",
+        "Five parts: the dual city and its plans 1908-1939 with the racial laws; the demographic flip 1905-1952; workers from the north and the CMCI; the earlier settler experiments (Franchetti, Tessenei); vocabulary, newsreels and the afterlife to 2017 (notes 04, headings).",
+        "Tags used: [V] read in the primary source, [S] full secondary source, [SS] snippet only, [INF] the researcher's inference (notes 04, tags).",
+        "The CMCI had a delegation in Asmara; the same office ran the quotas for Pontine settlers, AOI workers and Bolzano: 'the strongest institutional identity between Asmara and Bolzano found in this thread' (notes 04, §3, [INF]).",
+        "Contrast with Bolzano: Asmara's 1908 decrees reserved zones 'esclusivamente' by legal status; Bolzano's new city never had a legal residence ban on German-speakers (notes 04, §1, [INF]).",
+        "Asmara was inscribed by UNESCO on 8 July 2017 under criteria (ii) and (iv); the listing names 'racial segregation principles' as part of its value (notes 04, §5, [V])."
+      ],
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "read",
+        "target": "../../04_eritrea_asmara.md"
+      }
+    },
+    {
+      "no": "11.01",
+      "title": "La colonia Eritrea dalle sue origini fino al 1. marzo 1899",
+      "type": "Book",
+      "date": "1899",
+      "year": 1899,
+      "keywords": [
+        "eritrea",
+        "colonization"
+      ],
+      "text": [
+        "Beniamino Melli's history of the colony to 1899, in a Google scan. Its chapter on Franchetti's settlement scheme shows instruments the regime would use forty years later: peasant families “arruolati con atto notarile”, advanced money, food, tools and seed against their produce, given “la facoltà di diventare proprietari del terreno”, and settled around Godofelassi “ove fu per loro costituito apposito villaggio”.",
+        "The government took about 4,500 hectares of productive land into state ownership. This research sees the continuity in the instruments, not in the institutions."
+      ],
+      "facts": [
+        "Book by Beniamino Melli, 1899, a Google scan on the Internet Archive; the Franchetti chapter is at pp. 87-90 (manifest).",
+        "Franchetti 'impiantò sull'altipiano tre poderi agricoli sperimentali, ad Asmara, Godofelassi e Gura, conducendo seco dei coloni italiani' (p. 64) (notes 04, §4, [V]).",
+        "The government indemaniated land 'abbandonati o di incerta e mal definita proprietà'; footnote: 'Furono indemaniati circa 4500 Ettari di terreno produttivo' (notes 04, §4, [V]).",
+        "Peasant families were 'arruolati con atto notarile' and given money, food, tools, seed and 'la facoltà di diventare proprietari del terreno', repaid from produce; they were settled around Godofelassi 'ove fu per loro costituito apposito villaggio' (pp. 87-90) (notes 04, §4, [V]).",
+        "The notes read Franchetti's scheme as anticipating Fascist instruments: notarial contracts, state advances repaid from produce, family plots in a purpose-built village; 'the continuity is in instruments, not institutions' (notes 04, §4, [INF]).",
+        "A Wikisource transcription of the chapter exists: https://it.wikisource.org/wiki/La_Colonia_Eritrea/Parte_II/Capitolo_X (notes 04, §4)."
+      ],
+      "file": "period_texts/Melli_1899_La_colonia_Eritrea.pdf",
+      "source": {
+        "label": "Internet Archive",
+        "url": "https://archive.org/details/lacoloniaeritre00mellgoog"
+      },
+      "creator": "Beniamino Melli",
+      "rights": "Not in copyright (IA \"NOT_IN_COPYRIGHT\"; Google scan)",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "11.02",
+      "title": "The old mosque of Asmara, demolished in 1937",
+      "type": "Photograph",
+      "date": "1906–37",
+      "year": 1906,
+      "keywords": [
+        "eritrea"
+      ],
+      "text": [
+        "Asmara's old mosque: a whitewashed building with a tall minaret, people sitting by the entrance. It was demolished in 1937 for the Grand Mosque designed by Guido Ferrazza, an engineer born in the Trentino. The photographer is unknown, and the picture was taken at some point between 1906 and 1937."
+      ],
+      "facts": [
+        "Photograph of Asmara's old mosque, photographer unknown, 1906-1937; the mosque was demolished in 1937 for Ferrazza's Grand Mosque (manifest).",
+        "The Commons file is titled 'Asmara (Colonia Eritrea) La Moschea' (manifest, source URL).",
+        "The 1938 CTI guide describes the new 'Moschea (4 B), costruita nel 1937 su progetto dell'Ing. G. Ferrazza' (CTI 1938, p. 203, period_texts/CTI_1938_Guida_AOI_p203_zona_industriale.jpg).",
+        "Guido Ferrazza was born at Bocenago (Trento) in 1887; Canali calls him 'trentino' (notes 04, §1, [S]).",
+        "Seen in the image: a whitewashed mosque with four arched windows and a larger arched doorway, a tall minaret with a railed balcony and a crescent finial on the right, people seated by the entrance and two figures walking across the open ground in front."
+      ],
+      "images": [
+        {
+          "file": "commons/Asmara_vecchia_moschea_1906-1937.jpg",
+          "caption": "Photographer unknown, 1906–37. Public domain per Commons, Wikimedia Commons."
+        }
+      ],
+      "file": "commons/Asmara_vecchia_moschea_1906-1937.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Asmara_(Colonia_Eritrea)_La_Moschea.jpg"
+      },
+      "rights": "Public domain per Commons",
+      "confidence": {
+        "level": "read",
+        "note": "Photographer unknown (manifest)."
+      }
+    },
+    {
+      "no": "11.03",
+      "title": "Relazione sulla colonia Eritrea del R. commissario civile deputato Ferdinando Martini per gli esercizi 1902-907",
+      "type": "Book",
+      "date": "1913",
+      "year": 1913,
+      "keywords": [
+        "eritrea",
+        "statistics"
+      ],
+      "text": [
+        "Ferdinando Martini's official report on the colony for 1902–07, printed for Parliament in 1913. It holds the census of 1 January 1905: 3,949 whites in all Eritrea, of whom 2,333 Italians, among 274,944 natives. This is the starting point of the series that ends with Asmara's Italian majority in 1938–39."
+      ],
+      "facts": [
+        "Official report by Ferdinando Martini (Ministero delle Colonie), 1913, volume I (manifest); title page: Atti parlamentari, Camera dei Deputati, Legislatura XXIII, Doc. LXII, 'presentata dal Ministro delle Colonie (Bertolini) nella seduta del 14 giugno 1913', Roma, Tipografia della Camera dei Deputati (the file).",
+        "The 1905 census of the white population is at pp. 46-47 (manifest).",
+        "1 Jan 1905: 3,949 whites in Eritrea, of whom 834 military; 2,333 Italians and 1,466 foreigners; 274,944 natives (pp. 46-47) (notes 04, §2, [V]).",
+        "Whites in the colony: 585 in 1892, 963 in 1894, 2,014 in 1902, 3,949 in 1905 (p. 47) (notes 04, §2, [V]).",
+        "The 1905 census was 'prescritto con il decreto 8 dicembre 1904, n. 321' (notes 04, §4, [V]).",
+        "Starting point of the series the notes use to show Asmara's Italians growing more than tenfold in 1935-39 (notes 04, §2)."
+      ],
+      "file": "period_texts/Martini_1913_Relazione_sulla_colonia_Eritrea_1902-1907_vol1.pdf",
+      "source": {
+        "label": "Internet Archive",
+        "url": "https://archive.org/details/relazionesullaco01erit"
+      },
+      "creator": "Ferdinando Martini (Ministero delle Colonie)",
+      "holder": "Camera dei Deputati",
+      "rights": "Public domain (official report, author d. 1928)",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "11.04",
+      "title": "Istituto Luce, 40 catalogue records on Eritrea, workers for East Africa and Bolzano, 1924–39",
+      "type": "Table",
+      "date": "1924–39",
+      "year": 1924,
+      "keywords": [
+        "newsreels",
+        "eritrea",
+        "colonization",
+        "semirurali",
+        "zona-industriale"
+      ],
+      "text": [
+        "Forty catalogue records from the Archivio Luce, 1924 to 1939, read as text; the films were not viewed. They follow workers leaving for East Africa, among them a thousand “operai-soldati” reviewed by Mussolini in November 1936, and the founding of two “villaggi operai” in Asmara in December 1937.",
+        "The same catalogue films Bolzano: the opening of the Ponte Littorio between the industrial zone and “il villaggio delle case popolari” in July 1939, and the Rione Dux, “228 casette con 808 appartamenti”, that October. No newsreel puts Asmara and Bolzano in a single item."
+      ],
+      "facts": [
+        "40 Archivio Luce catalogue records, text only (title, date, film code, credits, sequences, keywords, other items of the same issue); no footage was downloaded or viewed (manifest).",
+        "Index derived on 2026-11-10 into luce_records/luce_records_index.csv; dates run from '[1924-31]' (M004911, 'Eritrea, colonia primogenita d'Italia') to 11/10/1939 (B159907, Rione Dux) (the files).",
+        "Workers leaving for East Africa: B072705 (1935, Naples, 1,000 workers for Massaua), B099009 (11 Nov 1936, Mussolini reviews 1,000 'operai-soldati'), B099605 (25 Nov 1936, 2,000 workers incl. 50 from San Marino) (notes 04, §3, [V]).",
+        "B121507 (8 Dec 1937, Asmara): Governor De Feo starts two 'villaggi operai' named after Pietro Toselli and Arnaldo Mussolini (notes 04, §3, [V]).",
+        "Bolzano items: B134904 'La mostra dei prodotti dell'impero' (3 Aug 1938); B154001 Cobolli Gigli and Mastromattei open the Ponte Littorio linking 'la zona industriale con il villaggio delle case popolari' (5 Jul 1939); B159907 Rione Dux, '228 casette con 808 appartamenti' (11 Oct 1939) (notes 04, §5, [V]; manifest).",
+        "B073605 (21 Aug 1935): funeral of Luigi Razza, killed on the Cairo-Asmara flight; Asmara later named a workers' village 'L. Razza' (notes 04, §5, [V]).",
+        "No newsreel puts Asmara and Bolzano in a single item; about 420 video records were screened (notes 04, §3 gaps and §5).",
+        "Conflict: manifest and notes put B080306 (Bolzano ring offering) and B080409 (Badoglio at Massaua) in the same issue B0803; the files give issues B0803 and B0804, both dated 24/12/1935. B096705 and B096708 are both in issue B0967, as stated (the files)."
+      ],
+      "file": "luce_records/luce_records_index.csv",
+      "source": {
+        "label": "Archivio storico Istituto Luce",
+        "url": "https://patrimonio.archivioluce.com/"
+      },
+      "creator": "Istituto Nazionale Luce",
+      "holder": "Istituto Luce-Cinecittà",
+      "rights": "Catalogue text only; rights in the footage: Istituto Luce-Cinecittà",
+      "confidence": {
+        "level": "read",
+        "note": "Catalogue records read; footage not viewed (manifest)."
+      },
+      "more": {
+        "kind": "table",
+        "target": "luce_records/luce_records_index.csv",
+        "columns": [
+          "date",
+          "title",
+          "places"
+        ]
+      }
+    },
+    {
+      "no": "11.05",
+      "title": "Viale Mussolini, today Harnet Avenue, Asmara",
+      "type": "Photograph",
+      "date": "1930s",
+      "year": 1930,
+      "keywords": [
+        "eritrea",
+        "race"
+      ],
+      "text": [
+        "The main avenue of Italian Asmara, today Harnet Avenue: palms, balconied buildings, cars, people on the pavements. According to the UNESCO nomination text, “Eritreans were forbidden from using or crossing Viale Mussolini” during the Italian period.",
+        "The date of “1930s” is the one given on Wikimedia Commons and has not been checked."
+      ],
+      "facts": [
+        "Photograph of Viale Mussolini (today Harnet Avenue) in 1930s Asmara, credited on Commons to 'Bizen, H. and Sallinen, S.' (manifest).",
+        "'During the Italian period, Eritreans were forbidden from using or crossing Viale Mussolini and could not enjoy the numerous facilities along the street'; the passeggiata 'was adopted by Eritreans after 1941 when the entire city became open to them' (notes 04, §1, [S], UNESCO nomination text p. 63).",
+        "Cafiero's 1938-39 plan put the 'Zona degli Affari' between corso del Re and viale Mussolini (notes 04, §1, [S]).",
+        "The notes count this street-level exclusion among the three things Fascism added to liberal-era zoning (notes 04, §1, [INF]).",
+        "Seen in the image: a broad avenue lined with palms; multi-storey buildings with balconies and awnings on the left; a tall pointed bell tower in the background; cars parked and driving; pedestrians on the pavements."
+      ],
+      "images": [
+        {
+          "file": "commons/Viale_Mussolini_Asmara_1930s.jpg",
+          "caption": "Credited to H. Bizen and S. Sallinen, 1930s. Public domain per Commons, Wikimedia Commons."
+        }
+      ],
+      "file": "commons/Viale_Mussolini_Asmara_1930s.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Viale_Mussolini_(today_Harnet_Avenue)_in_1930s_Asmara.jpg"
+      },
+      "creator": "Bizen, H. and Sallinen, S. (as credited on Commons)",
+      "rights": "Public domain per Commons",
+      "confidence": {
+        "level": "read",
+        "note": "Credit and 1930s date as given on Commons (manifest)."
+      }
+    },
+    {
+      "no": "11.06",
+      "title": "Asmara – Palazzo del Governo",
+      "type": "Photograph",
+      "date": "1937–38",
+      "year": 1937,
+      "keywords": [
+        "eritrea"
+      ],
+      "text": [
+        "The Governor's palace in Asmara, from a souvenir album of Italian East Africa of 1937–38: a pedimented portico behind iron railings, a sentry box on each side, three guards in white. Cafiero's plan made the palace part of a “Zona governativa” around a new square. Photographer unknown."
+      ],
+      "facts": [
+        "Photograph from the album 'Ricordo Africa Orientale Italiana', photographer unknown, 1937-1938; a 3840 px derivative (manifest).",
+        "Cafiero's plan set a 'Zona governativa' around a new 'piazza De Cristoforis', with the Governor's palace and two head buildings on viale De Bono (notes 04, §1, [S]).",
+        "The Luce record A051504 (Feb 1930), 'Un ricevimento al palazzo del Governo di Asmara', lists 'le guardie indigene avvolte nei caratteristici drappi bianchi' (luce_records/Luce_IL5000014923.txt).",
+        "Seen in the image: a low building with a pedimented portico of columns behind iron railings and an open gate, a sentry box on each side, three guards in white uniforms, palms, a flag on a tall pole and two tall ornamental posts; printed caption 'ASMARA - Palazzo del Governo'."
+      ],
+      "images": [
+        {
+          "file": "commons/ASMARA_Palazzo_del_Governo_1937-38_3840px.jpg",
+          "caption": "Photographer unknown, album 'Ricordo Africa Orientale Italiana', 1937–38. Public domain per Commons, Wikimedia Commons."
+        }
+      ],
+      "file": "commons/ASMARA_Palazzo_del_Governo_1937-38_3840px.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:ASMARA_-_Palazzo_del_Governo.jpg"
+      },
+      "rights": "Public domain per Commons",
+      "confidence": {
+        "level": "read",
+        "note": "Photographer unknown (manifest)."
+      }
+    },
+    {
+      "no": "11.07",
+      "title": "Asmara – Panorama",
+      "type": "Photograph",
+      "date": "1937–38",
+      "year": 1937,
+      "keywords": [
+        "eritrea"
+      ],
+      "text": [
+        "Asmara from above, from the same souvenir album: low pitched roofs and a straight street running to a tall pointed bell tower. The Touring Club's guide of 1938 describes this view: “La città italiana ... dominata dal campanile della Cattedrale, è disposta a vie regolari rettilinee a S della città indigena.”"
+      ],
+      "facts": [
+        "Photograph from the album 'Ricordo Africa Orientale Italiana', photographer unknown, 1937-1938; a 3840 px derivative (manifest).",
+        "The 1938 CTI guide: 'La città italiana, ricca di edifici notevoli e di giardini perennem. fioriti e dominata dal campanile della Cattedrale, è disposta a vie regolari rettilinee a S della città indigena' (notes 04, §1, [V], CTI p. 199).",
+        "The same guide: 'Dal 1935 Asmára è tutta un cantiere' (notes 04, §1, [V], CTI p. 199).",
+        "Seen in the image: a view over low houses with pitched roofs toward a tall pointed bell tower; a straight street runs to it; at lower right a square with a round basin and a flag; printed caption 'ASMARA Panorama'."
+      ],
+      "images": [
+        {
+          "file": "commons/ASMARA_Panorama_1937-38_3840px.jpg",
+          "caption": "Photographer unknown, album 'Ricordo Africa Orientale Italiana', 1937–38. Public domain per Commons, Wikimedia Commons."
+        }
+      ],
+      "file": "commons/ASMARA_Panorama_1937-38_3840px.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:ASMARA_-_Panorama.jpg"
+      },
+      "rights": "Public domain per Commons",
+      "confidence": {
+        "level": "read",
+        "note": "Photographer unknown (manifest)."
+      }
+    },
+    {
+      "no": "11.08",
+      "title": "Regio decreto-legge 19 aprile 1937, n. 880. Sanzioni per i rapporti d'indole coniugale fra cittadini e sudditi",
+      "type": "Law text",
+      "date": "19 April 1937",
+      "year": 1937,
+      "keywords": [
+        "law",
+        "race",
+        "eritrea"
+      ],
+      "text": [
+        "The decree that made it a crime for an Italian citizen to live “in relazione d'indole coniugale” with a subject of Italian East Africa: one to five years in prison.",
+        "Enforcement was weak. By one contemporary count, which the historian Giulia Barrera calls questionable, Eritrean women living with Italians rose from 1,150 in 1935 to 15,000 in 1940. This research files the racial laws of 1937–40 as statutes of the empire, not rules about the city."
+      ],
+      "facts": [
+        "R.D.L. 19 Apr 1937 n. 880, GU n. 145, 24 Jun 1937; converted by L. 30 Dec 1937 n. 2590; original text from Normattiva (manifest).",
+        "Single article: 'Il cittadino italiano che nel territorio del Regno o delle Colonie tiene relazione d'indole coniugale con persona suddita dell'Africa Orientale italiana ... è punito con la reclusione da uno a cinque anni' (notes 04, §1, [V]).",
+        "Proposed by the Minister for Africa Italiana with the Minister of Justice; signed 'Mussolini - Lessona - Solmi' (the file).",
+        "Art. 23 of L. 29 Jun 1939 n. 1004 repeals L. 2590/1937, the law converting this decree; art. 10 of that law punishes 'relazione d'indole coniugale con nativo' with 1-5 years (notes 04, §1, [V]).",
+        "Enforcement of the madamato ban was weak: Eritrean women living with Italians rose from 1,150 (1935) to 15,000 (1940) by the Italo-Eritrean Association's count; Barrera says 'the accuracy of these figures is questionable' (notes 04, §1, [S]).",
+        "The notes call the 1937-1940 racial laws 'imperial statutes, not urban rules' (notes 04, §1, takeaway)."
+      ],
+      "file": "decrees/RDL_1937-04-19_n880_madamato.txt",
+      "source": {
+        "label": "Normattiva",
+        "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:regio.decreto.legge:1937-04-19;880"
+      },
+      "creator": "Kingdom of Italy (signed Vittorio Emanuele; Mussolini, Lessona, Solmi)",
+      "rights": "Public domain (official act)",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "11.09",
+      "title": "Guida dell'Africa Orientale Italiana",
+      "type": "Book",
+      "date": "1938",
+      "year": 1938,
+      "keywords": [
+        "guidebooks",
+        "eritrea",
+        "race",
+        "colonization",
+        "wording"
+      ],
+      "text": [
+        "The Touring Club's guide to Italian East Africa, 674 pages, with seven pages on Asmara held as images. It gives the city 98,000 inhabitants, 53,000 of them Italian, and writes: “Dal 1935 Asmára è tutta un cantiere.” The figures are the guide's estimate, not a census.",
+        "Plan and text draw the dual city without embarrassment: viale Milano, “lunga arteria formicolante di indigeni, che separa nettam. la città italiana a S dal villaggio eritreo a N”. Among the public offices on page 198 is the delegation of the Commissariato per le Migrazioni interne e la Colonizzazione, the office that also filled Bolzano."
+      ],
+      "facts": [
+        "Consociazione Turistica Italiana (Touring Club Italiano), 1938: the whole guide as a 674-page DjVu (not opened), plus seven Asmara pages fetched as JPEG from Wikimedia's thumbnailer; printed page = DjVu page minus 6 in the Asmara section (manifest).",
+        "Seen in the image (pp. 204-205, city plan, east half): 'ASMARA Scala di 1:15 000'; built blocks in orange; 'Quartiere Eritreo' at top left above a street lettered 'Milano'; 'Mercato Indigeni', 'Moschea', 'Chiesa Copta', 'Caravanserraglio', 'Staz. Ferr.', 'Ghezza Banda'.",
+        "Seen in the image (pp. 204-205, city plan, west half): 'Scuole Eritree Vittorio Emanuele III', 'Governo', 'Resid. del Governatore', 'Ippodromo', 'Zona Gaggiret'.",
+        "Seen in the image (p. 198): among the 'Uffici Pubblici', 'Delegazione del Commissariato per le Migrazioni interne e la Colonizzazione, largo M. Camperio'. The notes call the CMCI's presence in Asmara the strongest institutional identity with Bolzano (notes 04, §3, [INF]).",
+        "Seen in the image (p. 199): 'Asmára m. 2347, ab. 98 000 (di cui 53 000 Italiani)'; and 'Dal 1935 Asmára è tutta un cantiere'. The notes doubt the later label '1939 census' for these figures: 'CTI 1938 guide estimate' (notes 04, §2, [V], [INF]).",
+        "Seen in the image (p. 200): '4 villaggi operai (A. Mussolini, L. Razza, Col. De Cristoforis, Magg. Toselli)' and 'Asmára si presenta come una graziosissima città italiana ... tesa verso un avvenire veram. imperiale', which the notes list as period vocabulary (notes 04, §3 and §5, [V]).",
+        "Seen in the image (p. 203): 'Moschea (4 B), costruita nel 1937 su progetto dell'Ing. G. Ferrazza' and 'la Zona Industriale, tracciata nella piana già occupata dal Villaggio indigeno, che ora addensa le sue casette sulla collina a N della città'.",
+        "Seen in the images (pp. 203 and 206): 'viale Milano, lunga arteria formicolante di indigeni, che separa nettam. la città italiana a S dal villaggio eritreo a N'; the 'Villaggio Eritreo', 'la cui visita può essere interessante per rendersi conto delle condizioni di vita degli eritrei'; 'Villaggio operaio col. De Cristoforis'; 'Cimitero per gli Europei'.",
+        "The notes read pp. 199-206 as the period description of the dual city (notes 04, §1, [V])."
+      ],
+      "images": [
+        {
+          "file": "period_texts/CTI_1938_Guida_AOI_p205_Pianta_Asmara_E.jpg",
+          "caption": "Consociazione Turistica Italiana, Guida dell'Africa Orientale Italiana, 1938, city plan of Asmara, east half. Public domain per Commons, Wikimedia Commons (DjVu page 211)."
+        },
+        {
+          "file": "period_texts/CTI_1938_Guida_AOI_p204_Pianta_Asmara_W.jpg",
+          "caption": "Consociazione Turistica Italiana, Guida dell'Africa Orientale Italiana, 1938, city plan of Asmara, west half. Public domain per Commons, Wikimedia Commons (DjVu page 210)."
+        },
+        {
+          "file": "period_texts/CTI_1938_Guida_AOI_p198_Asmara_uffici_CMCI.jpg",
+          "caption": "Consociazione Turistica Italiana, Guida dell'Africa Orientale Italiana, 1938, p. 198. Public domain per Commons, Wikimedia Commons (DjVu page 204)."
+        },
+        {
+          "file": "period_texts/CTI_1938_Guida_AOI_p199_Asmara_ab98000.jpg",
+          "caption": "Consociazione Turistica Italiana, Guida dell'Africa Orientale Italiana, 1938, p. 199. Public domain per Commons, Wikimedia Commons (DjVu page 205)."
+        },
+        {
+          "file": "period_texts/CTI_1938_Guida_AOI_p200_villaggi_operai.jpg",
+          "caption": "Consociazione Turistica Italiana, Guida dell'Africa Orientale Italiana, 1938, p. 200. Public domain per Commons, Wikimedia Commons (DjVu page 206)."
+        },
+        {
+          "file": "period_texts/CTI_1938_Guida_AOI_p203_zona_industriale.jpg",
+          "caption": "Consociazione Turistica Italiana, Guida dell'Africa Orientale Italiana, 1938, p. 203. Public domain per Commons, Wikimedia Commons (DjVu page 209)."
+        },
+        {
+          "file": "period_texts/CTI_1938_Guida_AOI_p206_viale_Milano_separa.jpg",
+          "caption": "Consociazione Turistica Italiana, Guida dell'Africa Orientale Italiana, 1938, p. 206. Public domain per Commons, Wikimedia Commons (DjVu page 212)."
+        }
+      ],
+      "file": "period_texts/CTI_1938_Guida_dell_Africa_Orientale_Italiana.djvu",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:CTI_-_Guida_dell%27Africa_Orientale_Italiana,_1938.djvu"
+      },
+      "creator": "Consociazione Turistica Italiana (Touring Club Italiano)",
+      "rights": "Public domain per Commons",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://commons.wikimedia.org/wiki/File:CTI_-_Guida_dell%27Africa_Orientale_Italiana,_1938.djvu"
+      }
+    },
+    {
+      "no": "11.10",
+      "title": "Legge 29 giugno 1939, n. 1004. Sanzioni penali per la difesa del prestigio di razza di fronte ai nativi dell'Africa Italiana",
+      "type": "Law text",
+      "date": "29 June 1939",
+      "year": 1939,
+      "keywords": [
+        "law",
+        "race",
+        "eritrea"
+      ],
+      "text": [
+        "The law “per la difesa del prestigio di razza”. It defines the citizen as “il cittadino italiano metropolitano di razza ariana”, punishes Italians who habitually frequent places reserved for natives, and fines those who work for a native without the Governor's written permission. It gave legal backing to the separation already practised in Asmara's streets."
+      ],
+      "facts": [
+        "L. 29 Jun 1939 n. 1004, GU n. 169, 21 Jul 1939, 23 articles; original text from Normattiva (manifest).",
+        "Art. 2: 'per cittadino si intende il cittadino italiano metropolitano di razza ariana' (notes 04, §1, [V]).",
+        "Art. 12: a citizen who 'frequenti abitualmente luoghi aperti al pubblico riservati ai nativi' is punished with arrest up to six months or a fine up to 2,000 lire (notes 04, §1, [V]).",
+        "Art. 13: accepting continuous work from a native, or doing manual work for one, without the Governor's written authorisation: fine up to 5,000 lire (notes 04, §1, [V]).",
+        "Art. 23 repeals L. 2590/1937, the conversion of the 1937 madamato decree (notes 04, §1, [V]).",
+        "Bo (2023): under the 1939 law and related norms Italians were barred from 'frequentare esercizi pubblici o spacci di proprietà di non-europei, risiedere nei quartieri indigeni o prestare qualunque prestazione lavorativa alle dipendenze di africani' (notes 04, §1, [S]).",
+        "Given at San Rossore, 29 June 1939; signed 'Mussolini - Solmi' (the file).",
+        "The notes see Asmara's street-level exclusion as 'backed after 1939 by the \"prestigio di razza\" law' (notes 04, §1, [INF])."
+      ],
+      "file": "decrees/L_1939-06-29_n1004_prestigio_di_razza.txt",
+      "source": {
+        "label": "Normattiva",
+        "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1939-06-29;1004"
+      },
+      "creator": "Kingdom of Italy (signed Vittorio Emanuele; Mussolini, Solmi)",
+      "rights": "Public domain",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "11.11",
+      "title": "Terminal station of the Massawa–Asmara cableway at Campo Marte, Asmara",
+      "type": "Photograph",
+      "date": "1939",
+      "year": 1939,
+      "keywords": [
+        "eritrea"
+      ],
+      "text": [
+        "The Asmara end of the cableway from Massawa, at Campo Marte, in 1939: a lattice steel tower, a long open shed, oil drums and tyres on bare ground. Held as a picture of the colony's infrastructure. The notes do not discuss the cableway."
+      ],
+      "facts": [
+        "Photograph of the Massawa-Asmara cableway terminal at Campo Marte, photographer unknown, 1939 (manifest).",
+        "The Commons file is titled '14 - Stazione terminale Campo Marte Asmara' (manifest, source URL).",
+        "The thread's notes do not discuss the cableway (notes 04, searched).",
+        "Seen in the image: a tall lattice steel tower with a sign board on top, a long open shed with a corrugated roof, cables running in from the left, oil drums and tyres in the foreground on bare ground."
+      ],
+      "images": [
+        {
+          "file": "commons/Asmara_stazione_teleferica_Campo_Marte_1939.jpg",
+          "caption": "Photographer unknown, 1939. Public domain per Commons, Wikimedia Commons."
+        }
+      ],
+      "file": "commons/Asmara_stazione_teleferica_Campo_Marte_1939.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:14_-_Stazione_terminale_Campo_Marte_Asmara.jpg"
+      },
+      "rights": "Public domain per Commons",
+      "confidence": {
+        "level": "read",
+        "note": "Photographer unknown (manifest)."
+      }
+    },
+    {
+      "no": "11.12",
+      "title": "Legge 13 maggio 1940, n. 822. Norme relative ai meticci",
+      "type": "Law text",
+      "date": "13 May 1940",
+      "year": 1940,
+      "keywords": [
+        "law",
+        "race",
+        "eritrea",
+        "dodecanese"
+      ],
+      "text": [
+        "The law on children of mixed parentage. “Il meticcio assume lo statuto del genitore nativo ed è considerato nativo a tutti gli effetti.” The Italian parent may not recognise the child or pass on a surname, and a court may declare a child of unknown parents a “meticcio” from “le caratteristiche somatiche”.",
+        "Asmara registered 2,594 such births between 1937 and 1940."
+      ],
+      "facts": [
+        "L. 13 May 1940 n. 822, GU n. 166, 17 Jul 1940; original text from Normattiva (manifest).",
+        "Art. 2: 'Il meticcio assume lo statuto del genitore nativo ed è considerato nativo a tutti gli effetti'; art. 3: 'Il meticcio non può essere riconosciuto dal genitore cittadino'; art. 4: no use of the citizen parent's surname (notes 04, §1, [V]).",
+        "Art. 1 lets a court declare a child of unknown parents a 'meticcio' when 'le caratteristiche somatiche od altri elementi' suggest a native parent (the file).",
+        "Art. 12 extends the law to the citizen 'delle Isole italiane dell'Egeo' and the child born of such a citizen and a native; art. 13: it applies 'in tutti i territori dello Stato' (the file).",
+        "Signed 'Mussolini - Teruzzi - Ciano - Grandi' (the file).",
+        "The municipality of Asmara registered 2,594 métis births in 1937-1940 (Cerbella, via Barrera) (notes 04, §1, [S])."
+      ],
+      "file": "decrees/L_1940-05-13_n822_meticci.txt",
+      "source": {
+        "label": "Normattiva",
+        "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1940-05-13;822"
+      },
+      "creator": "Kingdom of Italy (signed Vittorio Emanuele; Mussolini, Teruzzi, Ciano, Grandi)",
+      "rights": "Public domain",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "11.13",
+      "title": "Dangerous Liaisons: Colonial Concubinage in Eritrea, 1890–1941",
+      "type": "Article",
+      "date": "1996",
+      "year": 1996,
+      "keywords": [
+        "race",
+        "eritrea",
+        "statistics"
+      ],
+      "text": [
+        "Giulia Barrera's study of concubinage between Italian men and Eritrean women. It is this research's source for the programme the colonial minister Lessona announced in January 1937, “absolute clear separation of the two races”, and for the ordinances that forbade whites to live in black districts.",
+        "It also warns about the numbers: “No proper census took place after 1931”, so the figures for 1940 “must be considered as purely indicative”. One detail leads back north: the Fascist party's colonial primer was printed in Trento in 1939."
+      ],
+      "facts": [
+        "Giulia Barrera, PAS Working Papers 1, Program of African Studies, Northwestern University, 1996 (manifest; the file).",
+        "Lessona's programme (La Stampa, 9 Jan 1937): '1) absolute clear separation of the two races; 2) collaboration without promiscuity ...' (notes 04, §1, [S], pp. 37-38).",
+        "Colonial ordinances 'forbade whites to live in black districts', ordered 'absolute separation of the races at sites of public entertainment' and segregation on transport; the ordinances are not named or dated (notes 04, §1, [S], p. 38).",
+        "'No proper census took place after 1931; thus the population figures supplied for 1940 must be considered as purely indicative' (notes 04, §2, [S], p. 5 n. 12).",
+        "Asmara 1939: 41,263 Italian men and 11,177 women (Rossetti, via Barrera) (notes 04, §2, [S], p. 42).",
+        "The PNF's colonial primer, 'Nozioni coloniali per gli iscritti alle organizzazioni del PNF', was printed in Trento in 1939 (notes 04, §5, [S], p. 42 n. 146).",
+        "Rights: '© 1996 Giulia Barrera. All rights reserved'; brief quotations only (manifest)."
+      ],
+      "file": "articles/Barrera_1996_Dangerous_Liaisons_PAS_WP1.pdf",
+      "source": {
+        "label": "Northwestern University, Arch repository",
+        "url": "https://arch.library.northwestern.edu/downloads/kp78gg509?locale=en"
+      },
+      "creator": "Giulia Barrera",
+      "holder": "Program of African Studies, Northwestern University",
+      "rights": "\"© 1996 Giulia Barrera. All rights reserved\"; distributed open access by Northwestern. Free to read; brief quotations only.",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "11.14",
+      "title": "Asmara, Afrikas heimliche Stadt der klassischen Moderne",
+      "type": "Article",
+      "date": "2008",
+      "year": 2008,
+      "keywords": [
+        "eritrea",
+        "monumento-vittoria",
+        "heritage"
+      ],
+      "text": [
+        "Martin Hanni, writing in a South Tyrolean history journal, compares the street front of Asmara's Casa del Fascio with the Monumento alla Vittoria in Bolzano: more political demonstration than necessity. It is the one piece of scholarship found that sets the two cities side by side.",
+        "He also quotes a critic on the 2006 Berlin exhibition that showed Asmara's architecture apart from its ideology: “eine offenkundige Kapitulation vor der Geschichte”."
+      ],
+      "facts": [
+        "Martin Hanni, Geschichte und Region/Storia e regione 17/1 (2008), issue 'Faschismus und Architektur', pp. 195-199 (manifest).",
+        "Hanni calls the street front of Asmara's Casa del Fascio (1940), 'vergleichbar mit dem ebenfalls dem Monumentalismo zugeschriebenen Monumento della Vittoria in Bozen', more political demonstration than necessity (notes 04, §5, [S]).",
+        "He opens with Christine Reginelli of Merano, who taught English in Asmara in the mid-1950s (notes 04, §5, [S]).",
+        "On the 2006 Berlin exhibition 'Asmara – the frozen city', shown 'losgelöst von Ideologien', he quotes Christian Welzbacher (FAZ, 17 Nov 2006): 'eine offenkundige Kapitulation vor der Geschichte' (notes 04, §5, [S], p. 199).",
+        "The notes list it under 'Scholarship pairing the two' (Eritrea/Africa and Alto Adige): 'A South Tyrolean journal compared Asmara's Casa del Fascio with Bolzano's Victory Monument in 2008' (notes 04, §5).",
+        "Open access on the journal site; licence not stated (manifest)."
+      ],
+      "file": "articles/Hanni_2008_Asmara_GRSR17-1_pp195-199.pdf",
+      "source": {
+        "label": "Geschichte und Region/Storia e regione",
+        "url": "https://geschichteundregion.eu/attachment/get/up_90_16520957023447.pdf"
+      },
+      "creator": "Martin Hanni",
+      "holder": "Geschichte und Region/Storia e regione",
+      "rights": "Open access on the journal site; licence not stated",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "11.15",
+      "title": "L'altra faccia del colonialismo. L'architettura italiana in Eritrea",
+      "type": "Article",
+      "date": "2010",
+      "year": 2010,
+      "keywords": [
+        "eritrea",
+        "heritage"
+      ],
+      "text": [
+        "Carlo Cencini on Italian architecture in Eritrea, under the title “the other face of colonialism”. Apologetic in tone and to be used with care. The notes do not cite it."
+      ],
+      "facts": [
+        "Carlo Cencini, Bollettino della Società Geografica Italiana, s. XIII, vol. III (2010), pp. 117-131 (manifest; the file).",
+        "'Apologetic in tone (\"L'altra faccia del colonialismo\"); use with care' (manifest).",
+        "Not cited in the thread's notes (notes 04, searched).",
+        "Open access on the BSGI site; licence not stated (manifest)."
+      ],
+      "file": "articles/Cencini_2010_Altra_faccia_colonialismo_architettura_Eritrea_BSGI.pdf",
+      "source": {
+        "label": "Bollettino della Società Geografica Italiana",
+        "url": "https://bsgi.it/index.php/bsgi/article/download/7276/6594"
+      },
+      "creator": "Carlo Cencini",
+      "holder": "Società Geografica Italiana",
+      "rights": "Open access on the BSGI site; licence not stated",
+      "confidence": {
+        "level": "read",
+        "note": "Apologetic in tone; the manifest says to use it with care."
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "11.16",
+      "title": "Italy's Colonial Futures: Colonial Inertia and Postcolonial Capital in Asmara",
+      "type": "Article",
+      "date": "2011",
+      "year": 2011,
+      "keywords": [
+        "eritrea",
+        "heritage",
+        "race"
+      ],
+      "text": [
+        "Mia Fuller on what independent Eritrea has done with Italian Asmara. Her sharpest observation concerns the conservation boundary drawn in the 2000s: it “corresponds alarmingly to what Italian planners included in the city's European and ‘mixed’ zones” and “excludes the same area Italian colonizers excluded under the rubric of quartiere indigeno”.",
+        "The later UNESCO nomination answered part of this by including the native quarters."
+      ],
+      "facts": [
+        "Mia Fuller, California Italian Studies 2(1), 2011 (manifest).",
+        "CARP (World Bank loan, 2001) produced Denison et al. 2003 and the 'historic perimeter'; it was dissolved in 2007; an EU-funded National Heritage Programme resumed in 2009 'with an explicit focus on modern (i.e., colonial) heritage' (notes 04, §5, [S], PDF pp. 9-10).",
+        "The 'historic perimeter ... corresponds alarmingly to what Italian planners included in the city's European and \"mixed\" zones ... excludes the same area Italian colonizers excluded under the rubric of quartiere indigeno' (notes 04, §5, [S], PDF pp. 10-11).",
+        "She notes the regime's use of the Italian past to assert distinctness from Ethiopia, and that 'uniquely Eritrean monuments to independence have been added', such as the giant sandals (notes 04, §5, [S]).",
+        "The 2016-17 nomination answered part of this critique by including Arbate Asmera and Abbashawel (notes 04, §5, [V]).",
+        "Open access (eScholarship); licence not stated in the PDF (manifest)."
+      ],
+      "file": "articles/Fuller_2011_Italys_Colonial_Futures_Asmara_CIS.pdf",
+      "source": {
+        "label": "California Italian Studies (eScholarship)",
+        "url": "https://journalpub.escholarship.org/cisj/article/41166/galley/30790/download"
+      },
+      "creator": "Mia Fuller",
+      "holder": "California Italian Studies",
+      "rights": "Open access (eScholarship); licence not stated in the PDF",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "11.17",
+      "title": "Asmara: Africa's Modernist City. Executive summary",
+      "type": "Booklet",
+      "date": "2016",
+      "year": 2016,
+      "keywords": [
+        "eritrea",
+        "heritage"
+      ],
+      "text": [
+        "The executive summary of Eritrea's nomination of Asmara to the World Heritage List, proposed as “Asmara: Africa's Modernist City”. The boundary runs to “the former native settlement of Abbashawel”. The name finally inscribed was “Asmara: A Modernist African City”."
+      ],
+      "facts": [
+        "Executive summary of Eritrea's 2016 World Heritage nomination, by the State of Eritrea; WHC document 155770, taken from a Wayback Machine capture because whc.unesco.org blocks scripted access (manifest).",
+        "Name of property as proposed: 'Asmara: Africa's Modernist City'; its boundary runs to 'the former native settlement of Abbashawel' (the file, p. 1).",
+        "The inscribed name became 'Asmara: A Modernist African City' (notes 04, §5, [V])."
+      ],
+      "file": "unesco/UNESCO_1550_Asmara_Executive_Summary.pdf",
+      "source": {
+        "label": "UNESCO World Heritage Centre, document 155770 (Wayback Machine copy)",
+        "url": "http://web.archive.org/web/20200705140346id_/https://whc.unesco.org/document/155770"
+      },
+      "creator": "State of Eritrea",
+      "holder": "UNESCO World Heritage Centre",
+      "rights": "Published by the World Heritage Centre \"to ensure transparency\"; copyright stays with the State Party and photographers. Study use.",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "11.18",
+      "title": "Asmara: Africa's Modernist City. Nomination dossier, nomination text",
+      "type": "Book",
+      "date": "January 2016",
+      "year": 2016,
+      "keywords": [
+        "eritrea",
+        "heritage",
+        "race",
+        "planning"
+      ],
+      "text": [
+        "The 204-page text of the nomination. It says plainly that in the plan of 1938–39 “Central to the plan was the separation of the races”, with a mixed quarter as “a buffer zone”, and that Eritreans “were forbidden from using or crossing Viale Mussolini”.",
+        "One trace of the regime survives in the paving of Mosque Square, a mosaic with three fasces and the year XVI: “The date has since been erased, but the fasces still exist.” The dossier credits the 1937 competition brief to Marcello Piacentini, who drew Bolzano's plan of 1935. That attribution rests on this document alone."
+      ],
+      "facts": [
+        "Nomination text by the State of Eritrea / Asmara Heritage Project, Jan 2016 (PDF modified Jan 2017), 204 pp.; photographs © Edward Denison unless credited; WHC document 155767 via a Wayback capture (manifest).",
+        "Key parts: §2.a.2.1 'Urban Planning' (PDF pp. 22-30) and §2.b 'History and Development'; Annexes (445 MB) and Maps (74 MB) were not downloaded (manifest).",
+        "On Cafiero's plan: the mixed quarter as 'a buffer zone'; densities of 380 inhabitants/ha in the native quarter against 140 in the Italian one (cited 'Teruzzi, p.391', source unidentified); 'Central to the plan was the separation of the races' (notes 04, §1, [S], pp. 50-51).",
+        "'During the Italian period, Eritreans were forbidden from using or crossing Viale Mussolini' (notes 04, §1, [S], p. 63).",
+        "It names Marcello Piacentini as author of the 1937 competition's terms of reference; Canali does not, and the attribution is unconfirmed by a second source (notes 04, §1, [S]). Piacentini drew Bolzano's 1935 plan (notes 04, §1, [INF]).",
+        "Mosque Square was paved with 'a central mosaic motif with three fasces and the year \"XVI\"'; 'The date has since been erased, but the fasces still exist' (notes 04, §5, [S], pp. 50-51).",
+        "Edward Denison co-authored the dossier and did its photography and design (the file, acknowledgements; notes 04, §1, [V])."
+      ],
+      "file": "unesco/UNESCO_1550_Asmara_Nomination_Text_2016.pdf",
+      "source": {
+        "label": "UNESCO World Heritage Centre, document 155767 (Wayback Machine copy)",
+        "url": "http://web.archive.org/web/20200705140326id_/https://whc.unesco.org/document/155767"
+      },
+      "creator": "State of Eritrea / Asmara Heritage Project",
+      "holder": "UNESCO World Heritage Centre",
+      "rights": "Published by the World Heritage Centre \"to ensure transparency\"; copyright stays with the State Party and photographers. Study use.",
+      "confidence": {
+        "level": "read",
+        "note": "The Piacentini attribution and the 380/140 densities rest on this document alone (notes 04, §1)."
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "11.19",
+      "title": "“Urbanistica coloniale” moderna e piani regolatori nelle città italiane d'oltremare. Asmara e i piani regolatori funzionalisti di Guido Ferrazza e Vittorio Cafiero (1936-1939)",
+      "type": "Article",
+      "date": "2016",
+      "year": 2016,
+      "keywords": [
+        "eritrea",
+        "race",
+        "planning",
+        "colonization"
+      ],
+      "text": [
+        "Ferruccio Canali reconstructs the planning of Asmara from 1936 to 1939 out of the colonial ministry's files. The decrees of 1908 reserved one zone “esclusivamente per le abitazioni degli Italiani e dei Cittadini di Stati stranieri” and another for “sudditi coloniali”. He quotes a planner in 1938: workers' villages must “dividere nettamente, senza falsi scrupoli e senza mezzi termini, le abitazioni dei Nazionali da quelle degli Indigeni”.",
+        "Cafiero's outer zones of “casette a schiera con orti e giardini” use the same semi-rural vocabulary as Bolzano's Semirurali. That last point is this research's reading, not Canali's."
+      ],
+      "facts": [
+        "Ferruccio Canali, ASUP (Annali di Storia dell'Urbanistica e del Paesaggio) 4 (2016); the volume's contents in the file place the article at p. 90, the next at p. 111; the manifest saw printed pp. 91-110 (manifest; the file).",
+        "Built on the Ministero dell'Africa Italiana files in the Archivio Centrale dello Stato (Fondo MAI, bb. 103-106); 'the only open-access, archive-based reconstruction of the 1935-39 planning files' (notes 04, §1, [S]).",
+        "The 1908 Salvago Raggi decrees reserved zone I 'esclusivamente per le abitazioni degli Italiani e dei Cittadini di Stati stranieri' and zone III for 'sudditi coloniali' (notes 04, §1, [S], p. 94 n. 16).",
+        "Rigotti, 1938, quoted: colonial workers' villages must 'dividere nettamente, senza falsi scrupoli e senza mezzi termini, le abitazioni dei Nazionali da quelle degli Indigeni' (notes 04, §3, [S], p. 99 n. 37).",
+        "Corriere Eritreo, 3 Aug 1937, quoted: 'il grande quartiere popolare \"Arnaldo Mussolini\", che avrà 300 casette'; Cafiero's peripheral zones of 'casette a schiera con orti e giardini' are read in the notes as the same semirural vocabulary as Bolzano's Semirurali (notes 04, §1 and §3, [S], [INF]).",
+        "Governor Daodiace on Cafiero's native quarter, 17 Jul 1939: 'una esagerazione urbanistica, che il Cafiero ha proposto per amore del mestiere, ma con scarsa sensibilità di quella che è la realtà' (notes 04, §1, [S]); the phrase is in the article's subtitle (the file).",
+        "Dating conflict: Canali's letters give the Cafiero commission as April 1938 and delivery as 20 Feb 1939; ICOMOS says 1936 and 'completed in 1938' (notes 04, §1, [S], [V], [INF]).",
+        "Open access in the Florence FLORE repository; licence not stated in the file (manifest)."
+      ],
+      "file": "articles/Canali_2016_Asmara_piani_funzionalisti_Ferrazza_Cafiero_ASUP4.pdf",
+      "source": {
+        "label": "FLORE, Università di Firenze",
+        "url": "https://flore.unifi.it/handle/2158/1074524"
+      },
+      "creator": "Ferruccio Canali",
+      "holder": "Università di Firenze, FLORE repository",
+      "rights": "Open access in the Florence FLORE repository; licence not stated in the file. Free to read; cite.",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "11.20",
+      "title": "Asmara (Eritrea) No 1550. ICOMOS evaluation",
+      "type": "Booklet",
+      "date": "2017",
+      "year": 2017,
+      "keywords": [
+        "eritrea",
+        "heritage",
+        "race",
+        "planning"
+      ],
+      "text": [
+        "The evaluation that recommended Asmara for the World Heritage List. It describes the 1908 plan as “based on four zones, in conformity with ethnic segregation”, and values the inclusion of the native quarters as “illustrating the exclusion and segregation suffered by the indigenous population”.",
+        "This research takes it as the strongest model available for a question that also applies to Bolzano: whether the heritage of a dual city includes its other half."
+      ],
+      "facts": [
+        "ICOMOS evaluation, 2017, 16 pp., file name '1550-ICOMOS-2131-en.pdf'; WHC document 159755 via a Wayback capture (manifest).",
+        "The 1908 plan was 'based on four zones, in conformity with ethnic segregation and functional programmes'; Cavagnari's 1913 plan 'confirmed the racial segregation of the previous plan' (notes 04, §1, [V], p. 46).",
+        "The property 'includes the indigenous section of the town (Arbate Asmera and Abbashawel)', 'illustrating the exclusion and segregation suffered by the indigenous population' (notes 04, §5, [V], p. 48).",
+        "Recommended inscription on criteria (ii) and (iv); judged (iii) 'not ... justified' (notes 04, §5, [V], pp. 49, 55).",
+        "Says 'in 1936 Vittorio Cafiero was charged with the task ... His plan, completed in 1938', against the archival dates April 1938 to February 1939 (notes 04, §1, [V], [INF]).",
+        "The notes take the inclusion of the native quarters as 'the strongest available model' for whether to include the other half of a dual city in its heritage (notes 04, §5, [INF])."
+      ],
+      "file": "unesco/UNESCO_1550_ICOMOS_Evaluation_2017.pdf",
+      "source": {
+        "label": "UNESCO World Heritage Centre, document 159755 (Wayback Machine copy)",
+        "url": "http://web.archive.org/web/20230628185943id_/https://whc.unesco.org/document/159755"
+      },
+      "creator": "ICOMOS",
+      "holder": "UNESCO World Heritage Centre",
+      "rights": "ICOMOS evaluation, published by WHC. Study use.",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "11.21",
+      "title": "Tessenei (1905-1941): intensive farming shaping landscape and social relations in colonial Eritrea",
+      "type": "Article",
+      "date": "2019",
+      "year": 2019,
+      "keywords": [
+        "eritrea",
+        "colonization"
+      ],
+      "text": [
+        "Nelly Cattaneo on Tessenei, an intensive farming settlement in colonial Eritrea. The first colonial farm policy, land taken from local farmers and assigned to Italian families, “soon proved to be a failure”. At Tessenei the labour was local and migrant African, housed in villages by ethnic group; in 1938 the place “had 1850 inhabitants of whom only 50 were Italian”.",
+        "A new town on a grid was planned “to mark the difference between the organic settlements of local population and the rational geometry of the ruler”. It was never built."
+      ],
+      "facts": [
+        "Nelly Cattaneo, SHS Web of Conferences 63, 05002 (2019) (manifest).",
+        "'The first colonial agricultural policy (1891-1896) was based on a wholesale governmental acquisition of the areas farmed by local inhabitants, to be later assigned to Italian families ... this policy soon proved to be a failure' (notes 04, §4, [S], pp. 1-2).",
+        "At Tessenei, sharecroppers were Cunama and Beni Amer families, with Yemeni, Sudanese and Ethiopian workers, housed by ethnic group in villages (notes 04, §4, [S], pp. 6-9).",
+        "In 1938 Tessenei 'had 1850 inhabitants of whom only 50 were Italian'; a planned new town on a grid, 'never built', was meant 'to mark the difference between the organic settlements of local population and the rational geometry of the ruler' (notes 04, §4, [S], pp. 7-8).",
+        "CC BY 4.0, stated in the PDF (manifest)."
+      ],
+      "file": "articles/Cattaneo_2019_Tessenei_1905-1941_SHS63_05002.pdf",
+      "source": {
+        "label": "Politecnico di Milano repository",
+        "url": "https://re.public.polimi.it/bitstream/11311/1109835/1/shsconf_modscapes2018_05002.pdf"
+      },
+      "creator": "Nelly Cattaneo",
+      "holder": "SHS Web of Conferences",
+      "rights": "CC BY 4.0 (stated in the PDF)",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "11.22",
+      "title": "Italiani in Eritrea, dai manuali per l'alfabetizzazione coloniale (1912-1930) alle ultime voci",
+      "type": "Article",
+      "date": "2023",
+      "year": 2023,
+      "keywords": [
+        "eritrea",
+        "statistics",
+        "language",
+        "colonization"
+      ],
+      "text": [
+        "Giampaolo Montesanto's doctoral thesis on Italians in Eritrea. It reprints a 1938 table of workers sent to Italian East Africa by region of origin: 189,737 between 1935 and September 1937. The Veneto, where most of the workers' families of Bolzano's industrial zone came from, sent 39,871; Venezia Tridentina 1,415.",
+        "One column of the table is mislabelled. Its rates only make sense per thousand, not per hundred."
+      ],
+      "facts": [
+        "Giampaolo Montesanto, PhD thesis, Università di Palermo, Dottorato in Studi Umanistici, ciclo XXXV, 2023, 290 pp. (manifest; the file's title page).",
+        "Contains the Tagliacarne 1938 table of workers to AOI by region (manifest): Veneto 39,871, Venezia Tridentina 1,415, total 189,737, 1935 to Sept 1937 (notes 04, §3, [S], pp. 15-16).",
+        "The table's rate column is labelled 'Su 100 maschi residenti da 20 a 49 anni', but its values only make sense per 1,000 (notes 04, §3, [INF]).",
+        "At least 300,000 Italians, soldiers and workers, passed through Massawa; about 200,000 of them workers (notes 04, §3, [S], p. 15).",
+        "Gives 2,417 Italian men in Eritrea in 1931 against Barrera's 2,471 (notes 04, §2, [S], p. 7).",
+        "Open-access thesis; copyright with the author (manifest)."
+      ],
+      "file": "articles/Montesanto_PhD_Italiani_in_Eritrea_UniPA.pdf",
+      "source": {
+        "label": "IRIS, Università di Palermo",
+        "url": "https://iris.unipa.it/retrieve/c64cf5d2-4a2e-42a3-b6b1-64e3b959e306/Tesi%20Giampaolo%20Montesanto.pdf"
+      },
+      "creator": "Giampaolo Montesanto",
+      "holder": "Università di Palermo",
+      "rights": "Open-access thesis; copyright with the author",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    }
+  ]
+}

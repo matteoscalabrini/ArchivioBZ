@@ -1,0 +1,92 @@
+{
+  "entries": [
+    {
+      "no": "7.00",
+      "title": "07 Browser verifications (hand-opened, 2026-10-22)",
+      "type": "Notes",
+      "date": "2026",
+      "year": 2026,
+      "keywords": [
+        "press",
+        "ponte-druso",
+        "posters",
+        "tracing-people",
+        "archives"
+      ],
+      "text": [],
+      "facts": [
+        "Hand-opened checks in Chrome on 22 October 2026, closing gaps the scripted investigators could not reach because Teßmann and the Catalogo generale dei Beni Culturali block automated clients (notes 07, intro)",
+        "§1: Alpenzeitung 29 Oct 1931, p. 3: the bundled inauguration day of 28 Oct 1931 and the paper's technical sheet of the Drususbrücke, eagles on globes on fasces; builder 'Ing. Cav. Albini' (notes 07, §1, [V][T]); its captures are pictures of row 3.15, 'Alpenzeitung, 29 October 1931, page 3'",
+        "§2: Alpenzeitung 26 Sep 1933, p. 3, 'Zwei Jahre Drusus-Brücke', with the Drusus passage and a 1933 halftone of the eagle columns (notes 07, §2, [V])",
+        "§3: three Collezione Salce poster records read as text, not captured (metadata CC-BY 4.0): Lenhart's 'L'estate nelle Dolomiti' and 'Bozen-Gries Dolomiten', and Essendorfer's 'Visitate Bolzano-Gries', dated 1921 by its printed signature (notes 07, §3, [V])",
+        "§4: FamilySearch 'Italy, Rovigo, Rovigo, Civil Registration (Tribunale), 1871-1937': 826,900 records and 1,082,856 images; the Treviso, Venezia and Pordenone ranges confirmed (notes 07, §4, [V])",
+        "Doubt: Lenhart is dated 1898/1994 in the catalogue and 1898-1992 in the Touriseum authority record; the notes prefer the Touriseum [INF] (notes 07, §3)",
+        "Closes with what this changes in threads 01, 02, 04 and 05 (notes 07, last section)"
+      ],
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "read",
+        "target": "../../07_browser_verifications.md"
+      }
+    },
+    {
+      "no": "7.01",
+      "title": "Alpenzeitung, 26 September 1933, page 3",
+      "type": "Newspaper page",
+      "date": "26 September 1933",
+      "year": 1933,
+      "keywords": [
+        "press",
+        "ponte-druso",
+        "romanita",
+        "inauguration",
+        "typeface"
+      ],
+      "text": [],
+      "facts": [
+        "Page 3 'Aus Bolzano Stadt und Land'; four hand captures from the Teßmann digital viewer, 22 October 2026 (manifest)",
+        "The article 'Zwei Jahre Drusus-Brücke' repeats the figures (102.3 m, middle span 34.7 m, side spans 21.65 m, roadway 14 m, sidewalks 2 m) and calls the bridge one of the monumental works of recent years, needed for the new Bolzano-Castelfirmiano road and the shorter Merano road via S. Maurizio (notes 07, §2, [V])",
+        "Romanità passage: 'Die Brücke trägt den Namen des römischen Feldherrn Drusus, der 15 Jahre vor Christi Geburt mit seinen Legionen unsere Alpengebiete eroberte, Straßen zog, Siedlungen gründete, römische Kultur in die von Sümpfen und Wildbächen durchtobten Täler trug.' (notes 07, §2, [T])",
+        "The halftone shows the bridge with the eagle columns in place: a usable 1933 press image of the eagles (notes 07, §2)",
+        "Seen in the image: the page head 'Aus Bolzano Stadt und Land' is set in a heavy slanted roman script, the headline 'Zwei Jahre Drusus-Brücke' and the text in Fraktur",
+        "Seen in the image: the halftone shows an arched stone bridge with a tall pier column topped by a bird figure in the foreground, lamp posts and a hillside behind; the whole-page capture shows the page on the black ground of the viewer, with zoom and rotate buttons at top right",
+        "Rights: the captures are study copies of the viewer; the page is out of copyright, and Teßmann serves it with a 'Downloaden / Drucken' button for proper downloads (manifest)"
+      ],
+      "images": [
+        {
+          "file": "1933-09-26_Alpenzeitung_p3_Zwei-Jahre-Drususbruecke_column.png",
+          "caption": "Alpenzeitung, 26 September 1933, page 3: the column 'Zwei Jahre Drusus-Brücke' with its halftone. Hand capture from the Teßmann digital viewer, 22 October 2026; study copy, the 1933 page is out of copyright."
+        },
+        {
+          "file": "1933-09-26_Alpenzeitung_p3_bridge_photo_with_eagle_columns.png",
+          "caption": "Alpenzeitung, 26 September 1933, page 3: the press photograph of the bridge with the eagle columns. Hand capture from the Teßmann digital viewer, 22 October 2026; study copy, the 1933 page is out of copyright."
+        },
+        {
+          "file": "1933-09-26_Alpenzeitung_p3_Zwei-Jahre-Drususbruecke_text.png",
+          "caption": "Alpenzeitung, 26 September 1933, page 3: opening of the article, with the Drusus passage. Hand capture from the Teßmann digital viewer, 22 October 2026; study copy, the 1933 page is out of copyright."
+        },
+        {
+          "file": "1933-09-26_Alpenzeitung_p3_fullpage.jpg",
+          "caption": "Alpenzeitung, 26 September 1933, page 3, whole page in the viewer. Hand capture from the Teßmann digital viewer, 22 October 2026; study copy, the 1933 page is out of copyright."
+        }
+      ],
+      "file": "1933-09-26_Alpenzeitung_p3_fullpage.jpg",
+      "source": {
+        "label": "Teßmann digital",
+        "url": "https://digital.tessmann.it/tessmannDigital/Zeitungsarchiv/Seite/Zeitung/26/1/26.09.1933/110069/3"
+      },
+      "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
+      "rights": "Study copies of the viewer; the underlying 1933 Alpenzeitung page is out of copyright",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://digital.tessmann.it/tessmannDigital/Zeitungsarchiv/Seite/Zeitung/26/1/26.09.1933/110069/3"
+      },
+      "place": "ponte-druso"
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "entries": [
+    {
+      "no": "0.01",
+      "title": "Fascism Showed Italians Two Different Bolzanos",
+      "type": "Report",
+      "date": "October 2026",
+      "year": 2026,
+      "keywords": ["posters", "newsreels", "press", "migration", "heritage"],
+      "text": [
+        "The first report of the research, on how Italians elsewhere came to know Bolzano under Fascism. Its finding is a division of labour. Posters made Alto Adige desirable by leaving the fascist city out. Newsreels, La Stampa and the illustrated magazines made Bolzano Italian by putting it at the centre. Migrants, soldiers and optants made both real.",
+        "The division has lasted. The city's information pages now tell the fascist history frankly, while what it sells still follows the posters."
+      ],
+      "file": "../../reports/Fascist Bolzano media and migration.docx",
+      "confidence": { "level": "read", "note": "each claim is tagged inside the report" },
+      "more": { "kind": "read", "target": "../../reports/Fascist Bolzano media and migration.docx" }
+    },
+    {
+      "no": "0.02",
+      "title": "Bolzano's Semirurali Shared Offices, Not Blueprints",
+      "type": "Report",
+      "date": "October 2026",
+      "year": 2026,
+      "keywords": ["semirurali", "colonization", "libya", "eritrea", "migration"],
+      "text": [
+        "The second report tests one claim at the scale of the house: were the Semirurali of Bolzano built with the same toolkit as the regime's colonization villages in the Agro Pontino, Libya, Ethiopia and the Dodecanese?",
+        "The answer is no for the drawings and yes for the paperwork. The Semirurali came off a housing institute's drawing board, not a colonial one. What tied Bolzano to the colonies was the office that decided who could move, register and be hired, and it worked from its own desk in Bolzano. Asmara, zoned by race, marks where the comparison stops."
+      ],
+      "file": "../../reports/Semirurali versus Libyan villages.docx",
+      "confidence": { "level": "read", "note": "each claim is tagged inside the report" },
+      "more": { "kind": "read", "target": "../../reports/Semirurali versus Libyan villages.docx" }
+    },
+    {
+      "no": "0.03",
+      "title": "Bolzano in dots",
+      "type": "Map",
+      "date": "2026",
+      "year": 2026,
+      "keywords": ["old-town", "new-city"],
+      "text": [
+        "The centre of Bolzano as a field of dots, from the Province's half-metre laser survey and OpenStreetMap: the old town, the Talvera, the station and, across the river, the first streets of the fascist city. Every place that has entries in this library is marked on it."
+      ],
+      "confidence": { "level": "read" },
+      "more": { "kind": "map" }
+    },
+    {
+      "no": "5.01",
+      "title": "The eagles of Ponte Druso",
+      "type": "Story",
+      "date": "1931–1970s",
+      "year": 1931,
+      "keywords": ["ponte-druso", "romanita", "inauguration", "removal"],
+      "text": [
+        "Ponte Druso opened on 28 October 1931, the ninth anniversary of the March on Rome, built for the state road authority to a design by the engineers Eugenio Miozzi and Gilberto Ricci. Its piers carried four Roman eagles by the Ancona sculptor Vittorio Morelli, standing on globes held by fasces, more than eight metres above the road.",
+        "The eagles were not removed in 1945. They came down when the bridge was renovated in the 1970s. The sources give four different dates and no decision has been found. Two of the heads have been in the crypt of the Monument to Victory since December 2013."
+      ],
+      "images": [
+        {
+          "file": "../../research_notes/Fascist Bolzano media and migration/files/05_landmarks_heritage/images/01_pontedruso__Gabinio.Bolzano_Ponte_Druso-Ponte_In_Pietra_A_Tre_Arcate_Con_Gruppi_Scultorei_Ra.jpg",
+          "caption": "Mario Gabinio, Ponte Druso, 1932–35. CC BY 3.0 IT, Fondazione Torino Musei via Wikimedia Commons."
+        }
+      ],
+      "confidence": { "level": "read", "note": "the year of the removal is open" },
+      "place": "ponte-druso",
+      "more": { "kind": "read", "target": "stories/5.01.md" },
+      "sources": []
+    }
+  ]
+}

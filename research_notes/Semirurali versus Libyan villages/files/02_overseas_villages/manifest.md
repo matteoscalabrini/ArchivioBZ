@@ -45,6 +45,7 @@ Each file holds the catalogue text only: title, date, film code, credits and the
 | Luce_IL5000022261.txt | https://patrimonio.archivioluce.com/luce-web/detail/IL5000022261/2/superba-realizzazione-del-regime-benessere-lavoratori-nella-provincia-del-brennero-inaugurata-dal-ministro-segretario-del-partito.html | B1599, 11/10/1939, inauguration of the Bolzano "Rione Popolare Dux" (228 casette / 808 appartamenti / 8 negozi). Cross-link for the Semirurali thread. |
 | Luce_IL5000028366.txt | https://patrimonio.archivioluce.com/luce-web/detail/IL5000028366/2/25-aprile-1938-fondazione.html | B1295, 27/04/1938, Pomezia founding. Mussolini: "Italiani, dalle Alpi alla Libia..." |
 | Luce_IL3000050841.txt | https://patrimonio.archivioluce.com/luce-web/detail/IL3000050841/1/-2120.html | "I figli dei 'Ventimila'", Incom 1941, settlers' children in GIL colonies in Italy |
+| luce_records_index.csv | (derived, no URL of its own) | Index of the 16 record files above, one line per file with the title, date, series, film code, duration, production, credits and record URL each file states. Derived on 2026-11-10 from those files. |
 
 ## Found but not downloaded (open by hand)
 

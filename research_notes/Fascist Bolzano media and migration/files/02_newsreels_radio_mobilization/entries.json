@@ -1,0 +1,446 @@
+{
+  "keywords_proposed": {
+    "military": {
+      "label": "Military"
+    }
+  },
+  "places_proposed": {},
+  "entries": [
+    {
+      "no": "2.00",
+      "title": "How Italians outside South Tyrol encountered Bolzano / Alto Adige through mass media and mass mobilization, 1924–1943 (Luce, film, radio, OND trains, military service, school)",
+      "type": "Notes",
+      "date": "2026",
+      "year": 2026,
+      "keywords": [
+        "newsreels",
+        "radio",
+        "film",
+        "military"
+      ],
+      "text": [
+        "The working notes on how Italians outside South Tyrol met Bolzano through mass media and mass mobilization: Luce newsreels and documentaries, feature films, the radio station, Dopolavoro trains, military service and school.",
+        "There are at least 163 newsreel stories between 1928 and 1943, peaking in 1935 and 1938. The radio station began regular service on 12 July 1928, the day the Monument to Victory was inaugurated. Keyword searches found no newsreel on the Option of 1939, which does not prove there was none."
+      ],
+      "facts": [
+        "Six threads: Istituto Luce newsreels and documentaries (§1), feature films (§2), the EIAR radio station (§3), OND trains and excursions (§4), military service and the Vallo Alpino (§5), school and the Battisti cult (§6) (notes 02)",
+        "At least 163 Luce newsreel stories (1928–1943) and about 45 period documentaries on South Tyrol and the Brenner; peaks in 1935 (25 stories) and 1938 (26) (notes 02, §1, [V])",
+        "Keyword searches found no Luce item on the 1939 Option; a keyword search cannot prove absence (notes 02, §1, [V], [I])",
+        "EIAR's Bolzano station began regular service on 12 July 1928, the day of the Monument inauguration (notes 02, §3, [V])",
+        "Two April 1940 postcards from a munitions depot at Stilves to a family near Florence show how military service carried the place home (notes 02, §5, [V])"
+      ],
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "read",
+        "target": "../../02_newsreels_radio_mobilization.md"
+      }
+    },
+    {
+      "no": "2.01",
+      "title": "Istituto Luce documentaries touching South Tyrol, the Brenner and the Dolomites: 50 catalogue records",
+      "type": "Table",
+      "date": "c. 1924–1943",
+      "year": 1924,
+      "keywords": [
+        "newsreels",
+        "film",
+        "archives"
+      ],
+      "text": [
+        "Fifty catalogue records of Luce documentaries that touch South Tyrol, the Brenner or the Dolomites. Among them are the King's visit of 1927 with “la posa della prima pietra del monumento alla Vittoria”, Mussolini's visit of 1935, and Hitler's journey of 1938, which opens at the Brenner and at Bolzano station.",
+        "Seven of the fifty are undated or post-war. Only catalogue text was saved; the films are under copyright."
+      ],
+      "facts": [
+        "Luce/INCOM documentaries with South Tyrol / Brenner / Dolomites content, from the catalogue's 'Documentari' fond (detail pages /detail/IL3000…/1/…) (manifest)",
+        "Measured: 50 rows; 6 have no date, and 'Bolzano. La città dell'enrosadira' is catalogued '[anni trenta/quaranta]' while its own record gives 'Anno di produzione: 1949' (file; luce_catalogue_records_fulltext.txt; notes 02, §1, [V])",
+        "Counts differ: the manifest says '[1924]–1943, plus 5 undated or postwar items flagged', the notes 'about 45 period documentaries'; measured 7 undated or postwar rows, and the CSV has no flag column (manifest; notes 02, §1; file)",
+        "Some items are included for one sequence set in the province, e.g. 'Le onoranze funebri ai militari italiani caduti in Africa' (1928) follows the coffin of Lt. Wachernell to Bolzano and Merano (notes 02, §1, [V])",
+        "Among them: 'Visita di S.M. il Re a Bolzano' (1927) with 'la posa della prima pietra del monumento alla Vittoria'; 'Italia. Bolzano' (1935) on Mussolini's visit; 'Il viaggio del Führer in Italia' (1938), opening at the Brenner and Bolzano station (notes 02, §1, [V])",
+        "The full text of each catalogue record is in the sidecar luce_catalogue_records_fulltext.txt: measured 222 records, the 172 newsreels plus these 50 (file)",
+        "No video was downloaded; the footage is under copyright (Istituto Luce–Cinecittà) and only catalogue metadata was saved (manifest)"
+      ],
+      "file": "luce_documentaries_South_Tyrol_catalogue.csv",
+      "source": {
+        "label": "Archivio Storico Istituto Luce, online catalogue",
+        "url": "https://patrimonio.archivioluce.com/luce-web/search/result.html"
+      },
+      "holder": "Archivio Storico Istituto Luce",
+      "rights": "The metadata is © Archivio Storico Istituto Luce. This is a derived research index, not a redistribution of the footage",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "table",
+        "target": "luce_documentaries_South_Tyrol_catalogue.csv",
+        "columns": [
+          "date",
+          "title",
+          "summary_from_catalogue"
+        ]
+      }
+    },
+    {
+      "no": "2.02",
+      "title": "Istituto Luce newsreel stories on South Tyrol and the Brenner: 172 catalogue records, 1928–1945",
+      "type": "Table",
+      "date": "1928–1945",
+      "year": 1928,
+      "keywords": [
+        "newsreels",
+        "archives",
+        "monumento-vittoria",
+        "inauguration",
+        "zona-industriale"
+      ],
+      "text": [
+        "Every Giornale Luce story found on Bolzano, Alto Adige, the Brenner and the Dolomites: 162 stories from 1928 to 1943, plus ten Allied combat-film reels of 1943–45. By the research's own sorting, sport leads with 40 stories, then folklore and tourism with 25 and youth organisations with 24. Regime ritual and monuments account for 14.",
+        "The inauguration of the Monument to Victory is there (July 1928), the new industrial centre (December 1936) and the Rione Dux (October 1939). No story on the Option was found, and none titled for Ponte Druso."
+      ],
+      "facts": [
+        "Built from searches of the Luce online catalogue (47 query terms) and the item detail pages: every Giornale Luce A/B/C item found that concerns Bolzano / Alto Adige / Brennero / Dolomites, plus 10 Allied 'Combat film' reels of 1943–45 (manifest)",
+        "Measured: 172 rows: Giornale Luce A 30, B 122, C 10 (162 stories) and 10 Combat film reels (one of 1943, nine of 1945); the 163 rows dated 1928–1943 are the '163 newsreels' of the README and the notes; 152 rows carry a YouTube link, as the notes say (file; README; notes 02, §1)",
+        "Measured by year: peaks of 25 stories in 1935 and 26 in 1938, as the notes say; the earliest item is 04/1928, though the file name says 1927 (file; notes 02, §1)",
+        "Categories are the researcher's own: Sport 40, Folklore/tourism 25, Youth/GIL 24, Industry/urbanism 17, Regime ritual & monument 14, Military 13, Border/Brenner/Axis 12, Royal visits 12, others 15 (file)",
+        "Priority items: the inauguration of the Monumento alla Vittoria (A0137, 07/1928); Mussolini in Bolzano and at the Brenner (reels of 04/09/1935); the new industrial centre (B1014, 23/12/1936); the Rione Dux (B1599, 11/10/1939); Hitler's train and the Brenner meetings (1938, 1940, 1941) (notes 02, §1, [V])",
+        "No Luce item on the 1939 Option and no story titled for Ponte Druso or Stadio Druso was found (notes 02, §1, [V])",
+        "The full text of each record is in the sidecar luce_catalogue_records_fulltext.txt: measured 222 records, these 172 plus the 50 documentaries (file)",
+        "The metadata is © Archivio Storico Istituto Luce; a derived research index, not a redistribution of the footage (manifest)"
+      ],
+      "file": "luce_newsreels_South_Tyrol_1927-1945_catalogue.csv",
+      "source": {
+        "label": "Archivio Storico Istituto Luce, online catalogue",
+        "url": "https://patrimonio.archivioluce.com/luce-web/search/result.html"
+      },
+      "holder": "Archivio Storico Istituto Luce",
+      "rights": "The metadata is © Archivio Storico Istituto Luce. This is a derived research index, not a redistribution of the footage",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "table",
+        "target": "luce_newsreels_South_Tyrol_1927-1945_catalogue.csv",
+        "columns": [
+          "date",
+          "title",
+          "summary_from_catalogue"
+        ]
+      }
+    },
+    {
+      "no": "2.03",
+      "title": "Radiorario, 22 July 1928: “La Sagra di Bolzano – L'Inaugurazione della Stazione Radiofonica dell'E.I.A.R.”",
+      "type": "Press article",
+      "date": "22 July 1928",
+      "year": 1928,
+      "keywords": [
+        "radio",
+        "press",
+        "monumento-vittoria",
+        "inauguration"
+      ],
+      "text": [
+        "The radio weekly on the opening of the Bolzano station. It was built “aderendo prontamente a un desiderio espresso da S. E. il Ministro delle Comunicazioni”. Works began on 10 June, and the first transmission was the speech at the inauguration of the Monument to Victory, relayed to “tre potenti altoparlanti” in Piazza Walther. Special trains brought crowds “da tutta l'Italia”.",
+        "Station and monument were one media event. The weekly was then called Radiorario; the file names say Radiocorriere."
+      ],
+      "facts": [
+        "Radiorario, Anno IV, no. 30, 22 July 1928-VI, 'organo ufficiale dell'Ente Italiano Audizioni Radiofoniche'; the article opens the issue (file, masthead)",
+        "'La Sagra di Bolzano – L'Inaugurazione della Stazione Radiofonica dell'E.I.A.R.': technical description of the Bolzano station (Gries site, 200 W, ~400 m, Standard Elettrica Italiana); programme box 'Stazione di Bolzano' (manifest)",
+        "The station was built 'aderendo prontamente a un desiderio espresso da S. E. il Ministro delle Comunicazioni', works began 10 June, and its first transmission was Giuriati's speech at the monument inauguration, relayed to 'tre potenti altoparlanti' in Piazza Walther (notes 02, §3, [V])",
+        "Telephone lines linked the station 'alla Casa del Fascio, al Teatro Civico, e ai più importanti luoghi di ritrovo pubblico' (notes 02, §3, [V])",
+        "National crowds brought for the day: special trains and overnight cars 'da tutta l'Italia', 47 gold-medal holders, the banners of ten decorated communes (notes 02, §4, [V])",
+        "Inference: the station was created as part of the monument event, so Bolzano 1928 was a joint radio-plus-monument media event (notes 02, §3, [I])",
+        "Text extraction finds the article on PDF pages 3–7 (printed pages 1–5); the manifest says pages 3–5 (file; manifest)"
+      ],
+      "file": "Radiocorriere_1928-30.pdf",
+      "source": {
+        "label": "worldradiohistory.com",
+        "url": "https://worldradiohistory.com/INTERNATIONAL/Radiocorriere/20s/1928/RC-1928-30.pdf"
+      },
+      "holder": "EIAR (Ente Italiano Audizioni Radiofoniche), publisher",
+      "rights": "Probably public domain in Italy as an anonymous/collective work more than 70 years after publication (not verified)",
+      "confidence": {
+        "level": "read",
+        "note": "rights probably public domain, not verified"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "2.04",
+      "title": "Radiorario, 10 March 1929, no. 11",
+      "type": "Newspaper page",
+      "date": "10 March 1929",
+      "year": 1929,
+      "keywords": [
+        "radio",
+        "press"
+      ],
+      "text": [
+        "An ordinary week's issue, kept for its listings: “BOLZANO (1 BZ) m. 445,9”, with concerts from the municipal casino in Gries. Bolzano appears on twelve of the hundred pages, mostly in the daily programmes."
+      ],
+      "facts": [
+        "Station listing 'BOLZANO (1 BZ) m. 445,9'; news items on Bolzano broadcasts (Casino municipale di Gries concerts, ceremonies) (manifest)",
+        "Masthead: Radiorario, Anno V, no. 11, 10 March 1929-VII; the file name and the manifest call the series Radiocorriere (file; manifest)",
+        "Text extraction finds Bolzano on 12 of the issue's 100 PDF pages, mostly in the daily programme listings (file)",
+        "The wavelength figures differ between sources: about 400 m in July 1928, 445.9 m in 1929 (notes 02, §3, Gaps)"
+      ],
+      "file": "Radiocorriere_1929-11.pdf",
+      "source": {
+        "label": "worldradiohistory.com",
+        "url": "https://worldradiohistory.com/INTERNATIONAL/Radiocorriere/20s/1929/RC-1929-11.pdf"
+      },
+      "holder": "EIAR (Ente Italiano Audizioni Radiofoniche), publisher",
+      "rights": "Probably public domain in Italy as an anonymous/collective work more than 70 years after publication (not verified)",
+      "confidence": {
+        "level": "read",
+        "note": "rights probably public domain, not verified"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "2.05",
+      "title": "Radiorario, 7 April 1929: “L'Assemblea generale degli azionisti dell'EIAR”",
+      "type": "Press article",
+      "date": "7 April 1929",
+      "year": 1929,
+      "keywords": [
+        "radio",
+        "press"
+      ],
+      "text": [
+        "The broadcaster's report to its shareholders on 1928. The Bolzano station had not been in its concession: “Su richiesta del Governo abbiamo nel brevissimo spazio di tempo di poco più di un mese impiantata la stazione di Bolzano.” It ran at 0.2 kilowatts.",
+        "This research infers that a small Italian-only station could not compete with the German-language transmitters, and served the incoming Italian population more than the people already there."
+      ],
+      "facts": [
+        "EIAR report on 1928: the Bolzano station was set up 'su richiesta del Governo', was not in the concession specifications, opened 12 July 1928, and was 'sentita bene in tutto il Trentino'; listing 'Bolzano (1 BZ) – m. 445,9 – Kw. 0,2' (manifest)",
+        "'Su richiesta del Governo abbiamo nel brevissimo spazio di tempo di poco più di un mese impiantata la stazione di Bolzano … La stazione di Bolzano non era prevista nel nostro capitolato d'oneri' (notes 02, §3, [V])",
+        "EIAR also planned to link Genova and Bolzano to Milan by line for programme centralisation (notes 02, §3, [V])",
+        "Masthead: Radiorario, Anno V, no. 15, 7 April 1929-VII; the report is that of the shareholders' meeting of 29 March on the 1928 accounts; the notes cite it as 'Radiocorriere 1929 no. 15' (file; notes 02, §3)",
+        "Inference: a 200 W Italian-only station sharing its wavelength with foreign stations could not compete with the German-language transmitters; it more plausibly served the incoming Italian population and staged presence (notes 02, §3, [I])"
+      ],
+      "file": "Radiocorriere_1929-15.pdf",
+      "source": {
+        "label": "worldradiohistory.com",
+        "url": "https://worldradiohistory.com/INTERNATIONAL/Radiocorriere/20s/1929/RC-1929-15.pdf"
+      },
+      "holder": "EIAR (Ente Italiano Audizioni Radiofoniche), publisher",
+      "rights": "Probably public domain in Italy as an anonymous/collective work more than 70 years after publication (not verified)",
+      "confidence": {
+        "level": "read",
+        "note": "rights probably public domain, not verified"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "2.06",
+      "title": "Radiocorriere, 15–22 October 1932, no. 42",
+      "type": "Newspaper page",
+      "date": "15–22 October 1932",
+      "year": 1932,
+      "keywords": [
+        "radio",
+        "press"
+      ],
+      "text": [
+        "By 1932 the Bolzano station is listed at one kilowatt. Its schedule carries Dopolavoro announcements, the tourist board's radio news and a farming bulletin. The same pages list Vienna at fifteen kilowatts.",
+        "The scan's text is garbled, and the attribution of the schedule to Bolzano is slightly uncertain."
+      ],
+      "facts": [
+        "Daily programme block 'BOLZANO … kw. 1' (frequency and wavelength garbled in the OCR) and the European station table (manifest)",
+        "Its schedule includes 'Comunicazioni del Dopolavoro – Radio-giornale dell'Enit – Notiziario agricolo …', though the column layout makes the attribution to Bolzano slightly uncertain (notes 02, §3, [V])",
+        "The same pages list Vienna at 'kc. 580 – m. 517,2 – kw. 15', the comparison behind the inference that the Bolzano station could not compete for German-speaking listeners (notes 02, §3, [I])",
+        "Masthead: Radiocorriere, Anno VIII, no. 42, 15–22 October 1932 (Anno X) (file)"
+      ],
+      "file": "Radiocorriere_1932-42.pdf",
+      "source": {
+        "label": "worldradiohistory.com",
+        "url": "https://worldradiohistory.com/INTERNATIONAL/Radiocorriere/30s/1932/RC-1932-42.pdf"
+      },
+      "holder": "EIAR (Ente Italiano Audizioni Radiofoniche), publisher",
+      "rights": "Probably public domain in Italy as an anonymous/collective work more than 70 years after publication (not verified)",
+      "confidence": {
+        "level": "read",
+        "note": "OCR garbled; attribution of the schedule to Bolzano slightly uncertain"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "2.07",
+      "title": "Radiocorriere, 5–11 March 1939, no. 10",
+      "type": "Newspaper page",
+      "date": "5–11 March 1939",
+      "year": 1939,
+      "keywords": [
+        "radio",
+        "press"
+      ],
+      "text": [
+        "By 1939 Bolzano appears in the programme grids among the stations relaying the national programme from Rome. Its traffic ran into Bolzano more than out of it. Whether the station gained a German-language slot during the Option years has not been checked."
+      ],
+      "facts": [
+        "Programme grids listing BOLZANO among the stations relaying the national programmes ('Roma I – Napoli I – Bari I – Bologna – Bolzano …') (manifest)",
+        "By 1939 the station relayed the national programme (notes 02, §3, [V]); its main traffic ran into Bolzano rather than out of it (notes 02, §3, [I])",
+        "Masthead: 'Settimanale dell'EIAR', Anno XV, no. 10, 5–11 March 1939-XVII (file)",
+        "Not checked: whether the station gained a German-language slot during the Option period, 1939–43 (notes 02, §3, Gaps)"
+      ],
+      "file": "Radiocorriere_1939-10.pdf",
+      "source": {
+        "label": "worldradiohistory.com",
+        "url": "https://worldradiohistory.com/INTERNATIONAL/Radiocorriere/30s/1939/RC-1939-10.pdf"
+      },
+      "holder": "EIAR (Ente Italiano Audizioni Radiofoniche), publisher",
+      "rights": "Probably public domain in Italy as an anonymous/collective work more than 70 years after publication (not verified)",
+      "confidence": {
+        "level": "read",
+        "note": "rights probably public domain, not verified"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "2.08",
+      "title": "Linea ferroviaria del Brennero: Stilves m. 963 con Campo di Trens",
+      "type": "Postcard",
+      "date": "22 April 1940",
+      "year": 1940,
+      "keywords": [
+        "postcards",
+        "military",
+        "tracing-people"
+      ],
+      "text": [
+        "A postcard written at Stilves on 22 April 1940, from a munitions depot on the Brenner line, to a family at Vernio near Florence: “Cordiali saluti”, signed, as the research reads it, Dante. Its picture shows Stilves, not the Brenner pass.",
+        "Soldiers' post was probably the largest channel outside the media through which Italian families came to know the province. That is an inference."
+      ],
+      "facts": [
+        "Postcard of the Brennero, same sender and date as the Maria Trens card, to Signor Ricci Ferdinando, S. Ippolito di Vernio (Firenze); the sender's return address reads 'Deposito Munizioni – Stilves – Campo di Trens (Bolzano)' (manifest)",
+        "Item-level trace of a soldier's correspondence; the sender signs 'Dante' (the researcher's reading); a Public Domain Mark item from the Biblioteca Petrarca, Vernio (notes 02, §5, [V])",
+        "Inference: garrison, Guardia alla Frontiera and Vallo Alpino workforce each produced letters and postcards sent home, probably the largest non-media channel through which families 'knew' Bolzano (notes 02, §5, [I])",
+        "Seen in the image (front): a black-and-white view of a village with a church on a valley floor, forested slopes and snowy peaks behind; printed caption 'Linea ferroviaria del Brennero: Stilves m. 963 con Campo di Trens'",
+        "Seen in the image (back): handwritten 'Stilves 22-4-40-XVIII', 'Cordiali saluti', 'Dante' and the depot return address, to 'Signor Ricci Ferdinando, S. Ippolito di Vernio (Firenze)'; a red 20-centesimi stamp with the head of 'Caius Iulius Caesar'; printed 'Edit. e fotogr. L. Fränzl, Bolzano' with card number 331-87",
+        "The manifest and the Internet Archive item call it a postcard 'of the Brennero'; its front shows Stilves on the Brenner railway line (image; manifest)"
+      ],
+      "images": [
+        {
+          "file": "IA_Cartolina_del_Brennero_1940-04-22_front.jpg",
+          "caption": "L. Fränzl, Bolzano; written at Stilves, 22 April 1940. Front. Public Domain Mark 1.0, Biblioteca Petrarca, Vernio, via Internet Archive."
+        },
+        {
+          "file": "IA_Cartolina_del_Brennero_1940-04-22_back.jpg",
+          "caption": "The same card, back: written at Stilves, 22 April 1940. Public Domain Mark 1.0, Biblioteca Petrarca, Vernio, via Internet Archive."
+        }
+      ],
+      "file": "IA_Cartolina_del_Brennero_1940-04-22_front.jpg",
+      "source": {
+        "label": "Internet Archive",
+        "url": "https://archive.org/details/110_20231218"
+      },
+      "creator": "L. Fränzl, Bolzano (publisher and photographer)",
+      "holder": "Biblioteca Petrarca, Vernio",
+      "rights": "Public Domain Mark 1.0 (per Internet Archive item)",
+      "confidence": {
+        "level": "read",
+        "note": "the sender's name is the researcher's reading"
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://archive.org/details/110_20231218"
+      }
+    },
+    {
+      "no": "2.09",
+      "title": "Maria Trens m. 993",
+      "type": "Postcard",
+      "date": "22 April 1940",
+      "year": 1940,
+      "keywords": [
+        "postcards",
+        "military",
+        "tracing-people"
+      ],
+      "text": [
+        "The second card from the same sender on the same day, to the same family at Vernio: a Madonna and Child in a medallion above the village of Maria Trens, “Affettuosi saluti”. Both cards were printed by Fränzl of Bolzano and are kept today in the library of Vernio, in Tuscany."
+      ],
+      "facts": [
+        "Postcard 'Maria Trens m. 993' (publisher L. Fränzl, Bolzano), postmarked CAMPO DI TRENS (BOLZANO), written 'Stilves 22-4-40-XVIII' to Signora Ricci Maddalena, S. Ippolito di Vernio (Firenze) (manifest)",
+        "One of two cards from the same sender and date, an item-level trace of a soldier's correspondence; Public Domain Mark items from the Biblioteca Petrarca, Vernio (notes 02, §5, [V])",
+        "Fränzl's imprint and rights line, 'Riproduzione vietata R.D.L. 7-XI-25 III N. 1950', recur on his cards (notes 01, Q5, [DB✓])",
+        "Seen in the image (front): an oval medallion of a crowned, robed Madonna and Child with rays and stars, above a village with a tall-spired church in a green valley; printed 'Maria Trens m. 993' at top left",
+        "Seen in the image (back): handwritten 'Stilves 22-4-40-XVIII', 'Affettuosi saluti', 'Dante', to 'Signora Ricci Maddalena, S. Ippolito di Vernio (Firenze)'; postmark 'Campo di Trens (Bolzano)'; a red 20-centesimi stamp with the head of 'Caius Iulius Caesar'; printed 'Edit. e fotogr. L. Fränzl, Bolzano – Riprod. vietata' with card number 331-36"
+      ],
+      "images": [
+        {
+          "file": "IA_Cartolina_di_Bolzano_1940-04-22_front.jpg",
+          "caption": "L. Fränzl, Bolzano; written at Stilves, 22 April 1940. Front. Public Domain Mark 1.0, Biblioteca Petrarca, Vernio, via Internet Archive."
+        },
+        {
+          "file": "IA_Cartolina_di_Bolzano_1940-04-22_back.jpg",
+          "caption": "The same card, back: postmarked Campo di Trens, 22 April 1940. Public Domain Mark 1.0, Biblioteca Petrarca, Vernio, via Internet Archive."
+        }
+      ],
+      "file": "IA_Cartolina_di_Bolzano_1940-04-22_front.jpg",
+      "source": {
+        "label": "Internet Archive",
+        "url": "https://archive.org/details/006_20240119_20240119_1643"
+      },
+      "creator": "L. Fränzl, Bolzano (publisher)",
+      "holder": "Biblioteca Petrarca, Vernio",
+      "rights": "Public Domain Mark 1.0 (per Internet Archive item; collection Biblioteca Petrarca, Vernio)",
+      "confidence": {
+        "level": "read",
+        "note": "the sender's name is the researcher's reading"
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://archive.org/details/006_20240119_20240119_1643"
+      }
+    },
+    {
+      "no": "2.10",
+      "title": "Transculturality of the Alps: The Role of Image and Sound in a European “Multiple Bergfilm” of the 1930s",
+      "type": "Article",
+      "date": "2023",
+      "year": 2023,
+      "keywords": [
+        "film",
+        "theory"
+      ],
+      "text": [
+        "Maria Adorno and Maria Fuchs on a mountain film of 1930 by Trenker and Bonnard, shot in German and French versions, and on the Alps as “an ideal setting for transcultural communication and for the nationalization process”. Its bibliography points to an Italian trade notice of the same year, which suggests the film was also released in Italy.",
+        "For Italian cinema audiences the South Tyrolean on screen was Trenker. That is this research's inference."
+      ],
+      "facts": [
+        "M. Adorno & M. Fuchs, 'Transculturality of the Alps…', Cinéma & Cie 23/40, pp. 141–64, DOI 10.54103/2036-461X/17960, on Trenker's multiple-language versions (manifest)",
+        "Authors as printed: Maria Adorno (Universities of Köln, Udine and Lyon 2) and Maria Fuchs (University of Music and Performing Arts Vienna) (file)",
+        "Subject: Trenker and Bonnard's 'Der Sohn der weißen Berge / Les Chevaliers de la Montagne' (1930), a German–French multiple version; the Alps as 'an ideal setting for transcultural communication and for the nationalization process essential to the MVs' (file, abstract)",
+        "Its bibliography cites a 1930 Italian trade item, Cine-Sorriso Illustrato, 'Avant-Première dei Cavalieri della Montagna', which suggests an Italian release (notes 02, §2, [S])",
+        "Inference: for Italian audiences the 'South Tyrolean' screen persona was Trenker himself (notes 02, §2, [I])"
+      ],
+      "file": "Adorno_Fuchs_2023_Transculturality_of_the_Alps_CinemaEtCie_CC-BY.pdf",
+      "source": {
+        "label": "Cinéma & Cie (riviste.unimi.it)",
+        "url": "https://riviste.unimi.it/index.php/cinemaetcie/article/view/17960"
+      },
+      "creator": "Maria Adorno and Maria Fuchs",
+      "holder": "Cinéma & Cie",
+      "rights": "CC BY 4.0",
+      "confidence": {
+        "level": "read",
+        "note": "secondary literature; the notes cite it [S]"
+      },
+      "more": {
+        "kind": "file"
+      }
+    }
+  ]
+}

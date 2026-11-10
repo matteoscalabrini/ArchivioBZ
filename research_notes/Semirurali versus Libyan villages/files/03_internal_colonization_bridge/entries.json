@@ -1,0 +1,937 @@
+{
+  "keywords_proposed": {},
+  "places_proposed": {},
+  "entries": [
+    {
+      "no": "10.00",
+      "title": "The bridge between Fascist “colonizzazione interna” and the Italianization of South Tyrol: offices, people, laws and words (1919-1943, scholarship to 2026)",
+      "type": "Notes",
+      "date": "2026",
+      "year": 2026,
+      "keywords": [
+        "colonization",
+        "agro-pontino",
+        "libya",
+        "option",
+        "language"
+      ],
+      "text": [
+        "The working notes on what tied the regime's internal colonization to the Italianization of South Tyrol: the Commissariato per le migrazioni e la colonizzazione interna, the veterans' body ONC, the land agency for the Tre Venezie, and the people and words they shared.",
+        "The tie turns out stronger in personnel and statute than in rhetoric. Its clearest piece is a circular of 21 December 1939: settlers replacing departing South Tyroleans were to come from the 56 provinces north of Perugia. The notes open by correcting six errors in the research's own starting assumptions."
+      ],
+      "facts": [
+        "Researcher notes compiled 2026-10-26 on the institutional bridge: the Commissariato per le migrazioni e la colonizzazione interna (CMCI), the ONC and the Agro Pontino, the ENTV, Luigi Razza, Pergher, and the regime's vocabulary (notes 03, header; README).",
+        "Opens with six corrections to the brief: the CMCI dates from 1930 (organic law L. 358/1931), not a 1926 decree; it did not end in 1939; the ENTV began as the ERA (R.D. 8 Sept 1921 n. 1343); Senate bill 328 (1949) concerns small peasant property; 'manodopera regnicola e non allogena' is not in R.D.L. 1621/1934; no source for 'bonifica dei cognomi' (notes 03, corrections 1-6).",
+        "Strongest documented institutional bridge to Bolzano: a CMCI circular of 21 Dec 1939 setting that settlers replacing departing South Tyroleans should come from the 56 northern and central provinces north of Perugia (notes 03, Q1, [S], via Di Michele, JMIS 2023, n. 22).",
+        "Person-level bridge: Razza, secretary of the Fascio di Trento in 1920, CMCI commissioner from 1930, and as Minister of Public Works the proposer of R.D.L. 234/1935 on Bolzano's industrial zone (notes 03, Q1: biography [S, tertiary], decree [V], the bridge reading [INF]).",
+        "Chain for the report writer: ONC (1917) → ERA (1921) → CMCI (1930/31) → Pontine settlement (1932-39) → ERATV purchases in Alto Adige (1931-38) → Bolzano industrial zone (1934-36) → Libyan ventimila (1938) → anti-urbanism law (1939) → Option and ENTV (1939) → CMCI circular (Dec 1939) → ENTV holdings (1949) (notes 03, Q8).",
+        "The bridge is stronger in personnel and statute than in rhetoric; pre-1939 land colonization in South Tyrol was small (0.6% of farmland) and the declared goal stayed assimilation, not removal, until the Option (notes 03, Q8, [INF]).",
+        "Tags: [V] read in the primary source, [S] full secondary source, [SS] search snippet, [INF] inference (notes 03, header)."
+      ],
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "read",
+        "target": "../../03_internal_colonization_bridge.md"
+      }
+    },
+    {
+      "no": "10.01",
+      "title": "Legge 9 aprile 1931, n. 358: Norme per la disciplina e lo sviluppo delle migrazioni e della colonizzazione interna",
+      "type": "Law text",
+      "date": "9 April 1931",
+      "year": 1931,
+      "keywords": [
+        "colonization",
+        "migration",
+        "law",
+        "wording"
+      ],
+      "text": [
+        "The founding law of the Commissariato per le migrazioni e la colonizzazione interna. It puts the office “alle dirette ed esclusive dipendenze del Capo del Governo”, gives it the distribution of labour across the kingdom and, with the colonial ministry, in the colonies, and requires its authorization for moving groups of workers and “famiglie coloniche” from one province to another.",
+        "Its vocabulary matters here: “zone di colonizzazione”, “premio di colonizzazione”. This is the register in which this research finds Alto Adige named with the same words as the Agro Pontino."
+      ],
+      "facts": [
+        "Organic law of the Commissariato per le migrazioni e la colonizzazione interna (CMCI), published in GU 27 Apr 1931 n. 96; Normattiva full text saved as HTML and TXT (manifest; notes 03, Q1, [V]).",
+        "Given at San Rossore, signed 'Mussolini', seen by Guardasigilli Rocco (file).",
+        "Art. 1: the CMCI 'è posto alle dirette ed esclusive dipendenze del Capo del Governo'; Art. 2: distribution of labour 'in tutto il Regno, e, di concerto con il Ministro per le colonie, anche nelle Colonie' (notes 03, Q1, [V]).",
+        "Art. 7: moving groups of workers and 'famiglie coloniche' from one province to another 'dovrà essere sempre disposto o autorizzato dal Commissariato' (notes 03, Q1, [V]).",
+        "Art. 12 lets it encourage 'le correnti migratorie verso le Colonie italiane'; Art. 13 sets a 'premio di colonizzazione' of up to L. 6,000 for families settled 'in zone di colonizzazione' since 28 Oct 1927 (notes 03, Q1, [V]).",
+        "Wording: the statute's own vocabulary ('colonizzazione interna', 'famiglie coloniche', 'zone di colonizzazione', 'premio di colonizzazione') is the legal-technical register in which the notes find Alto Adige named with the same words as the Agro Pontino (notes 03, Q5, [V]; the reading is [INF]).",
+        "Moved under the Ministry of Corporations from 1 March 1942 'per la durata dell'attuale guerra'; repealed with L. 1092/1939 by L. 10 Feb 1961 n. 5 (notes 03, Q1, [V])."
+      ],
+      "file": "normattiva_L1931_358_CMCI_attoCompleto.html",
+      "source": {
+        "label": "Normattiva",
+        "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1931-04-09;358"
+      },
+      "rights": "Official act, public domain",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "10.02",
+      "title": "Regio decreto-legge 28 settembre 1934, n. 1621: Provvedimenti per lo sviluppo industriale del comune di Bolzano",
+      "type": "Law text",
+      "date": "28 September 1934",
+      "year": 1934,
+      "keywords": [
+        "zona-industriale",
+        "migration",
+        "law"
+      ],
+      "text": [
+        "The decree that launched Bolzano's industrial zone: exemptions from duties and taxes for plants founded in the comune by 30 June 1944, and up to 25 million lire in state contributions, handed out by a commission under the Ministry of Corporations.",
+        "The phrase “manodopera regnicola e non allogena”, often quoted as if it stood in this decree, is not in it. The text was read in full to check. The preference for workers from the old provinces belongs to the commission's practice, as the secondary literature reports it."
+      ],
+      "facts": [
+        "Decree-law published in GU 16 Oct 1934, proposed by the Capo del Governo and signed 'MUSSOLINI - JUNG'; Normattiva full text saved as HTML and TXT (manifest; file).",
+        "Duty and tax exemptions for industrial plants founded in the comune of Bolzano by 30 June 1944, and up to L. 25 million in state contributions (notes 03, Q5, [V]).",
+        "Art. 7: a commission under the Ministry of Corporations allocates the contributions; it includes a representative 'della Confederazione fascista dei lavoratori dell'industria' (notes 03, Q5, [V]).",
+        "The phrase 'manodopera regnicola e non allogena' is not in the text: the researcher read it in full and could not verify the phrase anywhere (notes 03, correction 5 and Q5, [V]).",
+        "Secondary literature puts the preference for workers from the old provinces in the commission's practice; Dunajtschik and Steinacher call the subsidy a 'Kopfgeld' for each 'echten' Italian brought to South Tyrol (notes 03, Q5, [S]).",
+        "Converted by L. 11 Apr 1935 n. 604 (notes 03, Q5, [V], from the recital of R.D.L. 1368/1936)."
+      ],
+      "file": "normattiva_RDL1934_1621_Bolzano_industria_attoCompleto.html",
+      "source": {
+        "label": "Normattiva",
+        "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:regio.decreto.legge:1934-09-28;1621"
+      },
+      "rights": "Official act, public domain",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "10.03",
+      "title": "Legge 3 giugno 1935, n. 1093: Conversione in legge del R. decreto-legge 7 marzo 1935-XIII, n. 234, con il quale sono stati dichiarati di pubblica utilità i lavori occorrenti per l'impianto e l'esercizio della zona industriale di Bolzano …",
+      "type": "Law text",
+      "date": "3 June 1935",
+      "year": 1935,
+      "keywords": [
+        "zona-industriale",
+        "law"
+      ],
+      "text": [
+        "The one-article law converting the decree of 7 March 1935 (row 10.04), which declared the works for Bolzano's industrial zone of public utility. Signed Mussolini, Razza, Di Revel.",
+        "Luigi Razza had founded the colonization office in 1930 and was by now Minister of Public Works. He died two months later in an air crash near Cairo, on his way to Eritrea."
+      ],
+      "facts": [
+        "Single-article law converting R.D.L. 7 March 1935 n. 234, which declared the works for Bolzano's industrial zone of public utility; Normattiva full text saved as HTML and TXT (file; manifest).",
+        "Signed 'Mussolini - Razza - Di Revel', like the decree it converts (notes 03, Q1, [V]).",
+        "Given at Rome on 3 June 1935, Anno XIII; seen by Guardasigilli Solmi (file).",
+        "Razza, founder of the CMCI in 1930, was Minister of Public Works from 24 Jan 1935 and died on 7 Aug 1935 in an air crash near Cairo, en route to Eritrea (notes 03, Q1, [S, tertiary])."
+      ],
+      "file": "normattiva_L1935_1093_Bolzano_zona_industriale_attoCompleto.html",
+      "source": {
+        "label": "Normattiva",
+        "url": "https://www.normattiva.it/eli/id/1935/07/04/035U1093/CONSOLIDATED/20091216"
+      },
+      "rights": "Official act, public domain",
+      "confidence": {
+        "level": "read"
+      },
+      "place": "zona-industriale",
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "10.04",
+      "title": "Regio decreto-legge 7 marzo 1935, n. 234: Dichiarazione di pubblica utilità dei lavori di impianto e d'esercizio della zona industriale di Bolzano, e relative norme di attuazione",
+      "type": "Law text",
+      "date": "7 March 1935",
+      "year": 1935,
+      "keywords": [
+        "zona-industriale",
+        "colonization",
+        "law"
+      ],
+      "text": [
+        "The expropriation decree for the industrial zone, “compresa fra il fiume Isarco e la strada nazionale del Brennero”. It lets the Comune expropriate and fixes compensation at the land's value as farmland, excluding any rise caused by “la progettata creazione della zona industriale”. Tenants get nothing: “Nessuno ha diritto a indennità per la risoluzione dei contratti di locazione.”",
+        "It was proposed by Luigi Razza as Minister of Public Works, the man who had founded the colonization office. This research takes it as the most direct link between that office's world and Bolzano."
+      ],
+      "facts": [
+        "Decree-law published in GU 28 Mar 1935; declares of public utility the works for Bolzano's industrial zone, 'compresa fra il fiume Isarco e la strada nazionale del Brennero', and gives the Comune the power to expropriate (manifest; notes 03, Q6, [V]).",
+        "Compensation is 'ragguagliata al puro valore venale del terreno considerato come fondo rustico', excluding any rise in value from 'la progettata creazione della zona industriale'; 'Nessuno ha diritto a indennità per la risoluzione dei contratti di locazione' (notes 03, Q6, [V]).",
+        "Issued 'Sulla proposta del Nostro Ministro Segretario di Stato per i lavori pubblici' and countersigned 'Mussolini - Razza - Di Revel' (notes 03, Q1, [V]).",
+        "The notes call this the direct link between Razza and Bolzano: the CMCI's founder, as Public Works minister, proposed the expropriation decree (notes 03, Q1, [V]; Q7, [INF]).",
+        "Art. 4: a repayable advance of 5 million lire to the Comune for roads and general services of the zone (file).",
+        "Mussolini briefed industrialists on 20 Feb 1935; workers' families came 'überwiegend aus dem strukturschwachen Veneto' (notes 03, Q6, [S], Dunajtschik and Steinacher 2008)."
+      ],
+      "file": "normattiva_RDL1935_234_Bolzano_zona_industriale_attoCompleto.html",
+      "source": {
+        "label": "Normattiva",
+        "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:regio.decreto.legge:1935-03-07;234"
+      },
+      "rights": "Official act, public domain",
+      "confidence": {
+        "level": "read"
+      },
+      "place": "zona-industriale",
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "10.05",
+      "title": "Regio decreto-legge 4 giugno 1936, n. 1368: Dichiarazione di pubblica utilità dei lavori di ampliamento della zona industriale nella città di Bolzano",
+      "type": "Law text",
+      "date": "4 June 1936",
+      "year": 1936,
+      "keywords": [
+        "zona-industriale",
+        "law"
+      ],
+      "text": [
+        "The decree that enlarged the industrial zone, after a plan at 1:2880, and carried over to the extension every rule of the 1935 decree. By now the heading styles the king “Re d'Italia, Imperatore d'Etiopia”.",
+        "The minister who proposed it, Cobolli Gigli, spent six months in Italian East Africa from late 1936 overseeing road building."
+      ],
+      "facts": [
+        "Decree-law published in GU 22 Jul 1936; declares of public utility the extension of Bolzano's industrial zone, after an annexed plan at 1:2880, and extends to it all provisions of R.D.L. 234/1935 (manifest; file).",
+        "Proposed by the Minister of Public Works and signed 'MUSSOLINI - COBOLLI-GIGLI - DI REVEL' (notes 03, Q6, [V]).",
+        "Cobolli Gigli, Minister of Public Works 1935-39, spent six months in AOI from late 1936 supervising Ethiopian road works and wrote Strade imperiali (1938) (notes 03, Q6, [S, tertiary]).",
+        "The heading styles the king 'RE D'ITALIA / IMPERATORE D'ETIOPIA' (file).",
+        "Its recital gives R.D.L. 1621/1934 as converted by L. 11 Apr 1935 n. 604 (file)."
+      ],
+      "file": "normattiva_RDL1936_1368_Bolzano_zona_industriale_ampliamento_attoCompleto.html",
+      "source": {
+        "label": "Normattiva",
+        "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:regio.decreto.legge:1936-06-04;1368"
+      },
+      "rights": "Official act, public domain",
+      "confidence": {
+        "level": "read"
+      },
+      "place": "zona-industriale",
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "10.06",
+      "title": "Legge 18 gennaio 1937, n. 155: Conversione in legge del R. decreto-legge 4 giugno 1936-XIV, n. 1368, con il quale sono stati dichiarati di pubblica utilità lavori di ampliamento della zona industriale di Bolzano …",
+      "type": "Law text",
+      "date": "18 January 1937",
+      "year": 1937,
+      "keywords": [
+        "zona-industriale",
+        "law"
+      ],
+      "text": [
+        "The law converting the 1936 decree on the extension of the industrial zone. It closes the run of acts, from 1934 to 1937, that created the zone."
+      ],
+      "facts": [
+        "Single-article law converting R.D.L. 4 June 1936 n. 1368 on the extension of Bolzano's industrial zone; Normattiva full text saved as HTML and TXT (file; manifest).",
+        "Given at Rome on 18 January 1937, Anno XV; signed 'Mussolini - Cobolli-Gigli - Di Revel - Lantini', seen by Guardasigilli Solmi (file).",
+        "The thread notes do not discuss this law; it closes the run of industrial-zone acts the notes cite (R.D.L. 1621/1934, R.D.L. 234/1935, R.D.L. 1368/1936) (notes 03, Q7, [V]; manifest)."
+      ],
+      "file": "normattiva_L1937_155_Bolzano_zona_industriale_ampliamento_attoCompleto.html",
+      "source": {
+        "label": "Normattiva",
+        "url": "https://www.normattiva.it/eli/id/1937/03/02/037U0155/CONSOLIDATED/20091216"
+      },
+      "rights": "Official act, public domain",
+      "confidence": {
+        "level": "read"
+      },
+      "place": "zona-industriale",
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "10.07",
+      "title": "Gazzetta Ufficiale del Regno d'Italia, 12 dicembre 1939, n. 287",
+      "type": "Law text",
+      "date": "12 December 1939",
+      "year": 1939,
+      "keywords": [
+        "option",
+        "colonization",
+        "law"
+      ],
+      "text": [
+        "A whole issue of the official gazette, 32 pages, kept because it prints the law that created the Ente nazionale per le Tre Venezie (row 10.08). The same issue's contents list a ministry notice striking a firm from the “elenco B delle aziende ebraiche”.",
+        "The scan's text layer is poor, so quotations should be taken from the page images."
+      ],
+      "facts": [
+        "The full issue of the Gazzetta Ufficiale, Parte prima, Tuesday 12 December 1939, n. 287, 32 pages as scanned (manifest; file).",
+        "Prints L. 27 Nov 1939 n. 1780, which turned the Ente di rinascita agraria per le Tre Venezie into the 'Ente nazionale per le Tre Venezie' (manifest; notes 03, Q3, [V]).",
+        "The issue's table of contents also lists a Ministero delle corporazioni notice cancelling a firm from the 'elenco B delle aziende ebraiche' (file, contents page, OCR).",
+        "The OCR text layer is poor (the masthead date reads '1989'); quotations should be taken from the page images or from the Normattiva text of L. 1780/1939 (file)."
+      ],
+      "file": "GU_1939-12-12_n287.pdf",
+      "source": {
+        "label": "Gazzetta Ufficiale",
+        "url": "https://www.gazzettaufficiale.it/eli/gu/1939/12/12/287/sg/pdf"
+      },
+      "rights": "Official act, public domain",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "10.08",
+      "title": "Legge 27 novembre 1939, n. 1780: Trasformazione dell'Ente di rinascita agraria per le Tre Venezie in «Ente nazionale per le Tre Venezie»",
+      "type": "Law text",
+      "date": "27 November 1939",
+      "year": 1939,
+      "keywords": [
+        "option",
+        "colonization",
+        "law",
+        "wording"
+      ],
+      "text": [
+        "The law that turned a regional land agency into the Ente nazionale per le Tre Venezie, seated in Rome at the Prime Minister's office, with the power to “chiedere il trasferimento in sua proprietà di immobili, a chiunque appartengano”. Its task was to take over and resell the property of South Tyroleans who opted to leave.",
+        "The text never says so. It names neither Alto Adige nor the Option nor the optants, and speaks only of “trasferimento all'estero del valore di beni”. This research reads the euphemism as evidence in itself."
+      ],
+      "facts": [
+        "Law published in GU 12 Dec 1939 n. 287; Normattiva full text saved as HTML and TXT (manifest; notes 03, Q3, [V]).",
+        "Signed 'MUSSOLINI - MUTI - GUARDI - DI REVEL - TASSINARI - RICCI - PAVOLINI', seen by Guardasigilli Grandi; the notes leave one countersignature to be read from the text (file; notes 03, Q3).",
+        "Art. 1: the ERA, 'eretto in ente morale col R. decreto 8 settembre 1921, n. 1343', extends its action 'ad ogni forma di attività economica sociale ed educativa', with its seat in Rome 'presso la Presidenza del Consiglio dei Ministri' and a jurisdiction that includes the province of Zara (notes 03, Q3, [V]).",
+        "Art. 3: the Ente 'può chiedere il trasferimento in sua proprietà di immobili, a chiunque appartengano' (notes 03, Q3, [V]).",
+        "Wording: the text never names Alto Adige, the Option or the optants; it speaks of 'trasferimento all'estero del valore di beni' (arts. 14, 21). The notes read this statutory euphemism as evidence in itself (notes 03, Q3, [V]; reading [INF]).",
+        "Di Michele: the law gave the ENTV 'il delicatissimo e impegnativo compito di prendere in consegna i beni immobili degli optanti per poi rivenderli attraverso aste o trattative private' (notes 03, Q3, [V], unibz project text)."
+      ],
+      "file": "normattiva_L1939_1780_ENTV_attoCompleto.html",
+      "source": {
+        "label": "Normattiva",
+        "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1939-11-27;1780"
+      },
+      "rights": "Official act, public domain",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "10.09",
+      "title": "Legge 6 luglio 1939, n. 1092: Provvedimenti contro l'urbanesimo",
+      "type": "Law text",
+      "date": "6 July 1939",
+      "year": 1939,
+      "keywords": [
+        "migration",
+        "colonization",
+        "semirurali",
+        "law"
+      ],
+      "text": [
+        "The anti-urbanism law. Nobody may move residence to a provincial capital, a town of over 25,000 or a comune “di notevole importanza industriale” without stable work, and farm workers who leave the land without cause cannot register for other work. Moves of workers between provinces need the colonization office's authorization.",
+        "It is the legal frame within which workers were admitted to Bolzano. It was repealed in 1961; the bill that sought the repeal called it contrary to article 16 of the Constitution."
+      ],
+      "facts": [
+        "Law published in GU 9 Aug 1939 n. 185; given at San Rossore and signed 'MUSSOLINI - SOLMI - DI REVEL - ROSSONI - LANTINI'; Normattiva full text saved as HTML and TXT (manifest; file).",
+        "Art. 1: no one may move residence to provincial capitals, towns over 25,000 inhabitants or 'Comuni di notevole importanza industriale' without stable work; Art. 7: farm workers who leave 'la terra' without cause cannot register for other work (notes 03, Q5, [V]).",
+        "Arts. 2-3: the CMCI authorizes moves of workers between provinces, so the Commissariato still existed in July 1939 (notes 03, Q1, [V]).",
+        "Repeals and replaces L. 24 Dec 1928 n. 2961 and the 1933 decree, the earlier anti-urbanism measures (art. 12) (notes 03, Q5, [V]).",
+        "The notes list it as the anti-urbanism legal frame shared with the Semirurali thread (notes 03, Q7, [V]).",
+        "Repealed with L. 358/1931 by L. 10 Feb 1961 n. 5; the 1958 repeal bill called both laws contrary to art. 16 of the Constitution (notes 03, Q1, [V])."
+      ],
+      "file": "normattiva_L1939_1092_urbanesimo_attoCompleto.html",
+      "source": {
+        "label": "Normattiva",
+        "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1939-07-06;1092"
+      },
+      "rights": "Official act, public domain",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "10.10",
+      "title": "Senato della Repubblica, disegno di legge n. 188: Autorizzazione alla Cassa depositi e prestiti a concedere all'Ente Nazionale per le Tre Venezie un mutuo di lire 80.000.000",
+      "type": "Law text",
+      "date": "14 December 1948",
+      "year": 1948,
+      "keywords": [
+        "colonization",
+        "law"
+      ],
+      "text": [
+        "A post-war Senate bill authorizing a loan of 80 million lire to the Ente nazionale per le Tre Venezie. It shows the agency alive and holding land after the regime: the report describes it running reclamation and improvement works “sui terreni di sua proprietà”, and notes an advance of 30 million from 1935 still unpaid."
+      ],
+      "facts": [
+        "Senate bill 188, presented by the Minister of the Treasury (Pella) in the sitting of 14 December 1948 (file; manifest).",
+        "A loan of L. 80 million to the ENTV; the bill notes a 1935 advance of L. 30 million from the Cassa depositi e prestiti, still unpaid (notes 03, Q3, [V]).",
+        "The report describes the ENTV as running 'lavori di bonifica e di miglioramento agrario-fondiario sui terreni di sua proprietà', damaged in the war; the loan is at 5.80 per cent over 30 years (file)."
+      ],
+      "file": "senato_1948_DDL188_mutuo_ENTV.pdf",
+      "source": {
+        "label": "Senato della Repubblica",
+        "url": "https://www.parlamento.it/service/PDF/PDFServer/DF/358747.pdf"
+      },
+      "creator": "Pella, Minister of the Treasury",
+      "holder": "Senato della Repubblica",
+      "rights": "Parliamentary paper, public domain",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "10.11",
+      "title": "Senato della Repubblica, disegno di legge n. 773: Diniego di ratifica del decreto legislativo 6 dicembre 1946, n. 718: Costituzione di una sezione autonoma di ricostruzione e rinascita agraria in seno all'Ente autonomo per le Tre Venezie",
+      "type": "Law text",
+      "date": "14 December 1949",
+      "year": 1949,
+      "keywords": [
+        "colonization",
+        "law"
+      ],
+      "text": [
+        "A Senate bill of December 1949 refusing to ratify a 1946 decree that had set up a reconstruction section inside the Ente per le Tre Venezie. One detail: the bill's title calls the agency “autonomo”, the annexed decree “nazionale”."
+      ],
+      "facts": [
+        "Senate bill 773, presented by the Presidente del Consiglio (De Gasperi), approved by the Camera's special commission on 30 Nov 1949 and transmitted to the Senate on 14 December 1949 (file; manifest).",
+        "Refuses ratification of D.Lgs. 6 Dec 1946 n. 718, which created an autonomous reconstruction section within the ENTV (notes 03, Q3, [V]).",
+        "The annexed decree gives the section's aims: rebuilding war-damaged buildings and restoring 'opere di miglioramento agrario e di bonifica' (file).",
+        "The bill's title says 'Ente autonomo per le Tre Venezie', while the annexed decree says 'Ente nazionale per le Tre Venezie' (file)."
+      ],
+      "file": "senato_1949_DDL773_ENTV_sezione_autonoma_1946.pdf",
+      "source": {
+        "label": "Senato della Repubblica",
+        "url": "https://www.parlamento.it/service/PDF/PDFServer/DF/355353.pdf"
+      },
+      "creator": "De Gasperi, Presidente del Consiglio",
+      "holder": "Senato della Repubblica",
+      "rights": "Parliamentary paper, public domain",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "10.12",
+      "title": "Senato della Repubblica, disegno di legge n. 977: Erogazione di cinque miliardi di lire all'Ente nazionale per le Tre Venezie, per l'esecuzione di un programma di trasformazione fondiaria e di stabile sistemazione produttiva dei profughi dai territori della Venezia Giulia amministrati o posseduti dalla Repubblica Popolare Federativa Jugoslava",
+      "type": "Law text",
+      "date": "4 March 1955",
+      "year": 1955,
+      "keywords": [
+        "colonization",
+        "law"
+      ],
+      "text": [
+        "A 1955 bill granting five billion lire to the Ente nazionale per le Tre Venezie for land transformation and the settling of refugees from the territories that had passed to Yugoslavia. The agency created to handle the optants' property is here settling a different displaced population. Article 3 speaks of houses “nei villaggi costruiti” under the law."
+      ],
+      "facts": [
+        "Senate bill 977, presented by the Presidente del Consiglio (Scelba) with Vanoni, Tremelloni, Gava and Medici; approved by the Camera's agriculture commission on 25 Feb 1955 and transmitted to the Senate on 4 March 1955 (file; manifest).",
+        "L. 5 billion for Giulian refugees, run by the ENTV (notes 03, Q3, [V]).",
+        "Art. 3 deals with the lands bought or expropriated and the houses 'nei villaggi costruiti' under the law (file, OCR)."
+      ],
+      "file": "senato_1955_DDL977_ENTV_profughi_giuliani.pdf",
+      "source": {
+        "label": "Senato della Repubblica",
+        "url": "https://www.parlamento.it/service/PDF/PDFServer/DF/343094.pdf"
+      },
+      "creator": "Scelba, Presidente del Consiglio",
+      "holder": "Senato della Repubblica",
+      "rights": "Parliamentary paper, public domain",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "10.13",
+      "title": "Senato della Repubblica, disegno di legge n. 143: Abrogazione della legge 9 aprile 1931, n. 358, e della legge 6 luglio 1939, n. 1092",
+      "type": "Law text",
+      "date": "29 September 1958",
+      "year": 1958,
+      "keywords": [
+        "colonization",
+        "migration",
+        "law"
+      ],
+      "text": [
+        "The 1958 bill by Senator Terracini and others to repeal the 1931 colonization-office law and the 1939 anti-urbanism law as “in contrasto con la lettera e lo spirito dell'articolo 16 della Costituzione”.",
+        "Its report says the 1939 law could still send “centinaia di migliaia di lavoratori” in the northern industrial cities home “con foglio di via obbligatorio”. Both laws were repealed in 1961."
+      ],
+      "facts": [
+        "Senate bill 143, by senators Terracini, Mammucari, Bitossi, Roasio, Montagnana and Spezzano, communicated on 29 September 1958 (file; manifest).",
+        "Seeks repeal of the CMCI law (L. 358/1931) and the anti-urbanism law (L. 1092/1939), calling them contrary to art. 16 of the Constitution: 'in contrasto con la lettera e lo spirito dell'articolo 16 della Costituzione' (notes 03, Q1, [V]; file).",
+        "The report says workers from the south, the Veneto and other regions keep moving to the industrial cities of the north, and that under the 1939 law 'centinaia di migliaia di lavoratori' in the industrial triangle could all be sent home 'con foglio di via obbligatorio' (file).",
+        "Both laws were repealed by L. 10 Feb 1961 n. 5 (notes 03, Q1, [V])."
+      ],
+      "file": "senato_1958_DDL143_abrogazione_L358_1931_L1092_1939.pdf",
+      "source": {
+        "label": "Senato della Repubblica",
+        "url": "https://www.parlamento.it/service/PDF/PDFServer/DF/327251.pdf"
+      },
+      "creator": "Senators Terracini, Mammucari, Bitossi, Roasio, Montagnana and Spezzano",
+      "holder": "Senato della Repubblica",
+      "rights": "Parliamentary paper, public domain",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "10.14",
+      "title": "Senato della Repubblica, disegno di legge n. 178: Modifiche alla legge 27 novembre 1939, n. 1780, istitutiva dell'Ente nazionale per le Tre Venezie",
+      "type": "Law text",
+      "date": "October 1958",
+      "year": 1958,
+      "keywords": [
+        "colonization",
+        "law"
+      ],
+      "text": [
+        "A government bill of October 1958 amending the expropriation procedure of the 1939 law on the Ente nazionale per le Tre Venezie. Its report recalls the special procedure of articles 3 to 8 and the board that fixed compensation when owner and agency disagreed. Nineteen years on, the instrument was still in force and being adjusted."
+      ],
+      "facts": [
+        "Senate bill 178, presented by the Presidente del Consiglio (Fanfani) with the ministers of the Interior (Tambroni), Justice (Gonella), Public Works (Togni) and Agriculture, October 1958; the day of the sitting is illegible in the OCR (file; manifest).",
+        "Amends the expropriation procedure of L. 1780/1939 (notes 03, Q3, [V]).",
+        "The report recalls that L. 1780/1939 confirmed the ENTV's power to use 'la speciale procedura espropriativa prevista dagli articoli da 3 a 8', and that art. 8 set up a 'Collegio' that gave opinions on requests and oppositions and fixed the compensation owed to owners when the parties disagreed (file)."
+      ],
+      "file": "senato_1958_DDL178_modifiche_L1780_1939_ENTV.pdf",
+      "source": {
+        "label": "Senato della Repubblica",
+        "url": "https://www.parlamento.it/service/PDF/PDFServer/DF/327285.pdf"
+      },
+      "creator": "Fanfani, Presidente del Consiglio",
+      "holder": "Senato della Repubblica",
+      "rights": "Parliamentary paper, public domain",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "10.15",
+      "title": "Bonifica ed insediamenti rurali in una zona della Calabria durante il fascismo",
+      "type": "Article",
+      "date": "1981 (reprinted 2016)",
+      "year": 1981,
+      "keywords": [
+        "colonization"
+      ],
+      "text": [
+        "Giuseppe Masi's study of land reclamation and rural settlement in a part of Calabria under Fascism, first published in 1981. It is this research's source for how the colonization office came about: a 1926 committee under the Ministry of Public Works, replaced in 1931 by an office answering directly to the head of government.",
+        "A footnote lists the office's annual reports. Their title changes in 1935–36 from migrations “in Italia” to migrations “nel Regno e nell'Africa Italiana”."
+      ],
+      "facts": [
+        "Giuseppe Masi, Rivista Calabrese di Storia del '900 2 (2016) 37-54, a reprint of the article in Archivio storico per la Calabria e la Lucania XLVIII (1981) 167-190 (file; manifest).",
+        "Source for the 1926 Comitato permanente per le migrazioni interne, 'emanazione del Ministero dei Lavori pubblici', replaced by the CMCI under L. 358/1931 'alle dirette dipendenze della Presidenza del Consiglio', to direct transfers through 'indagini preliminari di compensazione demografica' (notes 03, Q1, [S]).",
+        "Its footnote 3 lists the annual reports of the Comitato and then the CMCI, from Le migrazioni interne in Italia (1928) to Le migrazioni nel Regno e nell'Africa Italiana (1936-39) (notes 03, Q1, [S]).",
+        "The notes read the change of report title in 1935-36 as the remit moving from internal to imperial (notes 03, Q1, [INF]).",
+        "The notes cite it as 'Masi 2016' with the reprint's page numbers (notes 03, Q1)."
+      ],
+      "file": "masi_bonifica_icsaic.pdf",
+      "source": {
+        "label": "ICSAIC",
+        "url": "https://www.icsaicstoria.it/wp-content/uploads/2018/03/Masi_Bonifica_icsaic.pdf"
+      },
+      "creator": "Giuseppe Masi",
+      "holder": "ICSAIC, Rivista Calabrese di Storia del '900",
+      "rights": "(c) ICSAIC, free posting",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "10.16",
+      "title": "Fondo del Genio Civile, Ufficio di Latina, Serie dei Comuni: Prefazione",
+      "type": "Archive guide",
+      "date": "2006–08",
+      "year": 2006,
+      "keywords": [
+        "agro-pontino",
+        "archives",
+        "colonization"
+      ],
+      "text": [
+        "The preface to an inventory of the Genio Civile papers at the Archivio di Stato di Latina. It gives the founding and inauguration dates of the five Pontine new towns, from Littoria in 1932 to Pomezia in 1939, and the standard holding: for each family a podere of about 20 hectares with a casa colonica. This is the settlement model the Semirurali are measured against.",
+        "The preface carries no date. 2006–08 is worked out from its text and from the file."
+      ],
+      "facts": [
+        "Preface to the inventory of the Serie dei Comuni of the Genio Civile fonds, Ufficio di Latina, at the Archivio di Stato di Latina, edited by Giulia D'Angelo, Irene Mirabella and Michela Chiapponi (file; manifest).",
+        "Made within a project begun in July 2006 to order and inventory the fonds of the Opera Nazionale Combattenti (ONC) and the Genio Civile held at the Archivio di Stato di Latina (file).",
+        "Source for the ONC's founding by decreto luogotenenziale of 10 Dec 1917 to assist war veterans (notes 03, Q2, [S]).",
+        "Founding and inauguration dates of the Pontine towns: Littoria 30 June / 18 Dec 1932; Sabaudia 5 Aug 1933 / 15 Apr 1934; Pontinia 19 Dec 1934 / 18 Dec 1935; Aprilia 25 Apr 1936 / 29 Oct 1937; Pomezia 22 Apr 1938 / 29 Oct 1939; the province of Littoria was created on 18 Dec 1934 (notes 03, Q2, [S]).",
+        "Each family received a podere with a casa colonica; the average podere was about 20 ha, varying with the soil (notes 03, Q2, [S]).",
+        "Undated: neither the file nor the manifest gives a year; the date here rests on the text (work begun July 2006) and the PDF's own creation date (October 2008) (file)."
+      ],
+      "file": "ASLatina_prefazione_GC_Comuni.pdf",
+      "source": {
+        "label": "Archivio di Stato di Latina",
+        "url": "https://archiviodistatolatina.cultura.gov.it/fileadmin/risorse/foto_pagine/PDF/prefazione_GC_Comuni.pdf"
+      },
+      "creator": "Giulia D'Angelo, Irene Mirabella and Michela Chiapponi (eds)",
+      "holder": "Archivio di Stato di Latina",
+      "rights": "State archive publication, free posting",
+      "confidence": {
+        "level": "read",
+        "note": "Undated; dated from the text (work begun July 2006) and the PDF's creation date (October 2008)."
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "10.17",
+      "title": "Stile Novecento. La lingua negli anni Trenta e la restituzione del “cognome atesino” nell'Alto Adige-Sudtirolo",
+      "type": "Article",
+      "date": "January–April 2006",
+      "year": 2006,
+      "keywords": [
+        "language",
+        "romanita",
+        "wording"
+      ],
+      "text": [
+        "Roberto Giacomelli on the language policy of the 1930s and the forced Italianization of South Tyrolean surnames. He opens with Ettore Tolomei in 1935: “La restituzione del cognome, nelle province annesse, è legge dello Stato.” The regime's word was restitution, as if the names were being given back.",
+        "Giacomelli describes Tolomei's lists as recreating “una latinità del tutto surrettizia e astratta”. The phrase “bonifica dei cognomi”, sometimes attributed to the regime, has no source that this research could find."
+      ],
+      "facts": [
+        "Roberto Giacomelli, in ACME, Annali della Facoltà di Lettere e Filosofia dell'Università degli Studi di Milano LIX, fasc. I, January-April 2006 (file; manifest).",
+        "Opens with Tolomei's 1935 editorial in Archivio per l'Alto Adige 30, p. 469: 'La restituzione del cognome, nelle province annesse, è legge dello Stato. Nella Venezia Giulia è quasi compiuta, nell'Alto Adige si viene attuando. L'Istituto di Studi per l'Alto Adige assunse di fornire gli Elenchi' (notes 03, Q5, [S]; file).",
+        "The notes found no source for 'bonifica dei cognomi'; the regime's own term was 'restituzione del cognome' (notes 03, correction 6 and Q5).",
+        "Wording: Giacomelli writes that the 'restituzioni' tended to translate German names 'sia nella forma esterna sia nel significato, ma più spesso solo nella fonetica' (file, p. 189).",
+        "He describes Tolomei's lists as aiming to recreate in the region 'una latinità del tutto surrettizia e astratta', on the idea that Alto Adige, once a province of the Roman Empire, belonged to a 'Romania perduta' (file, p. 189)."
+      ],
+      "file": "giacomelli_acme_cognomi_tolomei.pdf",
+      "source": {
+        "label": "Acme (ledonline.it)",
+        "url": "https://www.ledonline.it/acme/allegati/Acme-06-I-07-Giacomelli.pdf"
+      },
+      "creator": "Roberto Giacomelli",
+      "holder": "LED/Acme",
+      "rights": "(c) LED/Acme, free posting",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "10.18",
+      "title": "Il Commissariato per le migrazioni e la colonizzazione interna (1930-1940). Per una storia della politica migratoria del fascismo: Indice",
+      "type": "Book",
+      "date": "2015",
+      "year": 2015,
+      "keywords": [
+        "colonization",
+        "agro-pontino",
+        "libya",
+        "ethiopia"
+      ],
+      "text": [
+        "The table of contents of Stefano Gallo's history of the colonization office. It has chapters on the Agro Pontino, Libya, Sardinia, the Dalmatian coast and Ethiopia, and none on Alto Adige, which suggests the office's role there was minor or late.",
+        "Only the contents page is held. The book is not online and was not read."
+      ],
+      "facts": [
+        "Table of contents of Stefano Gallo's book, Foligno, Editoriale Umbra, 2015, 224 pp., as posted by the Consiglio regionale dell'Umbria (notes 03, Q1, [V], book details [SS]; manifest).",
+        "Three parts: 'Il Commissariato per le migrazioni interne' (p. 21), 'Bonifiche e popolamento' (p. 69), 'Emigrare da fascisti: l'Impero del lavoro' (p. 141) (file).",
+        "Chapters on 'Le ambizioni di Luigi Razza' (p. 50), 'L'Agro pontino' (p. 89), 'La Libia' (p. 106), Sardinia and the Dalmatian coast (p. 124), 'l'aggressione all'Etiopia' (p. 141), the Ventimila (p. 167), Carbonia and the E42 (p. 178) (file; notes 03, Q1, [V]).",
+        "No chapter on Alto Adige; the notes read this as a sign that the CMCI's Alto Adige role was minor or late (notes 03, Q1, [V]; reading [INF]).",
+        "The book itself is not online; whether pp. 192-210 on labour mobility at the end of the 1930s discuss Bolzano is an open gap (notes 03, Q1, gaps)."
+      ],
+      "file": "gallo_2015_indice_ISUC.pdf",
+      "source": {
+        "label": "Consiglio regionale dell'Umbria (ISUC)",
+        "url": "https://consiglio.regione.umbria.it/sites/default/files/allegati_pubblicazioni/Indice_6.pdf"
+      },
+      "creator": "Stefano Gallo",
+      "holder": "Editoriale Umbra",
+      "rights": "Regional institutional posting",
+      "confidence": {
+        "level": "read",
+        "note": "Table of contents only; the chapters were not read."
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "10.19",
+      "title": "Presentazione del libro di Stefano Gallo, Il Commissariato per le migrazioni e la colonizzazione interna (1930-1940), Napoli, 30 giugno 2015",
+      "type": "Booklet",
+      "date": "30 June 2015",
+      "year": 2015,
+      "keywords": [
+        "colonization"
+      ],
+      "text": [
+        "A one-page flyer for the Naples presentation of Gallo's book on 30 June 2015. Kept because the research found no review of the book, only this presentation and a second in Perugia."
+      ],
+      "facts": [
+        "One-page flyer for the presentation of Gallo's book (Editoriale Umbra) at ISSM-CNR, Sala De Rosa, via G. Sanfelice 8, Naples, Tuesday 30 June 2015, 11.00 (file; manifest).",
+        "Discussants with the author: Gian Carlo Falco (Università di Pisa) and Michele Colucci (ISSM-CNR); greetings from Salvatore Capasso, director of ISSM-CNR; under FIRB-MIUR 'Frontiere mediterranee' (file).",
+        "The notes found no review of Gallo, only this Naples presentation and a second one in Perugia on 11 Nov 2015 (notes 03, Q1, [V])."
+      ],
+      "file": "gallo_2015_presentazione_napoli.pdf",
+      "source": {
+        "label": "Consiglio regionale dell'Umbria",
+        "url": "https://consiglio.regione.umbria.it/sites/default/files/allegati_eventiagenda/30-06%20Presentazione%20volume%20Gallo_Napoli.pdf"
+      },
+      "holder": "ISSM-CNR, Naples",
+      "rights": "Institutional posting",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "10.20",
+      "title": "Mussolini's Nation-Empire: Sovereignty and Settlement in Italy's Borderlands, 1922–1943, Index",
+      "type": "Book",
+      "date": "2017",
+      "year": 2017,
+      "keywords": [
+        "colonization",
+        "option",
+        "libya"
+      ],
+      "text": [
+        "The index of Roberta Pergher's book on settlement in Italy's borderlands, from the publisher's free sample. It shows where the book treats the colonization office, the land agencies and “settler colonialism”, and that the office appears again in the chapter on the 1939 Option.",
+        "The page numbers are verified. The pages themselves were not read."
+      ],
+      "facts": [
+        "Index pages 279-286 of Roberta Pergher's book (Cambridge University Press, New Studies in European History), the publisher's free sample (manifest; notes 03, Q4, [V]).",
+        "Lists the CMCI at pp. 77, 79-80, 85, 101, 108, 122-124, 145, 225, 227 and 230; pp. 225-230 sit in chapter 5 on the 1939 Option, so Pergher uses CMCI material for South Tyrol after the Option (notes 03, Q1, [V, index only]).",
+        "'settler colonialism' at 24, 28, 52, 71-72, 108-110, 113, 115, 164-165, 245, 251; 'internal colonialism' 108-110, 113, 115-116; Wolfe 164; Veracini 112, 164 (notes 03, Q4, [V, index]).",
+        "ENTV at pp. 144, 169, 225, 228-230, 233, 235-238; ERATV at pp. 101-105, 144-145, 212, 225, 234; 'Luigi Razza, 142', probably the Libyan village (notes 03, Q3-Q4, [V, index]; the village reading [INF]).",
+        "Page numbers are verified from the index; the arguments on those pages were not read (notes 03, Q4, gaps).",
+        "Online 27 Oct 2017 and in print 2 Nov 2017 per the CUP page; often cited as 2018, as in this folder's file names (notes 03, Q4, [V])."
+      ],
+      "file": "pergher_2018_index_CUP.pdf",
+      "source": {
+        "label": "Cambridge University Press",
+        "url": "https://assets.cambridge.org/97811084/19741/index/9781108419741_index.pdf"
+      },
+      "creator": "Roberta Pergher",
+      "holder": "Cambridge University Press",
+      "rights": "(c) Cambridge UP, publisher's free sample",
+      "confidence": {
+        "level": "read",
+        "note": "Index only: page numbers verified, the pages themselves not read."
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "10.21",
+      "title": "Mussolini's Nation-Empire: Sovereignty and Settlement in Italy's Borderlands, 1922–1943, Introduction (excerpt)",
+      "type": "Book",
+      "date": "2017",
+      "year": 2017,
+      "keywords": [
+        "colonization",
+        "libya",
+        "agro-pontino"
+      ],
+      "text": [
+        "The first ten pages of Pergher's book. Her claim: it was in Libya and South Tyrol, “and not in Ethiopia, that the signature Fascist policy of extending Italianness through mass population settlement was developed and put into practice”. Settlement answered the question of “how best to secure and legitimize rule over contested lands”.",
+        "She quotes Tolomei in 1938 celebrating the “splendid exodus to Libya of twenty thousand settlers” and wishing a few dozen settler families on every municipality of Alto Adige."
+      ],
+      "facts": [
+        "Introduction, pp. 1-10, of Roberta Pergher's book (Cambridge University Press), the publisher's free excerpt (manifest; file).",
+        "p. 5: 'it was in these territories, and not in Ethiopia, that the signature Fascist policy of extending Italianness through mass population settlement was developed and put into practice' (notes 03, Q4, [V]).",
+        "p. 9: settlement in Libya 'was not primarily a solution to the domestic problem of overpopulation' but answered the question of 'how best to secure and legitimize rule over contested lands' (notes 03, Q4, [V]).",
+        "p. 8: in the Pontine Marshes 1932-39, '5 towns, 18 villages, and 3,000 farmsteads, settling them with families mostly from northern Italy' (notes 03, Q2, [V]).",
+        "p. 10, 'A \"Providential\" Pairing': Tolomei in 1938 celebrated the 'splendid exodus to Libya of twenty thousand settlers' and called a state initiative 'placing at least a few dozen families in every municipality' of Alto Adige 'an act of providence'; Pergher's translation, the Italian not seen (notes 03, Q4, [V via Pergher]).",
+        "Opens with Mussolini's Trieste speech of 20 September 1920, which urged Italy to stand up to the 'tribes barking more or less incomprehensible languages' at its borders (file, p. 1).",
+        "Online 27 Oct 2017 and in print 2 Nov 2017 per the CUP page; often cited as 2018 (notes 03, Q4, [V])."
+      ],
+      "file": "pergher_2018_excerpt_intro_CUP.pdf",
+      "source": {
+        "label": "Cambridge University Press",
+        "url": "https://assets.cambridge.org/97811084/19741/excerpt/9781108419741_excerpt.pdf"
+      },
+      "creator": "Roberta Pergher",
+      "holder": "Cambridge University Press",
+      "rights": "(c) Cambridge UP, publisher's free sample",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "10.22",
+      "title": "The 1939 Option Agreement and the ‘Consistent Ambivalence’ of Fascist Policies towards Minorities in the Italian New Provinces",
+      "type": "Article",
+      "date": "2023",
+      "year": 2023,
+      "keywords": [
+        "option",
+        "colonization",
+        "language"
+      ],
+      "text": [
+        "Emmanuel Dalle Mulle and Alessandro Ambrosino on the 1939 Option, which they call “the first population transfer agreement in western European history”. Fascists “consistently affirmed the inevitable assimilation” of minorities “but they also deeply distrusted them”. Land colonization “was never meant as a total replacement”.",
+        "The article supplies the scale: 325 farms and 8,933 hectares bought by 1938, 0.6% of the farmland. It is one of the two strongest arguments against reading South Tyrol as a settler colony."
+      ],
+      "facts": [
+        "Emmanuel Dalle Mulle and Alessandro Ambrosino, The Historical Journal 66 (2023) 887-908, doi:10.1017/S0018246X23000158 (file; manifest).",
+        "'Italian fascists consistently affirmed the inevitable assimilation, and therefore inclusion, of minorities within the Italian nation, but they also deeply distrusted them' (notes 03, Q4, [V]).",
+        "Land colonization 'was never meant as a total replacement for the assimilation of the local population, but rather as a catalyst to accelerate this' (notes 03, Q4, [V]).",
+        "Calls the 1939 Option 'the first population transfer agreement in western European history' (file, abstract).",
+        "Source for the 1926-27 ONC plan to settle 200-600 families between Merano and Lavis, and for the ERATV's 325 farms and 8,933 ha (0.6% of farmland in the new provinces) by 30 Sept 1938 (notes 03, Q2-Q3, [S]).",
+        "Italian speakers in Bolzano rose from 21% (1921) to 62% (1939) (notes 03, Q6, [S], p. 899).",
+        "With Di Michele 2023, the strongest counter-reading to the settler-colonial claim; it attacks the 'replacement' reading, not the 'colonization' label (notes 03, Q4, [V]; [INF])."
+      ],
+      "file": "dallemulle_ambrosino_2023_HistJ_option_ambivalence.pdf",
+      "source": {
+        "label": "Cambridge Core",
+        "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/S0018246X23000158"
+      },
+      "creator": "Emmanuel Dalle Mulle and Alessandro Ambrosino",
+      "holder": "Cambridge University Press, The Historical Journal",
+      "rights": "CC BY 4.0",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "10.23",
+      "title": "The Fascist view of the ‘allogeni’ in the border regions",
+      "type": "Article",
+      "date": "2023",
+      "year": 2023,
+      "keywords": [
+        "language",
+        "race",
+        "colonization"
+      ],
+      "text": [
+        "Andrea Di Michele asks whether the regime's view of its border minorities can be called racism, and for South Tyrol largely answers no: “severe discriminatory measures ... regarding citizenship rights were not in fact taken”. South Tyrolean peasants were shown as “a condensate of virtues”, while Slovenes and Croats met contempt and violence.",
+        "A footnote holds this research's key document: the circular of 21 December 1939 ordering that settlers replacing departing South Tyroleans come from the 56 provinces north of Perugia."
+      ],
+      "facts": [
+        "Andrea Di Michele, Journal of Modern Italian Studies 28:1 (2023) 90-112, published online 2 Nov 2022, doi:10.1080/1354571X.2022.2122369 (file; manifest).",
+        "Asks whether severe discriminatory citizenship measures were really taken, and whether the view of the minorities was 'always radically negative and disdainful to the extent that it could justifiably be called racism' (file, abstract).",
+        "Largely rejects the colonial-subject analogy: 'severe discriminatory measures ... regarding citizenship rights were not in fact taken' (notes 03, Q4, [V]).",
+        "South Tyrolean peasants were represented as 'a condensate of virtues that largely coincided with those that the regime promised to instil in all Italians', while Slovenes and Croats met 'a contemptuous and violent attitude' (notes 03, Q4, [V]).",
+        "n. 22 gives the CMCI circular of 21 Dec 1939: settlers replacing departing South Tyroleans to come from the 56 provinces north of Perugia; ACS, CMCI b. 40G (notes 03, Q1, [S]).",
+        "Defines 'allogeni' and 'alloglotti' after Collotti 2000 and cites R.D.L. 10 Jan 1926 n. 16 on revoking the citizenship of allogeni (notes 03, Q5, [S])."
+      ],
+      "file": "dimichele_2023_JMIS_allogeni.pdf",
+      "source": {
+        "label": "unibz (bia.unibz.it)",
+        "url": "https://bia.unibz.it/view/pdfCoverPage?instCode=39UBZ_INST&filePid=13299778160001241&download=true"
+      },
+      "creator": "Andrea Di Michele",
+      "holder": "Taylor & Francis, Journal of Modern Italian Studies",
+      "rights": "CC BY-NC-ND 4.0",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "10.24",
+      "title": "Andrea Di Michele, Terra italiana. Possedere il suolo per assicurare i confini 1915–1954, review by Giulio Taccetti",
+      "type": "Article",
+      "date": "2024",
+      "year": 2024,
+      "keywords": [
+        "colonization",
+        "option",
+        "language"
+      ],
+      "text": [
+        "A review of Andrea Di Michele's book Terra italiana (2023), on owning the soil to secure the border. The book itself could not be reached, so the research relies on this summary: the failed veterans' settlement plan of the 1920s, the land agency strengthened after the Anschluss, the Option, and the agency blocking sales of optants' property to German speakers until 1954.",
+        "It is the source for the figure of about 86% of South Tyroleans opting to leave."
+      ],
+      "facts": [
+        "Giulio Taccetti's review of Di Michele's book (Roma-Bari, Laterza 2023, ISBN 9788858152119) in ARO VII, 2024/2 (file; manifest).",
+        "Summarises five chapters: liberal and Fascist ambivalence towards allogeni, 'talvolta come nemici, talvolta come persone da ri-nazionalizzare'; the failed 1920s ONC plan; the ERATV strengthened 'in funzione difensiva' after the Anschluss; the Option; the ENTV blocking sales of optants' assets to allogeni until 1954 (notes 03, Q3, [S]).",
+        "Source for about 86% of South Tyroleans opting to leave (notes 03, Q3, [S]).",
+        "The book's own totals for 1939-43 were not reachable, so the notes rely on this review (notes 03, Q3, gaps).",
+        "No licence checked (manifest)."
+      ],
+      "file": "taccetti_2024_ARO_review_DiMichele_Terra_italiana.pdf",
+      "source": {
+        "label": "ARO",
+        "url": "https://aro-isig.fbk.eu/issues/2024/2/terra-italiana-giulio-taccetti/pdf/"
+      },
+      "creator": "Giulio Taccetti",
+      "holder": "ARO",
+      "rights": "Open-access review; no licence checked",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "10.25",
+      "title": "Lingue di terra. Geografie e linguistic landscape nel territorio dell'Agro Pontino",
+      "type": "Article",
+      "date": "2025",
+      "year": 2025,
+      "keywords": [
+        "agro-pontino",
+        "language"
+      ],
+      "text": [
+        "A 2025 study of the written language visible in the streets of Latina, Pontinia and Sabaudia, three new towns of the Agro Pontino. Held but not yet used: the notes do not cite it."
+      ],
+      "facts": [
+        "Martina Petrò (Università per Stranieri di Siena), Italiano LinguaDue 2, 2025, from p. 953 (file; manifest).",
+        "A geosemiotic, qualitative reading of the linguistic landscape of Latina, Pontinia and Sabaudia, seeking the role of linguistic minorities in new forms of representation and belonging (file, abstract).",
+        "Not cited in the thread notes; held from the manifest only (manifest).",
+        "Licence not checked (manifest).",
+        "The manifest spells the author 'Petro'; the article gives 'Petrò' (file)."
+      ],
+      "file": "italianolinguadue_2025_agro_pontino.pdf",
+      "source": {
+        "label": "Italiano LinguaDue",
+        "url": "https://riviste.unimi.it/index.php/promoitals/article/download/30481/25510/91004"
+      },
+      "creator": "Martina Petrò",
+      "holder": "Italiano LinguaDue",
+      "rights": "Open-access journal (licence not checked)",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    }
+  ]
+}

@@ -1,0 +1,532 @@
+{
+  "keywords_proposed": {
+    "architecture": {
+      "label": "Architecture and planning"
+    }
+  },
+  "entries": [
+    {
+      "no": "9.00",
+      "title": "Overseas agricultural settler villages 1933-1940 (Libya, Ethiopia, Dodecanese) as designed objects, for the comparison with the Bolzano Semirurali",
+      "type": "Notes",
+      "date": "2026",
+      "year": 2026,
+      "keywords": [
+        "libya",
+        "ethiopia",
+        "dodecanese",
+        "colonization",
+        "architecture"
+      ],
+      "text": [
+        "The working notes on the regime's farming villages overseas, in Libya, Ethiopia and the Dodecanese, read as designed objects for comparison with the Semirurali. Libya ran on three parts: an agency built the farms, the colonial public-works office built the village centre, and the Commissariato per le Migrazioni e la Colonizzazione Interna chose the families, most of them from the Veneto and the Po delta.",
+        "No transfer of plans or architects to the Bolzano housing institute was found. One person does appear in both places: the Luce art director who filmed the settlers' departure also filmed the Rione Dux."
+      ],
+      "facts": [
+        "Thread notes in six sections: Libya village by village; architects and the village programme; settlers; Ethiopia; the Dodecanese; cross-links to the Alps and the scholarship. Backbone source: Capresi 2007 (notes 02, header and headings).",
+        "Libya ran on a three-part machine: an agency (ECC/ECL or INFPS) built the farms, the colonial public-works office the \"centro rurale\", and the Commissariato per le Migrazioni e la Colonizzazione Interna selected the families (notes 02, §1).",
+        "Settlers were whole, large peasant families; both mass waves were dominated by the Veneto and the Po delta (notes 02, §3).",
+        "Ethiopia had regional colonization bodies (\"Romagna/Puglia/Veneto d'Etiopia\"); Campochiaro on Rhodes was settled with Fiemme and South Tyrolean families who left after the 1939 Option (notes 02, §4–5).",
+        "Cross-links: the same Luce art director, Arturo Gemmiti, for the Ventimila and the Bolzano \"Rione Popolare Dux\"; no documented transfer of plans or architects to the Bolzano IFACP (notes 02, §6)."
+      ],
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "read",
+        "target": "../../02_overseas_villages.md"
+      }
+    },
+    {
+      "no": "9.01",
+      "title": "Anonymous photographer, the piazza of Villaggio Battisti in Cyrenaica (Florestano Di Fausto)",
+      "type": "Photograph",
+      "date": "1938 or later",
+      "year": 1938,
+      "keywords": [
+        "libya",
+        "colonization",
+        "architecture",
+        "language"
+      ],
+      "text": [
+        "The piazza of Villaggio Battisti in Cyrenaica: white flat-roofed buildings, arcades, a church with a square bell tower, flat country to the horizon. It was built in 1938 to designs by Florestano Di Fausto, 138 farms for 1,084 people, and named for Cesare Battisti of Trento. Italian villages took the names of “eroi della nostra storia passata e recente”; the villages for Muslim Libyans were named after nature.",
+        "Wikimedia Commons dates the photograph 1934, four years before the village existed."
+      ],
+      "facts": [
+        "Commons file \"Villaggio_Battisti_1.jpg\", credit \"Metafisica Costruita\"; public domain per Commons (manifest).",
+        "Dated \"1934\" on Commons, but the village was built in 1938 (manifest).",
+        "Battisti [Quarnadah], Derna, 1938, ECL, Di Fausto; 138 poderi, 1,084 persons; named for Cesare Battisti, \"Nato a Trento nel 1875\" (notes 02, §1, [S]).",
+        "Naming: Italian centres were named for \"eroi della nostra storia passata e recente\", the Muslim villages for nature; Battisti is one of four irredentist names (notes 02, §1, [S]).",
+        "Plan: an off-axis piazza with church and campanile set back; church, municipio, school, market, post office, Casa del Fascio and an ECL office (notes 02, §2, [S]).",
+        "Battisti and Filzi, two of the three busts in the crypt of Bolzano's Victory Monument, both have Libyan villages (notes 02, §1, [INF]).",
+        "Seen in the image: white flat-roofed buildings round a wide paved piazza, a church with a round window and a square bell tower, arcades and loggias, striped lamp posts, and flat dark country to the horizon."
+      ],
+      "images": [
+        {
+          "file": "commons/Villaggio_Battisti_DiFausto.jpg",
+          "caption": "Anonymous (credit \"Metafisica Costruita\"); dated 1934 on Commons, village built 1938. Public domain per Commons. Wikimedia Commons."
+        }
+      ],
+      "file": "commons/Villaggio_Battisti_DiFausto.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Villaggio_Battisti_1.jpg"
+      },
+      "creator": "Anonymous (credit: \"Metafisica Costruita\")",
+      "rights": "Public domain per Commons",
+      "confidence": {
+        "level": "read",
+        "note": "Commons dates the photograph 1934, but the village was built in 1938."
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://commons.wikimedia.org/wiki/File:Villaggio_Battisti_1.jpg"
+      }
+    },
+    {
+      "no": "9.02",
+      "title": "Archivio Storico Istituto Luce, catalogue records of sixteen films: the Ventimila, the 1939 wave, Bari d'Etiopia, Pomezia and the Bolzano Rione Dux",
+      "type": "Table",
+      "date": "1938–41",
+      "year": 1938,
+      "keywords": [
+        "newsreels",
+        "libya",
+        "colonization",
+        "semirurali",
+        "wording"
+      ],
+      "text": [
+        "Catalogue records of sixteen Luce films, read as text: the departure of the twenty thousand settlers for Libya in 1938, the second wave of 1939, the founding of Pomezia, and one on Bolzano. That one, of 11 October 1939, shows “il salubre e ridente Rione Popolare Dux che ultimato consterà di 228 casette con 808 appartamenti e 8 negozi”.",
+        "Arturo Gemmiti is credited as art director on it and on the Libyan newsreels. The titles carry the vocabulary: “Quarta Sponda”, “flotta del lavoro”, “rurali”."
+      ],
+      "facts": [
+        "Sixteen catalogue-record text files: title, date, film code, credits and sequence list; the films were not downloaded or viewed (manifest).",
+        "Ventimila 1938: documentary \"I ventimila coloni nelle nuove province libiche\" (D028106) and Giornale Luce B1402, B1406, B1407, B1408, B1410, with B1361 on the Oberdan drawings; the 1939 wave: B1614, B1616, B1617, B1618, B1619; also B1423 (Bari d'Etiopia) and Incom's \"I figli dei 'Ventimila'\" (1941) (manifest).",
+        "B1599, 11/10/1939: \"il salubre e ridente Rione Popolare Dux che ultimato consterà di 228 casette con 808 appartamenti e 8 negozi\"; sequences of the IFACP sign, a blessing and the gardens (notes 02, §6, [V, catalogue]).",
+        "Arturo Gemmiti is art director on B1599 and on the Ventimila newsreels B1402, B1406, B1407, B1408, B1410 and B1614, B1616 (notes 02, §6, [V, catalogue]); the B1617 record also credits him, which the notes do not list (file).",
+        "B1295, 27/04/1938, founding of Pomezia: Mussolini, \"Italiani, dalle Alpi alla Libia oggi è un giorno di festa dell'agro Pontino e dell'agro romano\" (notes 02, §6, [V, catalogue]).",
+        "Wording in the titles: \"Quarta Sponda\", \"flotta del lavoro\", \"seconda trasmigrazione\", \"rurali\" (notes 02, §3, [V]).",
+        "The B1618 record spells the villages \"Marconà\" and \"Giordania Garibaldi\"; the manifest and notes give Marconi, Giordani and Garibaldi (file).",
+        "Index CSV derived on 2026-11-10 from the sixteen files (luce_records_index.csv; manifest)."
+      ],
+      "source": {
+        "label": "Archivio Luce web catalogue",
+        "url": "https://patrimonio.archivioluce.com/"
+      },
+      "holder": "Archivio Storico Istituto Luce",
+      "rights": "The records are on the Archivio Luce web catalogue, and the archive holds the rights to the footage.",
+      "confidence": {
+        "level": "read",
+        "note": "Catalogue text only; the films were not viewed."
+      },
+      "more": {
+        "kind": "table",
+        "target": "luce_records/luce_records_index.csv",
+        "columns": [
+          "title",
+          "date",
+          "series"
+        ]
+      }
+    },
+    {
+      "no": "9.03",
+      "title": "Genova 28.10.1938. Imbarco dei 20.000 coloni per la Libia",
+      "type": "Photograph",
+      "date": "28 October 1938",
+      "year": 1938,
+      "keywords": [
+        "libya",
+        "colonization"
+      ],
+      "text": [
+        "Settlers boarding at Genoa for Libya: a woman in a headscarf, children, men in caps with badges and armbands, a crowd behind. Italo Balbo fixed the departure for 28 October 1938, the sixteenth anniversary of the March on Rome, and nine steamers sailed the next day.",
+        "The colonization office had chosen whole, large peasant families, most of them from the north and above all the Veneto."
+      ],
+      "facts": [
+        "Istituto Luce photograph, via the Archivio Storico Capitolino; public domain per Commons (manifest; notes 02, §1, [V, metadata]).",
+        "Balbo fixed the departure for 28 Oct. 1938, the 16th anniversary of the March on Rome; nine steamers left Genoa on 29 Oct. (notes 02, §1, [S]).",
+        "The CMCI selected the \"fanteria rurale\" as whole, large peasant families; in 1938 most came from the north, above all the Veneto (notes 02, §3, [S]).",
+        "Seen in the image: a woman in a dark headscarf, children and men in berets and caps, with badges and armbands, behind a canvas screen lettered \"LOYD\" and hung with light bulbs; a crowd with uniformed men and a bus behind; \"LUCE\" at lower left."
+      ],
+      "images": [
+        {
+          "file": "commons/Genova_1938-10-28_imbarco_20000_coloni_Luce.png",
+          "caption": "Istituto Luce (via Archivio Storico Capitolino), Genoa, 28 October 1938. Public domain per Commons. Wikimedia Commons."
+        }
+      ],
+      "file": "commons/Genova_1938-10-28_imbarco_20000_coloni_Luce.png",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:1938_-_coloni.png"
+      },
+      "creator": "Istituto Luce (via Archivio Storico Capitolino)",
+      "rights": "Public domain per Commons",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://commons.wikimedia.org/wiki/File:1938_-_coloni.png"
+      }
+    },
+    {
+      "no": "9.04",
+      "title": "Unknown photographer, Italian settlers in Libya on a lorry",
+      "type": "Photograph",
+      "date": "1938",
+      "year": 1938,
+      "keywords": [
+        "libya",
+        "colonization"
+      ],
+      "text": [
+        "Men, a woman and children looking out from the back of an open lorry, with uniformed men in front. The Internet Archive dates it 3 October 1938, which is before the twenty thousand sailed. Which group it shows, and in which year, is not established."
+      ],
+      "facts": [
+        "Internet Archive item \"italian-settlers-in-libia\", unknown photographer, dated 1938-10-03 by IA; Public Domain Mark 1.0 per IA (manifest).",
+        "The photograph is not discussed in the notes (notes 02).",
+        "The IA date falls before the Ventimila sailed on 28–29 Oct. 1938 (notes 02, §1, [S]); which group or year it shows is not established.",
+        "Seen in the image: men, a woman and children looking out from the back of an open lorry stencilled \"TARA 0,50 / PORTATA.. 50\"; three men in front, two in uniform with armbands, one in a pith helmet; a second lorry at right; the print is torn and creased."
+      ],
+      "images": [
+        {
+          "file": "commons/IA_italian-settlers-in-libia_1938.jpg",
+          "caption": "Unknown photographer, 1938 (3 October as given by IA). Public Domain Mark 1.0 per IA. Internet Archive."
+        }
+      ],
+      "file": "commons/IA_italian-settlers-in-libia_1938.jpg",
+      "source": {
+        "label": "Internet Archive",
+        "url": "https://archive.org/details/italian-settlers-in-libia"
+      },
+      "creator": "Unknown",
+      "rights": "Public Domain Mark 1.0 per IA",
+      "confidence": {
+        "level": "read",
+        "note": "Date 3 October 1938 as given by IA; it precedes the Ventimila departure, so the group shown is unconfirmed."
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://archive.org/details/italian-settlers-in-libia"
+      }
+    },
+    {
+      "no": "9.05",
+      "title": "Unknown photographer, the centro rurale D'Annunzio in Cyrenaica from the air",
+      "type": "Photograph",
+      "date": "1938",
+      "year": 1938,
+      "keywords": [
+        "libya",
+        "colonization",
+        "architecture"
+      ],
+      "text": [
+        "The village centre of D'Annunzio in Cyrenaica from the air, from the official photobook of the 1938 migration: a walled piazza framed by low arcaded wings with pitched tiled roofs, and a church with a square tower. Built in 1938 to designs by Florestano Di Fausto, 75 farms for 525 people.",
+        "The historian Vittoria Capresi reads the pitched roofs as a “ponte semantico” for peasants arriving from the Abruzzi: something that looked like home."
+      ],
+      "facts": [
+        "From \"I Ventimila. Documentario fotografico...\" (Maggi, Tripoli 1938); public domain per Commons (manifest).",
+        "D'Annunzio [Al Bayyadah], Bengasi province, built 1938 by the ECL to designs by Florestano Di Fausto; 75 poderi, 525 persons (notes 02, §1, [S]).",
+        "Capresi reads its pitched roofs as a \"ponte semantico\" for peasants \"provenienti dagli Abruzzi\"; Wikipedia notes \"accenti vernacolari padani\" here (notes 02, §2, [S]).",
+        "Di Fausto turned the Casa del Fascio's balcony and symbols outward to the access road at D'Annunzio (notes 02, §2, [S]).",
+        "Seen in the image: an aerial view of a walled, paved rectangular piazza framed by low arcaded wings with pitched tiled roofs, a church with a tall square bell tower, a lorry and a few people."
+      ],
+      "images": [
+        {
+          "file": "commons/Centro_rurale_DAnnunzio_in_Libia_1938.jpg",
+          "caption": "Unknown photographer, 1938, from \"I Ventimila\" (Maggi, Tripoli 1938). Public domain per Commons. Wikimedia Commons."
+        }
+      ],
+      "file": "commons/Centro_rurale_DAnnunzio_in_Libia_1938.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Centro_rurale_D%27Annunzio_in_Libia.jpg"
+      },
+      "creator": "Unknown (from \"I Ventimila. Documentario fotografico...\", Maggi, Tripoli 1938)",
+      "rights": "Public domain per Commons",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://commons.wikimedia.org/wiki/File:Centro_rurale_D%27Annunzio_in_Libia.jpg"
+      }
+    },
+    {
+      "no": "9.06",
+      "title": "Frank Hurley, the church of Massah (village Luigi Razza) in Cyrenaica",
+      "type": "Photograph",
+      "date": "1940",
+      "year": 1940,
+      "keywords": [
+        "libya",
+        "colonization",
+        "architecture"
+      ],
+      "text": [
+        "The small white church of the village Luigi Razza in Cyrenaica, photographed by Frank Hurley in 1940. The village dates from 1933–34, 112 farms for 914 people.",
+        "It was named for the first head of the colonization office, who had once been secretary of the Fascist party in the Trentino and who, as minister, proposed the expropriation decree for Bolzano's industrial zone (row 10.04)."
+      ],
+      "facts": [
+        "Frank Hurley, 1940 (National Library of Australia); public domain per Commons (manifest).",
+        "Razza (first \"Primavera\") [Messah], Derna, 1933–34, ECC/ECL, OO.PP. Cirenaica under ing. Mario Romano; 112 poderi, 914 persons (notes 02, §1, [S]).",
+        "Named for Luigi Razza, once secretary of the Trentino fasci, first commissioner of the Commissariato per le migrazioni e la colonizzazione interna and first ECC president (notes 02, §1, §6, [S]).",
+        "Capresi contradicts herself on which village \"Primavera\" became: Luigi di Savoia on p. 53, Razza on the card (notes 02, §1).",
+        "Seen in the image: a small white church with a curved front, a round window over the door and an open bell frame on top, flanked by white arched screen walls, a bare forecourt and trees behind."
+      ],
+      "images": [
+        {
+          "file": "commons/Church_of_Massah_Luigi_Razza_1940_Hurley.jpg",
+          "caption": "Frank Hurley, 1940 (National Library of Australia). Public domain per Commons. Wikimedia Commons."
+        }
+      ],
+      "file": "commons/Church_of_Massah_Luigi_Razza_1940_Hurley.jpg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:Church_of_Massah.jpg"
+      },
+      "creator": "Frank Hurley",
+      "holder": "National Library of Australia",
+      "rights": "Public domain per Commons",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://commons.wikimedia.org/wiki/File:Church_of_Massah.jpg"
+      }
+    },
+    {
+      "no": "9.07",
+      "title": "Bitmuna archive, the village D'Annunzio in Cyrenaica seen from the road",
+      "type": "Photograph",
+      "date": "1943",
+      "year": 1943,
+      "keywords": [
+        "libya",
+        "colonization"
+      ],
+      "text": [
+        "The village D'Annunzio seen from the road in 1943: the square tower and tiled roofs on a rise, and the name “D'ANNUNZIO” on a long board along the retaining wall."
+      ],
+      "facts": [
+        "Bitmuna archive, 1943; public domain per Commons; the Commons file name reads \"D_Annuzio_8-10-1943_btm11077.jpeg\" (manifest).",
+        "D'Annunzio, Bengasi province, built 1938 by the ECL to designs by Di Fausto (notes 02, §1, [S]).",
+        "Luce newsreel B1410 (16/11/1938) shows lorries of settlers arriving at D'Annunzio (notes 02, §1, [V, catalogue]).",
+        "Seen in the image: the village on a rise with its square tower and white buildings with tiled roofs, a long board reading \"D'ANNUNZIO\" on the retaining wall, a rounded vehicle wing in the lower right corner; the print is spotted."
+      ],
+      "images": [
+        {
+          "file": "commons/DAnnunzio_village_1943_Bitmuna.jpeg",
+          "caption": "Bitmuna archive, 1943. Public domain per Commons. Wikimedia Commons."
+        }
+      ],
+      "file": "commons/DAnnunzio_village_1943_Bitmuna.jpeg",
+      "source": {
+        "label": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/wiki/File:D_Annuzio_8-10-1943_btm11077.jpeg"
+      },
+      "creator": "Bitmuna archive",
+      "rights": "Public domain per Commons",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://commons.wikimedia.org/wiki/File:D_Annuzio_8-10-1943_btm11077.jpeg"
+      }
+    },
+    {
+      "no": "9.08",
+      "title": "I centri rurali libici. L'architettura dei centri rurali di fondazione costruiti in Libia – colonia italiana – durante il fascismo (1934-1940)",
+      "type": "Article",
+      "date": "2007",
+      "year": 2007,
+      "keywords": [
+        "libya",
+        "colonization",
+        "architecture",
+        "language"
+      ],
+      "text": [
+        "Vittoria Capresi's dissertation on the rural centres built in Italian Libya, 407 pages with a card for each of 32 villages. It is the backbone of this thread: 23 Italian centres built between 1933 and 1939 and 8 villages for Muslim Libyans. A decree of 1938 defined the “centro rurale” as a core without housing: church, schools, clinic, Casa del Fascio, post office, markets.",
+        "The primary documents she quotes were read only through her."
+      ],
+      "facts": [
+        "Vittoria Capresi, dissertation, Technische Universität Wien, submitted 1 June 2007; 407 pp. with 32 village cards (\"schede\") (file; manifest).",
+        "The backbone source of notes 02: 23 Italian centres built 1933–39, the 1940 Borgo Torelli project and 8 villages for Muslim Libyans (notes 02, §1, [S]).",
+        "RDL 17 May 1938 n. 701, art. 1, defines the \"centro rurale\" as a non-residential core of church, schools, ambulatorio, Casa del fascio, post office and markets (notes 02, §2, [S]).",
+        "Naming policy: Italian centres \"dedicati a martiri fascisti, o a personaggi coinvolti nel processo di colonizzazione\", Muslim villages named for nature (notes 02, §1, [S]).",
+        "Primary documents quoted by Capresi are tagged [S] in the notes, read only through her; she contradicts herself on \"Primavera\" (notes 02, header, §1).",
+        "Copyright stays with the author; the PDF is encrypted, printing allowed, copying not (manifest)."
+      ],
+      "file": "Capresi_2007_I_centri_rurali_libici_PhD_TUWien.pdf",
+      "source": {
+        "label": "TU Wien dissertation (Wayback Machine copy)",
+        "url": "https://web.archive.org/web/20211129071917/https://www.ub.tuwien.ac.at/diss/AC05034868.pdf"
+      },
+      "creator": "Vittoria Capresi",
+      "holder": "TU Wien library",
+      "rights": "Open-access dissertation from the TU Wien library. Copyright stays with the author. The PDF is encrypted: printing is allowed, copying is not. Use it for study and cite it.",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "9.09",
+      "title": "L'Impero immaginario. I coloni italiani in Etiopia, 1936-1941",
+      "type": "Article",
+      "date": "c. 2014",
+      "year": 2014,
+      "keywords": [
+        "ethiopia",
+        "colonization"
+      ],
+      "text": [
+        "Emanuele Ertola's thesis on Italian settlers in Ethiopia. The regional colonization bodies, “Romagna”, “Puglia” and “Veneto d'Etiopia”, were to settle peasant families from their own regions; the Veneto programme was “mai avviato”. The numbers stayed tiny: 425 people on the veterans' farms in 1939.",
+        "A settler wrote from Bari d'Etiopia in 1940: “pioveva dappertutto nella casa piena di umidità … Siamo trattati come schiavi.”"
+      ],
+      "facts": [
+        "Emanuele Ertola, PhD thesis in Studi Storici, Università di Firenze, ciclo XXVII, tutor Nicola Labanca (file title page); dated c. 2014 (manifest).",
+        "The three regional bodies (Romagna, Puglia, Veneto d'Etiopia) were to settle \"famiglie contadine provenienti dalle rispettive regioni di pertinenza\"; the Veneto programme was \"mai avviato\" (notes 02, §4, [S]).",
+        "Numbers: 425 persons on the ONC farms in 1939; Ente Romagna fewer than 100 settlers, \"nessuno dei quali raggiunto dalla famiglia\"; Larebo estimates no more than 400 real farmer-settlers (notes 02, §4, [S]).",
+        "A settler wrote from Bari d'Etiopia in 1940: \"pioveva dappertutto nella casa piena di umidità … Siamo trattati come schiavi\" (notes 02, §4, [S]).",
+        "Open access in the FLORE repository; copyright with the author (manifest)."
+      ],
+      "file": "Ertola_2014_Impero_immaginario_coloni_Etiopia_PhD_Firenze.pdf",
+      "source": {
+        "label": "Università di Firenze, FLORE repository",
+        "url": "https://flore.unifi.it/retrieve/e398c378-f054-179a-e053-3705fe0a4cff/tesi%20dottorato.pdf"
+      },
+      "creator": "Emanuele Ertola",
+      "holder": "Università di Firenze, FLORE repository",
+      "rights": "Open-access PhD thesis in the Università di Firenze FLORE repository. Copyright stays with the author.",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "9.10",
+      "title": "La ri-fondazione della Libia balbiana (1933-1939). Il poderoso racconto fotografico dei \"Ventimila\"",
+      "type": "Article",
+      "date": "2014",
+      "year": 2014,
+      "keywords": [
+        "libya",
+        "colonization",
+        "press"
+      ],
+      "text": [
+        "Pier Giorgio Massaretti on the official photobook of the 1938 migration, I Ventimila: eighty-four full-page photographs that tell the story of the “fanterie rurali”, the peasant infantry. He also points to a counter-account, the diary of one of the settlers, Giacomo Cason."
+      ],
+      "facts": [
+        "Pier Giorgio Massaretti, paper at the CIRICE VI international conference, Napoli, 13–15 March 2014 (file; manifest).",
+        "On the official photobook \"I Ventimila. Documentario fotografico della 1. migrazione in massa di coloni in Libia\" (Maggi, Tripoli 1938) and the special issue of \"Libia\", which call the settlers \"fanterie rurali\" (notes 02, §1, §3, [S]).",
+        "The abstract describes eighty-four full-page images with captions telling the story of the peasant-soldiers (file).",
+        "Points to Giacomo Cason's counter-diary \"Uno dei Ventimila\" (ed. Prestopino 1995) (notes 02, §1, [S]).",
+        "No licence statement found: treat as all rights reserved, free to read (manifest)."
+      ],
+      "file": "Massaretti_2014_ri-fondazione_Libia_balbiana_1933-1939.pdf",
+      "source": {
+        "label": "Digitale Bibliothek Thüringen",
+        "url": "https://www.db-thueringen.de/servlets/MCRFileNodeServlet/dbt_derivate_00043536/la-ri-fondazione-della-libia-balbiana-1933-1939_pdfa.pdf"
+      },
+      "creator": "Pier Giorgio Massaretti",
+      "holder": "Digitale Bibliothek Thüringen",
+      "rights": "No licence statement found, so treat it as all rights reserved, free to read.",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "9.11",
+      "title": "Colonies on the cover: Italo Balbo's Libia",
+      "type": "Article",
+      "date": "2022",
+      "year": 2022,
+      "keywords": [
+        "libya",
+        "press",
+        "colonization"
+      ],
+      "text": [
+        "Priscilla Manfren on the covers of Libia, the illustrated magazine launched in 1937 under the governor Italo Balbo. The issue of October–November 1938 presented the new districts and their architects, with a drawing of Di Fausto's village Oberdan on the cover."
+      ],
+      "facts": [
+        "Priscilla Manfren, Modern Italy 27 (2022): 397–416, doi:10.1017/mit.2022.35 (manifest; file).",
+        "On the covers of the illustrated magazine \"Libia\", launched in 1937 under governor Italo Balbo (file, abstract).",
+        "The Oct–Nov 1938 issue of \"Libia\" presented the districts and the architects' projects; its cover was Di Fausto's Oberdan in a drawing by Casati (notes 02, §1, [S]).",
+        "Cites McLaren (2006) for the architects Balbo called to Libya (notes 02, §6, [S]).",
+        "Open access under CC BY 4.0, as stated in the PDF (manifest)."
+      ],
+      "file": "Manfren_2022_Colonies_on_the_cover_Balbo_Libia_ModernItaly.pdf",
+      "source": {
+        "label": "Università di Padova research repository",
+        "url": "https://www.research.unipd.it/retrieve/0e63ea72-4cbe-4f3e-83d9-65fec347f7e6/Manfren_colonies-on-the-cover-italo-balbos-libia_Modern%20Italy_2022.pdf"
+      },
+      "creator": "Priscilla Manfren",
+      "rights": "Open access under CC BY 4.0, as stated in the PDF.",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "file"
+      }
+    },
+    {
+      "no": "9.12",
+      "title": "L'emigrazione dal Trentino. Dalla Grande guerra alla sconfitta del nazifascismo",
+      "type": "Book",
+      "date": "2023",
+      "year": 2023,
+      "keywords": [
+        "migration",
+        "libya",
+        "ethiopia",
+        "dodecanese",
+        "option"
+      ],
+      "text": [
+        "Renzo Grosselli's history of emigration from the Trentino between the wars, 576 pages. It follows Trentino families to Ethiopia, Libya and Rhodes, and to Bolzano's industrial zone, where he notes “l'importazione a Bolzano di famiglie operaie italiane, soprattutto venete”. One settlement on Rhodes, Campochiaro, was peopled from 1935 with woodcutters from Fiemme and German-speaking South Tyrolean families, who left in 1939: “Da Rodi noi dovemmo partire per le Opzioni.”",
+        "The rights are unclear. The archive record gives a Creative Commons licence; the book's own page reserves all rights."
+      ],
+      "facts": [
+        "Renzo M. Grosselli, Museo etnografico trentino San Michele (METS), 2023, 576 pp., Monografie etnografiche trentine (file, title and copyright pages).",
+        "Relevant chapters: Ethiopia pp. 340–356, Campochiaro/Rhodes pp. 357–365, Libya pp. 366–380, Trentino workers in the Bolzano industrial zone pp. 63–65 (manifest).",
+        "Campochiaro on Rhodes was settled from 1935 with Fiemme woodcutters and German-speaking South Tyrolean families, who left in 1939 after opting for Germany: \"Da Rodi noi dovemmo partire per le Opzioni\" (notes 02, §5, [S]).",
+        "Vermiglio families went to the Bolzano industrial zone (17 households in 1937, 11 in 1938); Grosselli notes \"l'importazione a Bolzano di famiglie operaie italiane, soprattutto venete\" (notes 02, §6, [S]).",
+        "Trento's Il Brennero told readers the families would go to centres named \"Baracca, Oberdan, D'Annunzio e del trentino Cesare Battisti\" (notes 02, §1, [S]).",
+        "Rights conflict: the manifest gives CC BY-NC-ND 4.0 from the Internet Archive record; the book's copyright page reads \"TUTTI I DIRITTI SONO RISERVATI\" (manifest; file).",
+        "The manifest adds \"with Ezio Amistadi\"; the title page names only Renzo M. Grosselli (manifest; file)."
+      ],
+      "file": "Grosselli_2023_Emigrazione_dal_Trentino_METS.pdf",
+      "source": {
+        "label": "Internet Archive",
+        "url": "https://archive.org/details/BIBLIOFBK-METS-991022027593606186"
+      },
+      "creator": "Renzo Maria Grosselli",
+      "holder": "METS – Museo etnografico trentino San Michele",
+      "rights": "CC BY-NC-ND 4.0 (licence on the IA record).",
+      "confidence": {
+        "level": "read",
+        "note": "Rights unclear: the IA record gives CC BY-NC-ND 4.0, the copyright page says all rights reserved."
+      },
+      "more": {
+        "kind": "file"
+      }
+    }
+  ]
+}
