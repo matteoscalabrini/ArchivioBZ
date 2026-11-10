@@ -6,10 +6,11 @@ import { loadLibrary, sourceUrl } from '../lib/records.mjs';
 import about from '../steps/70-about.mjs';
 import { cleanRoot } from './helpers.mjs';
 
-async function runStep({ withText = true } = {}) {
+async function runStep({ withText = true, edit = () => {} } = {}) {
   const root = await cleanRoot();
   if (!withText) await rm(path.join(root, 'library', 'content', 'about.md'), { force: true });
   const lib = await loadLibrary(root);
+  edit(lib);
   const written = new Map();
   const ctx = {
     root,
@@ -49,4 +50,9 @@ test('the page builds without about.md', async () => {
   assert.doesNotMatch(html, /What this is/);
   assert.equal(rows(html).reduce((sum, [, n]) => sum + n, 0), lib.entries.length);
   assert.match(html, /class="totals"/);
+});
+
+test('totals leave out places and keywords that no row uses', async () => {
+  const { html, lib } = await runStep({ edit: ({ entries }) => entries.forEach((e) => { delete e.place; delete e.keywords; }) });
+  assert.ok(html.includes(`<p class="totals">${lib.entries.length} entries</p>`), html);
 });

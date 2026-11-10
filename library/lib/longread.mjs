@@ -36,7 +36,7 @@ export function renderMarkdown(text, { linkBase = REPO, root = REPO } = {}) {
       },
       image({ href, title, text: alt }) {
         const to = resolveLink(href, linkBase, root);
-        if (!to) return esc(alt);
+        if (!to || to.external || !to.href.startsWith('/source/')) return esc(alt); // nothing is fetched from the network
         return `<img src="${esc(to.href)}" alt="${esc(alt)}"${title ? ` title="${esc(title)}"` : ''}>`;
       },
     },
@@ -118,7 +118,7 @@ const textOf = (html) => html.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').tr
 
 // What a Word report needs to read well on a page: no contents block (its page numbers mean
 // nothing here), figures in a single column with their captions, no title repeated as the first heading, no h1 below.
-function tidyWord(html) {
+export function tidyWord(html) {
   let out = html;
   // Figure grids are laid out as tables; the page shows each figure on its own.
   out = out.replace(/<table>[\s\S]*?<\/table>/g, (table) => {
@@ -148,16 +148,13 @@ function figures(html) {
       (_, inner, img) => `<figure>${img}<figcaption>${caption(inner)}</figcaption></figure>`);
 }
 
-// A "Contents" heading or paragraph, and the lines of links that follow it (or nothing at all).
+// A "Contents" heading or paragraph, and the link-only lines straight after it (or nothing at
+// all), removed once. Everything else is returned byte for byte.
 function dropContents(html) {
-  const blocks = html.match(/<(p|h[1-6])>[\s\S]*?<\/\1>|<(table|ul|ol)>[\s\S]*?<\/\2>|[^<]+/g) ?? [];
-  const kept = [];
-  for (let i = 0; i < blocks.length; i++) {
-    if (/^<(p|h[1-6])>/.test(blocks[i]) && /^contents$/i.test(textOf(blocks[i]))) {
-      while (i + 1 < blocks.length && /^<p>(<a href="#[^"]*">[\s\S]*?<\/a>)?<\/p>$/.test(blocks[i + 1])) i++;
-      continue;
-    }
-    kept.push(blocks[i]);
-  }
-  return kept.join('');
+  let done = false;
+  return html.replace(/<(p|h[1-6])>((?:(?!<\/\1>)[\s\S])*)<\/\1>((?:<p>(?:<a href="#[^"]*">(?:(?!<\/a>)[\s\S])*<\/a>)?<\/p>)*)/g, (whole, _tag, inner) => {
+    if (done || !/^contents$/i.test(textOf(inner))) return whole;
+    done = true;
+    return '';
+  });
 }

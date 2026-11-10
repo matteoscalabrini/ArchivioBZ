@@ -19,9 +19,8 @@ export default async function about(ctx) {
   for (const entry of entries) byType.set(entry.type, (byType.get(entry.type) ?? 0) + 1);
   const types = [...byType].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
   const places = new Set(entries.map((entry) => entry.place).filter(Boolean)).size;
-  const keywords = new Set(entries.flatMap((entry) => entry.keywords)).size;
-  const n = (count, one, many) => `${count} ${count === 1 ? one : many}`;
-  const totals = [n(entries.length, 'entry', 'entries'), n(places, 'place', 'places'), n(keywords, 'keyword', 'keywords')].join(' · ');
+  const keywords = new Set(entries.flatMap((entry) => entry.keywords ?? [])).size;
+  const totals = [`${entries.length} entries`, places && `${places} places`, keywords && `${keywords} keywords`].filter(Boolean).join(' · ');
 
   const body = `<article class="read about">
 ${text}

@@ -5,7 +5,7 @@ import { existsSync } from 'node:fs';
 import { readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { loadLibrary, sourceUrl } from '../lib/records.mjs';
-import { renderMarkdown, renderDocx } from '../lib/longread.mjs';
+import { renderMarkdown, renderDocx, tidyWord } from '../lib/longread.mjs';
 import longreads from '../steps/40-longreads.mjs';
 import { buildFixtures, cleanRoot, tempDir } from './helpers.mjs';
 
@@ -152,4 +152,19 @@ test('the first report keeps its 50 figures', { skip: !existsSync(FIRST) && 'the
 test('the second report keeps at least 25', { skip: !existsSync(SECOND) && 'the report is not here', timeout: 300000 }, async () => {
   const { html } = await docx(SECOND, 'b');
   assert.ok((html.match(/<img/g) ?? []).length >= 25);
+});
+
+test('an image from the network is its alt text, not an img', () => {
+  const html = renderMarkdown('![a poster](https://example.org/p.jpg) and ![local](small.png)', { linkBase: path.join(REPO, 'reports') });
+  assert.ok(html.includes('a poster'));
+  assert.doesNotMatch(html, /example\.org/);
+  assert.equal((html.match(/<img/g) ?? []).length, 1, 'only the local image stays');
+});
+
+test('tidying Word html leaves nested lists, quotes, pre, br and bare images alone', () => {
+  const keep = '<ul><li>a<ul><li>b</li></ul></li><li>c</li></ul><blockquote><p>q</p></blockquote><pre>x\n y</pre><p>one<br />two</p><ol><li>n</li></ol><img src="y.png" alt="" />';
+  assert.equal(tidyWord(keep), keep);
+  const around = '<p>Intro</p><h3>Contents</h3><p><a href="#_Toc1">One\t3</a></p><p><a href="#_Toc2">Two\t4</a></p>';
+  assert.equal(tidyWord(`${keep}${around}${keep}`), `${keep}<p>Intro</p>${keep}`, 'only the contents block goes');
+  assert.equal(tidyWord('<p>before</p><p><img src="x.png" alt="" /></p><p>after</p>'), '<p>before</p><figure><img src="x.png" alt="" /></figure><p>after</p>');
 });
