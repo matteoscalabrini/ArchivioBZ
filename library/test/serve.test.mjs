@@ -49,9 +49,17 @@ test('serves a source file whose name has spaces, ß and an apostrophe', async (
   assert.deepEqual(res.body, await readFile(PHOTO));
 });
 
+test('serves a file under /source/library/content/', async () => {
+  const about = path.join(ROOT, 'library', 'content', 'about.md');
+  const res = await get(sourceUrl(ROOT, about));
+  assert.equal(res.status, 200);
+  assert.deepEqual(res.body, await readFile(about));
+});
+
 test('refuses /source/library/build.mjs', async () => {
-  assert.equal((await get('/source/library/build.mjs')).status, 403);
-  assert.equal((await get('/source/library/content/keywords.json')).status, 403);
+  for (const outside of ['/source/library/build.mjs', '/source/library/web/base.css', '/source/library/content', '/source/library']) {
+    assert.equal((await get(outside)).status, 403, outside);
+  }
 });
 
 test('refuses /source/research_notes/../package.json', async () => {
@@ -60,9 +68,11 @@ test('refuses /source/research_notes/../package.json', async () => {
 
 test('refuses an encoded way out of research_notes', async () => {
   for (const sneaky of [
-    '/source/research_notes/%2E%2E/library/content/keywords.json',
+    '/source/research_notes/%2E%2E/library/build.mjs',
+    '/source/library/content/%2E%2E/build.mjs',
     '/source/research_notes%2F..%2Flibrary/content/keywords.json',
     '/source/research_notes/..%2Flibrary%2Fcontent%2Fkeywords.json',
+    '/source/library%2Fcontent/keywords.json',
   ]) {
     const { status } = await get(sneaky);
     assert.ok(status >= 400 && status < 500, `${sneaky} answered ${status}`);

@@ -8,6 +8,9 @@ export const TYPES = ['Report', 'Notes', 'Story', 'Newspaper page', 'Press artic
   'Poster', 'Booklet', 'Book', 'Article', 'Law text', 'Archive guide', 'Table', 'Web page', 'Intervention',
   'Reference', 'Counter-reference', 'Map'];
 export const MORE_KINDS = ['read', 'file', 'table', 'map', 'source'];
+// The folders, relative to the root, whose files serve.mjs hands out under /source/: a record's
+// file, images and local more.target must lie inside one of them for the site to link to it.
+export const SOURCE_DIRS = ['research_notes', 'reports', 'library/content'];
 
 const LEVELS = ['read', 'secondary', 'lead'];
 const REQUIRED = ['no', 'title', 'type', 'date', 'year', 'keywords', 'confidence'];
@@ -25,6 +28,9 @@ export async function loadLibrary(root) {
   const problems = [];
   const repoPath = (abs) => path.relative(root, abs).split(path.sep).join('/');
   const report = (level, abs, message) => problems.push({ level, where: repoPath(abs), message });
+  const servedDirs = SOURCE_DIRS.map((dir) => path.join(root, ...dir.split('/')) + path.sep);
+  const served = (abs) => servedDirs.some((dir) => abs.startsWith(dir));
+  const SERVED = SOURCE_DIRS.map((dir) => `${dir}/`).join(', ').replace(/, ([^,]*)$/, ' and $1');
 
   const content = path.join(root, 'library', 'content');
   const keywordsFile = path.join(content, 'keywords.json');
@@ -60,6 +66,9 @@ export async function loadLibrary(root) {
       const name = isMissing(record.no) ? `entry ${index + 1}` : String(record.no);
       const row = isMissing(record.no) ? name : `row ${name}`;
       const fault = (message) => report('error', file, `${row}: ${message}`);
+      const unserved = (what, abs) => {
+        if (!served(abs)) report('warn', file, `${row}: ${what} "${repoPath(abs)}" is outside ${SERVED}, so the site cannot link to it`);
+      };
 
       const missing = REQUIRED.filter((field) => isMissing(record[field]));
       if (missing.length) fault(`missing ${missing.join(', ')}`);
@@ -104,6 +113,7 @@ export async function loadLibrary(root) {
 
       const abs = isMissing(record.file) ? null : path.resolve(dir, String(record.file));
       if (abs && !(await isFile(abs))) fault(`file "${record.file}" not found`);
+      if (abs) unserved('file', abs);
 
       const images = [];
       if (record.images !== undefined && !Array.isArray(record.images)) fault('images is not a list');
@@ -114,6 +124,7 @@ export async function loadLibrary(root) {
         }
         const imageAbs = path.resolve(dir, String(image.file));
         if (!(await isFile(imageAbs))) fault(`image "${image.file}" not found`);
+        unserved('image', imageAbs);
         images.push({ ...image, abs: imageAbs });
       }
 
@@ -121,8 +132,10 @@ export async function loadLibrary(root) {
         const kind = isObject(record.more) ? record.more.kind : undefined;
         if (!MORE_KINDS.includes(kind)) fault(`unknown more.kind ${JSON.stringify(kind)}`);
         const target = isObject(record.more) ? record.more.target : undefined;
-        if (typeof target === 'string' && target && !URL_LIKE.test(target) && !(await isFile(path.resolve(dir, target)))) {
-          fault(`more.target "${target}" not found`);
+        if (typeof target === 'string' && target && !URL_LIKE.test(target)) {
+          const targetAbs = path.resolve(dir, target);
+          if (!(await isFile(targetAbs))) fault(`more.target "${target}" not found`);
+          unserved('more.target', targetAbs);
         }
       }
 

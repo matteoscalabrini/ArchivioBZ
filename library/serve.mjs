@@ -1,7 +1,8 @@
 // node library/serve.mjs [--root DIR] [--out DIR]   (port from PORT, default 5180; 127.0.0.1 only)
 //
 // Serves the built site from `out`, and under /source/ the original files where they already are:
-// root/research_notes/ and root/reports/, nothing else. Supports single byte ranges.
+// root/research_notes/, root/reports/ and root/library/content/ (SOURCE_DIRS in lib/records.mjs),
+// nothing else. Supports single byte ranges.
 import http from 'node:http';
 import path from 'node:path';
 import { createReadStream } from 'node:fs';
@@ -9,9 +10,9 @@ import { realpath, stat } from 'node:fs/promises';
 import { pipeline } from 'node:stream/promises';
 import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
+import { SOURCE_DIRS } from './lib/records.mjs';
 
 const LIBRARY = path.dirname(fileURLToPath(import.meta.url));
-const SOURCE_DIRS = ['research_notes', 'reports'];
 const TYPES = {
   '.html': 'text/html; charset=utf-8',
   '.css': 'text/css; charset=utf-8',
@@ -114,12 +115,14 @@ function parse(rawUrl) {
   return { segments };
 }
 
-// The file a /source/ path names, or null when it lies outside research_notes/ and reports/,
-// links included. A file that does not exist comes back as its path, to be answered with 404.
+// The file a /source/ path names, or null when it lies outside the SOURCE_DIRS, links included.
+// A file that does not exist comes back as its path, to be answered with 404.
 async function sourceFile(root, segments) {
-  if (segments.length < 2 || !SOURCE_DIRS.includes(segments[0])) return null;
-  const base = path.join(root, segments[0]);
-  const file = path.join(base, ...segments.slice(1));
+  const dir = SOURCE_DIRS.map((name) => name.split('/'))
+    .find((head) => segments.length > head.length && head.every((name, i) => segments[i] === name));
+  if (!dir) return null;
+  const base = path.join(root, ...dir);
+  const file = path.join(base, ...segments.slice(dir.length));
   try {
     const [realBase, realFile] = await Promise.all([realpath(base), realpath(file)]);
     return realFile.startsWith(realBase + path.sep) ? realFile : null;

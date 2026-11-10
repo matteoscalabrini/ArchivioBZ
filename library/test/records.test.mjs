@@ -77,6 +77,35 @@ test('a place without coordinates is a warning', async () => {
   assert.equal(warning.where, 'library/content/places.json');
 });
 
+test('a file outside research_notes/, reports/ and library/content/ is a warning naming row and path', async () => {
+  const root = await cleanRoot();
+  const thread = path.join(root, 'research_notes/Inv A/files/05_x');
+  for (const stray of ['stray.pdf', 'library/stray.png', 'stray.md']) {
+    await mkdir(path.dirname(path.join(root, stray)), { recursive: true });
+    await writeFile(path.join(root, stray), 'outside');
+  }
+  const file = path.join(thread, 'entries.json');
+  const data = JSON.parse(await readFile(file, 'utf8'));
+  const row = (no) => data.entries.find((e) => e.no === no);
+  row('5.02').file = '../../../../stray.pdf';
+  row('5.01').images.push({ file: '../../../../library/stray.png' });
+  row('5.00').more.target = '../../../../stray.md';
+  await writeFile(file, JSON.stringify(data));
+
+  const { problems } = await loadLibrary(root);
+  assert.deepEqual(levelled(problems, 'error'), []);
+  const outside = levelled(problems, 'warn').filter((w) => /outside/.test(w.message));
+  assert.deepEqual(outside.map((w) => w.where), Array(3).fill('research_notes/Inv A/files/05_x/entries.json'));
+  for (const [no, stray] of [['5.00', 'stray.md'], ['5.01', 'library/stray.png'], ['5.02', 'stray.pdf']]) {
+    assert.ok(outside.some((w) => w.message.startsWith(`row ${no}: `) && w.message.includes(`"${stray}"`)), `no warning names ${no} and ${stray}`);
+  }
+});
+
+test('files inside the three served folders raise no such warning', async () => {
+  const { problems } = await load();
+  assert.deepEqual(problems.filter((p) => /outside/.test(p.message)), []);
+});
+
 test('a root without any entries.json loads empty', async () => {
   const root = await tempDir('library-empty-');
   await mkdir(path.join(root, 'research_notes'));
