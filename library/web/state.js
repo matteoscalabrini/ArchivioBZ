@@ -1,0 +1,58 @@
+// The Library's state as it lives in the address: #k=<keyword id>&o=<no,no>&s=<no|type|date>.
+// Pure functions, shared by library.js and the tests.
+
+const SORTS = ['no', 'type', 'date'];
+
+// `known` = {keywords: Set, rows: Set}. Anything unknown or unreadable is dropped; never throws.
+export function parseState(hash, known) {
+  const state = { k: null, o: [], s: 'no' };
+  const values = new Map();
+  for (const part of String(hash ?? '').replace(/^#/, '').split('&')) {
+    const at = part.indexOf('=');
+    if (at < 1) continue;
+    const value = decode(part.slice(at + 1));
+    if (value !== null) values.set(part.slice(0, at), value);
+  }
+  const k = values.get('k');
+  if (k && known.keywords.has(k)) state.k = k;
+  const o = values.get('o');
+  if (o) state.o = [...new Set(o.split(','))].filter((no) => known.rows.has(no));
+  const s = values.get('s');
+  if (SORTS.includes(s)) state.s = s;
+  return state;
+}
+
+// '#k=…&o=…&s=…', leaving out what is at its default; '' for the default state.
+export function formatState(state) {
+  const parts = [];
+  if (state.k) parts.push(`k=${encodeURIComponent(state.k)}`);
+  if (state.o?.length) parts.push(`o=${state.o.map(encodeURIComponent).join(',')}`);
+  if (state.s && state.s !== 'no') parts.push(`s=${encodeURIComponent(state.s)}`);
+  return parts.length ? `#${parts.join('&')}` : '';
+}
+
+// row = {kw: [keyword ids]}
+export function matches(row, state) {
+  return !state.k || row.kw.includes(state.k);
+}
+
+// rows = {no, type, year}; key 'no', 'type' or 'date'. Ties fall back to number order.
+export function compare(a, b, key) {
+  if (key === 'type') return a.type.localeCompare(b.type, 'en') || byNumber(a, b);
+  if (key === 'date') return a.year - b.year || byNumber(a, b);
+  return byNumber(a, b);
+}
+
+function byNumber(a, b) {
+  const [aSection, aRunning] = a.no.split('.').map(Number);
+  const [bSection, bRunning] = b.no.split('.').map(Number);
+  return aSection - bSection || aRunning - bRunning;
+}
+
+function decode(value) {
+  try {
+    return decodeURIComponent(value);
+  } catch {
+    return null;
+  }
+}

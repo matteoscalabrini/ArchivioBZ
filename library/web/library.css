@@ -1,0 +1,144 @@
+/* The Library page, after sketch 2 (idea-as-index-v2): the idea in large serif, a sticky status
+   line, one list of rows that open downward in place, and all keywords at the foot. */
+
+:root {
+  --cols: 64px minmax(0, 1fr) 150px 120px minmax(0, 300px);
+  --col-gap: 20px;
+}
+
+html { scroll-padding-top: 48px; } /* keeps a focused row clear of the sticky status line */
+[hidden] { display: none !important; }
+
+/* The idea, or the keyword index in its place. */
+.idea { padding: 84px var(--gutter) 64px; max-width: 1240px; }
+.idea .lab { display: block; margin-bottom: 18px; font-size: var(--size-meta); color: var(--grey); }
+.idea p { margin: 0; font: 400 var(--size-idea)/1.12 var(--serif); letter-spacing: -0.018em; text-wrap: pretty; }
+.idea p + p { margin-top: 0.6em; }
+.idea button {
+  margin: 0 -4px;
+  padding: 0 4px;
+  letter-spacing: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 6px;
+}
+.idea button:hover,
+.idea button[aria-pressed="true"] { background: var(--ink); color: var(--paper); text-decoration-color: transparent; }
+.kw { white-space: nowrap; } /* a keyword and its comma: the line breaks only between them */
+.kw button { white-space: normal; }
+.idea .sep { color: var(--grey); }
+
+/* What is shown, sticky. */
+.status {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  align-items: baseline;
+  padding: 10px var(--gutter);
+  background: var(--paper);
+  border-top: var(--rule);
+  font-size: var(--size-meta);
+}
+.status .now { display: inline-flex; flex-wrap: wrap; gap: 4px 18px; }
+.status .n { color: var(--grey); }
+.status .show-all { margin-left: auto; }
+.status button,
+.status a { text-decoration: underline; text-underline-offset: 4px; }
+
+/* Column heads and rows share one grid. */
+.colhead,
+.row-head {
+  display: grid;
+  grid-template-columns: var(--cols);
+  column-gap: var(--col-gap);
+  align-items: baseline;
+  padding: 0 var(--gutter);
+}
+.colhead { padding-top: 8px; padding-bottom: 8px; border-top: var(--rule); font-size: var(--size-meta); color: var(--grey); }
+.colhead button { justify-self: start; }
+.colhead button:hover,
+.colhead button[aria-pressed="true"] { text-decoration: underline; text-underline-offset: 4px; }
+
+.list { border-bottom: var(--rule); }
+.row { border-top: var(--rule); }
+.row-head { padding-top: 13px; padding-bottom: 12px; cursor: pointer; }
+.row-head:hover .c-title button { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.c-no, .c-type, .c-date, .c-kw { font-size: var(--size-meta); }
+.c-no { font-variant-numeric: tabular-nums; }
+.c-title { font: 400 var(--size-title)/1.16 var(--serif); overflow-wrap: break-word; }
+.c-title button { display: block; } /* as a block its first line, not its last, sets the row's baseline */
+.c-kw { overflow-wrap: break-word; }
+.c-kw button:hover,
+.c-kw button[aria-pressed="true"] { text-decoration: underline; text-underline-offset: 3px; }
+.c-kw .sep { color: var(--grey); }
+
+/* An open row: 0fr to 1fr, so the body opens downward to its own height. */
+.row-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .38s cubic-bezier(.2, .7, .2, 1); }
+.row.open .row-body { grid-template-rows: 1fr; }
+.list.still .row-body { transition: none; }
+.row-inner { overflow: hidden; min-height: 0; }
+
+.detail { display: grid; grid-template-columns: var(--cols); column-gap: var(--col-gap); padding: 14px var(--gutter) 44px; }
+.detail .pics { grid-column: 2; min-width: 0; }
+.detail .txt { grid-column: 3 / 6; max-width: 46ch; }
+.detail.wide .txt,
+.detail.table .txt { grid-column: 2; max-width: 52ch; }
+.detail .txt p { margin: 0 0 14px; }
+
+.pics figure { margin: 0; }
+.pics a { display: inline-block; vertical-align: top; }
+.pics img { display: block; width: auto; height: auto; max-width: 100%; max-height: 520px; }
+.pics figcaption { margin-top: 8px; max-width: 60ch; font-size: var(--size-meta); color: var(--grey); }
+.pic-nav { display: flex; gap: 14px; margin: 8px 0 0; font-size: var(--size-meta); }
+.pic-nav button { font-variant-numeric: tabular-nums; }
+.pic-nav button:hover,
+.pic-nav button[aria-pressed="true"] { text-decoration: underline; text-underline-offset: 3px; }
+
+dl.meta { display: grid; grid-template-columns: 92px minmax(0, 1fr); row-gap: 5px; margin: 22px 0 0; font-size: var(--size-meta); }
+.txt > dl.meta:first-child { margin-top: 0; }
+dl.meta dt { color: var(--grey); }
+dl.meta dd { margin: 0; overflow-wrap: break-word; }
+dl.meta a { text-underline-offset: 3px; }
+.more { display: inline-block; margin-top: 26px; text-decoration: underline; text-underline-offset: 4px; }
+.txt > .more:first-child { margin-top: 0; }
+
+table.recs { grid-column: 3 / 6; align-self: start; width: 100%; border-collapse: collapse; font-size: var(--size-meta); }
+table.recs caption { padding-bottom: 8px; text-align: left; color: var(--grey); }
+table.recs th { padding: 0 12px 6px 0; text-align: left; font-weight: 400; color: var(--grey); }
+table.recs td { padding: 6px 12px 6px 0; border-top: var(--rule); vertical-align: top; overflow-wrap: break-word; }
+table.recs td:first-child { font-variant-numeric: tabular-nums; }
+table.recs th:last-child,
+table.recs td:last-child { padding-right: 0; }
+
+/* Every keyword with its count. */
+.foot { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 20px; padding: 70px var(--gutter) 40px; font-size: var(--size-meta); }
+.foot .lab { margin-right: 6px; color: var(--grey); }
+.foot sup { display: inline-block; margin-left: 2px; font-size: var(--size-count); line-height: 0; color: var(--grey); } /* inline-block: the underline stops at the word */
+.foot button:hover,
+.foot button[aria-pressed="true"] { text-decoration: underline; text-underline-offset: 4px; }
+
+/* Narrow: type, date and keywords fold under the title; an open row takes the full width. */
+@media (max-width: 800px) {
+  .colhead { display: flex; flex-wrap: wrap; gap: 4px 18px; }
+  .row-head {
+    grid-template-columns: 44px auto minmax(0, 1fr);
+    grid-template-areas: "no title title" ". type date" ". kw kw";
+    column-gap: 14px;
+    row-gap: 3px;
+  }
+  .c-no { grid-area: no; }
+  .c-title { grid-area: title; }
+  .c-type { grid-area: type; }
+  .c-date { grid-area: date; }
+  .c-kw { grid-area: kw; }
+  .detail { display: block; padding: 6px var(--gutter) 36px; }
+  .detail .txt,
+  .detail.wide .txt,
+  .detail.table .txt { max-width: 60ch; }
+  .detail .pics + .txt { margin-top: 22px; }
+  table.recs { margin-top: 22px; }
+  .idea { padding: 56px var(--gutter) 44px; }
+}

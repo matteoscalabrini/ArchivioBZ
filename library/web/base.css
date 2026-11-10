@@ -27,7 +27,11 @@ body {
   font: 400 var(--size-text)/1.45 var(--sans);
   -webkit-font-smoothing: antialiased;
 }
-h1, h2, h3, h4 { margin: 0; font-family: var(--serif); font-weight: 400; }
+h1, h2, h3, h4, h5, h6 { margin: 0; font-family: var(--serif); font-weight: 400; }
+h1 { font-size: var(--size-idea); line-height: 1.12; }
+h2 { font-size: var(--size-title); line-height: 1.16; }
+h3, h4, h5, h6 { font-size: var(--size-text); }
+code, pre, kbd, samp { font: inherit; }
 a { color: inherit; }
 button {
   font: inherit;

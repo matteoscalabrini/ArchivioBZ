@@ -1,26 +1,14 @@
-import { test, after } from 'node:test';
+import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import path from 'node:path';
-import os from 'node:os';
-import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
-import { mkdtemp, mkdir, cp, rm, writeFile, readFile, access } from 'node:fs/promises';
+import { mkdir, cp, writeFile, readFile, access } from 'node:fs/promises';
 import { loadLibrary, sourceUrl } from '../lib/records.mjs';
+import { FIXTURES as ROOT, BUILD, tempDir, cleanRoot } from './helpers.mjs';
 
-const HERE = path.dirname(fileURLToPath(import.meta.url));
-const ROOT = path.join(HERE, 'fixtures');
-const BUILD = path.join(HERE, '..', 'build.mjs');
 const FIVE = path.join(ROOT, 'research_notes/Inv A/files/05_x');
 const BAD = 'research_notes/Inv A/files/bad/entries.json';
 const REFS = 'research_notes/Inv A/files/12_refs/entries.json';
-
-const temps = [];
-after(() => Promise.all(temps.map((dir) => rm(dir, { recursive: true, force: true }))));
-async function tempDir(prefix) {
-  const dir = await mkdtemp(path.join(os.tmpdir(), prefix));
-  temps.push(dir);
-  return dir;
-}
 
 let loaded;
 const load = () => (loaded ??= loadLibrary(ROOT));
@@ -98,12 +86,6 @@ test('a root without any entries.json loads empty', async () => {
   assert.deepEqual(levelled(problems, 'error'), []);
 });
 
-// The fixtures without the deliberately broken folder: a library that builds.
-async function cleanRoot() {
-  const root = await tempDir('library-root-');
-  await cp(ROOT, root, { recursive: true, filter: (src) => path.basename(src) !== 'bad' });
-  return root;
-}
 const build = (...args) => spawnSync(process.execPath, [BUILD, ...args], { encoding: 'utf8' });
 const exists = (file) => access(file).then(() => true, () => false);
 
