@@ -1,0 +1,114 @@
+{
+ "name": "Bolzano / Bozen — Altstadt, Talvera, Bahnhof",
+ "count": 1266624,
+ "scale": 0.05,
+ "origin": {
+  "e": 680325,
+  "n": 5151985,
+  "z": 264,
+  "crs": "EPSG:25832",
+  "lon": 11.349983,
+  "lat": 46.497287
+ },
+ "extent": {
+  "e": [
+   -825,
+   825
+  ],
+  "n": [
+   -705,
+   705
+  ],
+  "z": [
+   -12.53,
+   204.37
+  ]
+ },
+ "height": {
+  "step": 1.0,
+  "cols": 1651,
+  "rows": 1411,
+  "e0": -825,
+  "n0": -705,
+  "unit": 0.1
+ },
+ "layers": [
+  {
+   "name": "ground",
+   "offset": 0,
+   "count": 202674
+  },
+  {
+   "name": "streets",
+   "offset": 202674,
+   "count": 58543
+  },
+  {
+   "name": "water",
+   "offset": 261217,
+   "count": 29494
+  },
+  {
+   "name": "trees",
+   "offset": 290711,
+   "count": 102824
+  },
+  {
+   "name": "rails",
+   "offset": 393535,
+   "count": 19182
+  },
+  {
+   "name": "roofs",
+   "offset": 412717,
+   "count": 264358
+  },
+  {
+   "name": "walls",
+   "offset": 677075,
+   "count": 564994
+  },
+  {
+   "name": "bridges",
+   "offset": 1242069,
+   "count": 24555
+  }
+ ],
+ "labels": [
+  {
+   "name": "Ponte Druso - Drususbrücke",
+   "e": -131.3,
+   "n": -280.2,
+   "z": 5.3
+  },
+  {
+   "name": "Ponte Virgolo - Virglbrücke",
+   "e": 755.1,
+   "n": -514.6,
+   "z": 8.9
+  },
+  {
+   "name": "Ponte Talvera - Talferbrücke",
+   "e": -238.1,
+   "n": 320.4,
+   "z": 12.7
+  },
+  {
+   "name": "Ponte Loreto - Loretobrücke",
+   "e": 297.0,
+   "n": -343.1,
+   "z": 2.8
+  }
+ ],
+ "buildings": 1370,
+ "sources": [
+  {
+   "text": "Buildings, streets, bridges, water: © OpenStreetMap contributors (ODbL)",
+   "url": "https://www.openstreetmap.org/copyright"
+  },
+  {
+   "text": "LiDAR DTM/DSM 0.5 m: Provincia autonoma di Bolzano – Alto Adige (CC0)",
+   "url": "https://geokatalog.buergernetz.bz.it/geokatalog/"
+  }
+ ]
+}

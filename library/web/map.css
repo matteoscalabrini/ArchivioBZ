@@ -1,0 +1,133 @@
+/* The Map page: the dot field fills the window under the frame; labels stand on it, the panel
+   opens on the right, the places beyond it sit bottom left, the credit bottom right. Without
+   WebGL (.flat) the places and their rows are a plain list. */
+
+[hidden] { display: none !important; }
+
+html, body { height: 100%; }
+body { display: flex; flex-direction: column; overflow: hidden; }
+main { position: relative; flex: 1; min-height: 0; margin-top: 22px; border-top: var(--rule); }
+
+.map { position: absolute; inset: 0; overflow: hidden; background: var(--paper); }
+.scene { position: absolute; inset: 0; display: block; width: 100%; height: 100%; touch-action: none; cursor: grab; }
+.scene:active { cursor: grabbing; }
+.scene:focus-visible { outline-offset: -2px; }
+
+/* Labels, each on top of its stem. */
+.labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.stem { position: absolute; left: 0; top: 0; width: 1px; height: 0; background: var(--ink); visibility: hidden; }
+.place {
+  position: absolute;
+  left: 0;
+  top: 0;
+  max-width: 340px;
+  padding: 1px 6px 3px;
+  background: var(--paper);
+  pointer-events: auto;
+  visibility: hidden; /* until map.js has put it in its place */
+  will-change: transform;
+}
+.place .name { font: 400 var(--size-title)/1.1 var(--serif); }
+.place .n { font-size: var(--size-meta); color: var(--grey); }
+.place:hover .name { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.place[aria-expanded="true"] { background: var(--ink); color: var(--paper); }
+.place[aria-expanded="true"] .n { color: var(--paper); }
+.place:focus-visible { outline-offset: 0; }
+
+/* With a keyword: which one, and the way back to every place. */
+.filter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  margin: 0;
+  padding: 10px var(--gutter);
+  background: var(--paper);
+  font-size: var(--size-meta);
+}
+.filter button { text-decoration: underline; text-underline-offset: 4px; }
+
+/* A place's rows, on the right. */
+.panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1; /* over the places beyond, where a narrow screen makes them meet */
+  width: min(440px, 100%);
+  overflow-y: auto;
+  padding: 18px var(--gutter) 40px;
+  background: var(--paper);
+  border-left: var(--rule);
+}
+.panel .close { float: right; margin: 6px 0 0 18px; font-size: var(--size-meta); text-decoration: underline; text-underline-offset: 4px; }
+.panel h2 { font-size: var(--size-title); line-height: 1.16; }
+.panel h2:focus { outline: 0; }
+.panel h2:focus-visible { outline: 2px solid var(--ink); }
+
+ol.rows { margin: 14px 0 0; padding: 0; list-style: none; border-bottom: var(--rule); }
+ol.rows li { border-top: var(--rule); }
+ol.rows a { display: block; padding: 8px 0 9px; font-size: var(--size-meta); text-decoration: none; }
+ol.rows .no { font-variant-numeric: tabular-nums; }
+ol.rows .sep { color: var(--grey); }
+ol.rows .title { font: 400 var(--size-text)/1.3 var(--serif); }
+ol.rows a:hover .title { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+
+/* The places beyond the dot field, bottom left. */
+.beyond {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: min(380px, 100%);
+  max-height: 62%;
+  overflow-y: auto;
+  padding: 12px var(--gutter) 14px;
+  background: var(--paper);
+  font-size: var(--size-meta);
+}
+.beyond h2 { font: 400 var(--size-meta)/1.45 var(--sans); color: var(--grey); }
+.beyond ul { margin: 4px 0 0; padding: 0; list-style: none; }
+.beyond li[data-beyond] { margin-top: 2px; }
+.beyond li[data-beyond] > button { padding: 0 3px; margin-left: -3px; }
+.beyond .name { font-family: var(--serif); }
+.beyond .n { margin-left: 2px; color: var(--grey); }
+.beyond li[data-beyond] > button:hover .name { text-decoration: underline; text-underline-offset: 3px; }
+.beyond li[data-beyond] > button[aria-expanded="true"] { background: var(--ink); color: var(--paper); }
+.beyond li[data-beyond] > button[aria-expanded="true"] .n { color: var(--paper); }
+.beyond ol.rows { margin: 6px 0 10px; }
+
+/* The data credit, bottom right, left of an open panel. */
+.credit {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  max-width: 100%;
+  margin: 0;
+  padding: 10px var(--gutter);
+  background: var(--paper);
+  font-size: var(--size-meta);
+  color: var(--grey);
+}
+.panel:not([hidden]) ~ .credit { right: min(440px, 100%); }
+
+/* Without WebGL: the places with their rows, one after the other. */
+body:has(.map.flat) { display: block; height: auto; overflow: visible; }
+.map.flat { position: static; overflow: visible; }
+.map.flat .scene,
+.map.flat .labels,
+.map.flat .close { display: none; }
+.map.flat .filter,
+.map.flat .panel,
+.map.flat .beyond,
+.map.flat .credit { position: static; width: auto; max-height: none; overflow: visible; border: 0; }
+.map.flat .panel { padding-top: 24px; }
+.map.flat .panel section + section { margin-top: 40px; }
+.map.flat .beyond { padding-top: 40px; }
+.map.flat .credit { padding-top: 40px; }
+
+@media (max-width: 600px) {
+  .place { max-width: 200px; }
+  .beyond { max-height: 45%; }
+}
