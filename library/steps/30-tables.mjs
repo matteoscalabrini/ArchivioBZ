@@ -72,7 +72,7 @@ function tablePage(entry, columns, rows) {
     title: entry.title,
     tab: 'library',
     depth: 1,
-    js: ['web/table.js'],
+    js: ['web/table.js', 'web/back.js'],
     head: `<style>${CSS}</style>`,
     body: `<a class="back" href="../index.html#o=${esc(encodeURIComponent(entry.no))}">← Library</a>
 <h1>${esc(entry.title)}</h1>

@@ -19,6 +19,10 @@ export default async function library(ctx) {
   const counts = new Map();
   for (const entry of entries) for (const id of entry.keywords) counts.set(id, (counts.get(id) ?? 0) + 1);
   const used = Object.keys(keywords).filter((id) => counts.has(id)); // in the vocabulary's order
+  // The keywords with at least one row at a place on the map: only for these does the status
+  // line offer "On the map →" (library.js reads the list).
+  const placed = entries.filter((entry) => entry.place && places?.[entry.place] && places[entry.place].inside !== false);
+  const onMap = used.filter((id) => placed.some((entry) => entry.keywords.includes(id)));
 
   const body = [
     top(ctx, used, label),
@@ -31,6 +35,7 @@ export default async function library(ctx) {
       .map((id) => keywordButton(id, `${esc(label(id))}<sup>${counts.get(id)}</sup>`))
       .join('')}</footer>`,
     `<script type="application/json" id="keyword-labels">${json(Object.fromEntries(Object.keys(keywords).map((id) => [id, label(id)])))}</script>`,
+    `<script type="application/json" id="keywords-on-map">${json(onMap)}</script>`,
   ].join('\n');
 
   await ctx.write('index.html', page({ title: 'Library', tab: 'library', body, css: ['web/library.css'], js: ['web/library.js'] }));
@@ -129,9 +134,8 @@ function meta(entry, places) {
   if (entry.place) {
     const place = places?.[entry.place];
     const name = esc(place?.name ?? entry.place);
-    lines.push(['Place', place?.inside === false
-      ? `${name}, beyond the map`
-      : `<a href="map.html#p=${esc(encodeURIComponent(entry.place))}">${name}, on the map →</a>`]);
+    const where = place?.inside === false ? 'beyond the map' : 'on the map';
+    lines.push(['Place', `<a href="map.html#p=${esc(encodeURIComponent(entry.place))}">${name}, ${where} →</a>`]);
   }
   if (Array.isArray(entry.sources) && entry.sources.length) {
     const n = entry.sources.length;

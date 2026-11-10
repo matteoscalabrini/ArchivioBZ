@@ -2,9 +2,12 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
-import { mkdir, cp, writeFile, readFile, access } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
+import { mkdir, cp, writeFile, readFile, access, symlink } from 'node:fs/promises';
 import { loadLibrary, sourceUrl } from '../lib/records.mjs';
 import { FIXTURES as ROOT, BUILD, tempDir, cleanRoot } from './helpers.mjs';
+
+const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 
 const FIVE = path.join(ROOT, 'research_notes/Inv A/files/05_x');
 const BAD = 'research_notes/Inv A/files/bad/entries.json';
@@ -159,6 +162,19 @@ test('build --check reports without writing', async () => {
   assert.equal(run.status, 0, run.stderr);
   assert.match(run.stdout, /^WARN research_notes\/Inv A\/files\/12_refs\/entries\.json: row 12\.01: empty text$/m);
   assert.equal(await exists(out), false);
+});
+
+test('node library/build.mjs --check runs when started as a script, by a relative path or a link', async () => {
+  const root = await cleanRoot();
+  const relative = spawnSync(process.execPath, ['library/build.mjs', '--check', '--root', root], { cwd: REPO, encoding: 'utf8' });
+  assert.equal(relative.status, 0, relative.stderr);
+  assert.match(relative.stdout, /^6 rows, \d+ warnings?, no errors$/m);
+
+  const linked = path.join(await tempDir('library-link-'), 'library');
+  await symlink(path.join(REPO, 'library'), linked);
+  const run = spawnSync(process.execPath, [path.join(linked, 'build.mjs'), '--check', '--root', root], { encoding: 'utf8' });
+  assert.equal(run.status, 0, run.stderr);
+  assert.match(run.stdout, /^6 rows, \d+ warnings?, no errors$/m);
 });
 
 test('sourceUrl encodes each segment', () => {

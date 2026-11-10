@@ -58,6 +58,7 @@ function readPage(entry, body, byNo) {
     tab: 'library',
     depth: 1,
     css: ['web/read.css'],
+    js: ['web/back.js'],
     body: `<a class="back" href="../index.html#o=${esc(encodeURIComponent(entry.no))}">← Library</a>
 <h1>${esc(entry.title)}</h1>
 <article class="read">

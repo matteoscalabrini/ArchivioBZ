@@ -5,6 +5,7 @@
 // library/web/ into it, runs each library/steps/*.mjs in name order and prints the counts.
 // A step is `export default async function (ctx)`; see `ctx` below.
 import path from 'node:path';
+import { realpathSync } from 'node:fs';
 import { cp, copyFile, mkdir, readdir, rm, writeFile } from 'node:fs/promises';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { parseArgs } from 'node:util';
@@ -120,7 +121,17 @@ function print(problems) {
 const count = (problems, level) => problems.filter((p) => p.level === level).length;
 const plural = (n, word) => `${n} ${word}${n === 1 ? '' : 's'}`;
 
-if (import.meta.main) {
+// Started as a script rather than imported: the file Node was asked to run is this one, by any
+// path or link to it. (import.meta.main says the same, but only from Node 24.2.)
+function startedAsScript() {
+  try {
+    return realpathSync(process.argv[1]) === realpathSync(fileURLToPath(import.meta.url));
+  } catch {
+    return false;
+  }
+}
+
+if (startedAsScript()) {
   let values;
   try {
     ({ values } = parseArgs({

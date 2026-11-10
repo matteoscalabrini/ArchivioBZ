@@ -1,11 +1,11 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import path from 'node:path';
-import { writeFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 import { loadLibrary, sourceUrl } from '../lib/records.mjs';
 import { parseIdea } from '../lib/idea.mjs';
 import idea from '../steps/20-idea.mjs';
-import { cleanRoot } from './helpers.mjs';
+import { buildRoot, cleanRoot } from './helpers.mjs';
 
 // A vocabulary shaped as loadLibrary returns it: canonical ids with labels, folded ids to targets.
 const VOCABULARY = {
@@ -19,13 +19,15 @@ const VOCABULARY = {
   aliases: { fraktur: 'typeface' },
 };
 
+const STANDIN = 'the idea is a stand-in; build with --present for a showing';
+
 // The idea step on the fixtures, with `idea.md` written into the copy when given.
-async function runStep({ text, edit = () => {} } = {}) {
+async function runStep({ text, present = false, edit = () => {} } = {}) {
   const root = await cleanRoot();
   if (text !== undefined) await writeFile(path.join(root, 'library', 'content', 'idea.md'), text);
   const lib = await loadLibrary(root);
   edit(lib);
-  const ctx = { root, out: path.join(root, 'dist'), lib, options: {}, problems: lib.problems, sourceUrl: (abs) => sourceUrl(root, abs) };
+  const ctx = { root, out: path.join(root, 'dist'), lib, options: { check: false, present }, problems: lib.problems, sourceUrl: (abs) => sourceUrl(root, abs) };
   const before = lib.problems.length;
   await idea(ctx);
   return { idea: ctx.idea, problems: lib.problems.slice(before) };
@@ -93,7 +95,28 @@ test('the step sets ctx.idea, reports problems against idea.md and warns for a k
   assert.deepEqual(problems, [
     { level: 'error', where: 'library/content/idea.md', message: 'unknown keyword "nope"' },
     { level: 'warn', where: 'library/content/idea.md', message: 'marked keyword "colour" is on no row' },
+    { level: 'warn', where: 'library/content/idea.md', message: STANDIN },
   ]);
+});
+
+test('a stand-in idea is announced unless the build is for presenting', async () => {
+  const text = 'status: stand-in\n\nIn the [[press]].\n';
+  assert.deepEqual((await runStep({ text })).problems, [{ level: 'warn', where: 'library/content/idea.md', message: STANDIN }]);
+  assert.deepEqual((await runStep({ text, present: true })).problems, []);
+  assert.deepEqual((await runStep({ text: 'In the [[press]].\n' })).problems, [], 'an idea of one\'s own is not announced');
+});
+
+test('the build announces the stand-in without --present, and npm run present builds with it', async () => {
+  const root = await cleanRoot();
+  await writeFile(path.join(root, 'library', 'content', 'idea.md'), 'status: stand-in\n\nIn the [[press]].\n');
+  const plain = await buildRoot(root);
+  assert.equal(plain.run.status, 0, plain.run.stderr);
+  assert.match(plain.run.stdout, /^WARN library\/content\/idea\.md: the idea is a stand-in; build with --present for a showing$/m);
+  const present = await buildRoot(root, '--present');
+  assert.equal(present.run.status, 0, present.run.stderr);
+  assert.doesNotMatch(present.run.stdout, /stand-in/);
+  const { scripts } = JSON.parse(await readFile(new URL('../../package.json', import.meta.url), 'utf8'));
+  assert.equal(scripts.present, 'node library/build.mjs --present');
 });
 
 test('without idea.md, ctx.idea is null', async () => {

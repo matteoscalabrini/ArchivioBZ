@@ -7,7 +7,8 @@ const status = document.querySelector('.status');
 const colhead = document.querySelector('.colhead');
 const keywordButtons = [...document.querySelectorAll('button[data-k]')];
 const sortButtons = [...colhead.querySelectorAll('button[data-sort]')];
-const labels = readLabels();
+const labels = readJson('keyword-labels', {});
+const onMapKeywords = new Set(readJson('keywords-on-map', [])); // keywords with a row placed on the map
 const rows = [...list.querySelectorAll('article.row')].map((el) => ({
   el,
   no: el.dataset.no,
@@ -80,7 +81,7 @@ function render() {
   setText(status.querySelector('.n'), state.k ? `${shown} of ${entries(rows.length)}` : entries(rows.length));
   status.querySelector('.show-all').hidden = !state.k;
   const onMap = status.querySelector('.on-map');
-  onMap.hidden = !state.k;
+  onMap.hidden = !state.k || !onMapKeywords.has(state.k);
   onMap.href = state.k ? `map.html#k=${encodeURIComponent(state.k)}` : 'map.html';
 
   const hash = formatState(state);
@@ -144,11 +145,12 @@ function selecting(head) {
   return Boolean(selection && !selection.isCollapsed && head.contains(selection.anchorNode));
 }
 
-function readLabels() {
+// The JSON the build wrote into <script type="application/json" id="…">, or `fallback`.
+function readJson(id, fallback) {
   try {
-    return JSON.parse(document.getElementById('keyword-labels')?.textContent ?? '{}');
+    return JSON.parse(document.getElementById(id)?.textContent ?? 'null') ?? fallback;
   } catch {
-    return {};
+    return fallback;
   }
 }
 

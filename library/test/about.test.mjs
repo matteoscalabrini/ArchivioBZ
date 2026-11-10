@@ -45,6 +45,15 @@ test('counts by type match the fixtures', async () => {
   assert.ok(html.indexOf('What this is') < html.indexOf('Entries by type'));
 });
 
+test('the page starts with its title, About, as the only h1', async () => {
+  for (const withText of [true, false]) {
+    const { html } = await runStep({ withText });
+    assert.match(html, /<main>\n<h1>About<\/h1>\n<article class="read about">/);
+    assert.equal(html.match(/<h1/g).length, 1);
+    assert.match(html, /<link rel="stylesheet" href="web\/read\.css">/, 'read.css sets main > h1 as on the read pages');
+  }
+});
+
 test('the page builds without about.md', async () => {
   const { html, lib } = await runStep({ withText: false });
   assert.doesNotMatch(html, /What this is/);

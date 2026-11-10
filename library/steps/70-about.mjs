@@ -1,5 +1,5 @@
-// The About page, out/about.html: library/content/about.md in the long-read column, then the
-// entries counted by type and a line of totals. Without about.md the counts stand alone.
+// The About page, out/about.html: its title, library/content/about.md in the long-read column,
+// then the entries counted by type and a line of totals. Without about.md the counts stand alone.
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { esc, page } from '../lib/shell.mjs';
@@ -22,7 +22,8 @@ export default async function about(ctx) {
   const keywords = new Set(entries.flatMap((entry) => entry.keywords ?? [])).size;
   const totals = [`${entries.length} entries`, places && `${places} places`, keywords && `${keywords} keywords`].filter(Boolean).join(' · ');
 
-  const body = `<article class="read about">
+  const body = `<h1>About</h1>
+<article class="read about">
 ${text}
 <h2>Entries by type</h2>
 <table>

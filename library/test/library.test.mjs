@@ -284,6 +284,7 @@ test('meta lines in order; no Confidence on Report, Notes or Map; places and sou
   assert.equal(definition(row(html, '5.01').inner, 'Place'), '<a href="map.html#p=ponte-druso">Ponte Druso, on the map →</a>');
   assert.deepEqual(terms(row(html, '0.01').inner), []);
   assert.deepEqual(terms(row(html, '5.00').inner), []);
+  assert.equal(definition(row(html, '12.01').inner, 'Place'), '<a href="map.html#p=piazza-erbe">Piazza Erbe, beyond the map →</a>');
 
   const changed = await render({
     edit(lib) {
@@ -293,7 +294,7 @@ test('meta lines in order; no Confidence on Report, Notes or Map; places and sou
       entry(lib, '12.01').confidence = { level: 'read', note: 'Date from the file, not printed.' };
     },
   });
-  assert.equal(definition(row(changed, '5.01').inner, 'Place'), 'Ponte Druso, beyond the map');
+  assert.equal(definition(row(changed, '5.01').inner, 'Place'), '<a href="map.html#p=ponte-druso">Ponte Druso, beyond the map →</a>');
   assert.equal(
     definition(row(changed, '5.01').inner, 'Sources'),
     '2 rows: <a href="#o=5.02" data-jump="5.02">5.02</a>, <a href="#o=12.01" data-jump="12.01">12.01</a>',
@@ -355,4 +356,23 @@ test('status line, sortable column heads and every keyword at the foot', async (
   assert.deepEqual(counts.find((c) => c[0] === 'irony'), ['irony', 'Irony', '1']);
   assert.match(html, /<link rel="stylesheet" href="web\/library.css">/);
   assert.match(html, /<script type="module" src="web\/library.js"><\/script>/);
+});
+
+const onMap = (html) => JSON.parse(/<script type="application\/json" id="keywords-on-map">([^<]*)<\/script>/.exec(html)[1]);
+
+test('the page lists the keywords that have a row placed on the map, for "On the map →"', async () => {
+  const html = await builtIndex();
+  // ponte-druso: 5.01 at Ponte Druso, on the map. press: no row with a place. humour and irony:
+  // 12.01 at Piazza Erbe, which has no coordinates and so lies beyond the map.
+  assert.deepEqual(onMap(html), ['ponte-druso']);
+
+  const moved = await render({
+    edit(lib) {
+      lib.places['ponte-druso'].inside = false;
+      lib.places['piazza-erbe'].inside = false;
+      lib.places.semirurali.inside = true;
+      entry(lib, '5.02').place = 'semirurali';
+    },
+  });
+  assert.deepEqual(onMap(moved), ['press', 'typeface']);
 });

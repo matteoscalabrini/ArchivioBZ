@@ -3,13 +3,17 @@ import assert from 'node:assert/strict';
 import http from 'node:http';
 import path from 'node:path';
 import os from 'node:os';
+import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { mkdtemp, writeFile, readFile, rm } from 'node:fs/promises';
 import { createServer } from '../serve.mjs';
 import { sourceUrl } from '../lib/records.mjs';
 
-const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), 'fixtures');
-const PHOTO = path.join(ROOT, "research_notes/Inv A/files/05_x/Teßmann '60.jpg");
+const HERE = path.dirname(fileURLToPath(import.meta.url));
+const REPO = path.resolve(HERE, '..', '..');
+const ROOT = path.join(HERE, 'fixtures');
+const FIVE = path.join(ROOT, 'research_notes/Inv A/files/05_x');
+const PHOTO = path.join(FIVE, "Teßmann '60.jpg");
 const INDEX = '<!doctype html><title>fixture index</title>';
 
 let server;
@@ -100,4 +104,49 @@ test('/ returns index.html from out', async () => {
   assert.equal(res.status, 200);
   assert.match(res.headers['content-type'], /^text\/html/);
   assert.equal(res.body.toString(), INDEX);
+});
+
+test('a CSV is sent as plain text, so the browser shows it', async () => {
+  const res = await get(sourceUrl(ROOT, path.join(FIVE, 'table.csv')));
+  assert.equal(res.status, 200);
+  assert.equal(res.headers['content-type'], 'text/plain; charset=utf-8');
+});
+
+test('a saved web page under /source/ is sandboxed; pictures, PDFs and the site are not', async () => {
+  const saved = await get(sourceUrl(ROOT, path.join(FIVE, 'saved page.html')));
+  assert.equal(saved.status, 200);
+  assert.equal(saved.headers['content-type'], 'text/html; charset=utf-8');
+  assert.equal(saved.headers['content-security-policy'], 'sandbox');
+  for (const url of [sourceUrl(ROOT, PHOTO), sourceUrl(ROOT, path.join(FIVE, 'page.pdf')), '/']) {
+    const res = await get(url);
+    assert.equal(res.status, 200, url);
+    assert.equal(res.headers['content-security-policy'], undefined, url);
+  }
+});
+
+test('node library/serve.mjs listens when started as a script', async () => {
+  const child = spawn(process.execPath, ['library/serve.mjs', '--root', ROOT, '--out', out], {
+    cwd: REPO,
+    env: { ...process.env, PORT: '0' }, // any free port
+  });
+  try {
+    const said = await new Promise((resolve, reject) => {
+      let text = '';
+      const timer = setTimeout(() => reject(new Error(`no answer after 10 s: ${text}`)), 10000);
+      child.stdout.on('data', (chunk) => {
+        text += chunk;
+        if (/http:\/\//.test(text)) {
+          clearTimeout(timer);
+          resolve(text);
+        }
+      });
+      child.on('exit', (code) => {
+        clearTimeout(timer);
+        reject(new Error(`exited with ${code}: ${text}`));
+      });
+    });
+    assert.match(said, /^Serving /);
+  } finally {
+    child.kill();
+  }
 });

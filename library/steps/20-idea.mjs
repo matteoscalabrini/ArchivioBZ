@@ -1,5 +1,6 @@
 // The idea, from library/content/idea.md: ctx.idea = {html, keywords, standin}, or null when there
-// is no such file. An unknown keyword is an error; a marked keyword that no row carries, a warning.
+// is no such file. An unknown keyword is an error; a marked keyword that no row carries, a warning;
+// a stand-in, a warning too unless the build is for presenting (--present), which leaves it out.
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { parseIdea } from '../lib/idea.mjs';
@@ -21,6 +22,9 @@ export default async function idea(ctx) {
   const carried = new Set(ctx.lib.entries.flatMap((entry) => entry.keywords));
   for (const id of keywords) {
     if (!carried.has(id)) ctx.problems.push({ level: 'warn', where, message: `marked keyword "${id}" is on no row` });
+  }
+  if (standin && !ctx.options?.present) {
+    ctx.problems.push({ level: 'warn', where, message: 'the idea is a stand-in; build with --present for a showing' });
   }
   ctx.idea = { html, keywords, standin };
 }

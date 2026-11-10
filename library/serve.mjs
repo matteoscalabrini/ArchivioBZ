@@ -5,7 +5,7 @@
 // nothing else. Supports single byte ranges.
 import http from 'node:http';
 import path from 'node:path';
-import { createReadStream } from 'node:fs';
+import { createReadStream, realpathSync } from 'node:fs';
 import { realpath, stat } from 'node:fs/promises';
 import { pipeline } from 'node:stream/promises';
 import { fileURLToPath } from 'node:url';
@@ -21,7 +21,7 @@ const TYPES = {
   '.json': 'application/json; charset=utf-8',
   '.md': 'text/plain; charset=utf-8',
   '.txt': 'text/plain; charset=utf-8',
-  '.csv': 'text/csv; charset=utf-8',
+  '.csv': 'text/plain; charset=utf-8', // text/csv would be downloaded; as text the browser shows it
   '.svg': 'image/svg+xml',
   '.jpg': 'image/jpeg',
   '.jpeg': 'image/jpeg',
@@ -55,7 +55,8 @@ async function handle(req, res, root, out) {
   if (!request) return send(res, 400, 'Bad request');
 
   let file;
-  if (request.segments[0] === 'source') {
+  const source = request.segments[0] === 'source';
+  if (source) {
     file = await sourceFile(root, request.segments.slice(1));
     if (!file) return send(res, 403, 'Forbidden');
   } else {
@@ -75,6 +76,9 @@ async function handle(req, res, root, out) {
     'Last-Modified': info.mtime.toUTCString(),
     'Cache-Control': 'no-cache',
   };
+  // A page saved from the web, opened from /source/, runs as if from nowhere: no script, no access
+  // to the site.
+  if (source && headers['Content-Type'].startsWith('text/html')) headers['Content-Security-Policy'] = 'sandbox';
   const range = parseRange(req.headers.range, info.size);
   if (range === 'unsatisfiable') return send(res, 416, 'Range not satisfiable', { 'Content-Range': `bytes */${info.size}` });
   let [start, end] = [0, info.size - 1];
@@ -157,7 +161,17 @@ function send(res, status, text, headers = {}) {
   res.end(text);
 }
 
-if (import.meta.main) {
+// Started as a script rather than imported: the file Node was asked to run is this one, by any
+// path or link to it. (import.meta.main says the same, but only from Node 24.2.)
+function startedAsScript() {
+  try {
+    return realpathSync(process.argv[1]) === realpathSync(fileURLToPath(import.meta.url));
+  } catch {
+    return false;
+  }
+}
+
+if (startedAsScript()) {
   let values;
   try {
     ({ values } = parseArgs({ options: { root: { type: 'string' }, out: { type: 'string' } } }));
