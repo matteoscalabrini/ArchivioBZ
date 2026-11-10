@@ -323,6 +323,48 @@ async function draw() {
     else flight = { t0: performance.now(), from, to };
   }
   controls.addEventListener('start', () => (flight = null));
+  // The controls move the camera inside their own wheel, key and pointer handlers, so a later
+  // update() finds nothing new: every change they make has to ask for a frame itself.
+  controls.addEventListener('change', () => (dirty = true));
+
+  // A wheel or a pinch over a label zooms the map as it would over the dots.
+  document.getElementById('labels').addEventListener('wheel', (event) => {
+    event.preventDefault();
+    canvas.dispatchEvent(new WheelEvent('wheel', event));
+  }, { passive: false });
+
+  // Safari sends a trackpad pinch as gesture events, not as wheel events, and zooms the page
+  // unless they are stopped. Each step of the pinch becomes the wheel step OrbitControls turns
+  // into the same change of distance (0.95 per 100 of delta), towards the pointer; a browser
+  // that also sends the pinch as Ctrl + wheel has those dropped while the gesture lasts.
+  const WHEEL_PER_LN = -100 / Math.log(0.95);
+  let pinch = 0; // the gesture's scale so far; 0 when no gesture is under way
+  const overMap = (event) => !(event.target instanceof Element && event.target.closest('.panel, .beyond, .filter, .credit'));
+  root.addEventListener('gesturestart', (event) => {
+    if (!overMap(event)) return;
+    event.preventDefault();
+    pinch = 1;
+  });
+  root.addEventListener('gesturechange', (event) => {
+    if (!pinch) return;
+    event.preventDefault();
+    const ratio = event.scale / pinch;
+    if (!(ratio > 0) || ratio === 1) return;
+    pinch = event.scale;
+    canvas.dispatchEvent(new WheelEvent('wheel', {
+      deltaY: -Math.log(ratio) * WHEEL_PER_LN, clientX: event.clientX, clientY: event.clientY, bubbles: true, cancelable: true }));
+  });
+  root.addEventListener('gestureend', (event) => {
+    if (!pinch) return;
+    event.preventDefault();
+    pinch = 0;
+  });
+  root.addEventListener('wheel', (event) => {
+    if (pinch && event.ctrlKey && event.isTrusted) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  }, { capture: true, passive: false });
 
   // The whole field, as large as it fits, with as much paper above it as below: the target moves
   // along the line of sight until the field's top and bottom edges sit evenly on the screen.
@@ -427,7 +469,7 @@ async function draw() {
       if (k >= 1) flight = null;
       dirty = true;
     }
-    if (controls.update()) dirty = true;
+    controls.update(); // carries damping on; a change marks the frame dirty
     const t = controls.target;
     t.x = Math.min(Math.max(t.x, ext.e[0]), ext.e[1]);
     t.z = Math.min(Math.max(t.z, -ext.n[1]), -ext.n[0]);
