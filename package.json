@@ -7,6 +7,7 @@
   "scripts": {
     "build": "node library/build.mjs",
     "check": "npm run build -- --check",
+    "map-data": "node library/mapgen/focus.mjs && uv run library/mapgen/fetch.py && uv run library/mapgen/build.py",
     "present": "node library/build.mjs --present",
     "serve": "node library/serve.mjs",
     "test": "node --test 'library/test/*.test.mjs'"

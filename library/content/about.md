@@ -28,4 +28,4 @@ Much of what is held belongs to its publishers and archives. The copies here are
 
 ## The map
 
-The map is the centre of Bolzano as a field of dots, drawn from the Province's laser survey at half-metre resolution and from OpenStreetMap. Places that have entries in the library are marked on it.
+The map is Bolzano from Gries to the industrial zone as a field of dots, drawn from the Province's laser survey at half-metre resolution and from OpenStreetMap. Places that have entries in the library stand on it with their pictures, and their buildings are drawn at the survey's full resolution.

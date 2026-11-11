@@ -1,106 +1,178 @@
 {
- "name": "Bolzano / Bozen — Altstadt, Talvera, Bahnhof",
- "count": 1266624,
- "scale": 0.05,
+ "name": "Bolzano / Bozen: centre, Gries, Oltrisarco, industrial zone",
+ "count": 7777866,
+ "scale": 0.1,
  "origin": {
-  "e": 680325,
-  "n": 5151985,
-  "z": 264,
+  "e": 679500,
+  "n": 5151250,
+  "z": 254,
   "crs": "EPSG:25832",
-  "lon": 11.349983,
-  "lat": 46.497287
+  "lon": 11.338957,
+  "lat": 46.490899
  },
  "extent": {
   "e": [
-   -825,
-   825
+   -2200,
+   2200
   ],
   "n": [
-   -705,
-   705
+   -1950,
+   1950
   ],
   "z": [
-   -12.53,
-   204.37
+   -20.73,
+   685.52
   ]
  },
  "height": {
-  "step": 1.0,
-  "cols": 1651,
-  "rows": 1411,
-  "e0": -825,
-  "n0": -705,
+  "step": 2.0,
+  "cols": 2201,
+  "rows": 1951,
+  "e0": -2200,
+  "n0": -1950,
   "unit": 0.1
  },
  "layers": [
   {
    "name": "ground",
    "offset": 0,
-   "count": 202674
+   "count": 1885473
   },
   {
    "name": "streets",
-   "offset": 202674,
-   "count": 58543
+   "offset": 1885473,
+   "count": 276032
   },
   {
    "name": "water",
-   "offset": 261217,
-   "count": 29494
+   "offset": 2161505,
+   "count": 100771
   },
   {
    "name": "trees",
-   "offset": 290711,
-   "count": 102824
+   "offset": 2262276,
+   "count": 955639
   },
   {
    "name": "rails",
-   "offset": 393535,
-   "count": 19182
+   "offset": 3217915,
+   "count": 55826
   },
   {
    "name": "roofs",
-   "offset": 412717,
-   "count": 264358
+   "offset": 3273741,
+   "count": 1071751
   },
   {
    "name": "walls",
-   "offset": 677075,
-   "count": 564994
+   "offset": 4345492,
+   "count": 1951662
   },
   {
    "name": "bridges",
-   "offset": 1242069,
-   "count": 24555
+   "offset": 6297154,
+   "count": 161350
+  },
+  {
+   "name": "focus_ground",
+   "offset": 6458504,
+   "count": 191940
+  },
+  {
+   "name": "focus_roofs",
+   "offset": 6650444,
+   "count": 648565
+  },
+  {
+   "name": "focus_walls",
+   "offset": 7299009,
+   "count": 467052
+  },
+  {
+   "name": "focus_bridges",
+   "offset": 7766061,
+   "count": 11805
   }
  ],
+ "focus": {
+  "places": [
+   "casa-del-fascio",
+   "corso-liberta",
+   "cristo-re",
+   "lager",
+   "lido",
+   "monumento-vittoria",
+   "noi-techpark",
+   "oltrisarco",
+   "palazzo-giustizia",
+   "ponte-druso",
+   "semirurali",
+   "sparkasse-sede",
+   "stadio-druso",
+   "zona-industriale"
+  ],
+  "roofs": 0.5,
+  "walls": [
+   0.5,
+   0.7
+  ],
+  "ground": 1.0,
+  "bridges": [
+   0.45,
+   0.65
+  ]
+ },
  "labels": [
   {
    "name": "Ponte Druso - Drususbrücke",
-   "e": -131.3,
-   "n": -280.2,
-   "z": 5.3
+   "e": 694.0,
+   "n": 454.9,
+   "z": 15.3
   },
   {
    "name": "Ponte Virgolo - Virglbrücke",
-   "e": 755.1,
-   "n": -514.6,
-   "z": 8.9
+   "e": 1580.1,
+   "n": 220.4,
+   "z": 18.9
+  },
+  {
+   "name": "Alexander-Langer-Brücke",
+   "e": 488.1,
+   "n": -131.2,
+   "z": 14.1
+  },
+  {
+   "name": "Ponte Palermo - Palermobrücke",
+   "e": -538.0,
+   "n": -522.1,
+   "z": 3.5
+  },
+  {
+   "name": "Ponte Resia - Reschenbrücke",
+   "e": -1181.2,
+   "n": -1049.5,
+   "z": 1.7
   },
   {
    "name": "Ponte Talvera - Talferbrücke",
-   "e": -238.1,
-   "n": 320.4,
-   "z": 12.7
+   "e": 586.9,
+   "n": 1055.4,
+   "z": 22.7
   },
   {
    "name": "Ponte Loreto - Loretobrücke",
-   "e": 297.0,
-   "n": -343.1,
-   "z": 2.8
+   "e": 1122.0,
+   "n": 391.9,
+   "z": 12.8
+  },
+  {
+   "name": "Ponte Roma - Rombrücke",
+   "e": 288.2,
+   "n": -179.1,
+   "z": 6.8
   }
  ],
- "buildings": 1370,
+ "buildings": 5098,
  "sources": [
   {
    "text": "Buildings, streets, bridges, water: © OpenStreetMap contributors (ODbL)",

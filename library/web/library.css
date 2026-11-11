@@ -88,36 +88,7 @@ html { scroll-padding-top: 48px; } /* keeps a focused row clear of the sticky st
 .detail.table .txt { grid-column: 2; max-width: 52ch; }
 .detail.table .txt,
 .detail.table table.recs { grid-row: 1; } /* the preview comes first in the markup, the text still sits left of it */
-.detail .txt p { margin: 0 0 14px; }
-
-.pics figure { margin: 0; }
-.pics a { display: inline-block; vertical-align: top; }
-.pics img { display: block; width: auto; height: auto; max-width: 100%; max-height: 520px; }
-.pics figcaption { margin-top: 8px; max-width: 60ch; font-size: var(--size-meta); color: var(--grey); }
-/* Several pictures: "← 2 / 6 →" on one line under the picture, above its caption, so a caption
-   of another length moves only what is below it. The padding widens what a pointer can hit; the
-   negative margin keeps the line where it was. */
-.pic-nav { display: flex; align-items: baseline; gap: 14px; margin: 8px 0 0; }
-.pic-nav button { margin: -4px -6px; padding: 4px 6px; font: 400 var(--size-text)/1.2 var(--sans); }
-.pic-nav button:hover { text-decoration: underline; text-underline-offset: 3px; }
-.pic-nav button:disabled { color: var(--grey); text-decoration: none; cursor: default; }
-.pic-n { font-size: var(--size-meta); color: var(--grey); font-variant-numeric: tabular-nums; }
-
-dl.meta { display: grid; grid-template-columns: 92px minmax(0, 1fr); row-gap: 5px; margin: 22px 0 0; font-size: var(--size-meta); }
-.txt > dl.meta:first-child { margin-top: 0; }
-dl.meta dt { color: var(--grey); }
-dl.meta dd { margin: 0; overflow-wrap: break-word; }
-dl.meta a { text-underline-offset: 3px; }
-.more { display: inline-block; margin-top: 26px; text-decoration: underline; text-underline-offset: 4px; }
-.txt > .more:first-child { margin-top: 0; }
-
-table.recs { grid-column: 3 / 6; align-self: start; width: 100%; border-collapse: collapse; font-size: var(--size-meta); }
-table.recs caption { padding-bottom: 8px; text-align: left; color: var(--grey); }
-table.recs th { padding: 0 12px 6px 0; text-align: left; font-weight: 400; color: var(--grey); }
-table.recs td { padding: 6px 12px 6px 0; border-top: var(--rule); vertical-align: top; overflow-wrap: break-word; }
-table.recs td:first-child { font-variant-numeric: tabular-nums; }
-table.recs th:last-child,
-table.recs td:last-child { padding-right: 0; }
+.detail table.recs { grid-column: 3 / 6; align-self: start; } /* the rest of an open row: detail.css */
 
 /* Every keyword with its count. */
 .foot { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 20px; padding: 70px var(--gutter) 40px; font-size: var(--size-meta); }

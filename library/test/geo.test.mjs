@@ -7,16 +7,20 @@ const meta = JSON.parse(await readFile(new URL('../map-data/dots.json', import.m
 const near = (actual, expected, within, what) =>
   assert.ok(Math.abs(actual - expected) <= within, `${what}: ${actual} is not within ${within} of ${expected}`);
 
-test('the map origin converts to its stated coordinates', () => {
+test('a point converts to its coordinates on the map\'s grid, and the map\'s own origin to itself', () => {
   const { e, n } = toUtm32(46.497287, 11.349983);
   near(e, 680325, 1, 'east');
   near(n, 5151985, 1, 'north');
+  const origin = toUtm32(meta.origin.lat, meta.origin.lon);
+  near(origin.e, meta.origin.e, 1, 'origin east');
+  near(origin.n, meta.origin.n, 1, 'origin north');
 });
 
 test('Ponte Druso lands where the dot data labels it', () => {
   const at = locate({ lat: 46.49477, lon: 11.34827 }, meta);
-  near(at.x, -131.3, 15, 'x');
-  near(at.y, -280.2, 15, 'y');
+  const bridge = meta.labels.find((l) => l.name.startsWith('Ponte Druso'));
+  near(at.x, bridge.e, 15, 'x');
+  near(at.y, bridge.n, 15, 'y');
   assert.equal(at.inside, true);
 
   // The library's own coordinates (places.json, OpenStreetMap) for the two labelled bridges it names.
@@ -27,10 +31,11 @@ test('Ponte Druso lands where the dot data labels it', () => {
   }
 });
 
-test('the Semirurali fall outside', () => {
-  const at = locate({ lat: 46.4870, lon: 11.3250 }, meta);
-  assert.equal(at.inside, false);
-  assert.ok(at.x < meta.extent.e[0] && at.y < meta.extent.n[0], 'south-west of the dot field');
+test('the Semirurali are on the field, Laives is south of it', () => {
+  assert.equal(locate({ lat: 46.4870, lon: 11.3250 }, meta).inside, true);
+  const laives = locate({ lat: 46.4275, lon: 11.3377 }, meta);
+  assert.equal(laives.inside, false);
+  assert.ok(laives.y < meta.extent.n[0], 'south of the dot field');
 });
 
 test('a place without coordinates is neither inside nor located', () => {

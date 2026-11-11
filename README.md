@@ -29,6 +29,22 @@ One thing, one row. Several views of the same thing are one row with several pic
 
 Where the shared lists live: keywords in `library/content/keywords.json` (rename or merge a keyword there, in one line, never by editing records), places in `library/content/places.json`, the idea in `library/content/idea.md`. The idea is the author's text; a word is made a keyword by writing `[[word|Keyword]]`.
 
+### The map's dot data
+
+The map draws `library/map-data/`, which `library/mapgen/` makes from OpenStreetMap and the Province's half-metre laser survey. Why and how: `docs/superpowers/specs/2026-11-11-map-pictures-wider-field-design.md`.
+
+```sh
+npm run map-data   # needs uv; fetches what is missing into library/.cache/map-raw/, then rebuilds the data
+```
+
+Run it again, then `npm run build`, when:
+
+- a place gets its first row. The build says so by name ("made before … had rows"). Until then the place is on the map, but its buildings are drawn like the rest of the city, not at full resolution.
+- a place is added to `library/content/places.json` or its `osm` object changes.
+- the rectangle in `library/mapgen/area.json` changes.
+
+Building and showing the site need neither the network nor Python; only this command does. The downloads (about 380 MB) stay outside git; delete `library/.cache/map-raw/osm.json` to take OpenStreetMap afresh.
+
 A third investigation was added on 10 November 2026: `research_notes/Defusing by form/`, the references on defusing charged material by changing its form. Its notes file is the conversation in which that direction was worked out.
 
 ## Start here

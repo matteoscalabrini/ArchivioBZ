@@ -1,6 +1,7 @@
-/* The Map page: the dot field fills the window under the frame; labels stand on it, the panel
-   opens on the right, the places beyond it sit bottom left, the credit bottom right. Without
-   WebGL (.flat) the places and their rows are a plain list. */
+/* The Map page: the dot field fills the window under the frame; on it each place's name and its
+   rows' pictures in small pointed frames; the panel opens on the right with a place's rows or one
+   row; the places beyond the field sit bottom left, the credit bottom right. Without WebGL
+   (.flat) the places and their rows are a plain list. */
 
 [hidden] { display: none !important; }
 
@@ -13,23 +14,72 @@ main { position: relative; flex: 1; min-height: 0; margin-top: 22px; border-top:
 .scene:active { cursor: grabbing; }
 .scene:focus-visible { outline-offset: -2px; }
 
-/* Labels, each on top of its stem. */
-.labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
-.stem { position: absolute; left: 0; top: 0; width: 1px; height: 0; background: var(--ink); visibility: hidden; }
+/* On each place a group (map.js): a point moved onto the place, from which hang the pictures, a
+   hairline from each picture's point, the name over them, and the stem a crowded group rises on. */
+.labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; isolation: isolate; }
+.labels > .place, .labels > .pin { visibility: hidden; } /* until map.js has grouped them */
+.group { position: absolute; left: 0; top: 0; width: 0; height: 0; visibility: hidden; will-change: transform; }
+.rise { position: absolute; left: -0.5px; bottom: 0; width: 1px; height: 0; background: var(--ink); }
+.lifted { position: absolute; left: 0; top: 0; width: 0; height: 0; }
+.leader {
+  position: absolute;
+  left: -0.5px;
+  top: 0;
+  width: 1px;
+  height: 0;
+  background: var(--ink);
+  transform-origin: 0.5px 0;
+  opacity: 0;
+  transition: transform .28s cubic-bezier(.2, .7, .2, 1), height .28s cubic-bezier(.2, .7, .2, 1), opacity .2s;
+}
+
+/* A row's picture: 60 px high, 2 px of paper, a hairline, a point underneath. Without a picture,
+   the row's type word in the same frame. */
+.pin {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 2px;
+  border: var(--rule);
+  background: var(--paper);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform .28s cubic-bezier(.2, .7, .2, 1), opacity .2s;
+}
+.pin.on { opacity: 1; pointer-events: auto; }
+.pin img { position: relative; z-index: 1; display: block; width: var(--w); height: 60px; object-fit: cover; object-position: 50% 0; }
+.pin.blank { width: calc(var(--w) + 6px); height: 66px; font-size: var(--size-count); line-height: 1.2; color: var(--grey); text-align: center; }
+.pin::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  width: 8px;
+  height: 8px;
+  margin-left: -4px;
+  background: var(--paper);
+  border-right: var(--rule);
+  border-bottom: var(--rule);
+  transform: rotate(45deg);
+}
+.pin:hover, .pin:focus-visible, .pin.cur { outline: 2px solid var(--ink); outline-offset: 0; z-index: 2; }
+
+/* The place's name and count over its pictures; over a picture, that row's number and title. */
 .place {
   position: absolute;
   left: 0;
   top: 0;
-  max-width: 340px;
-  padding: 1px 6px 3px;
+  padding: 0 4px 1px;
   background: var(--paper);
+  white-space: nowrap;
+  font-size: var(--size-meta);
+  line-height: 17px;
   pointer-events: auto;
-  visibility: hidden; /* until map.js has put it in its place */
-  will-change: transform;
+  transition: transform .28s cubic-bezier(.2, .7, .2, 1);
 }
-.place .name { font: 400 var(--size-title)/1.1 var(--serif); }
-.place .n { font-size: var(--size-meta); color: var(--grey); }
-.place:hover .name { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.place .n { margin-left: 2px; color: var(--grey); }
+.place .cap { display: inline-block; max-width: 340px; overflow: hidden; text-overflow: ellipsis; vertical-align: bottom; }
+.place:hover .name { text-decoration: underline; text-underline-offset: 3px; }
 .place[aria-expanded="true"] { background: var(--ink); color: var(--paper); }
 .place[aria-expanded="true"] .n { color: var(--paper); }
 .place:focus-visible { outline-offset: 0; }
@@ -76,6 +126,27 @@ ol.rows .sep { color: var(--grey); }
 ol.rows .title { font: 400 var(--size-text)/1.3 var(--serif); }
 ol.rows a:hover .title { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
 
+/* One row in the panel, in place of its place's list: the way back, number · type · date, the
+   title, what the Library shows in the open row in one column, the way to it in the Library, and
+   the steps to the rows before and after. */
+.rows-of.reading > h2,
+.rows-of.reading > ol.rows { display: none; }
+.e-nav { margin: 6px 0 0; font-size: var(--size-meta); }
+.e-back { text-decoration: underline; text-underline-offset: 4px; }
+.entry .e-meta { margin: 22px 0 6px; font-size: var(--size-meta); color: var(--grey); }
+.entry h3 { font-size: var(--size-title); line-height: 1.16; overflow-wrap: break-word; }
+.entry h3:focus { outline: 0; }
+.entry h3:focus-visible { outline: 2px solid var(--ink); }
+.entry .detail { padding-top: 16px; }
+.entry .pics + .txt,
+.entry table.recs + .txt { margin-top: 20px; }
+.entry .pics img { max-height: 440px; }
+.e-library { display: block; margin-top: 26px; text-decoration: underline; text-underline-offset: 4px; }
+.e-step { display: flex; align-items: baseline; gap: 16px; margin: 30px 0 0; padding-top: 10px; border-top: var(--rule); font-size: var(--size-meta); }
+.e-step .n { color: var(--grey); font-variant-numeric: tabular-nums; }
+.e-step button:not(:disabled) { text-decoration: underline; text-underline-offset: 4px; }
+.e-step button:disabled { color: var(--grey); cursor: default; }
+
 /* The places beyond the dot field, bottom left. */
 .beyond {
   position: absolute;
@@ -119,7 +190,9 @@ body:has(.map.flat) { display: block; height: auto; overflow: visible; }
 .map.flat { position: static; overflow: visible; }
 .map.flat .scene,
 .map.flat .labels,
-.map.flat .close { display: none; }
+.map.flat .close,
+.map.flat .e-nav,
+.map.flat .e-step { display: none; }
 .map.flat .filter,
 .map.flat .panel,
 .map.flat .beyond,
@@ -130,6 +203,6 @@ body:has(.map.flat) { display: block; height: auto; overflow: visible; }
 .map.flat .credit { padding-top: 40px; }
 
 @media (max-width: 600px) {
-  .place { max-width: 200px; }
+  .place .cap { max-width: 200px; }
   .beyond { max-height: 45%; }
 }

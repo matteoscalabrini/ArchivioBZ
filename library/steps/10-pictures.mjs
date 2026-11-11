@@ -1,9 +1,12 @@
 // Pictures for the Library page. Every held image becomes a JPEG at most 1600 px on its longer
 // side, never enlarged, transparency on white; a row with no image whose file is a PDF gets its
 // first page. entry.pictures = [{src, w, h, caption, original}], src relative to `out`.
+// A row that has a place also gets entry.thumb = {src, w, h}: its first picture at most 220 px on
+// its longer side, the small picture it has on the map.
 //
 // Conversions are kept in library/.cache/img/ under a key made of the source's path, size and
-// modification time, so a rebuild converts only what is new or changed. A file that cannot be
+// modification time, so a rebuild converts only what is new or changed (the small pictures the
+// same way, in library/.cache/thumb/). A file that cannot be
 // converted is a warning naming its row; the build goes on.
 import { execFile } from 'node:child_process';
 import { createHash, randomUUID } from 'node:crypto';
@@ -14,6 +17,7 @@ import { promisify } from 'node:util';
 
 const run = promisify(execFile);
 const MAX = 1600;
+const THUMB = 220;
 const CACHE_VERSION = 1; // raise when the conversion changes, so old results are not reused
 const TIMEOUT = 120_000;
 const AT_ONCE = Math.max(1, Math.min(8, os.availableParallelism()));
@@ -36,11 +40,13 @@ export default async function pictures(ctx) {
   }
 
   const converting = new Map(); // source path -> promise of its cached conversion
+  const converted = new Map(); // a picture's src -> its file in the cache
   const made = await inTurn(jobs, AT_ONCE, async (job) => {
     try {
       if (!converting.has(job.abs)) converting.set(job.abs, cached(job.abs, cache));
       const { file, w, h } = await converting.get(job.abs);
       await ctx.copyFile(file, job.src);
+      converted.set(job.src, file);
       return { src: job.src, w, h, caption: job.caption, original: ctx.sourceUrl(job.abs) };
     } catch (err) {
       warn(job.entry, `no picture from "${job.name}": ${reason(err)}`);
@@ -50,6 +56,41 @@ export default async function pictures(ctx) {
 
   for (const entry of ctx.lib.entries) entry.pictures = [];
   jobs.forEach((job, n) => made[n] && job.entry.pictures.push(made[n]));
+
+  const small = path.join(ctx.root, 'library', '.cache', 'thumb');
+  await mkdir(small, { recursive: true });
+  const placed = ctx.lib.entries.filter((entry) => entry.place && Object.hasOwn(ctx.lib.places ?? {}, entry.place) && entry.pictures.length);
+  await inTurn(placed, AT_ONCE, async (entry) => {
+    try {
+      const [first] = entry.pictures;
+      const { file, w, h } = await thumb(converted.get(first.src), first, small);
+      const src = `img/t/${entry.no}.jpg`;
+      await ctx.copyFile(file, src);
+      entry.thumb = { src, w, h };
+    } catch (err) {
+      warn(entry, `no small picture for the map: ${reason(err)}`);
+    }
+  });
+}
+
+// The small copy of the converted picture `file` ({w, h} its size) in `cache`, made only once.
+async function thumb(file, { w, h }, cache) {
+  const { size, mtimeMs } = await stat(file);
+  const key = createHash('sha256').update(`${CACHE_VERSION}\0${THUMB}\0${file}\0${size}\0${mtimeMs}`).digest('hex').slice(0, 32);
+  const dest = path.join(cache, `${key}.jpg`);
+  const known = await readFile(dest).then(jpegSize, () => null);
+  if (known) return { file: dest, ...known };
+  const part = path.join(cache, `${key}.${randomUUID()}.part.jpg`);
+  try {
+    const scale = Math.max(w, h) > THUMB ? ['-Z', String(THUMB)] : []; // sips -Z alone would also enlarge
+    await run('sips', [...scale, '-s', 'format', 'jpeg', '-s', 'formatOptions', '75', file, '--out', part], { timeout: TIMEOUT });
+    const made = jpegSize(await readFile(part));
+    if (!made) throw new Error('the small picture is not a JPEG');
+    await rename(part, dest);
+    return { file: dest, ...made };
+  } finally {
+    await rm(part, { force: true });
+  }
 }
 
 // The converted file for `abs` in `cache`, converting only when the cache does not hold it.

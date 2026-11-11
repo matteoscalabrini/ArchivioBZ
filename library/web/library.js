@@ -1,6 +1,7 @@
 // The Library page in the browser: the keyword filter, the sort, rows that open in place, pictures
 // that load when their row first opens, and the address kept in step with all of it (state.js).
-import { parseState, formatState, matches, compare, pictureAt } from './state.js';
+import { parseState, formatState, matches, compare } from './state.js';
+import { load, stepPicture } from './pictures.js';
 
 const list = document.querySelector('.list');
 const status = document.querySelector('.status');
@@ -126,28 +127,8 @@ function setOpen(row, open) {
   if (open) load(row.el.querySelector('.pics figure:not([hidden]) img'));
 }
 
-// One picture on (+1) or back (-1) from the one whose arrow was used. Each picture carries its own
-// "← n / N →"; if the arrow used had the focus, the focus moves to the same arrow under the picture
-// now shown, or to the other one where that is disabled, at the first or the last.
-function stepPicture(arrow, step) {
-  const figures = [...arrow.closest('.pics').querySelectorAll('figure')];
-  const from = figures.indexOf(arrow.closest('figure'));
-  const to = pictureAt(from, step, figures.length);
-  if (from < 0 || to === from) return;
-  const focused = document.activeElement === arrow;
-  figures.forEach((figure, i) => (figure.hidden = i !== to));
-  load(figures[to].querySelector('img'));
-  if (!focused) return;
-  const arrows = [...figures[to].querySelectorAll('.pic-nav button[data-step]')].filter((button) => !button.disabled);
-  (arrows.find((button) => button.dataset.step === arrow.dataset.step) ?? arrows[0])?.focus({ preventScroll: true });
-}
-
 function setText(el, text) {
   if (el.textContent !== text) el.textContent = text;
-}
-
-function load(img) {
-  if (img && !img.getAttribute('src')) img.src = img.dataset.src;
 }
 
 // Puts a row just under the sticky status line.

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import path from 'node:path';
 import { existsSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
-import { cameFromLibrary } from '../web/back.js';
+import { cameFromLibrary, cameFromMap } from '../web/back.js';
 import { buildFixtures } from './helpers.mjs';
 
 test('"← Library" goes back in history only when the reader came from this site\'s Library', () => {
@@ -17,6 +17,18 @@ test('"← Library" goes back in history only when the reader came from this sit
   assert.equal(cameFromLibrary('http://127.0.0.1:5180/index.html', href, here), false, 'another origin');
   assert.equal(cameFromLibrary('https://example.org/index.html', href, here), false);
   assert.equal(cameFromLibrary('not an address', href, here), false);
+});
+
+test('"← Map" is the way back only when the reader came from this site\'s Map', () => {
+  const href = '../index.html#o=5.01';
+  for (const here of ['http://127.0.0.1:5199/read/5.01.html', 'http://127.0.0.1:5199/table/5.03.html']) {
+    assert.equal(cameFromMap('http://127.0.0.1:5199/map.html', href, here), true);
+    assert.equal(cameFromMap('http://127.0.0.1:5199/index.html', href, here), false);
+    assert.equal(cameFromMap('http://127.0.0.1:5199/read/map.html', href, here), false, 'another page of that name');
+    assert.equal(cameFromMap('http://127.0.0.1:5180/map.html', href, here), false, 'another origin');
+    assert.equal(cameFromMap('', href, here), false);
+    assert.equal(cameFromMap('not an address', href, here), false);
+  }
 });
 
 test('read and table pages carry the back-link script and keep the link\'s own address', async () => {

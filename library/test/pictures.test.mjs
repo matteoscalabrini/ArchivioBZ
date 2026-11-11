@@ -188,3 +188,26 @@ function pixel(bmp, x, y) {
   const at = offset + row * stride + x * bytes;
   return [bmp[at + 2], bmp[at + 1], bmp[at]];
 }
+
+test('a row with a place gets a small picture of its first picture, 220 px at most; other rows none', async () => {
+  const { out, entry } = await fixtures();
+  const thumb = entry('5.01').thumb;
+  assert.equal(thumb.src, 'img/t/5.01.jpg');
+  const made = probe(path.join(out, thumb.src));
+  assert.equal(made.format, 'jpeg');
+  assert.equal(Math.max(made.w, made.h), 220);
+  assert.deepEqual([thumb.w, thumb.h], [made.w, made.h]);
+  const first = entry('5.01').pictures[0];
+  assert.ok(Math.abs(made.w / made.h - first.w / first.h) < 0.02, 'the shape of the first picture');
+  for (const no of ['0.01', '5.02', '5.03']) assert.equal(entry(no).thumb, undefined, `${no} has no place`);
+});
+
+test('a second build makes no small picture again', async () => {
+  const root = await cleanRoot();
+  const cache = path.join(root, 'library', '.cache', 'thumb');
+  await runStep(root);
+  const made = await mtimes(cache);
+  assert.equal(made.size, 1);
+  await runStep(root);
+  assert.deepEqual(await mtimes(cache), made);
+});

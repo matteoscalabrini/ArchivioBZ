@@ -1,0 +1,6 @@
+{
+ "name": "Bolzano / Bozen: centre, Gries, Oltrisarco, industrial zone",
+ "crs": "EPSG:25832",
+ "bbox": [677300, 5149300, 681700, 5153200],
+ "note": "4.4 x 3.9 km, every place with rows inside. Change it and run `npm run map-data` to move or resize the map."
+}
