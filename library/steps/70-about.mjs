@@ -26,12 +26,12 @@ export default async function about(ctx) {
 <article class="read about">
 ${text}
 <h2>Entries by type</h2>
-<table>
+<div class="sheet"><table>
 <thead><tr><th scope="col">Type</th><th scope="col">Entries</th></tr></thead>
 <tbody>
 ${types.map(([type, count]) => `<tr><td>${esc(type)}</td><td>${count}</td></tr>`).join('\n')}
 </tbody>
-</table>
+</table></div>
 <p class="totals">${totals}</p>
 </article>`;
   await ctx.write('about.html', page({ title: 'About', tab: 'about', body, css: ['web/read.css'] }));

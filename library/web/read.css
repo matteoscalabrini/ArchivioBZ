@@ -1,11 +1,18 @@
-/* A long read: title in serif 44, then a column of at most 68ch at 15 px. Headings are serif,
-   normal weight: h2 22 px, h3 and below 15 px. Tables 12 px with hairlines; figures at column width. */
+/* A long read: title in serif 44, then the text at 15 px in a column of at most 640 px. Headings
+   are serif, normal weight: h2 22 px, h3 and below 15 px. Figures at column width. Tables 12 px
+   with hairlines; a wide one runs past the text, out to the title's width. */
+
+:root {
+  --measure: 640px; /* the text column */
+  --wide: 1144px; /* the title, and a table that needs the room: 26 em of the title's 44 px */
+}
 
 main { padding: 44px var(--gutter) 80px; }
 .back { font-size: var(--size-meta); text-underline-offset: 4px; }
-main > h1 { margin: 26px 0 40px; max-width: 26em; overflow-wrap: break-word; }
+main > h1 { margin: 26px 0 40px; max-width: var(--wide); overflow-wrap: break-word; }
 
-.read { max-width: 68ch; overflow-wrap: break-word; }
+.read { max-width: var(--wide); overflow-wrap: break-word; }
+.read > * { max-width: var(--measure); }
 .read > :first-child { margin-top: 0; }
 .read p, .read ul, .read ol, .read blockquote { margin: 0 0 1em; }
 .read ul, .read ol { padding-left: 1.4em; }
@@ -17,8 +24,17 @@ main > h1 { margin: 26px 0 40px; max-width: 26em; overflow-wrap: break-word; }
 .read hr { margin: 2em 0; }
 .read pre { margin: 0 0 1em; white-space: pre-wrap; }
 
-.read table { width: 100%; margin: 0 0 1.6em; border-collapse: collapse; table-layout: auto; font-size: var(--size-meta); line-height: 1.4; }
-.read th, .read td { padding: 6px 12px 6px 0; border-top: var(--rule); vertical-align: top; text-align: left; font-weight: 400; overflow-wrap: anywhere; }
+/* A table stands in a strip (.sheet, from the build). A table of two columns is a list and keeps
+   to the text column; one of three or more is as wide as its cells ask, out to the title's width,
+   and never narrower than the text column. Words stay whole, only an address breaks, so where a
+   table is wider than the page its strip scrolls sideways. The strip's 4 px of padding, taken
+   back by its margin, keep a focus outline at its edge from being cut off. */
+.read .sheet { margin: 0 -4px 1.3em; padding: 0 4px; overflow-x: auto; }
+.read > .sheet { max-width: calc(var(--measure) + 8px); }
+.read > .sheet:has(:is(th, td):nth-child(3)) { max-width: calc(100% + 8px); }
+.read table { width: auto; min-width: min(100%, var(--measure)); border-collapse: collapse; font-size: var(--size-meta); line-height: 1.4; }
+.read th, .read td { padding: 6px 12px 6px 0; border-top: var(--rule); vertical-align: top; text-align: left; font-weight: 400; }
+.read td a { overflow-wrap: anywhere; }
 .read thead th { border-top: 0; border-bottom: var(--rule); color: var(--grey); }
 .read th:last-child, .read td:last-child { padding-right: 0; }
 .read td p, .read th p { margin: 0; }

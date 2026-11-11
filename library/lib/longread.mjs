@@ -44,7 +44,19 @@ export function renderMarkdown(text, { linkBase = REPO, root = REPO } = {}) {
   const tokens = md.lexer(String(text));
   const first = tokens.findIndex((t) => t.type !== 'space');
   if (first >= 0 && tokens[first].type === 'heading' && tokens[first].depth === 1) tokens.splice(first, 1);
-  return md.parser(tokens);
+  return sheets(md.parser(tokens));
+}
+
+// Each table goes in a strip of its own, <div class="sheet">: read.css lets the strip run wider
+// than the text and scroll sideways where the table is wider than the page. A table inside a
+// table stays in the outer one's strip.
+export function sheets(html) {
+  let depth = 0;
+  return html.replace(/<(\/?)table\b[^>]*>/g, (tag, closing) => {
+    if (!closing) return depth++ ? tag : `<div class="sheet">${tag}`;
+    if (!depth) return tag;
+    return --depth ? tag : `${tag}</div>`;
+  });
 }
 
 function resolveLink(href, linkBase, root) {
@@ -122,7 +134,7 @@ const textOf = (html) => html.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').tr
 
 // What a Word report needs to read well on a page: no contents block (its page numbers mean
 // nothing here), no empty headings, figures in a single column with their captions, no title
-// repeated as the first heading, no h1 below.
+// repeated as the first heading, no h1 below, each table in its strip.
 export function tidyWord(html) {
   let out = html;
   // Figure grids are laid out as tables; the page shows each figure on its own.
@@ -137,7 +149,7 @@ export function tidyWord(html) {
   // A report opens with a cover and then its own title as the first heading: the page has that.
   if (/^(?:(?!<h[1-6]>)[\s\S])*?<h1>/.test(out)) out = out.replace(/<h1>[\s\S]*?<\/h1>/, '');
   out = figures(out);
-  return out.replace(/<(\/?)h1>/g, '<$1h2>');
+  return sheets(out.replace(/<(\/?)h1>/g, '<$1h2>'));
 }
 
 // "Figure 12. ..." in a paragraph of its own is the caption of the nearest image: the one just

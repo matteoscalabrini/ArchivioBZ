@@ -5,7 +5,7 @@ import { existsSync } from 'node:fs';
 import { readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { loadLibrary, sourceUrl } from '../lib/records.mjs';
-import { renderMarkdown, renderDocx, tidyWord } from '../lib/longread.mjs';
+import { renderMarkdown, renderDocx, sheets, tidyWord } from '../lib/longread.mjs';
 import longreads from '../steps/40-longreads.mjs';
 import { buildFixtures, cleanRoot, tempDir } from './helpers.mjs';
 
@@ -72,6 +72,27 @@ test('a script tag in the markdown is not executed markup', () => {
 test('a table renders as a table', () => {
   const html = renderMarkdown('| a | b |\n|---|---|\n| 1 | 2 |\n', { linkBase: REPO });
   assert.match(html, /<table>[\s\S]*<th>a<\/th>[\s\S]*<td>2<\/td>/);
+});
+
+test('a table stands in a strip of its own, from Markdown and from Word', () => {
+  const html = renderMarkdown('Before.\n\n| a | b |\n|---|---|\n| 1 | 2 |\n\nAfter.\n', { linkBase: REPO });
+  assert.match(html, /<p>Before\.<\/p>\s*<div class="sheet"><table>[\s\S]*<\/table><\/div>\s*<p>After\.<\/p>/);
+  assert.equal(html.match(/class="sheet"/g).length, 1);
+  assert.equal(
+    tidyWord('<p>a</p><table><tr><td><p>1</p></td></tr></table><p>b</p>'),
+    '<p>a</p><div class="sheet"><table><tr><td><p>1</p></td></tr></table></div><p>b</p>',
+  );
+  const grid = '<table><tr><td><p><img src="x.png" alt="" /></p></td></tr></table>';
+  assert.doesNotMatch(tidyWord(grid), /sheet|<table/, 'a grid of figures is no table, and gets no strip');
+});
+
+test('a table inside a table shares the outer strip', () => {
+  const inner = '<table><tr><td>in</td></tr></table>';
+  assert.equal(
+    sheets(`<p>x</p><table class="t"><tr><td>${inner}</td></tr></table><table></table>`),
+    `<p>x</p><div class="sheet"><table class="t"><tr><td>${inner}</td></tr></table></div><div class="sheet"><table></table></div>`,
+  );
+  assert.equal(sheets('<p>no table</p></table>'), '<p>no table</p></table>', 'a stray closing tag opens nothing');
 });
 
 test('the step writes a page per read row: title, way back, body, no repeated heading', async () => {

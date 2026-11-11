@@ -33,6 +33,7 @@ test('counts by type match the fixtures', async () => {
   assert.match(html, /<a href="about\.html" aria-current="page">About<\/a>/);
   assert.match(html, /<h2>Entries by type<\/h2>/);
   assert.match(html, /<thead><tr><th scope="col">Type<\/th><th scope="col">Entries<\/th><\/tr><\/thead>/);
+  assert.match(html, /<div class="sheet"><table>[\s\S]*<\/table><\/div>\n<p class="totals">/, 'the table stands in a strip, as on the read pages');
   const counted = rows(html);
   const expected = new Map();
   for (const e of lib.entries) expected.set(e.type, (expected.get(e.type) ?? 0) + 1);
