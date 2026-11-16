@@ -51,18 +51,28 @@ if (dryRun) process.exit(0);
 let done = 0;
 let sent = 0;
 await inTurn(upload, AT_ONCE, async (file) => {
-  const result = await attempt(() => put(file.path, openAsBlob(path.join(ROOT, file.path)), {
+  await attempt(async () => put(file.path, await openAsBlob(path.join(ROOT, file.path)), {
     access: 'private',
     addRandomSuffix: false,
     allowOverwrite: true,
     contentType: typeOf(file.path),
     multipart: file.size > MULTIPART,
   }));
-  remote.set(file.path, { pathname: file.path, size: file.size, url: result.url, uploadedAt: new Date() });
   done += 1;
   sent += file.size;
   if (done % 25 === 0 || done === upload.length) console.log(`uploaded ${done}/${upload.length}, ${mb(sent)} of ${mb(total)}`);
 });
+
+// What Blob holds now, checked against the disk: a copy of another size is an error, and the
+// database is not written (it records what Blob holds, not what was meant to be sent).
+const held = await blobs();
+const wrong = local.filter((file) => held.get(file.path)?.size !== file.size);
+if (wrong.length) {
+  for (const file of wrong.slice(0, 20)) console.error(`ERROR ${file.path}: ${file.size} bytes on disk, ${held.get(file.path)?.size ?? 'nothing'} in Blob`);
+  console.error(`${wrong.length} media are not in Blob as they are on disk: the database is not written`);
+  process.exit(1);
+}
+console.log(`checked: all ${local.length} media are in Blob at their size on disk`);
 
 if (!process.env.DATABASE_URL) {
   console.log('no DATABASE_URL: the media are in Blob, the database is not written');
@@ -79,14 +89,14 @@ if (errors.length) {
 const onDisk = new Map(local.map((file) => [file.path, file]));
 const hashes = new Map();
 await inTurn(local, AT_ONCE, async (file) => hashes.set(file.path, await sha256(path.join(ROOT, file.path))));
-const media = [...remote.values()].map((held) => ({
-  path: held.pathname,
-  size: held.size,
-  sha256: hashes.get(held.pathname) ?? null,
-  content_type: typeOf(held.pathname),
-  blob_url: held.url,
-  uploaded_at: held.uploadedAt.toISOString(),
-  on_disk: onDisk.has(held.pathname),
+const media = [...held.values()].map((blob) => ({
+  path: blob.pathname,
+  size: blob.size,
+  sha256: hashes.get(blob.pathname) ?? null,
+  content_type: typeOf(blob.pathname),
+  blob_url: blob.url,
+  uploaded_at: blob.uploadedAt.toISOString(),
+  on_disk: onDisk.has(blob.pathname),
 }));
 const kinds = JSON.parse(await readFile(path.join(ROOT, 'library', 'content', 'kinds.json'), 'utf8'));
 const t = tables(lib, ROOT, media, { kinds });
