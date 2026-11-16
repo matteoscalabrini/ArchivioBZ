@@ -148,5 +148,29 @@
   },
   "autonomy": {
     "label": "Autonomy"
+  },
+  "censorship": {
+    "label": "Censorship"
+  },
+  "brenner": {
+    "label": "Brenner"
+  },
+  "school": {
+    "label": "School"
+  },
+  "counter-propaganda": {
+    "label": "Counter-propaganda"
+  },
+  "maps": {
+    "label": "Maps and plans"
+  },
+  "theatre": {
+    "label": "Theatre"
+  },
+  "exhibitions": {
+    "label": "Exhibitions"
+  },
+  "occupation": {
+    "label": "German occupation 1943–45"
   }
 }

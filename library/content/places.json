@@ -117,5 +117,33 @@
     "lon": 11.34897,
     "osm": "way/125987147",
     "source": "Sparkasse head office, via Cassa di Risparmio 12 at the corner of Via Museo, centre of the building footprint, OpenStreetMap way 125987147"
+  },
+  "palazzo-mercantile": {
+    "name": "Palazzo Mercantile",
+    "lat": 46.49934,
+    "lon": 11.35422,
+    "osm": "way/165457073",
+    "source": "Palazzo Mercantile (Merkantilgebäude) between Via Argentieri and Via dei Portici, as returned by Nominatim, OpenStreetMap way 165457073"
+  },
+  "scuola-dante-alighieri": {
+    "name": "Scuola Dante Alighieri",
+    "lat": 46.49815,
+    "lon": 11.34885,
+    "osm": "way/87346417",
+    "source": "Scuola Dante Alighieri, the former Kaiserin-Elisabeth-Schule ('Scuola Regina Elena' from 1922), as returned by Nominatim (address given as Via Rosmini; the building stands on the corner with Via Cassa di Risparmio), OpenStreetMap way 87346417"
+  },
+  "museo-civico": {
+    "name": "Museo Civico",
+    "lat": 46.4998,
+    "lon": 11.34902,
+    "osm": "way/77602821",
+    "source": "Museo Civico (Stadtmuseum) at the corner of Via Museo and Via Cassa di Risparmio, as returned by Nominatim, OpenStreetMap way 77602821"
+  },
+  "cinema-corso": {
+    "name": "Cinema Corso",
+    "lat": 46.50124,
+    "lon": 11.34143,
+    "osm": "way/239424576",
+    "source": "Site of the Palazzo del Turismo / Cinema Corso (demolished 1988–89), west corner of Corso della Libertà and Via Virgilio: address node Corso della Libertà 23 (OpenStreetMap node 2749578201, via Overpass); the building outline is OpenStreetMap way 239424576, which covers the whole block front, Corso della Libertà 23–39"
   }
 }

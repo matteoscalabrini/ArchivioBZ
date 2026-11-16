@@ -199,13 +199,16 @@ test('a link from a row in the panel to another row leads to the Library', async
 });
 
 test('a place the dot data was made without is named in a warning, and still drawn', async () => {
+  // A place of the test's own, inside the field: the real dot data can never have been made for
+  // it, whichever real places have rows by now (Piazza Walther got its first on 12 November 2026).
   const { html, problems } = await render((lib) => {
-    lib.entries.find((e) => e.no === '5.03').place = 'piazza-walther';
+    lib.places['added-later'] = { name: 'A place added later', lat: 46.4985, lon: 11.353 };
+    lib.entries.find((e) => e.no === '5.03').place = 'added-later';
   });
-  assert.deepEqual(markers(html).map((m) => m[1]), ['ponte-druso', 'piazza-walther']);
+  assert.deepEqual(markers(html).map((m) => m[1]), ['ponte-druso', 'added-later']);
   const warning = problems.find((p) => p.where === 'library/map-data/dots.json');
   assert.equal(warning?.level, 'warn');
-  assert.match(warning.message, /^made before Piazza Walther had rows: .*npm run map-data/);
+  assert.match(warning.message, /^made before A place added later had rows: .*npm run map-data/);
   const clean = await render();
   assert.equal(clean.problems.find((p) => p.where === 'library/map-data/dots.json'), undefined, 'Ponte Druso was in the data');
 });

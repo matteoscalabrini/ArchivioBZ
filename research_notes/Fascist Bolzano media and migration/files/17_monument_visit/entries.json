@@ -1,0 +1,1586 @@
+{
+ "entries": [
+  {
+   "no": "17.00",
+   "title": "A morning in the Monument to Victory, 14 November 2026: five printed pieces shown in BZ '18–'45, cut square and traced",
+   "type": "Notes",
+   "date": "2026",
+   "year": 2026,
+   "keywords": [
+    "monumento-vittoria",
+    "posters",
+    "exhibitions",
+    "press",
+    "heritage"
+   ],
+   "text": [
+    "The working notes on a morning in the crypt of the Monument to Victory. Five printed pieces hang there as reproductions in steel boxes: two exhibition posters, a pamphlet cover from Munich, a magazine cover and a poster for a column. Each was photographed from below, cut to its sheet and set square, then traced to an original, a maker and an occasion in catalogues and newspapers.",
+    "The rest of that morning's photographs follow as rows of their own, the eagle heads of Ponte Druso among them."
+   ],
+   "facts": [
+    "Thread 17 notes, research date 14 November 2026; extends notes 01 (posters), 03 (press), 05 §3–4 (the monument and the exhibition), 15 and 16 (notes 17, header)",
+    "49 photographs taken 12:36–13:04; 47 of the files first placed in the repository were 360 × 480 previews, the originals were exported from the Photos app (notes 17, §1, [V])",
+    "The five pieces were cut with library/tools/rectify.py; proportions worked out from each photograph's lens, not assumed; the cuts are described in rectify.json and can be made again (notes 17, §2, [V])",
+    "Three of the five trace to a holding: the 1929 and 1933 posters to the Museo Nazionale Collezione Salce, Treviso; the 1932 pamphlet to libraries in Munich, Innsbruck and Bolzano. For the 1935 cover no digitised issue and for the 1938 poster no original was found (notes 17, §3–§7)",
+    "Correction to notes 15: 'the 1938 column' is the Colonna Romana of 5 June 1938, not the Brenner boundary post of Luce B1312 (notes 17, §7, [V] and [INF])",
+    "The two eagle heads of Ponte Druso are on show in 2026, which notes 05 §1 could not say (notes 17, §1, [V])"
+   ],
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "read",
+    "target": "../../../../library/content/reads/17.00.md",
+    "title": "A morning under the Monument to Victory: five printed pieces, traced"
+   }
+  },
+  {
+   "no": "17.01",
+   "title": "Iª Esposizione Nazionale dell'Alto Adige, Bolzano, 10 agosto – 10 settembre 1929",
+   "type": "Poster",
+   "date": "1929",
+   "year": 1929,
+   "keywords": [
+    "posters",
+    "exhibitions",
+    "monumento-vittoria",
+    "symbol"
+   ],
+   "text": [
+    "A winged Victory comes down the steps of the Monument to Victory, a laurel branch in one hand and the fasces under her arm. The poster announced the first national exhibition held in Bolzano, 10 August to 10 September 1929, under Mussolini's patronage: more than 800 firms, and by the organisers' count over 100,000 visits.",
+    "The poster in the Salce collection, printed by Carlo Perego in Milan, has a line that the copy in the monument's crypt lacks: rail fares cut by half. No source names the illustrator."
+   ],
+   "facts": [
+    "As printed on the copy in BZ '18–'45: 'Iª ESPOSIZIONE NAZIONALE dell'ALTO ADIGE / 10 AGOSTO – BOLZANO – 10 SETTEMBRE / sotto l'Alto Patronato del Capo del Governo / BENITO MUSSOLINI'; a round mark '1929' over a small device and 'VII' (own photograph IMG_1770, [V])",
+    "Salce record 0500662517: 'manifesto pubblicitario', 'carta/ cromolitografia', 100 × 70 cm, 'ambito italiano' with no illustrator named, 'Tipo litografia Carlo Perego', 'stampatore', Milano; inv. 17975; gift of Nando Salce 1962; 'proprietà Stato' (catalogue page opened by hand on 14 Nov 2026 and its record PDF, held; notes 17, §3, [V])",
+    "The Salce sheet carries three things the copy in the crypt does not: under the name, 'RIDUZIONI FERROVIARIE DEL 50 %'; lower left, 'Tipo-Lito CARLO PEREGO - MILANO - TEL. 51-641'; lower right, 'ESENTE DA BOLLO (Art. 156 legge 30 Dicembre 1923 N. 3268)' (record PDF and its photograph, [V])",
+    "The copy in the crypt is also taller: width to height 0.62, worked out from the photograph, against 0.70 for the 100 × 70 poster; and it has a white border. The record notes a stamp ('bollo') with the same subject on a dealer's site. That the crypt shows a smaller edition, a card or stamp, is an inference (notes 17, §2 and §3, [V] and [INF])",
+    "The rail cut was 50 %, granted by the transport minister Ciano: tickets valid five days from stations of the Tre Venezie, ten days from elsewhere in the kingdom (notes 17, §3, Alpenzeitung 19 Apr 1929, [V])",
+    "The exhibition: decree of the head of government 27 March 1929, Mussolini honorary president; opened 10 August by the Duchess of Aosta and the Duke of Bergamo; eight buildings; 'über 100.000 Gäste', '28 Körperschaften … und über 800 Unternehmungen und Firmen' (notes 17, §3, rows for La Provincia di Bolzano 10 Aug 1929 and Alpenzeitung 11 Sep 1929, [V])",
+    "No source names the illustrator. The signature at the right edge above the steps is not read ('G M' or 'S M'). The press names Lenhart only for the exhibition's horse-show poster (notes 17, §3, [V] and [INF])",
+    "The arch drawn has fluted pilasters and stacked niches, not Piacentini's columns in the form of fasces; the Victory carries the fasces herself and steps towards the viewer. The monument stands for the city (notes 17, §3, [INF])",
+    "Seen in the image (crypt copy, cut square): red ground; a dark winged Victory with laurel branch and fasces before a pale arch on steps; a black band with cream lettering; white border; the frame's shadow lies in a band along the top and diagonally at upper right.",
+    "Seen in the image (Salce): the same drawing on orange-red, the Victory green, the lettering yellow, with the fare line, the printer's line and the stamp-duty line; a paper strip with five holes is glued along the top edge."
+   ],
+   "images": [
+    {
+     "file": "images/1929_Esposizione_Nazionale_Alto_Adige_poster_visit.jpg",
+     "caption": "The edition shown as a reproduction in BZ '18–'45, Monument to Victory: no fare line, no printer's line. Own photograph, 14 November 2026, cut to the sheet and set square."
+    },
+    {
+     "file": "images/1929_Esposizione_Nazionale_Alto_Adige_poster_Salce-SIGEC.jpg",
+     "caption": "The poster, 100 × 70 cm, Tipo-Lito Carlo Perego, Milan, with “Riduzioni ferroviarie del 50%”. Museo Nazionale Collezione Salce, Treviso, inv. 17975; photograph Luigi Baldin, 2014. Catalogo generale dei Beni Culturali, CC BY 4.0."
+    },
+    {
+     "file": "photos/IMG_1769.JPG",
+     "caption": "As it hangs in the crypt, beside the Settimana poster, over the heading “Above the clouds …”. Own photograph, 14 November 2026."
+    }
+   ],
+   "file": "images/1929_Esposizione_Nazionale_Alto_Adige_poster_visit.jpg",
+   "source": {
+    "label": "Catalogo generale dei Beni Culturali, record 0500662517",
+    "url": "https://catalogo.beniculturali.it/detail/HistoricOrArtisticProperty/0500662517"
+   },
+   "creator": "Unknown illustrator; Tipo-Lito Carlo Perego, Milan (printer)",
+   "holder": "Museo Nazionale Collezione Salce, Treviso, inv. 17975; a reproduction of another edition hangs in BZ '18–'45",
+   "rights": "Crypt copy: own photograph, 14 November 2026. Salce photograph: Catalogo generale dei Beni Culturali: contents CC BY 4.0 “dove non diversamente specificato”; reproductions of the photographs are to be asked of the museum",
+   "confidence": {
+    "level": "read",
+    "note": "illustrator not named; which edition the crypt's copy reproduces is inferred"
+   },
+   "place": "monumento-vittoria",
+   "more": {
+    "kind": "source",
+    "target": "https://catalogo.beniculturali.it/detail/HistoricOrArtisticProperty/0500662517"
+   }
+  },
+  {
+   "no": "17.02",
+   "title": "La Provincia di Bolzano, 10 August 1929, page 1",
+   "type": "Newspaper page",
+   "date": "10 August 1929",
+   "year": 1929,
+   "keywords": [
+    "press",
+    "exhibitions",
+    "inauguration"
+   ],
+   "text": [
+    "The fascist daily on the morning the exhibition opened: “La sagra del lavoro a Bolzano”. The Duchess of Aosta and the Duke of Bergamo open it, a minister comes for the government. The leader begins: “Nessuna barriera divide ormai più l'Alto Adige dal resto della Nazione.”",
+    "The page tells how it came about, from a committee of December 1928 to Mussolini's decree of 27 March 1929, and why it is scattered over schools and halls: “per mancanza di un edificio che potesse accogliere tutto quanto sarà esposto”."
+   ],
+   "facts": [
+    "Banner: 'LA SAGRA DEL LAVORO A BOLZANO / La Duchessa d'Aosta e il Duca di Bergamo inaugurano oggi la Iª Esposizione dell'Alto Adige / Il Ministro Martelli rappresenterà il Governo Nazionale e l'on. Giarratana il Partito Fascista' (notes 17, §3, [V]; manifest)",
+    "Leader: 'Nessuna barriera divide ormai più l'Alto Adige dal resto della Nazione. Anche nel campo del lavoro, come documenta irrefutabilmente questa prima Esposizione Nazionale, la fratellanza è perfetta' (notes 17, §3, [V])",
+    "'Come nacque l'Esposizione': first committee 'con l'approvazione di S. E. il Prefetto Marziali, il 23 dicembre dello scorso anno'; 'il giorno 27 marzo 1929 fu emanato da S. E. il Capo del Governo il decreto autorizzante l'Esposizione e quasi contemporaneamente il Duce ne accettò la Presidenza onoraria' (notes 17, §3, [V])",
+    "'La sistemazione nei vari edifici': 'Per mancanza di un edificio che potesse accogliere tutto quanto sarà esposto, il Comitato è stato costretto a ricorrere all'uso di diversi palazzi': the Regina Elena and Adelaide Cairoli schools with the Franciscans, San Filippo Neri and the Balilla gym ('la cosidetta Città dell'Esposizione'), the Liceo Carducci, the Sale Civiche, the Casino di Cura at Gries (notes 17, §3, [V])",
+    "Masthead: 'Quotidiano della Federazione Provinciale Fascista' (seen on the page)",
+    "The BPI gallery states no terms of use; study copy (manifest)",
+    "Seen in the image: front page dated 'Sabato, 10 Agosto 1929 - Anno VII', masthead 'La Provincia di Bolzano', the banner as quoted over seven columns of text without pictures; a light diagonal streak crosses the scan."
+   ],
+   "images": [
+    {
+     "file": "images/1929-08-10_La_Provincia_di_Bolzano_p1_Esposizione_inaugurated_BPI.jpg",
+     "caption": "La Provincia di Bolzano, 10 August 1929, page 1. Rights not stated; BPI gallery."
+    }
+   ],
+   "file": "images/1929-08-10_La_Provincia_di_Bolzano_p1_Esposizione_inaugurated_BPI.jpg",
+   "source": {
+    "label": "Biblioteca Provinciale Italiana Claudia Augusta, La Provincia di Bolzano",
+    "url": "https://webaleph.bpi.claudiaugusta.it/La_Provincia_di_Bolzano_001-1929-1929_08_10_Nr_191.html"
+   },
+   "creator": "La Provincia di Bolzano",
+   "holder": "Biblioteca Provinciale Italiana Claudia Augusta, Bolzano",
+   "rights": "Not stated by the BPI gallery; a newspaper of 1929, held as a study copy",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://webaleph.bpi.claudiaugusta.it/La_Provincia_di_Bolzano_001-1929-1929_08_10_Nr_191.html"
+   }
+  },
+  {
+   "no": "17.03",
+   "title": "Alpenzeitung, 11 September 1929, page 3",
+   "type": "Newspaper page",
+   "date": "11 September 1929",
+   "year": 1929,
+   "keywords": [
+    "press",
+    "exhibitions"
+   ],
+   "text": [
+    "The close of the exhibition in the regime's German-language daily. The podestà counts “über 100.000 Gäste”, 28 public bodies and more than 800 firms from the old provinces, in eight buildings.",
+    "Then the order that explains the poster's “prima”: Mussolini has decided “daß jedes dritte Jahr in Bolzano eine Reichsausstellung veranstaltet werde”, so that the people of the new provinces learn “die Produkte der alten Provinzen kennen und schätzen”. A second was being prepared in July 1931; none has been found in the press of 1932."
+   ],
+   "facts": [
+    "'Abschluß der ersten Reichsausstellung des Alto Adige / Die grossartigen Resultate in einem brillanten Exposé S. E. des Präfekten Marziali' (manifest; seen on the page)",
+    "'Der Podestà von Bolzano, Ing. Rizzini, als Präsident des Ausstellungskomitees': 'über 100.000 Gäste', '28 Körperschaften aus den alten Provinzen und über 800 Unternehmungen und Firmen', eight buildings, three groups of sections (notes 17, §3, figures read on the page image, [V])",
+    "'Auf diesen Erfolg hin hat S. E. der Regierungschef verfügt: daß jedes dritte Jahr in Bolzano eine Reichsausstellung veranstaltet werde. Dadurch soll der Warenaustausch zwischen dem Alto Adige und den alten Provinzen immer mehr gefördert werden und den Bewohnern der neuen Provinzen Gelegenheit geboten werden, die Produkte der alten Provinzen kennen und schätzen zu lernen' (notes 17, §3, [V])",
+    "A 'zweite Reichsausstellung des Oberetsch' was in preparation on 18 July 1931 (Dolomiten 20 Jul 1931, read in OCR); no 1932 edition was found in the Teßmann press; the 1933 week looks like its smaller successor (notes 17, §3 and §5, [V-ocr] and [INF])",
+    "Seen in the image: page headed 'Mittwoch, den 11. September 1929', 'Alpen-Zeitung', 'Seite 3'; the headlines as quoted, 'Die Ansprache des Podestà Ing. Rizzini', 'Die glänzende Rede S. E. des Präfekten Marziali', and a list of prize-winning exhibitors."
+   ],
+   "images": [
+    {
+     "file": "images/1929-09-11_Alpenzeitung_p3_Esposizione_closing_Europeana.jpg",
+     "caption": "Alpenzeitung, 11 September 1929, page 3. Teßmann scan via Europeana, Public Domain Mark 1.0."
+    }
+   ],
+   "file": "images/1929-09-11_Alpenzeitung_p3_Esposizione_closing_Europeana.jpg",
+   "source": {
+    "label": "Europeana",
+    "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059044399"
+   },
+   "creator": "Alpenzeitung",
+   "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
+   "rights": "Public Domain Mark 1.0 (Europeana)",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059044399"
+   }
+  },
+  {
+   "no": "17.04",
+   "title": "Der gerade Weg, 10 July 1932, page 4",
+   "type": "Newspaper page",
+   "date": "10 July 1932",
+   "year": 1932,
+   "keywords": [
+    "press",
+    "counter-propaganda",
+    "monumento-vittoria"
+   ],
+   "text": [
+    "Fritz Gerlich's Catholic weekly against Hitler, Munich, three weeks before the Reichstag election. Under “Hitler und die Südtiroler Frage” an Austrian officer nails down what Hitler had just said in a Munich court: that he recognises “die Souveränität des italienischen Staates über Südtirol als etwas selbstverständlich Gegebenes”, ready “auf eine Viertelmillion Deutscher zu verzichten”.",
+    "The same article holds against him a wreath laid by National Socialists “am „Sieges“-Denkmal in Bozen”: before the delegation of 28 October 1932 that the exhibition shows. It gives no date."
+   ],
+   "facts": [
+    "'Hitler und Österreich. Gedanken eines österreichischen Aristokraten und Soldaten', signed 'C. v. S.', section 'Hitler und die Südtiroler Frage' (notes 17, §4.3, read on the image and in the library's OCR, [V])",
+    "At the perjury trial of Werner Abel, who had sworn that Hitler took Italian money, 'erklärte Hitler, daß er die Souveränität des italienischen Staates über Südtirol als etwas selbstverständlich Gegebenes anerkenne und damit von vornherein rechne. Diese vor Gericht abgegebene Erklärung Hitlers verdient festgenagelt zu werden'; Hitler is ready 'auf eine Viertelmillion Deutscher zu verzichten' (notes 17, §4.3, [V])",
+    "The article holds against Hitler 'die Kranzniederlegung der Nationalsozialisten am „Sieges“-Denkmal in Bozen, welches auf den Fundamenten des Kaiserjäger-Ehrenmals errichtet worden ist'; date and group not given (notes 17, §4.7, [V])",
+    "Der gerade Weg. Deutsche Zeitung für Wahrheit und Recht, München, Naturrechtsverlag, editor Fritz Gerlich; BSB volume 2 Per. 53 q-1932, rights 'InC' (manifest)",
+    "Seen in the image: page 4, headline 'Hitler und Österreich / Gedanken eines österreichischen Aristokraten und Soldaten' in a script face, subheads 'Hitler und die Südtiroler Frage', 'Was hat Österreich von Hitler zu erwarten?', 'Die Habsburger: Das edelste deutsche Geschlecht'; at right 'Das natürliche Recht der Abwehr von Uebergriffen der Staatsgewalt'; signed 'C. v. S.' at the foot.",
+    "The wreath this page holds against Hitler is dated in Steinberger's pamphlet, p. 44: 9 December 1931, 'drei reichsdeutsche „National“sozialisten', 'in Anwesenheit fascistischer Milizleute' (row 17.06; notes 17, §4.9, [V])"
+   ],
+   "images": [
+    {
+     "file": "images/1932-07-10_Der-gerade-Weg_p4_Hitler-und-die-Suedtiroler-Frage_BSB.jpg",
+     "caption": "Der gerade Weg, 10 July 1932, page 4. Bayerische Staatsbibliothek, digiPress; In Copyright, study copy (scaled)."
+    }
+   ],
+   "file": "images/1932-07-10_Der-gerade-Weg_p4_Hitler-und-die-Suedtiroler-Frage_BSB.jpg",
+   "source": {
+    "label": "Bayerische Staatsbibliothek, digiPress",
+    "url": "https://digipress.digitale-sammlungen.de/view/bsb00010484_00411_u001"
+   },
+   "creator": "Der gerade Weg",
+   "holder": "Bayerische Staatsbibliothek, Munich",
+   "rights": "In Copyright (rightsstatements.org InC 1.0), Bayerische Staatsbibliothek; held as a study copy",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://digipress.digitale-sammlungen.de/view/bsb00010484_00411_u001"
+   }
+  },
+  {
+   "no": "17.05",
+   "title": "Der gerade Weg, 24 July 1932, page 7",
+   "type": "Newspaper page",
+   "date": "24 July 1932",
+   "year": 1932,
+   "keywords": [
+    "press",
+    "counter-propaganda",
+    "censorship"
+   ],
+   "text": [
+    "The pamphlet announced, a week before the election of 31 July 1932: “Neu erschienen”, 60 pfennigs in any bookshop. “Mit umfangreichem Tatsachenmaterial weist der Historiker den Verrat Hitlers an Südtirol nach.”",
+    "Two days later a Munich court, on Hitler's application, upheld an order forbidding a Social Democratic city councillor to show a picture poster on “Hitlers Verrat in Südtirol” or to say that Hitler had betrayed South Tyrol. The professor's 53 pages said it anyway, and the advertisement set the forbidden word in a box."
+   ],
+   "facts": [
+    "Advertisement, bottom left of the page: 'Deutsch-Südtirol / in Schmerz und Schand! / Mit ihm das ganze deutsche Land? / von / Univers.-Prof. Dr. L. Steinberger / In jeder Buchhandlung um 60 Pfg. zu haben / Mit umfangreichem Tatsachenmaterial weist der Historiker den Verrat Hitlers an Südtirol nach. / Verlag „Der Antifaschist“ München 2 NW.', with 'Neu erschienen' set vertically (notes 17, §4.1, read on the image, [V])",
+    "On the same page, in Gerlich's 'Der Weg aus dem Chaos': a civil war 'der nur durch die Wahlen vom 31. Juli verhindert werden kann' (notes 17, §4.1, [V])",
+    "Grazer Tagblatt, 28 July 1932, p. 7, 'München, 26. Juli': final judgment on the objection of 'des sozialdemokratischen Stadtrats Wimmer gegen die einstweilige Verfügung des Landgerichtes München I wegen des sozialdemokratischen Südtiroler Schand- und Schmähplakates'; on 'des von Dr. Rienhardt eingebrachten Antrags Adolf Hitlers' Wimmer may not 'das Südtirolplakat … verbreiten' nor 'die Behauptung aufzustellen und zu verbreiten, Adolf Hitler habe Südtirol verraten' (notes 17, §4.3, read on the page image, [V])",
+    "The advertisement sets the title in printed type, not in the cover's hand lettering (notes 17, §4.5, [V])",
+    "BSB volume 2 Per. 53 q-1932, rights 'InC'; the page is held scaled to 2400 px wide, the advertisement as a detail at full resolution (manifest)",
+    "Seen in the image (page): the end of 'Der Weg aus dem Chaos' signed 'Dr. Fritz Gerlich', 'Die Briefe des Hauptmann a. D. Röhm' with a facsimile letter, a row of advertisements along the foot, the pamphlet's at far left.",
+    "Seen in the image (detail): the boxed advertisement, 'Deutsch-Südtirol' in a condensed bold display face, the sentence on 'den Verrat Hitlers an Südtirol' in an inner box, 'VERLAG „DER ANTIFASCHIST“', 'Neu erschienen' running up the left side."
+   ],
+   "images": [
+    {
+     "file": "images/1932-07-24_Der-gerade-Weg_p7_Steinberger-ad_BSB.jpg",
+     "caption": "Der gerade Weg, 24 July 1932, page 7. Bayerische Staatsbibliothek, digiPress; In Copyright, study copy (scaled)."
+    },
+    {
+     "file": "images/1932-07-24_Der-gerade-Weg_p7_Steinberger-ad_detail_BSB.jpg",
+     "caption": "Detail: the advertisement for the pamphlet, “Neu erschienen”. Bayerische Staatsbibliothek, digiPress; In Copyright, study copy."
+    }
+   ],
+   "file": "images/1932-07-24_Der-gerade-Weg_p7_Steinberger-ad_BSB.jpg",
+   "source": {
+    "label": "Bayerische Staatsbibliothek, digiPress",
+    "url": "https://digipress.digitale-sammlungen.de/view/bsb00010484_00439_u001"
+   },
+   "creator": "Der gerade Weg",
+   "holder": "Bayerische Staatsbibliothek, Munich",
+   "rights": "In Copyright (rightsstatements.org InC 1.0), Bayerische Staatsbibliothek; held as a study copy",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://digipress.digitale-sammlungen.de/view/bsb00010484_00439_u001"
+   }
+  },
+  {
+   "no": "17.06",
+   "title": "Ludwig Steinberger, Deutsch-Südtirol in Schmerz und Schand! Mit ihm das ganze deutsche Land?",
+   "type": "Booklet",
+   "date": "July 1932",
+   "year": 1932,
+   "keywords": [
+    "counter-propaganda",
+    "symbol",
+    "maps",
+    "brenner"
+   ],
+   "text": [
+    "The cover of a pamphlet, not a poster: 53 pages by a Munich history professor, printed in July 1932 by a firm called Der Antifaschist. One web lies over Tyrol on both sides of the Brenner, a spider with a swastika at the Munich corner, a second at the Rome corner.",
+    "The title reads as a line of the Andreas Hofer song turned round. The song mourns “Ganz Deutschland, ach, in Schmach und Schmerz, mit ihm das Land Tirol”; the cover asks whether all Germany will follow South Tyrol. Half the text is a record of Fascist rule there. The other half is a file of press cuttings on Hitler, whom it quotes from November 1922: “ein klarer und bündiger Verzicht auf die Deutschen in Südtirol”.",
+    "Bolzano is in it by name. He writes of the attack on the fair of 24 April 1921, of the Alpenzeitung as “journalistische Giftpflanze erster Ordnung”, of a Nazi local group founded at the Gasthaus Pfau in the Bindergasse on 21 January 1932 with Fascist militia officers as guests, and of a wreath laid by three German National Socialists at the Monument to Victory on 9 December 1931.",
+    "It cost Ludwig Steinberger his professorship in June 1933, by the Bavarian State Library's note. The Teßmann library has the whole text online."
+   ],
+   "facts": [
+    "On the cover: 'DEUTSCH-SÜDTIROL / IN SCHMERZ UND SCHAND!', 'MIT JHM DAS GANZE / DEUTSCHE LAND?' (J for I), 'VON UNIV.-PROF. DR. L. STEINBERGER MÜNCHEN'; map labels Kufstein, Innsbruck, Lienz, Sterzing, Tirol, Meran, Bozen; dots 'MÜNCHEN' and 'ROM'; no signature or printer's line (own photograph IMG_1768, [V])",
+    "Teßmann digital, opened by hand on 14 Nov 2026: 'Deutsch-Südtirol in Schmerz und Schand! : mit ihm das ganze deutsche Land?', author 'Steinberger, Ludwig', '[1932]', München, 'Verl. Der Antifaschist', '53 S.', 'In Fraktur', subject 'Südtirol; Geschichte 1919-1932', shelfmark 'II 63.957', full text, 57 scans; scan 1 is the cover in black and white under the library's label, scan 2 the title page (notes 17, §4.8, [V])",
+    "Title page as read in the scan's text: 'Dr. Ludwig Steinberger ao. Prof. der Geschichte an der Universität München / Druck und Verlag: Der Antifaschist, München 2 NW' (notes 17, §4.8, [V], OCR)",
+    "Foreword, printed page 3: 'Von diesen drei Gruppen legt sich niemand Rechenschaft ab über das wahre Gesicht Hitlers. So übersehen sie alle die Rolle, die Hitler als deutscher Lakei des internationalen Faschismus durchzuführen hat.' It is signed 'Andreas Andernach.' on page 4, so it is not Steinberger's; the last leaf but one advertises 'Hitler ohne Maske von Andreas Andernach', same publisher, RM 1 (notes 17, §4.8 and §4.9, read on the scans, [V])",
+    "Read on the Teßmann scans on 14 Nov 2026, on screen, nothing downloaded: the foreword, the opening of each part, pages 17–53 whole, the two advertisements and the back cover. Not read: pages 6–12 and 14–16 (notes 17, §4.9)",
+    "Four headings, no table of contents: 'Süd- und Nordtirol — kerndeutsches Land!' (p. 5), '„Italia fino al Brennero!“' (p. 13), 'Deutsch-Südtirols Kreuzweg.' (p. 17), 'Deutsch-Südtirol und deutsche „Nationale“.' (p. 27); the text ends on p. 53 (notes 17, §4.9, [V])",
+    "P. 19, at Franz Innerhofer's funeral in 1921: 'bricht plötzlich aus den Tausenden von Kehlen … das Andreas-Hoferlied hervor …: Ganz Deutschland, ach, in Schmach und Schmerz, / Mit ihm das Land Tirol!' That the title turns this line round is a reading; the pages read do not explain the title (notes 17, §4.9, [V] and [INF])",
+    "P. 19, the day of row 17.20: '300 mit Pistolen, Handgranaten und Totschlägern bewaffnete Fascisten', '48 Verwundete, Männer und Frauen', 'Schulleiter Franz Innerhofer von Marling bei Meran wird, während er zwei Kinder in einen Hauseingang flüchtet, von einem Fascisten niedergeknallt'; p. 20 names Starace as the leader. The print dates the day 1924 on p. 18 and 1921 on p. 29 (notes 17, §4.9, [V])",
+    "P. 22: 'Als journalistische Giftpflanze erster Ordnung erblühte jetzt in Meran die deutsch geschriebene fascistische „Alpenzeitung“, offenbar darauf berechnet, in deutschem Gefäß das fremde Gift unter das des Italienischen unkundige Volk zu bringen.' (notes 17, §4.9, [V])",
+    "P. 24, the prefect Guadagnini quoted: '„Das Alto Adige muß mit einem italienischen Firnis überzogen werden.“', and Steinberger's answer that the varnish flakes off where 'unter einem welschen Wirtshausschilde Sole oder Torre ein freundlicher Sonnenwirt oder Turmwirt' greets the guest (notes 17, §4.9, [V])",
+    "Pp. 30–31, Hitler in Munich on 14 November 1922, as quoted: 'Mit Italien … muß Deutschland zusammengehen. Dazu ist nötig ein klarer und bündiger Verzicht auf die Deutschen in Südtirol. … In der Politik gibt es keine Sentiments, sondern nur Kaltschnäuzigkeit'. P. 33, the author's limit: 'von einem Verrate Herrn Hitlers an Südtirol in dem engeren Sinne … kann nicht die Rede sein'; the charge is 'Südtirolverrat im weiteren Betrachte' (notes 17, §4.9, [V])",
+    "P. 44: 'am 21. Jan. 1932 zu „Bolzano“ im Gasthaus „Pfau“, Verzeihung! „Pavone“ in der Bindergasse bei der Gründung der dortigen nationalsoz. Ortsgruppe … Als Ehrengäste erschienen Offiziere der fascistischen Miliz und der Polizei. Abwechselnd wurden das Deutschlandlied und die Fascistenhymne „Giovinezza“ angestimmt'. No source is given in the text (notes 17, §4.9, [V])",
+    "P. 44: 'Am 9. Dez. 1931 aber hatten in dem gleichen „Bolzano“ an dem Denkmal der gefallenen Kaiserjäger, das die Italiener zu einem Denkmal ihres Zufallssieges im Weltkriege umgelogen haben, in Anwesenheit fascistischer Milizleute drei reichsdeutsche „National“sozialisten einen Kranz niedergelegt.' The Brown House denied it; his source for the reply is 'Bayer. Kurier 1932 Jan. 31', not opened (notes 17, §4.9, [V])",
+    "Pp. 39–40: 'Der Fascist Gino Cucchetti, Bozener Mitarbeiter des … Popolo d'Italia' and Hitler's telegram to him in summer 1931: 'Die Haltung unserer Partei in der Südtiroler Frage ist unverändert.' P. 38 quotes Alfredo Giarratana in La Provincia di Bolzano of 6 January 1932, by way of the Münchner Post (notes 17, §4.9, [V])",
+    "P. 49, the Munich Social Democrats' poster of April 1932: 'einen Tiroler Bauer …, wie er, Tirols Adlerbanner schwingend, einen Berggipfel gegen anstürmende Italiener verteidigt, denen ein Hitlerfascist mit einem Bajonettstoß gegen den Rücken des Tirolers Beistand leistet'. No copy of that poster has been found (notes 17, §4.6 and §4.9, [V])",
+    "He does not say that Hitler took Italian money: p. 46 quotes Hitler's own words at the Abel trial and sets '(???)' after 'Unabhängigkeit' (notes 17, §4.9, [V])",
+    "Last words, p. 53: 'ein friedliches Großdeutschland / von der Maas bis an die Memel, / von der Etsch bis an den Belt!' The same page names the Lausanne agreement (9 July 1932) and p. 50 awaits a hearing on 22 July 1932: the text was closed between the two (notes 17, §4.9, [V] and [INF])",
+    "The back cover is blank in the Teßmann scan; no artist's mark there (notes 17, §4.9, [V])",
+    "Bavarian union catalogue and BSB: 'Aufgrund dieser im Juli 1932 erschienenen Schrift wurde der Verfasser am 27.06.1933 als Professor aus dem Staatsdienst entlassen, da darin Hitlers Südtirolpolitik angegriffen wird'; BSB shelfmarks 'Rem.III 201' and 'Austr. 5426 f'; UB LMU two copies; Dillingen; SUB Hamburg (dated '[1933?]', wrongly) (notes 17, §4.1, [V])",
+    "Ludwig Steinberger, born Munich 12 Aug 1879, died there 7 Feb 1968; non-chair extraordinary professor of medieval and modern history at Munich 1926–33; to Tyrol in 1933, to Switzerland after the Anschluss; stripped of German citizenship 6 Oct 1941; back in 1946 to a professorship of place-name research (notes 17, §4.2, [V] and [S])",
+    "Advertised as 'Neu erschienen' in Der gerade Weg on 24 July 1932, 60 pfennigs; reviewed in Der Südtiroler, Innsbruck, on 15 January 1933 (rows for both pages; notes 17, §4.1 and §4.3, [V])",
+    "The lower spider's back shows white bars bound in a black oval, no axe: read as the fasces; the web's hub lies near Sterzing, on the Brenner line. Both are readings (notes 17, §4.5, [INF])",
+    "In the crypt it hangs at the station 'The two fascisms shake hands', whose panel concerns the Nazi delegation at the monument on 28 October 1932; no caption or lender seen (notes 17, §1 and §4.4, [V])",
+    "The Innsbruck university project on the Option (2014) shows the cover as 'wahrscheinlich 1933'; its file's metadata reads creator 'Campaner', rights 'Autonome Provinz Bozen', 9 March 2012. That the crypt's reproduction comes from the same provincial photograph is an inference (notes 17, §4.4, [V] and [INF])",
+    "Width to height worked out from the photograph: 0.699; the Province's photograph measures 283 × 405 px, 0.699 (notes 17, §2, [V])",
+    "Seen in the image (crypt copy, cut square): cream sheet, a rose-pink map of Tyrol in three pieces under a black web; a spider with a white swastika at upper right, a second with a barred back at lower left; hand-drawn capitals; the frame's shadow along the top.",
+    "Seen in the image (2012 photograph): the same cover, the map orange-red on yellowish cream.",
+    "The photograph hung beneath the cover is the one held as row 5.06, the handshake of 28 October 1932: the two were compared by eye (own photograph IMG_1767, [V])"
+   ],
+   "images": [
+    {
+     "file": "images/1932_Steinberger_Deutsch-Suedtirol_cover_visit.jpg",
+     "caption": "Cover, July 1932; artist not named. The reproduction shown in BZ '18–'45, Monument to Victory. Own photograph, 14 November 2026, cut to the sheet and set square."
+    },
+    {
+     "file": "photos/IMG_1767.JPG",
+     "caption": "As it hangs in the crypt, above the photograph of 28 October 1932 (row 5.06), at the station “The two fascisms shake hands”. Own photograph, 14 November 2026."
+    },
+    {
+     "file": "images/1932_Steinberger_Deutsch-Suedtirol_cover_optionunderinnerung.jpg",
+     "caption": "The same cover photographed in March 2012 (file metadata: “Campaner”, “Autonome Provinz Bozen”), from the University of Innsbruck's project on the Option. Rights not stated on the page."
+    }
+   ],
+   "file": "images/1932_Steinberger_Deutsch-Suedtirol_cover_visit.jpg",
+   "source": {
+    "label": "Teßmann digital, the pamphlet in full",
+    "url": "https://digital.tessmann.it/tessmannDigital/Medium/Seite/19913/1/issueId-206700-currentDate-.html"
+   },
+   "creator": "Ludwig Steinberger (1879–1968); cover artist not named; Druck und Verlag Der Antifaschist, Munich",
+   "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano, II 63.957 (online); Bayerische Staatsbibliothek and UB LMU, Munich; a reproduction of the cover hangs in BZ '18–'45",
+   "rights": "Crypt copy: own photograph, 14 November 2026. 2012 photograph: rights not stated on the page; © presumed Autonomous Province of Bozen. The cover's artist is not known",
+   "confidence": {
+    "level": "read",
+    "note": "cover artist unknown; foreword, pp. 17–53 and the advertisements read on the Teßmann scans; pp. 6–12 and 14–16 not read; the wreath and the Pfau meeting rest on this pamphlet"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://digital.tessmann.it/tessmannDigital/Medium/Seite/19913/1/issueId-206700-currentDate-.html"
+   }
+  },
+  {
+   "no": "17.07",
+   "title": "Der Südtiroler, 15 January 1933, page 8",
+   "type": "Newspaper page",
+   "date": "15 January 1933",
+   "year": 1933,
+   "keywords": [
+    "press",
+    "counter-propaganda"
+   ],
+   "text": [
+    "Six months on, the paper of the Arbeitsstelle für Südtirol in Innsbruck reviews the pamphlet. It praises the history, South Tyrol as “kerndeutsches Land” and its road of suffering since the occupation, and reports the rest coolly: “polemischer Natur”, aimed at National Socialism, with the reproach that the paper itself had fallen for “einem beneidenswerten Optimismus gegenüber Hitlers Verhalten in der Südtiroler Frage”.",
+    "In March 1932 the same paper had headlined “Hitler verzichtet keineswegs auf Südtirol!” The library files the scan under the paper's later name, Südtiroler Heimat."
+   ],
+   "facts": [
+    "'„Deutsch-Südtirol in Schmerz und Schande“ von Univ.-Prof. Dr. L. Steinberger, München. Vor einiger Zeit hat der bekannte Professor der Geschichte an der Universität München, Dr. L. Steinberger eine Schrift im Verlag der „Anti-Faschist“, München 2, erscheinen lassen' (notes 17, §4.3, read on the image, [V])",
+    "'In dieser Schrift führt Professor Steinberger den Beweis, daß es sich bei Südtirol um kerndeutsches Land handelt und geht dann auf die Bestrebungen der Italiener ein, die sich das Schlagwort „Italien bis zum Brenner“ zurecht gelegt hatten'; then 'den ganzen Leidensweg der deutschen Südtiroler in den Jahren seit der italienischen Besetzung', using Reut-Nicolussi's 'Tirol unterm Beil' (notes 17, §4.3, [V])",
+    "'Die weiteren Ausführungen sind polemischer Natur und richten sich gegen den Nationalsozialismus in seinem Verhalten in der Südtiroler Frage. Unserem Blatte wird bei dieser Gelegenheit der Vorwurf gemacht, einem beneidenswerten Optimismus gegenüber Hitlers Verhalten in der Südtiroler Frage zum Opfer gefallen zu sein.' (notes 17, §4.3, [V])",
+    "Der Südtiroler, 1 March 1932, p. 2: 'Hitler verzichtet keineswegs auf Südtirol!' (notes 17, §4.3, read in OCR, [V])",
+    "The reviewer writes 'Schande', the cover 'Schand' (notes 17, §4.3, [V])",
+    "Europeana and Teßmann file the paper as 'Suedtiroler Heimat'; the page header reads '„Der Südtiroler“ Innsbruck, 15. Jänner 1933'; the title changed in November 1935 per the ZDB. Imprint: 'Herausgeber, Eigentümer und Verleger: Arbeitsstelle für Südtirol in Innsbruck … Druck: R. & M. Jenny, Innsbruck' (notes 17, §4.3, [V])",
+    "Seen in the image: page headed 'Seite 8. Folge 2.', '„Der Südtiroler“', 'Innsbruck, 15. Jänner 1933'; a serial on Andreas Hofer's capture at left; under 'Das deutsche Buch' the notice of the pamphlet in the right column; advertisements 'Taubheit heilbar', 'Teppichhaus Fohringer', 'Die Woche' at the foot.",
+    "The reproach the review passes over stands on p. 47 of the pamphlet: 'den beneidenswerten Optimismus des „Südtirolers“'. On p. 48 Steinberger says the paper's article of 1 March 1932 was written 'unter scharfem Zwang des Vereins für das Deutschtum im Ausland' (row 17.06; notes 17, §4.9, read on the Teßmann scans, [V])"
+   ],
+   "images": [
+    {
+     "file": "images/1933-01-15_Der-Suedtiroler_p8_Steinberger-review_Europeana.jpg",
+     "caption": "Der Südtiroler, 15 January 1933, page 8. Teßmann scan via Europeana, Public Domain Mark 1.0."
+    }
+   ],
+   "file": "images/1933-01-15_Der-Suedtiroler_p8_Steinberger-review_Europeana.jpg",
+   "source": {
+    "label": "Europeana",
+    "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000115186026"
+   },
+   "creator": "Der Südtiroler",
+   "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
+   "rights": "Public Domain Mark 1.0 (Europeana)",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://www.europeana.eu/item/9200333/BibliographicResource_3000115186026"
+   }
+  },
+  {
+   "no": "17.08",
+   "title": "Alpenzeitung, 29 August 1933, page 3",
+   "type": "Newspaper page",
+   "date": "29 August 1933",
+   "year": 1933,
+   "keywords": [
+    "press",
+    "posters",
+    "exhibitions",
+    "language",
+    "wording"
+   ],
+   "text": [
+    "The brief behind the poster, in the right-hand column: “Plakatwettbewerb für die Oberetscher Woche”. Any artist of the province may enter. The poster must measure 1 × 0.70 m, in a ground colour and three more, and show one of the week's shows, agriculture, crafts or fur animals, with “ein allegorischer Hinweis auf die Ziele, welche das Regime bei der industriellen Landwirtschaft verfolgt”.",
+    "The words are fixed as well, in Italian only: “Settimana dell'Alto Adige. – Bolzano .... ottobre XI – Riduzione ferroviarie 70 proz.” The prize is 1,000 lire."
+   ],
+   "facts": [
+    "The committee of the week 'hat einen Wettbewerb für ein Propagandaplakat, an dem sich alle Künstler der Provinz beteiligen können, ausgeschrieben' (notes 17, §5, [V])",
+    "'1. Das Plakat muß eine Größe von 1×0.70 aufweisen und muß außer der Grundfarbe in Dreifarbendruck hergestellt werden. Als Motiv muß irgend eine Veranstaltung, welche während der Oberetscher Woche stattfindet, wie landwirtschaftliche Ausstellung, Gewerbeausstellung oder Pelztierausstellung, und ein allegorischer Hinweis auf die Ziele, welche das Regime bei der industriellen Landwirtschaft verfolgt, gewählt werden.' (notes 17, §5, [V])",
+    "Prize L. 1,000, which could be split between two entrants; deadline 15 September (the OCR reads 13, the image 15); required text 'Settimana dell'Alto Adige. – Bolzano .... ottobre XI – Riduzione ferroviarie 70 proz.'; entries to the committee 'beim Industrieverbande Bolzano' (notes 17, §5, [V])",
+    "The German press calls the event 'Oberetscher Woche'; the poster's words are fixed in Italian (notes 17, §5, [V] and [INF])",
+    "Seen in the image: page headed 'Dienstag, den 29. August 1933, XI', 'Alpenzeitung', 'Seite 3', under the band 'Aus Bolzano Stadt und Land'; lead article 'Divisionsrevue vor dem Siegesdenkmal'; in the right column 'Plakatwettbewerb für die Oberetscher Woche'."
+   ],
+   "images": [
+    {
+     "file": "images/1933-08-29_Alpenzeitung_p3_Settimana_poster_competition_Europeana.jpg",
+     "caption": "Alpenzeitung, 29 August 1933, page 3. Teßmann scan via Europeana, Public Domain Mark 1.0."
+    }
+   ],
+   "file": "images/1933-08-29_Alpenzeitung_p3_Settimana_poster_competition_Europeana.jpg",
+   "source": {
+    "label": "Europeana",
+    "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059047358"
+   },
+   "creator": "Alpenzeitung",
+   "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
+   "rights": "Public Domain Mark 1.0 (Europeana)",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059047358"
+   }
+  },
+  {
+   "no": "17.09",
+   "title": "Dolomiten, 20 September 1933, page 2",
+   "type": "Newspaper page",
+   "date": "20 September 1933",
+   "year": 1933,
+   "keywords": [
+    "press",
+    "posters",
+    "exhibitions"
+   ],
+   "text": [
+    "The result. On 18 September 1933 a jury under the podestà Miori met in the town hall over “die 19 eingesandten Arbeiten” and split the 1,000 lire between “A. Hofer und A. Pozzi”; for printing it chose “der Entwurf Prof. Hofers”. Amonn, Lenhart and Merlet got 100 lire each in recognition.",
+    "Franz Lenhart, whose posters fill the first section of this library, was not the winner. All nineteen designs were shown the following Sunday. None of the other eighteen has been found, and “A. Pozzi” is not identified."
+   ],
+   "facts": [
+    "'Oberetscher Woche. Ergebnis des Wettbewerbes für das Plakat der „Oberetscher Woche“': the jury met 'Gestern, 18. September, … um 10 Uhr im Rathause' (notes 17, §5, read on the page image, [V])",
+    "Jury: 'On. L. Miori, Abgeordneter im Parlament, Bürgermeister von Bolzano; Adv. D' Cesare, Vizebürgermeister; Cav. Dr. M. Colesanti der Unione Industriale; Dr. R. Pedrotti der Fremdenverkehrskommission; Ing. G. Sepe-Quarta vom Gewerbeförderungs-Institut; die Architekten M. Amonn und F. Rossi; der Maler U. Giovacchini' (notes 17, §5, [V])",
+    "'der Preis von L. 1000 zu gleichen Teilen den Künstlern A. Hofer und A. Pozzi …, wobei für den Druck der Entwurf Prof. Hofers gewählt wurde'; recognition prizes of 100 lire each to 'Amonn, Lenhart und Merlet', a consolation prize to 'Dezulian und Egi Bruno' (notes 17, §5, [V])",
+    "All entries to be shown on Sunday 24 September in the hall of the Gewerbeförderungs-Institut, Dominikanerplatz 1, free entry (notes 17, §5, [V])",
+    "The Europeana OCR for this text is filed under another page image of the issue; the file held is the scan of page 2 (manifest)",
+    "Seen in the image: page headed 'Seite 2 — Nr. 113', 'Dolomiten', 'Mittwoch, den 20. September 1933'; under the band 'Provinz Bolzano' the item 'Oberetscher Woche – Ergebnis des Wettbewerbes für das Plakat der „Oberetscher Woche“'."
+   ],
+   "images": [
+    {
+     "file": "images/1933-09-20_Dolomiten_p2_Settimana_poster_competition_result_Europeana.jpg",
+     "caption": "Dolomiten, 20 September 1933, page 2. Teßmann scan via Europeana, Public Domain Mark 1.0."
+    }
+   ],
+   "file": "images/1933-09-20_Dolomiten_p2_Settimana_poster_competition_result_Europeana.jpg",
+   "source": {
+    "label": "Europeana",
+    "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000115204415"
+   },
+   "creator": "Dolomiten",
+   "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
+   "rights": "Public Domain Mark 1.0 (Europeana)",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://www.europeana.eu/item/9200333/BibliographicResource_3000115204415"
+   }
+  },
+  {
+   "no": "17.10",
+   "title": "Anton Hofer, Settimana dell'Alto Adige, Bolzano 22–31 ottobre XI",
+   "type": "Poster",
+   "date": "October 1933",
+   "year": 1933,
+   "keywords": [
+    "posters",
+    "exhibitions",
+    "monumento-vittoria",
+    "symbol",
+    "language"
+   ],
+   "text": [
+    "Each sign answers a line of a brief. In August 1933 the organisers asked the province's artists for a poster showing one of the week's shows and an allegory of the regime's aims, with the words fixed in Italian. Anton Hofer's design was chosen from nineteen: grapes, pincers and hammer, a fox for the fur-animal show, the fasces, and the Monument to Victory as a white block with three slots.",
+    "The Salce copy keeps the printer's line that the copy in the crypt lacks: Litografia G. Linke, Bolzano."
+   ],
+   "facts": [
+    "As printed: 'SETTIMANA DELL'ALTO ADIGE / RIDUZIONI FERROVIARIE DEL 70% / BOLZANO 22–31 OTTOBRE XI', signed lower right 'ANT·HOFER' (own photograph IMG_1766, [V])",
+    "Salce record 0500658946: 'manifesto pubblicitario', author 'Hofer Anton (1888/ 1979)' by signature, date 1933 from the inscription, 'Litografia G. Linke', 'stampatore', Bolzano, 'carta/ cromolitografia', 100.3 × 70.3 cm, inv. 10835, gift of Nando Salce 1962, 'proprietà Stato' (catalogue page opened by hand on 14 Nov 2026; notes 17, §5, [V])",
+    "The record reads the picture as 'architettura; fascio littorio; tricolore; volpe; grappolo d'uva; tenaglie; martello', names 'Settimana dell'Alto Adige; Monumento alla Vittoria'; it transcribes 'LITOGRAFIA G. LINKE-BOLZANO-' in the lower margin and a stamp-duty line 'ESENTE DA BOLLO R. D. 26 DICEMBRE 1923 N.o 3269 ART. 7 [...]' (notes 17, §5, [V])",
+    "The brief (Alpenzeitung 29 Aug 1933): 1 × 0.70 m, ground colour plus three-colour print, one of the week's shows 'wie landwirtschaftliche Ausstellung, Gewerbeausstellung oder Pelztierausstellung' and 'ein allegorischer Hinweis auf die Ziele, welche das Regime bei der industriellen Landwirtschaft verfolgt'; text fixed in Italian. The result (Dolomiten 20 Sep 1933): 19 entries, prize split between 'A. Hofer und A. Pozzi', 'der Entwurf Prof. Hofers' printed (notes 17, §5, [V])",
+    "So grapes = the agricultural show, pincers and hammer = crafts, the fox = the fur-animal show (silver foxes head its prize list), fasces and Monument = the regime; the jagged grey shape at right is named by no source (notes 17, §5, [INF])",
+    "The week ran from 22 October 1933 in the Bürgersäle; opened by Biagi, under-secretary at the Corporations ministry, after a wreath at the Monument; all tickets sold by 28 October, extended to 11 November (notes 17, §5, [V] and [V-ocr])",
+    "Anton Hofer, born Bozen 8 April 1888, died there 19 February 1979; Vienna Kunstgewerbeschule under Kolo Moser 1908–12 per Austria-Forum; back in Bozen 1920 or 1921. The sources disagree on training and return ([S], [W]); de.wikipedia has him join the fascist party in 1932, on a list that reads only 'Hofer Antonio' (notes 17, §5, [W] and [V-ocr])",
+    "The crypt copy stops at the edge of the dark ground: no printer's line, no stamp-duty line; its colours are brighter than in the Salce photograph. Width to height worked out from the photograph: 0.683; the dark field of the Salce sheet measures 0.686 on its photograph (notes 17, §2 and §5, [V])",
+    "Seen in the image (crypt copy, cut square): dark blue ground with sprayed green; a white block with three slots; at left a dark upright with two tricolour bands; pincers on a block; a red bunch of grapes; a grey jagged silhouette; a running fox; lettering in yellow-green and white.",
+    "Seen in the image (Salce): the same design on a sheet with a cream margin, 'LITOGRAFIA G. LINKE · BOLZANO' at lower left, a line of small print at lower right, tape along the right edge."
+   ],
+   "images": [
+    {
+     "file": "images/1933_Hofer_Settimana_Alto_Adige_poster_visit.jpg",
+     "caption": "Anton Hofer, 1933: the reproduction shown in BZ '18–'45, Monument to Victory. Own photograph, 14 November 2026, cut to the sheet and set square."
+    },
+    {
+     "file": "images/1933_Hofer_Settimana_Alto_Adige_poster_Salce-SIGEC.jpg",
+     "caption": "The poster with its margin and printer's line, 100.3 × 70.3 cm, Litografia G. Linke, Bolzano. Museo Nazionale Collezione Salce, Treviso, inv. 10835; photograph Maddalena Santi, 2013. Catalogo generale dei Beni Culturali, CC BY 4.0."
+    },
+    {
+     "file": "photos/IMG_1765.JPG",
+     "caption": "As it hangs in the crypt, among other reproductions. Own photograph, 14 November 2026."
+    }
+   ],
+   "file": "images/1933_Hofer_Settimana_Alto_Adige_poster_visit.jpg",
+   "source": {
+    "label": "Catalogo generale dei Beni Culturali, record 0500658946",
+    "url": "https://catalogo.beniculturali.it/detail/HistoricOrArtisticProperty/0500658946"
+   },
+   "creator": "Anton Hofer (1888–1979); Litografia G. Linke, Bolzano (printer)",
+   "holder": "Museo Nazionale Collezione Salce, Treviso, inv. 10835; a reproduction hangs in BZ '18–'45",
+   "rights": "Crypt copy: own photograph, 14 November 2026; the design © presumed Anton Hofer's heirs. Salce photograph: Catalogo generale dei Beni Culturali: contents CC BY 4.0 “dove non diversamente specificato”; reproductions of the photographs are to be asked of the museum",
+   "confidence": {
+    "level": "read",
+    "note": "what each sign stands for is inferred from the competition brief"
+   },
+   "place": "monumento-vittoria",
+   "more": {
+    "kind": "source",
+    "target": "https://catalogo.beniculturali.it/detail/HistoricOrArtisticProperty/0500658946"
+   }
+  },
+  {
+   "no": "17.11",
+   "title": "Alpenzeitung, 29 October 1933, page 5",
+   "type": "Newspaper page",
+   "date": "29 October 1933",
+   "year": 1933,
+   "keywords": [
+    "press",
+    "exhibitions"
+   ],
+   "text": [
+    "Under the report on the eleventh anniversary of the March on Rome, a short notice: “Die Ausstellung der ‚Oberetscher Woche' bis 11. November verlängert”. All tickets had been sold three days before the planned close, and the 70 per cent rail fare cut “für die auswärtigen Besucher” was to run on with it.",
+    "So the poster's dates were overtaken: 22 to 31 October became 22 October to 11 November, into year XII of the regime's calendar. The same column announces the vintners' procession for that day."
+   ],
+   "facts": [
+    "'Die Ausstellung der „Oberetscher Woche“ bis 11. November verlängert': the show 'hat einen unerwarteten Erfolg gehabt, so daß bereits gestern, drei Tage vor ihrem festgesetzten Abschlusse, alle Eintrittskarten ausverkauft waren' (notes 17, §5, read on the image, [V])",
+    "Steps were taken 'damit die Fahrpreisermäßigung von 70 Prozent für die auswärtigen Besucher bis zum genannten Datum verlängert wird' (notes 17, §5, [V])",
+    "The body text misprints the date as '11. Oktober'; the headline and 'die folgenden vierzehn Tage' show November is meant (notes 17, §5, [V])",
+    "Year XI of the Fascist era ended on 28 October 1933, so the extension ran wholly in year XII (notes 17, §5, [INF])",
+    "Seen in the image: page headed 'Sonntag, den 29. Oktober 1933, XII', 'Alpenzeitung', 'Seite 5', band 'Aus Bolzano Stadt und Land', headline 'Die Feier des 11. Jahrtages des Marsches auf Roma'; in the right column the notice and 'Heute Tag der Landwirte mit Winzerumzug'; a strip of the facing page shows at the left edge."
+   ],
+   "images": [
+    {
+     "file": "images/1933-10-29_Alpenzeitung_p5_Settimana_extended_to_11_November_Europeana.jpg",
+     "caption": "Alpenzeitung, 29 October 1933, page 5. Teßmann scan via Europeana, Public Domain Mark 1.0."
+    }
+   ],
+   "file": "images/1933-10-29_Alpenzeitung_p5_Settimana_extended_to_11_November_Europeana.jpg",
+   "source": {
+    "label": "Europeana",
+    "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059047452"
+   },
+   "creator": "Alpenzeitung",
+   "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
+   "rights": "Public Domain Mark 1.0 (Europeana)",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059047452"
+   }
+  },
+  {
+   "no": "17.12",
+   "title": "Alpenzeitung, 27 August 1935, page 2",
+   "type": "Newspaper page",
+   "date": "27 August 1935",
+   "year": 1935,
+   "keywords": [
+    "press",
+    "monumento-vittoria",
+    "military",
+    "new-city"
+   ],
+   "text": [
+    "Mussolini's first day in Bolzano, 26 August 1935, in the regime's German-language daily. A box announces the council of ministers “in den Regierungspalast von Bolzano” for the 28th. The afternoon's round runs through the new city: industrial zone, Balilla house, workers' houses, barracks, the new army corps command, then “Am Siegesdenkmal”.",
+    "There he laid a wreath, stood a minute at attention and gave the fascist salute, “begleitet von S. E. dem Parteisekretär und S. E. dem Präfekten”: the two men of the magazine cover, if the inference holds."
+   ],
+   "facts": [
+    "Box: 'Einberufung des Ministerrates nach Bolzano … Der Ministerrat ist für Mittwoch, 28. ds., um 16 Uhr nachmittags, in den Regierungspalast von Bolzano einberufen worden' (notes 17, §6, [V])",
+    "The visit was his first: 'nun, da er zum ersten Male in unsere Stadt gekommen'; the special train came shortly after noon on Monday 26 August (notes 17, §6, [V])",
+    "Afternoon round in order: the industrial zone ('Um 16 Uhr'), the Balilla house, the building site of the workers' houses, the Military District, San Maurizio, the old workers' home, the Institute 'Duchessa di Pistoia', the new Army Corps command, the monument, the Casa del Fascio (notes 17, §6, [V])",
+    "'Der Duce, begleitet von S. E. dem Parteisekretär und S. E. dem Präfekten der Provinz, legte einen Lorbeerkranz mit der Schleife ‚Der Regierungschef' am Altare des Siegesdenkmals nieder. Darauf verweilte der Regierungschef mit seinem Gefolge für eine Minute in Habtachtstellung vor dem Denkmale und führte dann im Gedenken der Märtyrer und der Gefallenen den fascistischen Gruß aus.' He also visited the crypt (notes 17, §6, [V])",
+    "'S. E. der Präfekt Mastromattei, der die Uniform eines Alpinimajors trug' at the station (notes 17, §6, checked on the page image, [V])",
+    "Seen in the image: page headed 'Seite 2', 'Alpenzeitung', 'Dienstag, den 27. August 1935-XIII'; the boxed headline, sections 'Ankunft und Empfang am Bahnhof', 'Im Institut „Duchessa di Pistoia“', 'Im Hause des Fascio', 'Am Siegesdenkmal'; three halftone photographs (a decorated façade with a crowd; an open car in a crowd; Mussolini walking among uniformed men)."
+   ],
+   "images": [
+    {
+     "file": "images/1935-08-27_Alpenzeitung_p2_Duce_at_Victory_Monument_Europeana.jpg",
+     "caption": "Alpenzeitung, 27 August 1935, page 2. Teßmann scan via Europeana, Public Domain Mark 1.0."
+    }
+   ],
+   "file": "images/1935-08-27_Alpenzeitung_p2_Duce_at_Victory_Monument_Europeana.jpg",
+   "source": {
+    "label": "Europeana",
+    "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059046547"
+   },
+   "creator": "Alpenzeitung",
+   "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
+   "rights": "Public Domain Mark 1.0 (Europeana)",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059046547"
+   },
+   "place": "monumento-vittoria"
+  },
+  {
+   "no": "17.13",
+   "title": "Dolomiten, 28 August 1935, page 2",
+   "type": "Newspaper page",
+   "date": "28 August 1935",
+   "year": 1935,
+   "keywords": [
+    "press",
+    "monumento-vittoria",
+    "military"
+   ],
+   "text": [
+    "The same day in the other German-language daily: “Der Besuch des Duce – Heute Ministerrat in Bolzano”. It names his companions of the afternoon as “Parteisekretär Exzellenz Starace und Präfekt Exzellenz Mastromattei”, and says of the prefect at the station that he “trug die Uniform eines Alpini-Majors”.",
+    "At the monument it has two wreaths where the Alpenzeitung has one. Neither paper reports a speech in the city: Mussolini showed himself at windows."
+   ],
+   "facts": [
+    "'Der Besuch des Duce / Heute Ministerrat in Bolzano' (seen on the page)",
+    "After the Army Corps building 'hielt der Duce einige Minuten beim Siegesdenkmal und ließ dort in seinem Namen zwei Lorbeerkränze niederlegen. Hierauf begab er sich in die Krypta des Denkmals' (notes 17, §6, [V])",
+    "Companions on the afternoon round: 'Parteisekretär Exzellenz Starace und Präfekt Exzellenz Mastromattei'; at the station: 'Auch Präfekt Mastromattei trug die Uniform eines Alpini-Majors.' (notes 17, §6, [V])",
+    "At the Casa del Fascio 'von Zeit zu Zeit trat er ans Fenster'; no speech in Bolzano is reported in the pages read (notes 17, §6, [V])",
+    "The two papers disagree: one wreath (Alpenzeitung) or two (Dolomiten) (notes 17, §6, [V])",
+    "Seen in the image: page headed 'Seite 2 — Nr. 103', 'Dolomiten', 'Mittwoch, den 28. August 1935/XIII'; the headline as quoted across the middle columns; reports on the manoeuvres ('„Blaue“ im Vormarsch') at left; no pictures."
+   ],
+   "images": [
+    {
+     "file": "images/1935-08-28_Dolomiten_p2_Duce_in_Bolzano_Europeana.jpg",
+     "caption": "Dolomiten, 28 August 1935, page 2. Teßmann scan via Europeana, Public Domain Mark 1.0."
+    }
+   ],
+   "file": "images/1935-08-28_Dolomiten_p2_Duce_in_Bolzano_Europeana.jpg",
+   "source": {
+    "label": "Europeana",
+    "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000115205290"
+   },
+   "creator": "Dolomiten",
+   "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
+   "rights": "Public Domain Mark 1.0 (Europeana)",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://www.europeana.eu/item/9200333/BibliographicResource_3000115205290"
+   },
+   "place": "monumento-vittoria"
+  },
+  {
+   "no": "17.14",
+   "title": "L'Illustrazione Italiana, 1 September 1935, cover",
+   "type": "Magazine",
+   "date": "1 September 1935",
+   "year": 1935,
+   "keywords": [
+    "press",
+    "monumento-vittoria",
+    "military",
+    "ethiopia",
+    "wording"
+   ],
+   "text": [
+    "Mussolini climbs the steps of the Monument to Victory between an Alpini officer and a blackshirt. The cover of Italy's illustrated weekly, days after his first visit to Bolzano for the army's manoeuvres, reads the monument forwards: it “rammemora la vittoria di ieri ed auspica quella di domani”. On 3 October Italy invaded Ethiopia.",
+    "The local papers put him there on 26 August with the party secretary Starace and the prefect Mastromattei, in an Alpini major's uniform. That they are the two men pictured is inferred: the cover names nobody."
+   ],
+   "facts": [
+    "Top strip: 'Anno LXII – N. 35', 'LE GRANDI MANOVRE DELL'ESERCITO NELL'ANNO XIII', '1° Settembre 1935-XIII'; foot: 'Esce ogni Domenica', 'Questo numero costa L. 3 – Estero L. 5', 'Abbonamento postale' (own photograph IMG_1773, [V])",
+    "Caption: 'LE GIORNATE DEL DUCE NELL'ENTUSIASMO DI BOLZANO ITALIANA E FASCISTA. MUSSOLINI ASCENDE LA SCALEA DEL MONUMENTO CHE RAMMEMORA LA VITTORIA DI IERI ED AUSPICA QUELLA DI DOMANI MENTRE VIVE SUPERBA LA DIMOSTRAZIONE DELLA NAZIONE IN ARMI.' No photographer's credit on the cover (own photograph, [V])",
+    "The exhibition's own caption: 'Mussolini e i vertici del fascismo provinciale salgono le scale del Monumento, “L'Illustrazione italiana”, 1° settembre 1935'. No lender named (panel photographed, IMG_1771; notes 17, §1, [V])",
+    "Mussolini's first stay in Bolzano ran 26–31 August 1935; at the monument on the afternoon of the 26th with the party secretary and the prefect, who wore an Alpini major's uniform; the council of ministers sat in the prefecture on the evening of 28 August and dealt with Geneva and sanctions (notes 17, §6, Alpenzeitung 27 Aug and Dolomiten 28 and 31 Aug 1935, [V])",
+    "That the officer at left is Mastromattei and the blackshirt at right Starace is inferred from those reports, not printed (notes 17, §6, [INF])",
+    "The Campari Soda advertisement carries a two-line monogram 'CON / ALBI' at upper left inside its frame; the designer is not identified (own photograph; notes 17, §6, [V] and [INF])",
+    "No digitised copy of the issue was found; publisher Fratelli Treves and editor Enrico Cavacchioli per Wikipedia only (notes 17, §6, [V] and [W])",
+    "Luce newsreel B0741 of 4 September 1935 lists 'il Duce si reca a rendere omaggio al monumento'; the documentary of the same days is row 15.09 (notes 17, §6, [V])",
+    "Width to height worked out from the photograph: 0.746 (notes 17, §2, [V])",
+    "Seen in the image: a blue cover, masthead in white; a halftone photograph of Mussolini in uniform and black fez climbing broad steps, an officer in an Alpini hat at left, a blackshirt in white breeches at right; below, a boxed advertisement 'CAMPARI SODA – Davide Campari & C. Milano'."
+   ],
+   "images": [
+    {
+     "file": "images/1935-09-01_Illustrazione_Italiana_cover_visit.jpg",
+     "caption": "L'Illustrazione Italiana, Anno LXII, n. 35, 1 September 1935: the reproduction shown in BZ '18–'45, Monument to Victory. Own photograph, 14 November 2026, cut to the sheet and set square."
+    }
+   ],
+   "file": "images/1935-09-01_Illustrazione_Italiana_cover_visit.jpg",
+   "source": {
+    "label": "BZ '18–'45, permanent exhibition in the Monument to Victory",
+    "url": "https://www.monumentoallavittoria.com/it/mostra/perimetro-interno.html"
+   },
+   "creator": "L'Illustrazione Italiana (Fratelli Treves, Milan); photographer not credited",
+   "holder": "A reproduction hangs in BZ '18–'45; no library copy of the issue was consulted",
+   "rights": "Own photograph, 14 November 2026; the cover of 1935 carries no credit",
+   "confidence": {
+    "level": "read",
+    "note": "the two men beside Mussolini are identified by inference from the local press"
+   },
+   "place": "monumento-vittoria"
+  },
+  {
+   "no": "17.15",
+   "title": "Dolomiten, 23 May 1938, page 1",
+   "type": "Newspaper page",
+   "date": "23 May 1938",
+   "year": 1938,
+   "keywords": [
+    "press",
+    "monumento-vittoria",
+    "inauguration",
+    "ethiopia",
+    "libya"
+   ],
+   "text": [
+    "On Sunday 22 May 1938, two weeks before the column, the party secretary Starace read out at the Monument to Victory the names of the province's dead in Africa and Spain, each answered “Presente”. The front page prints them: three gold medallists, the “Gefallenen Afrikas”, the “Gefallenen Spaniens”.",
+    "Among the last is an “Andreas Hofer von Glorenza”, 27, killed near Lérida on 27 March 1938. The page gives 32 names, as the exhibition does; the fascist daily two weeks later writes of thirty-five families. Luce filmed it: row 15.17."
+   ],
+   "facts": [
+    "Headline: 'Die großartige und eindrucksvolle Ehrung der in Afrika und Spanien gefallenen Krieger unsrer Provinz in Anwesenheit des Minister-Parteisekretärs S. Exz. Starace', dateline 'Bolzano, 22. Mai' (seen on the page)",
+    "Starace 'verlas nun die Namen der in Ostafrika und in Spanien gefallenen Helden aus unserer Provinz', each answered by drum rolls, salvoes and 'Presente' (notes 17, §7, [V])",
+    "32 names printed: three holders of the gold medal (Ruggero Dialma, Otto Huber, Guido Presel), 23 'Gefallene Afrikas', Libya included (Siegfried Wackernell of Merano, fallen in 1928 'in der Oase von Tegre in Libyen'), six 'Gefallene Spaniens' (count from the page image; notes 17, §7, [V])",
+    "'Andreas Hofer von Glorenza, 27 Jahre alt, gefallen 27. März 1938 bei Lerida' (notes 17, §7, [V])",
+    "The exhibition's panel: the column was 'dedicated to the thirty-two soldiers from the Alto Adige who fell in the African and Spanish wars'; La Provincia di Bolzano of 7 June 1938 has 'i famigliari dei trentacinque atesini caduti' (notes 17, §1 and §7, [V])",
+    "Luce B1312, held as row 15.17 with the catalogue date 1 June 1938, matches this event of 22 May point by point: Starace, the roll call, 500 cars of the automobile club. 1 June is the reel's date, not the event's (notes 17, §7, [V] and [INF])",
+    "Seen in the image: front page, 'Dolomiten', 'Nr. 61 – 15. Jahrgang – Anno XVI', 'Bolzano, Montag, den 23. Mai 1938'; top story 'Der König-Kaiser in Libyen'; below it the headline as quoted, the names in three columns under 'Inhaber der Goldmedaille', 'Die Gefallenen Afrikas', 'Die Gefallenen Spaniens', then 'Die Rede Staraces'; stamps of the Biblioteca Comunale di Trento at the top."
+   ],
+   "images": [
+    {
+     "file": "images/1938-05-23_Dolomiten_p1_roll_call_of_fallen_Europeana.jpg",
+     "caption": "Dolomiten, 23 May 1938, page 1. Teßmann scan via Europeana, Public Domain Mark 1.0."
+    }
+   ],
+   "file": "images/1938-05-23_Dolomiten_p1_roll_call_of_fallen_Europeana.jpg",
+   "source": {
+    "label": "Europeana",
+    "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000115205016"
+   },
+   "creator": "Dolomiten",
+   "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
+   "rights": "Public Domain Mark 1.0 (Europeana)",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://www.europeana.eu/item/9200333/BibliographicResource_3000115205016"
+   },
+   "place": "monumento-vittoria"
+  },
+  {
+   "no": "17.16",
+   "title": "Inaugurazione della Colonna Romana dedicata ai caduti dell'Alto Adige in terra d'Africa e in Ispagna, Bolzano 5 giugno XVI",
+   "type": "Poster",
+   "date": "1938",
+   "year": 1938,
+   "keywords": [
+    "posters",
+    "monumento-vittoria",
+    "inauguration",
+    "romanita",
+    "ethiopia"
+   ],
+   "text": [
+    "On Whit Sunday, 5 June 1938, before Crown Prince Umberto, a column given by the city of Rome was unveiled in the park behind the Monument to Victory, for the men of the province killed in East Africa, Libya and Spain. Its base reads “Agli atesini caduti per l'Impero Roma riconoscente”.",
+    "The view cannot be stood in: the poster gives the column a capital and steps it lacks and sets it before the monument's east face; it stands to the west. Signed “FR.”; designer and printer are not found."
+   ],
+   "facts": [
+    "As printed: 'INAUGURAZIONE DELLA / COLONNA ROMANA / DEDICATA AI CADUTI DELL'ALTO ADIGE / IN TERRA D'AFRICA E IN ISPAGNA / BOLZANO 5 giugno A·XVI'; 'FR.' in green at the left margin; no printer's line visible (own photograph IMG_1774; notes 17, §7, [V])",
+    "The exhibition's caption: 'Manifesto per l'inaugurazione della “colonna romana” dedicata ai caduti altoatesini in Africa e Spagna, 5 giugno 1938'; no lender named. Its panel: 'a Roman-inspired stone column dedicated to the thirty-two soldiers from the Alto Adige who fell in the African and Spanish wars … Given that many of the fallen were members of the German population, the regime was able to claim that fascism's imperial wars were an instrument for the successful integration of South Tyrolean minorities' (panel photographed, IMG_1771; notes 17, §1, [V])",
+    "A gift of the city of Rome: 'Geschenk der Stadt Rom an die Stadt Bolzano' (Dolomiten 1 June 1938), 'colonna romana offerta dall'Urbe' (La Provincia di Bolzano 7 June 1938). Nothing read says the shaft is ancient (notes 17, §7, [V] and [INF])",
+    "5 June 1938, Whit Sunday and Festa dello Statuto: the princes arrive at 9.15 with the Duke of Pistoia; Under-Secretary Pariani, the prefect, the corps commander, the federal secretary and the podestà present; Archbishop Endrici of Trento blesses it; the father of the gold medallist Guido Presel pulls off the tricolour drape; Umberto lays a laurel wreath (notes 17, §7, Dolomiten and La Provincia di Bolzano of 7 June 1938, [V])",
+    "The base today reads 'AGLI ATESINI / CADVTI PER / L IMPERO / ROMA / RICONOSCENTE / ANNO XVI E F' (own photograph IMG_1793, [V]); La Provincia di Bolzano printed it as 'Agli alto atesini … A. XVI' (notes 17, §7, [V])",
+    "The attic figure on the poster is Dazzi's archer of the monument's east face; the real column has no capital and stands in the park on the west side (notes 17, §7, [W] and [INF])",
+    "Day two of an Alpini festival under the crown prince's patronage: Merano 4 June (a monument given by Milan), Bolzano 5 June, Brunico 6 June; Luce B1319 of 8 June 1938 shows the unveiling (notes 17, §7, [V])",
+    "Designer 'FR.', printer, commissioner, size and holder: not found; no copy on the provincial museums portal or in the Catalogo generale (searched by hand, 0 results) (notes 17, §7, [V])",
+    "Width to height worked out from the photograph: 0.703 (notes 17, §2, [V])",
+    "Seen in the image: on white paper, the Monument to Victory in red line with a winged archer in the attic, blue sky, two green firs, a dark red triangle, and before it a tall pale column with a capital on a stepped base; lettering in red and green; a shadow lies across the top and right, a patch of sun at lower left."
+   ],
+   "images": [
+    {
+     "file": "images/1938_Colonna_Romana_inauguration_poster_visit.jpg",
+     "caption": "Signed “FR.”, 1938: the reproduction shown in BZ '18–'45, Monument to Victory. Own photograph, 14 November 2026, cut to the sheet and set square."
+    }
+   ],
+   "file": "images/1938_Colonna_Romana_inauguration_poster_visit.jpg",
+   "source": {
+    "label": "BZ '18–'45, permanent exhibition in the Monument to Victory",
+    "url": "https://www.monumentoallavittoria.com/it/mostra/perimetro-interno.html"
+   },
+   "creator": "Signed “FR.”; designer and printer not identified",
+   "holder": "A reproduction hangs in BZ '18–'45; no original located",
+   "rights": "Own photograph, 14 November 2026; the designer of 1938 is not identified",
+   "confidence": {
+    "level": "read",
+    "note": "designer, printer and holder not found"
+   },
+   "place": "monumento-vittoria"
+  },
+  {
+   "no": "17.17",
+   "title": "Dolomiten, 7 June 1938, page 2",
+   "type": "Newspaper page",
+   "date": "7 June 1938",
+   "year": 1938,
+   "keywords": [
+    "press",
+    "monumento-vittoria",
+    "inauguration",
+    "romanita",
+    "ethiopia"
+   ],
+   "text": [
+    "“Die Weihe der Gedenksäule”: the report of Whit Sunday, 5 June 1938. In the park behind the monument stands “die von der Stadt Rom gewidmete Marmor-Gedenksäule”. The crown prince and princess arrive at 9.15, the archbishop of Trento consecrates the column, the prince lays a laurel wreath, the prefect presents the relatives of the dead.",
+    "Four marble tablets are set in the base: Rome's dedication, and one each for the dead of East Africa, Libya and Spain. The troop parade that follows fills the rest of the morning."
+   ],
+   "facts": [
+    "'Im Park hinter dem Siegesdenkmal wurde in den vergangenen Tagen die von der Stadt Rom gewidmete Marmor-Gedenksäule aufgestellt. Die Hauptstadt des Reiches hat diese Säule zum Andenken an die in Afrika und Spanien gefallenen Helden aus Oberetsch gewidmet' (notes 17, §7, [V])",
+    "The princes arrived at 9.15 with the Duke of Pistoia; Archbishop Celestin (Endrici) of Trento, assisted by Provost Kaiser of Bolzano and the Benedictines of Gries, consecrated it; the prince laid a laurel wreath with a blue ribbon; the prefect presented the relatives (notes 17, §7, [V])",
+    "'Am Sockel der Gedenksäule sind vier marmorne Tafeln mit Inschriften eingemauert. Die erste enthält die Widmung der Stadt Rom, die zweite ist dem Andenken der Gefallenen in Ostafrika, die dritte dem Andenken der Gefallenen in Libyen und die vierte demjenigen der Gefallenen in Spanien gewidmet.' (notes 17, §7, [V])",
+    "The parade ran from 9.30 to noon (notes 17, §7, [V])",
+    "Dolomiten of 1 June 1938 had announced the column for those fallen in East Africa only (notes 17, §7, [V])",
+    "Seen in the image: page headed 'Seite 2 — Nr. 67', 'Dolomiten', 'Dienstag, den 7. Juni 1938/XVI'; headlines 'Die Feierlichkeiten am Pfingstsonntag', 'Die Weihe der Gedenksäule', 'Die machtvolle Truppenparade', 'In der Industriezone', 'Grundsteinlegung zur Dominikanerkirche'; no pictures."
+   ],
+   "images": [
+    {
+     "file": "images/1938_Colonna_Romana_inauguration_Dolomiten_1938-06-07_p2_Europeana.jpg",
+     "caption": "Dolomiten, 7 June 1938, page 2. Teßmann scan via Europeana, Public Domain Mark 1.0."
+    }
+   ],
+   "file": "images/1938_Colonna_Romana_inauguration_Dolomiten_1938-06-07_p2_Europeana.jpg",
+   "source": {
+    "label": "Europeana",
+    "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000115204952"
+   },
+   "creator": "Dolomiten",
+   "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
+   "rights": "Public Domain Mark 1.0 (Europeana)",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://www.europeana.eu/item/9200333/BibliographicResource_3000115204952"
+   },
+   "place": "monumento-vittoria"
+  },
+  {
+   "no": "17.18",
+   "title": "La Provincia di Bolzano, 7 June 1938, page 1",
+   "type": "Newspaper page",
+   "date": "7 June 1938",
+   "year": 1938,
+   "keywords": [
+    "press",
+    "monumento-vittoria",
+    "inauguration",
+    "romanita",
+    "wording"
+   ],
+   "text": [
+    "The fascist daily's front page: “L'inaugurazione della colonna romana eretta a gloria dei caduti atesini”. The column is “offerta dall'Urbe”; the families of “trentacinque atesini caduti” stand by it; the father of the gold medallist Guido Presel pulls off the tricolour drape.",
+    "It prints the inscription as “Agli alto atesini — Caduti per l'Impero — Roma riconoscente — A. XVI”. The stone says “atesini”. In the same report the archbishop blesses “il Foro della Vittoria, che contemporaneamente s'inaugura”."
+   ],
+   "facts": [
+    "Banner: 'LE TRIONFALI GIORNATE ATESINE DEI PRINCIPI DI PIEMONTE – L'inaugurazione della colonna romana eretta a gloria dei caduti atesini – Superba rassegna di forze guerriere nella zona monumentale'; masthead 'Organo della Federazione dei Fasci di Combattimento' (seen on the page; notes 17, §7, [V])",
+    "'lo scoprimento, nel Fòro della Vittoria, della colonna romana offerta dall'Urbe per onorare la memoria dei caduti atesini nelle guerre africane e nella lotta antibolscevica in terra di Spagna'; it stands 'nel parco che fa da sfondo al monumento della Vittoria e precisamente laddove s'intersecano il viale che conduce alla cripta e quello che unisce Corso IX Maggio con via Cesare Battisti'; 'i famigliari dei trentacinque atesini caduti' (notes 17, §7, [V])",
+    "'Il camerata Presel, scopre la colonna romana, togliendo il drappo tricolore che l'avvolge tutta. Quattro lastre marmoree cinte di lauro sono collocate sul basamento. Vi sono incisi i nomi delle contrade … Africa Orientale, Libia, Spagna. Sulla quarta lastra marmorea si legge una breve lapidaria scritta: «Agli alto atesini — Caduti per l'Impero — Roma riconoscente — A. XVI».' (notes 17, §7, [V])",
+    "The stone reads 'AGLI ATESINI … ANNO XVI E F' (own photograph IMG_1793, [V])",
+    "Endrici blessed 'anche il Foro della Vittoria, che contemporaneamente s'inaugura'; it.wikipedia calls the forum 'mai realizzato' (notes 17, §7, [V] and [W])",
+    "Photographs credited '(Servizio speciale Foto Wals…)', the last letters unclear in the scan (notes 17, §7, [V])",
+    "The BPI gallery states no terms of use; study copy. The scan carries the library's large watermark (manifest; seen in the image)",
+    "Seen in the image: front page dated 'Martedì, 7 Giugno 1938 - Anno XVI', masthead 'La Provincia di Bolzano'; the banner as quoted; a wide photograph of troops drawn up before the monument and one of the column's base banked with wreaths; lower down the prince reviewing troops; a large watermark across the page."
+   ],
+   "images": [
+    {
+     "file": "images/1938_Colonna_Romana_inauguration_La_Provincia_di_Bolzano_1938-06-07_p1_BPI.jpg",
+     "caption": "La Provincia di Bolzano, 7 June 1938, page 1. Rights not stated; BPI gallery."
+    }
+   ],
+   "file": "images/1938_Colonna_Romana_inauguration_La_Provincia_di_Bolzano_1938-06-07_p1_BPI.jpg",
+   "source": {
+    "label": "Biblioteca Provinciale Italiana Claudia Augusta, La Provincia di Bolzano",
+    "url": "https://webaleph.bpi.claudiaugusta.it/La_Provincia_di_Bolzano_001-1938-1938_06_07_Nr_134.html"
+   },
+   "creator": "La Provincia di Bolzano",
+   "holder": "Biblioteca Provinciale Italiana Claudia Augusta, Bolzano",
+   "rights": "Not stated by the BPI gallery; a newspaper of 1938, held as a study copy",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://webaleph.bpi.claudiaugusta.it/La_Provincia_di_Bolzano_001-1938-1938_06_07_Nr_134.html"
+   },
+   "place": "monumento-vittoria"
+  },
+  {
+   "no": "17.19",
+   "title": "The Colonna Romana of 1938 in the park behind the Monument to Victory, five photographs, 2020–2026",
+   "type": "Photograph",
+   "date": "2020–2026",
+   "year": 2020,
+   "keywords": [
+    "monumento-vittoria",
+    "heritage",
+    "romanita",
+    "ethiopia",
+    "libya"
+   ],
+   "text": [
+    "The column today, in the park on the west side of the monument: a plain shaft on a travertine block that reads “Agli atesini caduti per l'Impero Roma riconoscente anno XVI E. F.” A BZ '18–'45 information stele stands a few metres off; in May 2026 a visiting university group still found the column itself “nicht erklärt”.",
+    "Others have answered it: paint in June 2020, a mourning drape in March 2021, and on 19 February 2022 a wreath for “le vittime del colonialismo italiano” with a portrait of Giorgio Marincola."
+   ],
+   "facts": [
+    "The base reads in full 'AGLI ATESINI / CADVTI PER / L IMPERO / ROMA / RICONOSCENTE / ANNO XVI E F'; a BZ '18–'45 information stele stands beside the path (own photographs of 14 November 2026, [V])",
+    "June 2020: activists defaced via Amba Alagi and via Padre Reginaldo Giuliani 'unite alla “colonna romana”, inaugurata nel 1938 e posta di fronte al Monumento alla Vittoria per celebrare l'Impero'; banner 'Azione diretta contro il razzismo e il vecchio-nuovo colonialismo' (notes 17, §7, il Dolomiti 13 June 2020, [V])",
+    "20 March 2021: the ANPI circle 'Franca Anita Turra Hans Egarter' draped the column in mourning 'in memoria delle 500mila vittime del colonialismo italiano'; 19 February 2022: an ANPI wreath with sheets in three languages, 'Giorno del Ricordo per le vittime del colonialismo italiano e dell'impero voluto dal fascismo' (Yekatit 12) (notes 17, §7, [V])",
+    "A side face has a framed panel 'AFRICA / ORIENTALE' (Commons photograph of 24 May 2022, seen, not held; notes 17, §7, [V])",
+    "The colonial 'Ehrensäule' (1938) is 'nicht erklärt', colonial crimes not named: FAU Erlangen excursion report, May 2026 (notes 05, §4, [V])",
+    "de.wikipedia: the column stands 'in der kleinen Parkanlage, die dem Siegesdenkmal westseitig vorgelagert ist' and is 'von der römischen Klassik inspiriert' (notes 17, §7, [W])",
+    "The Commons file of 2020 is titled 'im Juni 2020'; its metadata date is 9 September 2020 (notes 17, §7, [V])",
+    "Seen in the image (2026, whole): a tall plain grey shaft with a simple rounded top on a pale block with cut lettering, autumn chestnuts, the monument's columns behind, a red-headed information stele at right.",
+    "Seen in the image (2026, base): the block with the six lines of lettering, sharp shadows of leaves across it.",
+    "Seen in the image (2020): the same column in summer, a magenta cross of paint splashed over the base.",
+    "Seen in the image (2022): the base with 'AGLI ATESINI / CADVTI PER' visible above a laurel wreath with a tricolour ribbon 'A.N.P.I. ALTO ADIGE', a rainbow 'PACE' flag on the ground with printed sheets headed 'Yekatit 12', and a portrait photograph of a young man in glasses propped on the plinth."
+   ],
+   "images": [
+    {
+     "file": "photos/IMG_1795.JPG",
+     "caption": "The column in the park behind the Monument to Victory. Own photograph, 14 November 2026."
+    },
+    {
+     "file": "photos/IMG_1793.JPG",
+     "caption": "The base: “Agli atesini caduti per l'Impero Roma riconoscente anno XVI E. F.” Own photograph, 14 November 2026."
+    },
+    {
+     "file": "photos/IMG_1794.JPG",
+     "caption": "From further back: the path to the crypt, the monument behind the trees. Own photograph, 14 November 2026."
+    },
+    {
+     "file": "images/1938_Colonna_Romana_whole_column_2020_Commons.jpg",
+     "caption": "With paint on the base, 2020. Bartleby08, CC BY-SA 4.0, Wikimedia Commons (scaled copy)."
+    },
+    {
+     "file": "images/1938_Colonna_Romana_front_inscription_2022_Commons.jpg",
+     "caption": "The ANPI wreath of 19 February 2022 (Yekatit 12) with a portrait of Giorgio Marincola. Bartleby08, CC BY-SA 4.0, Wikimedia Commons."
+    }
+   ],
+   "file": "photos/IMG_1795.JPG",
+   "source": {
+    "label": "Wikimedia Commons",
+    "url": "https://commons.wikimedia.org/wiki/File:S%C3%A4ule_1938_im_Juni_2020.jpg"
+   },
+   "creator": "Own photographs (2026); Bartleby08 (2020, 2022)",
+   "holder": "Wikimedia Commons (2020, 2022)",
+   "rights": "2026: own photographs, 14 November 2026. 2020 and 2022: CC BY-SA 4.0",
+   "confidence": {
+    "level": "read"
+   },
+   "place": "monumento-vittoria",
+   "more": {
+    "kind": "source",
+    "target": "https://commons.wikimedia.org/wiki/File:Giorgio_Marincola_Gedenken_Feb_2022_Yekatit_12_SiD.jpg"
+   }
+  },
+  {
+   "no": "17.20",
+   "title": "Piazza delle Erbe, Bolzano, 24 April 1921, “Bloody Sunday”: photograph shown in BZ '18–'45",
+   "type": "Photograph",
+   "date": "24 April 1921",
+   "year": 1921,
+   "keywords": [
+    "old-town",
+    "military"
+   ],
+   "text": [
+    "Piazza delle Erbe on 24 April 1921, the “Bloody Sunday”: soldiers hold a crowd back at the end of the square, and market stalls lie wrecked in the foreground. That day several hundred squadristi from the Veneto and Lombardy, joined by local fascists, attacked a procession in costume for the reopening of the fair. The teacher Franz Innerhofer was killed.",
+    "The exhibition names no photographer. Its panel sets the day beside the “March on Bolzano” of autumn 1922: in this region, it says, the fascists' enemies “were ‘Germans’ not ‘Bolsheviks’”."
+   ],
+   "facts": [
+    "Caption on the exhibition's panel: 'The events of April 24, 1921 known as “Bloody Sunday,” Piazza delle Erbe, Bolzano' / 'I fatti del 24 aprile 1921 a Bolzano, in piazza delle Erbe (“Domenica di sangue”)' / 'Die Ereignisse vom 24. April 1921 am Bozner Obstplatz („Bozner Blutsonntag“)' (own photograph IMG_1752; notes 17, §8, [V])",
+    "Panel text: 'The first took place in Bolzano on April 24, 1921, the day of the reopening of the traditional city fair, interrupted during the war years. On the very same day, a referendum was being held in northern Tyrol regarding the region's annexation by Germany … Several hundred squadrists from the Veneto and Lombardy descended upon the city and, joined by local fascists, assaulted a folkloric procession. The violence escalated from beatings to shootings to bombings. The result was the death of the teacher Franz Innerhofer and tens of wounded.' (own photograph IMG_1755; notes 17, §8, [V])",
+    "Same panel: 'the left in the Tridentine Veneto was weak and politically moderate, so the fasci embraced a nationalist ideology. The true enemies were “Germans” not “Bolsheviks.”' (notes 17, §8, [V])",
+    "No photographer, archive or lender is named on the panel (notes 17, §8, [V])",
+    "An account written in 1932, Steinberger's pamphlet, p. 19 (row 17.06): '300 mit Pistolen, Handgranaten und Totschlägern bewaffnete Fascisten' came up by train past Trento; '48 Verwundete, Männer und Frauen'; Innerhofer was shot 'während er zwei Kinder in einen Hauseingang flüchtet'; the soldiers then escorted the attackers to the station; p. 20 names Achille Starace as their leader. It gives no source beyond Reut-Nicolussi's Tirol unterm Beil (notes 17, §4.9, [V])",
+    "Two photographs were taken of the print; the closer one was cut square, the other shows it in its frame (manifest)",
+    "Seen in the image: a square of old houses from above; a line of helmeted soldiers across its far end holds back a dense crowd; in the foreground overturned stalls, boards and a handcart; shop signs 'ANTON LEISS & C.' and 'Ludwig Graf … Goerz'; a white border round the print."
+   ],
+   "images": [
+    {
+     "file": "images/1921-04-24_Bloody_Sunday_Piazza_delle_Erbe_photograph_visit.jpg",
+     "caption": "Unknown photographer, 24 April 1921; shown as a reproduction in BZ '18–'45, Monument to Victory. Own photograph, 14 November 2026, cut to the print and set square."
+    },
+    {
+     "file": "photos/IMG_1753.JPG",
+     "caption": "The print in its frame at the station “Violence”. Own photograph, 14 November 2026."
+    }
+   ],
+   "file": "images/1921-04-24_Bloody_Sunday_Piazza_delle_Erbe_photograph_visit.jpg",
+   "source": {
+    "label": "BZ '18–'45, permanent exhibition in the Monument to Victory",
+    "url": "https://www.monumentoallavittoria.com/it/mostra/perimetro-esterno.html"
+   },
+   "creator": "Unknown photographer",
+   "holder": "A reproduction hangs in BZ '18–'45; the original's holder is not named",
+   "rights": "Own photograph, 14 November 2026; a photograph of 1921 by an unnamed photographer",
+   "confidence": {
+    "level": "read",
+    "note": "date and place are the exhibition's caption; photographer and holder not named"
+   }
+  },
+  {
+   "no": "17.21",
+   "title": "Il Piccolo Posto, 10 February 1926, page 1",
+   "type": "Newspaper page",
+   "date": "10 February 1926",
+   "year": 1926,
+   "keywords": [
+    "press",
+    "monumento-vittoria",
+    "language"
+   ],
+   "text": [
+    "Four days after Mussolini's speech in the Chamber, a bilingual Bolzano paper boxes his sentence on its front page: “in una piazza di Bolzano … sulle stesse fondamenta sulle quali doveva sorgere il monumento della vittoria tedesca, erigeremo un monumento a Cesare Battisti”. It opens a subscription among “tutti i cittadini di lingua italiana”; in Rome, it says, Mussolini signed among the first.",
+    "Masthead and appeal run in Italian and German: “Il Piccolo Posto / Die Vorposten”. Battisti's widow refused the dedication, and the monument became one to victory."
+   ],
+   "facts": [
+    "Masthead: 'IL PICCOLO POSTO / Die Vorposten', 'Anno VI — N. 11', 'BOLZANO-MERANO Mercoledì 10 febbraio 1926' (own photograph IMG_1757, [V])",
+    "Boxed, under 'CESARE BATTISTI': '«Ma molto probabilmente in una piazza di Bolzano per sottoscrizione del popolo italiano, sulle stesse fondamenta sulle quali doveva sorgere il monumento della vittoria tedesca, erigeremo un monumento a Cesare Battisti, il quale, insieme con altri eroi col proprio sangue e col proprio sacrificio, ha scritto per l'Alto Adige la parola definitiva della nostra storia». Dal discorso del Presidente del Consiglio del 6 corr. mese.' (read at full size, [V])",
+    "'Le parole del Presidente del Consiglio, avranno sviluppo pratico. A Roma si è subito iniziata una sottoscrizione alla quale ha partecipato tra i primi lo stesso Mussolini. IL PICCOLO POSTO apre le sue colonne ad una sottoscrizione alla quale parteciperanno non vi è dubbio tutti i cittadini di lingua italiana che vivono nell'Alto Adige.' The appeal is repeated in German below (read at full size, [V])",
+    "The speech is the one of 6 February 1926 held as row 15.02 (Atti Parlamentari); notes 05 §3 date the decision for the monument to 10 February 1926, the date of this issue (notes 05, §3; notes 17, §8)",
+    "Guide 2024: Mussolini announced 'sulle stesse fondamenta sulle quali doveva sorgere il monumento della vittoria tedesca' a monument to Battisti and the Trentino 'martiri'; 'A seguito della ferma opposizione della vedova di Battisti il Monumento sarà però intitolato “alla vittoria italiana”' (row 5.29, [V])",
+    "Other headlines: 'L'Associazione Nazionale Insegnanti Fascisti / Die Reichsverband faschistischer Lehrer', 'L'assemblea generale della Cooperativa Edilizia / Der Generalversammlung der Baugenossenschaft' (read at full size, [V])",
+    "Seen in the image: a front page in four columns, Italian and German text side by side, the masthead in heavy sans-serif capitals, the boxed appeal headed 'CESARE BATTISTI' in the middle of the page; no pictures."
+   ],
+   "images": [
+    {
+     "file": "images/1926-02-10_Il_Piccolo_Posto_p1_visit.jpg",
+     "caption": "Il Piccolo Posto, 10 February 1926, page 1. Shown as a reproduction in BZ '18–'45. Own photograph, 14 November 2026, cut to the page and set square."
+    }
+   ],
+   "file": "images/1926-02-10_Il_Piccolo_Posto_p1_visit.jpg",
+   "source": {
+    "label": "BZ '18–'45, permanent exhibition in the Monument to Victory",
+    "url": "https://www.monumentoallavittoria.com/it/mostra/perimetro-interno.html"
+   },
+   "creator": "Il Piccolo Posto",
+   "holder": "A reproduction hangs in BZ '18–'45; no library copy was consulted",
+   "rights": "Own photograph, 14 November 2026; a newspaper of 1926",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://www.monumentoallavittoria.com/it/mostra/perimetro-interno.html"
+   },
+   "place": "monumento-vittoria"
+  },
+  {
+   "no": "17.22",
+   "title": "Sketch for the Monument to Victory, initialled, shown in BZ '18–'45",
+   "type": "Drawing",
+   "date": "c. 1926",
+   "year": 1926,
+   "keywords": [
+    "monumento-vittoria",
+    "architecture",
+    "typeface"
+   ],
+   "text": [
+    "The monument before it was built, in a pen sketch printed by the exhibition on a copper-coloured panel. The arch stands on steps with an altar in front; busts sit in niches between the columns, and guns and round shields flank the base.",
+    "The attic already carries its inscription, but as placeholder: rows of capitals that run “ABCD…”, “OPQR STUVZ”. The place for the words was fixed before the words were. It is initialled at lower right; that the hand is Marcello Piacentini's is an inference, no label was photographed."
+   ],
+   "facts": [
+    "No label or caption for this panel was photographed; identification rests on the drawing itself (notes 17, §8, [INF])",
+    "Faint initials at lower right, reading like 'M. P.' with a further stroke; taken as Marcello Piacentini's, the monument's architect (guide 2024: 'A costruire il nuovo Monumento italiano fu incaricato l'architetto romano Marcello Piacentini') (own photograph IMG_1756; row 5.29; [INF])",
+    "The attic panel is filled with dummy lettering in three lines of capitals, among them 'ABCD…' and 'OPQR STUVZ', and a further line on the frieze below (read at full size, [V])",
+    "The guide gives the outer round's room 9 to 'L'architetto Marcello Piacentini'; whether this panel hangs there was not noted (row 5.29, [V]; [INF])",
+    "Width to height of the panel, worked out from the photograph: 1.58 (notes 17, §2)",
+    "Seen in the image: a brown line drawing on a rose-copper ground: an arch on a stepped base, paired columns each side with arched niches holding busts, an altar or sarcophagus on the steps, cannon and round emblems on side blocks; initials at lower right."
+   ],
+   "images": [
+    {
+     "file": "images/1926c_Piacentini_sketch_Monument_to_Victory_visit.jpg",
+     "caption": "Sketch for the monument, initialled, about 1926; shown as a reproduction in BZ '18–'45, Monument to Victory. Own photograph, 14 November 2026, cut to the panel and set square."
+    }
+   ],
+   "file": "images/1926c_Piacentini_sketch_Monument_to_Victory_visit.jpg",
+   "source": {
+    "label": "BZ '18–'45, permanent exhibition in the Monument to Victory",
+    "url": "https://www.monumentoallavittoria.com/it/mostra/perimetro-esterno.html"
+   },
+   "creator": "Marcello Piacentini (inferred from the initials)",
+   "holder": "A reproduction hangs in BZ '18–'45; the original's holder is not named",
+   "rights": "Own photograph, 14 November 2026; the draughtsman is inferred",
+   "confidence": {
+    "level": "lead",
+    "note": "no label photographed; author and date inferred"
+   },
+   "place": "monumento-vittoria"
+  },
+  {
+   "no": "17.23",
+   "title": "Guido Cadorin, La custode della storia and La custode della patria, frescoes in the crypt of the Monument to Victory",
+   "type": "Photograph",
+   "date": "1928",
+   "year": 1928,
+   "keywords": [
+    "monumento-vittoria",
+    "romanita",
+    "symbol",
+    "heritage"
+   ],
+   "text": [
+    "The two frescoes Guido Cadorin painted in the crypt in 1928, each in its arched niche. In one a winged woman sits with a raised sword and an open book of capitals on her knee: the guardian of history. In the other she holds sword and burning lamp: the guardian of the fatherland. By the guide, history is on the left, the fatherland on the right.",
+    "The walls round them carry Latin from Cicero and Horace. The exhibition lays sentences by Hannah Arendt, Bertolt Brecht and Thomas Paine over it."
+   ],
+   "facts": [
+    "Labels: 'Guido Cadorin, The guardian of history / La custode della storia / Wächterin der Geschichte, fresco, 1928' and 'Guido Cadorin, The guardian of the fatherland / La custode della patria / Wächterin des Vaterlandes, fresco, 1928' (own photographs IMG_1785 and IMG_1786, [V])",
+    "Guide 2024: 'La cripta è decorata con gli affreschi di Guido Cadorin, La custode della patria (destra) e La custode della storia (sinistra). Alle iscrizioni latine sulle pareti, tratte da testi di Cicerone e Orazio, vengono sovrapposte frasi di Hannah Arendt, Bertolt Brecht e Thomas Paine.' (row 5.29, [V])",
+    "Which photograph shows which fresco is taken from the attributes (book for history, lamp for the fatherland) and from the order in which frescoes and labels were photographed (notes 17, §8, [INF])",
+    "Seen in the image (first): an arched niche in a stone-lined vault; on a deep blue ground a seated winged woman in pale robes, a sword upright in her right hand, an open book with lines of capitals on her left knee; a bench and a floor light in front.",
+    "Seen in the image (second): the facing niche; a seated winged woman, a sword point down in her right hand, a burning lamp raised in her left."
+   ],
+   "images": [
+    {
+     "file": "photos/IMG_1783.JPG",
+     "caption": "Guido Cadorin, La custode della storia, fresco, 1928. Own photograph, 14 November 2026."
+    },
+    {
+     "file": "photos/IMG_1784.JPG",
+     "caption": "Guido Cadorin, La custode della patria, fresco, 1928. Own photograph, 14 November 2026."
+    },
+    {
+     "file": "images/label_Cadorin_custode_della_storia_visit.jpg",
+     "caption": "The exhibition's label for the first. Own photograph, 14 November 2026, cut square."
+    },
+    {
+     "file": "images/label_Cadorin_custode_della_patria_visit.jpg",
+     "caption": "The exhibition's label for the second. Own photograph, 14 November 2026, cut square."
+    }
+   ],
+   "file": "photos/IMG_1783.JPG",
+   "source": {
+    "label": "BZ '18–'45, permanent exhibition in the Monument to Victory",
+    "url": "https://www.monumentoallavittoria.com/it/mostra/perimetro-interno.html"
+   },
+   "creator": "Guido Cadorin (frescoes); own photographs",
+   "holder": "In place, crypt of the Monument to Victory, Bolzano",
+   "rights": "Own photographs, 14 November 2026; the frescoes are by Guido Cadorin, 1928",
+   "confidence": {
+    "level": "read",
+    "note": "which fresco is which rests on the attributes"
+   },
+   "place": "monumento-vittoria"
+  },
+  {
+   "no": "17.24",
+   "title": "Innsbrucker Nachrichten, 12 July 1928, page 2",
+   "type": "Newspaper page",
+   "date": "12 July 1928",
+   "year": 1928,
+   "keywords": [
+    "press",
+    "monumento-vittoria",
+    "counter-propaganda",
+    "wording",
+    "inauguration"
+   ],
+   "text": [
+    "The day the monument was inaugurated, seen from Innsbruck. Two drawings stand one above the other: the Kaiserjäger memorial, “das bereits fast vollendet war, von den Italienern aber zerstört wurde”, and “Das „Sieges“-Denkmal, das die Italiener auf den Fundamenten des Kaiserjägerdenkmales errichteten”. The quotation marks round “Sieges” are the paper's.",
+    "Round them: “Der „Held“ Battisti”, a general's article headed “Die „Sieger“”, and the Kaiserjäger's mourning ceremony on the Bergisel the evening before. The exhibition hangs the page in the crypt of the monument it mocks."
+   ],
+   "facts": [
+    "Head of page: 'Seite 2. Nr. 158.', '„Innsbrucker Nachrichten“', 'Donnerstag, den 12. Juli 1928.' (own photograph IMG_1751 and the ANNO scan, [V])",
+    "Caption of the upper drawing: 'Das Gefallenendenkmal des zweiten Regimentes der Tiroler Kaiserjäger an der Talferbrücke in Bozen, das bereits fast vollendet war, von den Italienern aber zerstört wurde, und auf dessen Fundamenten das „Sieges“-Denkmal errichtet wurde.' Caption of the lower: 'Das „Sieges“-Denkmal, das die Italiener auf den Fundamenten des Kaiserjägerdenkmales errichteten.' (read on the ANNO scan, [V])",
+    "Headings on the page: 'Der „Held“ Battisti.', 'Eine Kaiserjäger-Heldenfeier am Berg Isel.', 'Die „Sieger“.' (by 'General d. I. Alfred Krauß'), 'Mussolini über Südtirol.' (read on the ANNO scan, [V])",
+    "The same day in Bolzano: rows 3.06 to 3.10 and 5.04 hold the Alpenzeitung, Dolomiten and La Provincia di Bolzano of 12 to 15 July 1928 (existing rows)",
+    "ANNO, the Austrian National Library's newspaper portal, serves the page; its terms: 'An allen Inhalten, die von der Österreichischen Nationalbibliothek (ÖNB) ins Netz gestellt werden, macht die ÖNB kein eigenes urheberrechtliches Verwertungsrecht geltend … Rechte Dritter [sind] für jede Form der Nachnutzung individuell zu klären'; to be cited as 'ANNO/Österreichische Nationalbibliothek' (FAQ read in a browser on 14 Nov 2026, [V])",
+    "The sheet in the crypt does not lie flat: its side edges bulge outward by about ten pixels in the photograph; the cut straightens them (notes 17, §2)",
+    "Seen in the image (crypt): a full page in Fraktur on pinkish paper, three columns, two line drawings of monuments in the middle column.",
+    "Seen in the image (ANNO): the same page, yellowed, scanned flat, 3618 × 5396 px."
+   ],
+   "images": [
+    {
+     "file": "images/1928-07-12_Innsbrucker_Nachrichten_p2_visit.jpg",
+     "caption": "Innsbrucker Nachrichten, 12 July 1928, page 2. The reproduction shown in BZ '18–'45. Own photograph, 14 November 2026, cut to the page and set square."
+    },
+    {
+     "file": "images/1928-07-12_Innsbrucker_Nachrichten_p2_ANNO.jpg",
+     "caption": "The same page as scanned by the library. Innsbrucker Nachrichten, 12 July 1928, page 2; ANNO/Österreichische Nationalbibliothek."
+    }
+   ],
+   "file": "images/1928-07-12_Innsbrucker_Nachrichten_p2_visit.jpg",
+   "source": {
+    "label": "ANNO, Österreichische Nationalbibliothek",
+    "url": "https://anno.onb.ac.at/cgi-content/anno?aid=ibn&datum=19280712&seite=2"
+   },
+   "creator": "Innsbrucker Nachrichten",
+   "holder": "Österreichische Nationalbibliothek, Vienna (ANNO); a reproduction hangs in BZ '18–'45",
+   "rights": "Crypt copy: own photograph, 14 November 2026. ANNO scan: the ÖNB claims no rights of its own in what it puts online; third-party rights to be cleared by the user",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://anno.onb.ac.at/cgi-content/anno?aid=ibn&datum=19280712&seite=2"
+   },
+   "place": "monumento-vittoria"
+  },
+  {
+   "no": "17.25",
+   "title": "Vittorio Morelli, two eagle heads from Ponte Druso, in the crypt of the Monument to Victory",
+   "type": "Object",
+   "date": "1931; photographed 14 November 2026",
+   "year": 1931,
+   "keywords": [
+    "ponte-druso",
+    "monumento-vittoria",
+    "romanita",
+    "removal",
+    "heritage"
+   ],
+   "text": [
+    "Two of the four eagles of Ponte Druso as they stand today in the crypt of the Monument to Victory: head, breast and the stumps of the wings, cut in coarse stone and set on low dark plinths. On the bridge they stood more than eight metres above the road; here they are within reach. The label gives sculptor and year: Vittorio Morelli, 1931.",
+    "The notes could not say whether the heads were still on show in 2026. They are. Where the other two eagles are is still unknown."
+   ],
+   "facts": [
+    "Label: 'Vittorio Morelli, Eagles heads, stone sculptures originally installed along the Druso Bridge, 1931' / 'Teste di aquile, sculture in pietra in origine collocate sul ponte Druso, 1931' / 'Adlerköpfe, Steinskulpturen, ursprünglich auf der Bozner Drususbrücke, 1931' (own photograph IMG_1762, [V])",
+    "The two best-preserved heads were carried to the crypt on 6 December 2013; they were only lightly brushed, 'muschio compreso' (notes 05, §1, [V]; story 5.01)",
+    "Notes 05 §1 and the story's 'Still open' could not verify that they were on show in 2026, because the 2025 guide does not mention them; photographed on show on 14 November 2026 (notes 17, §1, [V])",
+    "The eagles stood on globes carried by fasces, more than 8 m above the roadway; they came down in the 1970s, the year and the decision not found (notes 05, §1; story 5.01)",
+    "Seven photographs were taken: four views, a close view of the stone, the label twice (manifest)",
+    "Seen in the image: two stone eagles side by side on a low dark plinth against a rough plastered wall, each with a hooked beak, a breast cut in overlapping scales and broad stumps of wings, the surface pitted and stained; the label on the wall behind.",
+    "Seen in the image (close view): the grain of the stone, grey-pink with dark and light crystals: a porphyry by its look, which is an inference."
+   ],
+   "images": [
+    {
+     "file": "photos/IMG_1758.JPG",
+     "caption": "Vittorio Morelli, eagle heads from Ponte Druso, 1931, in the crypt. Own photograph, 14 November 2026."
+    },
+    {
+     "file": "photos/IMG_1759.JPG",
+     "caption": "The nearer head. Own photograph, 14 November 2026."
+    },
+    {
+     "file": "photos/IMG_1760.JPG",
+     "caption": "From the side, the exhibition behind. Own photograph, 14 November 2026."
+    },
+    {
+     "file": "photos/IMG_1761.JPG",
+     "caption": "From above and behind. Own photograph, 14 November 2026."
+    },
+    {
+     "file": "photos/IMG_1764.JPG",
+     "caption": "The stone, close. Own photograph, 14 November 2026."
+    },
+    {
+     "file": "images/label_Morelli_eagle_heads_visit.jpg",
+     "caption": "The exhibition's label. Own photograph, 14 November 2026, cut square."
+    }
+   ],
+   "file": "photos/IMG_1758.JPG",
+   "source": {
+    "label": "BZ '18–'45, permanent exhibition in the Monument to Victory",
+    "url": "https://www.monumentoallavittoria.com/it/mostra/perimetro-interno.html"
+   },
+   "creator": "Vittorio Morelli (sculptures); own photographs",
+   "holder": "City of Bolzano, on show in the crypt of the Monument to Victory",
+   "rights": "Own photographs, 14 November 2026",
+   "confidence": {
+    "level": "read"
+   },
+   "place": "monumento-vittoria"
+  },
+  {
+   "no": "17.26",
+   "title": "Istituto Luce, the unveiling of the Roman column behind the Monument to Victory, 5 June 1938",
+   "type": "Photograph",
+   "date": "5 June 1938",
+   "year": 1938,
+   "keywords": [
+    "monumento-vittoria",
+    "inauguration",
+    "romanita",
+    "ethiopia"
+   ],
+   "text": [
+    "The minute the poster announced. The column stands at the left, the tricolour drape that covered it lying at its foot. Before it a woman in a flowered dress holds a bunch of flowers and a man in a steel helmet stands at attention, with officers and blackshirts behind them, arms raised. The print carries the stamp “LUCE”.",
+    "The exhibition's caption says only “La cerimonia d'inaugurazione della „colonna romana“, 5 giugno 1938”. By the newspapers and by Luce's own newsreel the two are Princess Maria José and Crown Prince Umberto."
+   ],
+   "facts": [
+    "The exhibition's caption, number 2 on the panel 'For the glory of the fatherland': 'Inauguration ceremonies for the Roman column, June 5, 1938' / 'La cerimonia d'inaugurazione della “colonna romana”, 5 giugno 1938' / 'Die Feier zur Einweihung der „römischen Säule“, 5. Juni 1938' (own photograph IMG_1771, [V])",
+    "A stamp 'LUCE' in a box at the lower left of the print (own photograph IMG_1772, [V])",
+    "Luce newsreel B1319 of 8 June 1938: 'la colonna viene scoperta dalla bandiera e Umberto depone una corona di alloro / Maria Josè assiste all'atto tenendo in mano un mazzo di fiori' (notes 17, §7, [V])",
+    "That the woman with the flowers is Maria José and the man in the helmet Umberto is taken from that description and from the reports of 7 June 1938 (rows for Dolomiten and La Provincia di Bolzano), not from a caption (notes 17, §8, [INF])",
+    "The held index of Luce's 'Foto Attualità' for Bolzano has no record of the ceremony (row for the index in section 15; notes 17, §8, [V])",
+    "La Provincia di Bolzano of 7 June 1938 prints a photograph of the prince at the column credited to another service, 'Foto Wals…' (row for that page; notes 17, §7, [V])",
+    "Seen in the image: a thick plain column at left with cloth heaped at its base; a group facing it: a naval or court officer in dark uniform with medals, a woman in a wide hat and flowered dress holding flowers, a tall man in light uniform and helmet, uniformed men saluting with raised arms; trees and a new building behind; 'LUCE' at lower left."
+   ],
+   "images": [
+    {
+     "file": "images/1938-06-05_Colonna_Romana_ceremony_Luce_photograph_visit.jpg",
+     "caption": "Istituto Luce, 5 June 1938; shown as a reproduction in BZ '18–'45, Monument to Victory. Own photograph, 14 November 2026, cut to the print and set square."
+    }
+   ],
+   "file": "images/1938-06-05_Colonna_Romana_ceremony_Luce_photograph_visit.jpg",
+   "source": {
+    "label": "BZ '18–'45, permanent exhibition in the Monument to Victory",
+    "url": "https://www.monumentoallavittoria.com/it/mostra/perimetro-interno.html"
+   },
+   "creator": "Istituto Luce (stamp on the print)",
+   "holder": "A reproduction hangs in BZ '18–'45; Archivio Luce presumed",
+   "rights": "Own photograph, 14 November 2026; the photograph of 1938 carries the Luce stamp",
+   "confidence": {
+    "level": "read",
+    "note": "the people are named by inference from the reports and the newsreel"
+   },
+   "place": "monumento-vittoria"
+  },
+  {
+   "no": "17.27",
+   "title": "American troops before the Monument to Victory, 1945: two photographs shown in BZ '18–'45",
+   "type": "Photograph",
+   "date": "1945",
+   "year": 1945,
+   "keywords": [
+    "monumento-vittoria",
+    "military"
+   ],
+   "text": [
+    "The end of the war at the monument, in two photographs. In one a light tank rolls past the east front while two men in uniform watch from their bicycles. In the other helmeted soldiers with rifles are drawn up before two trucks with aerials, the monument's fasces columns rising over them.",
+    "Helmets, rifles and tank are American. The exhibition's captions were not photographed, so the year and the army are read from the pictures. A third shot of the second print is blurred and is not shown."
+   ],
+   "facts": [
+    "No caption or panel for either print was photographed; '1945' and 'American' are read from the equipment in the pictures (helmets, rifles, a light tank of American make) (notes 17, §8, [INF])",
+    "Guide 2024, outer round, room 12 'Resistenza e democrazia': 'A guerra finita i sudtirolesi videro frustrata ogni speranza di revisione dei confini, ma l'Accordo De Gasperi-Gruber firmato il 5 settembre 1946 disegnò una cornice al cui interno garantire i diritti della minoranza'; whether the two prints hang in that room was not noted (row 5.29, [V]; [INF])",
+    "The first print shows the east front with Dazzi's relief in the attic; the second the face with the three medallions and the Latin dedication (compared with the photographs of 14 November 2026, [V])",
+    "The lower left corner of the second print lies just outside the photograph; the cut trims it. IMG_1780, a blurred frame of the same print, is kept in photos/ and not shown (notes 17, §2; manifest)",
+    "Seen in the image (first): the monument at left on its steps, an armoured car beside it; a tracked light tank with two crewmen in the hatch crossing the square; two men in caps and uniform with bicycles in the right foreground, backs to the camera; hills behind.",
+    "Seen in the image (second): the monument from a corner, medallions and inscription on the attic; two covered trucks with whip aerials; a rank of soldiers in helmets and short jackets, rifles held across the body."
+   ],
+   "images": [
+    {
+     "file": "images/1945_US_tank_Monument_to_Victory_photograph_visit.jpg",
+     "caption": "Unknown photographer, 1945 by the look of it; shown as a reproduction in BZ '18–'45, Monument to Victory. Own photograph, 14 November 2026, cut to the print and set square."
+    },
+    {
+     "file": "images/1945_US_soldiers_Monument_to_Victory_photograph_visit.jpg",
+     "caption": "Unknown photographer, 1945 by the look of it; shown as a reproduction in BZ '18–'45, Monument to Victory. Own photograph, 14 November 2026, cut to the print and set square."
+    }
+   ],
+   "file": "images/1945_US_tank_Monument_to_Victory_photograph_visit.jpg",
+   "source": {
+    "label": "BZ '18–'45, permanent exhibition in the Monument to Victory",
+    "url": "https://www.monumentoallavittoria.com/it/mostra/perimetro-esterno.html"
+   },
+   "creator": "Unknown photographers",
+   "holder": "Reproductions hang in BZ '18–'45; the originals' holders are not named",
+   "rights": "Own photographs, 14 November 2026; the photographers of 1945 are not named",
+   "confidence": {
+    "level": "lead",
+    "note": "no caption photographed; year and army inferred from the pictures"
+   },
+   "place": "monumento-vittoria"
+  },
+  {
+   "no": "17.28",
+   "title": "Rally on the steps of the Monument to Victory with placards for Trieste, Fiume, Pola and Zara",
+   "type": "Photograph",
+   "date": "after 1945, probably 1953",
+   "year": 1953,
+   "keywords": [
+    "monumento-vittoria",
+    "wording"
+   ],
+   "text": [
+    "After the war the monument served a new cause. Young men stand between its columns with placards: “W Trieste”, “W Fiume”, “W Zara”, “W Pola”, “Mona Tito”, “Basta con i soprusi”. A wreath and a tricolour stand beside them, and the camera looks over the heads of the crowd.",
+    "The caption was not photographed. The slogans are those of the dispute over Trieste, at its height in autumn 1953; the date is an inference. The guide's heading for these years: “Conservare o distruggere?”"
+   ],
+   "facts": [
+    "Placards read: 'W POLA', 'MONA TITO', 'W FIUME W ZARA', 'W FIUME W POLA', 'BASTA CO[N] I SOPRU[SI] TRIESTE, IST[RIA], DALMAZIA …', 'W ZARA W TRIESTE', 'W TRIESTE' (own photograph IMG_1778, [V])",
+    "No caption or panel for the print was photographed. The slogans point to the Trieste question; 'probably 1953' is an inference from them, not a documented date (notes 17, §8, [INF])",
+    "Guide 2024, inner round, room 12 'Conservare o distruggere?': 'Dopo la fine della Seconda guerra mondiale, il Monumento rimase al centro delle tensioni tra fascisti e antifascisti, tra i gruppi linguistici e infine tra i sostenitori della preservazione urbanistica e coloro che propugnavano chiari interventi di discontinuità' (row 5.29, [V])",
+    "Two photographs were taken of the print; the closer one was cut square, the other shows it in its frame (manifest)",
+    "Seen in the image: the fasces columns of the monument; six young men in overcoats on the top step holding hand-lettered placards; a laurel wreath on a stand and a tricolour at left; in the foreground, out of focus, the backs of heads."
+   ],
+   "images": [
+    {
+     "file": "images/postwar_rally_Trieste_placards_Monument_to_Victory_photograph_visit.jpg",
+     "caption": "Unknown photographer, after 1945; shown as a reproduction in BZ '18–'45, Monument to Victory. Own photograph, 14 November 2026, cut to the print and set square."
+    },
+    {
+     "file": "photos/IMG_1777.JPG",
+     "caption": "The print in its frame. Own photograph, 14 November 2026."
+    }
+   ],
+   "file": "images/postwar_rally_Trieste_placards_Monument_to_Victory_photograph_visit.jpg",
+   "source": {
+    "label": "BZ '18–'45, permanent exhibition in the Monument to Victory",
+    "url": "https://www.monumentoallavittoria.com/it/mostra/perimetro-interno.html"
+   },
+   "creator": "Unknown photographer",
+   "holder": "A reproduction hangs in BZ '18–'45; the original's holder is not named",
+   "rights": "Own photograph, 14 November 2026; the photographer is not named",
+   "confidence": {
+    "level": "lead",
+    "note": "no caption photographed; the date is inferred from the slogans"
+   },
+   "place": "monumento-vittoria"
+  },
+  {
+   "no": "17.29",
+   "title": "BZ '18–'45, stations and panels of the exhibition under the Monument to Victory",
+   "type": "Intervention",
+   "date": "2014; photographed 14 November 2026",
+   "year": 2014,
+   "keywords": [
+    "heritage",
+    "typeface",
+    "wording",
+    "language",
+    "monumento-vittoria"
+   ],
+   "text": [
+    "How the exhibition speaks. Each station of the outer round is one word in heavy black capitals on a white banner: “VIOLENCE”, “IDEOLOGY”, “VOTE”. The text hangs below in three languages, English first. The first room asks “MONUMENT?”, black on a yellow arch of three piers.",
+    "Beside the exhibits, dark steel panels carry the longer texts and number the things on the wall. Under a monument that speaks in Latin capitals cut in marble, the answer is given in sans-serif, in single words and a question mark."
+   ],
+   "facts": [
+    "Exhibition design by Gruppe Gut with Jeffrey T. Schnapp; opened 21 July 2014; English is placed first on signs so that neither local language has primacy (notes 05, §4, [V])",
+    "Banner 'VIOLENCE': 'Le violenze fasciste – la “Marcia su Bolzano”' / 'Faschistische Gewalt – der „Marsch auf Bozen“' / 'Acts of fascist violence – the “March on Bolzano”'; its English text ends: 'Credaro caved in on all three points on October 3. The government's authority was weakened and delegitimized by these events, which preceded the March on Rome by only a few weeks.' (own photographs IMG_1752 and IMG_1755, [V])",
+    "Banner 'IDEOLOGY': 'The growth of a local Nazi movement – the German–Italian alliance'; caption at its foot: 'Political-military training camp of the Völkische Kampfring Südtirols organization, 1935' (own photograph IMG_1775, [V])",
+    "Banner 'VOTE': 'Optanten vs. Dableiber – “to opt” or to stay?'; caption at its foot: 'The geranium, symbol of the South Tyrol as homeland, sung in poems by the “Dableiber” (who stayed) as well as the “Optanten” (who decided to migrate)' (own photograph IMG_1776, [V])",
+    "Steel panel 'For the glory of the fatherland / Per la grandezza della patria / Für die Größe des Vaterlandes', with a small plan numbering three exhibits and their captions (own photograph IMG_1771; quoted in rows 17.14, 17.16 and the Luce photograph's row, [V])",
+    "Guide 2024: outer round room 1 'Cosa è un monumento?'; the four corner rooms hold 'una sagoma del Monumento alla Vittoria, semplificata a forma di grande M, che perde via via struttura e stabilità' (row 5.29, [V])",
+    "The banner lettering is a geometric sans-serif in capitals; the monument's own inscriptions are Latin capitals cut in marble (rows for the monument's photographs; seen, [V])",
+    "Seen in the image (first): a yellow arch of three piers lettered 'MONUMENT?' in black, text sheets and photographs on the piers, showcases at left.",
+    "Seen in the images (banners): tall white sheets hung on steel tubes, a single word in black capitals across each, text in columns below."
+   ],
+   "images": [
+    {
+     "file": "photos/IMG_1750.JPG",
+     "caption": "The first room: “MONUMENT?”. Own photograph, 14 November 2026."
+    },
+    {
+     "file": "photos/IMG_1752.JPG",
+     "caption": "Station “VIOLENCE”, Italian and German side. Own photograph, 14 November 2026."
+    },
+    {
+     "file": "photos/IMG_1755.JPG",
+     "caption": "Station “VIOLENCE”, English side. Own photograph, 14 November 2026."
+    },
+    {
+     "file": "photos/IMG_1775.JPG",
+     "caption": "Station “IDEOLOGY”. Own photograph, 14 November 2026."
+    },
+    {
+     "file": "photos/IMG_1776.JPG",
+     "caption": "Station “VOTE”. Own photograph, 14 November 2026."
+    },
+    {
+     "file": "images/BZ18-45_panel_For_the_glory_of_the_fatherland_visit.jpg",
+     "caption": "Steel panel “For the glory of the fatherland”, with the captions of three exhibits. Own photograph, 14 November 2026, cut square."
+    }
+   ],
+   "file": "photos/IMG_1750.JPG",
+   "source": {
+    "label": "BZ '18–'45, permanent exhibition in the Monument to Victory",
+    "url": "https://www.monumentoallavittoria.com/it/mostra/perimetro-esterno.html"
+   },
+   "creator": "Gruppe Gut with Jeffrey T. Schnapp (design); the exhibition's commission (texts)",
+   "holder": "City of Bolzano, Monument to Victory",
+   "rights": "Own photographs, 14 November 2026, of the exhibition's panels",
+   "confidence": {
+    "level": "read"
+   },
+   "place": "monumento-vittoria"
+  },
+  {
+   "no": "17.30",
+   "title": "The Monument to Victory, six photographs, 14 November 2026",
+   "type": "Photograph",
+   "date": "14 November 2026",
+   "year": 2026,
+   "keywords": [
+    "monumento-vittoria",
+    "architecture",
+    "romanita",
+    "symbol"
+   ],
+   "text": [
+    "The monument on a clear November morning, seen from the foot of its steps. Columns cut as lictors' bundles, each with its axe, carry an attic with three round reliefs and a dedication in Latin capitals: “IN HONOREM ET MEMORIAM FORTISSIMORVM VIRORVM QVI IVSTIS ARMIS STRENVE PVGNANTES HANC PATRIAM SANGVINE SVO PARAVERVNT”.",
+    "Two of the photographs look in between the columns at the herm of Cesare Battisti, by Adolfo Wildt, the hangman's rope round his neck. The monument was first announced as his. The reliefs are Pietro Canonica's."
+   ],
+   "facts": [
+    "Inscription read off the photographs, in two lines: 'IN HONOREM ET MEMORIAM FORTISSIMORVM VIRORVM QVI IVSTIS ARMIS STRENVE / PVGNANTES HANC PATRIAM SANGVINE SVO PARAVERVNT ITALI OMNES AER COLL' (own photographs IMG_1788 and IMG_1790, [V]; the last words at the edge of the frame)",
+    "Guide 2024: 'Il Monumento alla Vittoria comprende quattordici colonne in stile littorio'; 'I tre medaglioni. Opera di Pietro Canonica … rappresentano Icaro che studia il volo delle aquile, L'Italia Vittoriosa, Prometeo'; 'L'erma di Cesare Battisti … La sua erma, come quelle di Filzi e Chiesa, è opera di Adolfo Wildt' (row 5.29, [V])",
+    "Guide 2024: Battisti 'venne catturato dall'esercito austriaco, condannato per “alto tradimento” e impiccato il 12 luglio 1916'; the monument was inaugurated on 12 July 1928, the anniversary (row 5.29, [V])",
+    "The herm is lettered 'CESARE BATTISTI' (own photograph IMG_1792, [V])",
+    "Mussolini announced a monument to Battisti on 6 February 1926 (row 15.02; the row for Il Piccolo Posto of 10 February 1926)",
+    "Which face of the monument these photographs show was not noted on the day; it is the one with the three medallions, not the one with Dazzi's archer (compare the poster of 1938, row 17.16) ([V] and [INF])",
+    "Seen in the images: white marble columns bound as fasces with projecting axe blades, niches in the side piers, a coffered bronze ceiling, a dark stele between the columns, dark stone steps; blue sky; in two, the bust of a bearded man with a rope round his neck on a tall pier."
+   ],
+   "images": [
+    {
+     "file": "photos/IMG_1788.JPG",
+     "caption": "The front from the foot of the steps: fasces columns, three medallions, the dedication. Own photograph, 14 November 2026."
+    },
+    {
+     "file": "photos/IMG_1789.JPG",
+     "caption": "From the corner of the steps. Own photograph, 14 November 2026."
+    },
+    {
+     "file": "photos/IMG_1787.JPG",
+     "caption": "The corner pier with its niches. Own photograph, 14 November 2026."
+    },
+    {
+     "file": "photos/IMG_1790.JPG",
+     "caption": "Columns and attic from below. Own photograph, 14 November 2026."
+    },
+    {
+     "file": "photos/IMG_1791.JPG",
+     "caption": "Between the columns: Adolfo Wildt's herm of Cesare Battisti. Own photograph, 14 November 2026."
+    },
+    {
+     "file": "photos/IMG_1792.JPG",
+     "caption": "The herm, closer. Own photograph, 14 November 2026."
+    }
+   ],
+   "file": "photos/IMG_1788.JPG",
+   "source": {
+    "label": "Own photographs, 14 November 2026",
+    "url": "https://www.monumentoallavittoria.com/"
+   },
+   "creator": "Own photographs; the monument by Marcello Piacentini, 1926–28",
+   "holder": "In place, Piazza della Vittoria, Bolzano",
+   "rights": "Own photographs, 14 November 2026",
+   "confidence": {
+    "level": "read"
+   },
+   "place": "monumento-vittoria"
+  }
+ ]
+}

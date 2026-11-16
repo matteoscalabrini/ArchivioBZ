@@ -1,0 +1,1103 @@
+{
+ "entries": [
+  {
+   "no": "16.00",
+   "title": "Propaganda in print, picture, object, school and ritual, 1916–1948, and the counter-propaganda it met",
+   "type": "Notes",
+   "date": "2026",
+   "year": 2026,
+   "keywords": [
+    "language",
+    "school",
+    "counter-propaganda",
+    "option",
+    "typeface"
+   ],
+   "text": [
+    "The working notes on propaganda in print, object, school and ritual, and on the print that answered it from the German side. The apparatus of Italianisation turns out to be, in large part, rules about words and letters: Tolomei's list of place names of 1916, the decree of 1923 that made it law, the decrees on schools and surnames.",
+    "The 1923 decree fixes even the lettering: a second name must stand second, in brackets, and “non può essere scritto con caratteri più appariscenti di quelli del nome italiano”."
+   ],
+   "facts": [
+    "Six sections: the Italianisation apparatus as printed matter (§1), the regime's magazine Atesia Augusta (§2), school and childhood (§3), ceremony and exhibition (§4), photographers (§5), the German, Austrian, Nazi and anti-Nazi answer (§6) (notes 16)",
+    "The 1916 Prontuario is online in full inside Archivio per l'Alto Adige XI in the BPI gallery, against notes 03 §4 which knew only a private PDF (notes 16, §1, [V])",
+    "R.D. 29 March 1923 n. 800, art. 3: a second name must stand second, in brackets, and 'non può essere scritto con caratteri più appariscenti di quelli del nome italiano' (notes 16, §1, [V])",
+    "Tolomei's programme was read out in the Stadttheater of Bozen on the morning of 15 July 1923 (Bozner Nachrichten, 16 July 1923) (notes 16, §1, [V])",
+    "Not found: a primary text banning German gravestone inscriptions, medals or postmarks for the Victory Monument, schoolbook covers with the Brenner (notes 16, Gaps)"
+   ],
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "read",
+    "target": "../../../../library/content/reads/16.00.md",
+    "title": "Italianisation on paper, and the print that answered it, 1916–1948"
+   }
+  },
+  {
+   "no": "16.01",
+   "title": "Ettore Tolomei, Prontuario dei nomi locali dell'Alto Adige, in Archivio per l'Alto Adige, annata XI (1916)",
+   "type": "Book",
+   "date": "1916",
+   "year": 1916,
+   "keywords": [
+    "language",
+    "wording",
+    "typeface"
+   ],
+   "text": [
+    "Ettore Tolomei's list of Italian names for the places of South Tyrol, as first printed in his own journal in 1916 and found online in full. Its introduction says the State must show that the new provinces are Italian “con la nomenclatura dei luoghi, con tutto ciò ch'è scritto, stampato, pubblico ed apparente in pubblico”.",
+    "The list ranks places by typeface: bold for the 204 communes, italics for mountains, valleys and waters. “Bozen – Bolzano” stands in bold."
+   ],
+   "facts": [
+    "The 1916 volume of Tolomei's Archivio per l'Alto Adige; its 'Sommario dell'annata XI' lists 'Prontuario dei nomi locali dell'Alto Adige … Pag. 3', followed by Toniolo at p. 141 (notes 16, §1, [V])",
+    "Introduction: the State must make the new provinces' belonging evident 'con la nomenclatura dei luoghi, con tutto ciò ch'è scritto, stampato, pubblico ed apparente in pubblico' (notes 16, §1, [V])",
+    "The list ranks names by typeface: 'Il nero-distinto è dei principali di essi luoghi ossia dei 204 Comuni … Il corsivo è dei monti, valli, località, acque' (p. 35) (notes 16, §1, [V])",
+    "Tolomei counts '10.000 vocaboli' (p. 7); a snippet of E. Mori's PDF gives 16,735 toponyms [SS]: unsettled (notes 16, §1)",
+    "Notes 03 §4 believed the Prontuario was online only as a private PDF; this scan contradicts that (notes 16, §1)",
+    "Seen in the image (title spread): 'ARCHIVIO PER L'ALTO ADIGE CON AMPEZZO E LIVINALLONGO – Direttore Ettore Tolomei – Annata XI – 1916', a round stamp 'Biblioteca della Città di Trento'; on the left the Sommario; a large grey 'BPI' watermark across both pages.",
+    "Seen in the image (pp. 46–47): two columns per page of German names with Italian equivalents and grid references; 'Bozen – Bolzano (Bo a1)', 'Brixen – Bressanone (Kd1)' and 'Bruneck – Brunico (Br b3)' set in bold.",
+    "Seen in the image (pp. 34–35): a grid diagram of map sheet K with Klausen and Kastelruth; on p. 35 the three typefaces described, with 'Bozen – Bolzano; Aldein – Valdagno' in bold."
+   ],
+   "images": [
+    {
+     "file": "images/1916_ArchivioAltoAdige_XI_frontispiece_sommario_BPI.jpg",
+     "caption": "Archivio per l'Alto Adige XI, 1916: title page and contents. Rights not stated; Biblioteca Provinciale Italiana Claudia Augusta gallery."
+    },
+    {
+     "file": "images/1916_Prontuario_introduzione_pp4-5_BPI.jpg",
+     "caption": "Proemio and opening of the Introduzione al Prontuario, 1916. Rights not stated; BPI gallery."
+    },
+    {
+     "file": "images/1916_Prontuario_avvertenze_pp34-35_BPI.jpg",
+     "caption": "Avvertenze per l'uso del Prontuario, pp. 34–35: map grid and the three typefaces. Rights not stated; BPI gallery."
+    },
+    {
+     "file": "images/1916_Prontuario_pp46-47_Bozen-Bolzano_BPI.jpg",
+     "caption": "Prontuario pp. 46–47 with 'Bozen – Bolzano' in bold. Rights not stated; BPI gallery."
+    }
+   ],
+   "file": "images/1916_Prontuario_pp46-47_Bozen-Bolzano_BPI.jpg",
+   "source": {
+    "label": "Biblioteca Provinciale Italiana Claudia Augusta, web gallery",
+    "url": "https://webaleph.bpi.claudiaugusta.it/ArchivioAltoAdige-1916.html"
+   },
+   "creator": "Ettore Tolomei",
+   "holder": "Biblioteca Provinciale Italiana Claudia Augusta (scan of a Biblioteca Comunale di Trento copy)",
+   "rights": "Not stated by BPI. Tolomei died in 1952; text presumed public domain in Italy since 2023 [INF]",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://webaleph.bpi.claudiaugusta.it/ArchivioAltoAdige-1916.html"
+   }
+  },
+  {
+   "no": "16.02",
+   "title": "La Domenica del Corriere, 23–30 October 1921, front cover: Il sacro rito del Brennero",
+   "type": "Newspaper page",
+   "date": "23–30 October 1921",
+   "year": 1921,
+   "keywords": [
+    "press",
+    "inauguration"
+   ],
+   "text": [
+    "The cover of the Domenica del Corriere for 23–30 October 1921, drawn by A. Beltrame: the king and his officers raise their hands before a boundary stone hung with flags. The caption has him swear “che questo Passo sarà eternamente nostro”.",
+    "A year before the March on Rome the Brenner was already staged as a sacred border, by the monarchy and the national press. The ceremony behind the drawing has not been identified."
+   ],
+   "facts": [
+    "Cover of the Corriere della Sera's illustrated weekly, anno XXIII n. 43, caption: 'Il sacro rito del Brennero. Il Re giura sul confine della Patria: Giuriamo qui, tutti, per i nostri morti, per i nostri discendenti, che questo Passo sarà eternamente nostro', 'Disegno di A. Beltrame' (notes 16, §2, [V])",
+    "The event behind the drawing (date, place on the pass) is not established (notes 16, §4, Gaps)",
+    "Before fascism in power, the Brenner was already staged as a sacred border by monarchy and national press (notes 16, §4, [INF])",
+    "Seen in the image: a king in uniform and officers raise their right hands before a stone stele flanked by flags with the Savoy cross; soldiers in steel helmets and a crowd of civilians, a tall pole wound with a tricolour ribbon, mountains behind; the 'BPI' watermark across the page."
+   ],
+   "images": [
+    {
+     "file": "images/1921-10-23_DomenicaCorriere_n43_Beltrame_Brennero_BPI.jpg",
+     "caption": "A. Beltrame, La Domenica del Corriere n. 43, 1921. Rights not stated; BPI gallery."
+    }
+   ],
+   "file": "images/1921-10-23_DomenicaCorriere_n43_Beltrame_Brennero_BPI.jpg",
+   "source": {
+    "label": "Biblioteca Provinciale Italiana Claudia Augusta, Periodici",
+    "url": "https://webaleph.bpi.claudiaugusta.it/Periodici-Domenica_del_Corriere_nr_43_1921.html"
+   },
+   "creator": "A. Beltrame (drawing); Corriere della Sera, Milan",
+   "holder": "Biblioteca Provinciale Italiana Claudia Augusta",
+   "rights": "Not stated by BPI; © presumed (A. Beltrame; Corriere della Sera)",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://webaleph.bpi.claudiaugusta.it/Periodici-Domenica_del_Corriere_nr_43_1921.html"
+   }
+  },
+  {
+   "no": "16.03",
+   "title": "Regio decreto 29 marzo 1923, n. 800: lezione ufficiale dei nomi dei comuni e di altre località dei territori annessi",
+   "type": "Law text",
+   "date": "29 March 1923 (Gazzetta Ufficiale, 27 April 1923)",
+   "year": 1923,
+   "keywords": [
+    "law",
+    "language",
+    "typeface",
+    "wording"
+   ],
+   "text": [
+    "The royal decree of 29 March 1923 that made the lists of Italian place names law in the annexed territories, signed by the king and Mussolini. State signs, stamps and seals use the Italian name. Where a second name is allowed it “deve tenere il secondo posto, fra parentesi, e non può essere scritto con caratteri più appariscenti di quelli del nome italiano”.",
+    "In the list, Chiusa has “Klausen” beside it and Sarentino “Sarnthein”. Number 555 reads only “Bolzano.”"
+   ],
+   "facts": [
+    "GU n. 99, 27 April 1923, whole issue; the decree makes the lists of official names law for the annexed territories (manifest; notes 16, §1, [V])",
+    "Art. 1: names not in the lists follow 'le forme adottate nei Prontuari e Repertori della Reale Società geografica italiana' (notes 16, §1, [V])",
+    "Art. 2: State 'insegne', 'timbri' and 'suggelli' use the names of the first column (notes 16, §1, [V])",
+    "Art. 3: the second name 'deve tenere il secondo posto, fra parentesi, e non può essere scritto con caratteri più appariscenti di quelli del nome italiano' (notes 16, §1, [V])",
+    "Seen in the image (p. 3334): two columns; left, 'Abbiamo decretato e decretiamo', arts. 1–4, 'Dato a Roma, addì 29 marzo 1923. Vittorio Emanuele. Mussolini'; right, 'Allegato n. 1 – Venezia Giulia – I. Nomi dei Comuni – Provincia di Trieste', some names with a second name beside them.",
+    "Seen in the image (p. 3353): 'Circondario di Bolzano – Mandamento di Bolzano: 555 — Bolzano.' with no second name beside it, while 'Sarentino Sarnthein', 'Chiusa Klausen' and 'Tiso Theis' have one; '568 — Vanga.'"
+   ],
+   "images": [
+    {
+     "file": "images/1923-04-27_GU_n99_RD800_articles_p3334.jpg",
+     "caption": "Gazzetta Ufficiale n. 99, 27 April 1923, p. 3334: the articles of R.D. 800. Official act; page rendered from gazzettaufficiale.it PDF."
+    },
+    {
+     "file": "images/1923-04-27_GU_n99_RD800_Circondario_Bolzano_p3353.jpg",
+     "caption": "Same issue, p. 3353: the Circondario di Bolzano. Official act; rendered from the GU PDF."
+    }
+   ],
+   "file": "GU_1923-04-27_n99_RD_1923-03-29_n800_nomi_localita.pdf",
+   "source": {
+    "label": "Gazzetta Ufficiale, historical PDF",
+    "url": "https://www.gazzettaufficiale.it/eli/gu/1923/04/27/99/sg/pdf"
+   },
+   "creator": "Kingdom of Italy",
+   "holder": "Gazzetta Ufficiale (Istituto Poligrafico e Zecca dello Stato)",
+   "rights": "Official act of the State, not protected (l. 633/1941, art. 5)",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "file"
+   }
+  },
+  {
+   "no": "16.04",
+   "title": "Bozner Nachrichten, 16 July 1923, page 1",
+   "type": "Newspaper page",
+   "date": "16 July 1923",
+   "year": 1923,
+   "keywords": [
+    "press",
+    "language"
+   ],
+   "text": [
+    "The front page of the Bozner Nachrichten for 16 July 1923. In its right-hand column: “Gestern vorm. hielt Senator Tolomei im Stadttheater in Bozen eine Rede über die Entnationalisierung Südtirols”. The paper summarises the speech from the text given out by the Brennero agency.",
+    "This fixes where and when the measures for Alto Adige were read out: the city theatre of Bolzano, on the morning of Sunday 15 July 1923."
+   ],
+   "facts": [
+    "Column 'Tolomei spricht über die Entnationalisierung Südtirols': 'Gestern vorm. hielt Senator Tolomei im Stadttheater in Bozen eine Rede über die Entnationalisierung Südtirols' (notes 16, §1, [V])",
+    "The paper summarises the speech 'aus dem von der Agentur Brennero ausgegebenen Wortlaut' (notes 16, §1, [V])",
+    "This is where and when the 'Provvedimenti per l'Alto Adige' were read out: the Stadttheater, Sunday morning 15 July 1923 (notes 16, §1)",
+    "Commons file 'BZN 1923 07 16 1 Tolomeis Programm', CC BY-SA 4.0, from Teßmann (manifest)",
+    "Seen in the image: masthead 'Bozner Nachrichten – Unabhängiges Landesblatt', 'Nr. 159 – Montag, den 16. Juli 1923 – 31. Jahrg.', in blackletter; lead story 'Die Wahlreform angenommen mit 235 gegen 139 Stimmen'; right-hand column headed 'Tolomei spricht über die Entnationalisierung Südtirols'."
+   ],
+   "images": [
+    {
+     "file": "images/1923-07-16_BoznerNachrichten_p1_Tolomei_Stadttheater_Commons.png",
+     "caption": "Bozner Nachrichten, 16 July 1923, p. 1. CC BY-SA 4.0, Wikimedia Commons (from Teßmann)."
+    }
+   ],
+   "file": "images/1923-07-16_BoznerNachrichten_p1_Tolomei_Stadttheater_Commons.png",
+   "source": {
+    "label": "Wikimedia Commons",
+    "url": "https://commons.wikimedia.org/wiki/File:BZN_1923_07_16_1_Tolomeis_Programm.png"
+   },
+   "creator": "Bozner Nachrichten (unsigned)",
+   "holder": "Landesbibliothek Dr. Friedrich Teßmann (via Wikimedia Commons)",
+   "rights": "CC BY-SA 4.0",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://commons.wikimedia.org/wiki/File:BZN_1923_07_16_1_Tolomeis_Programm.png"
+   }
+  },
+  {
+   "no": "16.05",
+   "title": "Regio decreto 1 ottobre 1923, n. 2185: Ordinamento dei gradi scolastici e dei programmi didattici dell'istruzione elementare",
+   "type": "Law text",
+   "date": "1 October 1923 (Gazzetta Ufficiale, 24 October 1923)",
+   "year": 1923,
+   "keywords": [
+    "law",
+    "language",
+    "school"
+   ],
+   "text": [
+    "The school decree of 1 October 1923, signed “Mussolini — Gentile”. Article 17: “A cominciare dall'anno scolastico 1923-24, in tutte le prime classi delle scuole elementari alloglotte l'insegnamento sarà impartito in lingua italiana”, and one class more each year. The other language is left to added hours.",
+    "Article 25 wants Italian taught “di preferenza a maestri non alloglotti”. The decree's word for these schools and teachers is “alloglotti”: of another tongue."
+   ],
+   "facts": [
+    "GU n. 250, 24 October 1923, whole issue (manifest)",
+    "Art. 17: 'A cominciare dall'anno scolastico 1923-24, in tutte le prime classi delle scuole elementari alloglotte l'insegnamento sarà impartito in lingua italiana', then one class more each year; the second language only 'in ore aggiunte' (notes 16, §3, [V])",
+    "Art. 25: Italian to be taught 'di preferenza a maestri non alloglotti' (notes 16, §3, [V])",
+    "Signed 'Dato a Racconigi, addì 1° ottobre 1923 … Mussolini — Gentile' (notes 16, §3, [V])",
+    "Seen in the image (p. 6506): two columns of articles 9–17; art. 16 extends the decree to the annexed territories; art. 17 begins at the foot of the right column.",
+    "Seen in the image (p. 6507): the end of art. 17 and arts. 18–26, closing with 'Vittorio Emanuele' and 'Mussolini — Gentile'."
+   ],
+   "images": [
+    {
+     "file": "images/1923-10-24_GU_n250_RD2185_art17_p6506.jpg",
+     "caption": "Gazzetta Ufficiale n. 250, 24 October 1923, p. 6506. Official act; rendered from the GU PDF."
+    },
+    {
+     "file": "images/1923-10-24_GU_n250_RD2185_art17_p6507.jpg",
+     "caption": "Same issue, p. 6507. Official act; rendered from the GU PDF."
+    }
+   ],
+   "file": "GU_1923-10-24_n250_RD_1923-10-01_n2185_scuole_elementari.pdf",
+   "source": {
+    "label": "Gazzetta Ufficiale, historical PDF",
+    "url": "https://www.gazzettaufficiale.it/eli/gu/1923/10/24/250/sg/pdf"
+   },
+   "creator": "Kingdom of Italy",
+   "holder": "Gazzetta Ufficiale (Istituto Poligrafico e Zecca dello Stato)",
+   "rights": "Official act of the State, not protected (l. 633/1941, art. 5)",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "file"
+   }
+  },
+  {
+   "no": "16.06",
+   "title": "Der Landsmann, 27 October 1923, page 1",
+   "type": "Newspaper page",
+   "date": "27 October 1923",
+   "year": 1923,
+   "keywords": [
+    "press",
+    "school",
+    "language",
+    "counter-propaganda",
+    "wording"
+   ],
+   "text": [
+    "Three days after the school decree was published, the German daily of Bolzano leads with “Die Italianisierung unserer Volksschulen”. A boxed appeal, “Landsleute!”, is signed by the four German deputies, Reut-Nicolussi among them: “400 deutsche Schulen sind dem Untergange geweiht”.",
+    "The masthead reads “Der Landsmann”. The paper had been “Der Tiroler” until August 1923, when the name Tirol was banned."
+   ],
+   "facts": [
+    "Headline 'Die Italianisierung unserer Volksschulen': the GU of 24 October publishes decree no. 2185, whose art. 17 imposes Italian in the first classes (notes 16, §3, [V])",
+    "Appeal 'Landsleute!', 'Bozen, am 26. Oktober 1923', signed by the deputies Dr. Reut-Nicolussi, Dr. von Walther, Graf Toggenburg, Dr. Karl Tinzl; '400 deutsche Schulen sind dem Untergange geweiht' (notes 16, §3, [V])",
+    "Commons files it as 'TIR' (Der Tiroler); the masthead reads 'Der Landsmann'. The paper had been renamed in August 1923 after the ban on the name 'Tirol' [W] (notes 16, §1)",
+    "Seen in the image: blackletter masthead 'Der Landsmann – Tagblatt der Deutschen südlich des Brenners', 'Nr. 246 – 24. Jahrg. – Bozen-Meran – Sonntag-Ausgabe – 27. Oktober 1923'; the headline across the page; the boxed appeal 'Landsleute!' at left; 'Der schwerste Schlag' and 'Die Volksschulreform' below."
+   ],
+   "images": [
+    {
+     "file": "images/1923-10-27_DerLandsmann_p1_Italianisierung_Volksschulen_Commons.png",
+     "caption": "Der Landsmann, 27 October 1923, p. 1. CC BY 4.0, Wikimedia Commons (from Teßmann)."
+    }
+   ],
+   "file": "images/1923-10-27_DerLandsmann_p1_Italianisierung_Volksschulen_Commons.png",
+   "source": {
+    "label": "Wikimedia Commons",
+    "url": "https://commons.wikimedia.org/wiki/File:TIR_1923_10_27_1_Italianisierung_d_Schule.png"
+   },
+   "creator": "Der Landsmann; appeal by Reut-Nicolussi, von Walther, Toggenburg, Tinzl",
+   "holder": "Landesbibliothek Dr. Friedrich Teßmann (via Wikimedia Commons)",
+   "rights": "CC BY 4.0",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://commons.wikimedia.org/wiki/File:TIR_1923_10_27_1_Italianisierung_d_Schule.png"
+   }
+  },
+  {
+   "no": "16.07",
+   "title": "Adolf Hitler, Die Südtiroler Frage und das Deutsche Bündnisproblem",
+   "type": "Book",
+   "date": "1926",
+   "year": 1926,
+   "keywords": [
+    "counter-propaganda",
+    "typeface"
+   ],
+   "text": [
+    "The title page of Hitler's pamphlet of 1926, “Die Südtiroler Frage und das Deutsche Bündnisproblem”, published by Eher in Munich and set in Fraktur. It put the alliance with Italy above South Tyrol.",
+    "Held for the other side of the question. The picture comes, by way of Wikimedia Commons, from page 97 of a later book that reprinted it."
+   ],
+   "facts": [
+    "Title page of the 1926 pamphlet published by Verlag Frz. Eher Nachf., München (notes 16, §6, [V])",
+    "Commons gives its source as S. V. Kofler, 'Adolf Hitler entlarvt!', p. 97, and tags it public domain (manifest)",
+    "The German side of the South Tyrol question: the pamphlet set the alliance with Italy above South Tyrol (notes 16, §6)",
+    "Seen in the image: a ruled frame; 'Adolf Hitler' in large Fraktur at top, 'Die Südtiroler Frage und das Deutsche Bündnisproblem' in Fraktur, a small ornament, '1926', and 'Verlag Frz. Eher Nachf., G.m.b.H., München 2, NO 2' at the foot."
+   ],
+   "images": [
+    {
+     "file": "images/1926_Hitler_Suedtiroler_Frage_titlepage_Commons.jpg",
+     "caption": "A. Hitler, 1926, title page. Public domain, Wikimedia Commons."
+    }
+   ],
+   "file": "images/1926_Hitler_Suedtiroler_Frage_titlepage_Commons.jpg",
+   "source": {
+    "label": "Wikimedia Commons",
+    "url": "https://commons.wikimedia.org/wiki/File:Die_S%C3%BCdtiroler_Frage_und_das_Deutsche_B%C3%BCndnisproblem.jpg"
+   },
+   "creator": "Adolf Hitler; Verlag Frz. Eher Nachf.",
+   "rights": "Public domain (Commons)",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://commons.wikimedia.org/wiki/File:Die_S%C3%BCdtiroler_Frage_und_das_Deutsche_B%C3%BCndnisproblem.jpg"
+   }
+  },
+  {
+   "no": "16.08",
+   "title": "Il Podestà del Comune di S. Leonardo di Passiria, letter of 13 August 1926 on a clandestine German school",
+   "type": "Object",
+   "date": "13 August 1926",
+   "year": 1926,
+   "keywords": [
+    "school",
+    "language",
+    "counter-propaganda",
+    "wording"
+   ],
+   "text": [
+    "A letter from the podestà of San Leonardo in Passiria, 13 August 1926, subject “Scuole clandestine”. Ida Ladurner is to leave the commune by 16 August “per avere Ella aperto a S. Leonardo i.P. una scuola clandestina per l'insegnamento della lingua tedesca”.",
+    "The letterhead records another change of that year. The printed “IL SINDACO” is struck through and “IL PODESTA” set above it: the elected mayor replaced by an appointed one. The archive that holds the letter is not named."
+   ],
+   "facts": [
+    "Archival letter, 'N. 8 ris.', subject 'Scuole clandestine', to Ida Ladurner: expulsion from the commune 'per avere Ella aperto a S. Leonardo i.P. una scuola clandestina per l'insegnamento della lingua tedesca', to take effect by 16 August (notes 16, §3, [V])",
+    "Commons calls it a 'Dismissal decree'; the text orders expulsion from the commune. The holding archive is not named (notes 16, §3)",
+    "The letterhead shows the 1926 change from elected mayor to appointed podestà: the printed office is struck out and the new one stamped above (notes 16, §3, [INF])",
+    "Seen in the image: letterhead 'IL PODESTA' above a struck-through 'IL SINDACO', 'del Comune di S. LEONARDO di PASSIRIA'; at left 'GABINETTO DEL' with 'PODESTÀ' stamped over the printed word; typed text; a round public-security stamp and a signature 'Il Podestà' at the foot."
+   ],
+   "images": [
+    {
+     "file": "images/1926-08-13_SanLeonardo_Podesta_scuola_clandestina_Commons.jpg",
+     "caption": "Podestà of S. Leonardo di Passiria, 13 August 1926. CC BY-SA 4.0, Wikimedia Commons (1280 px copy)."
+    }
+   ],
+   "file": "images/1926-08-13_SanLeonardo_Podesta_scuola_clandestina_Commons.jpg",
+   "source": {
+    "label": "Wikimedia Commons",
+    "url": "https://commons.wikimedia.org/wiki/File:Notschule_1926_Ida_Ladurner.jpg"
+   },
+   "creator": "Podestà of S. Leonardo di Passiria",
+   "rights": "CC BY-SA 4.0",
+   "confidence": {
+    "level": "read",
+    "note": "holding archive not named on Commons"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://commons.wikimedia.org/wiki/File:Notschule_1926_Ida_Ladurner.jpg"
+   }
+  },
+  {
+   "no": "16.09",
+   "title": "Eduard Reut-Nicolussi, Tirol unterm Beil",
+   "type": "Book",
+   "date": "1928",
+   "year": 1928,
+   "keywords": [
+    "counter-propaganda",
+    "symbol",
+    "typeface"
+   ],
+   "text": [
+    "The cover of Eduard Reut-Nicolussi's book against fascist rule in South Tyrol, dated 1928, in its people's edition. A red fasces rises over a black-and-red town, its axe-head uppermost: “Tirol unterm Beil”, Tyrol under the axe. The fascist emblem is turned against its maker, and the title is set in Fraktur.",
+    "Reut-Nicolussi was one of the four deputies who signed the school appeal of October 1923."
+   ],
+   "facts": [
+    "Cover of Reut-Nicolussi's book against fascist rule in South Tyrol; dated 1928 on Commons; the copy is marked 'Volksausgabe' (notes 16, §6, [V])",
+    "Reut-Nicolussi was one of the four German deputies who signed the 1923 school appeal (row 16.06) (notes 16, §3)",
+    "The fascist emblem is turned against its maker: the fasces with its axe ('Beil') stands over a Tyrolean town (notes 16, §6)",
+    "Commons: CC BY-SA 4.0, author 'unknown', source 'Both from 1917 resp. 1928'; whether the 'Volksausgabe' is the first edition was not checked (manifest)",
+    "Seen in the image: on a cream ground in a black frame, 'Reut-Nicolussi' and 'Tirol unterm Beil' in Fraktur; a red fasces with an axe-head rising over a black-and-red town of towers and roofs with mountains behind; 'Volksausgabe' in red at the foot."
+   ],
+   "images": [
+    {
+     "file": "images/1928_ReutNicolussi_Tirol_unterm_Beil_cover_Commons.jpg",
+     "caption": "E. Reut-Nicolussi, Tirol unterm Beil, cover. CC BY-SA 4.0, Wikimedia Commons (1280 px copy)."
+    }
+   ],
+   "file": "images/1928_ReutNicolussi_Tirol_unterm_Beil_cover_Commons.jpg",
+   "source": {
+    "label": "Wikimedia Commons",
+    "url": "https://commons.wikimedia.org/wiki/File:Frontispiz_Reut-Nicolussi_Tirol_unterm_Beil_1928.jpg"
+   },
+   "creator": "Eduard Reut-Nicolussi (author); cover artist unknown",
+   "rights": "CC BY-SA 4.0 (Commons)",
+   "confidence": {
+    "level": "read",
+    "note": "edition and date as given on Commons"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://commons.wikimedia.org/wiki/File:Frontispiz_Reut-Nicolussi_Tirol_unterm_Beil_1928.jpg"
+   }
+  },
+  {
+   "no": "16.10",
+   "title": "Bolzano – Scuole Elementari Regina Elena (the former Kaiserin-Elisabeth-Schule), postcard",
+   "type": "Postcard",
+   "date": "1928",
+   "year": 1928,
+   "keywords": [
+    "postcards",
+    "school",
+    "wording",
+    "language"
+   ],
+   "text": [
+    "A postcard of 1928 captioned “Bolzano - Scuole Elementari Regina Elena”. The building is the Kaiserin-Elisabeth-Schule, occupied by fascist squads on 1 October 1922 and renamed for the Italian queen. The building keeps its form; the new name is in the caption.",
+    "Today it is the Italian-language Scuola Dante Alighieri."
+   ],
+   "facts": [
+    "The Kaiserin-Elisabeth-Schule on the Sparkassenstraße was occupied by fascist squads on 1 October 1922 and renamed 'Scuola Regina Elena'; today it is the Italian-language 'Scuola Dante Alighieri' [W] (notes 16, §3)",
+    "Commons: 'Elisabethschule in Bozen 1928 von Südosten', 'Ansichtskarte 1928', public domain (manifest)",
+    "The building keeps its form; its new name is printed in the caption (notes 16, §3, [INF])",
+    "Seen in the image: a large school building with a hipped roof and a small tower on a street corner, a porch with arches at left, three children standing in the street; caption 'Bolzano - Scuole Elementari Regina Elena'."
+   ],
+   "images": [
+    {
+     "file": "images/1928_Bolzano_Scuole_Elementari_Regina_Elena_postcard_Commons.jpg",
+     "caption": "Postcard, 1928 per Commons. Public domain, Wikimedia Commons (960 px copy)."
+    }
+   ],
+   "file": "images/1928_Bolzano_Scuole_Elementari_Regina_Elena_postcard_Commons.jpg",
+   "source": {
+    "label": "Wikimedia Commons",
+    "url": "https://commons.wikimedia.org/wiki/File:Elisabethschule_in_Bozen_1928.jpg"
+   },
+   "creator": "unknown publisher",
+   "rights": "Public domain (Commons)",
+   "confidence": {
+    "level": "read"
+   },
+   "place": "scuola-dante-alighieri",
+   "more": {
+    "kind": "source",
+    "target": "https://commons.wikimedia.org/wiki/File:Elisabethschule_in_Bozen_1928.jpg"
+   }
+  },
+  {
+   "no": "16.11",
+   "title": "Regia Scuola Tecnica Commerciale 'Duca di Pistoia', Bolzano: the building and its commodity-science laboratory",
+   "type": "Photograph",
+   "date": "1930s",
+   "year": 1930,
+   "keywords": [
+    "school",
+    "wording",
+    "language"
+   ],
+   "text": [
+    "Three photographs from the archive of Italy's school-research institute: the Regia Scuola Tecnica Commerciale of Bolzano seen from Via San Quirino, and its commodity-science laboratory with pupils at flasks and microscopes. Over the door the lettering reads “R. SCUOLA TECNICA COMMERCIALE” and “DUCA DI PISTOIA”, between two coats of arms.",
+    "The building photograph is credited “Foto Waldmuller – Via Museo, 50 – Bolzano”. A search of the archive for Bolzano returned only these three."
+   ],
+   "facts": [
+    "Three photographs in INDIRE's FotoEdu: the building 'da Via San Quirino' (2-440-008, 'Foto Waldmuller – Via Museo, 50 – Bolzano', 'attribuita al periodo fascista') and two of the laboratory (2-437-002, 'anni '30'; 2-437-003) (notes 16, §3, [V])",
+    "A FotoEdu search for 'Bolzano' returned only these 3 objects (notes 16, §3, [V])",
+    "Photographer 'Foto Waldmüller, Via Museo 50, Bolzano' not identified further (notes 16, §5)",
+    "Where the school stood and what the building is today was not established (notes 16, §3, Gaps)",
+    "Seen in the image (building): a three-storey corner building with arched upper windows; over the rusticated arched door the lettering 'R. SCUOLA TECNICA COMMERCIALE' and 'DUCA DI PISTOIA' with two coats of arms and a flagpole; INDIRE watermark at lower right.",
+    "Seen in the image (laboratories): students in dark coats and girls in dark dresses at benches with flasks, burners and microscopes; INDIRE watermark."
+   ],
+   "images": [
+    {
+     "file": "images/1930s_Bolzano_RScuolaTecnicaCommerciale_DucaPistoia_building_INDIRE.jpg",
+     "caption": "Foto Waldmüller, Bolzano, 1930s. Rights not stated; INDIRE, Archivio fotografico storico (FotoEdu)."
+    },
+    {
+     "file": "images/1930s_Bolzano_RScuolaTecnicaCommerciale_lab_10512_INDIRE.jpg",
+     "caption": "Laboratory of commodity science, 1930s. Rights not stated; INDIRE FotoEdu."
+    },
+    {
+     "file": "images/1930s_Bolzano_RScuolaTecnicaCommerciale_lab_10513_INDIRE.jpg",
+     "caption": "Lesson in the laboratory, fascist period. Rights not stated; INDIRE FotoEdu."
+    }
+   ],
+   "file": "images/1930s_Bolzano_RScuolaTecnicaCommerciale_DucaPistoia_building_INDIRE.jpg",
+   "source": {
+    "label": "INDIRE FotoEdu",
+    "url": "https://fotoedu.indire.it/index.php/Detail/objects/10524"
+   },
+   "creator": "Foto Waldmüller, Bolzano (building); laboratory photos unattributed",
+   "holder": "INDIRE, Archivio fotografico storico, Florence",
+   "rights": "Not stated on the record; © presumed (INDIRE)",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://fotoedu.indire.it/index.php/Detail/objects/10524"
+   }
+  },
+  {
+   "no": "16.12",
+   "title": "Mostra della Rivoluzione Fascista. Guida storica",
+   "type": "Booklet",
+   "date": "1933",
+   "year": 1933,
+   "keywords": [
+    "inauguration",
+    "typeface"
+   ],
+   "text": [
+    "The historical guide to the exhibition that marked ten years of the March on Rome, edited by Dino Alfieri and Luigi Freddi. Its cover sets a sculpted head of Mussolini on a black ground filled with “DU-CE” repeated on the diagonal. On page 31 Mussolini is quoted: “Tipica l'occupazione di Bolzano e la occupazione — squisitamente rivoluzionaria — di Trento”.",
+    "The scan held has only 33 pages, and its public-domain label is doubtful."
+   ],
+   "facts": [
+    "Historical guide to the PNF exhibition for the tenth anniversary of the March on Rome, edited by Dino Alfieri and Luigi Freddi (notes 16, §4, [V])",
+    "p. 31, quoting Mussolini: 'Tipica l'occupazione di Bolzano e la occupazione — squisitamente rivoluzionaria — di Trento' (notes 16, §4, [V])",
+    "The Internet Archive scan has 33 pages only, so it is incomplete; its OCR names Terragni 'per la sala del 1922' (notes 16, §4, [V])",
+    "IA labels it Public Domain Mark 1.0; doubtful, since the editors died after 1955 [INF] (manifest)",
+    "Seen in the image (cover): a photographic sculpted head of Mussolini in profile over a black ground filled with 'DU-CE' repeated diagonally; 'MOSTRA DELLA RIVOLUZIONE FASCISTA' in red block capitals.",
+    "Seen in the image (p. 31): a page of text, page number 31, with the sentence on the occupation of Bolzano in the first paragraph."
+   ],
+   "images": [
+    {
+     "file": "images/1933_MostraRivoluzioneFascista_guida_cover_IA.jpg",
+     "caption": "Mostra della Rivoluzione Fascista, Guida storica, cover. Public Domain Mark as stated (doubtful); Internet Archive."
+    },
+    {
+     "file": "images/1933_MostraRivoluzioneFascista_guida_p31_Bolzano_IA.jpg",
+     "caption": "Same guide, p. 31. Public Domain Mark as stated (doubtful); Internet Archive."
+    }
+   ],
+   "file": "images/1933_MostraRivoluzioneFascista_guida_p31_Bolzano_IA.jpg",
+   "source": {
+    "label": "Internet Archive",
+    "url": "https://archive.org/details/aa.-vv.-mostra-della-rivoluzione-fascista-ocr-1933"
+   },
+   "creator": "Partito Nazionale Fascista; ed. Dino Alfieri and Luigi Freddi",
+   "rights": "Public Domain Mark 1.0 as stated by the uploader; doubtful",
+   "confidence": {
+    "level": "read",
+    "note": "incomplete scan; rights doubtful"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://archive.org/details/aa.-vv.-mostra-della-rivoluzione-fascista-ocr-1933"
+   }
+  },
+  {
+   "no": "16.13",
+   "title": "Gravestone of Luigi (Alois) Gruber, former mayor of Vanga/Wangen, Gargazzone",
+   "type": "Object",
+   "date": "1935 (photographed 2026)",
+   "year": 1935,
+   "keywords": [
+    "language",
+    "wording"
+   ],
+   "text": [
+    "A gravestone at the old parish church of Gargazzone: “Qui riposa Luigi Gruber ex Sindaco di Vanga nato 1865 morto 8.2.1935. R.I.P.” Alois Gruber, mayor of Wangen, lies under an Italian first name, an Italian formula and the official name of his village, number 568 in the decree of 1923.",
+    "That German inscriptions on graves were forbidden is often said. No decree saying so was found."
+   ],
+   "facts": [
+    "Commons title 'Grabstein Alois Gruber BM Wangen in Gargazon Alte Pfarrkirche Italianisierung'; the stone names him in Italian (notes 16, §1, [V])",
+    "'Vanga' is the official name in the 1923 decree's list (no. 568) (row 16.03; notes 16, §1, [V])",
+    "No primary text for a ban on German gravestone inscriptions was found; it is asserted only in popular articles [SS] (notes 16, §1, Gaps)",
+    "Seen in the image: a pale stone slab with a gabled top and a cross, an empty oval photo frame; inscription 'Qui riposa Luigi Gruber ex Sindaco di Vanga nato 1865 morto 8.2.1935. R.I.P.' in cursive and capitals; ivy at the foot."
+   ],
+   "images": [
+    {
+     "file": "images/1935_Gargazzone_gravestone_Luigi_Gruber_Commons.jpg",
+     "caption": "Photo Bartleby08, 2026. CC BY 4.0, Wikimedia Commons (1280 px copy)."
+    }
+   ],
+   "file": "images/1935_Gargazzone_gravestone_Luigi_Gruber_Commons.jpg",
+   "source": {
+    "label": "Wikimedia Commons",
+    "url": "https://commons.wikimedia.org/wiki/File:Grabstein_Alois_Gruber_BM_Wangen_in_Gargazon_Alte_Pfarrkirche_Italianisierung.jpg"
+   },
+   "creator": "Photo: Bartleby08; stone: unknown",
+   "rights": "CC BY 4.0",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://commons.wikimedia.org/wiki/File:Grabstein_Alois_Gruber_BM_Wangen_in_Gargazon_Alte_Pfarrkirche_Italianisierung.jpg"
+   }
+  },
+  {
+   "no": "16.14",
+   "title": "Gazzetta Ufficiale, 5 October 1935, n. 233: prefectural decrees of Bolzano on surnames",
+   "type": "Law text",
+   "date": "26 May 1935 (Gazzetta Ufficiale, 5 October 1935)",
+   "year": 1935,
+   "keywords": [
+    "law",
+    "language",
+    "wording",
+    "tracing-people"
+   ],
+   "text": [
+    "A dozen pages of the Gazzetta Ufficiale of 5 October 1935 filled with decrees of the prefect of Bolzano, each a “Riduzione di cognomi nella forma italiana”, each signed Mastromattei. On one page Egger becomes “Mancini”, Oberkofler “Covoli”, Castlunger “Costalunga”, Feichtinger “Fedrighi”.",
+    "Every decree says it answers a request and was posted for a month at the town hall without objection. For tracing a family, this is where the name changes."
+   ],
+   "facts": [
+    "Pages 4–16 of the issue are almost wholly 'Decreti prefettizi: Riduzione di cognomi nella forma italiana', signed 'Il prefetto: Mastromattei' (notes 16, §1, [V])",
+    "Each decree cites R.D.L. 10 January 1926 n. 17 and the ministerial instructions of 5 August 1926, answers a 'domanda', and was posted for a month at the commune without objections (notes 16, §1, [V])",
+    "On p. 4843: 'Egger' becomes 'Mancini', 'Oberkofler' 'Covoli', 'Castlunger' 'Costalunga', 'Feichtinger' 'Fedrighi' (notes 16, §1, [V])",
+    "Seen in the image (p. 4843): two columns of decrees headed 'Il Prefetto della Provincia di Bolzano', each ending 'Bolzano, addì 26 maggio 1935 - Anno XIII – Il prefetto: Mastromattei', old and new surnames side by side, the new one in guillemets."
+   ],
+   "images": [
+    {
+     "file": "images/1935-10-05_GU_n233_Bolzano_cognomi_p4843.jpg",
+     "caption": "Gazzetta Ufficiale n. 233, 5 October 1935, p. 4843. Official act; rendered from the GU PDF."
+    }
+   ],
+   "file": "GU_1935-10-05_n233_decreti_prefettizi_cognomi_Bolzano.pdf",
+   "source": {
+    "label": "Gazzetta Ufficiale, historical PDF",
+    "url": "https://www.gazzettaufficiale.it/eli/gu/1935/10/05/233/sg/pdf"
+   },
+   "creator": "Kingdom of Italy; Prefetto di Bolzano (Mastromattei)",
+   "holder": "Gazzetta Ufficiale (Istituto Poligrafico e Zecca dello Stato)",
+   "rights": "Official act of the State, not protected (l. 633/1941, art. 5)",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "file"
+   }
+  },
+  {
+   "no": "16.15",
+   "title": "Der Sciliar, July–August 1938, masthead",
+   "type": "Magazine",
+   "date": "July–August 1938",
+   "year": 1938,
+   "keywords": [
+    "language",
+    "wording",
+    "typeface"
+   ],
+   "text": [
+    "The masthead of South Tyrol's monthly for local history in the summer of 1938. The magazine is “Der Schlern”, after the mountain; here it appears as “Der Sciliar”, the Italian name forced into a German title and still set in Fraktur, over a vignette of the massif itself.",
+    "When the forced title began and when it ended has not been established."
+   ],
+   "facts": [
+    "The monthly 'Der Schlern' printed under the Italian place-name as 'Der Sciliar'; Commons: 'forced title italianization' (notes 16, §1, [V])",
+    "'Illustrierte Monatsschrift für Heimat- u. Volkskunde', 'Druck u. Verlag: Verlags-Anstalt Athesia Bolzano', '19. Jahrg. Juli-August 1938 - anno XVI' (notes 16, §1, [V])",
+    "When the forced title began and ended is not established (notes 16, Needs a hand-opened browser)",
+    "Seen in the image: the title 'Der Sciliar' in large Fraktur over an oval vignette of the Schlern massif; Fraktur text left and right; at the foot '19. Jahrg.', 'Juli-August 1938 - anno XVI', '7. u. 8. Heft'."
+   ],
+   "images": [
+    {
+     "file": "images/1938-07_DerSciliar_masthead_Commons.png",
+     "caption": "Der Sciliar, July–August 1938, masthead; scan Bartleby08. CC BY 4.0, Wikimedia Commons (1280 px copy)."
+    }
+   ],
+   "file": "images/1938-07_DerSciliar_masthead_Commons.png",
+   "source": {
+    "label": "Wikimedia Commons",
+    "url": "https://commons.wikimedia.org/wiki/File:Schlern_1938_07_01_1_Sciliar.png"
+   },
+   "creator": "Verlagsanstalt Athesia, Bolzano",
+   "rights": "CC BY 4.0 (Commons)",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://commons.wikimedia.org/wiki/File:Schlern_1938_07_01_1_Sciliar.png"
+   }
+  },
+  {
+   "no": "16.16",
+   "title": "Atesia Augusta. Rassegna mensile dell'Alto Adige, anno I, 1939",
+   "type": "Magazine",
+   "date": "March–December 1939",
+   "year": 1939,
+   "keywords": [
+    "press",
+    "romanita",
+    "typeface",
+    "monumento-vittoria",
+    "language"
+   ],
+   "text": [
+    "The regime's own monthly for the province, first issue, March 1939. The prefect chairs its committee; the publisher is the provincial fascist press cooperative. It opens with a portrait of Mussolini and his handwritten dedication to the review “che ha nel nome il programma”. The title is set in Roman capitals, “ATESIA AVGVSTA”, and the price is “LIRE QVATTRO”.",
+    "Inside: Tolomei, “Romanità dell'Alto Adige”, and aerial photographs of the new workers' blocks. The back cover is the Monument to Victory. Issue 9 carried an unsigned article on the Option accords."
+   ],
+   "facts": [
+    "No. 1, March 1939: 'Presidente del Comitato Direttivo dott. Giuseppe Mastromattei', 'Redattore-Capo Responsabile Giuseppe Silvestri', 'Editore: Ente Cooperativo Provinciale della Stampa Fascista', 'Tipografia Ferrari Auer S.A. Bolzano', 'Copertina di Guido Pelizzari' (notes 16, §2, [V])",
+    "Opens with a portrait credited 'Ghitta Carell' and a handwritten dedication read as 'Alla Rivista Atesia Augusta che ha nel nome il programma con fervido augurio fascista – Roma 25 febb. XVII – Mussolini' (notes 16, §2, [V, reading of the hand])",
+    "Contents include Tolomei 'Terra d'Italia', 'Romanità dell'Alto Adige', Battisti 'Il Dizionario Toponomastico Atesino', 'Clima di rinascita' with aerials 'Fot. Pedrotti' (notes 16, §§1–2, [V])",
+    "The 1939 index (in no. 10) lists 'Bolzano ai Caduti per l'Impero' (no. 4), Mastromattei 'Serenità operosa' (no. 8) and an unsigned 'L'esecuzione degli accordi italo-germanici per i Tedeschi dell'Alto Adige' (no. 9) (notes 16, §2, [V])",
+    "Title set in Roman capitals with V for U ('AVGVSTA', 'LIRE QVATTRO'); the back cover prints the Victory Monument (notes 16, §2, [V])",
+    "BPI holds only nos. 1 and 10 of 1939; the 1941 director's name is 'Antonio Baldini Rualis', which corrects the AZ OCR in notes 03 §4 (notes 16, §2, [V])",
+    "Seen in the image (cover): brown paper, 'ATESIA AVGVSTA – RASSEGNA MENSILE DELL'ALTO ADIGE' in dark Roman capitals, a small brown drawing of a round crenellated tower and a fir tree before mountains, 'ANNO I° N 1 BOLZANO-MARZO 1939 XVII'; a library label and the 'BPI' watermark.",
+    "Seen in the image (back cover): the Victory Monument's colonnade and steps printed small in brown in the centre of a plain brown cover, 'LIRE QVATTRO' at lower right.",
+    "Seen in the image (p. 11): headline 'CLIMA DI RINASCITA' and an aerial photograph of rows of new apartment blocks captioned 'Un poderoso gruppo di novissime abitazioni operaie nel rione Littorio di Bolzano (Fot. Pedrotti)'.",
+    "Seen in the image (index pp. 58–59): 'Indice generale dell'anno 1939 XVII/XVIII', issue by issue from 'N. 1 — Marzo' to 'N. 10 — Dicembre'."
+   ],
+   "images": [
+    {
+     "file": "images/1939-03_AtesiaAugusta_n1_cover_BPI.jpg",
+     "caption": "Atesia Augusta n. 1, March 1939, cover by Guido Pelizzari. Rights not stated; BPI gallery."
+    },
+    {
+     "file": "images/1939-03_AtesiaAugusta_n1_sommario_BPI.jpg",
+     "caption": "Atesia Augusta n. 1: masthead and contents. Rights not stated; BPI gallery."
+    },
+    {
+     "file": "images/1939-03_AtesiaAugusta_n1_Mussolini_dedication_BPI.jpg",
+     "caption": "Atesia Augusta n. 1: portrait by Ghitta Carell with Mussolini's dedication. Rights not stated; BPI gallery."
+    },
+    {
+     "file": "images/1939-03_AtesiaAugusta_n1_Clima_di_rinascita_p11_BPI.jpg",
+     "caption": "Atesia Augusta n. 1, p. 11, 'Clima di rinascita', photo Pedrotti. Rights not stated; BPI gallery."
+    },
+    {
+     "file": "images/1939-03_AtesiaAugusta_n1_Dizionario_Toponomastico_p31_BPI.jpg",
+     "caption": "Atesia Augusta n. 1, p. 31, Carlo Battisti on the toponymic dictionary. Rights not stated; BPI gallery."
+    },
+    {
+     "file": "images/1939-03_AtesiaAugusta_n1_backcover_BPI.jpg",
+     "caption": "Atesia Augusta n. 1, back cover with the Victory Monument. Rights not stated; BPI gallery."
+    },
+    {
+     "file": "images/1939-12_AtesiaAugusta_n10_indice_p58_BPI.jpg",
+     "caption": "Atesia Augusta n. 10, December 1939: index of the year, p. 58. Rights not stated; BPI gallery."
+    },
+    {
+     "file": "images/1939-12_AtesiaAugusta_n10_indice_p59_BPI.jpg",
+     "caption": "Atesia Augusta n. 10: index of the year, p. 59. Rights not stated; BPI gallery."
+    }
+   ],
+   "file": "images/1939-03_AtesiaAugusta_n1_cover_BPI.jpg",
+   "source": {
+    "label": "Biblioteca Provinciale Italiana Claudia Augusta, web gallery",
+    "url": "https://webaleph.bpi.claudiaugusta.it/Atesia-Augusta-1939_1.html"
+   },
+   "creator": "Ente Cooperativo Provinciale della Stampa Fascista; cover Guido Pelizzari",
+   "holder": "Biblioteca Provinciale Italiana Claudia Augusta",
+   "rights": "Not stated by BPI; © presumed (Pelizzari, Carell, signed authors; the publisher's successors)",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://webaleph.bpi.claudiaugusta.it/Atesia-Augusta.html"
+   }
+  },
+  {
+   "no": "16.17",
+   "title": "Landsleute! Anonymous leaflet against emigration in the Option",
+   "type": "Leaflet",
+   "date": "1939",
+   "year": 1939,
+   "keywords": [
+    "option",
+    "counter-propaganda",
+    "typeface"
+   ],
+   "text": [
+    "A leaflet against leaving, from the autumn of the Option, headed “Landsleute!”. The German government, it says, means to move the South Tyroleans “nach Galizien”: “Für Galizien? Kennt Ihr das Land?” It names the rumour of resettlement in the south, “das sizilianische Gespenst”, and urges: “unterschreibe niemals eine Auswanderungserklärung”.",
+    "It is anonymous and typewritten, not printed. The sheet is torn off at the foot, mid-sentence."
+   ],
+   "facts": [
+    "Typewritten leaflet: the German government proposes to move the South Tyroleans 'nach Galizien'; 'Für Galizien? Kennt Ihr das Land?'; 'unterschreibe niemals eine Auswanderungserklärung'; it names 'das sizilianische Gespenst' (notes 16, §6, [V])",
+    "'bis spätestens 31. Dezember dieses Jahres' dates it to autumn 1939 [INF] (notes 16, §6)",
+    "'Kennt Ihr das Land?' turns Goethe's line, used on Lenhart's UTA poster for Merano, against the Nazi promise (notes 16, §6, [INF]; notes 01, Q4)",
+    "Commons: PD-old; the file page says its copyright status 'is currently discussed' (manifest)",
+    "Seen in the image: a creased, torn and stained sheet, typed in one block with underlinings, headed 'Landsleute!'; the bottom edge is torn away mid-sentence."
+   ],
+   "images": [
+    {
+     "file": "images/1939_Option_Flugblatt_Landsleute_Commons.jpg",
+     "caption": "Anonymous leaflet, 1939. Public domain per Commons (status discussed); Wikimedia Commons."
+    }
+   ],
+   "file": "images/1939_Option_Flugblatt_Landsleute_Commons.jpg",
+   "source": {
+    "label": "Wikimedia Commons",
+    "url": "https://commons.wikimedia.org/wiki/File:Option_in_Suedtirol_Flugblatt_1939.JPG"
+   },
+   "creator": "anonymous",
+   "rights": "Public domain (PD-old) per Commons; copyright status 'currently discussed'",
+   "confidence": {
+    "level": "read",
+    "note": "date inferred from the text; holding unknown"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://commons.wikimedia.org/wiki/File:Option_in_Suedtirol_Flugblatt_1939.JPG"
+   }
+  },
+  {
+   "no": "16.18",
+   "title": "Heim ins Reich! Hand-drawn Option poster",
+   "type": "Poster",
+   "date": "1939–40 (per Commons)",
+   "year": 1939,
+   "keywords": [
+    "option",
+    "posters",
+    "typeface",
+    "symbol"
+   ],
+   "text": [
+    "A hand-painted poster for leaving: a couple in costume, seen from behind, hold a child up to a sun that rises over the mountains with a swastika in it. “Heim ins Reich!” is lettered by hand in Fraktur.",
+    "Date, maker and owner rest on the person who uploaded it to Wikimedia Commons, where a request to delete it for doubtful rights has been open since May 2026. It is a lead, not yet a document."
+   ],
+   "facts": [
+    "Commons title 'South Tyrolean Option Agreement Nazi propaganda Heim ins Reich poster 1939-40', category 'Rosengarten group' (notes 16, §6, [V])",
+    "Uploaded as 'own work' under CC BY-SA 4.0; a deletion request of 23 May 2026 reads 'not in PD, User:Zintosch7 is not the author'. Rights unclear (manifest)",
+    "Hand-made, not printed: the slogan is lettered by hand in Fraktur (notes 16, §6, [INF])",
+    "Seen in the image: brown wash and black ink; a man and a woman in costume seen from behind, the woman holding up a small child towards a rayed sun bearing a swastika rising over mountains; 'Heim ins Reich!' in black Fraktur at lower right; a blue eagle stamp and an initial mark at lower left."
+   ],
+   "images": [
+    {
+     "file": "images/1939-40_Heim_ins_Reich_poster_Commons.jpg",
+     "caption": "Unknown artist, 1939–40 per Commons. CC BY-SA 4.0 as stated, disputed; Wikimedia Commons."
+    }
+   ],
+   "file": "images/1939-40_Heim_ins_Reich_poster_Commons.jpg",
+   "source": {
+    "label": "Wikimedia Commons",
+    "url": "https://commons.wikimedia.org/wiki/File:South_Tyrolean_Option_Agreement_Nazi_propaganda_Heim_ins_Reich_poster_1939-40.jpg"
+   },
+   "creator": "unknown",
+   "rights": "CC BY-SA 4.0 as 'own work' by the uploader; disputed by a Commons deletion request (23 May 2026)",
+   "confidence": {
+    "level": "lead",
+    "note": "date, maker, holding and rights rest on the Commons uploader alone"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://commons.wikimedia.org/wiki/File:South_Tyrolean_Option_Agreement_Nazi_propaganda_Heim_ins_Reich_poster_1939-40.jpg"
+   }
+  },
+  {
+   "no": "16.19",
+   "title": "Klause, Der Führer ruft! Heim ins Reich!",
+   "type": "Poster",
+   "date": "1939–40 (per Commons)",
+   "year": 1939,
+   "keywords": [
+    "option",
+    "posters",
+    "typeface"
+   ],
+   "text": [
+    "A second hand-made Option poster from the same uploader, signed “KLAUSE”: a woman with a child on her arm and another at her side waves a cloth towards a flat-topped mountain. “Der Führer ruft!” runs across the top in red Fraktur, “Heim ins Reich!” below.",
+    "The painter is not identified, and the date of 1939–40 is the uploader's. A lead."
+   ],
+   "facts": [
+    "Commons title 'South Tyrolean Option Agreement Nazi propaganda poster 1939-40', category 'Schlern group'; same uploader as row 16.18 (notes 16, §6, [V])",
+    "Uploaded as 'own work' under CC BY-SA 4.0; no deletion request on this file, but the same doubt applies (manifest)",
+    "Painter 'Klause' not identified (notes 16, Leads)",
+    "Seen in the image: ink and grey wash; a woman in a long dress from behind, a child on her arm and another at her side, waving a cloth towards a flat-topped mountain; 'Der Führer ruft!' in red Fraktur across the top, 'Heim ins Reich!' in red Fraktur at lower right; signed 'KLAUSE'; a round eagle stamp at lower left."
+   ],
+   "images": [
+    {
+     "file": "images/1939-40_Der_Fuehrer_ruft_Klause_poster_Commons.jpg",
+     "caption": "Klause, 1939–40 per Commons. CC BY-SA 4.0 as stated, doubtful; Wikimedia Commons."
+    }
+   ],
+   "file": "images/1939-40_Der_Fuehrer_ruft_Klause_poster_Commons.jpg",
+   "source": {
+    "label": "Wikimedia Commons",
+    "url": "https://commons.wikimedia.org/wiki/File:South_Tyrolean_Option_Agreement_Nazi_propaganda_poster_1939-40.jpg"
+   },
+   "creator": "Klause",
+   "rights": "CC BY-SA 4.0 as 'own work' by the uploader; doubtful",
+   "confidence": {
+    "level": "lead",
+    "note": "date, holding and rights rest on the Commons uploader alone"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://commons.wikimedia.org/wiki/File:South_Tyrolean_Option_Agreement_Nazi_propaganda_poster_1939-40.jpg"
+   }
+  },
+  {
+   "no": "16.20",
+   "title": "Scheda individuale – Schedario degli allogeni tedeschi che hanno optato per la Germania",
+   "type": "Object",
+   "date": "1939–1948",
+   "year": 1939,
+   "keywords": [
+    "option",
+    "language",
+    "wording",
+    "tracing-people"
+   ],
+   "text": [
+    "The Italian state's index card for a person who chose Germany, headed “SCHEDARIO DEGLI ALLOGENI TEDESCHI CHE HANNO OPTATO PER LA GERMANIA”. On the back: “ha optato a Parcines”, and stamps of 8 April 1948, when the same card served for the re-option.",
+    "The word is “allogeni”, of another stock: the administrative name for the province's Germans, kin to the “scuole alloglotte” of the 1923 school decree. Wikimedia Commons files the card, wrongly, as a German voting card."
+   ],
+   "facts": [
+    "An Italian index card for optants; back: 'Ha optato per la cittadinanza germanica con dichiarazione sul modello giallo … ha optato a Parcines', stamps 'Modello I presentato il 8 APR 1948' and 'Ricevuta prefettizia riopzione N. 13548/1' (notes 16, §6, [V])",
+    "Commons calls it 'Stimmkarte für die Option für das deutsche Reich'; the card is a prefectural index card reused for the 1948 re-option (notes 16, §6, [V card; INF link])",
+    "The word 'allogeni' links it to the 'scuole alloglotte' of the 1923 school decree (row 16.05) (notes 16, §6, [INF])",
+    "Personal data blacked out by the uploader; CC0 (manifest)",
+    "Seen in the image (front): an orange card headed 'SCHEDA INDIVIDUALE' with an alphabet strip A–Z and 'SCHEDARIO DEGLI ALLOGENI TEDESCHI CHE HANNO OPTATO PER LA GERMANIA'; black bars over the names; 'Lagundo', 'Bolzano', 'Merano' typed in; a faint diagonal stamp about revocation.",
+    "Seen in the image (back): printed questions on emigration, passport and German citizenship; typed 'ha optato a Parcines'; violet stamps dated 8 April 1948 and a receipt number 13548/1."
+   ],
+   "images": [
+    {
+     "file": "images/1939-48_Scheda_allogeni_optanti_front_Commons.jpg",
+     "caption": "Optant index card, front; photo ManfredK. CC0, Wikimedia Commons."
+    },
+    {
+     "file": "images/1939-48_Scheda_allogeni_optanti_back_Commons.jpg",
+     "caption": "Optant index card, back. CC0, Wikimedia Commons."
+    }
+   ],
+   "file": "images/1939-48_Scheda_allogeni_optanti_front_Commons.jpg",
+   "source": {
+    "label": "Wikimedia Commons",
+    "url": "https://commons.wikimedia.org/wiki/File:Option_in_S%C3%BCdtirol_Stimmkarte_der_Optanten_f%C3%BCr_Deutschland_Vorderseite_anonym.jpg"
+   },
+   "creator": "Italian administration (printed form); photo ManfredK",
+   "rights": "CC0",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://commons.wikimedia.org/wiki/File:Option_in_S%C3%BCdtirol_Stimmkarte_der_Optanten_f%C3%BCr_Deutschland_Vorderseite_anonym.jpg"
+   }
+  },
+  {
+   "no": "16.21",
+   "title": "Albert Stolz, Heimat und Front 1941–1942",
+   "type": "Postcard",
+   "date": "1941–42",
+   "year": 1941,
+   "keywords": [
+    "option",
+    "postcards",
+    "symbol",
+    "typeface"
+   ],
+   "text": [
+    "A postcard of 1941–42 signed by Albert Stolz and issued, according to Wikimedia Commons, by the optants' association for the winter relief. A triptych: a woman and two children lifting potatoes, soldiers in steel helmets with a grenade, and between them an eagle over a wreathed swastika with “Heimat und Front 1941-1942” in Fraktur.",
+    "Field and grenade, home and front: the optants' own organisation carrying the Reich's war imagery in South Tyrol."
+   ],
+   "facts": [
+    "Commons: 'Nazi propaganda postcard of South Tyrol's Arbeitsgemeinschaft der Optanten 1941-42 (Winterhilfswerk)', author 'A.d.O.', source Teßmann (notes 16, §6, [V])",
+    "Signed 'Alb. Stolz' (notes 16, §6, [V])",
+    "Seen in the image: a triptych; left, a woman with a hoe and two children lifting potatoes in a field; right, soldiers in steel helmets, one throwing a grenade; centre, an eagle over a wreath with a swastika and 'Heimat und Front 1941-1942' in Fraktur; signature 'Alb. Stolz' at lower right."
+   ],
+   "images": [
+    {
+     "file": "images/1941-42_Stolz_Heimat_und_Front_AdO_postcard_Commons.jpg",
+     "caption": "Albert Stolz, 1941–42. CC BY-SA 4.0, Wikimedia Commons (from Teßmann)."
+    }
+   ],
+   "file": "images/1941-42_Stolz_Heimat_und_Front_AdO_postcard_Commons.jpg",
+   "source": {
+    "label": "Wikimedia Commons",
+    "url": "https://commons.wikimedia.org/wiki/File:S%C3%BCdtirol_Heimat_und_Front_NS.jpg"
+   },
+   "creator": "Albert Stolz; issued by the Arbeitsgemeinschaft der Optanten (per Commons)",
+   "rights": "CC BY-SA 4.0 (Commons)",
+   "confidence": {
+    "level": "read",
+    "note": "AdO issue as stated on Commons"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://commons.wikimedia.org/wiki/File:S%C3%BCdtirol_Heimat_und_Front_NS.jpg"
+   }
+  },
+  {
+   "no": "16.22",
+   "title": "Enzo Ianes, 'L'asilo è il mezzo più potente per la penetrazione dell'italianità'. Il ruolo dell'Opera Nazionale Assistenza Italia Redenta nel processo di italianizzazione dell'Alto Adige",
+   "type": "Article",
+   "date": "2019",
+   "year": 2019,
+   "keywords": [
+    "school",
+    "language",
+    "archives"
+   ],
+   "text": [
+    "A study of the kindergartens that the Opera Nazionale di Assistenza all'Italia Redenta ran in the German-speaking valleys: about fifty by December 1927, about a hundred at the end of the 1930s. Its title is a quotation: “L'asilo è il mezzo più potente per la penetrazione dell'italianità”. In Bolzano's Rencio quarter the clandestine German kindergartens were closed by the authorities in 1937.",
+    "It names the archive files that hold the story of each kindergarten."
+   ],
+   "facts": [
+    "Geschichte und Region/Storia e regione 28 (2019), 2, pp. 111–142 (manifest)",
+    "ONAIR, founded 1919; 'nel dicembre 1927 … circa 50 asili nelle zone tedesche dell'Alto Adige', about a hundred at the end of the 1930s (notes 16, §3, [S])",
+    "From 1924/25 Rosa and Carolina Agazzi ran the 'Asilo Principessa Mafalda di Bolzano' as the training kindergarten (notes 16, §3, [S])",
+    "'nel quartiere Rencio di Bolzano nel 1937 furono chiusi dalle autorità gli asili clandestini in lingua tedesca' (notes 16, §3, [S])",
+    "Archive pointers: APTn and SLA, Fondo ONAIRC; APTn ONAIRC b. 145 'provincia di Bolzano: storia di singoli asili infantili' (notes 16, §3, Leads)"
+   ],
+   "file": "Ianes_2019_ONAIR_italianizzazione_Alto_Adige_GRSR.pdf",
+   "source": {
+    "label": "Geschichte und Region/Storia e regione",
+    "url": "https://storiaeregione.eu/attachment/get/up_359_16463054858121.pdf"
+   },
+   "creator": "Enzo Ianes",
+   "holder": "Geschichte und Region/Storia e regione",
+   "rights": "Not stated in the PDF; © presumed (author and journal)",
+   "confidence": {
+    "level": "secondary"
+   },
+   "more": {
+    "kind": "file"
+   }
+  },
+  {
+   "no": "16.23",
+   "title": "House-number plate '26 SOPRABOLZANO'",
+   "type": "Object",
+   "date": "plate undated (fascist era per the uploader); photographed 2024",
+   "year": 2024,
+   "keywords": [
+    "language",
+    "wording"
+   ],
+   "text": [
+    "A house-number plate still on a wall in Soprabolzano, photographed in 2024: white enamel, blue rim, “26” and the village name in Italian only. The uploader calls it a relic “aus der Zeit der gewaltsamen Italianisierung”.",
+    "The plate's age rests on that statement alone. It is kept as a lead: the place-name decree at the scale of a single door."
+   ],
+   "facts": [
+    "Uploader: 'Einsprachiges Hausnummernschild aus der Zeit der gewaltsamen Italianisierung. Relikt. Aufnahmedatum 2024' (notes 16, §1, [V page])",
+    "The plate's date rests on the uploader alone (notes 16, §1)",
+    "Seen in the image: a white enamel plate with a blue rim on a pale wall, '26' in large blue numerals and 'SOPRABOLZANO' below in blue capitals."
+   ],
+   "images": [
+    {
+     "file": "images/2024_Soprabolzano_house_number_26_Commons.jpg",
+     "caption": "Photo Goesseln, 2024. CC BY-SA 4.0, Wikimedia Commons (1280 px copy)."
+    }
+   ],
+   "file": "images/2024_Soprabolzano_house_number_26_Commons.jpg",
+   "source": {
+    "label": "Wikimedia Commons",
+    "url": "https://commons.wikimedia.org/wiki/File:Soprabolzano_numero_di_casa_26.jpg"
+   },
+   "creator": "Photo: Goesseln; plate: unknown",
+   "rights": "CC BY-SA 4.0",
+   "confidence": {
+    "level": "lead",
+    "note": "the plate's age is the uploader's attribution"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://commons.wikimedia.org/wiki/File:Soprabolzano_numero_di_casa_26.jpg"
+   }
+  }
+ ]
+}

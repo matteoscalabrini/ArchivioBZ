@@ -32,3 +32,20 @@ table.recs td { padding: 6px 12px 6px 0; border-top: var(--rule); vertical-align
 table.recs td:first-child { font-variant-numeric: tabular-nums; }
 table.recs th:last-child,
 table.recs td:last-child { padding-right: 0; }
+
+/* One row in a panel, on the Map page and beside a text: number · type · date, the title, what
+   the Library shows in the open row in one column, the way to it in the Library, and the steps
+   to the rows before and after. */
+.entry .e-meta { margin: 22px 0 6px; font-size: var(--size-meta); color: var(--grey); }
+.entry h3 { font-size: var(--size-title); line-height: 1.16; overflow-wrap: break-word; }
+.entry h3:focus { outline: 0; }
+.entry h3:focus-visible { outline: 2px solid var(--ink); }
+.entry .detail { padding-top: 16px; }
+.entry .pics + .txt,
+.entry table.recs + .txt { margin-top: 20px; }
+.entry .pics img { max-height: 440px; }
+.e-library { display: block; margin-top: 26px; text-decoration: underline; text-underline-offset: 4px; }
+.e-step { display: flex; align-items: baseline; gap: 16px; margin: 30px 0 0; padding-top: 10px; border-top: var(--rule); font-size: var(--size-meta); }
+.e-step .n { color: var(--grey); font-variant-numeric: tabular-nums; }
+.e-step button:not(:disabled) { text-decoration: underline; text-underline-offset: 4px; }
+.e-step button:disabled { color: var(--grey); cursor: default; }

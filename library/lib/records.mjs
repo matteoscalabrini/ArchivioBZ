@@ -6,7 +6,7 @@ import path from 'node:path';
 
 export const TYPES = ['Report', 'Notes', 'Story', 'Newspaper page', 'Press article', 'Photograph', 'Postcard',
   'Poster', 'Booklet', 'Book', 'Article', 'Law text', 'Archive guide', 'Table', 'Web page', 'Intervention',
-  'Reference', 'Counter-reference', 'Map'];
+  'Reference', 'Counter-reference', 'Map', 'Film', 'Drawing', 'Object', 'Sound', 'Minutes', 'Magazine', 'Leaflet'];
 export const MORE_KINDS = ['read', 'file', 'table', 'map', 'source'];
 // The folders, relative to the root, whose files serve.mjs hands out under /source/: a record's
 // file, images and local more.target must lie inside one of them for the site to link to it.

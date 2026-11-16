@@ -1,0 +1,10 @@
+{
+  "press": { "label": "Press", "types": ["Newspaper page", "Press article", "Magazine"] },
+  "pictures": { "label": "Pictures", "types": ["Photograph", "Postcard", "Poster", "Drawing", "Map", "Object"] },
+  "film": { "label": "Film and sound", "types": ["Film", "Sound"] },
+  "documents": { "label": "Documents", "types": ["Law text", "Minutes", "Leaflet", "Booklet", "Archive guide", "Web page"] },
+  "tables": { "label": "Tables", "types": ["Table"] },
+  "books": { "label": "Books and articles", "types": ["Book", "Article"] },
+  "references": { "label": "References", "types": ["Reference", "Counter-reference", "Intervention"] },
+  "project": { "label": "Reports and notes", "types": ["Report", "Notes", "Story"] }
+}

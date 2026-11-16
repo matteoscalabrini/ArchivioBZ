@@ -1,0 +1,944 @@
+{
+ "entries": [
+  {
+   "no": "14.00",
+   "title": "The plan and the buildings of the Italian Bolzano, 1922–1943: the competition, Piacentini's plan, period views, what was taken away, and the other modern architecture",
+   "type": "Notes",
+   "date": "2026",
+   "year": 2026,
+   "keywords": [
+    "architecture",
+    "new-city",
+    "old-town",
+    "removal"
+   ],
+   "text": [
+    "The working notes on the plan and the buildings of the Italian Bolzano: the competition of 1929, the plan that Piacentini reworked from 1934, period views and maps, and what was taken away from the old town.",
+    "The competition gave three equal winners and no plan. The Comune adopted its plan in November 1935, Rome approved it with conditions in 1937, and it became law in January 1941. Its sheet for the old town marks demolitions along Via dei Portici that a reviewer in 1937 called “eccessive, o per meglio dire totali”."
+   ],
+   "facts": [
+    "Thread 14 notes, research date 12 November 2026: the 1929 competition and the plan of 1934–41, period views and maps, removals and disguises in the old town, the other modern architecture of the same years, people and origins, scholarship and archives (notes 14)",
+    "Tags: [V] read on the cited page or file; [S] secondary source read in full; [W] Wikipedia; [SS] search snippet only; [INF] inference (notes 14, header)",
+    "The 1929 national competition gave three equal winners (Libera and Pollini, Muzio, Sottsass) and no plan; the municipal engineers' plan of 1933 was reworked from 1934 with Piacentini; the Comune adopted it in November 1935, Rome approved it with conditions in 1937, and it became law on 23 January 1941 (notes 14, §1)",
+    "The November 1935 sheet for the old town marks demolitions along Via dei Portici; a 1937 review called them 'eccessive, o per meglio dire totali' (notes 14, §1, [V])",
+    "Downloads: 4 PDFs, 2 text copies and 34 images (manifest)"
+   ],
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "read",
+    "target": "../../../../library/content/reads/14.00.md",
+    "title": "The plan for an Italian Bolzano, and what it took from the old town"
+   }
+  },
+  {
+   "no": "14.01",
+   "title": "Franziszeischer Kataster 1858, Gries, St. Quirein and the town of Bozen (extract from the Province's map service)",
+   "type": "Map",
+   "date": "1858",
+   "year": 1858,
+   "keywords": [
+    "maps",
+    "new-city",
+    "old-town"
+   ],
+   "text": [
+    "The Austrian land-tax survey of 1858, as the Province serves it today. West of the Talvera, where the Corso, Piazza della Vittoria and later the Semirurali were built after 1926, the map shows vineyards and meadows cut into narrow parcels, with Gries and its monastery at one end and the dense old town across the river at the other.",
+    "It is the ground before the plan: the new city was drawn on farmland."
+   ],
+   "facts": [
+    "The 1858 Austrian land-tax survey, served by the Province of Bolzano as the WMS layer 'Franziszeischer Kataster 1858 – Catasto di Francesco I 1858'; this extract covers Gries, St. Quirein and the old town (manifest)",
+    "The plain west of the Talfer, where the Corso, Piazza della Vittoria, Piazza IV Novembre and the Semirurali were built after 1926, is shown as vineyards and meadows cut into narrow parcels (notes 14, §2, [V])",
+    "Rights: the Province's service record says its geodata are 'im Allgemeinen' under CC0; the layer's own licence was not read (manifest)",
+    "Seen in the image: a coloured cadastral map, pink vineyard parcels and green meadows west of a braided grey-blue river; 'Gries' with a red monastery block at upper left, 'St. Quirein' and 'Maria Heimsuchung' in the middle, the dense red-and-yellow old town at right, the Eisak and the railway along the bottom."
+   ],
+   "images": [
+    {
+     "file": "images/1858_Franziszeischer_Kataster_Bozen-Gries_WMS_extract.jpg",
+     "caption": "Franziszeischer Kataster, 1858. Autonome Provinz Bozen map service, CC0 per the service record. Four tiles joined."
+    }
+   ],
+   "file": "images/1858_Franziszeischer_Kataster_Bozen-Gries_WMS_extract.jpg",
+   "source": {
+    "label": "Autonome Provinz Bozen, Geokatalog (WMS)",
+    "url": "https://geonetwork1.civis.bz.it/geonetwork/srv/api/records/p_bz:Orthoimagery"
+   },
+   "creator": "Franziszeischer Kataster",
+   "holder": "Autonome Provinz Bozen – Südtirol",
+   "rights": "CC0 in general per the Province's geodata record; layer-level licence not read",
+   "confidence": {
+    "level": "read"
+   }
+  },
+  {
+   "no": "14.02",
+   "title": "Bozen – Neues Museum, postcard of the Stadtmuseum with its tower and battlements",
+   "type": "Postcard",
+   "date": "1904",
+   "year": 1904,
+   "keywords": [
+    "old-town",
+    "removal",
+    "postcards",
+    "architecture"
+   ],
+   "text": [
+    "A postcard of 1904: Bolzano's new town museum with its stepped-gable tower, battlements and corner turret. From 1936 the regime remade the outside in the manner of the new city; the neo-Gothic tower with its “German” battlements came off and a lower flat roof took its place. In 1937–38 the museum was renamed Museo dell'Alto Adige and a Roman milestone of Claudius was set before the door.",
+    "The tower was rebuilt in 1990."
+   ],
+   "facts": [
+    "Coloured postcard of the new town museum, Stengel & Co., Dresden and Berlin, 1904, card no. 10718 (manifest)",
+    "Built 1902–04 by the Comune to a design by Karl (Carlo) Delug, construction directed by Wilhelm (Guglielmo) Kürschner; opened 16 April 1905 [V] (Arslan 1942, row 14.18)",
+    "From 1936 the regime remade the outside in the manner of the new city; the neo-Gothic tower with its 'German' battlements was removed and replaced by a lower flat roof [S] (Dunajtschik & Steinacher 2008, row 5.11). The tower was rebuilt in 1990 [V] (Verdorfer 2007, row 5.10)",
+    "In 1937–38 the museum was renamed 'Museo dell'Alto Adige' and a Roman milestone of Claudius was set before its door [V] (Arslan 1942, row 14.18)",
+    "Seen in the image: a tall stepped-gable tower with a clock-like roundel, crenellated wings, a corner turret with an onion dome; pedestrians on the unpaved street; printed 'Bozen Neues Museum' at upper right and '1904 Stengel & Co., Dresden u. Berlin 10718' at lower right."
+   ],
+   "images": [
+    {
+     "file": "images/1904_Neues_Stadtmuseum_Bozen_postcard.jpg",
+     "caption": "Stengel & Co., 1904. CC BY-SA 4.0 (upload by Bartleby08), Wikimedia Commons."
+    }
+   ],
+   "file": "images/1904_Neues_Stadtmuseum_Bozen_postcard.jpg",
+   "source": {
+    "label": "Wikimedia Commons",
+    "url": "https://commons.wikimedia.org/wiki/File:Neues_Stadtmuseum_Bozen_1904.jpg"
+   },
+   "creator": "Stengel & Co.",
+   "rights": "CC BY-SA 4.0",
+   "confidence": {
+    "level": "read"
+   },
+   "place": "museo-civico"
+  },
+  {
+   "no": "14.03",
+   "title": "BOZEN Bahnhofsplatz, postcard of the Austrian station before Mazzoni's rebuilding",
+   "type": "Postcard",
+   "date": "before 1927",
+   "year": 1900,
+   "keywords": [
+    "postcards",
+    "architecture",
+    "old-town"
+   ],
+   "text": [
+    "The Austrian station of 1865 on a postcard: a two-storey Neoclassical front with three arched doors, lettered “STATION BOZEN-GRIES”, a horse cab waiting. It was rebuilt by Angiolo Mazzoni, architect of the State Railways, and the new buildings opened on 24 May 1928.",
+    "The card is undated; the year used to place it in the list is a guess."
+   ],
+   "facts": [
+    "Commons: 'Der alte Bahnhof von Bozen Gries vor dem Umbau im Jahr 1927–1929'; no date, maker unknown, public domain (manifest)",
+    "The station of 1865 was rebuilt by the Roman architect Angiolo Mazzoni, architect of the State Railways; the new buildings opened on 24 May 1928 [V] (Verdorfer 2007, row 5.10)",
+    "Date: the year 1900 used for ordering is a guess from the message written across the picture side, usual on cards before about 1905 [INF]",
+    "Seen in the image: a two-storey Neoclassical station with three arched doors lettered 'STATION BOZEN-GRIES', a horse cab and bare trees in front; 'BOZEN Bahnhofsplatz' printed at lower left and a handwritten German message along the bottom."
+   ],
+   "images": [
+    {
+     "file": "images/pre1927_Bahnhofsplatz_Station_Bozen-Gries_postcard.jpg",
+     "caption": "Unknown publisher, before 1927. Public domain, Wikimedia Commons."
+    }
+   ],
+   "file": "images/pre1927_Bahnhofsplatz_Station_Bozen-Gries_postcard.jpg",
+   "source": {
+    "label": "Wikimedia Commons",
+    "url": "https://commons.wikimedia.org/wiki/File:Der_alte_Bahnhof_von_Bozen_Gries_vor_dem_Umbau_1927-1929.jpg"
+   },
+   "rights": "Public domain",
+   "confidence": {
+    "level": "read",
+    "note": "date not stated by the source"
+   },
+   "place": "stazione"
+  },
+  {
+   "no": "14.04",
+   "title": "The Walther von der Vogelweide monument on its square, 1909 and 1933",
+   "type": "Photograph",
+   "date": "1909 and 1933",
+   "year": 1909,
+   "keywords": [
+    "old-town",
+    "removal",
+    "language"
+   ],
+   "text": [
+    "The monument to the minnesinger Walther von der Vogelweide on the square named after him, in two lantern slides of 1909 and two photographs of 1933 by Mario Gabinio, a woman and a boy feeding pigeons at its basin. Tolomei's programme had asked for its removal; the square was renamed for the king, and in 1935 the statue was moved to a less central park.",
+    "It came back in 1981. Gabinio's are among the last pictures of it in place."
+   ],
+   "facts": [
+    "Two lantern slides by Sigurd Curman, 1909 (Tekniska museet, public domain mark) and two photographs by Mario Gabinio, 1933 (Fondazione Torino Musei, CC BY 3.0 IT) of the same monument (manifest)",
+    "Monument by Heinrich Natter, fountain base by Otto Hieser, unveiled 14–15 September 1889 [W] (de.wikipedia, Walther-Denkmal (Bozen))",
+    "Tolomei's 'Provvedimenti' asked for its removal (point 17); in 1926 Mussolini refused a Drusus statue in its place and the square was only renamed Piazza Vittorio Emanuele III; the statue was removed in 1935 [S] (Dunajtschik & Steinacher 2008, row 5.11)",
+    "1935: moved to the less central Roseggerpark; 1981: back on its square [W] (de.wikipedia); 1981 also in Dunajtschik & Steinacher [S]",
+    "Gabinio's 1933 photographs are among the last of the statue on its square before 1935 [INF]",
+    "Seen in the image (1909): a white statue on a tall pedestal with lions and a basin, the cathedral tower and its patterned roof at right, potted trees, a few figures; in the other slide horse cabs, chains on posts and a façade painted 'Hôtel-Café Restaurant Schgraffer'.",
+    "Seen in the image (1933): a woman and a small boy feeding pigeons on the pebble paving at the fountain's basin, lions on the pedestal above; behind, a building with 'Città di Bolzano' on it and a shop sign 'Cassa di Risparmio'."
+   ],
+   "images": [
+    {
+     "file": "images/1909_Curman_TEKA0118236_Walterplatz_Walther_monument_Duomo.jpg",
+     "caption": "Sigurd Curman, 1909, lantern slide. Public domain mark, Tekniska museet / DigitaltMuseum."
+    },
+    {
+     "file": "images/1909_Curman_TEKA0118237_Walterplatz_Walther_monument.jpg",
+     "caption": "Sigurd Curman, 1909, lantern slide. Public domain mark, Tekniska museet / DigitaltMuseum."
+    },
+    {
+     "file": "images/1933_Gabinio_116B5_Piazza_Walther_monument.jpg",
+     "caption": "Mario Gabinio, 1933. CC BY 3.0 IT, Fondazione Torino Musei via Wikimedia Commons."
+    },
+    {
+     "file": "images/1933_Gabinio_116B6_Piazza_Walther_monument.jpg",
+     "caption": "Mario Gabinio, 1933. CC BY 3.0 IT, Fondazione Torino Musei via Wikimedia Commons."
+    }
+   ],
+   "file": "images/1909_Curman_TEKA0118236_Walterplatz_Walther_monument_Duomo.jpg",
+   "source": {
+    "label": "DigitaltMuseum (Tekniska museet)",
+    "url": "https://digitaltmuseum.se/021016337653"
+   },
+   "creator": "Sigurd Curman; Mario Gabinio",
+   "holder": "Tekniska museet, Stockholm; Fondazione Torino Musei",
+   "rights": "Public domain mark (Curman); CC BY 3.0 IT (Gabinio)",
+   "confidence": {
+    "level": "read"
+   },
+   "place": "piazza-walther"
+  },
+  {
+   "no": "14.05",
+   "title": "Regio decreto 2 novembre 1925, n. 2027. Aggregazione del comune di Gries a quello di Bolzano (Gazzetta Ufficiale, 28 November 1925, n. 277)",
+   "type": "Law text",
+   "date": "2 November 1925",
+   "year": 1925,
+   "keywords": [
+    "law",
+    "new-city"
+   ],
+   "text": [
+    "The decree that ended Gries as a commune: “Il comune di Gries è aggregato a quello di Bolzano.” Signed at San Rossore on 2 November 1925 and printed in the Gazzetta Ufficiale of 28 November. It cites a request by Bolzano's prefectural commissioner and a deliberation of the Gries council.",
+    "Gries, with its abbey square, became the western end of the axis that the plan later drew from the Monument to Victory. The page also settles a small muddle: 2027 is the decree's number, 2299 its publication number."
+   ],
+   "facts": [
+    "'Il comune di Gries è aggregato a quello di Bolzano.' Royal decree of 2 November 1925, n. 2027, signed at San Rossore by Vittorio Emanuele and Federzoni; published in the Gazzetta Ufficiale n. 277 of 28 November 1925, p. 4717, as 'numero di pubblicazione 2299' (file)",
+    "The decree cites the request of Bolzano's prefectural commissioner (deliberation of 7 February 1925), the Gries council's deliberation of 6 February 1925 and the favourable opinion of the Regia commissione of the province of Trento of 10 July 1925 (file)",
+    "it.wikipedia gives the decree as 'n. 2299' in its text and 'n. 2027' in its footnote; the Gazzetta settles it: 2027 is the decree, 2299 the publication number (notes 14, §3)",
+    "Gries, with its abbey square, became the western end of the axis that the plan of 1934–41 drew from the Victory Monument (notes 14, §1, [S])",
+    "Seen in the image: a two-column page headed '28-XI-1925 – Gazzetta Ufficiale del Regno d'Italia – N. 277 – 4717'; lower left 'Numero di pubblicazione 2299. Regio decreto 2 novembre 1925, n. 2027. Aggregazione del comune di Gries a quello di Bolzano.'"
+   ],
+   "images": [
+    {
+     "file": "images/1925-11-28_GU_n277_p5_RD_2027_Gries.jpg",
+     "caption": "Gazzetta Ufficiale del Regno d'Italia, 28 November 1925, p. 4717. Official act."
+    }
+   ],
+   "file": "1925-11-28_Gazzetta_Ufficiale_n277_RD_2027_Aggregazione_Gries_Bolzano.pdf",
+   "source": {
+    "label": "Gazzetta Ufficiale",
+    "url": "https://www.gazzettaufficiale.it/eli/gu/1925/11/28/277/sg/pdf"
+   },
+   "creator": "Regno d'Italia",
+   "holder": "Istituto Poligrafico e Zecca dello Stato",
+   "rights": "rights not stated; Italian official act",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "file"
+   }
+  },
+  {
+   "no": "14.06",
+   "title": "Baedeker, Tyrol and the Dolomites (1927), plan of Gries and Bozen",
+   "type": "Map",
+   "date": "1927",
+   "year": 1927,
+   "keywords": [
+    "maps",
+    "guidebooks",
+    "old-town",
+    "language"
+   ],
+   "text": [
+    "The folding town plan from Baedeker's guide of 1927, just after Bolzano became a provincial capital. The plan still speaks German: “Laubengasse”, “Bahnhof”, “Pfarr-K.” The guide's text is caught between names, with a “Viktor-Emanuel-Platz” that was, it explains, “called the Walther-Platz up to 1925”.",
+    "Gries is on one page and Bozen on the other, a town of 35,000 inhabitants with Gries counted in."
+   ],
+   "facts": [
+    "Folding town plan of Gries and Bozen with an environs map 1:125,000, Geograph. Anst. v. Wagner & Debes, Leipzig, in Karl Baedeker, Tyrol and the Dolomites, 1927 (manifest)",
+    "The guide calls Bozen 'a town of 35,000 inhab. (including Gries, p. 272) and since the end of 1926 the capital of the province', and says the 'Viktor-Emanuel-Platz' was 'called the Walther-Platz up to 1925, with a monument to the minnesinger Walther' [V] (file text, p. 268)",
+    "The plan's names are German ('Laubengasse', 'Bahnhof', 'Stifts-K. Benediktinerkloster'); the guide's text uses 'Viktor-Emanuel-Platz', 'Umberto-Str.' and 'Talfer-Brücke' side by side [V] (file)",
+    "Rights not stated on Internet Archive; a corporate guide of 1927, © presumed expired; check before publication (manifest)",
+    "Seen in the image: two joined pages of a coloured town plan: at left Gries with 'Stifts-K. Benediktinerkloster', 'Kurhaus', 'Guntschna-Promenade' and below it a small-scale map of the basin; at right Bozen with the 'Bahnhof', 'Laubengasse', 'Pfarr-K.', 'Friedhof' and a numbered key ending '8 Theater'."
+   ],
+   "images": [
+    {
+     "file": "images/1927_Baedeker_Tyrol_and_the_Dolomites_plan_Bozen-Gries_leaves409-410.jpg",
+     "caption": "Wagner & Debes for Baedeker, 1927. Rights not stated; Internet Archive."
+    }
+   ],
+   "file": "images/1927_Baedeker_Tyrol_and_the_Dolomites_plan_Bozen-Gries_leaves409-410.jpg",
+   "source": {
+    "label": "Internet Archive",
+    "url": "https://archive.org/details/bwb_W6-AWU-603"
+   },
+   "creator": "Karl Baedeker; Wagner & Debes",
+   "holder": "Internet Archive",
+   "rights": "rights not stated; © presumed expired, check",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://archive.org/details/bwb_W6-AWU-603"
+   }
+  },
+  {
+   "no": "14.07",
+   "title": "The Laurin fountain at its first site on the Wassermauer promenade, postcard",
+   "type": "Postcard",
+   "date": "c. 1930",
+   "year": 1930,
+   "keywords": [
+    "removal",
+    "postcards",
+    "tourism"
+   ],
+   "text": [
+    "King Laurin's fountain on the promenade along the Talvera, about 1930: a marble group on a red sandstone base, set up in 1907 to promote Bozen as the “Laurin-Stadt”, with the inscription “Der Bürger Wohl zu mehren, dem fremden Gast zu Ehren”. Fascists wrecked it in the night of 4 to 5 June 1933. It went to the town museum, then to the war museum in Rovereto.",
+    "It came back to Bolzano in 1993 and has stood on Piazza Silvius Magnago since 1996."
+   ],
+   "facts": [
+    "Coloured postcard, about 1930, maker unknown, public domain on Commons (manifest)",
+    "By Andreas Kompatscher and Arthur Winder, commissioned to promote Bozen as the 'Laurin-Stadt', set up in May 1907 on the Wassermauer in view of the Rosengarten; base inscription 'Der Bürger Wohl zu mehren, dem fremden Gast zu Ehren' [W] (de.wikipedia, Laurinbrunnen)",
+    "Fascists wrecked it 'in der Nacht vom 4. auf den 5. Juni 1933'; it went to the Stadtmuseum and later to the war museum in Rovereto; back in Bozen in 1993, on Silvius-Magnago-Platz since 1996 [W] (de.wikipedia)",
+    "Dunajtschik & Steinacher also have it back in the city in the 1990s [S] (row 5.11)",
+    "Seen in the image: a red-sandstone pedestal with a carved bowl, on top a white marble group of a man bent over a second figure; a gravel path, flowering shrubs and trees, pink-lit peaks under a blue sky behind."
+   ],
+   "images": [
+    {
+     "file": "images/c1930_Laurin-Brunnen_Wassermauerpromenade_postcard.jpg",
+     "caption": "Unknown publisher, about 1930. Public domain, Wikimedia Commons."
+    }
+   ],
+   "file": "images/c1930_Laurin-Brunnen_Wassermauerpromenade_postcard.jpg",
+   "source": {
+    "label": "Wikimedia Commons",
+    "url": "https://commons.wikimedia.org/wiki/File:Laurin-Brunnen_an_seinem_urspr%C3%BCnglichen_Platz_auf_der_Bozner_Wassermauerpromenade_(um_1930).jpg"
+   },
+   "rights": "Public domain",
+   "confidence": {
+    "level": "read"
+   }
+  },
+  {
+   "no": "14.08",
+   "title": "Arturo Ambrosi, Lido di Bolzano",
+   "type": "Photograph",
+   "date": "August 1932",
+   "year": 1932,
+   "keywords": [
+    "architecture",
+    "new-city",
+    "tourism"
+   ],
+   "text": [
+    "The Lido in the year it opened, photographed by Arturo Ambrosi of Via Roma 9: bathers crowd the sand round a long pool, spectators fill the terrace of a white flat-roofed building. Ettore Sottsass and Willy Weyhenmeyer designed it for 2,000 people.",
+    "The back is stamped by the Touring Club's consul for Bolzano and marked “Pubblicata in agosto 32”."
+   ],
+   "facts": [
+    "Photograph by Arturo Ambrosi, photographer, Via Roma 9, Bolzano (stamp on the verso), with a second stamp 'Il Capo Console del T.C.I. per Bolzano'; the verso reads 'Lido di Bolzano' and 'Pubblicata in agosto 32'; TCI photo archive E.00148, dated 1932 (file; manifest)",
+    "The Lido was designed by Ettore Sottsass and Willy Weyhenmeyer, opened in 1932, flat roof and L-shaped plan, room for 2,000 [V] (Verdorfer 2007, row 5.10)",
+    "A present-day view of the same pools is row 5.14 (notes 05)",
+    "Seen in the image: crowds of bathers on sand around a long rectangular pool with numbered starting blocks, a slide; behind, a long white flat-roofed building with a terrace full of spectators and a small square tower; mountains and a rock face behind."
+   ],
+   "images": [
+    {
+     "file": "images/1932-08_Ambrosi_Lido_di_Bolzano_TCI_E00148_recto.jpg",
+     "caption": "Arturo Ambrosi, 1932. © presumed Touring Club Italiano, Digitouring."
+    },
+    {
+     "file": "images/1932-08_Ambrosi_Lido_di_Bolzano_TCI_E00148_verso.jpg",
+     "caption": "Verso with the photographer's and the TCI archive's stamps."
+    }
+   ],
+   "file": "images/1932-08_Ambrosi_Lido_di_Bolzano_TCI_E00148_recto.jpg",
+   "source": {
+    "label": "Digitouring (Touring Club Italiano)",
+    "url": "https://www.digitouring.it/it/cerca/33295-il-lido-di-bolzano"
+   },
+   "creator": "Arturo Ambrosi",
+   "holder": "Touring Club Italiano, Archivio fotografico",
+   "rights": "rights not stated; © presumed Touring Club Italiano",
+   "confidence": {
+    "level": "read"
+   },
+   "place": "lido"
+  },
+  {
+   "no": "14.09",
+   "title": "Le Vie d'Italia, July 1935, page VII",
+   "type": "Press article",
+   "date": "July 1935",
+   "year": 1935,
+   "keywords": [
+    "press",
+    "removal",
+    "romanita",
+    "language"
+   ],
+   "text": [
+    "A notice in the Touring Club's monthly, July 1935: Bolzano has removed the statue of Walther von der Vogelweide from Piazza Vittorio Emanuele III “per sostituirvi quella di Druso, il fondatore della città”. Italian readers were told a Roman general would take the poet's place.",
+    "No statue of Drusus was put up. The notice records an intention. In the same column, Merano approves new street names “esclusivamente italiani”."
+   ],
+   "facts": [
+    "Notice on the TCI monthly's advertising pages: 'Bolzano, oltre la rimozione della statua di Walther von der Vogelweider dalla piazza Vittorio Emanuele III, per sostituirvi quella di Druso, il fondatore della città, ha compiuto il restauro della chiesa di S. Domenico' (file)",
+    "The same column reports that Merano's prefectural commissioner approved new street names 'esclusivamente italiani' (file)",
+    "No Drusus statue was put up: de.wikipedia says its installation 'unterblieb' [W]; the notice records an intention, not a fact (notes 14, §3)",
+    "Already listed, not held, in the thread 03 table of Vie d'Italia items (notes 03, §2)",
+    "Seen in the image: a page numbered VII with two columns of short notices marked '**', town names in small capitals (Monza, Venegono Inferiore, Legnano, Brescia, Trento, Bolzano, Merano), and below a Zeiss Ikon advertisement for Pernox film with a row of ducklings."
+   ],
+   "images": [
+    {
+     "file": "images/1935-07_Le_Vie_d_Italia_pVII_Walther_removal_notice.jpg",
+     "caption": "Le Vie d'Italia, July 1935, p. VII. Rights not stated; Internet Archive."
+    }
+   ],
+   "file": "images/1935-07_Le_Vie_d_Italia_pVII_Walther_removal_notice.jpg",
+   "source": {
+    "label": "Internet Archive",
+    "url": "https://archive.org/details/interne_202211"
+   },
+   "creator": "Touring Club Italiano",
+   "holder": "Internet Archive",
+   "rights": "rights not stated; © presumed Touring Club Italiano",
+   "confidence": {
+    "level": "read"
+   }
+  },
+  {
+   "no": "14.10",
+   "title": "Piano regolatore e di ampliamento della città di Bolzano, November 1935: six sheets",
+   "type": "Drawing",
+   "date": "November 1935",
+   "year": 1935,
+   "keywords": [
+    "architecture",
+    "new-city",
+    "old-town",
+    "removal",
+    "maps"
+   ],
+   "text": [
+    "The city's own set of the plan of November 1935, six hand-coloured sheets from the Archivio Storico: zones for a city of 100,000, the street network, expropriations, and the old town. The legend of the old-town sheet has an entry “Demolizioni”; yellow marks and new arcaded fronts run along the north side of Via dei Portici.",
+    "The stamps tell the plan's passage: the podestà's act of 7 December 1935, the ministry's council in November 1937, the royal visa of 1941. Piacentini's name is not on the title blocks read."
+   ],
+   "facts": [
+    "Six sheets of the plan held by the Archivio Storico and served by the Comune as zoomable images: Tav. 4 Zone 1:14,400; Tav. 2 Sistemazione del nucleo cittadino 1:1440; Tav. 1 Piano di esecuzione; Tav. 3 Rete stradale; Tav. 5 Schema del regolamento edilizio; Tav. 4 Espropriazioni (manifest)",
+    "The Comune's page: Piacentini commissioned in 1934; plan approved by the Comune 1935, partly rejected by the Soprintendenza 1936, approved with reservations by the Consiglio Superiore dei Lavori Pubblici 1937, final approval 1939, law 1941 [V]",
+    "On the sheets: 'Bolzano Novembre 1935-XIV, deliberato con atto podestarile 7 Dic. 1935-XIV N. 967.13425', signatures of the chief engineer and the podestà, the Consiglio Superiore's stamp of 15 Nov. 1937, and 'Visto, d'ordine di Sua Maestà il Re d'Italia e d'Albania Imperatore d'Etiopia … decreto … 1941 … il Ministro dei Lavori Pubblici f.to Gorla' [V] (file)",
+    "Tav. 4 Espropriazioni marks the 'zona dichiarata di pubblica utilità con decreto 809 del 9 giugno 1934', the same decree Canali cites for the monumental zone [V] (file; row 14.20)",
+    "Tav. 2's legend has 'Monumenti, Nuove costruzioni, Demolizioni, Giardini pubblici, Giardini privati'; yellow demolition marks and new arcaded fronts line the north side of Via dei Portici, and a 'Mercato coperto' is drawn by the Talvera [V] (file)",
+    "Alpago-Novello in 1937: the plan 'datato 1935' did not persuade with its 'eccessive, o per meglio dire totali demolizioni previste per le Vie dei Portici, del Museo, dei Conciapelle' [V] (row 14.13)",
+    "No name or signature of Piacentini is on the title blocks read (Tav. 2, Tav. 4) [V]; the sheets are the municipal set (notes 14, §1)",
+    "Seen in the image: hand-coloured sheets on yellowed board; the zoning sheet shows the whole basin with coloured zones, an aeroplane symbol at the airfield and a legend 'Area della nuova città … Popolazione … abitanti 100.000'; the old-town sheet has a dark blue river area, buildings in dark brown, orange and yellow, and three revenue stamps by the date."
+   ],
+   "images": [
+    {
+     "file": "images/1935-11_PRG_Piacentini_Tav4_zone_1-14400.jpg",
+     "caption": "Comune di Bolzano, Tav. 4 Zone, November 1935. Archivio Storico; © presumed. Zoomify, half size."
+    },
+    {
+     "file": "images/1935-11_PRG_Piacentini_Tav2_sistemazione_nucleo_cittadino.jpg",
+     "caption": "Tav. 2 Sistemazione del nucleo cittadino, 1:1440, November 1935."
+    },
+    {
+     "file": "images/1935-11_PRG_Piacentini_Tav2_detail_Via_dei_Portici_demolitions.jpg",
+     "caption": "Tav. 2, detail: Via dei Portici with demolitions in yellow and new fronts in orange."
+    },
+    {
+     "file": "images/1935-11_PRG_Piacentini_Tav2_detail_title_block_stamps.jpg",
+     "caption": "Tav. 2, detail: title block, signatures and the stamps of 1937 and 1941."
+    },
+    {
+     "file": "images/1935-11_PRG_Piacentini_Tav1_piano_di_esecuzione.jpg",
+     "caption": "Tav. 1 Zona di immediato ampliamento, piano di esecuzione."
+    },
+    {
+     "file": "images/1935-11_PRG_Piacentini_Tav3_rete_stradale.jpg",
+     "caption": "Tav. 3 Rete stradale, 1:14,400."
+    },
+    {
+     "file": "images/1935-11_PRG_Piacentini_Tav5_regolamento_edilizio.jpg",
+     "caption": "Tav. 5 Schema del regolamento edilizio, 1:200."
+    },
+    {
+     "file": "images/1935-11_PRG_Piacentini_Tav4nero_espropriazioni.jpg",
+     "caption": "Espropriazioni, 1:2880: the zone of the decree of 9 June 1934."
+    }
+   ],
+   "file": "images/1935-11_PRG_Piacentini_Tav2_sistemazione_nucleo_cittadino.jpg",
+   "source": {
+    "label": "Comune di Bolzano, Piani urbanistici",
+    "url": "https://www.comune.bolzano.bz.it/Vivere-il-Comune/Approfondimenti/Piani-urbanistici"
+   },
+   "creator": "Comune di Bolzano, Ufficio tecnico, with Marcello Piacentini",
+   "holder": "Archivio Storico della Città di Bolzano",
+   "rights": "rights not stated; © presumed Comune di Bolzano / Archivio Storico della Città di Bolzano",
+   "confidence": {
+    "level": "read",
+    "note": "Piacentini's share in these sheets is stated by the Comune and by secondary sources, not on the sheets"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://www.comune.bolzano.bz.it/Vivere-il-Comune/Approfondimenti/Piani-urbanistici"
+   }
+  },
+  {
+   "no": "14.12",
+   "title": "Untitled plan sheet of the western expansion between Gries, San Quirino and the Isarco, with Piazza Pontinia",
+   "type": "Drawing",
+   "date": "undated, 1936 or later",
+   "year": 1936,
+   "keywords": [
+    "architecture",
+    "semirurali",
+    "new-city",
+    "maps"
+   ],
+   "text": [
+    "An untitled, undated sheet from the same archive: the western expansion drawn over the old parcel numbers, a grid of new streets from Gries to the Isarco, and at its south-east corner Via Bari, Via Alessandria, Via Piacenza and “Piazza Pontinia”, the centre of the Semirurali.",
+    "Pontinia, the new town in the Pontine marshes, was inaugurated in December 1935, so the sheet is from 1936 or later. That dating is an inference; the row is a lead."
+   ],
+   "facts": [
+    "Served by the Comune among the Piacentini-plan sheets as 'tavola senza nome 02'; no title, date or signature found on it (manifest)",
+    "Drawn over the cadastral parcels: a grid of new streets from Gries to the Isarco, Corso Stelvio, a hemicycle at San Quirino, and at the south-east a block grid with Via Bari, Via Alessandria, Via Piacenza and Piazza Pontinia (file)",
+    "Piazza Pontinia was the centre of the Semirurali (today Piazza Don Bosco) [V] (notes 01 Semirurali, §3); the town of Pontinia was founded in December 1934 and inaugurated in December 1935 (notes 03 Semirurali); so the sheet is from 1936 or later [INF]",
+    "Seen in the image: a pale brown sheet with parcel numbers in ink, new streets drawn as hatched bands, blue strips for planted avenues, the river Isarco in blue at lower right, names 'S. Quirino', 'Ischia', 'Corso Stelvio', 'Via Bari', 'Piazza Pontinia'."
+   ],
+   "images": [
+    {
+     "file": "images/undated_PRG_tavola_senza_nome_02_Gries-San_Quirino_piazza_Pontinia.jpg",
+     "caption": "Comune di Bolzano, undated sheet. Archivio Storico; © presumed. Zoomify, quarter size."
+    }
+   ],
+   "file": "images/undated_PRG_tavola_senza_nome_02_Gries-San_Quirino_piazza_Pontinia.jpg",
+   "source": {
+    "label": "Comune di Bolzano, Piani urbanistici",
+    "url": "https://www.comune.bolzano.bz.it/Vivere-il-Comune/Approfondimenti/Piani-urbanistici"
+   },
+   "creator": "Comune di Bolzano",
+   "holder": "Archivio Storico della Città di Bolzano",
+   "rights": "rights not stated; © presumed Comune di Bolzano / Archivio Storico della Città di Bolzano",
+   "confidence": {
+    "level": "lead",
+    "note": "undated; the date is inferred from a street name"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://www.comune.bolzano.bz.it/Vivere-il-Comune/Approfondimenti/Piani-urbanistici"
+   }
+  },
+  {
+   "no": "14.13",
+   "title": "Alberto Alpago-Novello, La prima Mostra Nazionale dei Piani Regolatori",
+   "type": "Article",
+   "date": "1937",
+   "year": 1937,
+   "keywords": [
+    "architecture",
+    "old-town",
+    "removal",
+    "press"
+   ],
+   "text": [
+    "A review of the first national exhibition of town plans, Rome 1937, where more than sixty cities showed theirs. On Bolzano's plan “datato 1935”: the extensions are well reasoned and Piazza della Vittoria is “bene inquadrata dall'architetto Rossi De Paoli”. Not so the old town, with “le eccessive, o per meglio dire totali demolizioni previste per le Vie dei Portici, del Museo, dei Conciapelle”.",
+    "The review credits the square to Rossi de Paoli, not Piacentini. The journal is probably Rassegna di Architettura."
+   ],
+   "facts": [
+    "Review of the plans shown by more than sixty cities at the first national exhibition of town plans in Rome, held with the first national planning congress and arranged by the Istituto Nazionale di Urbanistica (file, p. 1)",
+    "On Bolzano: 'Il piano, datato 1935, del Municipio di BOLZANO è interessante per la ragionata disposizione degli ampliamenti e per la loro netta delimitazione verso l'esterno'; it praises 'la Piazza della Vittoria (studiata e bene inquadrata dall'architetto Rossi De Paoli)' and rejects 'le eccessive, o per meglio dire totali demolizioni previste per le Vie dei Portici, del Museo, dei Conciapelle, ecc.' (file, p. 286)",
+    "The review gives Piazza della Vittoria to Rossi de Paoli, not to Piacentini (file, p. 286)",
+    "Journal: Rassegna di Architettura, inferred from the host's folder name 'Rassegna1937' and a sibling file in the same series that is Rassegna di Architettura 1933 [INF]",
+    "Seen in the image: a page numbered 286 in two columns of serif text, the Bolzano paragraph in the left column under one on Bergamo's wooden model, footnotes at the foot of the page."
+   ],
+   "images": [
+    {
+     "file": "images/1937_Rassegna_di_Architettura_p286_Bolzano.jpg",
+     "caption": "A. Alpago-Novello, 1937, p. 286. Rights not stated; University of Padua (DICEA) server."
+    }
+   ],
+   "file": "1937_Alpago-Novello_Prima_Mostra_Nazionale_Piani_Regolatori_Rassegna_di_Architettura.pdf",
+   "source": {
+    "label": "Università di Padova, DICEA (arcover)",
+    "url": "https://arcover.dicea.unipd.it/biblioteca/251_Rassegna1937/251_Rassegna1937_300.pdf"
+   },
+   "creator": "Alberto Alpago-Novello",
+   "rights": "rights not stated; © presumed",
+   "confidence": {
+    "level": "read",
+    "note": "journal title and issue inferred"
+   },
+   "more": {
+    "kind": "file"
+   }
+  },
+  {
+   "no": "14.14",
+   "title": "Bolzano – Piano regolatore – Zona della Vittoria, July 1938: three sheets",
+   "type": "Drawing",
+   "date": "July 1938",
+   "year": 1938,
+   "keywords": [
+    "architecture",
+    "new-city",
+    "romanita",
+    "maps"
+   ],
+   "text": [
+    "Three sheets of July 1938 for the zone of the Monument to Victory. Corso IX Maggio is carried west to end at the abbey church of Gries, on a square to be called “Piazza Tiberio”. The streets that meet it are Viale Giulio Cesare and Viale Cesare Augusto, and by the monument lie Piazza dell'Impero and the Foro della Vittoria.",
+    "The new city is named after Rome's emperors on paper before it is built. The old-town scheme on these sheets is much smaller than in 1935."
+   ],
+   "facts": [
+    "Tav. 7 'Prolungamento del Corso IX Maggio e sistemazione della visuale terminale', Tav. 8 'Collegamento dell'accesso Merano-Mendola con il Foro della Vittoria', Tav. 5 'Sistemazione del nucleo urbano', all 1:1440, dated 'Bolzano Luglio 1938 XVI' (file)",
+    "Names on the sheets: Corso IX Maggio, Piazza Tiberio (around the Gries abbey church), Via Vittorio Veneto, Viale Cesare Augusto, Viale Giulio Cesare, Piazza dell'Impero, Foro della Vittoria (file)",
+    "Stamps: the Consiglio Superiore dei LL.PP. in 1939 and 'Visto … come da decreto in data 23 Gen 1941 Anno XIX … f.to Gorla', the date of Law 173/1941 (file; row 14.17)",
+    "The 1938 Tav. 5 shows a much smaller old-town scheme than the November 1935 Tav. 2 [INF from comparing the two sheets]; Dunajtschik & Steinacher: after the Soprintendenza's protest only single interventions were made in the old town [S] (row 5.11)",
+    "Seen in the image: Tav. 7, a yellowed sheet with the Gries abbey in dark brown on 'Piazza Tiberio', new fronts in orange along 'Corso IX Maggio', two revenue stamps and a round Comune stamp at lower left, a blue royal 'Visto' stamp at upper right; Tav. 8 shows tree-lined 'Viale Giulio Cesare' and 'Viale Cesare Augusto' meeting 'Corso IX Maggio'."
+   ],
+   "images": [
+    {
+     "file": "images/1938-07_PRG_Zona_Vittoria_Tav7_prolungamento_Corso_IX_Maggio.jpg",
+     "caption": "Comune di Bolzano, Tav. 7, July 1938. Archivio Storico; © presumed."
+    },
+    {
+     "file": "images/1938-07_PRG_Zona_Vittoria_Tav8_accesso_Merano-Mendola.jpg",
+     "caption": "Tav. 8, July 1938."
+    },
+    {
+     "file": "images/1938-07_PRG_Tav5_sistemazione_nucleo_urbano.jpg",
+     "caption": "Tav. 5 Sistemazione del nucleo urbano, July 1938."
+    }
+   ],
+   "file": "images/1938-07_PRG_Zona_Vittoria_Tav7_prolungamento_Corso_IX_Maggio.jpg",
+   "source": {
+    "label": "Comune di Bolzano, Piani urbanistici",
+    "url": "https://www.comune.bolzano.bz.it/Vivere-il-Comune/Approfondimenti/Piani-urbanistici"
+   },
+   "creator": "Comune di Bolzano, Ufficio tecnico",
+   "holder": "Archivio Storico della Città di Bolzano",
+   "rights": "rights not stated; © presumed Comune di Bolzano / Archivio Storico della Città di Bolzano",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://www.comune.bolzano.bz.it/Vivere-il-Comune/Approfondimenti/Piani-urbanistici"
+   }
+  },
+  {
+   "no": "14.15",
+   "title": "Victory Monument in Bozen, stereo glass plate, 27 July 1938 (Sammlung Norbert Bertolini)",
+   "type": "Photograph",
+   "date": "27 July 1938",
+   "year": 1938,
+   "keywords": [
+    "monumento-vittoria",
+    "new-city",
+    "tourism"
+   ],
+   "text": [
+    "A stereo glass plate of the Monument to Victory, marked by hand “Bozen 27.7.38”, from the collection of Norbert Bertolini in the Vorarlberg state library. The Latin of the frieze is legible: “HIC PATRIAE FINES SISTE SIGNA / HINC CETEROS EXCOLVIMVS LINGVA LEGIBVS ARTIBVS”.",
+    "A visitor's picture from across the old Austrian border, four months after the Anschluss. Who took it and why is not stated. The same collection has a Bozen fruit stall and a wine estate."
+   ],
+   "facts": [
+    "Stereo glass plate, 6 × 13 cm, 'Siegesdenkmal in Bozen', 27 July 1938, Sammlung Norbert Bertolini, Vorarlberger Landesbibliothek, CC BY 4.0 (manifest)",
+    "Found through Europeana; the VLB's other Bozen plates in the same collection show a fruit stall (1933) and a wine estate (manifest; notes 14, §2)",
+    "A visitor's view from Vorarlberg four months after the Anschluss [INF: the photographer's identity and purpose are not stated]",
+    "Seen in the image: two near-identical views side by side of a pillared monument on wide steps, the inscription 'HIC PATRIAE FINES SISTE SIGNA / HINC CETEROS EXCOLVIMVS LINGVA LEGIBVS ARTIBVS' on the frieze, a winged figure above; a new block at the right edge; handwritten between the views 'Bozen 27.7.38'."
+   ],
+   "images": [
+    {
+     "file": "images/1938-07-27_VLB_Bertolini_Siegesdenkmal_stereo.jpg",
+     "caption": "Sammlung Norbert Bertolini, 27 July 1938. CC BY 4.0, Vorarlberger Landesbibliothek."
+    }
+   ],
+   "file": "images/1938-07-27_VLB_Bertolini_Siegesdenkmal_stereo.jpg",
+   "source": {
+    "label": "Vorarlberger Landesbibliothek (volare)",
+    "url": "http://pid.volare.vorarlberg.at/o%3A235592"
+   },
+   "creator": "Sammlung Norbert Bertolini",
+   "holder": "Vorarlberger Landesbibliothek",
+   "rights": "CC BY 4.0",
+   "confidence": {
+    "level": "read"
+   },
+   "place": "monumento-vittoria"
+  },
+  {
+   "no": "14.16",
+   "title": "Garage centrale e concessionaria FIAT a Bolzano",
+   "type": "Photograph",
+   "date": "c. 1940",
+   "year": 1940,
+   "keywords": [
+    "architecture"
+   ],
+   "text": [
+    "A Touring Club photograph of about 1940: a long two-storey garage with a curved, banded corner, “GARAGE CENTR…” in letters on the roof and “CONCESSIONARIA FIAT” on the fascia, a petrol pump at the kerb.",
+    "The Bolzano office of Amonn & Fingerle built a “Zentralgarage” in 1929, the work with which, a later account says, it came close to rationalist architecture. That this photograph shows that building is inferred from the name alone."
+   ],
+   "facts": [
+    "TCI photo archive E.00145, dated 1940 by the archive, photographer unknown (manifest)",
+    "Amonn & Fingerle built a 'Zentralgarage' in Bozen in 1929 [V] (University of Innsbruck, Archiv für Baukunst); Turris Babel 2 (1985) says the office came close to 'rationalistischen Architektur' with it [V] (row 8.10, p. 44)",
+    "That this photograph shows Amonn & Fingerle's Zentralgarage is my inference from the name; neither source gives an address [INF]",
+    "Seen in the image: a long two-storey corner building with a curved, banded front, roof letters 'GARAGE CENTR…', fascia 'CONCESSIONARIA FIAT' and 'GARAGE CENT…', shutters, a petrol pump and a parked car, young trees along the street."
+   ],
+   "images": [
+    {
+     "file": "images/c1940_Garage_centrale_FIAT_Bolzano_TCI_E00145_recto.jpg",
+     "caption": "Unknown photographer, about 1940. © presumed Touring Club Italiano, Digitouring."
+    },
+    {
+     "file": "images/c1940_Garage_centrale_FIAT_Bolzano_TCI_E00145_verso.jpg",
+     "caption": "Verso with the TCI archive stamps."
+    }
+   ],
+   "file": "images/c1940_Garage_centrale_FIAT_Bolzano_TCI_E00145_recto.jpg",
+   "source": {
+    "label": "Digitouring (Touring Club Italiano)",
+    "url": "https://www.digitouring.it/it/cerca/33294-garage-centrale-e-concessionaria-fiat-a-bolzano"
+   },
+   "holder": "Touring Club Italiano, Archivio fotografico",
+   "rights": "rights not stated; © presumed Touring Club Italiano",
+   "confidence": {
+    "level": "read",
+    "note": "attribution of the building to Amonn & Fingerle inferred"
+   }
+  },
+  {
+   "no": "14.17",
+   "title": "Legge 23 gennaio 1941, n. 173. Approvazione del piano regolatore generale di massima edilizia e di ampliamento della città di Bolzano",
+   "type": "Law text",
+   "date": "23 January 1941",
+   "year": 1941,
+   "keywords": [
+    "law",
+    "architecture",
+    "new-city"
+   ],
+   "text": [
+    "The law of 23 January 1941 that approved Bolzano's general plan, with the detailed plan for Gries, and declared it of public utility. Owners of new buildings that must have arcades leave them to the public “come pubbliche vie”, without compensation. The general plan has no time limit.",
+    "Signed by the king, Mussolini, Gorla, Grandi and Bottai, more than five years after the Comune adopted the plan. It was repealed only in 2008."
+   ],
+   "facts": [
+    "Art. 1 approves and declares of public utility the general plan of Bolzano 'comprendente il piano particolareggiato per la zona di Gries'; a copy with the minister's visa goes to the Archivio di Stato (file)",
+    "Art. 9: owners of new buildings that must have arcades leave them, without compensation, as public way, 'come pubbliche vie' (file)",
+    "Art. 12: the general plan has no time limit; 15 years for the Gries detailed plan; Art. 5 fixes compensation and excludes any rise in value caused by the plan (file)",
+    "Signed 'Data a Roma, addì 23 gennaio 1941-XIX', Vittorio Emanuele, Mussolini, Gorla, Grandi, Bottai; GU n. 81 of 4 April 1941; repealed by D.L. 200/2008 (file)",
+    "The plan sheets carry the visa 'come da decreto in data 23 Gen 1941' signed for Gorla (rows 14.10, 14.14)"
+   ],
+   "file": "1941-01-23_Legge_173_piano_regolatore_Bolzano_Normattiva.txt",
+   "source": {
+    "label": "Normattiva",
+    "url": "https://www.normattiva.it/atto/caricaDettaglioAtto?atto.dataPubblicazioneGazzetta=1941-04-04&atto.codiceRedazionale=041U0173&tipoDettaglio=originario"
+   },
+   "creator": "Regno d'Italia",
+   "holder": "Istituto Poligrafico e Zecca dello Stato (Normattiva)",
+   "rights": "rights not stated; Italian official act",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "file"
+   }
+  },
+  {
+   "no": "14.18",
+   "title": "Edoardo Arslan, Il Museo dell'Alto Adige a Bolzano",
+   "type": "Booklet",
+   "date": "1942",
+   "year": 1942,
+   "keywords": [
+    "old-town",
+    "romanita",
+    "language",
+    "wording"
+   ],
+   "text": [
+    "The state guide to Bolzano's museum, 1942, by the man who directed it from 1933 to 1939. Reopened on 31 October 1937, “l'istituto assume in quel tempo la denominazione di Museo dell'Alto Adige”. Before the entrance stands the milestone “eretto nel 46 d. C. da Claudio”.",
+    "On the plan at the back the Talvera bridge is “Ponte Claudio”. The guide says nothing of the tower taken off the building."
+   ],
+   "facts": [
+    "Ministry of National Education guide, series 'Itinerari dei musei e monumenti d'Italia', Libreria dello Stato, Rome, 'A. XX E. F.' (1942), 62 illustrations; Arslan directed the museum 1933–39 (file, pp. 5–7)",
+    "History given: building 1902–04 by the Comune, design by Carlo Delug, works directed by Guglielmo Kürschner; talks from 1930 to pass the museum to the Comune; reorganisation from July 1935; reopened 31 October 1937; 'L'istituto assume in quel tempo la denominazione di Museo dell'Alto Adige' (file, pp. 5–7)",
+    "'Avanti all'entrata è collocato il Miliario eretto nel 46 d. C. da Claudio al confine della X Regione Italica' (file, p. 7)",
+    "The guide does not mention the removal of the building's tower (search of the text layer) (file)",
+    "The back-cover location plan names 'Ponte Claudio' (the Talvera bridge), Via Regina Elena and Via XXVIII Ottobre (file, p. 78)",
+    "Seen in the image: a title page 'Ministero della Educazione Nazionale … Edoardo Arslan – Il Museo dell'Alto Adige a Bolzano – (62 illustrazioni) – La Libreria dello Stato – Roma – A. XX E. F.'; a black-and-white street plan with 'MUSEO' in bold beside 'Ponte Claudio' and the 'Torrente Talvera'."
+   ],
+   "images": [
+    {
+     "file": "images/1942_Arslan_Museo_Alto_Adige_cover.jpg",
+     "caption": "E. Arslan, 1942, title page. Rights not stated; Internet Archive (Getty Research Institute)."
+    },
+    {
+     "file": "images/1942_Arslan_Museo_Alto_Adige_back_cover_location_plan.jpg",
+     "caption": "Location plan on the back cover."
+    }
+   ],
+   "file": "1942_Arslan_Il_Museo_dell_Alto_Adige_a_Bolzano.pdf",
+   "source": {
+    "label": "Internet Archive",
+    "url": "https://archive.org/details/ilmuseodellaltoa00arsl"
+   },
+   "creator": "Edoardo Arslan",
+   "holder": "Getty Research Institute (scan); Internet Archive",
+   "rights": "rights not stated; © presumed",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "file"
+   }
+  },
+  {
+   "no": "14.19",
+   "title": "Town plan of Bolzano. G.S.G.S. 4380 (War Office 1942, Army Map Service reprint January 1943)",
+   "type": "Map",
+   "date": "1942",
+   "year": 1942,
+   "keywords": [
+    "maps",
+    "new-city",
+    "military",
+    "old-town"
+   ],
+   "text": [
+    "The British War Office's town plan of Bolzano, 1942, reprinted by the US Army Map Service in January 1943 and marked “Copied from an Italian plan dated 1936”. It is a bird's-eye drawing of both cities with a key: Corpo d'Armata, Monumento della Vittoria, Lido, the travel office.",
+    "By its own note the Allied staff's map is a copy of an Italian plan; its key, with the Lido and the travel office, suggests one made for visitors."
+   ],
+   "facts": [
+    "First edition, Geographical Section, General Staff No. 4380, published by the War Office 1942, reprinted by the Army Map Service January 1943; 'For use by War and Navy Department agencies only'; 'Copied from an Italian plan dated 1936' (file)",
+    "Princeton record: 1:10,000, access 'No restriction', use restrictions 'None' (manifest)",
+    "A bird's-eye drawing of both cities: the key lists Corpo d'Armata, Monumento della Vittoria, Lido, Campo sportivo, Ippodromo, Ufficio Viaggi C.I.T.; labels include 'Foro della Vittoria', '4 Novembre', 'Via Cesare Battisti', 'Piazza Vittorio Emanuele' (file)",
+    "The Allied staff's map of 1942–43 is a copy of a 1936 Italian tourist plan; the target and the brochure are the same drawing [INF]",
+    "Seen in the image: a pictorial plan with buildings drawn in oblique view, rivers in pale blue, 'TOWN PLAN OF BOLZANO' in a box at lower right, 'ITALY' and 'FIRST EDITION' at the top, a lettered and numbered key at left, catalogue pencil notes at the bottom."
+   ],
+   "images": [
+    {
+     "file": "images/1942_GSGS4380_Town_plan_of_Bolzano_AMS_reprint_1943.jpg",
+     "caption": "GSGS 4380, War Office 1942, AMS reprint 1943. Princeton University Library; no use restrictions stated."
+    }
+   ],
+   "file": "images/1942_GSGS4380_Town_plan_of_Bolzano_AMS_reprint_1943.jpg",
+   "source": {
+    "label": "Princeton University Library (via GeoDiscovery)",
+    "url": "https://geodiscovery.uwm.edu/catalog/princeton-pk02cc38n/metadata"
+   },
+   "creator": "Geographical Section, General Staff; Army Map Service",
+   "holder": "Princeton University Library",
+   "rights": "access 'No restriction', use restrictions 'None' (Princeton record)",
+   "confidence": {
+    "level": "read"
+   }
+  },
+  {
+   "no": "14.20",
+   "title": "Ferruccio Canali, “Urbanistica nazionalista” e piani regolatori per «Bolzano italiana», città metafisica e dèco (1929–1941)",
+   "type": "Article",
+   "date": "2016",
+   "year": 2016,
+   "keywords": [
+    "architecture",
+    "colonization",
+    "new-city"
+   ],
+   "text": [
+    "Ferruccio Canali's open-access study of the plans for an “Italian Bolzano”, 1929 to 1941. The competition of 1929: nine entries shown at the Teatro Civico in March 1930, a jury with Piacentini, and three equal winners, Libera and Pollini, Muzio and Sottsass. He follows the plan to the law of 1941 and gives Gustavo Giovannoni a supervising role not known before.",
+    "Canali compares the plan's strategy to overseas colonisation. His footnotes list the architecture journals that published it."
+   ],
+   "facts": [
+    "Annali di Storia dell'Urbanistica e del Paesaggio 4 (2016), pp. 21–71; open-access publisher's PDF on FLORE, University of Florence (manifest)",
+    "1929 competition: bando July 1929 'redatto con la consulenza di S.E. Alberto Calza Bini'; the nine entries shown at the Teatro Civico in March 1930; jury Piacentini, Bazzani, Duilio Torres and local engineers; equal winners 'Libera e Pollini, G. Muzio ed E. Sottsass'; encouragement prizes 'ingegneri Chiodi e Merlo, e N. Galimberti' (pp. 33–34, quoting La Provincia di Bolzano and Tolomei)",
+    "Calls the plan's strategy comparable to overseas colonisation and gives Gustavo Giovannoni a supervising role in the general plan, unknown before (abstract)",
+    "Lists the period publications: Plinio Marconi in Architettura e Arti Decorative 1929–30; A. & G. Rigotti / M. Piacentini and P. Rossi de' Paoli in Architettura, February 1939, pp. 102–110; Vincenzo Civico's notes in Urbanistica 1933–42 (footnotes 46, 55, 83–85)",
+    "Seen in the image: page 68 with eight black-and-white figures: plan sheets, a street with villas, two photographs of white architectural models, two aerial views down a long straight avenue."
+   ],
+   "images": [
+    {
+     "file": "images/Canali_2016_p68_figs1-8_plans_models_Corso.jpg",
+     "caption": "F. Canali 2016, p. 68, figs. 1–8. Open access, © the author and publisher."
+    }
+   ],
+   "file": "Canali_2016_Urbanistica_nazionalista_piani_regolatori_Bolzano_italiana_1929-1941.pdf",
+   "source": {
+    "label": "FLORE, Università di Firenze",
+    "url": "https://flore.unifi.it/handle/2158/1074525"
+   },
+   "creator": "Ferruccio Canali",
+   "holder": "Annali di Storia dell'Urbanistica e del Paesaggio",
+   "rights": "Open access; protected by copyright, all rights reserved unless otherwise indicated (FLORE)",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "file"
+   }
+  },
+  {
+   "no": "14.21",
+   "title": "The Cassa di Risparmio and the Museum tower before the “cura fascista”, photographs in Tandem, gennaio 1985",
+   "type": "Photograph",
+   "date": "early 1900s and c. 1984",
+   "year": 1985,
+   "keywords": [
+    "old-town",
+    "architecture",
+    "removal"
+   ],
+   "text": [
+    "What the regime took off the old town, shown in Tandem in January 1985. A view from Ponte Talvera “nei primi decenni del 900” has the savings bank and the tower of the Museo Civico in their first form, both by Wilhelm Kürschner. Below it the same view in the 1980s, and the bank as built in 1904, with gables and a domed corner.",
+    "The caption: “Lo squallido aspetto attuale è opera di Francesco Rossi con progetto del 1936.” The essay calls it “l'obbrobriosa spogliazione delle facciate”."
+   ],
+   "facts": [
+    "Caption: 'Una vista dal Ponte Talvera verso il centro storico. Così era nei primi decenni del 900. Si intravvedono nella loro forma originaria la Cassa di Risparmio (a sinistra) e la torre del Museo (a destra), entrambe opere del Kürschner, prima della \"cura fascista\". A destra in primo piano si vedono due edifici oggi sostituiti dal palazzo dell'INA (1940 ca.) e da un condominio degli anni 60.' [V] (notes 13, §12)",
+    "Caption: 'La sede della Cassa di Risparmio prima della \"cura fascista\". Così era, secondo il progetto originario di Wilhelm Kürschner del 1904. Lo squallido aspetto attuale è opera di Francesco Rossi con progetto del 1936.' [V] (notes 13, §12)",
+    "Bassetti, p. 19: 'l'obbrobriosa spogliazione delle facciate del Museo Civico e della sede della Cassa di Risparmio' [V] (notes 13, §12)",
+    "Seen in the image: first picture, a street running onto a bridge with a tall curled lamp post, a horse-drawn cart, a stepped gable and pointed roofs behind. Second picture, the same direction with modern lamps and a ring-shaped sign on a pole. Third picture, a four-storey corner building with a rounded corner under a small dome, arcaded loggia and ornate gables."
+   ],
+   "images": [
+    {
+     "file": "../13_cinema_corso/tessmann/images/Tandem_1985-01_p22_Cassa_di_Risparmio_before_1936.png",
+     "caption": "The Cassa di Risparmio as built to Wilhelm Kürschner's design of 1904, undated photograph printed in Tandem, January 1985, page 22. Scan: Landesbibliothek Teßmann."
+    },
+    {
+     "file": "../13_cinema_corso/tessmann/images/Tandem_1985-01_p22_view_from_Ponte_Talvera_early_1900s.png",
+     "caption": "From Ponte Talvera towards the old town, “nei primi decenni del 900”, same page."
+    },
+    {
+     "file": "../13_cinema_corso/tessmann/images/Tandem_1985-01_p22_view_from_Ponte_Talvera_1985.png",
+     "caption": "The same view about 1984, same page; present-day photographs in the essay are by Othmar Seehauser."
+    },
+    {
+     "file": "../13_cinema_corso/tessmann/images/Tandem_1985-01_p22_Cassa_di_Risparmio_Museo_prima_page.png",
+     "caption": "Tandem, January 1985, page 22."
+    }
+   ],
+   "file": "../13_cinema_corso/tessmann/images/Tandem_1985-01_p22_Cassa_di_Risparmio_Museo_prima_page.png",
+   "source": {
+    "label": "Teßmann digital, Monats-Tandem",
+    "url": "https://digital.tessmann.it/tessmannDigital/Zeitungsarchiv/Seite/Zeitung/42/1/01.01.1985/145846/22"
+   },
+   "creator": "Earlier photographs: unknown, gathered by Ester Valzolgher; later photograph: Othmar Seehauser (credited for the essay's present-day pictures)",
+   "holder": "Landesbibliothek Dr. Friedrich Teßmann, Bolzano",
+   "rights": "© 1985 the authors and Tandem; earlier photographs' makers unknown; scan served openly by Teßmann digital, site notice CC BY-NC 4.0",
+   "confidence": {
+    "level": "read",
+    "note": "Attributions (Kürschner 1904, Francesco Rossi 1936) are the magazine's captions, not checked against another source."
+   },
+   "place": "sparkasse-sede"
+  }
+ ]
+}

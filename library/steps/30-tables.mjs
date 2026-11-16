@@ -1,6 +1,7 @@
 // Catalogue tables. For every row whose more.kind is 'table': entry.preview = {columns, rows, total}
 // for the Library page (more.columns or the first three columns, the first five records, long cells
-// cut short), and a page of its own, out/table/<no>.html, with the whole table; web/table.js sorts it.
+// cut short), entry.records = {columns, rows} with every record, for a read page that cites one, and
+// a page of its own, out/table/<no>.html, with the whole table; web/table.js sorts it.
 // entry.page names the page once it is written. A CSV that is missing, unreadable or empty is a
 // warning, and that row gets no page.
 import { readFile } from 'node:fs/promises';
@@ -55,6 +56,8 @@ export default async function tables(ctx) {
       rows: rows.slice(0, PREVIEW_ROWS).map((cells) => picked.map(([, at]) => shorten(cells[at] ?? ''))),
       total: rows.length,
     };
+
+    entry.records = { columns, rows };
 
     const page = `table/${entry.no}.html`;
     await ctx.write(page, tablePage(entry, columns, rows));

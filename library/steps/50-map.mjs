@@ -7,13 +7,10 @@
 // height; 0 outside the dot field). A place without coordinates is not inside and has x, y, z null.
 // The dot data belongs to the site's code, so it is found beside this file, not under ctx.root.
 import path from 'node:path';
-import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
-import { gunzipSync } from 'node:zlib';
-import { heightAt, locate } from '../lib/geo.mjs';
 import { esc, page } from '../lib/shell.mjs';
-import { placesWithRows } from '../lib/places.mjs';
-import { encodePath, rowDetail } from '../lib/detail.mjs';
+import { locatePlaces, placesWithRows } from '../lib/places.mjs';
+import { encodePath, rowArticle } from '../lib/detail.mjs';
 
 const MAP_DATA = fileURLToPath(new URL('../map-data/', import.meta.url));
 const FILES = ['dots.json', 'dots.bin.gz']; // what the page draws from; the height grid is read here only
@@ -23,16 +20,8 @@ const PICTURE = { height: 60, min: 40, max: 90, blank: 46 };
 const IMPORT_MAP = { imports: { three: './web/vendor/three.module.js', 'three/addons/': './web/vendor/addons/' } };
 
 export default async function map(ctx) {
-  const meta = JSON.parse(await readFile(path.join(MAP_DATA, 'dots.json'), 'utf8'));
-  const grid = new Int16Array(new Uint8Array(gunzipSync(await readFile(path.join(MAP_DATA, 'height.bin.gz')))).buffer);
+  const meta = await locatePlaces(ctx.lib);
   const { places, entries, keywords } = ctx.lib;
-
-  for (const place of Object.values(places)) {
-    const { x, y, inside } = locate(place, meta);
-    Object.assign(place, x === null
-      ? { inside, x: null, y: null, z: null }
-      : { inside, x: tenth(x), y: tenth(y), z: inside ? tenth(heightAt(meta.height, grid, x, y)) : 0 });
-  }
 
   const rowsAt = new Map();
   for (const entry of entries) {
@@ -62,7 +51,7 @@ export default async function map(ctx) {
     '<button type="button" class="close">Close</button>',
     ...drawn.map((id, n) => `<section class="rows-of" data-for="${esc(id)}" aria-labelledby="place-${n + 1}" hidden>`
       + `<h2 id="place-${n + 1}" tabindex="-1">${esc(places[id].name)}</h2>${rowList(rowsAt.get(id))}`
-      + `${rowsAt.get(id).map((entry) => article(entry, ctx, places)).join('')}</section>`),
+      + `${rowsAt.get(id).map((entry) => rowArticle(entry, { ctx, places, onMap: true })).join('')}</section>`),
     '</aside>',
     `<section class="beyond" id="beyond" aria-labelledby="beyond-head"${beyond.length ? '' : ' hidden'}>`,
     '<h2 class="lab" id="beyond-head">Beyond this map</h2>',
@@ -100,15 +89,6 @@ function picture(id, entry) {
     + `<img data-src="${esc(encodePath(thumb.src))}" alt="" width="${thumb.w}" height="${thumb.h}"></button>`;
 }
 
-// A row as the panel shows it: number · type · date, the title, what the Library shows in the
-// open row, and the way to that row in the Library.
-function article(entry, ctx, places) {
-  const facts = [entry.no, entry.type, entry.date].filter(Boolean).map(esc).join(' · ');
-  return `<article class="entry" data-no="${esc(entry.no)}" hidden><p class="e-meta">${facts}</p>`
-    + `<h3 tabindex="-1">${esc(entry.title)}</h3>${rowDetail(entry, { ctx, places, onMap: true })}`
-    + `<a class="e-library" href="index.html#o=${esc(encodeURIComponent(entry.no))}">Open in the Library →</a></article>`;
-}
-
 const nameAndCount = (name, count) => `<span class="name">${esc(name)}</span> <span class="n">${count}</span>`;
 
 // No. · Title · Type, each a link to its row, open, in the Library.
@@ -126,5 +106,4 @@ function credit(meta) {
   return osm ? [osm.text, osm.url].filter(Boolean).join(', ') : '';
 }
 
-const tenth = (value) => Math.round(value * 10) / 10;
 const json = (value) => JSON.stringify(value).replace(/</g, '\\u003c');

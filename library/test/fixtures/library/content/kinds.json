@@ -1,0 +1,8 @@
+{
+  "press": { "label": "Press", "types": ["Newspaper page", "Press article"] },
+  "pictures": { "label": "Pictures", "types": ["Photograph", "Postcard"] },
+  "film": { "label": "Film and sound", "types": ["Film"] },
+  "documents": { "label": "Documents", "types": ["Table", "Law text"] },
+  "references": { "label": "References", "types": ["Reference", "Counter-reference"] },
+  "project": { "label": "Reports and notes", "types": ["Report", "Notes", "Story"] }
+}

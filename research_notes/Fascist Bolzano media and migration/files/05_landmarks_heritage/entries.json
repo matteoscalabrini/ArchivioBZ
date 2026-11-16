@@ -29,33 +29,50 @@
       },
       "more": {
         "kind": "read",
-        "target": "../../05_landmarks_heritage.md"
+        "target": "../../../../library/content/reads/5.00.md",
+        "title": "The regime's city, building by building, 1926–2026"
       }
     },
     {
       "no": "5.02",
-      "title": "Kaiserjäger monument to the war dead in Bolzano",
+      "title": "Kaiserjäger monument to the war dead in Bolzano, and a figure made for it",
       "type": "Photograph",
-      "date": "c. 1917–20",
+      "date": "c. 1917–20; the figure photographed 14 November 2026",
       "year": 1917,
       "keywords": [
         "monumento-vittoria",
         "removal"
       ],
       "text": [
-        "The Austrian monument to the Kaiserjäger war dead, begun in 1917 by the Talvera bridge, on the spot where the Monument to Victory now stands: a drum of rough-hewn stone, never finished. In 1928 the Alpenzeitung recalled that the Austrians had wanted to raise their monument here “in voreiligem Siegesbewußtsein”, in premature certainty of victory.",
-        "Wikimedia Commons dates its demolition to 1920. The monument that replaced it was decided in 1926."
+        "The Austrian monument to the Kaiserjäger war dead, begun in 1917 on the spot where the Monument to Victory now stands: a drum of rough-hewn stone, never finished. In 1928 the Alpenzeitung recalled that the Austrians had wanted to raise their monument here “in voreiligem Siegesbewußtsein”, in premature certainty of victory.",
+        "Its demolition began in spring 1927, by the exhibition's guide (Wikimedia Commons says 1920). One of its figures stands in the crypt as a cast of 2013: Franz Ehrenhöfer's “Soldatentreue”, about 1917, a man bowed over his crossed arms."
       ],
       "facts": [
         "Commons: 'Kaiserjäger monument to war dead, built in 1917 and demolished 1920 to make way for the Victory Monument in Bolzano'; photographer unknown, dated ca. 1917–1920 (manifest)",
         "The Victory Monument replaced the unfinished Kaiserjäger monument (Karl Ernstberger, begun 1917), which was demolished [W] (notes 05, §3)",
         "Seen in the image: a round drum of rough-hewn stone blocks with a dark doorway, square blocks standing on its top, a low stone wall in front and a carved figure under an arch at left; bare trees behind.",
-        "The Alpenzeitung of 13 July 1928 says the Victory Monument stands 'dort am Grunde der Talferbrücke, wo einst auch die Oesterreicher in voreiligem Siegesbewußtsein ihr Denkmal errichten wollten' (file images/03_vittoria__AZ_1928_07_13_1_SiD.png)"
+        "The Alpenzeitung of 13 July 1928 says the Victory Monument stands 'dort am Grunde der Talferbrücke, wo einst auch die Oesterreicher in voreiligem Siegesbewußtsein ihr Denkmal errichten wollten' (file images/03_vittoria__AZ_1928_07_13_1_SiD.png)",
+        "Label in the crypt: 'Franz Ehrenhöfer, The soldier's loyalty, allegorical figure for the Kaiserjäger Monument, ca. 1917. Plaster cast made from concrete original in 2013' / 'La fedeltà del soldato, figura allegorica per il Monumento ai Kaiserjäger, conglomerato cementizio, 1917 ca. (calco 2013)' / 'Soldatentreue, allegorische Figur für das Bozener Kaiserjäger-Denkmal, Steinguss, um 1917 (Abguss 2013)' (own photograph IMG_1749, 14 November 2026; notes 17, §8, [V])",
+        "Guide 2024: 'Nell'estate del 1916 l'architetto boemo Karl Ernstberger progettò un monumento in memoria dei molti caduti del II reggimento dei Tiroler Kaiserjäger di stanza a Bolzano'; 'La realizzazione … ebbe inizio solo nel 1917 … e non fu mai completata'; 'La demolizione del Monumento ai Kaiserjäger incominciò nella primavera del 1927, contemporaneamente alle opere di sbancamento per le fondazioni del nuovo Monumento' (row 5.29, [V]). This contradicts the 1920 of Wikimedia Commons given by an earlier version of this row",
+        "Innsbrucker Nachrichten, 12 July 1928, p. 2, draws the memorial and captions it 'das bereits fast vollendet war, von den Italienern aber zerstört wurde' (row 17.24, [V])",
+        "Seen in the images (crypt, 2026): a grey half-figure of a bare-headed man rising from a round base, bowed forward over crossed arms, his hands gripping a weapon against his left shoulder, an ornamented shield or pommel behind his right; on a dark steel plinth in a corner of the crypt."
       ],
       "images": [
         {
           "file": "images/03_vittoria__KaiserjaegerBozen.jpg",
           "caption": "Unknown photographer, c. 1917–20. Public domain, Wikimedia Commons."
+        },
+        {
+          "file": "../17_monument_visit/photos/IMG_1748.JPG",
+          "caption": "Franz Ehrenhöfer, “Soldatentreue”, figure for the Kaiserjäger monument, about 1917; cast of 2013 in the crypt of the Monument to Victory. Own photograph, 14 November 2026."
+        },
+        {
+          "file": "../17_monument_visit/photos/IMG_1747.JPG",
+          "caption": "The same, from a step back. Own photograph, 14 November 2026."
+        },
+        {
+          "file": "../17_monument_visit/images/label_Ehrenhoefer_Soldatentreue_visit.jpg",
+          "caption": "The exhibition's label. Own photograph, 14 November 2026, cut square."
         }
       ],
       "file": "images/03_vittoria__KaiserjaegerBozen.jpg",
@@ -63,7 +80,7 @@
         "label": "Wikimedia Commons",
         "url": "https://commons.wikimedia.org/wiki/File:KaiserjaegerBozen.jpg"
       },
-      "rights": "Public domain",
+      "rights": "Public domain; the photographs taken in the crypt: own, 14 November 2026",
       "confidence": {
         "level": "read",
         "note": "Commons says the monument was 'built in 1917'; the notes call it unfinished [W]."
@@ -229,6 +246,7 @@
       "facts": [
         "Commons: 'Theodor Eicke and Italian fascist authorities at the inauguration of the fascist monument of victory in Bolzano, Italy. While hiding from German police in Italy, Eicke took part in a celebration of the 10th anniversary of the fascist \"March on Rome\"'; dated 1932, scaled copy (manifest)",
         "On 28 Oct 1932 the SS leader Theodor Eicke and 30 SS men took part in the March-on-Rome tenth-anniversary ceremony at the monument [W] (notes 05, §3)",
+        "Not the first such scene: a pamphlet printed in Munich in July 1932 reports that three German National Socialists laid a wreath at the Monument on 9 December 1931, 'in Anwesenheit fascistischer Milizleute', and that the party's Bolzano group was founded on 21 January 1932 at the Gasthaus Pfau in the Bindergasse with Fascist militia officers as guests. One polemical source, its own sources not yet opened (Steinberger, p. 44; row 17.06; notes 17, §4.9, [V] for the wording)",
         "Seen in the image: a man in uniform with a swastika armband and a peaked cap shakes hands with an Italian officer in a tall cap; officers in fur caps and dress uniforms with swords and men in civilian coats stand round; a pillar of the monument with a niche rises behind.",
         "Declared PD as an anonymous work; check the Italian and EU rules for anonymous photographs before publication (manifest, rights caveats)"
       ],
@@ -451,9 +469,9 @@
     },
     {
       "no": "5.12",
-      "title": "Street sign “Piazza della Vittoria (già Piazza della Pace) / Siegesplatz (ehem. Friedensplatz)”",
+      "title": "Street signs of the square: “Piazza della Vittoria (già Piazza della Pace) / Siegesplatz (ehem. Friedensplatz)” and the “Piazza della Pace” sign it replaced",
       "type": "Photograph",
-      "date": "22 May 2009",
+      "date": "22 May 2009; the earlier sign photographed 14 November 2026",
       "year": 2009,
       "keywords": [
         "monumento-vittoria",
@@ -462,18 +480,24 @@
       ],
       "text": [
         "A street sign on Piazza Vittoria: “Piazza della Vittoria (già Piazza della Pace) / Siegesplatz (ehem. Friedensplatz)”. The city renamed the square Peace Square at the end of 2001. A referendum in October 2002, which most German speakers boycotted, restored the old name with 61.94% of the vote.",
-        "The sign keeps both names. The failed renaming is recorded in brackets."
+        "The sign keeps both names; the failed renaming is recorded in brackets. The sign of the months in between, “Piazza della Pace / Friedensplatz”, now hangs as an exhibit in the crypt of the monument."
       ],
       "facts": [
         "Commons: 'Strassenschild der Gemeinde Bozen am Siegesplatz (ehemaliger Friedensplatz)', HaTe, 2009-05-22, scaled copy (manifest)",
         "In December 2001 the city government renamed Piazza della Vittoria 'Piazza della Pace'; after a consultative referendum in October 2002, which most German speakers boycotted, 'Sì' won with 61.94% and the old name was restored; a sign was added: 'Già della Pace' [W] (notes 05, §3)",
         "Carlà & Mitterhofer date the council decision to 2002 [V] (notes 05, §3)",
-        "Seen in the image: a pale plaque on a pebble-render wall reading 'PIAZZA della VITTORIA (già Piazza della Pace) / SIEGESPLATZ (ehem. Friedensplatz)'."
+        "Seen in the image: a pale plaque on a pebble-render wall reading 'PIAZZA della VITTORIA (già Piazza della Pace) / SIEGESPLATZ (ehem. Friedensplatz)'.",
+        "The sign of 2001–02 is shown in BZ '18–'45 beside a panel headed 'La comunità rilegge il monumento' / 'Die Gemeinschaft versteht das Denkmal neu' (own photograph IMG_1782, 14 November 2026; notes 17, §8, [V])",
+        "Seen in the image (crypt, 2026): a white street sign with a blue rim and a red dot, lettered in black 'Piazza della Pace / Friedensplatz', fixed to the wall of the exhibition; a dark text panel below at left."
       ],
       "images": [
         {
           "file": "images/03_vittoria__SiegesplatzEhemFriedensplatz.png",
           "caption": "HaTe, 22 May 2009. CC BY-SA 3.0, Wikimedia Commons."
+        },
+        {
+          "file": "../17_monument_visit/photos/IMG_1782.JPG",
+          "caption": "The sign of 2001–02, “Piazza della Pace / Friedensplatz”, shown as an exhibit in BZ '18–'45. Own photograph, 14 November 2026."
         }
       ],
       "file": "images/03_vittoria__SiegesplatzEhemFriedensplatz.png",
@@ -482,7 +506,7 @@
         "url": "https://commons.wikimedia.org/wiki/File:SiegesplatzEhemFriedensplatz.png"
       },
       "creator": "HaTe",
-      "rights": "CC BY-SA 3.0",
+      "rights": "CC BY-SA 3.0; the photographs taken in the crypt: own, 14 November 2026",
       "confidence": {
         "level": "read"
       },
@@ -1159,7 +1183,7 @@
         "guidebooks"
       ],
       "text": [
-        "The free Italian guide to “BZ '18–'45. Un monumento, una città, due dittature”, open since July 2014. It does not mention the two eagle heads from Ponte Druso that were moved into the crypt in 2013, so whether they are still on show is unverified."
+        "The free Italian guide to “BZ '18–'45. Un monumento, una città, due dittature”, open since July 2014. It does not mention the two eagle heads from Ponte Druso that were moved into the crypt in 2013. They were on show there on 14 November 2026 (row 17.25)."
       ],
       "facts": [
         "Free visitor guide of BZ '18–'45, in Italian (manifest)",
@@ -1299,6 +1323,56 @@
         "level": "read"
       },
       "place": "palazzo-giustizia"
+    },
+    {
+      "no": "5.33",
+      "title": "Ponte Druso “prima e dopo la cura”, two photographs in Tandem, gennaio 1985",
+      "type": "Photograph",
+      "date": "before the 1970s and c. 1984",
+      "year": 1985,
+      "keywords": [
+        "ponte-druso",
+        "removal",
+        "heritage",
+        "romanita"
+      ],
+      "text": [
+        "Two photographs printed one above the other in Tandem, January 1985, under the caption “Il Ponte Druso prima e dopo la cura: non servono commenti.” Before: the stone balustrade and the columns with their eagles. After: a bare deck with an iron railing, a small car crossing, the tower of the former GIL behind.",
+        "The essay's author preferred the first: “le balaustre in pietra e le acquile del ponte Druso mi piacevano più delle attuali ringhiere in ferro”. The earlier photograph is undated and uncredited."
+      ],
+      "facts": [
+        "Caption: 'Il Ponte Druso prima e dopo la cura: non servono commenti. Sullo sfondo il complesso ex GIL-femminile, minacciato negli scorsi anni di demolizione, rappresenta un bel esempio di architettura del razionalismo italiano.' [V] (notes 13, §12)",
+        "Bassetti: 'Così come le balaustre in pietra e le acquile del ponte Druso mi piacevano più delle attuali ringhiere in ferro.' [V] (notes 13, §12)",
+        "In the council on 6 Feb 1990 Holzmann (MSI-DN) called the bridge's stripping 'una distruzione inopinata che non ha avuto nessuna motivazione poi con l'allargamento della strada come si voleva contrabbandare a quel tempo' [V] (notes 13, §12)",
+        "Seen in the image: first picture, a stone bridge of arches over a stony river bed, a balustrade of pierced panels, columns rising from the piers with figures on top, a hill behind. Second picture, a road deck seen along its length with a plain railing on the right, a small car, street lamps and a tower block in the distance."
+      ],
+      "images": [
+        {
+          "file": "../13_cinema_corso/tessmann/images/Tandem_1985-01_p20_Ponte_Druso_prima.png",
+          "caption": "Ponte Druso with its eagle columns, undated, printed in Tandem, January 1985, page 20. Scan: Landesbibliothek Teßmann."
+        },
+        {
+          "file": "../13_cinema_corso/tessmann/images/Tandem_1985-01_p20_Ponte_Druso_dopo.png",
+          "caption": "Ponte Druso about 1984, same page; present-day photographs in the essay are by Othmar Seehauser."
+        },
+        {
+          "file": "../13_cinema_corso/tessmann/images/Tandem_1985-01_p20_Ponte_Druso_page.png",
+          "caption": "Tandem, January 1985, page 20."
+        }
+      ],
+      "file": "../13_cinema_corso/tessmann/images/Tandem_1985-01_p20_Ponte_Druso_page.png",
+      "source": {
+        "label": "Teßmann digital, Monats-Tandem",
+        "url": "https://digital.tessmann.it/tessmannDigital/Zeitungsarchiv/Seite/Zeitung/42/1/01.01.1985/145846/20"
+      },
+      "creator": "Earlier photograph: unknown, gathered by Ester Valzolgher; later photograph: Othmar Seehauser (credited for the essay's present-day pictures)",
+      "holder": "Landesbibliothek Dr. Friedrich Teßmann, Bolzano",
+      "rights": "© 1985 the authors and Tandem; earlier photograph's maker unknown; scan served openly by Teßmann digital, site notice CC BY-NC 4.0",
+      "confidence": {
+        "level": "read",
+        "note": "Dates of both photographs are not given; 'c. 1984' is from the issue date."
+      },
+      "place": "ponte-druso"
     }
   ]
 }

@@ -1,12 +1,14 @@
-// The Library page, out/index.html: the idea (or the keyword index) at the top, a sticky status
-// line, every row of the library in one list, closed, and all keywords at the foot. web/library.js
-// filters, sorts and opens the rows and keeps the address in step.
+// The Library page, out/index.html: the idea (or the keyword index) at the top, under it every
+// keyword with its count, a sticky status line, the kinds of entry (lib/kinds.mjs), and every row
+// of the library in one list, closed. web/library.js filters, sorts and opens the rows and keeps
+// the address in step.
 //
 // What earlier steps add is optional here: entry.pictures (pictures), ctx.idea (the idea),
 // entry.preview and entry.page (tables, long reads), place.inside (the map; undefined counts as
 // inside). A read or table row links its page only when entry.page says it was written.
 import { esc, page } from '../lib/shell.mjs';
 import { rowDetail } from '../lib/detail.mjs';
+import { readKinds, kindOf } from '../lib/kinds.mjs';
 
 
 export default async function library(ctx) {
@@ -20,19 +22,35 @@ export default async function library(ctx) {
   const placed = entries.filter((entry) => entry.place && places?.[entry.place] && places[entry.place].inside !== false);
   const onMap = used.filter((id) => placed.some((entry) => entry.keywords.includes(id)));
 
+  // The kind of each row, and the rows whose type no kind names: they show under no kind.
+  const { kinds, problems } = await readKinds(ctx.root);
+  ctx.problems.push(...problems);
+  const kindOfRow = new Map(entries.map((entry) => [entry.no, kindOf(entry.type, kinds)]));
+  const inKind = new Map();
+  for (const id of kindOfRow.values()) if (id) inKind.set(id, (inKind.get(id) ?? 0) + 1);
+  if (kinds.length) {
+    const stray = new Map(); // type -> row numbers
+    for (const entry of entries) if (!kindOfRow.get(entry.no)) stray.set(entry.type, [...(stray.get(entry.type) ?? []), entry.no]);
+    for (const [type, nos] of stray) {
+      ctx.problems.push({ level: 'warn', where: 'library/content/kinds.json', message: `no kind names the type "${type}" (${nos.join(', ')}): these rows show under no kind` });
+    }
+  }
+
   const body = [
     top(ctx, used, label),
+    `<div class="keywords"><span class="lab">All keywords</span>${used
+      .map((id) => keywordButton(id, `${esc(label(id))}<sup>${counts.get(id)}</sup>`))
+      .join('')}</div>`,
     status(entries.length),
+    kindLine(kinds, inKind),
     COLUMN_HEADS,
     '<div class="list">',
-    ...entries.map((entry) => row(entry, { ctx, label, places })),
+    ...entries.map((entry) => row(entry, { ctx, label, places, kind: kindOfRow.get(entry.no) })),
     '</div>',
-    `<footer class="foot"><span class="lab">All keywords</span>${used
-      .map((id) => keywordButton(id, `${esc(label(id))}<sup>${counts.get(id)}</sup>`))
-      .join('')}</footer>`,
     `<script type="application/json" id="keyword-labels">${json(Object.fromEntries(Object.keys(keywords).map((id) => [id, label(id)])))}</script>`,
     `<script type="application/json" id="keywords-on-map">${json(onMap)}</script>`,
-  ].join('\n');
+    kinds.length ? `<script type="application/json" id="kind-labels">${json(Object.fromEntries(kinds.map((kind) => [kind.id, kind.label])))}</script>` : '',
+  ].filter(Boolean).join('\n');
 
   await ctx.write('index.html', page({ title: 'Library', tab: 'library', body, css: ['web/detail.css', 'web/library.css'], js: ['web/library.js'] }));
 }
@@ -58,6 +76,15 @@ function status(total) {
     + '</div>';
 }
 
+// One button for every kind that has rows, with its count; nothing when the library has no kinds.
+function kindLine(kinds, inKind) {
+  const shown = kinds.filter((kind) => inKind.has(kind.id));
+  if (!shown.length) return '';
+  return `<div class="kinds"><span class="lab">Kind</span>${shown
+    .map((kind) => `<button type="button" data-kind="${esc(kind.id)}" aria-pressed="false">${esc(kind.label)}<sup>${inKind.get(kind.id)}</sup></button>`)
+    .join('')}</div>`;
+}
+
 const COLUMN_HEADS = '<div class="colhead">'
   + '<button type="button" data-sort="no" aria-pressed="true">No.</button>'
   + '<span>Title</span>'
@@ -66,7 +93,7 @@ const COLUMN_HEADS = '<div class="colhead">'
   + '<span>Keywords</span>'
   + '</div>';
 
-function row(entry, { ctx, label, places }) {
+function row(entry, { ctx, label, places, kind }) {
   const no = esc(entry.no);
   const head = '<div class="row-head">'
     + `<span class="c-no">${no}</span>`
@@ -78,7 +105,7 @@ function row(entry, { ctx, label, places }) {
 
   const detail = rowDetail(entry, { ctx, places });
 
-  return `<article class="row" data-no="${no}" data-kw="${esc(entry.keywords.join(' '))}" data-type="${esc(entry.type)}" data-year="${esc(entry.year)}">
+  return `<article class="row" data-no="${no}" data-kw="${esc(entry.keywords.join(' '))}" data-type="${esc(entry.type)}" data-year="${esc(entry.year)}"${kind ? ` data-kind="${esc(kind)}"` : ''}>
 ${head}
 <div class="row-body" id="body-${no}" inert><div class="row-inner">${detail}</div></div>
 </article>`;

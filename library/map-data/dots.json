@@ -1,6 +1,6 @@
 {
  "name": "Bolzano / Bozen: centre, Gries, Oltrisarco, industrial zone",
- "count": 7777866,
+ "count": 8021860,
  "scale": 0.1,
  "origin": {
   "e": 679500,
@@ -36,79 +36,85 @@
   {
    "name": "ground",
    "offset": 0,
-   "count": 1885473
+   "count": 1883841
   },
   {
    "name": "streets",
-   "offset": 1885473,
-   "count": 276032
+   "offset": 1883841,
+   "count": 275336
   },
   {
    "name": "water",
-   "offset": 2161505,
+   "offset": 2159177,
    "count": 100771
   },
   {
    "name": "trees",
-   "offset": 2262276,
+   "offset": 2259948,
    "count": 955639
   },
   {
    "name": "rails",
-   "offset": 3217915,
+   "offset": 3215587,
    "count": 55826
   },
   {
    "name": "roofs",
-   "offset": 3273741,
-   "count": 1071751
+   "offset": 3271413,
+   "count": 1061743
   },
   {
    "name": "walls",
-   "offset": 4345492,
-   "count": 1951662
+   "offset": 4333156,
+   "count": 1933947
   },
   {
    "name": "bridges",
-   "offset": 6297154,
+   "offset": 6267103,
    "count": 161350
   },
   {
    "name": "focus_ground",
-   "offset": 6458504,
-   "count": 191940
+   "offset": 6428453,
+   "count": 207732
   },
   {
    "name": "focus_roofs",
-   "offset": 6650444,
-   "count": 648565
+   "offset": 6636185,
+   "count": 751099
   },
   {
    "name": "focus_walls",
-   "offset": 7299009,
-   "count": 467052
+   "offset": 7387284,
+   "count": 622771
   },
   {
    "name": "focus_bridges",
-   "offset": 7766061,
+   "offset": 8010055,
    "count": 11805
   }
  ],
  "focus": {
   "places": [
    "casa-del-fascio",
+   "cinema-corso",
    "corso-liberta",
    "cristo-re",
    "lager",
    "lido",
    "monumento-vittoria",
+   "museo-civico",
    "noi-techpark",
    "oltrisarco",
    "palazzo-giustizia",
+   "palazzo-mercantile",
+   "piazza-walther",
    "ponte-druso",
+   "scuola-dante-alighieri",
    "semirurali",
    "sparkasse-sede",
    "stadio-druso",
+   "stazione",
    "zona-industriale"
   ],
   "roofs": 0.5,

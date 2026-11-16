@@ -1,6 +1,8 @@
 /* A long read: title in serif 44, then the text at 15 px in a column of at most 640 px. Headings
    are serif, normal weight: h2 22 px, h3 and below 15 px. Figures at column width. Tables 12 px
-   with hairlines; a wide one runs past the text, out to the title's width. */
+   with hairlines; a wide one runs past the text, out to the title's width. A text in parts names
+   its whole above the title and lists its parts under it. A link to a row of the library opens
+   the row in a panel on the right; a link that leaves the site is marked with an arrow. */
 
 :root {
   --measure: 640px; /* the text column */
@@ -10,6 +12,20 @@
 main { padding: 44px var(--gutter) 80px; }
 .back { font-size: var(--size-meta); text-underline-offset: 4px; }
 main > h1 { margin: 26px 0 40px; max-width: var(--wide); overflow-wrap: break-word; }
+
+/* In parts: the whole's title small above the part's, the parts on a line under it, the part
+   before and the part after at the foot. */
+.series { margin: 26px 0 0; font-size: var(--size-meta); color: var(--grey); }
+.series + h1 { margin: 8px 0 18px; }
+.parts { margin: 0 0 40px; font-size: var(--size-meta); }
+.parts ol { display: flex; flex-wrap: wrap; gap: 4px 22px; margin: 0; padding: 0; list-style: none; counter-reset: part; }
+.parts li { counter-increment: part; }
+.parts li::before { content: counter(part) "\2002"; color: var(--grey); }
+.parts a { text-decoration: none; }
+.parts a:hover,
+.parts a[aria-current="page"] { text-decoration: underline; text-underline-offset: 4px; }
+.part-step { display: flex; justify-content: space-between; gap: 24px; max-width: var(--measure); margin: 3em 0 0; padding-top: 10px; border-top: var(--rule); font-size: var(--size-meta); }
+.part-step a { text-underline-offset: 4px; }
 
 .read { max-width: var(--wide); overflow-wrap: break-word; }
 .read > * { max-width: var(--measure); }
@@ -21,6 +37,8 @@ main > h1 { margin: 26px 0 40px; max-width: var(--wide); overflow-wrap: break-wo
 .read h3, .read h4, .read h5, .read h6 { margin: 1.8em 0 0.5em; }
 .read blockquote { padding-left: 1.4em; border-left: var(--rule); }
 .read a { text-underline-offset: 3px; }
+.read a[target="_blank"]::after { content: "\2197"; margin-left: 1px; font-size: 0.72em; vertical-align: 0.32em; color: var(--grey); }
+.read a[data-row].shown { background: var(--ink); color: var(--paper); text-decoration: none; }
 .read hr { margin: 2em 0; }
 .read pre { margin: 0 0 1em; white-space: pre-wrap; }
 
@@ -51,3 +69,23 @@ main > h1 { margin: 26px 0 40px; max-width: var(--wide); overflow-wrap: break-wo
 .read .sources h2 { margin-top: 0; }
 
 .read .totals { margin: 1em 0 0; font-size: var(--size-meta); color: var(--grey); }
+
+/* A source in the library, beside the text: the row as the Library shows it open, in one column. */
+.panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  width: min(440px, 100%);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 18px var(--gutter) 40px;
+  background: var(--paper);
+  border-left: var(--rule);
+}
+.panel .close { float: right; margin: 6px 0 0 18px; font-size: var(--size-meta); text-decoration: underline; text-underline-offset: 4px; }
+.panel .entry .e-meta { margin-top: 6px; }
+.e-record { margin: 16px 0 0; padding: 0 0 16px; border-bottom: var(--rule); }
+.entry .e-record .e-meta { margin: 0 0 8px; }
+.e-record dl.meta { margin-top: 0; }

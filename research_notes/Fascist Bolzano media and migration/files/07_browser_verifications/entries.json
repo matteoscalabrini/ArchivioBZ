@@ -31,7 +31,8 @@
       },
       "more": {
         "kind": "read",
-        "target": "../../07_browser_verifications.md"
+        "target": "../../../../library/content/reads/7.00.md",
+        "title": "Four checks made by hand"
       }
     },
     {

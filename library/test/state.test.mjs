@@ -2,29 +2,29 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { parseState, formatState, matches, compare, pictureAt } from '../web/state.js';
 
-const known = { keywords: new Set(['press', 'typeface']), rows: new Set(['5.01', '5.02', '5.21']) };
+const known = { keywords: new Set(['press', 'typeface']), kinds: new Set(['press', 'pictures']), rows: new Set(['5.01', '5.02', '5.21']) };
 
 test('parseState drops an unknown keyword and unknown rows', () => {
   const state = parseState('#k=gone&o=5.01,77.77&s=date', { keywords: new Set(['press']), rows: new Set(['5.01']) });
-  assert.deepEqual(state, { k: null, o: ['5.01'], s: 'date' });
+  assert.deepEqual(state, { k: null, t: null, o: ['5.01'], s: 'date' });
 });
 
 test('parseState survives garbage', () => {
   for (const hash of ['#%%%', '', '#k', '#k=%E0%A4%A', '#o=&s=sideways', '#=&&=x', undefined]) {
-    assert.deepEqual(parseState(hash, known), { k: null, o: [], s: 'no' }, String(hash));
+    assert.deepEqual(parseState(hash, known), { k: null, t: null, o: [], s: 'no' }, String(hash));
   }
 });
 
 test('parseState reads a known keyword, keeps the order of open rows and drops repeats', () => {
-  assert.deepEqual(parseState('#o=5.21,5.01,5.21&k=typeface', known), { k: 'typeface', o: ['5.21', '5.01'], s: 'no' });
+  assert.deepEqual(parseState('#o=5.21,5.01,5.21&k=typeface', known), { k: 'typeface', t: null, o: ['5.21', '5.01'], s: 'no' });
   assert.deepEqual(parseState('k=press', known).k, 'press');
 });
 
 test('formatState round-trips', () => {
-  const state = { k: 'typeface', o: ['5.21'], s: 'no' };
+  const state = { k: 'typeface', t: null, o: ['5.21'], s: 'no' };
   assert.equal(formatState(state), '#k=typeface&o=5.21');
   assert.deepEqual(parseState(formatState(state), known), state);
-  const sorted = { k: null, o: ['5.01', '5.02'], s: 'type' };
+  const sorted = { k: null, t: null, o: ['5.01', '5.02'], s: 'type' };
   assert.equal(formatState(sorted), '#o=5.01,5.02&s=type');
   assert.deepEqual(parseState(formatState(sorted), known), sorted);
   assert.equal(formatState({ k: null, o: [], s: 'no' }), '');
@@ -36,6 +36,29 @@ test('matches keeps every row without a keyword, and only rows carrying it with 
   assert.equal(matches(row, { k: 'typeface', o: [], s: 'no' }), true);
   assert.equal(matches(row, { k: 'removal', o: [], s: 'no' }), false);
   assert.equal(matches({ kw: [] }, { k: 'press', o: [], s: 'no' }), false);
+});
+
+test('parseState reads a known kind beside a keyword and drops an unknown kind', () => {
+  assert.deepEqual(parseState('#t=pictures&k=press', known), { k: 'press', t: 'pictures', o: [], s: 'no' });
+  assert.equal(parseState('#t=gone', known).t, null);
+  assert.equal(parseState('#t=press', { keywords: new Set(), rows: new Set() }).t, null, 'a page without kinds knows none');
+});
+
+test('formatState writes the kind after the keyword and round-trips', () => {
+  const state = { k: 'typeface', t: 'press', o: ['5.21'], s: 'date' };
+  assert.equal(formatState(state), '#k=typeface&t=press&o=5.21&s=date');
+  assert.deepEqual(parseState(formatState(state), known), state);
+  assert.equal(formatState({ k: null, t: 'pictures', o: [], s: 'no' }), '#t=pictures');
+});
+
+test('matches asks for the kind when one is set, and for keyword and kind together when both are', () => {
+  const row = { kw: ['press', 'typeface'], kind: 'press' };
+  assert.equal(matches(row, { k: null, t: 'press', o: [], s: 'no' }), true);
+  assert.equal(matches(row, { k: null, t: 'pictures', o: [], s: 'no' }), false);
+  assert.equal(matches(row, { k: 'typeface', t: 'press', o: [], s: 'no' }), true);
+  assert.equal(matches(row, { k: 'removal', t: 'press', o: [], s: 'no' }), false);
+  assert.equal(matches(row, { k: 'typeface', t: 'pictures', o: [], s: 'no' }), false);
+  assert.equal(matches({ kw: [] }, { k: null, t: 'press', o: [], s: 'no' }), false, 'a row without a kind');
 });
 
 test('pictureAt steps one picture either way and stops at the first and the last', () => {

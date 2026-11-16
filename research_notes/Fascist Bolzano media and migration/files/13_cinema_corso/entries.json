@@ -1,0 +1,1192 @@
+{
+ "entries": [
+  {
+   "no": "13.00",
+   "title": "The Cinema Corso, ex Palazzo del Turismo, Bolzano (Armando Ronca, 1938–41; a cinema from 1946; demolished in the 1980s)",
+   "type": "Notes",
+   "date": "2026",
+   "year": 2026,
+   "keywords": [
+    "cinemas",
+    "new-city",
+    "architecture",
+    "heritage",
+    "removal"
+   ],
+   "text": [
+    "The working notes on the Cinema Corso: built from 1938 as the Palazzo del Turismo to Armando Ronca's design, first used for an art show in October 1940, finished in November 1941 and at once given to the commissariat that carried out the Option. Under the German occupation it was the “Fremdenverkehrshaus”; from 1946 a cinema and theatre.",
+    "The provincial council's minutes, read by hand on Teßmann, give the demolition: permit issued on 15 February 1988, building still standing on 30 March, down by August 1989."
+   ],
+   "facts": [
+    "Thread 13 notes, research date 12 November 2026; extends notes 05, §2 on the Cinema Corso (notes 13, header)",
+    "Commissioned by the Bolzano tourist office from Armando Ronca, approved by Minister Alfieri on 16 June 1938, works begun 10 August 1938, building and fittings finished November 1941 [V] (notes 13, §1–2)",
+    "First used for the 9th syndical art exhibition of the Venezia Tridentina, 6 Oct–21 Nov 1940; from November 1941 seat of Agostino Podestà's Commissariat for the Italo-German (Option) agreements [V] (notes 13, §3–4)",
+    "Under German occupation the 'Fremdenverkehrshaus (ex Palazzo Turismo)': rallies, Reichsgautheater plays and concerts from spring 1944 [V] (notes 13, §5)",
+    "Cinema-Teatro Corso from 1946/47, 724 or about 800 seats; demolished by the builder Pietro Tosolini for offices, decided summer 1986, most sources say 1988 (others 1980, 1982) [S] (notes 13, §6–7)",
+    "Corrects notes 05: the 1942 art exhibition was held in the Istituto Tecnico 'C. Battisti', not here; Turris Babel 73 gives 1987 for Ronca's Siusi cinema, not for the Corso (notes 13, §3, §7)",
+    "Site: west corner of Corso Libertà and via Virgilio, today Corso Libertà 23, OSM way 239424576 (notes 13, §10)"
+   ],
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "read",
+    "target": "../../../../library/content/reads/13.00.md",
+    "title": "The Palazzo del Turismo, later the Cinema Corso, 1938–1988"
+   }
+  },
+  {
+   "no": "13.01",
+   "title": "Alpenzeitung, 15 September 1935, page 5",
+   "type": "Newspaper page",
+   "date": "15 September 1935",
+   "year": 1935,
+   "keywords": [
+    "radio",
+    "architecture",
+    "press"
+   ],
+   "text": [
+    "Before the Palazzo del Turismo, Ronca drew a radio station. The Alpenzeitung shows the new 20-kilowatt EIAR station on the hill above the Monticolo lake, due to open on 28 October 1935: “Das Projekt, das auf dem Bilde gezeigt wird, stammt vom Ing. Armando Ronca”.",
+    "It is his earliest project found in South Tyrol, a few months after his prize in Bolzano's housing competition of April 1935."
+   ],
+   "facts": [
+    "Page 5: 'Die neue E.I.A.R.-Station', the 20 kW station on the hill above the Monticolo lake, to open on 28 October (notes 13, §8, [V])",
+    "'Das Projekt, das auf dem Bilde gezeigt wird, stammt vom Ing. Armando Ronca'; the OCR names the builder 'Firma Banzo', probably Vanzo [INF] (notes 13, §8)",
+    "Ronca's earliest project found in South Tyrol, months after his prize in the April 1935 Bolzano housing competition (notes 13, §8, [V]/[INF])",
+    "Seen in the image: under the masthead 'Aus Bolzano Stadt und Land' the headline 'Die neue E.I.A.R.-Station' over a dark picture of a lit building at night with trees; beside it 'Rapport der Schwarzhemden in Villabassa'",
+    "The _OCR.txt sidecar is Europeana's raw OCR; check quotations against the image (manifest)"
+   ],
+   "images": [
+    {
+     "file": "images/AZ_1935-09-15_p5.jpg",
+     "caption": "Alpenzeitung, 15 September 1935, page 5. Teßmann scan via Europeana, Public Domain Mark 1.0."
+    },
+    {
+     "file": "images/AZ_1935-09-15_p5_EIAR_crop.jpg",
+     "caption": "Detail: the EIAR station, project by Armando Ronca. Alpenzeitung, 15 September 1935, IIIF crop via Europeana, Public Domain Mark 1.0."
+    }
+   ],
+   "file": "images/AZ_1935-09-15_p5.jpg",
+   "source": {
+    "label": "Europeana",
+    "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059046379"
+   },
+   "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
+   "rights": "Public Domain Mark 1.0 (Europeana)",
+   "confidence": {
+    "level": "read"
+   },
+   "creator": "Alpenzeitung"
+  },
+  {
+   "no": "13.02",
+   "title": "Dolomiten, 22 June 1938, page 3: „Der Fremdenverkehrspalast in Bolzano“",
+   "type": "Newspaper page",
+   "date": "22 June 1938",
+   "year": 1938,
+   "keywords": [
+    "cinemas",
+    "new-city",
+    "architecture",
+    "tourism",
+    "press"
+   ],
+   "text": [
+    "The Dolomiten prints Ronca's final design for the “Fremdenverkehrspalast”, approved by Minister Alfieri on his visit of 16 June 1938. It is to house the tourist office, the provincial tourism board and the automobile club, with a concert hall of 30 by 13.60 metres; marble arcades on the Corso and, towards via Virgilio, a colonnade of green Brenner marble. Cost: three million lire.",
+    "The drawing shows the corner hall with its front of slender uprights, the columns the building commission would mock as matchsticks."
+   ],
+   "facts": [
+    "Approved by 'der Minister für Volkskultur, Exz. Alfieri' on his visit of 16 June 1938; 'Das Projekt stammt von Ing. Ronca' (notes 13, §1, [V])",
+    "Programme: tourist office, provincial tourism board, the interprovincial union for travel and hotels, the provincial Automobile Club; a concert hall of 30 × 13.60 m for concerts and receptions (notes 13, §1, [V])",
+    "Plot 1,492 m², fronts 40.35 m on the Corso and 42.50 m on via Virgilio; arcades clad in St Bernard marble; a colonnade towards via Virgilio with columns of green Brenner marble; cost 3 million lire (notes 13, §1, [V])",
+    "'Wir bringen auf der vorliegenden Seite ein Bild des endgültigen Entwurfes' (notes 13, §1, [V])",
+    "Seen in the image: a corner perspective of a three-storey block with a ground-floor arcade and, at the corner, a lower pale hall block whose front is a tall recess of slender vertical members; taller buildings on both sides; a signature at lower right not legible",
+    "The page is set in Fraktur, under the section heading 'Bolzano'"
+   ],
+   "images": [
+    {
+     "file": "images/DOL_1938-06-22_p3.jpg",
+     "caption": "Dolomiten, 22 June 1938, page 3. Teßmann scan via Europeana, Public Domain Mark 1.0."
+    },
+    {
+     "file": "images/DOL_1938-06-22_p3_design_crop.jpg",
+     "caption": "Armando Ronca, final design of the Palazzo del Turismo, as printed in Dolomiten, 22 June 1938. IIIF crop via Europeana, Public Domain Mark 1.0."
+    }
+   ],
+   "file": "images/DOL_1938-06-22_p3.jpg",
+   "source": {
+    "label": "Europeana",
+    "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000115204929"
+   },
+   "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
+   "rights": "Public Domain Mark 1.0 (Europeana)",
+   "confidence": {
+    "level": "read"
+   },
+   "creator": "Dolomiten; design by Armando Ronca",
+   "place": "cinema-corso"
+  },
+  {
+   "no": "13.03",
+   "title": "Volksbote, 11 August 1938, page 5",
+   "type": "Newspaper page",
+   "date": "11 August 1938",
+   "year": 1938,
+   "keywords": [
+    "new-city",
+    "tourism",
+    "press"
+   ],
+   "text": [
+    "A short item in the Volksbote fixes the start of building: “Am 10. August begannen die Arbeiten für den neuen Fremdenverkehrspalast in unserer Stadt am Corso 9. Maggio.” And it adds a claim: “Es ist interessant zu wissen, daß er der erste Palast dieser Art von ganz Italien ist.”",
+    "The first palace of tourism in Italy, by this account, went up in Bolzano."
+   ],
+   "facts": [
+    "'Neuer Fremdenverkehrspalast. Am 10. August begannen die Arbeiten für den neuen Fremdenverkehrspalast in unserer Stadt am Corso 9. Maggio' (notes 13, §1, [V], read on the scan)",
+    "'Es ist interessant zu wissen, daß er der erste Palast dieser Art von ganz Italien ist' (notes 13, §1, [V])",
+    "Gives the start of building: 10 August 1938 (notes 13, §2)",
+    "Seen in the image: a Fraktur page with the section 'Bolzano' at top left, the short item 'Neuer Fremdenverkehrspalast' second in the column, and a long article 'Bernhard von Clairvaux' lower down"
+   ],
+   "images": [
+    {
+     "file": "images/VBS_1938-08-11_p5.jpg",
+     "caption": "Volksbote, 11 August 1938, page 5. Teßmann scan via Europeana, Public Domain Mark 1.0."
+    }
+   ],
+   "file": "images/VBS_1938-08-11_p5.jpg",
+   "source": {
+    "label": "Europeana",
+    "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000115207041"
+   },
+   "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
+   "rights": "Public Domain Mark 1.0 (Europeana)",
+   "confidence": {
+    "level": "read"
+   },
+   "creator": "Volksbote",
+   "place": "cinema-corso"
+  },
+  {
+   "no": "13.04",
+   "title": "Alpenzeitung, 5 November 1939, page 5: „Die Errichtung des Palazzo del Turismo“",
+   "type": "Newspaper page",
+   "date": "5 November 1939",
+   "year": 1939,
+   "keywords": [
+    "new-city",
+    "architecture",
+    "tourism",
+    "press"
+   ],
+   "text": [
+    "Fifteen months into building, the Alpenzeitung reports the walls “fast vollendet” and expects the offices to move in by spring 1940. The hall is meant for concerts and art exhibitions. The venture, it says again, is one “die in Italien zum ersten Male in die Tat umgesetzt wurde”.",
+    "Beside the article a photograph by Foto Walsa shows a building in scaffolding under a crane on Corso IX Maggio. The caption does not name it; that it is the palace is inferred from its place on the page."
+   ],
+   "facts": [
+    "'Der Bau, der vom Ing. Ronca projektiert ist, ist erheblich vorgeschritten. Die Mauerarbeiten sind fast vollendet'; occupation expected in spring 1940 (notes 13, §2, [V])",
+    "An initiative 'die in Italien zum ersten Male in die Tat umgesetzt wurde'; the hall is to hold concerts and art exhibitions (notes 13, §2, [V])",
+    "Photograph captioned 'Der Bau, der im Corso IX Maggio der Vollendung entgegengeht (Foto Walsa)' (notes 13, §2, [V])",
+    "Seen in the image: a multi-storey building in scaffolding with a crane jib at the top, hoardings at street level and a street running away on the right",
+    "That the photo shows the Palazzo is inferred from its place beside the article; the caption does not name it [INF]"
+   ],
+   "images": [
+    {
+     "file": "images/AZ_1939-11-05_p5.jpg",
+     "caption": "Alpenzeitung, 5 November 1939, page 5. Teßmann scan via Europeana, Public Domain Mark 1.0."
+    },
+    {
+     "file": "images/AZ_1939-11-05_p5_photo_crop.jpg",
+     "caption": "Foto Walsa, the building site on Corso IX Maggio, Alpenzeitung, 5 November 1939. IIIF crop via Europeana, Public Domain Mark 1.0."
+    }
+   ],
+   "file": "images/AZ_1939-11-05_p5.jpg",
+   "source": {
+    "label": "Europeana",
+    "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059043542"
+   },
+   "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
+   "rights": "Public Domain Mark 1.0 (Europeana)",
+   "confidence": {
+    "level": "read"
+   },
+   "creator": "Alpenzeitung; photograph Foto Walsa",
+   "place": "cinema-corso"
+  },
+  {
+   "no": "13.05",
+   "title": "La Provincia di Bolzano, 6 October 1940, page 5: “Il Ministro Ricci inaugurerà oggi la IX Sindacale d'Arte”",
+   "type": "Newspaper page",
+   "date": "6 October 1940",
+   "year": 1940,
+   "keywords": [
+    "new-city",
+    "press",
+    "inauguration",
+    "cinemas",
+    "exhibitions"
+   ],
+   "text": [
+    "The fascist daily on the morning of the opening: Minister Renato Ricci will inaugurate the ninth syndical art exhibition at four o'clock, “ordinata nel nuovo palazzo del Turismo, in corso IX Maggio”. A photograph shows a corner of the hall, the competition works hung on free-standing screens under high windows. It is the one picture of the hall's interior held.",
+    "The tourist office has also held a competition for “la statua in marmo che dovrà completare l'atrio di accesso del nuovo palazzo”."
+   ],
+   "facts": [
+    "The exhibition is 'ordinata nel nuovo palazzo del Turismo, in corso IX Maggio'; Minister Renato Ricci opens it at 16.00 that day (notes 13, §3, [V])",
+    "The tourist office ran a competition for 'la statua in marmo che dovrà completare l'atrio di accesso del nuovo palazzo' (notes 13, §3, [V])",
+    "Photograph: 'Un angolo del salone dove sono esposte le opere dei concorsi' (notes 13, §3, [V])",
+    "Seen in the image: inside a large hall with tall windows high on the wall, free-standing partitions hung with framed pictures, a low bench and a small standing sculpture in the background; a dark curved watermark covers the right half",
+    "Fascist Italian-language daily of Bolzano; gallery scan with a 'BPI' watermark, no terms stated (manifest)"
+   ],
+   "images": [
+    {
+     "file": "images/LPB_1940-10-06_p5_photo_crop.jpg",
+     "caption": "The exhibition hall of the Palazzo del Turismo, La Provincia di Bolzano, 6 October 1940. Crop from the BPI gallery scan; rights not stated."
+    },
+    {
+     "file": "images/LPB_1940-10-06_p5.jpg",
+     "caption": "La Provincia di Bolzano, 6 October 1940, page 5. Biblioteca Provinciale Italiana Claudia Augusta gallery; rights not stated."
+    }
+   ],
+   "file": "images/LPB_1940-10-06_p5.jpg",
+   "source": {
+    "label": "Biblioteca Provinciale Italiana Claudia Augusta, image gallery",
+    "url": "https://webaleph.bpi.claudiaugusta.it/La_Provincia_di_Bolzano_001-1940-1940_10_06_Nr_239.html"
+   },
+   "creator": "La Provincia di Bolzano",
+   "holder": "Biblioteca Provinciale Italiana Claudia Augusta, Bolzano",
+   "rights": "rights not stated; © presumed (scan: Biblioteca Provinciale Italiana Claudia Augusta)",
+   "confidence": {
+    "level": "read"
+   },
+   "place": "cinema-corso"
+  },
+  {
+   "no": "13.06",
+   "title": "La Provincia di Bolzano, 8 October 1940, page 3: “La IX Mostra d'arte della Venezia Tridentina ufficialmente inaugurata da Renato Ricci”",
+   "type": "Newspaper page",
+   "date": "8 October 1940",
+   "year": 1940,
+   "keywords": [
+    "new-city",
+    "press",
+    "inauguration",
+    "exhibitions"
+   ],
+   "text": [
+    "Two days later the same paper reports the opening. The exhibition “ha trovato la sua sede più adatta nel nuovo palazzo del Turismo”. The minister arrives at the “monumentale ingresso”, guarded by Balilla musketeers, and walks the atrium with its sculpture, the room of watercolours, the great stair and the rotunda.",
+    "The page gives the route through the building room by room, and prints no picture of it."
+   ],
+   "facts": [
+    "The exhibition 'ha trovato la sua sede più adatta nel nuovo palazzo del Turismo sorto in Corso IX Maggio' (notes 13, §3, [V])",
+    "The minister arrived at 16.00 at the 'monumentale ingresso', guarded by 'balilla moschettieri', and toured the atrium with sculpture, the watercolour room, the 'scalone' and the 'rotonda' (notes 13, §3, [V])",
+    "Seen in the image: the city-news page headed 'Cronaca della Città' with the headline 'La IX Mostra d'arte della Venezia Tridentina'; photographs captioned 'La Duchessa di Pistoia visita i chioschi (Foto Fedrizzi)' and 'Il Ministro Ricci allo stabilimento Lancia'; no picture of the palace",
+    "Gallery scan with a 'BPI' watermark, no terms stated (manifest)"
+   ],
+   "images": [
+    {
+     "file": "images/LPB_1940-10-08_p3.jpg",
+     "caption": "La Provincia di Bolzano, 8 October 1940, page 3. Biblioteca Provinciale Italiana Claudia Augusta gallery; rights not stated."
+    }
+   ],
+   "file": "images/LPB_1940-10-08_p3.jpg",
+   "source": {
+    "label": "Biblioteca Provinciale Italiana Claudia Augusta, image gallery",
+    "url": "https://webaleph.bpi.claudiaugusta.it/La_Provincia_di_Bolzano_001-1940-1940_10_08_Nr_240.html"
+   },
+   "creator": "La Provincia di Bolzano",
+   "holder": "Biblioteca Provinciale Italiana Claudia Augusta, Bolzano",
+   "rights": "rights not stated; © presumed (scan: Biblioteca Provinciale Italiana Claudia Augusta)",
+   "confidence": {
+    "level": "read"
+   },
+   "place": "cinema-corso"
+  },
+  {
+   "no": "13.07",
+   "title": "Il Palazzo del Turismo a Bolzano, with the press slip “Dall'Italia” of 20 October 1940",
+   "type": "Photograph",
+   "date": "1940 (slip dated 20 October 1940)",
+   "year": 1940,
+   "keywords": [
+    "new-city",
+    "tourism",
+    "press",
+    "architecture",
+    "exhibitions"
+   ],
+   "text": [
+    "The Palazzo del Turismo in October 1940, in a print from the Touring Club's archive: the via Virgilio front with its tall open portico of slender dark columns, a banner “MOSTRA D'ARTE” hung between them, stone slabs still leaning against the wall. It is the only view found of the portico as built; later photographs show the bays closed.",
+    "A press slip is pasted on the back, dated Bolzano, 20 October 1940: “in questo paese i monti le acque il sole sono italiani”."
+   ],
+   "facts": [
+    "Gelatin silver print, 18.4 × 13 cm, photographer unknown; Touring Club Italiano archive, E.00144 / FOT6846, box 'Scatola22' (manifest)",
+    "Verso: typed slip of 'Dall'Italia. Informazioni turistiche, supplemento settimanale della rivista \"Italia\"', no. 30498, 'BOLZANO, 20 OTTOBRE 1940 XVIII° IL PALAZZO DEL TURISMO' (notes 13, §3, [V])",
+    "The slip: 'in questo paese i monti le acque il sole sono italiani'; the building 'in via di rifinitura come si vede, sarà dedicata a esposizioni, mostre, iniziative turistiche ed altro' (notes 13, §3, [V])",
+    "Seen in the image (recto): a pale stone-clad front with a tall recessed portico of slender dark columns and steps, a banner 'MOSTRA D'ARTE' between the columns, stone slabs leaning on the wall, a bicycle; at right a taller block faced in brick in a grid of pale frames, with a corner entrance",
+    "Seen in the image (verso): the slip with an eagle-and-fasces vignette over a map of Italy, the number 30498, an 'E 0144' mark and a violet stamp 'Pubblicata in ... Cartella N.'",
+    "Digitouring says the palace was 'inaugurato il 20 ottobre del 1940'; the slip gives only the dateline (notes 13, §3, [INF])",
+    "The only view found of the open portico as built; later photos show the bays closed (notes 13, §6, [INF])",
+    "Rights: 'Tutti i diritti d'autore, anche connessi ... spettano al Touring Club Italiano' (Digitouring, Note legali)"
+   ],
+   "images": [
+    {
+     "file": "images/TCI_E00144_Palazzo_del_Turismo_1940_recto.jpg",
+     "caption": "Il Palazzo del Turismo a Bolzano, 1940, photographer unknown. Touring Club Italiano, Digitouring; © Touring Club Italiano."
+    },
+    {
+     "file": "images/TCI_E00144_Palazzo_del_Turismo_1940_verso.jpg",
+     "caption": "Verso: press slip 'Dall'Italia', Bolzano, 20 October 1940. Touring Club Italiano, Digitouring; © Touring Club Italiano."
+    }
+   ],
+   "file": "images/TCI_E00144_Palazzo_del_Turismo_1940_recto.jpg",
+   "source": {
+    "label": "Digitouring (Touring Club Italiano)",
+    "url": "https://www.digitouring.it/it/cerca/33293"
+   },
+   "creator": "Photographer unknown; slip by 'Dall'Italia. Informazioni turistiche'",
+   "holder": "Touring Club Italiano, Milan",
+   "rights": "Tutti i diritti d'autore, anche connessi, delle opere dell'ingegno riprodotte nel presente sito spettano al Touring Club Italiano (Digitouring, Note legali)",
+   "confidence": {
+    "level": "read",
+    "note": "photographer unknown; date from the slip on the verso"
+   },
+   "place": "cinema-corso",
+   "more": {
+    "kind": "source",
+    "target": "https://www.digitouring.it/it/cerca/33293"
+   }
+  },
+  {
+   "no": "13.08",
+   "title": "Dolomiten, 13 November 1940, page 1: „Die Ausstellung des Künstlersyndikates in Bolzano“ (Heinrich Waschgler)",
+   "type": "Newspaper page",
+   "date": "13 November 1940",
+   "year": 1940,
+   "keywords": [
+    "new-city",
+    "press",
+    "romanita",
+    "exhibitions"
+   ],
+   "text": [
+    "A front-page review of the art show by Heinrich Waschgler, who also describes the unfinished building: the entrance hall “mit den überschlanken Säulen aus Verde antico” still awaits completion, and the floor is covered “mit feinem weißem Sand” instead of parquet.",
+    "In the vestibule stand a statue of the king and “der Kolossalkopf des Drusus (I. Piffrader)”; in the round room, “der mächtige Mussolinikopf”. Eighteen models compete for a marble figure of Music for the foot of the stair."
+   ],
+   "facts": [
+    "Dr. Heinrich Waschgler's review of the ninth biennial exhibition 'im Palazzo del Turismo' (notes 13, §3, [V])",
+    "'Daß die Eingangshalle mit den überschlanken Säulen aus Verde antico noch der Vollendung harrt ... der Boden, anstatt mit Parkettbrettchen, mit feinem weißem Sand bedeckt ist' (notes 13, §3, [V])",
+    "In the 'Vorhalle': Fozzer's King and 'der Kolossalkopf des Drusus (I. Piffrader)'; eighteen models for a marble statue of Music for the foot of the 'halbkreisförmigen Treppe' (notes 13, §3, [V])",
+    "The 'Rundsaal' with Scarpabolla's sculptures, 'u. a. der mächtige Mussolinikopf'; Franz Lenhart among the painters (notes 13, §3, [V])",
+    "Seen in the image: Dolomiten front page, war news on top ('Erfolgreiche U-Boot-Angriffe im Mittelmeer'), the review at lower right; set in Fraktur"
+   ],
+   "images": [
+    {
+     "file": "images/DOL_1940-11-13_p1.jpg",
+     "caption": "Dolomiten, 13 November 1940, front page. Teßmann scan via Europeana, Public Domain Mark 1.0."
+    }
+   ],
+   "file": "images/DOL_1940-11-13_p1.jpg",
+   "source": {
+    "label": "Europeana",
+    "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000115206282"
+   },
+   "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
+   "rights": "Public Domain Mark 1.0 (Europeana)",
+   "confidence": {
+    "level": "read"
+   },
+   "creator": "Dolomiten; Heinrich Waschgler",
+   "place": "cinema-corso"
+  },
+  {
+   "no": "13.09",
+   "title": "Dolomiten, 11 December 1940, page 3",
+   "type": "Newspaper page",
+   "date": "11 December 1940",
+   "year": 1940,
+   "keywords": [
+    "new-city",
+    "press",
+    "statistics",
+    "exhibitions"
+   ],
+   "text": [
+    "The show's balance sheet. It ran from 6 October to 21 November 1940 and drew 20,572 visitors to more than 500 works by 85 artists of the Venezia Tridentina, with 25,000 lire in prizes.",
+    "The prize themes were “Geist und Ereignisse im Zeitalter Mussolinis” and “Landschaft im Oberetsch”, the second set by the regime's monthly Atesia Augusta. This was the only one of these exhibitions held in the palace; that of 1942 went to a school in via Cadorna."
+   ],
+   "facts": [
+    "The 9th syndical exhibition ran 'vom 6. Oktober bis 21. November' 1940, opened by Minister Renato Ricci (notes 13, §3, [V])",
+    "20,572 visitors; 85 artists of the Venezia Tridentina, more than 500 works; 25,000 lire in prizes (notes 13, §3, [V])",
+    "Prize themes 'Geist und Ereignisse im Zeitalter Mussolinis' and 'Landschaft im Oberetsch', the latter set by Atesia Augusta (notes 13, §3, [V])",
+    "Seen in the image: a Fraktur page with the section 'Nachrichten aus Stadt und Land'; an advertisement 'Tisana Cisbey' at the foot"
+   ],
+   "images": [
+    {
+     "file": "images/DOL_1940-12-11_p3.jpg",
+     "caption": "Dolomiten, 11 December 1940, page 3. Teßmann scan via Europeana, Public Domain Mark 1.0."
+    }
+   ],
+   "file": "images/DOL_1940-12-11_p3.jpg",
+   "source": {
+    "label": "Europeana",
+    "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000115206195"
+   },
+   "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
+   "rights": "Public Domain Mark 1.0 (Europeana)",
+   "confidence": {
+    "level": "read"
+   },
+   "creator": "Dolomiten"
+  },
+  {
+   "no": "13.10",
+   "title": "Atesia Augusta, anno II, n. 12, December 1940: “La scultura alla IX Sindacale d'Arte Tridentina” and “La nuova Bolzano” with the plan of the new city",
+   "type": "Magazine",
+   "date": "December 1940",
+   "year": 1940,
+   "keywords": [
+    "new-city",
+    "architecture",
+    "press",
+    "romanita",
+    "exhibitions"
+   ],
+   "text": [
+    "The regime's monthly for December 1940. A plan of “la Nuova Bolzano” numbers its buildings, built and projected, and no. 7, on the south side of Corso IX Maggio, is the “PALAZZO DEL TURISMO”. Below it, perspectives of a hotel and post office for Piazza Impero and of the Palazzo di Giustizia.",
+    "Another article reviews the sculpture shown “nell'ampio atrio del Palazzo del Turismo ancor avvolto nell'odor di calce”: Piffrader's head of Drusus, a “Dux”, and, among the guests from Umbria, “una espressiva testa del Führer”."
+   ],
+   "facts": [
+    "Monthly review directed by the prefect Giuseppe Mastromattei (manifest)",
+    "Pp. 42–43, Gino Cipriani, 'La nuova Bolzano': the plan 'Piano Regolatore della Nuova Bolzano (progetti)' numbers '7 PALAZZO DEL TURISMO' on the south side of Corso IX Maggio (notes 13, §4, §10, [V])",
+    "Pp. 30–32, Guglielmo Barblan: the sculpture shown 'nell'ampio atrio del Palazzo del Turismo ancor avvolto nell'odor di calce', with Piffrader's head of Drusus and, among the Umbrian guests, 'una espressiva testa del Führer' (notes 13, §3, [V])",
+    "Seen in the image (p. 42): a street plan with numbered buildings and a legend including '7 PALAZZO DEL TURISMO'; below, two rendered perspectives captioned 'Albergo Savoia e Palazzo delle Poste a piazza Impero (progetto)' and 'Palazzo di Giustizia fra via Giulio Cesare e Cesare Augusto (progetto)'",
+    "Seen in the image (pp. 30 and 32): photographs captioned 'Ignazio Gabloner: La Madonna della neve', 'Giovanni Steiner: La fame', 'Francesco Scarpa Bolla: Dux', 'Luigi Cainero: Mia figlia'",
+    "Seen in the image (cover): 'ATESIA AUGUSTA RASSEGNA MENSILE', contents list, 'ANNO II N 12 BOLZANO DICEMBRE 1940 XIX', a library shelf label",
+    "Gallery scans with a 'BPI' watermark; no terms stated (manifest)"
+   ],
+   "images": [
+    {
+     "file": "images/AtesiaAugusta_1940-12_img046.jpg",
+     "caption": "Atesia Augusta, December 1940, p. 42: plan of the new Bolzano, no. 7 the Palazzo del Turismo. BPI gallery; rights not stated."
+    },
+    {
+     "file": "images/AtesiaAugusta_1940-12_img047.jpg",
+     "caption": "Atesia Augusta, December 1940, p. 43: Gino Cipriani, 'La nuova Bolzano'. BPI gallery; rights not stated."
+    },
+    {
+     "file": "images/AtesiaAugusta_1940-12_img034.jpg",
+     "caption": "Atesia Augusta, December 1940, p. 30: 'La scultura alla IX Sindacale d'Arte Tridentina'. BPI gallery; rights not stated."
+    },
+    {
+     "file": "images/AtesiaAugusta_1940-12_img036.jpg",
+     "caption": "Atesia Augusta, December 1940, p. 32: Scarpabolla's 'Dux' and Cainero's 'Mia figlia'. BPI gallery; rights not stated."
+    },
+    {
+     "file": "images/AtesiaAugusta_1940-12_img001.jpg",
+     "caption": "Atesia Augusta, anno II n. 12, December 1940, cover. BPI gallery; rights not stated."
+    }
+   ],
+   "file": "images/AtesiaAugusta_1940-12_img046.jpg",
+   "source": {
+    "label": "Biblioteca Provinciale Italiana Claudia Augusta, image gallery",
+    "url": "https://webaleph.bpi.claudiaugusta.it/Atesia-Augusta-1940_12.html"
+   },
+   "creator": "Atesia Augusta (dir. Giuseppe Mastromattei); Guglielmo Barblan; Gino Cipriani",
+   "holder": "Biblioteca Provinciale Italiana Claudia Augusta, Bolzano",
+   "rights": "rights not stated; © presumed (scan: Biblioteca Provinciale Italiana Claudia Augusta)",
+   "confidence": {
+    "level": "read"
+   },
+   "place": "cinema-corso"
+  },
+  {
+   "no": "13.11",
+   "title": "Alpenzeitung, 16 October 1941, page 3: „Die Dolomiten-Plastik in den Bahnhofsanlagen“",
+   "type": "Newspaper page",
+   "date": "16 October 1941",
+   "year": 1941,
+   "keywords": [
+    "tourism",
+    "press",
+    "new-city"
+   ],
+   "text": [
+    "What hung in the entrance. The prefect inspects “die große Dolomiten-Plastik an den Wänden des Eingangssaales” of the new tourist-office building: a terracotta relief model of the eastern Dolomites, at least fifteen square metres, made in 1932–33 and shown at the Milan fair of 1933.",
+    "He wants it moved outdoors, to the gardens at the station, where it can serve “seinen propagandistischen Zweck”."
+   ],
+   "facts": [
+    "The prefect viewed 'die große Dolomiten-Plastik an den Wänden des Eingangssaales zu den Aemtern im neuen Gebäude der autonomen Touristikstelle, Corso 9 Maggio' (notes 13, §4, [V])",
+    "A terracotta of the eastern Dolomites, at least 15 m², made 1932–33 by Prof. Cesare Bonatta and Maestro Francesco Egger, shown at the 1933 Milan fair (notes 13, §4, [V])",
+    "The prefect wanted it moved outdoors to the station gardens to serve 'seinen propagandistischen Zweck' (notes 13, §4, [V])",
+    "Seen in the image: under the masthead 'Aus Bolzano Stadt und Land' the headline 'Die Dolomiten-Plastik in den Bahnhofsanlagen' at top left; Fraktur text"
+   ],
+   "images": [
+    {
+     "file": "images/AZ_1941-10-16_p3.jpg",
+     "caption": "Alpenzeitung, 16 October 1941, page 3. Teßmann scan via Europeana, Public Domain Mark 1.0."
+    }
+   ],
+   "file": "images/AZ_1941-10-16_p3.jpg",
+   "source": {
+    "label": "Europeana",
+    "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059044688"
+   },
+   "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
+   "rights": "Public Domain Mark 1.0 (Europeana)",
+   "confidence": {
+    "level": "read"
+   },
+   "creator": "Alpenzeitung",
+   "place": "cinema-corso"
+  },
+  {
+   "no": "13.12",
+   "title": "Alpenzeitung, 6 November 1941, page 3",
+   "type": "Newspaper page",
+   "date": "6 November 1941",
+   "year": 1941,
+   "keywords": [
+    "option",
+    "new-city",
+    "press"
+   ],
+   "text": [
+    "The palace of tourism becomes the office of the Option. On 8 November 1941 Agostino Podestà is installed as commissioner for carrying out the Italo-German agreements for Alto Adige, and “zum Amtssitz des Kommissariats wurde der neue Palast des Tourismus im Corso 9 Maggio, neben dem Foro della Vittoria, ausgewählt, dessen Bau und Ausstattung in diesen Tagen vollendet wurden”.",
+    "The same sentence dates the building's completion: early November 1941, three years after work began."
+   ],
+   "facts": [
+    "On 8 November 1941 Undersecretary Guido Buffarini Guidi installs Agostino Podestà as 'Kommissär zur Durchführung der italienisch-deutschen Verträge für das Alto Adige' (notes 13, §4, [V])",
+    "'Zum Amtssitz des Kommissariats wurde der neue Palast des Tourismus im Corso 9 Maggio, neben dem Foro della Vittoria, ausgewählt, dessen Bau und Ausstattung in diesen Tagen vollendet wurden' (notes 13, §4, [V], read on the scan)",
+    "Ties the building to the Option and resettlement; also dates its completion to early November 1941 (notes 13, §2, §4)",
+    "Seen in the image: under the masthead 'Aus Bolzano Stadt und Land' the item on the Commissioner opens the page at top left; a box 'Wir und die Leser' lower down; Fraktur text"
+   ],
+   "images": [
+    {
+     "file": "images/AZ_1941-11-06_p3.jpg",
+     "caption": "Alpenzeitung, 6 November 1941, page 3. Teßmann scan via Europeana, Public Domain Mark 1.0."
+    }
+   ],
+   "file": "images/AZ_1941-11-06_p3.jpg",
+   "source": {
+    "label": "Europeana",
+    "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059044924"
+   },
+   "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
+   "rights": "Public Domain Mark 1.0 (Europeana)",
+   "confidence": {
+    "level": "read"
+   },
+   "creator": "Alpenzeitung",
+   "place": "cinema-corso"
+  },
+  {
+   "no": "13.13",
+   "title": "Bozner Tagblatt, 17 February 1944, page 3",
+   "type": "Newspaper page",
+   "date": "17 February 1944",
+   "year": 1944,
+   "keywords": [
+    "new-city",
+    "press",
+    "language",
+    "wording",
+    "occupation"
+   ],
+   "text": [
+    "Under the German occupation the building is renamed in print. The air-raid wardens of Bozen-Gries are called to a muster “im Fremdenverkehrshaus (ex Palazzo Turismo) 9. Mai-Straße”: the Italian name translated and marked “ex”, the Corso of the Ninth of May turned into a German street.",
+    "Two months earlier the same paper still gave the Italian name in brackets without the “ex” (row 13.20)."
+   ],
+   "facts": [
+    "The air-raid wardens of Bozen-Gries are called 'zu einem Großappell im Fremdenverkehrshaus (ex Palazzo Turismo) 9. Mai-Straße' (notes 13, §5, [V])",
+    "Under German occupation the Italian name is translated: 'Fremdenverkehrshaus', 'ex Palazzo Turismo', and Corso IX Maggio becomes '9. Mai-Straße' (notes 13, §5, [V]/[INF])",
+    "Seen in the image: a page with the headings 'Sport - Spiel - Bergsteigen', 'Wirtschaft und Sozialpolitik' and 'Aus dem Reich'; the notice is a short item; set in Fraktur"
+   ],
+   "images": [
+    {
+     "file": "images/BZT_1944-02-17_p3.jpg",
+     "caption": "Bozner Tagblatt, 17 February 1944, page 3. Teßmann scan via Europeana, Public Domain Mark 1.0."
+    }
+   ],
+   "file": "images/BZT_1944-02-17_p3.jpg",
+   "source": {
+    "label": "Europeana",
+    "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000115184184"
+   },
+   "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
+   "rights": "Public Domain Mark 1.0 (Europeana)",
+   "confidence": {
+    "level": "read"
+   },
+   "creator": "Bozner Tagblatt",
+   "place": "cinema-corso"
+  },
+  {
+   "no": "13.14",
+   "title": "Bozner Tagblatt, 15 June 1944, page 5: „Reichsgautheater gastiert in Bozen“",
+   "type": "Newspaper page",
+   "date": "15 June 1944",
+   "year": 1944,
+   "keywords": [
+    "new-city",
+    "press",
+    "language",
+    "occupation",
+    "theatre"
+   ],
+   "text": [
+    "The Reichsgautheater of Innsbruck plays “Lisa benimm dich!” on 20 and 22 June 1944 “in Bozen, im Fremdenverkehrshaus Gries”, after the Reichsgau symphony orchestra had already given concerts in the city.",
+    "So the hall served German theatre and music from spring 1944, months before the lease of 1 December 1944 that the earlier notes took as the start. In December 1948 the Exl-Bühne of Innsbruck would play in the same hall, by then a cinema."
+   ],
+   "facts": [
+    "The Reichsgautheater Innsbruck plays 'Lisa benimm dich!' on 20 and 22 June 1944 'in Bozen, im Fremdenverkehrshaus Gries' (notes 13, §5, [V])",
+    "'nachdem sich das Reichsgau-Symphonieorchester früher mit Symphoniekonzerten in Bozen eingeführt hatte': theatre and concert use from spring 1944, before the lease of 1 December 1944 given in notes 05 (notes 13, §5, [V]/[INF])",
+    "Seen in the image: a page headed 'Aus der Provinz Bozen' with district sections 'Kreis Bozen', 'Kreis Bruneck', 'Kreis Brixen', 'Kreis Schlanders', 'Kreis Meran'; the item 'Reichsgautheater gastiert in Bozen' under 'Kreis Bozen'; a coat of arms captioned 'Salurn'"
+   ],
+   "images": [
+    {
+     "file": "images/BZT_1944-06-15_p5.jpg",
+     "caption": "Bozner Tagblatt, 15 June 1944, page 5. Teßmann scan via Europeana, Public Domain Mark 1.0."
+    }
+   ],
+   "file": "images/BZT_1944-06-15_p5.jpg",
+   "source": {
+    "label": "Europeana",
+    "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000115184242"
+   },
+   "holder": "Landesbibliothek Dr. F. Teßmann, Bolzano",
+   "rights": "Public Domain Mark 1.0 (Europeana)",
+   "confidence": {
+    "level": "read"
+   },
+   "creator": "Bozner Tagblatt",
+   "place": "cinema-corso"
+  },
+  {
+   "no": "13.15",
+   "title": "Foto Pedrotti, the cinema “Il Corso” at the corner of Corso Libertà and via Virgilio",
+   "type": "Photograph",
+   "date": "1950–79 (archive record); about 1951 [INF]",
+   "year": 1950,
+   "keywords": [
+    "cinemas",
+    "film",
+    "tourism",
+    "new-city",
+    "architecture"
+   ],
+   "text": [
+    "The building as a cinema, in a print by Foto Pedrotti from the Province's tourism-advertising collection: “IL CORSO” in raised letters on the pale hall front, a banner for “L'amante indiana”, poster stands on the pavement, the brick-faced office block and its arcade to the right.",
+    "The open portico of 1940 is gone; the bays between the pillars are closed. The archive dates the print only to 1950–79. If the film is the western of 1950, it is about 1951."
+   ],
+   "facts": [
+    "Amt für Film und Medien, inv. 9-13856, collection '009-Südtirol Tourismuswerbung (Foto)'; 'Foto Pedrotti, Bozen'; dated '01.01.1950 — 31.12.1979'; paper print 23.1 × 17.1 cm (manifest)",
+    "Record: 'Das Kino \"Il Corso\" in Bozen an der Ecke Freiheitstr. - Virgilstraße' (notes 13, §6, §10, [V])",
+    "Seen in the image: the pale hall front with 'IL CORSO' in raised letters, its tall bays divided by pillars and closed; a banner 'L'AMANTE INDIANA', poster stands and showcases; at right the brick-faced office block with a corner entrance and ground-floor arcade; a lamp on an overhead wire, pedestrians and a military-looking truck",
+    "'L'amante indiana' is, to my knowledge, the Italian title of the 1950 western Broken Arrow, which would date the photo to about 1951 [INF] (notes 13, §6)",
+    "Compared with the 1940 print (row 13.07), the open portico of slender columns has become a front of closed bays (notes 13, §6, [INF])",
+    "Rights: 'Amt für Film und Medien, Autonome Provinz Bozen-Südtirol' (record)"
+   ],
+   "images": [
+    {
+     "file": "images/AFM_9-13856_Pedrotti_Kino_Il_Corso.jpg",
+     "caption": "Foto Pedrotti, the cinema 'Il Corso', 1950s. Amt für Film und Medien, Autonome Provinz Bozen-Südtirol, inv. 9-13856."
+    }
+   ],
+   "file": "images/AFM_9-13856_Pedrotti_Kino_Il_Corso.jpg",
+   "source": {
+    "label": "Objekte, Museen, Archive (Provinz Bozen)",
+    "url": "https://objekte-museen-archive.provinz.bz.it/Details/bz/120025807"
+   },
+   "creator": "Foto Pedrotti, Bozen",
+   "holder": "Amt für Film und Medien, Autonome Provinz Bozen-Südtirol",
+   "rights": "Rechte: Amt für Film und Medien, Autonome Provinz Bozen-Südtirol",
+   "confidence": {
+    "level": "read",
+    "note": "date range from the archive record; the closer dating is an inference"
+   },
+   "place": "cinema-corso",
+   "more": {
+    "kind": "source",
+    "target": "https://objekte-museen-archive.provinz.bz.it/Details/bz/120025807"
+   }
+  },
+  {
+   "no": "13.16",
+   "title": "The Cinema-Teatro Corso before its demolition, photograph in the Teatro Comunale's exhibition “Spazi teatrali a Bolzano”",
+   "type": "Photograph",
+   "date": "undated; 1970s–80s by the cars [INF]",
+   "year": 1970,
+   "keywords": [
+    "cinemas",
+    "new-city",
+    "heritage",
+    "architecture",
+    "theatre"
+   ],
+   "text": [
+    "The Cinema-Teatro Corso late in its life, a sepia photograph shown in the Teatro Comunale's exhibition on Bolzano's theatres: the hall front along via Virgilio with its bays closed, the brick corner block, parked cars, a sign “GARAGE”.",
+    "The exhibition's text has it bombed in 1945 and quickly repaired, with 800 seats, the Teatro Stabile's first night in December 1950, and “demolito nel 1982”. The council minutes show it standing in March 1988. Photographer and date are not given."
+   ],
+   "facts": [
+    "Section 9 'Cinema-Teatro Corso' of the online version of the Fondazione Teatro Comunale e Auditorium Bolzano's permanent foyer exhibition (manifest)",
+    "Text there: 'bombardato nel 1945 e rapidamente ristrutturato'; 800 seats 'tra platea, doppia fila e palchetti'; Teatro Stabile debut 'nel dicembre 1950'; 'demolito nel 1982' (notes 13, §6, §7, [S])",
+    "The demolition year 1982 conflicts with 1988 (most sources) and 1980 (Schimenti) (notes 13, §7)",
+    "Seen in the image: a sepia view along via Virgilio of the pale hall front with tall bays closed between pillars and the brick-faced corner block with its arcade along the Corso; parked cars; a sign 'GARAGE'; at the left edge an arcade pillar of the building opposite",
+    "Photographer and date not stated; the dating from the cars is an inference (notes 13, §6, [INF])"
+   ],
+   "images": [
+    {
+     "file": "images/FTB_Cinema-Teatro-Corso.jpg",
+     "caption": "The Cinema-Teatro Corso, undated, photographer not stated. Fondazione Teatro Comunale e Auditorium Bolzano, online exhibition; rights not stated."
+    }
+   ],
+   "file": "images/FTB_Cinema-Teatro-Corso.jpg",
+   "source": {
+    "label": "Fondazione Teatro Comunale e Auditorium Bolzano, 'Spazi teatrali a Bolzano'",
+    "url": "https://www.fondazioneteatro.bolzano.it/mostra_online/"
+   },
+   "holder": "Fondazione Teatro Comunale e Auditorium Bolzano",
+   "rights": "rights not stated; © presumed (Fondazione Teatro Comunale e Auditorium Bolzano; photographer unknown)",
+   "confidence": {
+    "level": "secondary",
+    "note": "photographer, date and rights unclear"
+   },
+   "place": "cinema-corso",
+   "more": {
+    "kind": "source",
+    "target": "https://www.fondazioneteatro.bolzano.it/mostra_online/"
+   }
+  },
+  {
+   "no": "13.17",
+   "title": "Turris Babel 73, “Kino / Cinema”, April 2007: Flavio Schimenti, “Progetti di cinema di Armando Ronca”",
+   "type": "Article",
+   "date": "April 2007",
+   "year": 2007,
+   "keywords": [
+    "cinemas",
+    "architecture",
+    "heritage",
+    "removal"
+   ],
+   "text": [
+    "The architects' quarterly on cinemas, April 2007, with Flavio Schimenti's article on Ronca's. It prints the model of 1938, a plan of the semicircular stair from the building file “N 49/38” in the city archive, and Ronca in the 1960s.",
+    "Schimenti dates the commission to 1937 and the conversion to 1946, when Ronca joined the two halls into a cinema of 724 seats. He ends the building's life “al 1980”, which may be the year it closed as a cinema; it is not the demolition."
+   ],
+   "facts": [
+    "Quarterly of the Stiftung der Kammer der Architekten der Provinz Bozen; this issue on cinemas, ed. Karin Kretschmer; Schimenti's article pp. 8–13 (manifest)",
+    "'È il 1937 quando Armando Ronca riceve l'incarico da parte dell'Azienda di Soggiorno e di Cura di Bolzano'; offices for the 'duca d'Aosta' and the RACI; completed 1941, 'collaudato' only in 1943 (notes 13, §1–2, [S])",
+    "1946: Ronca joins the two halls into one cinema of 724 seats (520 + 162 + 42 in seven boxes); 1962 refit for the wide screen (notes 13, §6, [S])",
+    "Demolition dated 'al 1980'; the 1987 in the same article is the Cinema Laurin at Siusi, which corrects the '1987' reported for the Corso in notes 05 (notes 13, §7, [S])",
+    "Seen in the image (fig. 2): a photographed architectural model on a base, a compact block with a front of tall slender columns and an arcade along the long side; caption 'Plastico progetto originario dell'Azienda di Soggiorno di Bolzano del 1938'",
+    "Seen in the image (fig. 1): a plan of a semicircular stair with columns; caption 'L'atrio al primo piano, Fonte: Archivio comunale Bolzano N 49/38'",
+    "Seen in the image (fig. 3): two men, the one on the left older, in glasses and tie, smiling with a cigarette; caption 'Armando Ronca con un collaboratore negli anni '60'",
+    "Copy from the Internet Archive capture of 14 April 2024; the live address returns 404 (manifest)"
+   ],
+   "images": [
+    {
+     "file": "images/TB73_p9_model_1938.jpg",
+     "caption": "Model of the Palazzo del Turismo, 1938, as printed in Turris Babel 73 (2007), p. 9. Rights not stated."
+    },
+    {
+     "file": "images/TB73_p9_staircase_plan.jpg",
+     "caption": "Plan of the first-floor atrium and stair, 'Archivio comunale Bolzano N 49/38', as printed in Turris Babel 73 (2007), p. 9."
+    },
+    {
+     "file": "images/TB73_p9_Ronca_1960s.jpg",
+     "caption": "Armando Ronca with a collaborator, 1960s, as printed in Turris Babel 73 (2007), p. 9. Rights not stated."
+    }
+   ],
+   "file": "TurrisBabel_73_2007_Kino_Cinema.pdf",
+   "source": {
+    "label": "Turris Babel 73 (Internet Archive copy)",
+    "url": "http://web.archive.org/web/20240414164015/https://stiftung.arch.bz.it/smartedit/documents/turisbabel/tb73.pdf"
+   },
+   "creator": "Flavio Schimenti; Turris Babel (Stiftung der Kammer der Architekten der Provinz Bozen)",
+   "holder": "Stiftung der Kammer der Architekten, Raumplaner, Landschaftsplaner, Denkmalpfleger der Autonomen Provinz Bozen",
+   "rights": "rights not stated; © presumed (publisher and authors); fig. 1 credited to the Archivio comunale Bolzano",
+   "confidence": {
+    "level": "secondary"
+   },
+   "place": "cinema-corso",
+   "more": {
+    "kind": "file"
+   }
+  },
+  {
+   "no": "13.18",
+   "title": "salto.bz, “Le forme di Ronca”, 10 June 2022",
+   "type": "Web page",
+   "date": "10 June 2022",
+   "year": 2022,
+   "keywords": [
+    "heritage",
+    "architecture",
+    "removal",
+    "cinemas"
+   ],
+   "text": [
+    "A 2022 article on the protection now being given to Ronca's buildings, beginning with the church of San Pio X. Of the palace it says: “terminato nel 1940, (dal 1947 Cinema Corso) demolito dal costruttore Pietro Tosolini nel 1988 per fare spazio a uffici”.",
+    "The name, which the first research pass had only from a search summary, is confirmed here and in the provincial council's minutes of 1988. Protection came to Ronca's work a generation after the Corso was lost."
+   ],
+   "facts": [
+    "San Pio X by Ronca placed under protection by the provincial monuments office; further protection orders for Ronca buildings in preparation (notes 13, §8, [S])",
+    "'Suo il disegno del Palazzo del Turismo, terminato nel 1940, (dal 1947 Cinema Corso) demolito dal costruttore Pietro Tosolini nel 1988 per fare spazio a uffici' (notes 13, §7, [S])",
+    "With Franzmagazine (2024) it confirms the name Pietro Tosolini, which notes 05 had only from a search summary (notes 13, §7)",
+    "Saved page; footer '© 2026 by Demos 2.0 Gen./Soc.coop.' (manifest)"
+   ],
+   "file": "salto_2022-06-10_Le_forme_di_Ronca.html",
+   "source": {
+    "label": "salto.bz",
+    "url": "https://salto.bz/en/article/10062022/le-forme-di-ronca"
+   },
+   "creator": "salto.bz (Redaktion – Redazione)",
+   "holder": "salto.bz (Demos 2.0)",
+   "rights": "© 2026 by Demos 2.0 Gen./Soc.coop. (page footer)",
+   "confidence": {
+    "level": "secondary"
+   },
+   "more": {
+    "kind": "file"
+   }
+  },
+  {
+   "no": "13.19",
+   "title": "Alpenzeitung, 17 August 1940, page 3",
+   "type": "Newspaper page",
+   "date": "17 August 1940",
+   "year": 1940,
+   "keywords": [
+    "cinemas",
+    "press",
+    "new-city",
+    "exhibitions"
+   ],
+   "text": [
+    "The regime's German-language daily announces the ninth syndical art show of the Venezia Tridentina, to open on 27 September 1940 “im neuen Palast des Turismus”. It is the first public use found for the building that became the Cinema Corso. Prizes go to works “welche die Zeit Mussolinis verherrlichen”, and a separate competition is for a statue meant for the palace itself.",
+    "The jury includes “dem Architekten, der das Projekt des Palastes angefertigt hat”. Ronca is not named."
+   ],
+   "facts": [
+    "Headline: 'Vorbereitungen für die IX. Syndikale Kunstschau. Wettbewerbe für Werke, welche die Zeitepoche Mussolinis verherrlichen, für „die Landschaft des Alto Adige\" und für eine Statue, die für den Palast des Turismus bestimmt ist.' [T] (notes 13, §12)",
+    "'Die Vorbereitungen für die neunte syndikale Kunstschau der Venezia Tridentina, die im neuen Palast des Turismus am 27. September eröffnet wird, sind in vollem Gange.' [T] (notes 13, §12)",
+    "Prizes for works glorifying 'die Zeit Mussolinis': six for sculpture (5,500 lire), seven for painting (6,500), three for drawing (2,000); 'Atesia Augusta' gives 5,000 lire for 'Die Landschaft des Alto Adige' [T] (notes 13, §12)",
+    "Jury of the statue competition includes 'dem Architekten, der das Projekt des Palastes angefertigt hat'; winning designs stay with the 'Aufenthalts- und Reiseverkehrsverwaltung von Bolzano' [T] (notes 13, §12)",
+    "Seen in the image: a newspaper page set in Fraktur under the masthead 'Aus Bolzano Stadt und Land'; the article is the first of the page, top left, under a headline across two columns."
+   ],
+   "images": [
+    {
+     "file": "tessmann/images/AZ_1940-08-17_p3_Kunstschau_article_crop.png",
+     "caption": "Alpenzeitung, 17 August 1940, page 3, the article. Scan: Landesbibliothek Teßmann."
+    },
+    {
+     "file": "tessmann/images/AZ_1940-08-17_p3_Kunstschau_Palazzo_del_Turismo.png",
+     "caption": "The whole page. Scan: Landesbibliothek Teßmann."
+    }
+   ],
+   "file": "tessmann/images/AZ_1940-08-17_p3_Kunstschau_Palazzo_del_Turismo.png",
+   "source": {
+    "label": "Teßmann digital",
+    "url": "https://digital.tessmann.it/tessmannDigital/Zeitungsarchiv/Seite/Zeitung/26/1/17.08.1940/112630/3"
+   },
+   "holder": "Landesbibliothek Dr. Friedrich Teßmann, Bolzano",
+   "rights": "Newspaper of 1940; scan served by Teßmann digital, site notice CC BY-NC 4.0",
+   "confidence": {
+    "level": "read",
+    "note": "Transcribed from the Fraktur scan."
+   },
+   "place": "cinema-corso"
+  },
+  {
+   "no": "13.20",
+   "title": "Bozner Tagblatt, 23 December 1943, page 4",
+   "type": "Newspaper page",
+   "date": "23 December 1943",
+   "year": 1943,
+   "keywords": [
+    "cinemas",
+    "press",
+    "language",
+    "wording",
+    "occupation"
+   ],
+   "text": [
+    "Two death notices in the daily of German-occupied Bolzano, for the master baker Otto Ebner, killed in a traffic accident on 20 December 1943. His farewell is set for 28 December at eight in the morning “im Fremdenverkehrshaus (Palazzo del Turismo)”; the bakers of the province write “im Hause des Fremdenverkehrs”. Under the occupation the building has two German names, and the Italian one stands in brackets.",
+    "Why the farewell was held there is not known. On the same page the “Lichtspieltheater Bozen” advertises the German film “Wir machen Musik”."
+   ],
+   "facts": [
+    "Family notice for Otto Ebner, 'Bäckermeister in Bozen', dated 22 December 1943: 'Die Verabschiedung findet in Bozen im Fremdenverkehrshaus (Palazzo del Turismo) am 28. Dezember 1943, um 8 Uhr früh statt', then transfer to Kastelruth [T] (notes 13, §12)",
+    "Notice signed 'Die Bäckermeister der Provinz Bozen': 'unser Obermeister, Kamerad Otto Ebner […] im 32. Lebensjahre am 20. Dezember einem tödlichen Verkehrsunfall zum Opfer gefallen'; farewell 'im Hause des Fremdenverkehrs (Palazzo del Turismo) in Bozen' [T] (notes 13, §12)",
+    "Advertisement on the same page: 'Lichtspieltheater Bozen. Wir machen Musik […] Beginn: 5, 6.45, 8.50 Uhr' [T] (notes 13, §12)",
+    "In February 1944 the automobile club was still in the building: 'nur beim Raci, 9. Mai-Straße (Palazzo del Turismo)', Bozner Tagblatt 15 Feb 1944 p. 4 [OCR] (notes 13, §12)",
+    "Seen in the image: two black-bordered death notices set in Fraktur, both headed 'Otto Ebner', one above the other."
+   ],
+   "images": [
+    {
+     "file": "tessmann/images/BT_1943-12-23_p4_Ebner_notices_crop.png",
+     "caption": "Bozner Tagblatt, 23 December 1943, page 4, the two notices. Scan: Landesbibliothek Teßmann."
+    },
+    {
+     "file": "tessmann/images/BT_1943-12-23_p4_Haus_des_Fremdenverkehrs.png",
+     "caption": "The whole page. Scan: Landesbibliothek Teßmann."
+    }
+   ],
+   "file": "tessmann/images/BT_1943-12-23_p4_Haus_des_Fremdenverkehrs.png",
+   "source": {
+    "label": "Teßmann digital",
+    "url": "https://digital.tessmann.it/tessmannDigital/Suche?filterF_type=&query=%22Palazzo+del+Turismo%22"
+   },
+   "holder": "Landesbibliothek Dr. Friedrich Teßmann, Bolzano",
+   "rights": "Newspaper of 1943; scan served by Teßmann digital, site notice CC BY-NC 4.0",
+   "confidence": {
+    "level": "read",
+    "note": "Transcribed from the Fraktur scan. The source address is the search that lists the page; the page's own address was not recorded."
+   },
+   "place": "cinema-corso"
+  },
+  {
+   "no": "13.21",
+   "title": "Südtiroler Landtag, Wortprotokoll der 110. Sitzung, 16. September 1980, pages 14–15",
+   "type": "Minutes",
+   "date": "16 September 1980",
+   "year": 1980,
+   "keywords": [
+    "cinemas",
+    "heritage"
+   ],
+   "text": [
+    "The provincial council, 16 September 1980. A Communist councillor asks whether the Province will buy the Cinema Corso from the tourist board, which the local press says has decided to sell, and keep it for culture. Silvius Magnago answers that it never decided to and will not: “Ein Ankauf des Corso-Kinos, ein Niederreißen und ein Bau würde aber Unsummen kosten”. The Province will adapt the Augusteo instead.",
+    "The councillor's reply: “si perde una proprietà pubblica”."
+   ],
+   "facts": [
+    "D'Ambrosio (PCI): interpellation dated 11 February, discussed seven months later; 'gli organi d'informazione locali, a quel tempo, avevano dato come ormai scontata una decisione da parte dell'Azienda autonoma di Soggiorno' [V] (notes 13, §12)",
+    "Magnago (Landeshauptmann, SVP): 'Der Landesausschuß hat nie beschlossen, das Corso-Kino anzukaufen und hat auch nicht die Absicht das zu tun'; 'An das Corso denkt die Landesregierung also nicht, wohl aber an das Augusteo' [V] (notes 13, §12)",
+    "The Augusteo: 'über zirka 1000 Plätze', passed from the State to the Province [V] (notes 13, §12)",
+    "D'Ambrosio: 'si perde una proprietà pubblica, perché anche l'Azienda autonoma di Cura e Soggiorno, dobbiamo ritenerla tale' [V] (notes 13, §12)"
+   ],
+   "file": "tessmann/Landtag_1980-09-16_Sitzung110_p14-15_Magnago_Corso-Kino.pdf",
+   "source": {
+    "label": "Teßmann digital, Wortprotokolle Landtag",
+    "url": "https://digital.tessmann.it/tessmannDigital/Zeitungsarchiv/Seite/Zeitung/63038/1/16.09.1980/389350/14"
+   },
+   "creator": "Südtiroler Landtag / Consiglio della Provincia autonoma di Bolzano",
+   "holder": "Landesbibliothek Dr. Friedrich Teßmann, Bolzano",
+   "rights": "Public record of the provincial council; scan served by Teßmann digital, site notice CC BY-NC 4.0",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "file"
+   },
+   "place": "cinema-corso"
+  },
+  {
+   "no": "13.22",
+   "title": "Silvano Bassetti, “Trasformazione e conservazione in una città che non cresce”, Tandem, gennaio 1985",
+   "type": "Press article",
+   "date": "January 1985",
+   "year": 1985,
+   "keywords": [
+    "cinemas",
+    "architecture",
+    "heritage",
+    "new-city",
+    "old-town"
+   ],
+   "text": [
+    "An essay by the architect Silvano Bassetti in the monthly Tandem, January 1985, on what Bolzano builds and what it tears down, with the only photographs of the Cinema Corso found so far: the building from the corner and its marble entrance. The caption ends “Tutto ciò rischia di scomparire e sarebbe un peccato!”",
+    "Bassetti finds the scandal not in the developer but in the seller: “l'ente pubblico che ne deteneva la proprietà l'abbia venduto”. Of the fascist city he writes that it built its extensions “con indiscutabile ingegno”."
+   ],
+   "facts": [
+    "Heading 'Bolzano / Un documento fotografico'; pp. 16–25; 'La documentazione fotografica è stata raccolta da Ester Valzolgher. Le foto della Bolzano odierna sono di Othmar Seehauser.' [V] (notes 13, §12)",
+    "Caption p. 25: 'Vista all'insieme e dettagli del Cinema Corso. La struttura dei volumi e il suo inserimento, attraverso il porticato, nel sistema urbano di corso Libertà fanno di questo edificio un tipico esempio dell'architettura bolzanina degli anni 30. […] Tutto ciò rischia di scomparire e sarebbe un peccato!' [V] (notes 13, §12)",
+    "pp. 22–23: 'ciò che è scandaloso non è il fatto che un privato proprietario voglia sfruttarne al meglio le potenzialità economiche, ma piuttosto il fatto che l'ente pubblico che ne deteneva la proprietà l'abbia venduto' [V] (notes 13, §12)",
+    "p. 19: 'nelle \"trasformazioni per ampliamento\" l'urbanistica fascista ha operato con indiscutabile ingegno'; quality 'certo non nel Monumento, ma piuttosto nel Lido, nel cinema Corso e nel cinema Druso' [V] (notes 13, §12)",
+    "p. 20: 'mi piacciono più i marmi del cinema Corso che non gli acciai inossidabili del palazzo Sip' [V] (notes 13, §12)",
+    "Seen in the image: a flat-roofed building at a street corner, a pale wall with seven tall narrow openings on the left, a darker stone-faced corner block with a tall entrance, a long side running off to the right, cars parked in front. Second picture: looking up at tall stone pilasters and wall panels with two small carved emblems above dark openings."
+   ],
+   "images": [
+    {
+     "file": "tessmann/images/Tandem_1985-01_p25_Cinema_Corso_exterior.png",
+     "caption": "The Cinema Corso, photograph printed in Tandem, January 1985, page 25; photographs of present-day Bolzano in the essay are by Othmar Seehauser. Scan: Landesbibliothek Teßmann."
+    },
+    {
+     "file": "tessmann/images/Tandem_1985-01_p25_Cinema_Corso_entrance_detail.png",
+     "caption": "The entrance of the Cinema Corso, same page."
+    },
+    {
+     "file": "tessmann/images/Tandem_1985-01_p25_Cinema_Corso_page.png",
+     "caption": "Tandem, January 1985, page 25, the end of the essay with both photographs and their caption."
+    }
+   ],
+   "file": "tessmann/Tandem_1985-01_Bassetti_Trasformazione_e_conservazione_p16-25.pdf",
+   "source": {
+    "label": "Teßmann digital, Monats-Tandem",
+    "url": "https://digital.tessmann.it/tessmannDigital/Zeitungsarchiv/Seite/Zeitung/42/1/01.01.1985/145846/16"
+   },
+   "creator": "Silvano Bassetti; photographs gathered by Ester Valzolgher, present-day photographs by Othmar Seehauser",
+   "holder": "Landesbibliothek Dr. Friedrich Teßmann, Bolzano",
+   "rights": "© 1985 the authors and Tandem; scan served openly by Teßmann digital, site notice CC BY-NC 4.0",
+   "confidence": {
+    "level": "read",
+    "note": "The essay credits the present-day photographs to Othmar Seehauser as a group, not picture by picture."
+   },
+   "more": {
+    "kind": "file"
+   },
+   "place": "cinema-corso"
+  },
+  {
+   "no": "13.23",
+   "title": "Südtiroler Landtag, Wortprotokoll der 238. Sitzung, 30. März 1988, pages 7–11",
+   "type": "Minutes",
+   "date": "30 March 1988",
+   "year": 1988,
+   "keywords": [
+    "cinemas",
+    "heritage",
+    "architecture",
+    "law"
+   ],
+   "text": [
+    "The whole legal history of the demolition, read into the record by the provincial councillor for planning. The Province annulled the first permit in 1983; the Consiglio di Stato restored it in 1985, ruling that the annulment rested on “architektonischen und ästhetischen Gründen”, which were not the Province's to judge. On 15 February 1988 the Province issued the permit itself, to a company “vertreten durch Geometer Tossolini Pietro”.",
+    "The Communists who asked had begun by condemning Fascism, then defended the building and the former GIL beside Ponte Druso."
+   ],
+   "facts": [
+    "Question no. 715/88 of 16 March 1988 (D'Ambrosio, Barbiero, PCI): 'sappiamo della rinuncia della prelazione da parte della Provincia autonoma. Successivamente, inseritosi un proprietario privato, si viene a \"scoprire\" il valore architettonico della struttura'; 'il periodo fascista ha già ricevuto un'inappellabile condanna popolare'; 'non solo il \"Corso\" di Bolzano, ma lo stesso edificio della ex GIL di ponte Druso' [V] (notes 13, §12)",
+    "Benedikter (Landesrat für Raumordnung, SVP): appeal 16 March 1983; permit no. 305 of 5 July 1983; annulment 17 October 1983 (project 22,500 m³ against 13,146 permitted for a new building); Consiglio di Stato decision no. 249 of 8 July 1985 annuls the annulment as resting on 'architektonischen und ästhetischen Gründen' [V] (notes 13, §12)",
+    "23 September 1987: 'die Gesellschaft Co.Mo. Aktiengesellschaft, vertreten durch Geometer Tossolini Pietro' asks the Province to issue the permit; issued 15 February 1988; 'aufgrund der heutigen Rechtslage das Corso-Kino abgebrochen und ein Neubau an seiner Stelle errichtet werden kann' [V] (notes 13, §12)",
+    "D'Ambrosio: 'la totale insoddisfazione'; the answer 'elude semplicemente l'essenza della nostra interrogazione' [V] (notes 13, §12)",
+    "The building was still standing on 30 March 1988 [INF] (notes 13, §12)"
+   ],
+   "file": "tessmann/Landtag_1988-03-30_Sitzung238_p07-11_ex_cinema_Corso.pdf",
+   "source": {
+    "label": "Teßmann digital, Wortprotokolle Landtag",
+    "url": "https://digital.tessmann.it/tessmannDigital/Zeitungsarchiv/Seite/Zeitung/63035/1/30.03.1988/388815/7"
+   },
+   "creator": "Südtiroler Landtag / Consiglio della Provincia autonoma di Bolzano",
+   "holder": "Landesbibliothek Dr. Friedrich Teßmann, Bolzano",
+   "rights": "Public record of the provincial council; scan served by Teßmann digital, site notice CC BY-NC 4.0",
+   "confidence": {
+    "level": "read",
+    "note": "The minutes spell the name 'Tossolini Pietro' here and 'Tosolini' on 18 May 1988."
+   },
+   "more": {
+    "kind": "file"
+   },
+   "place": "cinema-corso"
+  },
+  {
+   "no": "13.24",
+   "title": "Südtiroler Landtag, Wortprotokoll der 245. Sitzung, 18. Mai 1988, pages 83–84",
+   "type": "Minutes",
+   "date": "18 May 1988",
+   "year": 1988,
+   "keywords": [
+    "cinemas",
+    "heritage"
+   ],
+   "text": [
+    "Arnold Tribus of the Alternative Liste, speaking on another affair, turns to the man Bolzano calls “il Geometra”: nothing important is built in the city without “der Schatten des „Geometra“”. He recalls “die ganze Geschichte um das Corso-Kino” of about a month before: “auch da, wer kommt zum Vorschein, die gleiche Person, immer Tosolini”.",
+    "It is the source for the developer's name, which the first research pass had only from an unverified search summary, and it places the affair about April 1988."
+   ],
+   "facts": [
+    "Tribus (AS): 'Italien hat eine Person, die jeder kennt, nämlich \"l'Avvocato\" und in Bozen heißt er eben \"il Geometra\"'; 'Es gibt nichts Wichtiges in Bozen auf dem Sektor, das gemacht worden wäre, ohne daß nicht zumindest irgendwie der Schatten des \"Geometra\" dagewesen wäre' [V] (notes 13, §12)",
+    "'Es ist nicht allzu lange her, vor ungefähr einem Monat, man erinnere sich an die ganze Geschichte um das Corso-Kino, auch da, wer kommt zum Vorschein, die gleiche Person, immer Tosolini, der im Tauschverfahren kauft, nicht kauft, verkauft.' [V] (notes 13, §12)",
+    "Notes 05 had 'Pietro Tosolini' as unverified, from a search summary (notes 05, §2, Gaps)",
+    "The context is a debate on the Tecnopan works in the industrial zone [V] (file, p. 83)"
+   ],
+   "file": "tessmann/Landtag_1988-05-18_Sitzung245_p83-84_Tribus_il_Geometra.pdf",
+   "source": {
+    "label": "Teßmann digital, Wortprotokolle Landtag",
+    "url": "https://digital.tessmann.it/tessmannDigital/Zeitungsarchiv/Seite/Zeitung/63035/1/18.05.1988/388820/84"
+   },
+   "creator": "Südtiroler Landtag / Consiglio della Provincia autonoma di Bolzano",
+   "holder": "Landesbibliothek Dr. Friedrich Teßmann, Bolzano",
+   "rights": "Public record of the provincial council; scan served by Teßmann digital, site notice CC BY-NC 4.0",
+   "confidence": {
+    "level": "read",
+    "note": "A councillor's characterisation in debate, not a finding of fact about the person named."
+   },
+   "more": {
+    "kind": "file"
+   },
+   "place": "cinema-corso"
+  },
+  {
+   "no": "13.25",
+   "title": "Südtiroler Landtag, Wortprotokoll der 44. Sitzung, 6. Februar 1990, pages 38–40",
+   "type": "Minutes",
+   "date": "6 February 1990",
+   "year": 1990,
+   "keywords": [
+    "cinemas",
+    "ponte-druso",
+    "heritage",
+    "removal",
+    "architecture"
+   ],
+   "text": [
+    "A councillor of the neo-fascist MSI asks the Province to spare the former GIL building and lists what has already gone: “In tempi recenti Bolzano ha visto la distruzione del ponte Druso, del cinema Corso e ora siamo alla volta dell'ex G.I.L.” He calls the bridge's stripping “una distruzione inopinata”, never explained by the road widening given as its reason, and the Corso a loss to speculation through “l'inerzia da parte dell'ente pubblico”.",
+    "The question is dated 28 August 1989. By then the cinema was down."
+   ],
+   "facts": [
+    "Question no. 238/89 of 28 August 1989, Holzmann (MSI-DN): 'Letzthin wurden in Bozen die Drususbrücke und das Corso Kino abgebrochen, und jetzt trifft es das ehemalige G.I.L.-Gebäude' [V] (notes 13, §12)",
+    "'Jemand hat den Verdacht geschöpft, daß der Abbruch des ehemaligen G.I.L.-Gebäudes auf die ungeschickt verheimlichte Absicht zurückzuführen sei, ein Zeugnis der rationalistischen Kunst zu beseitigen, und zwar nur deshalb, weil sich diese Kunstrichtung während des Faschismus behauptet hat' [V] (notes 13, §12)",
+    "Holzmann, 6 Feb 1990: 'il ponte Druso, che è stata una cosa vergognosa […] una distruzione inopinata che non ha avuto nessuna motivazione poi con l'allargamento della strada come si voleva contrabbandare a quel tempo'; 'il cinema Corso, dove l'inerzia da parte dell'ente pubblico ha comportato poi la distruzione a fini speculativi' [V] (notes 13, §12)",
+    "Kofler (Landesrat für Raumordnung, SVP): on 24 July 1989 the provincial government declared itself in principle for housing on the GIL site; parts of the building are under monument protection [V] (notes 13, §12)",
+    "In 1988 the same buildings had been defended by the PCI and the Alternative Liste [V] (notes 13, §12)"
+   ],
+   "file": "tessmann/Landtag_1990-02-06_Sitzung044_p38-40_ex_GIL_ponte_Druso_cinema_Corso.pdf",
+   "source": {
+    "label": "Teßmann digital, Wortprotokolle Landtag",
+    "url": "https://digital.tessmann.it/tessmannDigital/Zeitungsarchiv/Seite/Zeitung/63026/1/06.02.1990/386956/38"
+   },
+   "creator": "Südtiroler Landtag / Consiglio della Provincia autonoma di Bolzano",
+   "holder": "Landesbibliothek Dr. Friedrich Teßmann, Bolzano",
+   "rights": "Public record of the provincial council; scan served by Teßmann digital, site notice CC BY-NC 4.0",
+   "confidence": {
+    "level": "read",
+    "note": "The speaker's account of why the bridge sculpture was removed is his claim; notes 05 has no decision on record."
+   },
+   "more": {
+    "kind": "file"
+   },
+   "place": "ponte-druso"
+  },
+  {
+   "no": "13.26",
+   "title": "Südtiroler Landtag, Wortprotokoll der 85. Sitzung, 9. Jänner 1996, pages 26–27",
+   "type": "Minutes",
+   "date": "9 January 1996",
+   "year": 1996,
+   "keywords": [
+    "cinemas",
+    "heritage"
+   ],
+   "text": [
+    "What stood on the site afterwards. Eva Klotz asks when the Bolzano appeal court will open, its rooms in the “Ex-Corso-Kino” being ready, and since when rent has been paid. Luis Durnwalder answers: the first, second and third floors “in der Freiheitsstraße”, and “Die Miete wird seit 1. November 1990 bezahlt.”",
+    "So the new building was finished by November 1990, and years after the demolition the council still called the address by the cinema's name."
+   ],
+   "facts": [
+    "Klotz (UFS), question no. 7/96 of 28 Dec 1995: the Oberlandesgericht Bozen should have begun on 2 October 1995; 'die Räumlichkeiten (Ex-Corso-Kino)' ready; 'seit wann wird die Miete im Corso-Kino bezahlt?' [V] (notes 13, §12)",
+    "Durnwalder: the Comune handed over 'den ersten, zweiten und dritten Stock in der Freiheitsstraße'; 'Die Miete wird seit 1. November 1990 bezahlt.' [V] (notes 13, §12)",
+    "Notes 05 has the site as the provincial health and social department (Verdorfer 2007); both may hold for different floors or years [INF] (notes 13, §12)"
+   ],
+   "file": "tessmann/Landtag_1996-01-09_Sitzung085_p26-27_Oberlandesgericht_Ex-Corso-Kino.pdf",
+   "source": {
+    "label": "Teßmann digital, Wortprotokolle Landtag",
+    "url": "https://digital.tessmann.it/tessmannDigital/Zeitungsarchiv/Seite/Zeitung/63027/1/09.01.1996/387199/26"
+   },
+   "creator": "Südtiroler Landtag / Consiglio della Provincia autonoma di Bolzano",
+   "holder": "Landesbibliothek Dr. Friedrich Teßmann, Bolzano",
+   "rights": "Public record of the provincial council; scan served by Teßmann digital, site notice CC BY-NC 4.0",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "file"
+   },
+   "place": "cinema-corso"
+  }
+ ]
+}

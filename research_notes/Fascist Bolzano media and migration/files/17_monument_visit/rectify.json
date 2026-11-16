@@ -1,0 +1,20 @@
+[
+  {"name": "esposizione", "photo": "photos/IMG_1770.JPG", "out": "images/1929_Esposizione_Nazionale_Alto_Adige_poster_visit.jpg", "corners": [[555, 804], [2459.5, 830], [2500.5, 4070], [335, 4015.5]], "bow": [5, 10, 4, 10], "trim": 3, "fill": {"photo": "photos/IMG_1769.JPG", "corners": [[1069.5, 1432], [2008, 1412.4], [2067.5, 3031], [997.5, 3015.5]]}},
+  {"name": "steinberger", "photo": "photos/IMG_1768.JPG", "out": "images/1932_Steinberger_Deutsch-Suedtirol_cover_visit.jpg", "corners": [[509.8, 563.5], [2576.5, 507.5], [2757, 3477], [461, 3526.5]], "bow": [4.5, 5.5, 5, 3.5], "trim": 3},
+  {"name": "settimana", "photo": "photos/IMG_1766.JPG", "out": "images/1933_Hofer_Settimana_Alto_Adige_poster_visit.jpg", "corners": [[541.5, 897.5], [2479.5, 880.5], [2730, 3855.5], [372.8, 3899.6]], "bow": [4, 9, 3.5, 8], "trim": 4},
+  {"name": "illustrazione", "photo": "photos/IMG_1773.JPG", "out": "images/1935-09-01_Illustrazione_Italiana_cover_visit.jpg", "corners": [[774.5, 955.5], [2130, 963.5], [2207.5, 2828.5], [704, 2846]], "bow": [3, 6, 4, 4], "trim": 2},
+  {"name": "colonna", "photo": "photos/IMG_1774.JPG", "out": "images/1938_Colonna_Romana_inauguration_poster_visit.jpg", "corners": [[830, 1010], [2112.5, 1007], [2324.3, 2905.6], [683, 2948.5]], "bow": [2.5, 8, 4, 8], "trim": 3},
+  {"name": "piccolo_posto", "photo": "photos/IMG_1757.JPG", "out": "images/1926-02-10_Il_Piccolo_Posto_p1_visit.jpg", "corners": [[285, 416], [2658, 382], [2605, 3610], [440, 3609]], "trim": 8},
+  {"name": "piacentini_sketch", "photo": "photos/IMG_1756.JPG", "out": "images/1926c_Piacentini_sketch_Monument_to_Victory_visit.jpg", "corners": [[320, 474], [3656, 413], [3900, 2557], [140, 2609]], "trim": 8},
+  {"name": "innsbrucker", "photo": "photos/IMG_1751.JPG", "out": "images/1928-07-12_Innsbrucker_Nachrichten_p2_visit.jpg", "corners": [[63, 250], [2852, 280], [2587, 3809], [344, 3796]], "trim": 4, "bow": [-6, -9, 0, -12]},
+  {"name": "bloody_sunday", "photo": "photos/IMG_1754.JPG", "out": "images/1921-04-24_Bloody_Sunday_Piazza_delle_Erbe_photograph_visit.jpg", "corners": [[186, 352], [3872, 267], [3610, 2487], [520, 2527]], "trim": 8},
+  {"name": "column_ceremony", "photo": "photos/IMG_1772.JPG", "out": "images/1938-06-05_Colonna_Romana_ceremony_Luce_photograph_visit.jpg", "corners": [[867, 1047], [2877, 1073], [2845, 2290], [864, 2265]], "trim": 6},
+  {"name": "us_tank", "photo": "photos/IMG_1779.JPG", "out": "images/1945_US_tank_Monument_to_Victory_photograph_visit.jpg", "corners": [[622, 695], [3288, 740], [3518, 2703], [370, 2661]], "trim": 10},
+  {"name": "us_soldiers", "photo": "photos/IMG_1781.JPG", "out": "images/1945_US_soldiers_Monument_to_Victory_photograph_visit.jpg", "corners": [[424, 838], [2566, 798], [2770, 3928], [442, 4040]], "trim": [6, 6, 14, 6]},
+  {"name": "rally", "photo": "photos/IMG_1778.JPG", "out": "images/postwar_rally_Trieste_placards_Monument_to_Victory_photograph_visit.jpg", "corners": [[269, 383], [3898, 324], [3979, 2602], [210, 2610]], "trim": 6, "bow": [10, 4, 14, 6]},
+  {"name": "panel_glory", "photo": "photos/IMG_1771.JPG", "out": "images/BZ18-45_panel_For_the_glory_of_the_fatherland_visit.jpg", "corners": [[340, 689], [2596, 680], [2473, 3626], [605, 3750]], "trim": 8},
+  {"name": "label_ehrenhoefer", "photo": "photos/IMG_1749.JPG", "out": "images/label_Ehrenhoefer_Soldatentreue_visit.jpg", "corners": [[650, 1775], [2341, 1881], [2275, 2662], [697, 2500]], "trim": 8},
+  {"name": "label_morelli", "photo": "photos/IMG_1762.JPG", "out": "images/label_Morelli_eagle_heads_visit.jpg", "corners": [[411, 1414], [2487, 1393], [2437, 2350], [523, 2371]], "trim": 8},
+  {"name": "label_cadorin_storia", "photo": "photos/IMG_1785.JPG", "out": "images/label_Cadorin_custode_della_storia_visit.jpg", "corners": [[857, 1952], [2351, 1830], [2314, 2491], [909, 2722]], "trim": 8},
+  {"name": "label_cadorin_patria", "photo": "photos/IMG_1786.JPG", "out": "images/label_Cadorin_custode_della_patria_visit.jpg", "corners": [[1065, 1645], [1937, 1672], [1919, 2088], [1081, 2042]], "trim": 8}
+]

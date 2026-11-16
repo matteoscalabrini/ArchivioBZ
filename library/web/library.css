@@ -1,5 +1,6 @@
-/* The Library page, after sketch 2 (idea-as-index-v2): the idea in large serif, a sticky status
-   line, one list of rows that open downward in place, and all keywords at the foot. */
+/* The Library page, after sketch 2 (idea-as-index-v2): the idea in large serif, every keyword
+   with its count under it, a sticky status line, the kinds of entry, and one list of rows that
+   open downward in place. */
 
 :root {
   --cols: 64px minmax(0, 1fr) 150px 120px minmax(0, 300px);
@@ -10,7 +11,7 @@ html { scroll-padding-top: 48px; } /* keeps a focused row clear of the sticky st
 [hidden] { display: none !important; }
 
 /* The idea, or the keyword index in its place. */
-.idea { padding: 84px var(--gutter) 64px; max-width: 1240px; }
+.idea { padding: 84px var(--gutter) 30px; max-width: 1240px; } /* the keywords follow close under it */
 .idea .lab { display: block; margin-bottom: 18px; font-size: var(--size-meta); color: var(--grey); }
 .idea p { margin: 0; font: 400 var(--size-idea)/1.12 var(--serif); letter-spacing: -0.018em; text-wrap: pretty; }
 .idea p + p { margin-top: 0.6em; }
@@ -27,6 +28,13 @@ html { scroll-padding-top: 48px; } /* keeps a focused row clear of the sticky st
 .kw { white-space: nowrap; } /* a keyword and its comma: the line breaks only between them */
 .kw button { white-space: normal; }
 .idea .sep { color: var(--grey); }
+
+/* Every keyword with its count, under the idea. */
+.keywords { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 20px; max-width: 1240px; padding: 0 var(--gutter) 58px; font-size: var(--size-meta); }
+.keywords .lab { margin-right: 6px; color: var(--grey); }
+.keywords sup { display: inline-block; margin-left: 2px; font-size: var(--size-count); line-height: 0; color: var(--grey); } /* inline-block: the underline stops at the word */
+.keywords button:hover,
+.keywords button[aria-pressed="true"] { text-decoration: underline; text-underline-offset: 4px; }
 
 /* What is shown, sticky. */
 .status {
@@ -48,6 +56,13 @@ html { scroll-padding-top: 48px; } /* keeps a focused row clear of the sticky st
 .status button,
 .status a { text-decoration: underline; text-underline-offset: 4px; }
 
+/* The kinds of entry, each with its count: one line between the status and the column heads. */
+.kinds { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 20px; padding: 10px var(--gutter); border-top: var(--rule); font-size: var(--size-meta); }
+.kinds .lab { margin-right: 6px; color: var(--grey); }
+.kinds sup { display: inline-block; margin-left: 2px; font-size: var(--size-count); line-height: 0; color: var(--grey); }
+.kinds button:hover,
+.kinds button[aria-pressed="true"] { text-decoration: underline; text-underline-offset: 4px; }
+
 /* Column heads and rows share one grid. */
 .colhead,
 .row-head {
@@ -62,7 +77,7 @@ html { scroll-padding-top: 48px; } /* keeps a focused row clear of the sticky st
 .colhead button:hover,
 .colhead button[aria-pressed="true"] { text-decoration: underline; text-underline-offset: 4px; }
 
-.list { border-bottom: var(--rule); }
+.list { border-bottom: var(--rule); margin-bottom: 70px; } /* the page ends with the list */
 .row { border-top: var(--rule); }
 .row-head { padding-top: 13px; padding-bottom: 12px; cursor: pointer; }
 .row-head:hover .c-title button { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
@@ -90,13 +105,6 @@ html { scroll-padding-top: 48px; } /* keeps a focused row clear of the sticky st
 .detail.table table.recs { grid-row: 1; } /* the preview comes first in the markup, the text still sits left of it */
 .detail table.recs { grid-column: 3 / 6; align-self: start; } /* the rest of an open row: detail.css */
 
-/* Every keyword with its count. */
-.foot { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 20px; padding: 70px var(--gutter) 40px; font-size: var(--size-meta); }
-.foot .lab { margin-right: 6px; color: var(--grey); }
-.foot sup { display: inline-block; margin-left: 2px; font-size: var(--size-count); line-height: 0; color: var(--grey); } /* inline-block: the underline stops at the word */
-.foot button:hover,
-.foot button[aria-pressed="true"] { text-decoration: underline; text-underline-offset: 4px; }
-
 /* Narrow: type, date and keywords fold under the title; an open row takes the full width. */
 @media (max-width: 800px) {
   .colhead { display: flex; flex-wrap: wrap; gap: 4px 18px; }
@@ -117,5 +125,6 @@ html { scroll-padding-top: 48px; } /* keeps a focused row clear of the sticky st
   .detail.table .txt { max-width: 60ch; }
   .detail .pics + .txt { margin-top: 22px; }
   .detail table.recs + .txt { margin-top: 22px; }
-  .idea { padding: 56px var(--gutter) 44px; }
+  .idea { padding: 56px var(--gutter) 24px; }
+  .keywords { padding-bottom: 40px; }
 }

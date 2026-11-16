@@ -1,4 +1,5 @@
-// The Library page in the browser: the keyword filter, the sort, rows that open in place, pictures
+// The Library page in the browser: the keyword filter, the filter by kind of entry, the sort, rows
+// that open in place, pictures
 // that load when their row first opens, and the address kept in step with all of it (state.js).
 import { parseState, formatState, matches, compare } from './state.js';
 import { load, stepPicture } from './pictures.js';
@@ -7,20 +8,27 @@ const list = document.querySelector('.list');
 const status = document.querySelector('.status');
 const colhead = document.querySelector('.colhead');
 const keywordButtons = [...document.querySelectorAll('button[data-k]')];
+const kindButtons = [...document.querySelectorAll('button[data-kind]')];
 const sortButtons = [...colhead.querySelectorAll('button[data-sort]')];
 const labels = readJson('keyword-labels', {});
+const kindLabels = readJson('kind-labels', {});
 const onMapKeywords = new Set(readJson('keywords-on-map', [])); // keywords with a row placed on the map
 const rows = [...list.querySelectorAll('article.row')].map((el) => ({
   el,
   no: el.dataset.no,
   type: el.dataset.type,
+  kind: el.dataset.kind,
   year: Number(el.dataset.year),
   kw: el.dataset.kw.split(' ').filter(Boolean),
   title: el.querySelector('.c-title button'),
   body: el.querySelector('.row-body'),
 }));
 const byNo = new Map(rows.map((row) => [row.no, row]));
-const known = { keywords: new Set(keywordButtons.map((b) => b.dataset.k)), rows: new Set(byNo.keys()) };
+const known = {
+  keywords: new Set(keywordButtons.map((b) => b.dataset.k)),
+  kinds: new Set(kindButtons.map((b) => b.dataset.kind)),
+  rows: new Set(byNo.keys()),
+};
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 
 let order = 'no'; // the order the rows stand in now
@@ -37,7 +45,15 @@ document.addEventListener('click', (event) => {
   if (!target) return;
   const keyword = target.closest('button[data-k]');
   if (keyword) return filter(state.k === keyword.dataset.k ? null : keyword.dataset.k);
-  if (target.closest('.show-all')) return filter(null);
+  const kind = target.closest('button[data-kind]');
+  if (kind) {
+    state.t = state.t === kind.dataset.kind ? null : kind.dataset.kind;
+    return render();
+  }
+  if (target.closest('.show-all')) {
+    state.t = null;
+    return filter(null);
+  }
   const sort = target.closest('button[data-sort]');
   if (sort) {
     state.s = sort.dataset.sort;
@@ -85,12 +101,15 @@ function render() {
     setOpen(row, state.o.includes(row.no));
   }
   for (const button of keywordButtons) button.setAttribute('aria-pressed', String(button.dataset.k === state.k));
+  for (const button of kindButtons) button.setAttribute('aria-pressed', String(button.dataset.kind === state.t));
   for (const button of sortButtons) button.setAttribute('aria-pressed', String(button.dataset.sort === state.s));
 
   // Written only when it changes: the status is a live region and would be read out again.
-  setText(status.querySelector('.what'), state.k ? labels[state.k] ?? state.k : 'All entries');
-  setText(status.querySelector('.n'), state.k ? `${shown} of ${entries(rows.length)}` : entries(rows.length));
-  status.querySelector('.show-all').hidden = !state.k;
+  // The kind first, then the keyword: "Press · Typeface".
+  const narrowed = [state.t && (kindLabels[state.t] ?? state.t), state.k && (labels[state.k] ?? state.k)].filter(Boolean);
+  setText(status.querySelector('.what'), narrowed.join(' · ') || 'All entries');
+  setText(status.querySelector('.n'), narrowed.length ? `${shown} of ${entries(rows.length)}` : entries(rows.length));
+  status.querySelector('.show-all').hidden = !narrowed.length;
   const onMap = status.querySelector('.on-map');
   onMap.hidden = !state.k || !onMapKeywords.has(state.k);
   onMap.href = state.k ? `map.html#k=${encodeURIComponent(state.k)}` : 'map.html';
@@ -102,7 +121,9 @@ function render() {
 function filter(k) {
   state.k = k;
   render();
-  if (k) scrollTo({ top: colhead.getBoundingClientRect().top + scrollY - status.offsetHeight, behavior: motion() });
+  // To the top of the list: the kinds line when the page has one, so it stays in reach.
+  const head = document.querySelector('.kinds') ?? colhead;
+  if (k) scrollTo({ top: head.getBoundingClientRect().top + scrollY - status.offsetHeight, behavior: motion() });
 }
 
 function toggle(row) {
@@ -110,10 +131,13 @@ function toggle(row) {
   render();
 }
 
-// From a "Sources" number: open that row, showing all rows if the filter hides it.
+// From a "Sources" number: open that row, showing all rows if a filter hides it.
 function openRow(row) {
   if (!state.o.includes(row.no)) state.o = [...state.o, row.no];
-  if (!matches(row, state)) state.k = null;
+  if (!matches(row, state)) {
+    state.k = null;
+    state.t = null;
+  }
   render();
   reveal(row.el, motion());
   row.title.focus({ preventScroll: true });

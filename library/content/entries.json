@@ -20,11 +20,11 @@
       "file": "../../reports/Fascist Bolzano media and migration.docx",
       "confidence": {
         "level": "read",
-        "note": "each claim is tagged inside the report"
+        "note": "sources are linked in the text; the research report on file marks each claim for how far it was checked"
       },
       "more": {
         "kind": "read",
-        "target": "../../reports/Fascist Bolzano media and migration.docx"
+        "target": "reads/0.01.md"
       },
       "images": [
         {
@@ -53,11 +53,11 @@
       "file": "../../reports/Semirurali versus Libyan villages.docx",
       "confidence": {
         "level": "read",
-        "note": "each claim is tagged inside the report"
+        "note": "sources are linked in the text; the research report on file marks each claim for how far it was checked"
       },
       "more": {
         "kind": "read",
-        "target": "../../reports/Semirurali versus Libyan villages.docx"
+        "target": "reads/0.02.md"
       },
       "images": [
         {
@@ -106,12 +106,16 @@
       ],
       "text": [
         "Ponte Druso opened on 28 October 1931, the ninth anniversary of the March on Rome, built for the state road authority to a design by the engineers Eugenio Miozzi and Gilberto Ricci. Its piers carried four Roman eagles by the Ancona sculptor Vittorio Morelli, standing on globes held by fasces, more than eight metres above the road.",
-        "The eagles were not removed in 1945. They came down when the bridge was renovated in the 1970s. The sources give four different dates and no decision has been found. Two of the heads have been in the crypt of the Monument to Victory since December 2013."
+        "The eagles were not removed in 1945. They came down when the bridge was renovated in the 1970s. The sources give four different dates and no decision has been found. Two of the heads have been in the crypt of the Monument to Victory since December 2013, and were on show there in November 2026."
       ],
       "images": [
         {
           "file": "../../research_notes/Fascist Bolzano media and migration/files/05_landmarks_heritage/images/01_pontedruso__Gabinio.Bolzano_Ponte_Druso-Ponte_In_Pietra_A_Tre_Arcate_Con_Gruppi_Scultorei_Ra.jpg",
           "caption": "Mario Gabinio, Ponte Druso, 1932–35. CC BY 3.0 IT, Fondazione Torino Musei via Wikimedia Commons."
+        },
+        {
+          "file": "../../research_notes/Fascist Bolzano media and migration/files/17_monument_visit/photos/IMG_1758.JPG",
+          "caption": "Two of the heads in the crypt of the Monument to Victory. Own photograph, 14 November 2026 (row 17.25)."
         }
       ],
       "confidence": {
@@ -131,7 +135,8 @@
         "5.10",
         "5.11",
         "5.17",
-        "7.01"
+        "7.01",
+        "17.25"
       ]
     }
   ]
