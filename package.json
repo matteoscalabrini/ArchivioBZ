@@ -7,6 +7,7 @@
   "scripts": {
     "build": "node library/build.mjs",
     "check": "npm run build -- --check",
+    "db:sync": "node --env-file-if-exists=library/.deploy/.env.local library/db/sync.mjs",
     "deploy": "node library/deploy.mjs",
     "map-data": "node library/mapgen/focus.mjs && uv run library/mapgen/fetch.py && uv run library/mapgen/build.py",
     "present": "node library/build.mjs --present",
@@ -17,6 +18,8 @@
     "node": ">=24"
   },
   "devDependencies": {
+    "@neondatabase/serverless": "^1.2.1",
+    "@vercel/blob": "^2.9.0",
     "mammoth": "^1.13.0",
     "marked": "^18.2.0"
   }

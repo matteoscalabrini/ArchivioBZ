@@ -26,6 +26,17 @@ The web version differs from the local one in one way: the originals (the PDFs, 
 
 Once per machine: `npm i -g vercel`, `vercel login`, `vercel link --cwd library/.deploy --project archiviobz`.
 
+### Media and database (from 16 November 2026)
+
+The files git does not keep (the downloads under `research_notes/`, the Word reports, the photographs in `Foto Vittoria/`: 730 files, 1.4 GB) are copied to a **private** Vercel Blob store, `archiviobz-media` in Frankfurt; nothing there has a public address, and the site links none of it. The records are mirrored in a Postgres database, `archiviobz-db` (Neon, free plan, Frankfurt), with the tables `entries`, `media`, `entry_media` (which file and pictures each row holds), `keywords`, `places` and `kinds` (`library/db/schema.sql`).
+
+```sh
+npm run db:sync               # uploads new or changed media, then rebuilds the database from the records
+npm run db:sync -- --dry-run  # says what it would upload
+```
+
+The records in git stay the source: the database is emptied and written again on every sync, so it is never edited by hand. A file is uploaded when Blob lacks it or holds an older copy; nothing is ever deleted from Blob, so a lost or emptied disk cannot empty the backup (files in Blob and no longer on disk are listed). Credentials come from `library/.deploy/.env.local`, git-ignored, refreshed with `vercel env pull --cwd library/.deploy`.
+
 ### Adding material
 
 1. **File it.** Put the download in the matching `files/` folder and add its line to that folder's `manifest.md`: file, source address, maker, date, rights. Nothing changes here from before.
