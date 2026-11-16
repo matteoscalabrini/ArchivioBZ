@@ -3,6 +3,7 @@
 // that load when their row first opens, and the address kept in step with all of it (state.js).
 import { parseState, formatState, matches, compare } from './state.js';
 import { load, stepPicture } from './pictures.js';
+import './lightbox.js';
 
 const list = document.querySelector('.list');
 const status = document.querySelector('.status');

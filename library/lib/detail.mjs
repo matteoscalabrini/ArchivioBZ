@@ -27,12 +27,15 @@ export function rowDetail(entry, { ctx, places, onMap = false, away = onMap, up 
 // The first picture shows. With several, each picture has under it, above its caption, a line
 // "← 2 / 6 →" whose arrows step to the picture before and after (web/pictures.js), the first's "←"
 // and the last's "→" disabled. No `src` until the row opens: the page's script copies `data-src` across then.
+// A picture is a button: clicked, it opens full screen over the dimmed page (web/lightbox.js),
+// which off the web also links its original (data-original).
 function pictureBlock(pictures, up) {
   const count = pictures.length;
   const figures = pictures.map((picture, n) => {
     const size = Number.isInteger(picture.w) && Number.isInteger(picture.h) ? ` width="${picture.w}" height="${picture.h}"` : '';
-    let image = `<img data-src="${esc(up + encodePath(picture.src))}" alt=""${size}>`;
-    if (picture.original) image = `<a href="${esc(picture.original)}">${image}</a>`;
+    const original = picture.original ? ` data-original="${esc(picture.original)}"` : '';
+    const image = `<button type="button" class="pic-open"${original} aria-label="Show the picture full screen">`
+      + `<img data-src="${esc(up + encodePath(picture.src))}" alt=""${size}></button>`;
     const nav = count < 2 ? '' : '<p class="pic-nav">'
       + `<button type="button" data-step="-1" aria-label="Previous picture"${n === 0 ? ' disabled' : ''}>←</button>`
       + `<span class="pic-n">${n + 1} / ${count}</span>`

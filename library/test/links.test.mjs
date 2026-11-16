@@ -23,7 +23,7 @@ function status(port, urlPath) {
   });
 }
 
-test('every local href, src and data-src in every built page leads to a file', async () => {
+test('every local href, src, data-src and data-original in every built page leads to a file', async () => {
   const { root, out, run } = await buildFixtures();
   assert.equal(run.status, 0, run.stdout + run.stderr);
   const server = createServer({ root, out });
@@ -41,7 +41,7 @@ test('every local href, src and data-src in every built page leads to a file', a
     for (const page of pages) {
       const html = await readFile(path.join(out, page), 'utf8');
       const base = new URL(page.split('/').map(encodeURIComponent).join('/'), 'http://library.test/');
-      for (const [, attr, raw] of html.matchAll(/\s(href|src|data-src)="([^"]*)"/g)) {
+      for (const [, attr, raw] of html.matchAll(/\s(href|src|data-src|data-original)="([^"]*)"/g)) {
         const value = unesc(raw).trim();
         if (!value || value.startsWith('#') || /^https?:\/\//i.test(value)) continue;
         const name = `${page}: ${attr}="${value}"`;

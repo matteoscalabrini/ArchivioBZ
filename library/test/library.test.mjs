@@ -91,7 +91,8 @@ test('no <img src> inside a closed row', async () => {
   }
   const photo = row(html, '5.01').inner;
   assert.match(photo, /<figcaption>A picture wider than 1600 pixels\.<\/figcaption>/);
-  assert.match(photo, /<a href="\/source\/wide\.jpg"><img /);
+  assert.match(photo, /<button type="button" class="pic-open" data-original="\/source\/wide\.jpg" aria-label="Show the picture full screen"><img [^>]*><\/button>/,
+    'a picture is a button that opens it full screen; off the web it carries the address of its original');
 });
 
 test('several pictures: ← n / N → under each picture and above its caption; one picture: no switcher', async () => {
@@ -109,8 +110,8 @@ test('several pictures: ← n / N → under each picture and above its caption; 
       `<button type="button" data-step="-1" aria-label="Previous picture"${n === 0 ? ' disabled' : ''}>←</button>`
       + `<span class="pic-n">${n + 1} / 3</span>`
       + `<button type="button" data-step="1" aria-label="Next picture"${n === 2 ? ' disabled' : ''}>→</button>`);
-    const at = ['<a href="/source/p', '<img ', '<p class="pic-nav">', `<figcaption>Picture ${n + 1}.</figcaption>`].map((part) => inner.indexOf(part));
-    assert.ok(at.every((i, k) => i >= 0 && (k === 0 || i > at[k - 1])), `picture ${n + 1}: link, picture, switcher, caption, in that order`);
+    const at = ['<button type="button" class="pic-open"', '<img ', '<p class="pic-nav">', `<figcaption>Picture ${n + 1}.</figcaption>`].map((part) => inner.indexOf(part));
+    assert.ok(at.every((i, k) => i >= 0 && (k === 0 || i > at[k - 1])), `picture ${n + 1}: button, picture, switcher, caption, in that order`);
   });
   const single = row(html, '5.02').inner;
   assert.match(single, /<figcaption>Picture 1\.<\/figcaption>/);
@@ -181,7 +182,7 @@ test('on the web a row links no file it holds and no original of its pictures; i
   assert.equal(more(html, '5.01'), null, 'a file kind');
   assert.equal(more(html, '5.02'), null, 'a file kind by default');
   assert.equal(more(html, '5.00'), null, 'a read without its page');
-  assert.doesNotMatch(row(html, '5.01').inner, /<a href="[^"]*"><img /, 'the picture links nowhere');
+  assert.match(row(html, '5.01').inner, /<button type="button" class="pic-open" aria-label="Show the picture full screen"><img /, 'the picture opens full screen, with no original');
   assert.match(definition(row(html, '5.02').inner, 'Source'), /<a href="https:\/\/example\.org\/az-1931"[^>]*>Example archive<\/a>/);
   assert.doesNotMatch(html, /\/source\//);
 });

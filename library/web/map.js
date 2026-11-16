@@ -6,6 +6,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { load, stepPicture } from './pictures.js';
+import './lightbox.js';
 
 THREE.ColorManagement.enabled = false; // the greys below are written out as they are
 

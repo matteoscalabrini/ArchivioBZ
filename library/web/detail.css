@@ -5,7 +5,7 @@
 .detail .txt p { margin: 0 0 14px; }
 
 .pics figure { margin: 0; }
-.pics a { display: inline-block; vertical-align: top; }
+.pic-open { display: inline-block; vertical-align: top; max-width: 100%; margin: 0; padding: 0; border: 0; background: none; cursor: zoom-in; }
 .pics img { display: block; width: auto; height: auto; max-width: 100%; max-height: 520px; }
 .pics figcaption { margin-top: 8px; max-width: 60ch; font-size: var(--size-meta); color: var(--grey); }
 /* Several pictures: "← 2 / 6 →" on one line under the picture, above its caption, so a caption
@@ -49,3 +49,30 @@ table.recs td:last-child { padding-right: 0; }
 .e-step .n { color: var(--grey); font-variant-numeric: tabular-nums; }
 .e-step button:not(:disabled) { text-decoration: underline; text-underline-offset: 4px; }
 .e-step button:disabled { color: var(--grey); cursor: default; }
+
+/* A picture full screen (web/lightbox.js): as large as the window allows, the page dimmed and
+   blurred behind it; a click beside the picture closes it. */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.55);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  cursor: zoom-out;
+}
+.lightbox[hidden] { display: none; }
+.lightbox:focus { outline: none; }
+.lightbox img {
+  display: block;
+  width: min(calc(100vw - 48px), calc((100vh - 48px) * var(--ratio, 1.333)));
+  width: min(calc(100vw - 48px), calc((100dvh - 48px) * var(--ratio, 1.333)));
+  height: auto;
+  background: var(--paper);
+  cursor: default;
+}
+.lightbox .lb-original { position: absolute; right: 24px; bottom: 14px; color: var(--paper); font: 400 var(--size-meta)/1.2 var(--sans); }
+html.lb-open { overflow: hidden; }

@@ -5,6 +5,7 @@
 // address keeps what is open (#o=5.01), so a page can be opened on a source. A click with a
 // modifier key, or without this script, follows the link to the Library instead.
 import { load, stepPicture } from './pictures.js';
+import './lightbox.js';
 
 const panel = globalThis.document?.getElementById('panel');
 if (panel) {
