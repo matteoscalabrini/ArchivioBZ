@@ -35,6 +35,24 @@ export function stripJpeg(buf) {
   return Buffer.concat(kept);
 }
 
+// jpegOrientation(buf) -> the Exif orientation of a JPEG, 1 to 8; 1 (as stored) when it has none.
+// 5 to 8 turn the picture a quarter: it shows with its width and height exchanged.
+export function jpegOrientation(buf) {
+  if (buf.length < 4 || buf[0] !== 0xff || buf[1] !== 0xd8) return 1;
+  let at = 2;
+  while (at + 4 <= buf.length && buf[at] === 0xff && buf[at + 1] !== SOS) {
+    if (buf[at + 1] === 0xff) {
+      at += 1;
+      continue;
+    }
+    const end = at + 2 + buf.readUInt16BE(at + 2);
+    const body = buf.subarray(at + 4, Math.min(end, buf.length));
+    if (buf[at + 1] === 0xe1 && body.subarray(0, 6).toString('latin1') === 'Exif\0\0') return orientationOf(body.subarray(6)) ?? 1;
+    at = end;
+  }
+  return 1;
+}
+
 // The orientation in the first directory of a TIFF structure, or null.
 function orientationOf(tiff) {
   if (tiff.length < 8) return null;

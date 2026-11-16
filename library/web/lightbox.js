@@ -33,8 +33,9 @@ function open(button) {
   if (!src) return;
   box ??= make();
   const picture = box.querySelector('img');
-  const w = Number(img.getAttribute('width')) || img.naturalWidth || 4;
-  const h = Number(img.getAttribute('height')) || img.naturalHeight || 3;
+  // As the browser shows it (a phone's portrait turned upright), else as the build measured it.
+  const w = img.naturalWidth || Number(img.getAttribute('width')) || 4;
+  const h = img.naturalHeight || Number(img.getAttribute('height')) || 3;
   picture.style.setProperty('--ratio', String(w / h));
   picture.src = src;
   picture.alt = button.closest('figure')?.querySelector('figcaption')?.textContent ?? '';

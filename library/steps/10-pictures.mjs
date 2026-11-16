@@ -14,6 +14,7 @@ import { mkdir, readFile, rename, rm, stat } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { promisify } from 'node:util';
+import { jpegOrientation } from '../lib/metadata.mjs';
 
 const run = promisify(execFile);
 const MAX = 1600;
@@ -131,8 +132,10 @@ export async function convert(src, dest) {
   return size;
 }
 
-// {w, h} from a JPEG's frame header, or null when `buf` is not a JPEG.
-function jpegSize(buf) {
+// {w, h} of a JPEG as it shows, or null when `buf` is not a JPEG: from the frame header, with
+// width and height exchanged when the Exif orientation turns it a quarter (a phone's portrait
+// photograph is stored on its side and shows upright).
+export function jpegSize(buf) {
   if (buf[0] !== 0xff || buf[1] !== 0xd8) return null;
   let at = 2;
   while (at + 9 < buf.length && buf[at] === 0xff) {
@@ -140,7 +143,8 @@ function jpegSize(buf) {
     if (marker === 0xff) {
       at += 1; // fill byte
     } else if (marker >= 0xc0 && marker <= 0xcf && marker !== 0xc4 && marker !== 0xc8 && marker !== 0xcc) {
-      return { w: buf.readUInt16BE(at + 7), h: buf.readUInt16BE(at + 5) };
+      const [w, h] = [buf.readUInt16BE(at + 7), buf.readUInt16BE(at + 5)];
+      return jpegOrientation(buf) >= 5 ? { w: h, h: w } : { w, h };
     } else {
       at += 2 + buf.readUInt16BE(at + 2);
     }

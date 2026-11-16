@@ -2,7 +2,8 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import path from 'node:path';
 import { readFile, readdir, writeFile } from 'node:fs/promises';
-import { stripJpeg } from '../lib/metadata.mjs';
+import { jpegOrientation, stripJpeg } from '../lib/metadata.mjs';
+import { jpegSize } from '../steps/10-pictures.mjs';
 import { buildRoot, cleanRoot } from './helpers.mjs';
 
 const segment = (marker, body) => {
@@ -94,4 +95,27 @@ test('the build writes no camera, place or comment into any JPEG, even from a ph
     for (const word of ['iPh', 'someone']) assert.equal(buf.includes(word), false, `${word} in ${name}`);
     assert.equal(segments(buf).some(([marker]) => marker === 0xe1 || marker === 0xed || marker === 0xfe), false, name);
   }
+});
+
+// A frame header (SOF0) for a picture `w` wide and `h` high, as the pixels are stored.
+const frame = (w, h) => {
+  const body = Buffer.alloc(15);
+  body[0] = 8;
+  body.writeUInt16BE(h, 1);
+  body.writeUInt16BE(w, 3);
+  body[5] = 3;
+  return segment(0xc0, body);
+};
+
+test('the orientation a phone wrote is read from the Exif block, 1 when there is none', () => {
+  assert.equal(jpegOrientation(jpeg(JFIF, exif({ orientation: 6 }), frame(1600, 1200))), 6);
+  assert.equal(jpegOrientation(jpeg(JFIF, exif({ orientation: 8, little: true }), frame(1600, 1200))), 8);
+  assert.equal(jpegOrientation(jpeg(JFIF, frame(1600, 1200))), 1);
+});
+
+test('a picture turned a quarter is measured as it shows, upright: a portrait stays a portrait', () => {
+  assert.deepEqual(jpegSize(jpeg(JFIF, exif({ orientation: 6 }), frame(1600, 1200))), { w: 1200, h: 1600 });
+  assert.deepEqual(jpegSize(jpeg(JFIF, exif({ orientation: 8 }), frame(1600, 1200))), { w: 1200, h: 1600 });
+  assert.deepEqual(jpegSize(jpeg(JFIF, exif({ orientation: 3 }), frame(1600, 1200))), { w: 1600, h: 1200 }, 'upside down keeps its sides');
+  assert.deepEqual(jpegSize(jpeg(JFIF, frame(1600, 1200))), { w: 1600, h: 1200 });
 });
