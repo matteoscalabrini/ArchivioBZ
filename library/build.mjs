@@ -1,9 +1,12 @@
-// node library/build.mjs [--check] [--present] [--root DIR] [--out DIR]
+// node library/build.mjs [--check] [--present] [--web] [--root DIR] [--out DIR]
 //
 // Loads and checks every record and prints each problem. Any error stops the build. Otherwise,
 // unless --check, empties `out` (only a folder this build made, marked by .library-dist), copies
 // library/web/ into it, runs each library/steps/*.mjs in name order and prints the counts.
 // A step is `export default async function (ctx)`; see `ctx` below.
+//
+// --web builds the site that goes online (npm run deploy): the originals under /source/ are not
+// there, so ctx.sourceUrl gives null and nothing links to them; the reads' pictures are copied in.
 import path from 'node:path';
 import { realpathSync } from 'node:fs';
 import { cp, copyFile, mkdir, readdir, rm, writeFile } from 'node:fs/promises';
@@ -14,7 +17,7 @@ import { loadLibrary, sourceUrl } from './lib/records.mjs';
 const LIBRARY = path.dirname(fileURLToPath(import.meta.url));
 const MARKER = '.library-dist';
 
-export async function build({ root = path.dirname(LIBRARY), out, check = false, present = false } = {}) {
+export async function build({ root = path.dirname(LIBRARY), out, check = false, present = false, web = false } = {}) {
   root = path.resolve(root);
   out = path.resolve(out ?? path.join(root, 'library', 'dist'));
 
@@ -38,7 +41,7 @@ export async function build({ root = path.dirname(LIBRARY), out, check = false, 
     root,
     out,
     lib,
-    options: { check, present },
+    options: { check, present, web },
     problems,
     async write(relPath, content) {
       const file = inside(out, relPath);
@@ -50,7 +53,7 @@ export async function build({ root = path.dirname(LIBRARY), out, check = false, 
       await mkdir(path.dirname(file), { recursive: true });
       await copyFile(absSrc, file);
     },
-    sourceUrl: (absPath) => sourceUrl(root, absPath),
+    sourceUrl: (absPath) => (web ? null : sourceUrl(root, absPath)),
   };
 
   const before = problems.length;
@@ -135,10 +138,10 @@ if (startedAsScript()) {
   let values;
   try {
     ({ values } = parseArgs({
-      options: { check: { type: 'boolean' }, present: { type: 'boolean' }, root: { type: 'string' }, out: { type: 'string' } },
+      options: { check: { type: 'boolean' }, present: { type: 'boolean' }, web: { type: 'boolean' }, root: { type: 'string' }, out: { type: 'string' } },
     }));
   } catch (err) {
-    console.error(`${err.message}\nusage: node library/build.mjs [--check] [--present] [--root DIR] [--out DIR]`);
+    console.error(`${err.message}\nusage: node library/build.mjs [--check] [--present] [--web] [--root DIR] [--out DIR]`);
     process.exit(1);
   }
   process.exitCode = await build(values);

@@ -56,6 +56,10 @@ also expand easily our research."
 
 - No backend, editor, login or database now.
 - No public deployment now. No decision yet on which third-party files could be republished.
+  - **16 Nov 2026:** The author chose to put the site online, open to anyone, at archiviobz.vercel.app
+    (`npm run deploy`, README "Online"). The pictures go up as study copies at screen size; the
+    originals (1.2 GB of PDFs, full scans and saved pages) stay on disk and the web build links none
+    of them. The About page's Rights paragraph says so.
 - No search box, no graph view, no timeline view.
 - The walk and its photographs appear nowhere: not as rows, not on the map. **(M)**
 - No change to BolzanoDot, its data or its deployment. The library takes a copy of the dot data
@@ -309,7 +313,7 @@ Tables show their first records instead of a picture.
 
 ## How it grows
 
-the author hands over new material (photos of documents, PDFs, links). **(M)** "Realistically I go
+The author hands over new material (photos of documents, PDFs, links). **(M)** "Realistically I go
 back to you." The builder files each item in the right downloads folder, adds its manifest line as
 before, writes its record, and rebuilds. The README gets a short section saying exactly this, so
 any later session does it the same way. Because the records are already structured data, an "add
@@ -321,7 +325,7 @@ entry" form can be put on top later without redoing them.
 2. The references: records, pictures, manifest.
 3. The long reads: two reports with their figures, eleven thread notes, the eagles story.
 4. The map with its places, About, the keyword index.
-5. the author's idea text replaces the stand-in; he prunes the keywords.
+5. The author's idea text replaces the stand-in; he prunes the keywords.
 
 Each step leaves something that can be shown.
 

@@ -24,7 +24,7 @@ Where sources disagree, the row says so and leaves the disagreement standing.
 
 ## Rights
 
-Much of what is held belongs to its publishers and archives. The copies here are study copies, shown privately. Each row states the rights as its source states them. Nothing here is cleared for publication.
+Much of what is held belongs to its publishers and archives. The pictures here are study copies at screen size, put online for a student project and not cleared with their holders. Each row states the rights as its source states them and names where the thing is held. The full scans, PDFs and saved pages behind the rows are not republished here.
 
 ## The map
 

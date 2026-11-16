@@ -4,16 +4,27 @@ Research base for the studio project. Everything here was gathered on 22 October
 
 ## The library (from 10 November 2026)
 
-`library/` is a private website that shows everything in this folder as one list of rows, one row per item held, with the project's idea as the way in. Why it is built the way it is: `docs/superpowers/specs/2026-11-10-research-library-design.md`.
+`library/` is a website that shows everything in this folder as one list of rows, one row per item held, with the project's idea as the way in. Why it is built the way it is: `docs/superpowers/specs/2026-11-10-research-library-design.md`. Since 16 November 2026 it is also online, open to anyone, at https://archiviobz.vercel.app.
+
+The code and the texts written for the project are under the MIT licence (`LICENSE`); the material gathered from archives and publishers is not, and stays under the rights each manifest records.
 
 ```sh
 npm install        # once
 npm run build      # checks every record, then writes library/dist/
 npm run serve      # http://127.0.0.1:5180, works offline
 npm run check      # checks the records without building
+npm run deploy     # builds the web version and puts it online
 ```
 
 Add `-- --present` to the build for a showing: it hides a stand-in idea text and puts the keyword index in its place.
+
+### Online
+
+`npm run deploy` (`library/deploy.mjs`) builds with `--web --present` into `library/.deploy/.vercel/output/static` and uploads that folder as it is (`vercel deploy --prebuilt --prod`), to the Vercel project `archiviobz` on the author's Hobby account. Vercel builds nothing: the build needs the downloads, which are not in git. `-- --preview` uploads to a preview address instead.
+
+The web version differs from the local one in one way: the originals (the PDFs, full scans and saved pages under `research_notes/` and `reports/`, 1.2 GB) are not online, so nothing links to them. A row has no "Open the file" link and its pictures link nowhere; its Source line still leads to the holder. In a read, a link to a file a row holds leads to that row, a link to any other file is plain words, and a picture is copied in at 1600 px under `img/read/`. `library/dist` stays the local site, with the originals.
+
+Once per machine: `npm i -g vercel`, `vercel login`, `vercel link --cwd library/.deploy --project archiviobz`.
 
 ### Adding material
 
@@ -23,11 +34,39 @@ Add `-- --present` to the build for a showing: it hides a stand-in idea text and
 4. **Write its text.** Thirty to ninety words from the manifest and the notes, nothing the notes do not support, doubt carried over.
 5. `npm run check`, then `npm run build`.
 
+Row types added on 12 November 2026: Film (a still plus the catalogue record, linking to where the film plays), Drawing (plans and architectural drawings), Object, Sound, Minutes (council and parliamentary records), Magazine, Leaflet. The list is in `library/lib/records.mjs`.
+
 What gets a row: anything we hold material for. A catalogue export, a set of record files or a statistical table is one row of type Table that opens to the table. An OCR or text copy belongs to the row of the scan it came from.
 
 One thing, one row. Several views of the same thing are one row with several pictures, which the reader steps through with the arrows under the picture: by day and at night, the whole and a detail, before and after, front and back, the same document as a gazette scan and as a consolidated text. Before adding a row, check whether the thing already has one, and add the picture there.
 
-Where the shared lists live: keywords in `library/content/keywords.json` (rename or merge a keyword there, in one line, never by editing records), places in `library/content/places.json`, the idea in `library/content/idea.md`. The idea is the author's text; a word is made a keyword by writing `[[word|Keyword]]`.
+A photograph of a flat thing taken at an angle (a poster or a page in a showcase, a framed print) is cut to the sheet and set square before it becomes a row's picture. Keep the full-size photograph in the folder's `photos/`, describe the cut in the folder's `rectify.json` (photograph, the sheet's four corners, where the picture goes), and run `uv run library/tools/rectify.py cut "<folder>/rectify.json" --debug <a scratch folder>`. The same tool's `look` command makes the gridded close-ups the corners are read from; the head of the file explains both, how the sheet's proportions are worked out from the lens, and how to check a cut. Photographs dragged out of the Photos app's library can be 360 px previews when the originals are still in iCloud: check the pixel size, and export from Photos with "Export Unmodified Original".
+
+Where the shared lists live: keywords in `library/content/keywords.json` (rename or merge a keyword there, in one line, never by editing records), places in `library/content/places.json`, the idea in `library/content/idea.md`. The kinds of entry that the Library page filters by (Press, Pictures, References…) are groups of row types in `library/content/kinds.json`: regroup or rename there; the build warns when a row's type belongs to no kind. The idea is the author's text; a word is made a keyword by writing `[[word|Keyword]]`.
+
+### Texts for readers (from 16 November 2026)
+
+A report or a notes file is the researcher's text, written to the author. What the site shows a reader is a version rewritten for someone outside, in `library/content/reads/<row number>.md`, named in the row's `more.target`. The researcher's file stays where it is and stays the row's `file`. All 19 long reads have one: the two reports (0.01, 0.02) and the notes of threads 1 to 17. Such a text is told in the order things happened, keeps every source as a link, says doubt in words instead of bracket tags, ends on a list "Still open", and does not link to the researcher's file. In the Markdown:
+
+- A heading of the first level (`# …`) starts a part, and each part is a page of its own (`read/0.01.html`, `read/0.01-2.html`, …) that lists the others. With one such heading, or none, the text is one page.
+- A paragraph that opens with a picture is a figure; the rest of that paragraph is its caption.
+- A link whose address is the source of a row, or of a record in a table the library holds, opens that row in a panel beside the text, as a row opens on the map. `[words](row:5.01)` names a row outright; use it where several rows share one source address. Any other link leaves the site and is marked with an arrow.
+- A row may give its text a title of its own in `more.title`. The notes rows do: their titles in the Library are the researcher's catalogue titles, and the page is headed by the reader's title.
+
+Before a text is rewritten, check what later threads found: several claims of October 2026 were overtaken in November (the Monument on two posters, the Cinema Corso's demolition, the eagle heads, the popular trains to Bolzano, the ban on two Trenker films), and the reader's text gives the later state.
+
+The scripts used are in `library/tools/reads/`:
+
+```sh
+python3 library/tools/reads/show.py "research_notes/…/01_posters_graphics.md"   # a notes file with each address cut to a short key, or to row:N.NN where a row holds it
+python3 library/tools/reads/rows.py 13                                         # the rows of a section: number, kind, date, title, first picture
+python3 library/tools/reads/find.py 200 3 "Verona e Rovigo"                    # where the notes and reports say something
+python3 library/tools/reads/make.py 13.00 draft.md                             # write reads/13.00.md from a draft, and check it
+python3 library/tools/reads/make.py 13.00                                      # check the published text again
+library/tools/reads/publish.sh 13.00 "The title for readers"                   # point the row at it, rebuild, check
+```
+
+In a draft a link may be written `[words](@key)` and a picture `![alt](@img:13_cinema_corso/images/file.jpg)`: `make.py` turns each key into the one address or file of the research base that contains it and stops if there is none or more than one, so no address reaches a reader's text that the research does not hold. It then lists what every `row:` link is hung on, and names the numbers and quotations in the text that are in no notes file, report, row or manifest. A quotation it names is either an English gloss or a mistake.
 
 ### The map's dot data
 
@@ -44,6 +83,10 @@ Run it again, then `npm run build`, when:
 - the rectangle in `library/mapgen/area.json` changes.
 
 Building and showing the site need neither the network nor Python; only this command does. The downloads (about 380 MB) stay outside git; delete `library/.cache/map-raw/osm.json` to take OpenStreetMap afresh.
+
+A fifth thread was added on 14 November 2026: 17 below, a morning in the Monument to Victory. The author photographed the exhibition *BZ '18–'45* in its crypt; five printed pieces shown there were cut square from the photographs and traced to their originals, makers and occasions. It is the first thread that starts from our own photographs: all 49 are in `files/17_monument_visit/photos/` at full size and in the library, as rows 17.01 to 17.30 or as pictures added to rows 5.01, 5.02 and 5.12; the previews first put in the repository are in `Foto Vittoria/`.
+
+A fourth round was added on 12 November 2026: threads 13 to 16 below (the Cinema Corso, city architecture, propaganda on film and radio, propaganda in print), 99 new rows. Their numbers are also their library sections; 8 to 12 were already taken by the Semirurali investigation and the references. How the round was briefed: `docs/superpowers/plans/2026-11-12-research-expansion-brief.md`.
 
 A third investigation was added on 10 November 2026: `research_notes/Defusing by form/`, the references on defusing charged material by changing its form. Its notes file is the conversation in which that direction was worked out.
 
@@ -68,6 +111,11 @@ Word versions of both reports, with figures from the gathered material, are in `
 | 05 Ponte Druso eagles, Corso Italia cinemas, fascist built heritage and its defusing | `05_landmarks_heritage.md` | `files/05_landmarks_heritage/` (10 PDFs incl. the Comune's 2007 route, 28 images) |
 | 06 Postwar brand, ASTAT tourism 1950–2025, bed cap, overtourism, translocality theory | `06_brand_overtourism_theory.md` | `files/06_brand_overtourism_theory/` (ASTAT workbooks, derived series CSV, law texts) |
 | 07 Hand-opened verifications: Teßmann 1931/1933 bridge pages, Salce records, FamilySearch | `07_browser_verifications.md` | `files/07_browser_verifications/` (9 captures) |
+| 13 The Cinema Corso, ex Palazzo del Turismo (Armando Ronca, 1938–41): design, art show of 1940, Option commissariat, occupation, cinema years, the demolition of 1988–89 in the provincial council's minutes | `13_cinema_corso.md` | `files/13_cinema_corso/` (Dolomiten 1938 design, TCI and Pedrotti photographs, Turris Babel 73; in `tessmann/` the council minutes 1980–96 and Tandem 1985) |
+| 14 City architecture and plan 1922–43: the 1929 competition, Piacentini's plan sheets of 1935 and 1938, maps before and after, what was removed (Walther, Laurin, the Museum tower, Gries) | `14_city_architecture.md` | `files/14_city_architecture/` (stitched plan sheets, 1858 cadastre, Baedeker 1927 and War Office 1942 plans, decrees, Canali 2016) |
+| 15 Propaganda on film and radio: Luce films and photographs, censorship of Trenker's films, the EIAR station, cinemas and travelling cinema | `15_propaganda_film_radio.md` | `files/15_propaganda_film_radio/` (12 film stills with catalogue records, Luce photo index of 144 records, Italia Taglia table, Chamber record of 6 Feb 1926) |
+| 16 Propaganda in print, object and school, and the print that answered it: Tolomei's Prontuario, the name, school and surname decrees, Atesia Augusta, Option leaflets and posters | `16_propaganda_print.md` | `files/16_propaganda_print/` (41 images, 3 Gazzetta Ufficiale issues, Ianes 2019) |
+| 17 A morning in the Monument to Victory, 14 November 2026: all 49 of the author's photographs catalogued. Five printed pieces shown in BZ '18–'45 cut square and traced (the exhibition poster of 1929, Steinberger's pamphlet cover of 1932, Anton Hofer's poster of 1933, the *Illustrazione Italiana* cover of 1935, the column poster of 1938); the eagle heads of Ponte Druso, the Cadorin frescoes, two newspaper pages, five photographic prints, the exhibition's panels, the monument and the column behind it | `17_monument_visit.md` | `files/17_monument_visit/` (the 49 originals in `photos/`, 18 cut pictures and their `rectify.json`, newspaper pages of each occasion, two Salce catalogue photographs, one ANNO scan) |
 
 ## Second thread: Semirurali versus Libyan villages (26 Oct 2026)
 
@@ -89,4 +137,4 @@ Each notes file tags its claims. Roughly: [V]/[DB✓]/[VERIFIED-*] = read in the
 
 ## Platforms that need a hand-opened browser
 
-Teßmann digital (`digital.tessmann.it`) and the Catalogo generale dei Beni Culturali run browser checks that refuse scripts; both open normally in Chrome. FamilySearch images need a free login. The Comune di Bolzano residence certificates and the Archivio di Stato di Bolzano call-up lists are reading-room or request-only; see the tracing guide in `04_migration_option_genealogy.md`.
+Teßmann digital (`digital.tessmann.it`) and the Catalogo generale dei Beni Culturali run browser checks that refuse scripts; both open normally in Chrome. On Teßmann, search through the site's own form, open a hit, and use its "Downloaden / Drucken" button (PNG or PDF; "Hohe Auflösung" for the full scan); a search address typed by hand may be refused. Besides newspapers it holds the word-for-word minutes of the provincial council and magazines such as Tandem, all open. Newspapers of recent decades (the Dolomiten and Volksbote of the 1980s, for example) are indexed but can be read only at the library's own workstations; the dates worth reading there for the Cinema Corso are listed in `13_cinema_corso.md`, section 12. FamilySearch images need a free login. The Comune di Bolzano residence certificates and the Archivio di Stato di Bolzano call-up lists are reading-room or request-only; see the tracing guide in `04_migration_option_genealogy.md`.

@@ -1,0 +1,40 @@
+MIT License
+
+Copyright (c) 2026 The ArchivioBZ authors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+What this licence covers: the code (library/, except library/web/vendor/) and
+the texts written for this project (this repository's README, docs/, the notes
+and reports, and library/content/).
+
+What it does not cover, because it is not ours to license:
+
+- Material gathered from archives, libraries, museums, publishers and websites:
+  scans, photographs, documents, PDFs, saved pages, catalogue records, tables,
+  and the pictures made from them. Each stays under the rights its holder
+  states; the manifest.md beside each file records them. Being in this
+  repository grants no rights to any of it.
+- library/web/vendor/: three.js, Copyright 2010-2026 Three.js Authors, under
+  its own MIT licence.
+- library/map-data/: built from OpenStreetMap (© OpenStreetMap contributors,
+  Open Database License 1.0) and from the LiDAR survey of the Provincia
+  autonoma di Bolzano – Alto Adige (CC0).

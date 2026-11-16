@@ -94,7 +94,8 @@ async function thumb(file, { w, h }, cache) {
 }
 
 // The converted file for `abs` in `cache`, converting only when the cache does not hold it.
-async function cached(abs, cache) {
+// Also used by steps/40-longreads.mjs for the pictures of the reads on the web.
+export async function cached(abs, cache) {
   const { size, mtimeMs } = await stat(abs);
   const key = createHash('sha256').update(`${CACHE_VERSION}\0${abs}\0${size}\0${mtimeMs}`).digest('hex').slice(0, 32);
   const file = path.join(cache, `${key}.jpg`);

@@ -2,11 +2,12 @@
   "name": "studio1-research-library",
   "version": "0.0.0",
   "private": true,
-  "description": "A private, offline website of the Studio 1 research: one row per item held.",
+  "description": "The Studio 1 research library: one row per item held. Local with npm run serve, online at archiviobz.vercel.app with npm run deploy.",
   "type": "module",
   "scripts": {
     "build": "node library/build.mjs",
     "check": "npm run build -- --check",
+    "deploy": "node library/deploy.mjs",
     "map-data": "node library/mapgen/focus.mjs && uv run library/mapgen/fetch.py && uv run library/mapgen/build.py",
     "present": "node library/build.mjs --present",
     "serve": "node library/serve.mjs",

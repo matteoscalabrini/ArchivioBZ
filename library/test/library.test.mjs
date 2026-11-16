@@ -18,8 +18,9 @@ function builtIndex() {
 
 // The Library step alone, on the fixtures plus what later steps would add (pictures, the idea,
 // table previews, map positions), given by `edit`.
-async function render({ idea = null, present = false, edit = () => {} } = {}) {
+async function renderFull({ idea = null, present = false, web = false, edit = () => {}, prepare = async () => {} } = {}) {
   const root = await cleanRoot();
+  await prepare(root);
   const lib = await loadLibrary(root);
   edit(lib);
   const written = new Map();
@@ -28,16 +29,17 @@ async function render({ idea = null, present = false, edit = () => {} } = {}) {
     out: path.join(root, 'dist'),
     lib,
     idea,
-    options: { check: false, present },
+    options: { check: false, present, web },
     problems: lib.problems,
     write: async (relPath, content) => void written.set(relPath, String(content)),
     copyFile: async () => {},
-    sourceUrl: (abs) => sourceUrl(root, abs),
+    sourceUrl: (abs) => (web ? null : sourceUrl(root, abs)),
   };
   const { default: step } = await import('../steps/60-library.mjs');
   await step(ctx);
-  return written.get('index.html');
+  return { html: written.get('index.html'), problems: lib.problems };
 }
+const render = async (options) => (await renderFull(options)).html;
 
 const entry = (lib, no) => lib.entries.find((e) => e.no === no);
 const rows = (html) =>
@@ -165,6 +167,23 @@ test('a read or table row without its page links the file it holds, or nothing',
   assert.deepEqual(more(html, '5.03'), ['Open the file →', '/source/research_notes/Inv%20A/files/05_x/table.csv']);
   assert.equal(more(html, '0.01'), null, 'no page and no file held: no bottom link');
   assert.doesNotMatch(html, /href="(read|table)\//);
+});
+
+test('on the web a row links no file it holds and no original of its pictures; its Source line stays', async () => {
+  const html = await render({
+    web: true,
+    edit(lib) {
+      entry(lib, '5.01').more = { kind: 'file' };
+      entry(lib, '5.00').abs = path.join(entry(lib, '5.00').dir, 'page.pdf');
+      entry(lib, '5.01').pictures = [{ src: 'img/5.01-1.jpg', w: 40, h: 30, caption: 'A small picture.', original: null }];
+    },
+  });
+  assert.equal(more(html, '5.01'), null, 'a file kind');
+  assert.equal(more(html, '5.02'), null, 'a file kind by default');
+  assert.equal(more(html, '5.00'), null, 'a read without its page');
+  assert.doesNotMatch(row(html, '5.01').inner, /<a href="[^"]*"><img /, 'the picture links nowhere');
+  assert.match(definition(row(html, '5.02').inner, 'Source'), /<a href="https:\/\/example\.org\/az-1931"[^>]*>Example archive<\/a>/);
+  assert.doesNotMatch(html, /\/source\//);
 });
 
 // Steps run in order on the fixtures, as build.mjs runs them; `setup` changes the copy after the
@@ -356,7 +375,7 @@ test('a table row reads preview, text, meta lines, then the bottom link', async 
   assert.ok(at('</dl>') < at('<a class="more"'), 'the bottom link comes after the meta lines');
 });
 
-test('status line, sortable column heads and every keyword at the foot', async () => {
+test('status line, sortable column heads and every keyword with its count under the idea', async () => {
   const html = await builtIndex();
   assert.match(html, /<a href="index.html" aria-current="page">Library<\/a>/);
   assert.match(html, /<span class="what">All entries<\/span><span class="n">6 entries<\/span>/);
@@ -368,9 +387,14 @@ test('status line, sortable column heads and every keyword at the foot', async (
     [['button', 'no', 'true', 'No.'], ['span', undefined, undefined, 'Title'], ['button', 'type', 'false', 'Type'],
       ['button', 'date', 'false', 'Date'], ['span', undefined, undefined, 'Keywords']],
   );
-  const foot = /<footer class="foot">([\s\S]*?)<\/footer>/.exec(html)[1];
-  assert.match(foot, /^<span class="lab">All keywords<\/span>/);
-  const counts = [...foot.matchAll(/data-k="([^"]+)" aria-pressed="false">([^<]+)<sup>(\d+)<\/sup>/g)].map((m) => [m[1], m[2], m[3]]);
+  const all = /<div class="keywords">([\s\S]*?)<\/div>/.exec(html)?.[1];
+  assert.ok(all, 'the keywords stand in their own block');
+  assert.match(all, /^<span class="lab">All keywords<\/span>/);
+  const idea = html.indexOf('<section class="idea');
+  const keywordsAt = html.indexOf('<div class="keywords">');
+  assert.ok(idea > -1 && idea < keywordsAt && keywordsAt < html.indexOf('<div class="status">'), 'under the idea, above the status line');
+  assert.doesNotMatch(html, /<footer class="foot">/, 'no longer at the foot');
+  const counts = [...all.matchAll(/data-k="([^"]+)" aria-pressed="false">([^<]+)<sup>(\d+)<\/sup>/g)].map((m) => [m[1], m[2], m[3]]);
   assert.deepEqual(counts.map((c) => c[0]), IDS);
   assert.deepEqual(counts.find((c) => c[0] === 'archives'), ['archives', 'Archives', '2']);
   assert.deepEqual(counts.find((c) => c[0] === 'irony'), ['irony', 'Irony', '1']);
@@ -395,4 +419,59 @@ test('the page lists the keywords that have a row placed on the map, for "On the
     },
   });
   assert.deepEqual(onMap(moved), ['press', 'typeface']);
+});
+
+
+// The kind buttons above the column heads as [id, label, count], or null when the page has none.
+const kindButtons = (html) => {
+  const line = /<div class="kinds">([\s\S]*?)<\/div>/.exec(html)?.[1];
+  if (line === undefined) return null;
+  return [...line.matchAll(/<button type="button" data-kind="([^"]*)" aria-pressed="false">([^<]*)<sup>(\d+)<\/sup><\/button>/g)]
+    .map((m) => [m[1], unesc(m[2]), Number(m[3])]);
+};
+
+test('each row carries the kind its type belongs to', async () => {
+  const html = await builtIndex();
+  assert.match(row(html, '5.02').attrs, /data-kind="press"/);
+  assert.match(row(html, '5.01').attrs, /data-kind="pictures"/);
+  assert.match(row(html, '12.01').attrs, /data-kind="references"/);
+  assert.match(row(html, '0.01').attrs, /data-kind="project"/);
+});
+
+test('the kinds that have rows stand between the status line and the column heads, in the order of kinds.json, each with its count', async () => {
+  const html = await builtIndex();
+  assert.deepEqual(kindButtons(html), [
+    ['press', 'Press', 1],
+    ['pictures', 'Pictures', 1],
+    ['documents', 'Documents', 1],
+    ['references', 'References', 1],
+    ['project', 'Reports and notes', 2],
+  ]);
+  const at = (cls) => html.indexOf(`<div class="${cls}">`);
+  assert.ok(at('status') < at('kinds') && at('kinds') < at('colhead'), 'status, kinds, column heads');
+});
+
+test('the page hands the script the label of every kind in kinds.json', async () => {
+  const html = await builtIndex();
+  const labels = JSON.parse(/<script type="application\/json" id="kind-labels">([^<]*)<\/script>/.exec(html)[1]);
+  assert.deepEqual(labels, {
+    press: 'Press', pictures: 'Pictures', film: 'Film and sound', documents: 'Documents', references: 'References', project: 'Reports and notes',
+  });
+});
+
+test('a type that no kind names leaves its row without a kind and is named in a warning', async () => {
+  const { html, problems } = await renderFull({ edit: (lib) => { entry(lib, '5.03').type = 'Archive guide'; } });
+  assert.doesNotMatch(row(html, '5.03').attrs, /data-kind=/);
+  assert.deepEqual(kindButtons(html).map((kind) => kind[0]), ['press', 'pictures', 'references', 'project'], 'no row is a document now');
+  const warning = problems.find((p) => p.where === 'library/content/kinds.json');
+  assert.equal(warning?.level, 'warn');
+  assert.match(warning.message, /Archive guide/);
+  assert.match(warning.message, /5\.03/);
+});
+
+test('a library without kinds.json has no kinds line and no row with a kind', async () => {
+  const html = await render({ prepare: (root) => rm(path.join(root, 'library', 'content', 'kinds.json')) });
+  assert.equal(kindButtons(html), null);
+  assert.doesNotMatch(html, /data-kind=/);
+  assert.doesNotMatch(html, /id="kind-labels"/);
 });

@@ -5,7 +5,7 @@ import { existsSync } from 'node:fs';
 import { readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { loadLibrary, sourceUrl } from '../lib/records.mjs';
-import { renderMarkdown, renderDocx, sheets, tidyWord } from '../lib/longread.mjs';
+import { renderMarkdown, renderDocx, renderParts, sheets, tidyWord } from '../lib/longread.mjs';
 import longreads from '../steps/40-longreads.mjs';
 import { buildFixtures, cleanRoot, tempDir } from './helpers.mjs';
 
@@ -14,26 +14,28 @@ const REPORTS = path.join(REPO, 'reports');
 const FIRST = path.join(REPORTS, 'Fascist Bolzano media and migration.docx');
 const SECOND = path.join(REPORTS, 'Semirurali versus Libyan villages.docx');
 
-// The long-reads step on the fixtures; `edit` may change the loaded library first.
-async function runStep({ edit = () => {}, setup = async () => {} } = {}) {
+// The long-reads step on the fixtures; `edit` may change the loaded library first. `copied` maps
+// each file the step copies into the site to the file it copied.
+async function runStep({ edit = () => {}, setup = async () => {}, options = {} } = {}) {
   const root = await cleanRoot();
   await setup(root);
   const lib = await loadLibrary(root);
   edit(lib);
   const written = new Map();
+  const copied = new Map();
   const ctx = {
     root,
     out: path.join(root, 'dist'),
     lib,
-    options: {},
+    options,
     problems: lib.problems,
     write: async (relPath, content) => void written.set(relPath, String(content)),
-    copyFile: async () => {},
-    sourceUrl: (abs) => sourceUrl(root, abs),
+    copyFile: async (abs, relPath) => void copied.set(relPath, abs),
+    sourceUrl: (abs) => (options.web ? null : sourceUrl(root, abs)),
   };
   const before = lib.problems.length;
   await longreads(ctx);
-  return { written, problems: lib.problems.slice(before), lib, root };
+  return { written, copied, problems: lib.problems.slice(before), lib, root };
 }
 
 test('markdown headings and paragraphs render', () => {
@@ -50,6 +52,19 @@ test('a relative link to a file with spaces becomes an encoded /source/ address'
   assert.ok(html.includes(`href="/source/research_notes/Inv%20A/files/05_x/Te%C3%9Fmann%20&#39;60.jpg"`), html);
   assert.ok(html.includes('href="/source/research_notes/Inv%20A/files/other%20dir/page.pdf#p2"'), html);
   assert.ok(html.includes('src="/source/research_notes/Inv%20A/files/05_x/small.png"'), html);
+});
+
+test('a paragraph that opens with a held picture is a figure, and the rest of it the caption', () => {
+  const linkBase = path.join(REPO, 'research_notes', 'Inv A', 'files', '05_x');
+  const html = renderMarkdown('Before.\n\n![A bridge](small.png)\nThe bridge in *1931* ([source](https://example.org/b)).\n\n![Alone](small.png)\n\nText with ![inline](small.png) inside.\n', { linkBase });
+  const src = '/source/research_notes/Inv%20A/files/05_x/small.png';
+  assert.ok(html.includes(`<figure><img src="${src}" alt="A bridge"><figcaption>The bridge in <em>1931</em> (<a href="https://example.org/b" target="_blank" rel="noopener">source</a>).</figcaption></figure>`), html);
+  assert.ok(html.includes(`<figure><img src="${src}" alt="Alone"></figure>`), 'a picture alone is a figure with no caption');
+  assert.ok(html.includes(`<p>Text with <img src="${src}" alt="inline"> inside.</p>`), 'a picture inside a sentence stays where it is');
+  assert.doesNotMatch(html, /<p>\s*<figure|<figure>[^]*?<\/figure>\s*<\/p>/, 'a figure is not inside a paragraph');
+  const outside = renderMarkdown('![Not held](https://example.org/x.png)\nA caption.\n', { linkBase });
+  assert.doesNotMatch(outside, /<figure|<img/, 'a picture from the network is not fetched, so there is no figure');
+  assert.match(outside, /<p>Not held\s+A caption\.<\/p>/);
 });
 
 test('an external link is left alone and opens in a new tab', () => {
@@ -110,6 +125,105 @@ test('the step writes a page per read row: title, way back, body, no repeated he
   const notes = written.get('read/5.00.html');
   assert.ok(notes.includes(`href="/source/research_notes/Inv%20A/files/05_x/Te%C3%9Fmann%20&#39;60.jpg"`), notes);
   assert.ok(notes.includes('target="_blank" rel="noopener">An outside page</a>'));
+});
+
+test('a text with two headings of the first level is in parts; any other is one part', () => {
+  const parts = renderParts('# One\n\nFirst.\n\n## Inside\n\n# Two\n\nSecond, see [the note][n].\n\n[n]: https://example.org/n\n', { linkBase: REPO });
+  assert.deepEqual(parts.map((part) => part.title), ['One', 'Two']);
+  assert.match(parts[0].html, /^<p>First\.<\/p>\s*<h2>Inside<\/h2>\s*$/);
+  assert.match(parts[1].html, /<p>Second, see <a href="https:\/\/example\.org\/n"[^>]*>the note<\/a>\.<\/p>/, 'a link defined at the foot serves every part');
+  const one = renderParts('# Title\n\nText.\n', { linkBase: REPO });
+  assert.deepEqual(one, [{ title: null, html: renderMarkdown('# Title\n\nText.\n', { linkBase: REPO }) }]);
+});
+
+test('a text in parts is a page per part, each naming the whole, listing the parts and stepping to its neighbours', async () => {
+  const { written, problems, lib } = await runStep({
+    setup: (root) => writeFile(path.join(root, 'reports', 'first study.md'), '# Before\n\nOne.\n\n# After\n\nTwo.\n\n# Now\n\nThree.\n'),
+  });
+  assert.deepEqual(problems, []);
+  assert.deepEqual([...written.keys()].sort(), ['read/0.01-2.html', 'read/0.01-3.html', 'read/0.01.html', 'read/5.00.html']);
+  assert.equal(lib.entries.find((e) => e.no === '0.01').page, 'read/0.01.html', 'the row opens on the first part');
+  const second = written.get('read/0.01-2.html');
+  assert.match(second, /<title>After · First study<\/title>/);
+  assert.match(second, /<p class="series">First study · 2 of 3<\/p>\s*<h1>After<\/h1>/);
+  assert.match(second, /<nav class="parts"[^>]*><ol><li><a href="0\.01\.html">Before<\/a><\/li><li><a href="0\.01-2\.html" aria-current="page">After<\/a><\/li><li><a href="0\.01-3\.html">Now<\/a><\/li><\/ol><\/nav>/);
+  assert.match(second, /<article class="read">\s*<p>Two\.<\/p>\s*<\/article>/);
+  assert.match(second, /<nav class="part-step"[^>]*><a rel="prev" href="0\.01\.html">← Before<\/a><a rel="next" href="0\.01-3\.html">Now →<\/a><\/nav>/);
+  assert.match(written.get('read/0.01.html'), /<nav class="part-step"[^>]*><span><\/span><a rel="next" href="0\.01-2\.html">After →<\/a><\/nav>/);
+});
+
+test('a row may give its text a title of its own, and the page is headed by it', async () => {
+  const titled = (lib) => { lib.entries.find((e) => e.no === '0.01').more.title = ' A study for readers '; };
+  const one = (await runStep({ edit: titled })).written.get('read/0.01.html');
+  assert.match(one, /<title>A study for readers<\/title>/);
+  assert.match(one, /<h1>A study for readers<\/h1>/);
+  assert.match(one, /<a class="back" href="\.\.\/index\.html#o=0\.01">← Library<\/a>/);
+  const { written } = await runStep({
+    edit: titled,
+    setup: (root) => writeFile(path.join(root, 'reports', 'first study.md'), '# Before\n\nOne.\n\n# After\n\nTwo.\n'),
+  });
+  assert.match(written.get('read/0.01-2.html'), /<title>After · A study for readers<\/title>/);
+  assert.match(written.get('read/0.01-2.html'), /<p class="series">A study for readers · 2 of 2<\/p>\s*<h1>After<\/h1>/);
+});
+
+test('a link to something the library holds leads to the library, and its row waits in the panel', async () => {
+  const text = 'See [the page](https://example.org/az-1931), [the bridge](row:5.01), [a record](https://example.org/r/2),\n'
+    + '[elsewhere](https://example.org/not-held) and [no such row](row:9.99).\n';
+  const { written, problems } = await runStep({
+    setup: (root) => writeFile(path.join(root, 'reports', 'first study.md'), text),
+    edit: (lib) => {
+      const table = lib.entries.find((e) => e.no === '5.03');
+      table.page = 'table/5.03.html'; // as the tables step leaves it
+      table.records = { columns: ['title', 'date', 'url', 'empty'], rows: [['First', '1928', 'https://example.org/r/1', ''], ['Second <b>', '1929', 'https://example.org/r/2', '']] };
+    },
+  });
+  assert.deepEqual(problems.map((p) => p.message), ['row 0.01: reports/first study.md names row 9.99, which the library does not have']);
+  const html = written.get('read/0.01.html');
+  assert.ok(html.includes('<a href="../index.html#o=5.02" data-row="5.02">the page</a>'), 'by the address of a row\'s source');
+  assert.ok(html.includes('<a href="../index.html#o=5.01" data-row="5.01">the bridge</a>'), 'by the row\'s number');
+  assert.ok(html.includes('<a href="../table/5.03.html" data-row="5.03" data-rec="1">a record</a>'), 'by an address in a held table');
+  assert.ok(html.includes('<a href="https://example.org/not-held" target="_blank" rel="noopener">elsewhere</a>'));
+  assert.ok(html.includes('and no such row.'), 'a row the library lacks is words, not a link');
+  assert.match(html, /<script type="module" src="\.\.\/web\/read\.js"><\/script>/);
+  assert.match(html, /<link rel="stylesheet" href="\.\.\/web\/detail\.css">/);
+  const panel = /<aside class="panel" id="panel"[^>]*hidden>([\s\S]*)<\/aside>/.exec(html)?.[1];
+  assert.ok(panel, 'the panel is on the page, closed');
+  assert.deepEqual([...panel.matchAll(/<article class="entry" data-no="([^"]+)" hidden>/g)].map((m) => m[1]), ['5.02', '5.01', '5.03'], 'in the order cited');
+  assert.match(panel, /<h3 tabindex="-1">Two photographs of a bridge<\/h3><div class="detail/);
+  assert.match(panel, /<dt>Place<\/dt><dd><a href="\.\.\/map\.html#p=ponte-druso">/, 'addresses are written from the read folder');
+  assert.match(panel, /<a class="e-library" href="\.\.\/index\.html#o=5\.01">Open in the Library →<\/a>/);
+  assert.match(panel, /<div class="e-record" data-rec="1" hidden><p class="e-meta">The record cited<\/p><dl class="meta"><dt>title<\/dt><dd>Second &lt;b&gt;<\/dd><dt>date<\/dt><dd>1929<\/dd><dt>url<\/dt><dd><a href="https:\/\/example\.org\/r\/2" target="_blank" rel="noopener">example\.org<\/a><\/dd><\/dl><\/div>/);
+  const plainPage = (await runStep()).written.get('read/0.01.html');
+  assert.doesNotMatch(plainPage, /class="panel"|read\.js/, 'a text that cites no row has no panel');
+});
+
+test('on the web a held file links to its row, any other file of the base is words, and a picture is copied in', async () => {
+  const files = '../research_notes/Inv%20A/files/05_x';
+  const text = `![A small picture](${files}/small.png) Its caption.\n\n`
+    + `See [the photograph](${files}/Te%C3%9Fmann%20'60.jpg), [the page](${files}/page.pdf#p2) and [a saved page](${files}/saved%20page.html).\n`;
+  const { written, copied, problems } = await runStep({
+    options: { web: true },
+    setup: (root) => writeFile(path.join(root, 'reports', 'first study.md'), text),
+  });
+  assert.deepEqual(problems, []);
+  const html = written.get('read/0.01.html');
+  assert.doesNotMatch(html, /\/source\//, 'nothing points at the originals, which are not online');
+  const src = /<figure><img src="\.\.\/(img\/read\/[0-9a-f]+\.jpg)" alt="A small picture"><figcaption>Its caption\.<\/figcaption><\/figure>/.exec(html)?.[1];
+  assert.ok(src, html);
+  assert.match(copied.get(src) ?? '', /\.jpg$/, 'the picture is copied in as a converted JPEG');
+  assert.ok(html.includes('<a href="../index.html#o=5.01" data-row="5.01">the photograph</a>'), 'a row\'s file leads to its row');
+  assert.ok(html.includes('<a href="../index.html#o=5.02" data-row="5.02">the page</a>'));
+  assert.ok(html.includes('and a saved page.</p>'), 'a file no row holds is words');
+  const offline = (await runStep({ setup: (root) => writeFile(path.join(root, 'reports', 'first study.md'), text) })).written.get('read/0.01.html');
+  assert.ok(offline.includes('src="/source/research_notes/Inv%20A/files/05_x/small.png"'), 'off the web the originals are served as before');
+});
+
+test('the build with --web writes no address of an original anywhere', async () => {
+  const { out, run } = await buildFixtures('--web');
+  assert.equal(run.status, 0, run.stdout + run.stderr);
+  const pages = (await readdir(out, { recursive: true })).filter((name) => name.endsWith('.html'));
+  assert.ok(pages.includes('index.html') && pages.includes(path.join('read', '5.00.html')), pages.join(', '));
+  for (const page of pages) assert.doesNotMatch(await readFile(path.join(out, page), 'utf8'), /\/source\//, page);
 });
 
 test('a story closes with its Sources, each linking its row', async () => {

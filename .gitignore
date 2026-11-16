@@ -1,6 +1,7 @@
 # generated
 node_modules/
 library/dist/
+library/.deploy/
 library/.cache/
 .superpowers/
 .DS_Store
@@ -18,3 +19,6 @@ research_notes/**/*.html
 research_notes/**/*.txt
 research_notes/**/*.xlsx
 reports/*.docx
+
+# own photographs as dropped in from the phone, with their GPS: kept out of the repository
+Foto Vittoria/
