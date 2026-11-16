@@ -20,7 +20,7 @@ Add `-- --present` to the build for a showing: it hides a stand-in idea text and
 
 ### Online
 
-`npm run deploy` (`library/deploy.mjs`) builds with `--web --present` into `library/.deploy/.vercel/output/static` and uploads that folder as it is (`vercel deploy --prebuilt --prod`), to the Vercel project `archiviobz` on the author's Hobby account. Vercel builds nothing: the build needs the downloads, which are not in git. `-- --preview` uploads to a preview address instead.
+`npm run deploy` (`library/deploy.mjs`) builds with `--web` (not `--present`: the idea text stays on the page) into `library/.deploy/.vercel/output/static` and uploads that folder as it is (`vercel deploy --prebuilt --prod`), to the Vercel project `archiviobz` on the author's Hobby account. Vercel builds nothing: the build needs the downloads, which are not in git. `-- --preview` uploads to a preview address instead.
 
 The web version differs from the local one in one way: the originals (the PDFs, full scans and saved pages under `research_notes/` and `reports/`, 1.2 GB) are not online, so nothing links to them. A row has no "Open the file" link and its pictures link nowhere; its Source line still leads to the holder. In a read, a link to a file a row holds leads to that row, a link to any other file is plain words, and a picture is copied in at 1600 px under `img/read/`. `library/dist` stays the local site, with the originals.
 
