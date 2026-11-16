@@ -1,0 +1,20 @@
+ArchivioBZ
+
+The MIT licence in LICENSE is ours to give only for our own work.
+
+What this licence covers: the code (library/, except library/web/vendor/) and
+the texts written for this project (this repository's README, docs/, the notes
+and reports, and library/content/).
+
+What it does not cover, because it is not ours to license:
+
+- Material gathered from archives, libraries, museums, publishers and websites:
+  scans, photographs, documents, PDFs, saved pages, catalogue records, tables,
+  and the pictures made from them. Each stays under the rights its holder
+  states; the manifest.md beside each file records them. Being in this
+  repository grants no rights to any of it.
+- library/web/vendor/: three.js, Copyright 2010-2026 Three.js Authors, under
+  its own MIT licence.
+- library/map-data/: built from OpenStreetMap (© OpenStreetMap contributors,
+  Open Database License 1.0) and from the LiDAR survey of the Provincia
+  autonoma di Bolzano – Alto Adige (CC0).

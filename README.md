@@ -6,7 +6,7 @@ Research base for the studio project. Everything here was gathered on 22 October
 
 `library/` is a website that shows everything in this folder as one list of rows, one row per item held, with the project's idea as the way in. Why it is built the way it is: `docs/superpowers/specs/2026-11-10-research-library-design.md`. Since 16 November 2026 it is also online, open to anyone, at https://archiviobz.vercel.app.
 
-The code and the texts written for the project are under the MIT licence (`LICENSE`); the material gathered from archives and publishers is not, and stays under the rights each manifest records.
+The code and the texts written for the project are under the MIT licence (`LICENSE`); the material gathered from archives and publishers is not, and stays under the rights each manifest records (`NOTICE` says what is covered and what is not).
 
 ```sh
 npm install        # once
