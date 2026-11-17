@@ -1,0 +1,54 @@
+{
+  "12.04": {
+    "shows": ["a gallery wall covered floor to ceiling with square sheets of coloured paper in vertical columns", "sheets of orange, yellow, turquoise, beige, magenta and pink, each filled with lines of small dark text", "one-hundred-word texts in twenty lines of italic capitals, unsigned", "texts reworked from speeches by Mao, Lenin, Emma Goldman, Hitler and Trotsky", "posters pasted up around Manhattan", "an installation at the Centre Pompidou"],
+    "colours": ["orange", "yellow", "blue", "pink"]
+  },
+  "12.10": {
+    "on": ["DER BEVÖLKERUNG"],
+    "shows": ["a planted bed in a paved courtyard of the Reichstag seen from above", "large white letters set across the greenery", "a young tree beside the letters", "an answer to the inscription Dem Deutschen Volke on the Reichstag", "the lettering Peter Behrens designed for that inscription in 1916", "soil brought by members of the Bundestag from their constituencies", "Bevölkerung, everyone who lives in the country, in place of Volk"],
+    "colours": ["white", "green"]
+  },
+  "12.15": {
+    "on": ["Agreement", "Strongly Agree", "Moderately Agree", "Slightly Agree", "Baskerville", "Comic Sans", "Computer Modern", "Georgia", "Helvetica", "Trebuchet"],
+    "shows": ["a stacked bar chart of agreement by typeface", "Comic Sans with the lowest agreement and Helvetica the highest", "a newspaper quiz in which one passage appeared in a randomly assigned typeface", "about 45,000 readers of The New York Times", "whether a typeface makes a sentence seem true", "a passage from David Deutsch's The Beginning of Infinity"],
+    "colours": ["blue"],
+    "names": ["NYT"]
+  },
+  "12.18": {
+    "shows": ["black spray-painted lines on a white wall forming a running cartoon figure", "a figure with a dark bob haircut, lines across the body and a skirt", "a swastika painted over until it is something else", "swastika graffiti turned into flowers, cars and animals", "templates published so that anyone can do the same", "graffiti artists in Berlin answering hate with art"],
+    "colours": ["black", "white"]
+  },
+  "12.20": {
+    "on": ["Our b.s. app saves your bullshit in bullshit and creates a bullfuckingshit that’ll bullshit the way you bullfuckingshit", "said the bullshit marketeer"],
+    "shows": ["a sentence in a plain sans serif with words covered by small black bars", "hand-drawn censorship bars reading b.s., bullshit and bullfuckingshit", "a font that replaces listed buzzwords with a censorship bar in the manner of Comic Sans", "OpenType ligatures doing the work, no script", "built on the open-source Droid Sans", "the idea of a typeface that refuses to set certain words"]
+  },
+  "12.27": {
+    "on": ["FOR THE LIBERATION OF RATIONALIST LETTERING", "JONATHAN PIERINI", "relief lettering in Piazza Augusto Imperatore", "The design owes a lot to Gill Sans"],
+    "shows": ["an open book on a grey ground", "a black-and-white close-up of carved capital letters in relief on the left page", "the opening of Jonathan Pierini's essay on the right page", "the geometric lettering of fascist buildings in Rome recorded and digitised", "how small details turn a neutral geometric font into a fascist symbol", "a summer school of ECAL and ISIA Urbino in Rome, 2018"],
+    "colours": ["monochrome"],
+    "names": ["Archigraphiae", "École cantonale d'art de Lausanne", "Istituto Superiore per le Industrie Artistiche"]
+  },
+  "12.29": {
+    "on": ["The Communist Manifesto (In Comic Sans)", "By Karl Marx and Friedrich Engels", "one of the most influential texts in history", "in the most revolutionary fonts: comic sans"],
+    "shows": ["a red paperback lying flat", "the title in white rounded letters", "a yellow hand-drawn hammer and sickle", "a print-on-demand reprint of the Communist Manifesto", "a book said to be set in Comic Sans whose cover is not", "illustrations that look drawn in Microsoft Paint", "a meme that is a book"],
+    "colours": ["red", "yellow", "white"],
+    "names": ["Manifest der Kommunistischen Partei", "Manifesto del Partito Comunista", "Manifesto of the Communist Party"]
+  },
+  "12.30": {
+    "on": ["NECESSARIO VINCERE", "PIÙ NECESSARIO COMBATTERE"],
+    "shows": ["a stone-clad tower seen from below at night", "a carved fascist inscription with some letters glowing pale blue", "the glowing letters A, M, A, R, E, amare, to love", "phosphorescent pigment on chosen letters so that new phrases appear in the dark", "the façade of WEGIL in Rome, formerly the Littorio Italian Youth House", "a render, not a photograph of the work as made", "a work that lasts until the weather wears it off"],
+    "colours": ["blue"],
+    "names": ["Gioventù Italiana del Littorio", "GIL"]
+  },
+  "12.31": {
+    "on": ["Hitler Archive", "The unpublished designs", "NSDAP", "Magdeburg", "METHODS OF TRANSLATING", "UNIT 1 PROJECT 3", "SECTION OF A PUBLICATION"],
+    "shows": ["a black slipcase with labels in blackletter", "printed sheets of Nazi propaganda reset in a geometric sans", "a red and white newspaper page headed Magdeburg", "an eagle-and-swastika sign lettered NSDAP", "blackletter changed into Futura to parody the original", "a student project at the University of the Arts London", "the 1941 Nazi party decree against Fraktur"],
+    "colours": ["black", "red", "white"],
+    "names": ["Nationalsozialistische Deutsche Arbeiterpartei", "Normalschrifterlass", "UAL"]
+  },
+  "12.32": {
+    "on": ["Peter McLoughlin", "Tommy Robinson", "Manifesto", "Free Speech", "Real Democracy", "Peaceful Disobedience"],
+    "shows": ["a white book cover with a red band and a red edge strip", "the title and the authors' names in Comic Sans", "three subtitle lines in a plainer sans", "a book by a British far-right activist that reached number one on Amazon's UK chart", "Comic Sans used in earnest, a counter-example"],
+    "colours": ["red", "black"]
+  }
+}

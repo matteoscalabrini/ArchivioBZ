@@ -1,0 +1,60 @@
+{
+  "12.05": {
+    "on": ["VOLKSBÜHNE", "NSK"],
+    "shows": ["a black-and-white photograph of the Volksbühne theatre in Berlin", "a curved façade with tall columns", "two long dark banners with a round emblem and the letters NSK", "the theatre as NSK-Staat Berlin, 1993", "over-identification: speaking the system's own language instead of mocking it", "Laibach's statement that all art is subject to political manipulation", "a Yugoslav Day of Youth poster based on a Nazi painting of 1936"],
+    "colours": ["monochrome"],
+    "names": ["NSK State", "Volksbühne am Rosa-Luxemburg-Platz", "Novi kolektivizem", "Dan mladosti"]
+  },
+  "12.07": {
+    "on": ["Coca-Cola", "1234567890"],
+    "shows": ["three stern figures in black outline on yellow, one in a cap with a red star", "the figures gripping a giant fountain pen", "flat red and yellow fields", "the Coca-Cola logo in white script on a red band", "stencilled rows of numbers over the whole canvas", "Cultural Revolution figures of Red Guards, workers and peasants set against Western brand logos", "Coca-Cola, Dior and Chanel in their trademark typefaces"],
+    "colours": ["red", "yellow", "black", "white"],
+    "names": ["王广义", "大批判"]
+  },
+  "12.09": {
+    "on": ["SERDAR SOMUNCU", "DER ADOLF IN MIR", "Die Karriere einer verbotenen Idee", "WortArt"],
+    "shows": ["a book cover with a close-up of a bearded man's face lit red", "a toothbrush held under the nose like a small moustache", "stage readings of Hitler's Mein Kampf across Germany from 1996", "the text unchanged, only the voice reading it changed", "officials in Schwerin and Ingolstadt trying to stop the shows", "a bullet-proof vest worn against neo-Nazi threats"],
+    "colours": ["red", "pink", "black"]
+  },
+  "12.11": {
+    "shows": ["a black-and-white manga double page in panels with Japanese speech balloons", "close-ups of a dark-haired young man", "a woman holding a small child", "a man reading on a park bench", "Hitler's Mein Kampf retold as a manga", "Das Kapital retold through the owner of a cheese factory", "a Bavarian objection that manga is no medium for this material"],
+    "colours": ["monochrome"],
+    "names": ["まんがで読破", "わが闘争", "Waga Tōsō"]
+  },
+  "12.16": {
+    "shows": ["a dark stage with a long table of readers behind microphones", "flags draped over the table and hung on the back wall", "portrait photographs pinned to the front of the table", "white balloons, confetti and a small fringed rug on the floor", "journalists of non-German background reading aloud the racist letters they receive", "a contest for the worst letter, with music and confetti"],
+    "colours": ["black", "white", "red"]
+  },
+  "12.17": {
+    "on": ["RECHTS gegen RECHTS", "Der unfreiwilligste Spendenlauf Deutschlands", "RechtsgegenRechts.de", "Mein Mampf"],
+    "shows": ["police in green uniforms and a crowd behind a fence", "a white start banner with coloured confetti dots, a pink disc and a blue disc", "the annual neo-Nazi march in Wunsiedel turned into a sponsored walk", "10 euros for EXIT-Deutschland for every metre the marchers walked", "motivational signs along the route", "a table of bananas", "10,000 euros raised by the march against itself"],
+    "colours": ["pink", "blue", "green"]
+  },
+  "12.19": {
+    "on": ["ISIS 参戦!!"],
+    "shows": ["the black-clad masked figure of an IS hostage video, cut out", "a blue starry video-game title card with a black brush stroke", "a title card in the style of Super Smash Bros", "mocking photo edits of the hostage video by Japanese Twitter users", "the obviously pasted-in desert background of the video", "a video threatening Kenji Goto and Haruna Yukawa"],
+    "colours": ["blue", "black", "white"],
+    "names": ["Islamic State", "ISIL", "Daesh"]
+  },
+  "12.23": {
+    "on": ["Seitenaufteilung in der Edition Hitler, Mein Kampf", "Einleitung", "Kolumnentitel der Originalausgabe", "Seitenzahl der Originalausgabe", "Originaltext der Ausgaben von 1925/27", "Anmerkungsnummer", "Anmerkungstext", "Anmerkungshochzahl", "Raute als Hinweis auf Textvarianten", "Textvarianten verschiedener Ausgaben", "Seitenzahl der Edition", "Eintritt in ein bayerisches Regiment"],
+    "shows": ["a double page of the critical edition with labelled call-outs", "Hitler's original text in a block at the top of the right page, variant notes in its margin", "numbered annotations in narrow columns filling the left page and running beneath the original", "more than 3,500 annotations framing Hitler's text", "a sample chapter on Hitler joining a Bavarian regiment in 1914", "the typeface Scala and a page grid after a Jewish Bible of 1546 and Erasmus"],
+    "names": ["Institute for Contemporary History"]
+  },
+  "12.24": {
+    "on": ["Hitler, Mein Kampf", "Eine kritische Edition", "BAND I", "Christian Hartmann", "Thomas Vordermayer", "Othmar Plöckinger", "Roman Töppel", "Im Auftrag des Instituts für Zeitgeschichte München – Berlin"],
+    "shows": ["two thick grey cloth-bound volumes standing upright", "the critical edition of Mein Kampf, 1,948 pages in two volumes", "the fear that the edition would awaken interest in the original", "a debate among Jewish leaders over the annotated edition", "a new form bringing the old content back into view"],
+    "colours": ["grey"],
+    "names": ["Zentralrat der Juden in Deutschland", "IfZ"]
+  },
+  "12.25": {
+    "on": ["STOP HOMOFOBIA"],
+    "shows": ["two hands holding a printed sheet", "Vladimir Putin's face in pale make-up with heavy black lashes, blue eye shadow and red lips", "a rainbow behind the face", "an image put on Russia's list of extremist materials in 2017", "protests against Russia's anti-gay laws", "a ban that spread the image further, a Streisand effect"],
+    "colours": ["red", "yellow", "green", "blue", "purple"]
+  },
+  "12.26": {
+    "on": ["HARPER'S MAGAZINE", "Readings", "Bearer of Bad News", "From the style guide of the Daily Stormer, a white supremacist news website", "Most people are not comfortable with material that comes across as vitriolic, raging, nonironic hatred", "The unindoctrinated should not be able to tell whether we are joking or not", "From the April 2018 issue", "FOUR MORE YEARS?", "The TRUMP Reelection NIGHTMARE"],
+    "shows": ["a screenshot of a Harper's Magazine web page", "excerpts from the leaked style guide of the neo-Nazi website Daily Stormer", "irony and lightness used on purpose to get hatred past readers", "the April 2018 magazine cover at right", "a counter-example: the far right using ridicule"],
+    "names": ["Huffington Post"]
+  }
+}

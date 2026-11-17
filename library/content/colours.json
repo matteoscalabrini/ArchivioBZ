@@ -1,0 +1,16 @@
+{
+  "red": ["red", "rosso", "rossa", "rosse", "rot", "rote", "roten", "roter", "rotes"],
+  "orange": ["orange", "arancione", "arancioni", "arancio"],
+  "yellow": ["yellow", "giallo", "gialla", "gialle", "gialli", "gelb", "gelbe", "gelben", "gelber", "gelbes"],
+  "green": ["green", "verde", "grün", "gruen", "grüne", "grünen", "grüner", "grünes"],
+  "blue": ["blue", "blu", "azzurro", "azzurra", "azzurre", "azzurri", "celeste", "blau", "blaue", "blauen", "blauer", "blaues"],
+  "purple": ["purple", "violet", "viola", "porpora", "lila", "violett", "violette"],
+  "pink": ["pink", "rosa"],
+  "brown": ["brown", "marrone", "marroni", "braun", "braune", "braunen", "brauner", "braunes"],
+  "black": ["black", "nero", "nera", "nere", "schwarz", "schwarze", "schwarzen", "schwarzer", "schwarzes"],
+  "white": ["white", "bianco", "bianca", "bianche", "weiß", "weiße", "weißen", "weißer", "weißes"],
+  "grey": ["grey", "gray", "grigio", "grigia", "grigie", "grigi", "grau", "graue", "grauen", "grauer", "graues"],
+  "gold": ["gold", "golden", "oro", "dorato", "dorata", "goldene", "goldenen", "goldener", "goldenes"],
+  "silver": ["silver", "argento", "argentato", "argentata", "silber", "silbern", "silberne"],
+  "monochrome": ["monochrome", "black and white", "sepia", "bianco e nero", "seppia", "monocromo", "schwarzweiß", "schwarz weiß", "monochrom"]
+}

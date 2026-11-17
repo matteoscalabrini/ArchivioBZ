@@ -1,0 +1,48 @@
+{
+  "2.00": {
+    "shows": ["working notes on how Italians outside South Tyrol met Bolzano", "Luce newsreels, documentaries and feature films", "the EIAR radio station in Bolzano", "Dopolavoro trains, military service and the Vallo Alpino", "school and the Battisti cult"]
+  },
+  "2.01": {
+    "on": ["Visita di S.M. il Re a Bolzano", "la posa della prima pietra del monumento alla Vittoria", "Italia. Bolzano", "Il viaggio del Führer in Italia", "Bolzano. La città dell'enrosadira", "Le onoranze funebri ai militari italiani caduti in Africa"],
+    "shows": ["a table of 50 Luce documentary records", "documentaries touching South Tyrol, the Brenner and the Dolomites", "the King's visit of 1927 and the first stone of the Victory Monument", "Mussolini's visit of 1935", "Hitler's journey to Italy in 1938"]
+  },
+  "2.02": {
+    "shows": ["a table of 172 Luce newsreel stories", "the inauguration of the Victory Monument in 1928", "the new industrial zone in 1936 and the Rione Dux in 1939", "sport, folklore, tourism and youth organisations", "Allied combat-film reels of 1943–45"]
+  },
+  "2.03": {
+    "on": ["RADIORARIO", "ORGANO UFFICIALE DELL'ENTE ITALIANO AUDIZIONI RADIOFONICHE", "22 LUGLIO 1928-VI", "LA SAGRA DI BOLZANO", "L'Inaugurazione della Stazione Radiofonica dell'E.I.A.R.", "Stazione di Bolzano", "tre potenti altoparlanti", "da tutta l'Italia"],
+    "shows": ["the opening of the Bolzano radio station", "the inauguration of the Victory Monument relayed by radio", "loudspeakers in Piazza Walther", "special trains bringing crowds from all over Italy", "a photograph of the Victory Monument with ranks of men along the road"],
+    "names": ["Radiocorriere"]
+  },
+  "2.04": {
+    "on": ["BOLZANO (1 BZ) m. 445,9"],
+    "shows": ["a weekly radio listings magazine", "the Bolzano station in the daily programmes", "concerts from the municipal casino in Gries", "the wavelength of the Bolzano station"],
+    "names": ["Radiocorriere"]
+  },
+  "2.05": {
+    "on": ["L'Assemblea generale degli azionisti dell'EIAR", "Su richiesta del Governo abbiamo nel brevissimo spazio di tempo di poco più di un mese impiantata la stazione di Bolzano", "La stazione di Bolzano non era prevista nel nostro capitolato d'oneri", "sentita bene in tutto il Trentino", "Bolzano (1 BZ) – m. 445,9 – Kw. 0,2"],
+    "shows": ["the broadcaster's report to its shareholders on 1928", "a radio station set up at the government's request", "the power and wavelength of the Bolzano station", "plans to link Genoa and Bolzano to Milan by line"],
+    "names": ["Radiocorriere"]
+  },
+  "2.06": {
+    "on": ["Comunicazioni del Dopolavoro", "Radio-giornale dell'Enit", "Notiziario agricolo", "kc. 580 – m. 517,2 – kw. 15"],
+    "shows": ["a weekly radio listings magazine", "the Bolzano station's daily schedule at one kilowatt", "Dopolavoro announcements, tourist-board radio news and a farming bulletin", "a table of European stations with Vienna at fifteen kilowatts"],
+    "names": ["Radiorario"]
+  },
+  "2.07": {
+    "on": ["Settimanale dell'EIAR", "Roma I – Napoli I – Bari I – Bologna – Bolzano"],
+    "shows": ["a weekly radio listings magazine", "programme grids with Bolzano among the stations relaying the national programme from Rome"],
+    "names": ["Radiorario"]
+  },
+  "2.08": {
+    "on": ["Linea ferroviaria del Brennero: Stilves m. 963 con Campo di Trens", "Maria Trens m. 993", "MARIA GRATIA", "Stilves 22-4-40-XVIII", "Cordiali saluti", "Affettuosi saluti", "Deposito Munizioni – Stilves – Campo di Trens (Bolzano)", "Signor Ricci Ferdinando", "Signora Ricci Maddalena", "S. Ippolito di Vernio (Firenze)", "CAIVS IVLIVS CÆSAR", "Edit. e fotogr. L. Fränzl, Bolzano - Riprod. vietata"],
+    "shows": ["a photographic view of Stilves on the Brenner railway", "a village with a church on the valley floor under forested slopes and snowy peaks", "a crowned Madonna and Child in an oval medallion with rays and stars", "the words of the Ave Maria along the hem of the robe", "the village of Maria Trens with a tall-spired church", "greetings handwritten by a soldier at a munitions depot", "red 20-centesimi stamps with the head of Julius Caesar", "two cards addressed to a family near Florence"],
+    "colours": ["monochrome", "red"],
+    "names": ["Stilfes", "Freienfeld", "Brennerbahn", "Lorenz Fränzl"]
+  },
+  "2.09": {
+    "on": ["Der Sohn der weißen Berge", "Les Chevaliers de la Montagne", "Cinéma & Cie", "Avant-Première dei Cavalieri della Montagna"],
+    "shows": ["a scholarly article on a mountain film of 1930", "Trenker and Bonnard's German and French versions of one film", "the Alps as a setting for transcultural communication and nationalization", "image and sound in a multiple-language film", "an Italian release of the film"],
+    "names": ["Luis Trenker", "Mario Bonnard", "Cavalieri della Montagna"]
+  }
+}
