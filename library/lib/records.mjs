@@ -1,8 +1,9 @@
 // Loads and checks the library's records: every entries.json beside the material, the keyword
-// vocabulary and the places. Nothing here throws on bad data; every fault becomes a problem
+// vocabulary, the places, and what the search reads under the rows (lib/find.mjs). Nothing here throws on bad data; every fault becomes a problem
 // naming the file and the row.
 import { readFile, readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
+import { attachFind } from './find.mjs';
 
 export const TYPES = ['Report', 'Notes', 'Story', 'Newspaper page', 'Press article', 'Photograph', 'Postcard',
   'Poster', 'Booklet', 'Book', 'Article', 'Law text', 'Archive guide', 'Table', 'Web page', 'Intervention',
@@ -170,7 +171,8 @@ export async function loadLibrary(root) {
   for (const [id, name] of proposedPlaces) places[id] = { name, lat: null, lon: null };
 
   entries.sort((a, b) => a.section - b.section || runningNumber(a) - runningNumber(b));
-  return { entries, keywords, aliases, places, problems };
+  const { colours, names, glossary } = await attachFind({ root, files, entries, report });
+  return { entries, keywords, aliases, places, problems, colours, names, glossary };
 }
 
 // keywords.json: { id: {label} } or { id: {into: otherId} }; folds may chain.

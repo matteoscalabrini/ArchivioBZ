@@ -46,6 +46,7 @@ test('the tables hold every row with repository paths, the links to stored media
   assert.equal(page.source_url, 'https://example.org/az-1931');
   assert.equal(page.confidence, 'read');
   assert.equal(page.record.dir, undefined, 'no absolute paths of this machine');
+  assert.equal(page.record.find, undefined, 'the search terms are not part of the record: the database mirrors entries.json');
   assert.doesNotMatch(JSON.stringify(t), new RegExp(root.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
   assert.deepEqual(t.entryMedia.map(({ no, path: p, role, position }) => [no, p, role, position]).sort(), [
     ['5.01', 'research_notes/Inv A/files/05_x/small.png', 'image', 2],

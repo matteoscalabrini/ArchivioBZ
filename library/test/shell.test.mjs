@@ -27,3 +27,11 @@ test('depth prefixes links and assets, base.css first, scripts as modules', () =
   assert.match(html, /<title>&lt;T&gt;<\/title>/);
   assert.ok(html.includes('<meta name="x">'));
 });
+
+test('the frame carries the search field after the tabs, and its script, at any depth', () => {
+  const html = page({ title: 'x', tab: 'map', body: '', js: ['web/table.js'], depth: 1 });
+  assert.match(html, /About<\/a><form class="find" role="search" action="..\/index.html"><input type="text" name="q" placeholder="Search" aria-label="Search the library" autocomplete="off" spellcheck="false"><\/form><\/nav>/);
+  const scripts = [...html.matchAll(/<script type="module" src="([^"]+)">/g)].map((m) => m[1]);
+  assert.deepEqual(scripts, ['../web/find.js', '../web/table.js']);
+  assert.match(page({ title: 'x', tab: 'library', body: '' }), /<form class="find" role="search" action="index.html">/);
+});

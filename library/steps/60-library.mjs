@@ -1,7 +1,8 @@
 // The Library page, out/index.html: the idea (or the keyword index) at the top, under it every
 // keyword with its count, a sticky status line, the kinds of entry (lib/kinds.mjs), and every row
-// of the library in one list, closed. web/library.js filters, sorts and opens the rows and keeps
-// the address in step.
+// of the library in one list, closed. web/library.js filters, searches, sorts and opens the rows
+// and keeps the address in step. Under each title stands an empty place for the reason a search
+// found the row (web/results.js writes it).
 //
 // What earlier steps add is optional here: entry.pictures (pictures), ctx.idea (the idea),
 // entry.preview and entry.page (tables, long reads), place.inside (the map; undefined counts as
@@ -97,7 +98,7 @@ function row(entry, { ctx, label, places, kind }) {
   const no = esc(entry.no);
   const head = '<div class="row-head">'
     + `<span class="c-no">${no}</span>`
-    + `<h2 class="c-title"><button type="button" aria-expanded="false" aria-controls="body-${no}">${esc(entry.title)}</button></h2>`
+    + `<h2 class="c-title"><button type="button" aria-expanded="false" aria-controls="body-${no}">${esc(entry.title)}</button><span class="why"></span></h2>`
     + `<span class="c-type">${esc(entry.type)}</span>`
     + `<span class="c-date">${esc(entry.date)}</span>`
     + `<span class="c-kw">${keywordList(entry.keywords, label)}</span>`

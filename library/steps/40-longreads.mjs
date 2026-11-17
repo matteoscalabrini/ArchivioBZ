@@ -1,7 +1,8 @@
 // Long reads. For every row whose more.kind is 'read' and whose target is a Markdown or Word
 // file: a page of its own, out/read/<no>.html, with the title, the whole text and, for a Story,
-// the rows it rests on; entry.page names the page once it is written. A target that is missing,
-// cannot be rendered or is neither Markdown nor Word is a warning, and that row gets no page.
+// the rows it rests on; entry.page names the page once it is written, and entry.pages keeps the
+// text of each page. A target that is missing, cannot be rendered or is neither Markdown nor Word
+// is a warning, and that row gets no page.
 //
 // A Markdown text with two or more headings of the first level is in parts, one page each: the
 // first at out/read/<no>.html, the others at out/read/<no>-<n>.html. A part's heading is its
@@ -81,6 +82,7 @@ export default async function longreads(ctx) {
       await ctx.write(`read/${part.file}`, readPage(entry, pages, n, { byNo, ctx }));
     }
     entry.page = `read/${pages[0].file}`;
+    entry.pages = pages.map(({ title, html }) => ({ title, html })); // the text, for the search (steps/80-search.mjs)
   }
   await web?.publish();
 }

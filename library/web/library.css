@@ -90,6 +90,18 @@ html { scroll-padding-top: 48px; } /* keeps a focused row clear of the sticky st
 .c-kw button[aria-pressed="true"] { text-decoration: underline; text-underline-offset: 3px; }
 .c-kw .sep { color: var(--grey); }
 
+/* A search (web/search.js): the rows found stand in two groups, each under its line; under a
+   found row's title, why it was found, the words that matched in black. */
+.group { padding: 8px var(--gutter); border-top: var(--rule); font-size: var(--size-meta); }
+.group sup { display: inline-block; margin-left: 2px; font-size: var(--size-count); line-height: 0; color: var(--grey); }
+.group .gloss { margin-left: 14px; color: var(--grey); }
+.why { display: block; margin-top: 5px; font: 400 var(--size-meta)/1.45 var(--sans); letter-spacing: 0; color: var(--grey); overflow-wrap: break-word; }
+.why:empty { display: none; }
+.why b { font-weight: 400; color: var(--ink); }
+.why span + span::before { content: "  ·  "; white-space: pre; }
+.none { margin: 0; padding: 22px var(--gutter); border-top: var(--rule); color: var(--grey); }
+.more-possible { display: block; width: 100%; padding: 10px var(--gutter); border-top: var(--rule); font-size: var(--size-meta); text-decoration: underline; text-underline-offset: 4px; }
+
 /* An open row: 0fr to 1fr, so the body opens downward to its own height. */
 .row-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .38s cubic-bezier(.2, .7, .2, 1); }
 .row.open .row-body { grid-template-rows: 1fr; }

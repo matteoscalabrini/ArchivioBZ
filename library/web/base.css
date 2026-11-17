@@ -46,7 +46,7 @@ button {
 hr { border: 0; border-top: var(--rule); }
 ::selection { background: var(--ink); color: var(--paper); }
 
-/* The frame: project title left, three tabs right. */
+/* The frame: project title left, three tabs and the search field right. */
 header.site {
   display: flex;
   flex-wrap: wrap;
@@ -56,10 +56,28 @@ header.site {
   padding: 30px var(--gutter) 0;
 }
 .wordmark { font: 400 var(--size-title)/1 var(--serif); text-decoration: none; }
-.tabs { display: flex; gap: 22px; font-size: var(--size-meta); }
+.tabs { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 22px; font-size: var(--size-meta); }
 .tabs a { text-decoration: none; }
 .tabs a:hover,
 .tabs a[aria-current="page"] { text-decoration: underline; text-underline-offset: 4px; }
+
+/* The search field, after the tabs on every page: no box, one hairline, two in focus (web/find.js). */
+.find { margin: 0; }
+.find input {
+  width: 190px;
+  margin: 0;
+  padding: 1px 0 2px;
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  border-bottom: var(--rule);
+  border-radius: 0;
+  outline: none;
+  appearance: none;
+}
+.find input::placeholder { color: var(--grey); opacity: 1; }
+.find input:focus { outline: none; border-bottom-width: 2px; padding-bottom: 1px; }
 
 :focus-visible { outline: 2px solid #000; outline-offset: 2px; }
 

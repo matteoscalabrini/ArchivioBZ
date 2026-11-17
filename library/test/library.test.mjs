@@ -476,3 +476,9 @@ test('a library without kinds.json has no kinds line and no row with a kind', as
   assert.doesNotMatch(html, /data-kind=/);
   assert.doesNotMatch(html, /id="kind-labels"/);
 });
+
+test('every row has a place for the reason it was found, empty until a search', async () => {
+  const html = await builtIndex();
+  for (const r of rows(html)) assert.match(r.inner, /<h2 class="c-title"><button[^>]*>[\s\S]*?<\/button><span class="why"><\/span><\/h2>/, r.no);
+  assert.equal(rows(html).length, 6);
+});

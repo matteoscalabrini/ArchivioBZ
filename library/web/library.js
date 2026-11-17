@@ -1,13 +1,22 @@
-// The Library page in the browser: the keyword filter, the filter by kind of entry, the sort, rows
-// that open in place, pictures
-// that load when their row first opens, and the address kept in step with all of it (state.js).
+// The Library page in the browser: the keyword filter, the filter by kind of entry, the search,
+// the sort, rows that open in place, pictures that load when their row first opens, and the
+// address kept in step with all of it (state.js).
+//
+// The search field stands in the frame (lib/shell.mjs, find.js). Here it narrows the list as one
+// types: search.js finds the rows in the index the build wrote (search.json, fetched when the
+// field is first used), results.js says what the list then holds, and this file puts it there:
+// the rows found in two groups, each under its line, and under each title why it was found.
 import { parseState, formatState, matches, compare } from './state.js';
+import { prepare, search } from './search.js';
+import { layout, summary, reasonHtml } from './results.js';
 import { load, stepPicture } from './pictures.js';
 import './lightbox.js';
 
 const list = document.querySelector('.list');
 const status = document.querySelector('.status');
 const colhead = document.querySelector('.colhead');
+const form = document.querySelector('form.find');
+const field = form?.querySelector('input') ?? null;
 const keywordButtons = [...document.querySelectorAll('button[data-k]')];
 const kindButtons = [...document.querySelectorAll('button[data-kind]')];
 const sortButtons = [...colhead.querySelectorAll('button[data-sort]')];
@@ -23,6 +32,8 @@ const rows = [...list.querySelectorAll('article.row')].map((el) => ({
   kw: el.dataset.kw.split(' ').filter(Boolean),
   title: el.querySelector('.c-title button'),
   body: el.querySelector('.row-body'),
+  why: el.querySelector('.why'),
+  said: '', // the reasons now written under the title, as HTML
 }));
 const byNo = new Map(rows.map((row) => [row.no, row]));
 const known = {
@@ -32,12 +43,45 @@ const known = {
 };
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 
-let order = 'no'; // the order the rows stand in now
+// What a search adds to the list: a line over each group, a line that offers the possible links
+// not yet shown, and a line for a search that found nothing. Made once, put in when needed.
+const groups = {
+  precise: groupLine('Precise', 'what you typed stands in these'),
+  possible: groupLine('Possible links', 'another language, a near spelling, the same word family, or only some of the words'),
+};
+const more = Object.assign(document.createElement('button'), { type: 'button', className: 'more-possible' });
+const none = Object.assign(document.createElement('p'), { className: 'none' });
+
+let sorted = [...rows]; // every row in the order the column heads ask for
+let sortedBy = 'no';
+let engine = null; // the index, ready to be searched
+let asked = false; // the index has been sent for
+let failed = false; // and could not be had
+let allPossible = false; // every possible link shows, not the first thirty
+let typing = false; // this drawing follows a keystroke in the search field
+let addressing = 0; // the wait before the address follows what is typed
 let state = parseState(location.hash, known);
+
+if (field) {
+  form.dataset.live = ''; // find.js leaves Enter to this page
+  field.addEventListener('focus', needIndex);
+  field.addEventListener('input', () => {
+    state.q = field.value;
+    allPossible = false;
+    typing = true;
+    render();
+    typing = false;
+  });
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    toList();
+  });
+}
 restore();
 
 addEventListener('hashchange', () => {
   state = parseState(location.hash, known);
+  allPossible = false;
   restore();
 });
 
@@ -53,7 +97,12 @@ document.addEventListener('click', (event) => {
   }
   if (target.closest('.show-all')) {
     state.t = null;
+    clearSearch();
     return filter(null);
+  }
+  if (target.closest('.more-possible')) {
+    allPossible = true;
+    return render();
   }
   const sort = target.closest('button[data-sort]');
   if (sort) {
@@ -83,6 +132,7 @@ document.addEventListener('keydown', (event) => {
 
 // The state as the address gives it, applied without animation, the first open row in view.
 function restore() {
+  if (field && field.value !== state.q) field.value = state.q;
   list.classList.add('still');
   render();
   const first = [...list.children].find((el) => el.classList.contains('open') && !el.hidden);
@@ -91,14 +141,51 @@ function restore() {
 }
 
 function render() {
-  if (state.s !== order) {
-    list.append(...[...rows].sort((a, b) => compare(a, b, state.s)).map((row) => row.el));
-    order = state.s;
+  if (state.s !== sortedBy) {
+    sorted = [...rows].sort((a, b) => compare(a, b, state.s));
+    sortedBy = state.s;
   }
-  let shown = 0;
+  const typed = state.q.trim();
+  if (typed) needIndex();
+  // Until the index is there, and when it cannot be had, the list stays as the keyword and the
+  // kind leave it; the status line says which.
+  const found = typed && engine ? search(engine, state.q) : null;
+  const view = layout(rows, state, found, { allPossible });
+
+  // The rows that show, each with its reasons, and with a search the lines among them.
+  const shown = new Map();
+  const lines = [];
+  for (const item of view.items) {
+    if (item.row !== undefined) {
+      const row = byNo.get(item.row);
+      shown.set(row, item.reasons);
+      lines.push(row.el);
+    } else if (item.group) {
+      groups[item.group].querySelector('sup').textContent = String(item.n);
+      lines.push(groups[item.group]);
+    } else if (item.more) {
+      more.textContent = `${item.more} more possible ${item.more === 1 ? 'link' : 'links'}`;
+      lines.push(more);
+    }
+  }
+  if (view.searched && !view.items.length) {
+    none.textContent = `Nothing found for “${typed}”.`;
+    lines.push(none);
+  }
+  // Without a search every row keeps its place in the order of the column heads and the ones
+  // left out are hidden where they stand. With one, the rows found come first, in their groups.
+  const wanted = view.searched ? [...lines, ...sorted.filter((row) => !shown.has(row)).map((row) => row.el)] : sorted.map((row) => row.el);
+  // Moved only when the order changes: a row put back in the list would lose the keyboard's focus.
+  if (wanted.length !== list.children.length || wanted.some((el, n) => el !== list.children[n])) list.replaceChildren(...wanted);
+
   for (const row of rows) {
-    row.el.hidden = !matches(row, state);
-    if (!row.el.hidden) shown++;
+    const reasons = shown.get(row);
+    row.el.hidden = reasons === undefined;
+    const said = (reasons ?? []).map(reasonHtml).join('');
+    if (row.why && row.said !== said) {
+      row.why.innerHTML = said; // made by reasonHtml, which escapes every word of it
+      row.said = said;
+    }
     setOpen(row, state.o.includes(row.no));
   }
   for (const button of keywordButtons) button.setAttribute('aria-pressed', String(button.dataset.k === state.k));
@@ -106,25 +193,68 @@ function render() {
   for (const button of sortButtons) button.setAttribute('aria-pressed', String(button.dataset.sort === state.s));
 
   // Written only when it changes: the status is a live region and would be read out again.
-  // The kind first, then the keyword: "Press · Typeface".
+  // The kind first, then the keyword, then what is searched: "Press · Typeface · “rosso”".
   const narrowed = [state.t && (kindLabels[state.t] ?? state.t), state.k && (labels[state.k] ?? state.k)].filter(Boolean);
-  setText(status.querySelector('.what'), narrowed.join(' · ') || 'All entries');
-  setText(status.querySelector('.n'), narrowed.length ? `${shown} of ${entries(rows.length)}` : entries(rows.length));
-  status.querySelector('.show-all').hidden = !narrowed.length;
+  // What was typed counts as a search while the index is on its way, and once it is there only
+  // if it holds a word: a lone quotation mark narrows nothing.
+  const searching = Boolean(typed) && (view.searched || !engine);
+  const says = summary({ total: rows.length, shown: view.shown, precise: view.precise, possible: view.possible, narrowed, q: searching ? state.q : '', ready: Boolean(engine), failed });
+  setText(status.querySelector('.what'), says.what);
+  setText(status.querySelector('.n'), says.n);
+  status.querySelector('.show-all').hidden = !narrowed.length && !searching;
   const onMap = status.querySelector('.on-map');
   onMap.hidden = !state.k || !onMapKeywords.has(state.k);
   onMap.href = state.k ? `map.html#k=${encodeURIComponent(state.k)}` : 'map.html';
 
+  // The address follows at once, except while one types: then it waits for a pause, since a
+  // browser allows only so many changes of the address in a short time (Safari: 100 in 30 s).
+  clearTimeout(addressing);
+  if (typing) addressing = setTimeout(writeAddress, 300);
+  else writeAddress();
+}
+
+function writeAddress() {
   const hash = formatState(state);
-  if (hash !== location.hash) history.replaceState(null, '', hash || location.pathname + location.search);
+  if (hash === location.hash) return;
+  try {
+    history.replaceState(null, '', hash || location.pathname + location.search);
+  } catch {
+    // The browser refused this change of the address; the page is right, the next change will tell.
+  }
+}
+
+// Sends for the index once. Whether it comes or not, the page is drawn again: with what the
+// search found, or with the status line saying that the search is not available.
+function needIndex() {
+  if (asked) return;
+  asked = true;
+  fetch('search.json')
+    .then((response) => (response.ok ? response.json() : Promise.reject(new Error(`search.json: ${response.status}`))))
+    .then((index) => {
+      engine = prepare(index);
+    })
+    .catch(() => {
+      failed = true;
+    })
+    .finally(render);
+}
+
+function clearSearch() {
+  state.q = '';
+  allPossible = false;
+  if (field) field.value = '';
 }
 
 function filter(k) {
   state.k = k;
   render();
-  // To the top of the list: the kinds line when the page has one, so it stays in reach.
+  if (k) toList();
+}
+
+// To the top of the list: the kinds line when the page has one, so it stays in reach.
+function toList() {
   const head = document.querySelector('.kinds') ?? colhead;
-  if (k) scrollTo({ top: head.getBoundingClientRect().top + scrollY - status.offsetHeight, behavior: motion() });
+  scrollTo({ top: head.getBoundingClientRect().top + scrollY - status.offsetHeight, behavior: motion() });
 }
 
 function toggle(row) {
@@ -132,7 +262,7 @@ function toggle(row) {
   render();
 }
 
-// From a "Sources" number: open that row, showing all rows if a filter hides it.
+// From a "Sources" number: open that row, showing all rows if a filter or the search hides it.
 function openRow(row) {
   if (!state.o.includes(row.no)) state.o = [...state.o, row.no];
   if (!matches(row, state)) {
@@ -140,6 +270,10 @@ function openRow(row) {
     state.t = null;
   }
   render();
+  if (row.el.hidden) {
+    clearSearch();
+    render();
+  }
   reveal(row.el, motion());
   row.title.focus({ preventScroll: true });
 }
@@ -150,6 +284,13 @@ function setOpen(row, open) {
   row.title.setAttribute('aria-expanded', String(open));
   row.body.inert = !open;
   if (open) load(row.el.querySelector('.pics figure:not([hidden]) img'));
+}
+
+// The line over a group: its name, the number of its rows, and in grey what the group is.
+function groupLine(name, gloss) {
+  const line = Object.assign(document.createElement('div'), { className: 'group' });
+  line.append(name, document.createElement('sup'), Object.assign(document.createElement('span'), { className: 'gloss', textContent: gloss }));
+  return line;
 }
 
 function setText(el, text) {
@@ -178,8 +319,4 @@ function readJson(id, fallback) {
 
 function motion() {
   return reduced.matches ? 'auto' : 'smooth';
-}
-
-function entries(n) {
-  return `${n} ${n === 1 ? 'entry' : 'entries'}`;
 }

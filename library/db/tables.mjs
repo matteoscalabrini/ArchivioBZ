@@ -11,7 +11,8 @@ export function tables(lib, root, stored, { kinds = {} } = {}) {
   const entries = [];
   const entryMedia = [];
   for (const entry of lib.entries) {
-    const { dir, abs, section, images = [], ...written } = entry;
+    // `find`, the search's terms (lib/find.mjs), is not part of the record: it has its own file.
+    const { dir, abs, section, find, images = [], ...written } = entry;
     const record = images.length ? { ...written, images: images.map(({ abs: _, ...image }) => image) } : written;
     const file = abs ? rel(abs) : null;
     entries.push({
