@@ -1,12 +1,13 @@
-// The Library's state as it lives in the address: #k=<keyword id>&t=<kind id>&o=<no,no>&s=<no|type|date>,
-// and which of a row's pictures a step leads to. Pure functions, shared by library.js and the tests.
+// The Library's state as it lives in the address: #q=<what is searched>&k=<keyword id>&t=<kind id>
+// &o=<no,no>&s=<no|type|date>, and which of a row's pictures a step leads to. Pure functions, shared by library.js and the tests.
 
 const SORTS = ['no', 'type', 'date'];
+const LONGEST = 200; // characters of a search kept from the address
 
 // `known` = {keywords: Set, kinds: Set, rows: Set}. Anything unknown or unreadable is dropped; never
 // throws. A page without kinds leaves `known.kinds` out.
 export function parseState(hash, known) {
-  const state = { k: null, t: null, o: [], s: 'no' };
+  const state = { q: '', k: null, t: null, o: [], s: 'no' };
   const values = new Map();
   for (const part of String(hash ?? '').replace(/^#/, '').split('&')) {
     const at = part.indexOf('=');
@@ -14,6 +15,8 @@ export function parseState(hash, known) {
     const value = decode(part.slice(at + 1));
     if (value !== null) values.set(part.slice(0, at), value);
   }
+  const q = values.get('q');
+  if (q) state.q = q.slice(0, LONGEST);
   const k = values.get('k');
   if (k && known.keywords.has(k)) state.k = k;
   const t = values.get('t');
@@ -25,9 +28,10 @@ export function parseState(hash, known) {
   return state;
 }
 
-// '#k=…&t=…&o=…&s=…', leaving out what is at its default; '' for the default state.
+// '#q=…&k=…&t=…&o=…&s=…', leaving out what is at its default; '' for the default state.
 export function formatState(state) {
   const parts = [];
+  if (state.q?.trim()) parts.push(`q=${encodeURIComponent(state.q.trim())}`);
   if (state.k) parts.push(`k=${encodeURIComponent(state.k)}`);
   if (state.t) parts.push(`t=${encodeURIComponent(state.t)}`);
   if (state.o?.length) parts.push(`o=${state.o.map(encodeURIComponent).join(',')}`);
