@@ -1,8 +1,20 @@
 {
+  "18.04": {
+    "on": ["Strada della Mendola verso Bolzano e le Dolomiti", "M 10511 n", "Joh. F. Amonn Bolzano", "Riproduzione vietata", "Hotel Caldaro", "Herrnhofer", "Mendola"],
+    "shows": ["a mountain road cut into a rock face", "a motor car on a bend with a low wall", "the Adige valley below with fields", "the Dolomites across the valley", "a German title covered by a black bar", "an Italian title printed over the picture", "the same postcard printed again with the title on the back", "a sky repainted without clouds", "a hotel's violet rubber stamp"],
+    "colours": ["green", "blue", "pink", "brown", "purple"],
+    "names": ["Mendel", "Mendelpass", "Mendelstraße", "Passo della Mendola", "Kaltern", "Caldaro", "Bozen", "Bolzano"]
+  },
   "18.05": {
     "on": ["Kurort Meran", "in Süd-Tirol", "Merano. Chiesa parrocchiale", "M 14509", "Kunstverlag Leo Stainer, Innsbruck", "Joh. F. Amonn Bozen"],
     "shows": ["a parish church with a tall clock tower and a stepped gable", "a path under a vine pergola along a stone wall", "a woman in a straw hat with a bundle under her arm", "mountains behind the town", "a German caption covered by a black bar", "an Italian caption printed over the picture", "the same postcard before and after its caption was changed"],
     "colours": ["green", "red", "yellow", "blue", "grey"],
     "names": ["Meran", "Merano", "St. Nikolaus", "San Nicolò", "Pfarrkirche", "Chiesa parrocchiale", "Südtirol", "Süd-Tirol"]
+  },
+  "18.16": {
+    "on": ["Meran, Romanisches Portal im Schloss Tirol", "Merano, Porta Romana", "Photographie und Verlag von Leo Bährendt, Meran", "Fotografo e Editore Leo Baehrendt Merano", "No. B. 39", "1913"],
+    "shows": ["a carved Romanesque doorway with a round arch", "a carved tympanum with figures", "carved beasts on either side of the door", "a centaur with a bow carved in the wall", "steps and a plank floor before the door", "a German caption struck through with printed bars", "an Italian caption printed above the old one", "the publisher's German line on the back printed over in Italian"],
+    "colours": ["monochrome", "red"],
+    "names": ["Schloss Tirol", "Castel Tirolo", "Bährendt", "Baehrendt", "Romanesque portal", "Roman gate", "portale romanico"]
   }
 }

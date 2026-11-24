@@ -5,9 +5,14 @@
 .detail .txt p { margin: 0 0 14px; }
 
 .pics figure { margin: 0; }
-/* Side by side (a row's `side_by_side`, for a before and an after): every picture at once, in
-   columns of equal width, their tops in line, each picture with its own caption under it. */
-.pics.side { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 16px; align-items: start; }
+/* Side by side (a row's `side_by_side`, for a before and an after): every picture at once, in two
+   columns of equal width 8 px apart: pictures 1 and 2 side by side, 3 and 4 under them (two
+   fronts, then their two backs). Each picture fills its column so the gap stays 8 px, tops in
+   line, captions under them; equal widths keep a landscape card and a portrait picture at the
+   same scale. The block stops at 760 px so tall cards stay on the screen. */
+.pics.side { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 8px; max-width: 760px; align-items: start; }
+.pics.side .pic-open { display: block; width: 100%; }
+.pics.side img { width: 100%; max-height: none; }
 .pic-open { display: inline-block; vertical-align: top; max-width: 100%; margin: 0; padding: 0; border: 0; background: none; cursor: zoom-in; }
 .pics img { display: block; width: auto; height: auto; max-width: 100%; max-height: 520px; }
 .pics figcaption { margin-top: 8px; max-width: 60ch; font-size: var(--size-meta); color: var(--grey); }

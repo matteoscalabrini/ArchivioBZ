@@ -1,6 +1,58 @@
 {
   "entries": [
     {
+      "no": "18.04",
+      "title": "Strada della Mendola verso Bolzano e le Dolomiti, Amonn postcard M 10511: the German title covered, then the card printed again in Italian",
+      "type": "Postcard",
+      "date": "1904–14 (holder); the reprint used in 1930",
+      "year": 1904,
+      "keywords": [
+        "postcards",
+        "language",
+        "wording",
+        "removal",
+        "tourism"
+      ],
+      "text": [
+        "The road over the Mendola pass, cut into the rock above the Adige valley, with a motor car on the bend and the Dolomites across the valley. Johann F. Amonn of Bozen published the view as card M 10511.",
+        "Two copies stand side by side. On the first, kept by the Palais Mamming Museum in Meran, the Italian title “Strada della Mendola verso Bolzano e le Dolomiti” is printed across the top of the picture, and the German title below it lies under a long black bar. The second is the same card printed again by the same publisher. Nothing is written on the front; the Italian title runs along the back, the imprint now reads “Joh. F. Amonn Bolzano”, and a line says “Riproduzione vietata”. The picture was retouched as well: the bank of cloud is gone from the sky and the mountains stand larger. This copy carries the stamp of the Hotel Caldaro on the Mendola and a handwritten date, 8 April 1930.",
+        "One copy was corrected by hand; the other was made new, with nothing left to correct. The covering on the first is not dated."
+      ],
+      "facts": [
+        "Palais Mamming inv. 25651, imprint 'Joh. F. Amonn Bozen M 10511 n', 1904–1914: 'Strada della Mendola verso Bolzano e le Dolomiti (sekundäre italienische Beschriftung, die ursprünglich Deutsche wurde geschwärzt)' (record)",
+        "Second copy: heimatsammlung.de, image '4893-postkarte-mendel.jpg' (found by the author, 24 Nov 2026), front and back in one picture with the site's watermark (compare_18.04/findings.md)",
+        "Seen in the image (Mamming copy): the Mendola road cut into a rock face above the Adige valley, a car on the bend, a bank of cloud over low mountains; at the top the italic Italian title above a long black bar",
+        "Seen in the image (second copy, front): the same road, rock, wall, poles and car; no title; a clear blue sky with small clouds and the mountains larger and lit pink",
+        "Seen in the image (second copy, back): 'STRADA DELLA MENDOLA VERSO BOLZANO E LE DOLOMITI' printed upright along the dividing line under a tree mark; the oval 'Joh. F. Amonn Bolzano'; 'Riproduzione vietata.'; 'M 10511 n'; a violet stamp 'Hotel Caldaro / Propr. Herrnhofer / Mendola'; handwritten '8. 4. 30.'; no postage stamp or address"
+      ],
+      "images": [
+        {
+          "file": "images/1904-14_Amonn_Strada_della_Mendola_German_blacked_OMA-Mamming.jpg",
+          "caption": "Covered: the Italian title printed over the top, the German one under a black bar. Joh. F. Amonn, Bozen, M 10511, 1904–14. Palais Mamming Museum, Meran, inv. 25651, via OMA; rights with the museum."
+        },
+        {
+          "file": "compare_18.04/1920s_Amonn_M10511n_Strada_della_Mendola_Italian_reprint_front_back_heimatsammlung.jpg",
+          "caption": "Printed again: front and back. Joh. F. Amonn, Bolzano, M 10511 n; stamp of the Hotel Caldaro, Mendola, dated by hand 8 April 1930. A collector's photograph, heimatsammlung.de; rights not stated."
+        }
+      ],
+      "side_by_side": true,
+      "file": "images/1904-14_Amonn_Strada_della_Mendola_German_blacked_OMA-Mamming.jpg",
+      "source": {
+        "label": "OMA, Palais Mamming Museum, inv. 25651",
+        "url": "https://objekte-museen-archive.provinz.bz.it/Details/bz/80079841"
+      },
+      "creator": "Joh. F. Amonn, Bozen, later Bolzano (publisher)",
+      "holder": "Palais Mamming Museum (the covered copy)",
+      "rights": "Covered copy: Palais Mamming Museum, no licence stated. Reprint: a collector's photograph, heimatsammlung.de, rights not stated.",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://objekte-museen-archive.provinz.bz.it/Details/bz/80079841"
+      }
+    },
+    {
       "no": "18.05",
       "title": "Kurort Meran, Amonn postcard M 14509, before and after “in Süd-Tirol” was blacked out",
       "type": "Postcard",
@@ -50,6 +102,67 @@
       "more": {
         "kind": "source",
         "target": "https://objekte-museen-archive.provinz.bz.it/Details/bz/80069713"
+      }
+    },
+    {
+      "no": "18.16",
+      "title": "Meran, Romanisches Portal im Schloss Tirol, Bährendt postcard B 39: the German struck through, “Merano, Porta Romana” printed over",
+      "type": "Postcard",
+      "date": "1913 (first copy); the covered copy 1925–43 (holder)",
+      "year": 1913,
+      "keywords": [
+        "postcards",
+        "language",
+        "wording",
+        "romanita",
+        "removal"
+      ],
+      "text": [
+        "A Romanesque doorway in Schloss Tirol above Meran, its carved arch and the beasts on either side. Leo Bährendt of Meran photographed and published it as card B 39, with the caption “Meran, Romanisches Portal im Schloss Tirol” and on the back “Photographie und Verlag von Leo Bährendt, Meran”.",
+        "Two copies stand side by side, fronts above and backs below. The first is the card as printed. On the second, kept by the Palais Mamming Museum, a row of short bars is printed through the German caption and “Merano, Porta Romana” above it; on the back the publisher's line is printed over in Italian, “Fotografo e Editore Leo Baehrendt Merano”.",
+        "The Italian caption does not translate the German one. “Romanisches Portal”, a Romanesque doorway, becomes “Porta Romana”, a Roman gate."
+      ],
+      "facts": [
+        "Palais Mamming inv. 9010, Leo Bährendt, Meran: 'Der deutsche Text \"Meran - Romanisches Portal im Schloß Tirol\" wurde durchgestrichen und durch den italienischen Text \"Merano, Porta Romana\" ersetzt. Auf der Rückseite wurde der deutsche Text \"Photograph u. Verlag Leo Bährendt, Meran\" ebenfalls durchgestrichen und durch \"Fotografo e Editore Leo Baehrendt Merano\" ersetzt', dated 1925–1943 (record)",
+        "First copy: a dealer's listing on oldthing, image https://img.oldthing.net/i/webp/9985/52/86/95/52869532_0_s.webp (found by the author, 24 Nov 2026), front and back served at 317 × 500 only (compare_18.16/findings.md)",
+        "Seen in the image (first copy, back): printed upright at the left edge 'Photographie und Verlag von Leo Bährendt, Meran. 1913. No. B. 39' (the year read on a small scan); a number in the stamp box, unreadable",
+        "Seen in the image (covered copy, front): 'Merano, Porta Romana' above a printed row of short vertical bars over a red German line",
+        "Seen in the image (covered copy, back): 'Fotografo e Editore Leo Baehrendt Merano No. B 39' printed upright at the left edge over traces of an earlier imprint; '280623' in the stamp box; museum pencil notes 'Inv. N° 9010'",
+        "The Italian turns 'Romanisches Portal' (Romanesque portal) into 'Porta Romana' (Roman gate) [INF] (notes 18, §2)"
+      ],
+      "images": [
+        {
+          "file": "compare_18.16/1913_Baehrendt_B39_Meran_Romanisches_Portal_front_oldthing.jpg",
+          "caption": "As printed: “Meran, Romanisches Portal im Schloss Tirol.” Leo Bährendt, Meran, B 39. A dealer's photograph, oldthing; rights not stated."
+        },
+        {
+          "file": "images/1925-43_Baehrendt_Merano_Porta_Romana_struck_front_OMA-Mamming.jpg",
+          "caption": "Covered: bars through the German, “Merano, Porta Romana” above. Palais Mamming Museum, Meran, inv. 9010, via OMA; rights with the museum."
+        },
+        {
+          "file": "compare_18.16/1913_Baehrendt_B39_Meran_Romanisches_Portal_back_oldthing.jpg",
+          "caption": "Its back: “Photographie und Verlag von Leo Bährendt, Meran. 1913. No. B. 39.”"
+        },
+        {
+          "file": "images/1925-43_Baehrendt_Merano_Porta_Romana_struck_back_OMA-Mamming.jpg",
+          "caption": "Its back: “Fotografo e Editore Leo Baehrendt Merano” printed over the German line."
+        }
+      ],
+      "side_by_side": true,
+      "file": "images/1925-43_Baehrendt_Merano_Porta_Romana_struck_front_OMA-Mamming.jpg",
+      "source": {
+        "label": "OMA, Palais Mamming Museum, inv. 9010",
+        "url": "https://objekte-museen-archive.provinz.bz.it/Details/bz/80007380"
+      },
+      "creator": "Leo Bährendt (1876–1957), Meran (photographer and publisher)",
+      "holder": "Palais Mamming Museum (the covered copy)",
+      "rights": "Covered copy: Palais Mamming Museum, no licence stated. Printed copy: a dealer's photograph, rights not stated.",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://objekte-museen-archive.provinz.bz.it/Details/bz/80007380"
       }
     }
   ]

@@ -135,46 +135,6 @@
    }
   },
   {
-   "no": "18.04",
-   "title": "Strada della Mendola verso Bolzano e le Dolomiti, Amonn postcard with its German title blacked out",
-   "type": "Postcard",
-   "date": "1904–14 (card); covering undated",
-   "year": 1904,
-   "keywords": [
-    "postcards",
-    "language",
-    "covering",
-    "removal",
-    "tourism"
-   ],
-   "text": [],
-   "facts": [
-    "Palais Mamming inv. 25651, imprint 'Joh. F. Amonn Bozen M 10511 n', 1904–1914: 'Strada della Mendola verso Bolzano e le Dolomiti (sekundäre italienische Beschriftung, die ursprünglich Deutsche wurde geschwärzt)' (record)",
-    "Seen in the image: the Mendola road cut into a rock face above the Adige valley, a car on the bend, mountains under cloud; at the top the italic Italian title above a long black bar"
-   ],
-   "images": [
-    {
-     "file": "images/1904-14_Amonn_Strada_della_Mendola_German_blacked_OMA-Mamming.jpg",
-     "caption": "Joh. F. Amonn, Bozen, 1904–14, German title blacked out later. Palais Mamming Museum, via OMA; rights with the museum."
-    }
-   ],
-   "file": "images/1904-14_Amonn_Strada_della_Mendola_German_blacked_OMA-Mamming.jpg",
-   "source": {
-    "label": "OMA, Palais Mamming Museum",
-    "url": "https://objekte-museen-archive.provinz.bz.it/Details/bz/80079841"
-   },
-   "creator": "Joh. F. Amonn, Bozen (publisher)",
-   "holder": "Palais Mamming Museum",
-   "rights": "Rechte: Palais Mamming Museum (no licence stated; © presumed)",
-   "confidence": {
-    "level": "read"
-   },
-   "more": {
-    "kind": "source",
-    "target": "https://objekte-museen-archive.provinz.bz.it/Details/bz/80079841"
-   }
-  },
-  {
    "no": "18.06",
    "title": "Brixen gegen Norden, Caspar Eder postcard overstamped “Bressanone”",
    "type": "Postcard",
@@ -593,52 +553,6 @@
    "more": {
     "kind": "source",
     "target": "https://objekte-museen-archive.provinz.bz.it/Details/bz/140023252"
-   }
-  },
-  {
-   "no": "18.16",
-   "title": "Merano, Porta Romana: Bährendt postcard of the Romanesque portal of Schloss Tirol, German struck through",
-   "type": "Postcard",
-   "date": "1925–43 (holder)",
-   "year": 1925,
-   "keywords": [
-    "postcards",
-    "language",
-    "wording",
-    "covering",
-    "romanita"
-   ],
-   "text": [],
-   "facts": [
-    "Palais Mamming inv. 9010, Leo Bährendt, Meran: 'Der deutsche Text \"Meran - Romanisches Portal im Schloß Tirol\" wurde durchgestrichen und durch den italienischen Text \"Merano, Porta Romana\" ersetzt. Auf der Rückseite wurde der deutsche Text \"Photograph u. Verlag Leo Bährendt, Meran\" ebenfalls durchgestrichen und durch \"Fotografo e Editore Leo Baehrendt Merano\" ersetzt' (record)",
-    "The Italian turns 'Romanisches Portal' (Romanesque portal) into 'Porta Romana' (Roman gate) [INF] (notes 18, §2)",
-    "Seen in the image (front): the carved Romanesque portal with its tympanum and beasts; at the top 'Merano, Porta Romana' above a printed row of short vertical bars over a red German line",
-    "Seen in the image (back): 'Fotografo e Editore Leo Baehrendt Merano' printed vertically at the left edge over traces of an earlier imprint; museum pencil notes"
-   ],
-   "images": [
-    {
-     "file": "images/1925-43_Baehrendt_Merano_Porta_Romana_struck_front_OMA-Mamming.jpg",
-     "caption": "Leo Bährendt, Meran, 1925–43. Palais Mamming Museum, via OMA; rights with the museum."
-    },
-    {
-     "file": "images/1925-43_Baehrendt_Merano_Porta_Romana_struck_back_OMA-Mamming.jpg",
-     "caption": "The back. Palais Mamming Museum, via OMA."
-    }
-   ],
-   "file": "images/1925-43_Baehrendt_Merano_Porta_Romana_struck_front_OMA-Mamming.jpg",
-   "source": {
-    "label": "OMA, Palais Mamming Museum",
-    "url": "https://objekte-museen-archive.provinz.bz.it/Details/bz/80007380"
-   },
-   "creator": "Leo Bährendt (1876–1957), Meran (photographer and publisher)",
-   "holder": "Palais Mamming Museum",
-   "rights": "Rechte: Palais Mamming Museum (no licence stated; © presumed)",
-   "confidence": {
-    "level": "read"
-   },
-   "more": {
-    "kind": "source",
-    "target": "https://objekte-museen-archive.provinz.bz.it/Details/bz/80007380"
    }
   },
   {
