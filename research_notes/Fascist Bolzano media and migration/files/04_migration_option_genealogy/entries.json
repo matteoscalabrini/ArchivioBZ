@@ -1154,43 +1154,6 @@
       "more": {
         "kind": "file"
       }
-    },
-    {
-      "no": "4.35",
-      "title": "Die Heimkehrer. Dolomiten, 28 May 2026, page 17",
-      "type": "Press article",
-      "date": "28 May 2026",
-      "year": 2026,
-      "keywords": [
-        "option",
-        "press"
-      ],
-      "text": [
-        "An interview in the Dolomiten with the historian Eva Pfanzelter, on the day her co-edited book on the return of the optants was presented. On the famous 86 per cent she says it holds “in vielen Fällen”, and that in some villages the figure was higher.",
-        "And: “Wir können bis heute nicht genau sagen, wie viele Menschen letztendlich Südtirol im Zuge der Option verlassen haben.” The online database holds only about a third of the applications to return."
-      ],
-      "facts": [
-        "Dolomiten interview with the historian Eva Pfanzelter on the Option of 1939 and the re-option, 28 May 2026, p. 17; copy hosted by Uni Innsbruck (manifest; file).",
-        "Occasion: the book 'Endstation Heimkehr? Die Südtiroler Rückoption', edited by Pfanzelter and Sarah Oberbichler, presented that evening at the Teßmann library (file).",
-        "'die bekannten 86 Prozent … in vielen Fällen stimmen, in manchen Dörfern … war die Zahl aber sicher auch höher' (notes 04, §4, [SECONDARY]).",
-        "'Wir können bis heute nicht genau sagen, wie viele Menschen letztendlich Südtirol im Zuge der Option verlassen haben' (notes 04, §4, [SECONDARY]).",
-        "OptionDigital holds only about a third of the re-option applications, 'ca. 32.000 Karteikarten' (notes 04, §4, [SECONDARY]; file).",
-        "© Athesia; study use only (manifest)."
-      ],
-      "file": "Pfanzelter_Dolomiten_Interview_Option_2026-05-28.pdf",
-      "source": {
-        "label": "Universität Innsbruck",
-        "url": "https://www.uibk.ac.at/media/filer_public/d2/b1/d2b191c8-8095-488b-8ebb-341a25842458/sudtiroleroption_dolomiten280526.pdf"
-      },
-      "creator": "Dolomiten, interview with Eva Pfanzelter",
-      "holder": "Athesia (Dolomiten); copy hosted by Universität Innsbruck",
-      "rights": "© Athesia; study use only.",
-      "confidence": {
-        "level": "secondary"
-      },
-      "more": {
-        "kind": "file"
-      }
     }
   ]
 }

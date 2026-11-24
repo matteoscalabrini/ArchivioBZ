@@ -144,10 +144,5 @@
     "on": ["Karteikarten aus dem TLA", "Kennziffer", "Anschlussziffern", "Volkszugeh.", "Reoptiert", "Ausgereist", "Wiedereingeb.", "Trasferitosi in Germania", "Reichsdeutsche"],
     "shows": ["a key to the index cards of the Option", "fields and stamps on the cards", "name, birth, citizenship, religion, occupation, wife and children", "cards of the Tiroler Landesarchiv and the Archivio di Stato di Bolzano", "stamps for re-option, departure and naturalisation"],
     "names": ["Amtliche Deutsche Ein- und Rückwandererstelle", "Staatsarchiv Bozen"]
-  },
-  "4.35": {
-    "on": ["Endstation Heimkehr? Die Südtiroler Rückoption", "die bekannten 86 Prozent", "Wir können bis heute nicht genau sagen, wie viele Menschen letztendlich Südtirol im Zuge der Option verlassen haben", "ca. 32.000 Karteikarten"],
-    "shows": ["an interview with the historian Eva Pfanzelter", "the return of the optants after the war", "the 86 per cent who opted for Germany", "a new book on the re-option", "a newspaper page"],
-    "names": ["Opzioni"]
   }
 }

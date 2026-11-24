@@ -717,40 +717,6 @@
       "place": "monumento-vittoria"
     },
     {
-      "no": "5.19",
-      "title": "Menzione speciale della giuria al percorso espositivo nel Monumento alla Vittoria",
-      "type": "Press article",
-      "date": "2016",
-      "year": 2016,
-      "keywords": [
-        "monumento-vittoria",
-        "heritage"
-      ],
-      "text": [
-        "The Comune's press release on the special commendation the exhibition received from the jury of the European Museum of the Year Award in 2016, among 49 candidates from 24 countries. The jury called it “a highly courageous and professional initiative”."
-      ],
-      "facts": [
-        "Press release of the Comune di Bolzano on the EMYA 2016 Special Commendation (manifest)",
-        "EMYA 2016 Special Commendation (49 candidates from 24 countries): the jury praised it as a reintegration of a controversial monument and 'a highly courageous and professional initiative' [V] (notes 05, §4)",
-        "The release gives the exhibition as 13 rooms and 700 m², which the notes cite to the Comune's page [S] (file, p. 1; notes 05, §3)",
-        "No date in the text ('lo scorso week end'); the PDF was made on 20 April 2016 (file)"
-      ],
-      "file": "MAV_cs_EMYA2016_menzione_speciale.pdf",
-      "source": {
-        "label": "monumentoallavittoria.com",
-        "url": "https://www.monumentoallavittoria.com/fileadmin/user_upload/presse/_cs_premio_menzione_speciale_us.pdf"
-      },
-      "creator": "Comune di Bolzano press office",
-      "holder": "Comune di Bolzano",
-      "rights": "Press release",
-      "confidence": {
-        "level": "read"
-      },
-      "more": {
-        "kind": "file"
-      }
-    },
-    {
       "no": "5.20",
       "title": "Transforming a Controversial Heritage: The Case of the Fascist Victory Monument in South Tyrol",
       "type": "Article",
@@ -825,41 +791,6 @@
         "level": "read"
       },
       "place": "cristo-re"
-    },
-    {
-      "no": "5.22",
-      "title": "Start frei für die Restaurierung der Fassade des historischen Sitzes der Sparkasse",
-      "type": "Press article",
-      "date": "20 September 2017",
-      "year": 2017,
-      "keywords": [
-        "old-town",
-        "heritage"
-      ],
-      "text": [
-        "A press release of the Südtiroler Sparkasse on restoring the facade of its historic seat. The building of 1904–07 was stripped and re-clad in the 1930s in clinker brick and travertine, with reliefs of fascist symbols by Piffrader. The release says nothing about explaining them. This research counts the facade among what has not been defused."
-      ],
-      "facts": [
-        "'Pressemitteilung vom 20. September 2017' of the Südtiroler Sparkasse on restoring the facade of its historic seat (manifest; file, p. 1)",
-        "The Cassa di Risparmio headquarters (Wilhelm Kürschner, 1904–07) was stripped and re-clad in the 1930s with Piffrader reliefs of fascist symbols; listed since 1988; restored 2017–18 [V] (notes 05, §3)",
-        "The press release says nothing about contextualisation; the facade is counted among what was not defused [V] (notes 05, §4)",
-        "The release describes the 1930s rebuilding in rationalist style with clinker brick and travertine, and clinker bricks coming loose in May 2016 (file, p. 1)"
-      ],
-      "file": "Sparkasse_2017-09-20_PM_Restaurierung_Fassade_Sitz.pdf",
-      "source": {
-        "label": "sparkasse.it",
-        "url": "https://www.sparkasse.it/wp-content/uploads/Fassade-Sitz-Sparkasse.pdf"
-      },
-      "creator": "Südtiroler Sparkasse AG, Abteilung Kommunikation",
-      "holder": "Südtiroler Sparkasse",
-      "rights": "Press release",
-      "confidence": {
-        "level": "read"
-      },
-      "place": "sparkasse-sede",
-      "more": {
-        "kind": "file"
-      }
     },
     {
       "no": "5.23",

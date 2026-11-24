@@ -1,33 +1,4 @@
 {
-  "13.01": {
-    "on": [
-      "Aus Bolzano Stadt und Land",
-      "Die neue E.I.A.R.-Station",
-      "Das Projekt, das auf dem Bilde gezeigt wird, stammt vom Ing. Armando Ronca",
-      "Rapport der Schwarzhemden in Villabassa",
-      "Der „Fascistische Samstag“",
-      "Besichtigung der Gaswerke",
-      "Sitzung des Provinzial-Getreidekomitees",
-      "Telegramme anläßlich der Sitzung zur Fusion der Sparkassen",
-      "Lottoziehung",
-      "Kino-Nachrichten",
-      "Hotel Roma",
-      "Sparkasse Bolzano"
-    ],
-    "shows": [
-      "the new EIAR radio station above the Monticolo lake",
-      "a night view of the station building lit among fir trees",
-      "a radio station designed by Armando Ronca",
-      "a blackshirts' rally in Villabassa",
-      "a cartoon of a man soaking his feet in a steaming basin",
-      "a Fraktur newspaper page"
-    ],
-    "names": [
-      "Ente Italiano per le Audizioni Radiofoniche",
-      "Montiggler See",
-      "Niederdorf"
-    ]
-  },
   "13.02": {
     "on": [
       "Bolzano",
@@ -57,122 +28,6 @@
       "Palazzo del Turismo",
       "Milan Stojadinović",
       "Corso Libertà"
-    ]
-  },
-  "13.03": {
-    "on": [
-      "Bolzano",
-      "Neuer Fremdenverkehrspalast",
-      "Am 10. August begannen die Arbeiten für den neuen Fremdenverkehrspalast in unserer Stadt am Corso 9. Maggio",
-      "Es ist interessant zu wissen, daß er der erste Palast dieser Art von ganz Italien ist",
-      "Merano",
-      "Ein Besuch am Rennplatz",
-      "Film-Nachrichten",
-      "Todesfall",
-      "Bernhard von Clairvaux",
-      "Politiker und Mystiker des Hochmittelalters",
-      "Donnerstag, den 11. August 1938/XVI"
-    ],
-    "shows": [
-      "a Fraktur page of local news from Bolzano and Merano",
-      "the start of building of the new palace of tourism on 10 August 1938",
-      "the first palace of tourism in Italy, as the paper claims",
-      "a visit to the Merano racecourse",
-      "an essay on Bernard of Clairvaux"
-    ],
-    "names": [
-      "Palazzo del Turismo",
-      "Corso Libertà",
-      "Bernard of Clairvaux"
-    ]
-  },
-  "13.04": {
-    "on": [
-      "Aus Bolzano Stadt und Land",
-      "In der Monumentalzone",
-      "Die Errichtung des Palazzo del Turismo",
-      "Der Bau, der vom Ing. Ronca projektiert ist, ist erheblich vorgeschritten",
-      "Die Mauerarbeiten sind fast vollendet",
-      "Der Bau, der im Corso IX Maggio der Vollendung entgegengeht",
-      "Foto Walsa",
-      "Die Feier des 4. November in unserer Stadt",
-      "Die Ehrenwache am Siegesdenkmal",
-      "Amtszeit für die Erledigung der Auswanderungs-Ansuchen",
-      "Die neue Höchstpreisliste",
-      "LA PUBBLICITÀ D'ITALIA"
-    ],
-    "shows": [
-      "a building under construction in scaffolding with a crane jib",
-      "hoardings at street level and a street running away",
-      "the building site of the palace of tourism on Corso IX Maggio",
-      "guards of honour in silhouette before the columns of the Victory Monument",
-      "the anniversary of victory on 4 November 1939",
-      "office hours for emigration applications under the Option",
-      "a Fraktur newspaper page"
-    ],
-    "names": [
-      "Fremdenverkehrspalast",
-      "Corso Libertà"
-    ]
-  },
-  "13.05": {
-    "on": [
-      "CRONACA DELLA CITTA'",
-      "LA PROVINCIA DI BOLZANO",
-      "Il Ministro Ricci inaugurerà oggi la IX Sindacale d'Arte",
-      "La visita del Prefetto ai lavori di allestimento della grande rassegna, ordinata al Palazzo del Turismo",
-      "Opere di artisti umbri figurano alla Mostra accanto alla miglior produzione dei camerati della Venezia Tridentina",
-      "Un angolo del salone dove sono esposte le opere dei concorsi",
-      "ordinata nel nuovo palazzo del Turismo, in corso IX Maggio",
-      "la statua in marmo che dovrà completare l'atrio di accesso del nuovo palazzo",
-      "L'Altezza Reale la Duchessa di Pistoia",
-      "Giornata dell'Uva",
-      "L'oscuramento avrà inizio alle ore 20",
-      "La prova delle sirene",
-      "AFFITTANSI E VENDONSI"
-    ],
-    "shows": [
-      "inside a large exhibition hall with tall windows high on the wall",
-      "framed pictures hung on free-standing screens",
-      "a low bench and a small standing sculpture",
-      "the ninth syndical art exhibition in the new palace of tourism",
-      "a competition for a marble statue for the entrance hall",
-      "the grape festival with the Duchess of Pistoia",
-      "a city-news banner drawn with a building and a factory chimney"
-    ],
-    "names": [
-      "Fremdenverkehrspalast",
-      "Corso Libertà"
-    ]
-  },
-  "13.06": {
-    "on": [
-      "CRONACA DELLA CITTA'",
-      "La IX Mostra d'arte della Venezia Tridentina",
-      "ufficialmente inaugurata da Renato Ricci",
-      "Il successo della rassegna ordinata nel nuovo palazzo del turismo",
-      "ha trovato la sua sede più adatta nel nuovo palazzo del Turismo sorto in Corso IX Maggio",
-      "monumentale ingresso",
-      "balilla moschettieri",
-      "LA GIORNATA DELL'UVA",
-      "Vendemmiale in Piazza Vittorio Emanuele",
-      "La Duchessa di Pistoia visita i chioschi",
-      "Foto Fedrizzi",
-      "Il Ministro Ricci allo stabilimento Lancia",
-      "Giovani hitleriani"
-    ],
-    "shows": [
-      "the official opening of the ninth art exhibition of the Venezia Tridentina",
-      "the minister's route through the atrium, the watercolour room, the great stair and the rotunda",
-      "officials among fruit stalls at the grape festival",
-      "Minister Renato Ricci with officers at the Lancia works",
-      "Hitler Youth received at the Brenner",
-      "a city-news page"
-    ],
-    "names": [
-      "Fremdenverkehrspalast",
-      "Corso Libertà",
-      "Gioventù Italiana del Littorio"
     ]
   },
   "13.07": {
@@ -205,60 +60,6 @@
     "names": [
       "Fremdenverkehrspalast",
       "Corso-Kino"
-    ]
-  },
-  "13.08": {
-    "on": [
-      "Die Ausstellung des Künstlersyndikates in Bolzano",
-      "Von Dr. Heinrich Waschgler",
-      "zur neunten Zweijahrausstellung im Palazzo del Turismo",
-      "mit den überschlanken Säulen aus Verde antico",
-      "mit feinem weißem Sand",
-      "der Kolossalkopf des Drusus",
-      "der mächtige Mussolinikopf",
-      "Erfolgreiche U-Boot-Angriffe im Mittelmeer",
-      "Zwei Dampfer aus einem Geleitzug heraus torpediert",
-      "Die Ankunft in Berlin des Präsidenten des Rates der Volkskommissare",
-      "Unterredung mit Hitler",
-      "Bolzano, Mittwoch, den 13. November 1940"
-    ],
-    "shows": [
-      "a front page with war news and an art review",
-      "submarine attacks in the Mediterranean",
-      "Molotov's arrival in Berlin and his talk with Hitler",
-      "the unfinished entrance hall of the palace of tourism",
-      "a colossal head of Drusus by Piffrader and a head of Mussolini",
-      "models for a marble statue of Music at the foot of the semicircular stair",
-      "a Fraktur newspaper page"
-    ],
-    "names": [
-      "Molotov",
-      "Fremdenverkehrspalast"
-    ]
-  },
-  "13.09": {
-    "on": [
-      "Nachrichten aus Stadt und Land",
-      "Der Präfekt wird unterrichtet über die Ergebnisse der 9. Syndikalen Kunstschau",
-      "Geist und Ereignisse im Zeitalter Mussolinis",
-      "Landschaft im Oberetsch",
-      "Atesia Augusta",
-      "Hoher Besuch in der Kgl. Handels-Fachschule",
-      "Beginn der Kurse zur politischen Vorbereitung für die Jugend",
-      "Balilla-Feier u. Preisverteilung",
-      "Lebensmittel-Verbrauch in öffentlichen Betrieben",
-      "Graf Csaky nach Belgrad",
-      "TISANA CISBEY",
-      "VERSTOPFUNG und schlechte Verdauung"
-    ],
-    "shows": [
-      "the prefect briefed on the results of the ninth syndical art exhibition",
-      "visitors, artists, works and prize money of the exhibition",
-      "prize themes on the age of Mussolini and the landscape of the Oberetsch",
-      "political training courses for young people",
-      "rules on meals in restaurants",
-      "an advertisement for Tisana Cisbey tea",
-      "a Fraktur newspaper page"
     ]
   },
   "13.10": {
@@ -300,67 +101,6 @@
       "Francesco Scarpabolla"
     ]
   },
-  "13.11": {
-    "on": [
-      "Aus Bolzano Stadt und Land",
-      "Die Dolomiten-Plastik in den Bahnhofsanlagen",
-      "die große Dolomiten-Plastik an den Wänden des Eingangssaales zu den Aemtern im neuen Gebäude der autonomen Touristikstelle, Corso 9 Maggio",
-      "Prof. Cesare Bonatta und Maestro Francesco Egger",
-      "seinen propagandistischen Zweck",
-      "Verzeichnis der Herbst- und Wintersorten von Birnen und Aepfeln",
-      "Die Einsammlung der Gitter",
-      "Die Schwarzhemden der 45. Legion wieder in Bolzano",
-      "Aus dem Frauenfascio",
-      "Aus der Provinz",
-      "Mißtraue allen. Das Ohr des Feindes hört immer zu",
-      "Schönheitsinstitutes «FLAVIO»"
-    ],
-    "shows": [
-      "a terracotta relief model of the eastern Dolomites",
-      "the prefect's plan to move the relief to the gardens at the station",
-      "the entrance hall of the tourist office's new building",
-      "a market of young bulls in Malles in the upper Val Venosta",
-      "a list of autumn and winter apple and pear varieties",
-      "a drawn woman's face like a mask in a perfumery advertisement",
-      "a wartime warning that the enemy is listening",
-      "a Fraktur newspaper page"
-    ],
-    "names": [
-      "Palazzo del Turismo",
-      "Corso Libertà",
-      "Mals",
-      "Vinschgau"
-    ]
-  },
-  "13.12": {
-    "on": [
-      "Aus Bolzano Stadt und Land",
-      "Samstag erfolgt die Einsetzung des Kommissärs zur Durchführung der italienisch-deutschen Verträge für das Alto Adige",
-      "Zum Amtssitz des Kommissariats wurde der neue Palast des Tourismus im Corso 9 Maggio, neben dem Foro della Vittoria, ausgewählt, dessen Bau und Ausstattung in diesen Tagen vollendet wurden",
-      "Agostino Podesta",
-      "Was das Publikum wissen muß",
-      "Ueber 850.000 Lebensmittelkarten in Bolzano verteilt",
-      "Zwei Zenturien Hitler-Jugend auf der Durchreise durch Bolzano",
-      "Schließung der IX. Ausstellung für Haushaltung",
-      "Calendario dell'Alto Adige",
-      "WIR UND DIE LESER",
-      "Verstärkter Trambahndienst",
-      "Inserieren bringt Erfolg"
-    ],
-    "shows": [
-      "the installation of the commissioner for the Italo-German agreements on Alto Adige",
-      "the new palace of tourism chosen as the commissariat's office",
-      "the building's completion in early November 1941",
-      "ration cards issued in Bolzano",
-      "two companies of Hitler Youth passing through Bolzano",
-      "a Fraktur newspaper page"
-    ],
-    "names": [
-      "Palazzo del Turismo",
-      "Corso Libertà",
-      "Piazza della Vittoria"
-    ]
-  },
   "13.13": {
     "on": [
       "Bozner Tagblatt",
@@ -390,38 +130,6 @@
       "Palazzo del Turismo",
       "Corso IX Maggio",
       "Corso Libertà"
-    ]
-  },
-  "13.14": {
-    "on": [
-      "Aus der Provinz Bozen",
-      "Kreis Bozen",
-      "Reichsgautheater gastiert in Bozen",
-      "im Fremdenverkehrshaus Gries",
-      "Lisa benimm dich!",
-      "Reichsgau-Symphonieorchester",
-      "Kreisschießen Salurn",
-      "SALURN",
-      "1. KREISSCHIESSEN 1944",
-      "Das Salurner Kreismeisterzeichen",
-      "Sportfest der Jugend in Meran",
-      "Bozner Lichtspiele",
-      "Dr. Crippen an Bord"
-    ],
-    "shows": [
-      "a guest performance of the Innsbruck Reichsgau theatre in the former palace of tourism",
-      "the musical comedy Lisa benimm dich",
-      "a page of district news from the occupied province",
-      "a shooting badge of Salurn with a castle on a crag in an oak-leaf border",
-      "a youth sports festival in Meran",
-      "a cinema notice for the film Dr. Crippen an Bord"
-    ],
-    "names": [
-      "Palazzo del Turismo",
-      "Salorno",
-      "Brunico",
-      "Bressanone",
-      "Silandro"
     ]
   },
   "13.15": {
@@ -518,34 +226,6 @@
       "Tossolini"
     ]
   },
-  "13.19": {
-    "on": [
-      "Aus Bolzano Stadt und Land",
-      "Vorbereitungen für die IX. Syndikale Kunstschau",
-      "Wettbewerbe für Werke, welche die Zeitepoche Mussolinis verherrlichen",
-      "für eine Statue, die für den Palast des Turismus bestimmt ist",
-      "die im neuen Palast des Turismus am 27. September eröffnet wird",
-      "Die Statue hat die „Musik“ darzustellen",
-      "Bei Fliegeralarm",
-      "Verkäufliche Geschäfte infolge der Auswanderung der Volksdeutschen",
-      "Die Labungsstelle für durchreisende Soldaten",
-      "Der Saal der Labungsstelle hat stets Besuch",
-      "Mit dem Rucksack auf dem Rücken",
-      "Samstag, den 17. August 1940-XVIII"
-    ],
-    "shows": [
-      "preparations for the ninth syndical art exhibition in the new palace of tourism",
-      "prizes for works glorifying the age of Mussolini",
-      "a competition for a marble statue of Music for the palace's stair",
-      "shops for sale after the emigration of the Volksdeutsche",
-      "people at tables in a canteen for passing soldiers",
-      "a Fraktur newspaper page"
-    ],
-    "names": [
-      "Palazzo del Turismo",
-      "Fremdenverkehrspalast"
-    ]
-  },
   "13.20": {
     "on": [
       "Otto Ebner",
@@ -592,36 +272,6 @@
     "names": [
       "Partito Comunista Italiano",
       "Südtiroler Volkspartei",
-      "Palazzo del Turismo"
-    ]
-  },
-  "13.22": {
-    "on": [
-      "UN DOCUMENTO FOTOGRAFICO",
-      "Trasformazione e conservazione in una città che non cresce",
-      "di Silvano Bassetti",
-      "La documentazione fotografica è stata raccolta da ESTER VALZOLGHER",
-      "Le foto della Bolzano odierna sono di OTHMAR SEEHAUSER",
-      "Vista all'insieme e dettagli del Cinema Corso",
-      "un tipico esempio dell'architettura bolzanina degli anni 30",
-      "Tutto ciò rischia di scomparire e sarebbe un peccato!",
-      "l'ente pubblico che ne deteneva la proprietà l'abbia venduto",
-      "l'urbanistica fascista ha operato con indiscutabile ingegno",
-      "mi piacciono più i marmi del cinema Corso che non gli acciai inossidabili del palazzo Sip",
-      "tandem"
-    ],
-    "shows": [
-      "the Cinema Corso from the street corner with parked cars",
-      "a pale hall front with seven tall narrow openings beside a darker stone-faced corner block",
-      "looking up at tall marble pilasters with two small carved emblems over dark openings",
-      "an essay on transformation and conservation in Bolzano",
-      "the sale of the cinema by the public body that owned it"
-    ],
-    "colours": [
-      "monochrome"
-    ],
-    "names": [
-      "Corso-Kino",
       "Palazzo del Turismo"
     ]
   },

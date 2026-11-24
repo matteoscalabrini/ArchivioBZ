@@ -78,9 +78,10 @@ check('every row is among the first precise hits for its whole title, rows of on
   }).map((r) => r.no);
   return !wrong.length || `not at the top: ${first(wrong)}`;
 });
-check('Spinne gives 3.06 and no other row', () => precise('Spinne').join() === '3.06' || first(precise('Spinne')));
+// The press cut of 24 Nov 2026 took 3.06, 3.16 and 3.19: Spinne became Atesiner (3.34), Hochetsch and aquila lost those rows.
+check('Atesiner gives 3.34 and no other row', () => precise('Atesiner').join() === '3.34' || first(precise('Atesiner')));
 check('Fuehrer ruft gives 16.19 first', () => precise('Fuehrer ruft')[0] === '16.19' || first(precise('Fuehrer ruft')));
-check('Hochetsch gives 1.05 and 3.19, precise', () => holds(precise('Hochetsch'), '1.05', '3.19') || first(precise('Hochetsch')));
+check('Hochetsch gives 1.05, precise', () => holds(precise('Hochetsch'), '1.05') || first(precise('Hochetsch')));
 // The checks on table records (funivia in 1.03 and 2.02, teschio in 15.01) went with the tables on 24 Nov 2026.
 check('funivia gives 1.02, precise', () => holds(precise('funivia'), '1.02') || first(precise('funivia')));
 check('Furer stands nowhere and gives 16.19 as a possible link, a near spelling', () =>
@@ -107,8 +108,8 @@ check('Hochetsch gives 1.05 first, the words on the notice as its reason', () =>
   return (precise('Hochetsch')[0] === '1.05' && reason?.label === 'on it' && /Hochetsch/.test(reason.text)) || `${first(precise('Hochetsch'))}; ${JSON.stringify(reason)}`;
 }, { waits });
 check('caricature invalids gives 3.04, precise', () => holds(precise('caricature invalids'), '3.04') || first(precise('caricature invalids')), { waits });
-check('aquila gives 3.16 alone, precise (a pharmacy named on the page), and 5.05 as a possible link that names its road', () =>
-  (precise('aquila').join() === '3.16' && Boolean(reasonOf('aquila', '5.05', 'possible')[0]?.road)) || `precise ${first(precise('aquila'))}; ${JSON.stringify(reasonOf('aquila', '5.05', 'possible'))}`, { waits });
+check('aquila stands nowhere and gives 5.05 as a possible link that names its road', () =>
+  (!precise('aquila').length && Boolean(reasonOf('aquila', '5.05', 'possible')[0]?.road)) || `precise ${first(precise('aquila'))}; ${JSON.stringify(reasonOf('aquila', '5.05', 'possible'))}`, { waits });
 check('vescovo stands nowhere and gives 5.03 as a possible link through the glossary', () =>
   (!precise('vescovo').length && reasonOf('vescovo', '5.03', 'possible').some((reason) => reason.road.includes(' = '))) || `precise ${first(precise('vescovo'))}; ${JSON.stringify(reasonOf('vescovo', '5.03', 'possible'))}`, { waits });
 check('funivia gives 1.12 as a possible link', () => holds(nos(possible('funivia')), '1.12') || first(nos(possible('funivia'))), { waits });
