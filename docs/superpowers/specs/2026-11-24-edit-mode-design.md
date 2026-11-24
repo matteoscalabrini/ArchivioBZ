@@ -1,6 +1,6 @@
 # Edit mode, with the archive in the cloud — design
 
-2026-11-24 · status: **draft, for the author's approval** · next: the revision session with the
+2026-11-24 · status: **approved by the author on 2026-11-24**, as it stands · next: the revision session with the
 professors, the week after (date not given)
 
 A change to the research library (`docs/superpowers/specs/2026-11-10-research-library-design.md`,
