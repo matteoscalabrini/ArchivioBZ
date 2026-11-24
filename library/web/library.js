@@ -283,7 +283,7 @@ function setOpen(row, open) {
   row.el.classList.toggle('open', open);
   row.title.setAttribute('aria-expanded', String(open));
   row.body.inert = !open;
-  if (open) load(row.el.querySelector('.pics figure:not([hidden]) img'));
+  if (open) row.el.querySelectorAll('.pics figure:not([hidden]) img').forEach(load);
 }
 
 // The line over a group: its name, the number of its rows, and in grey what the group is.

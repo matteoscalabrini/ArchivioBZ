@@ -67,6 +67,20 @@ test('proposed keywords and places pass with a warning', async () => {
   assert.equal(levelled(problems, 'error').filter((e) => e.where === REFS).length, 0);
 });
 
+test('side_by_side is true or false, and passes through to the entry', async () => {
+  const root = await cleanRoot();
+  const file = path.join(root, 'research_notes/Inv A/files/05_x/entries.json');
+  const data = JSON.parse(await readFile(file, 'utf8'));
+  data.entries[0].side_by_side = true;
+  data.entries[1].side_by_side = 'yes';
+  await writeFile(file, JSON.stringify(data, null, 2));
+  const { entries, problems } = await loadLibrary(root);
+  assert.equal(entries.find((e) => e.no === data.entries[0].no).side_by_side, true);
+  const errors = levelled(problems, 'error');
+  assert.equal(errors.length, 1, errors.map((e) => e.message).join('\n'));
+  assert.match(errors[0].message, new RegExp(`${data.entries[1].no.replace('.', '\\.')}: side_by_side is not true or false`));
+});
+
 test('an empty text is a warning, not an error', async () => {
   const { problems } = await load();
   assert.ok(levelled(problems, 'warn').some((w) => w.where === REFS && w.message.includes('12.01') && w.message.includes('text')));

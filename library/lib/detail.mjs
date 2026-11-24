@@ -19,7 +19,7 @@ export function rowDetail(entry, { ctx, places, onMap = false, away = onMap, up 
   const preview = !pictures.length && entry.preview?.rows?.length ? entry.preview : null;
   const text = entry.text.filter((p) => String(p).trim()).map((p) => `<p>${esc(p)}</p>`).join('');
   const txt = `<div class="txt">${text}${meta(entry, places, { onMap, away, up })}${more(entry, ctx, up)}</div>`;
-  return pictures.length ? `<div class="detail">${pictureBlock(pictures, up)}${txt}</div>`
+  return pictures.length ? `<div class="detail">${pictureBlock(pictures, up, entry.side_by_side === true)}${txt}</div>`
     : preview ? `<div class="detail table">${previewTable(preview)}${txt}</div>`
     : `<div class="detail wide">${txt}</div>`;
 }
@@ -29,8 +29,10 @@ export function rowDetail(entry, { ctx, places, onMap = false, away = onMap, up 
 // and the last's "→" disabled. No `src` until the row opens: the page's script copies `data-src` across then.
 // A picture is a button: clicked, it opens full screen over the dimmed page (web/lightbox.js),
 // which off the web also links its original (data-original).
-function pictureBlock(pictures, up) {
-  const count = pictures.length;
+// `side`: the row asks for its pictures side by side (`"side_by_side": true`, for a before and an
+// after); then every picture shows at once in one strip, each with its caption, and no switcher.
+function pictureBlock(pictures, up, side = false) {
+  const count = side ? 1 : pictures.length;
   const figures = pictures.map((picture, n) => {
     const size = Number.isInteger(picture.w) && Number.isInteger(picture.h) ? ` width="${picture.w}" height="${picture.h}"` : '';
     const original = picture.original ? ` data-original="${esc(picture.original)}"` : '';
@@ -42,9 +44,9 @@ function pictureBlock(pictures, up) {
       + `<button type="button" data-step="1" aria-label="Next picture"${n === count - 1 ? ' disabled' : ''}>→</button>`
       + '</p>';
     const caption = picture.caption ? `<figcaption>${esc(picture.caption)}</figcaption>` : '';
-    return `<figure${n ? ' hidden' : ''}>${image}${nav}${caption}</figure>`;
+    return `<figure${n && !side ? ' hidden' : ''}>${image}${nav}${caption}</figure>`;
   });
-  return `<div class="pics">${figures.join('')}</div>`;
+  return `<div class="pics${side && pictures.length > 1 ? ' side' : ''}">${figures.join('')}</div>`;
 }
 
 // A row as a panel shows it: number · type · date, the title, what the Library shows in the open

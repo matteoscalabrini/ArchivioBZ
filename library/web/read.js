@@ -32,7 +32,7 @@ if (panel) {
     const article = entries.get(stop.no);
     for (const other of entries.values()) other.hidden = other !== article;
     for (const record of article.querySelectorAll('.e-record')) record.hidden = record.dataset.rec !== stop.rec;
-    load(article.querySelector('.pics figure:not([hidden]) img'));
+    article.querySelectorAll('.pics figure:not([hidden]) img').forEach(load);
     prev.disabled = n === 0;
     next.disabled = n === stops.length - 1;
     at.textContent = `${n + 1} / ${stops.length}`;

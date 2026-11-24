@@ -1,0 +1,944 @@
+{
+ "keywords_proposed": {
+  "covering": {
+   "label": "Covered over"
+  }
+ },
+ "places_proposed": {
+  "batzenhaeusl": {
+   "name": "Batzenhäusl, Andreas-Hofer-Straße 30"
+  }
+ },
+ "entries": [
+  {
+   "no": "18.01",
+   "title": "Stadtapotheke u. Drogerie des Friedr. Peer, Brixen: powder bag with “in Brixen” struck through",
+   "type": "Object",
+   "date": "1900–32 (holder); the striking-out undated",
+   "year": 1900,
+   "keywords": [
+    "language",
+    "wording",
+    "covering"
+   ],
+   "text": [],
+   "facts": [
+    "Pharmaziemuseum Brixen, original stock of the Stadtapotheke Peer, inv. 04954: paper bag 'Bedruckt mit \"Stadtapotheke u. Drogerie des Friedr. Peer in Brixen\". in Brixen ist durchgestrichen', dated 1900–1932 (record)",
+    "A jar of the same pharmacy has a printed label 'Farmacia Peer, Bressanone … Peer's Stadtapotheke, (Brixen durchgestrichen)' (OMA 160004872; notes 18, §3, [V record])",
+    "The prefect's decree of 28 Oct 1923 n. 14718 covered 'etichette' and all lettering for the public, private included (notes 18, §1, [V])",
+    "Seen in the image: a pale green paper bag with a printed border, 'Stadtapotheke u. Drogerie des Friedr. Peer' printed at the top, handwritten German contents, and at the foot 'in Brixen' under a grey bar; museum number card '04954'"
+   ],
+   "images": [
+    {
+     "file": "images/1900-32_Peer_Stadtapotheke_Brixen_bag_in_Brixen_struck_OMA-Pharmaziemuseum.jpg",
+     "caption": "Stadtapotheke Peer, Brixen, 1900–32. Pharmaziemuseum Brixen, via OMA; rights with the museum."
+    }
+   ],
+   "file": "images/1900-32_Peer_Stadtapotheke_Brixen_bag_in_Brixen_struck_OMA-Pharmaziemuseum.jpg",
+   "source": {
+    "label": "OMA, Pharmaziemuseum Brixen",
+    "url": "https://objekte-museen-archive.provinz.bz.it/Details/bz/160004923"
+   },
+   "creator": "Stadtapotheke Peer, Brixen",
+   "holder": "Pharmaziemuseum Brixen",
+   "rights": "Rechte: Pharmaziemuseum Brixen (no licence stated; © presumed)",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://objekte-museen-archive.provinz.bz.it/Details/bz/160004923"
+   }
+  },
+  {
+   "no": "18.02",
+   "title": "Cà de Bezzi, Bolzano: postcard of the Batzenhäusl with its German names blacked out",
+   "type": "Postcard",
+   "date": "1902 (card); the German names blacked out later, undated",
+   "year": 1902,
+   "keywords": [
+    "postcards",
+    "language",
+    "old-town",
+    "covering",
+    "removal"
+   ],
+   "text": [],
+   "facts": [
+    "Touriseum inv. 4090261, publisher 'R. & R. D.', series 2363, '(datiert) 1902': 'Die Beschriftung war ursprünglich deutsch und italienisch. Die deutsche Bezeichnung wurde durchgestrichen'; keywords 'Kutsche Italianisierung', place 'Bozen' (record)",
+    "Unlike row 1.09 the Italian names were already printed on the card; only the German ones were covered (notes 18, §2, [INF])",
+    "The 1927 circular n. 6480 forbade exactly this 'semplice cancellatura della parte redatta in lingua tedesca' on bilingual shop signs, for the 'squilibrio, anche estetico' (notes 18, §1, [V])",
+    "Seen in the image: the Batzenhäusl's tall corner house with bay windows and a vine, carts and passers-by in the street; at the foot two black bars, the left over the German name with 'Cà de Bezzi' below, the right over 'Bozen' with 'Bolzano' below; '1902 R. & R. D. 2363' printed up the left margin in red"
+   ],
+   "images": [
+    {
+     "file": "images/1902_Bozen_Batzenhaeusl_Ca_de_Bezzi_postcard_German_blacked_OMA-Touriseum.jpg",
+     "caption": "R. & R. D., 1902; German names blacked out later. Touriseum, via OMA; rights with the museum."
+    }
+   ],
+   "file": "images/1902_Bozen_Batzenhaeusl_Ca_de_Bezzi_postcard_German_blacked_OMA-Touriseum.jpg",
+   "source": {
+    "label": "OMA, Touriseum – Südtiroler Landesmuseum für Tourismus",
+    "url": "https://objekte-museen-archive.provinz.bz.it/Details/bz/140008152"
+   },
+   "creator": "R. & R. D. (publisher)",
+   "holder": "Touriseum – Südtiroler Landesmuseum für Tourismus",
+   "rights": "Rechte: Touriseum - Südtiroler Landesmuseum für Tourismus (no licence stated; © presumed)",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://objekte-museen-archive.provinz.bz.it/Details/bz/140008152"
+   },
+   "place": "batzenhaeusl"
+  },
+  {
+   "no": "18.03",
+   "title": "La ferrovia del Renon presso Bolzano verso le Dolomiti, Amonn postcard of the Rittnerbahn overprinted in Italian",
+   "type": "Postcard",
+   "date": "1904–14 (card); the Italian overprint undated",
+   "year": 1904,
+   "keywords": [
+    "postcards",
+    "language",
+    "colour",
+    "covering",
+    "tourism"
+   ],
+   "text": [],
+   "facts": [
+    "Palais Mamming inv. 25522, imprint 'Joh. F. Amonn Bozen M 10350 n', dated 1904–1914; title field: 'Die Rittnerbahn bei Bozen mit den Dolomiten. Südtirol (ursprüngliche deutsche Beschriftung) La ferrovia del Renon presso Bolzano verso le Dolomiti. Alto Adige. Italia. (sekundäre italienische Beschriftung über der deutschen)' (record)",
+    "The German title is red, the Italian is printed over it in black, so the German stays legible beneath: the method of Amonn's reissued stock (notes 18, §2, [V image; INF])",
+    "Seen in the image: two brown tram cars lettered 'RITTNERBAHN' on a track before the Schlern, a telegraph pole at right; across the sky the black line 'La ferrovia del Renon presso Bolzano verso le Dolomiti. Alto Adige. Italia.' printed over a fainter red line in German italic"
+   ],
+   "images": [
+    {
+     "file": "images/1904-14_Amonn_Rittnerbahn_Ferrovia_del_Renon_overprint_OMA-Mamming.jpg",
+     "caption": "Joh. F. Amonn, Bozen, 1904–14, overprinted later. Palais Mamming Museum, via OMA; rights with the museum."
+    }
+   ],
+   "file": "images/1904-14_Amonn_Rittnerbahn_Ferrovia_del_Renon_overprint_OMA-Mamming.jpg",
+   "source": {
+    "label": "OMA, Palais Mamming Museum",
+    "url": "https://objekte-museen-archive.provinz.bz.it/Details/bz/80079712"
+   },
+   "creator": "Joh. F. Amonn, Bozen (publisher)",
+   "holder": "Palais Mamming Museum",
+   "rights": "Rechte: Palais Mamming Museum (no licence stated; © presumed)",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://objekte-museen-archive.provinz.bz.it/Details/bz/80079712"
+   }
+  },
+  {
+   "no": "18.04",
+   "title": "Strada della Mendola verso Bolzano e le Dolomiti, Amonn postcard with its German title blacked out",
+   "type": "Postcard",
+   "date": "1904–14 (card); covering undated",
+   "year": 1904,
+   "keywords": [
+    "postcards",
+    "language",
+    "covering",
+    "removal",
+    "tourism"
+   ],
+   "text": [],
+   "facts": [
+    "Palais Mamming inv. 25651, imprint 'Joh. F. Amonn Bozen M 10511 n', 1904–1914: 'Strada della Mendola verso Bolzano e le Dolomiti (sekundäre italienische Beschriftung, die ursprünglich Deutsche wurde geschwärzt)' (record)",
+    "Seen in the image: the Mendola road cut into a rock face above the Adige valley, a car on the bend, mountains under cloud; at the top the italic Italian title above a long black bar"
+   ],
+   "images": [
+    {
+     "file": "images/1904-14_Amonn_Strada_della_Mendola_German_blacked_OMA-Mamming.jpg",
+     "caption": "Joh. F. Amonn, Bozen, 1904–14, German title blacked out later. Palais Mamming Museum, via OMA; rights with the museum."
+    }
+   ],
+   "file": "images/1904-14_Amonn_Strada_della_Mendola_German_blacked_OMA-Mamming.jpg",
+   "source": {
+    "label": "OMA, Palais Mamming Museum",
+    "url": "https://objekte-museen-archive.provinz.bz.it/Details/bz/80079841"
+   },
+   "creator": "Joh. F. Amonn, Bozen (publisher)",
+   "holder": "Palais Mamming Museum",
+   "rights": "Rechte: Palais Mamming Museum (no licence stated; © presumed)",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://objekte-museen-archive.provinz.bz.it/Details/bz/80079841"
+   }
+  },
+  {
+   "no": "18.06",
+   "title": "Brixen gegen Norden, Caspar Eder postcard overstamped “Bressanone”",
+   "type": "Postcard",
+   "date": "undated card; the overstamp after November 1918 [INF]",
+   "year": 1918,
+   "keywords": [
+    "postcards",
+    "language",
+    "covering",
+    "wording"
+   ],
+   "text": [],
+   "facts": [
+    "Stadtarchiv Brixen, Bestand Archiv Goldenes Kreuz, inv. AGKBx 5-1 045: 'Brixen, Vedute von Süd-Osten, gemalen, Ortsangabe überstempelt'; its twin AGKBx 5-1 044 is 'Ortsangabe durchgestrichen' (records 960000490, 960000489)",
+    "The holder gives no date; the year 1918 is the earliest the Italian stamp can be, an inference (notes 18, §2, [INF])",
+    "Seen in the image (front): a painted view of Brixen in a red and gold frame with the Brixen lamb arms and two die-cut windows; under it a violet stamp 'Bressanone' over the printed 'BRIXEN', 'gegen Norden' struck through with a line; imprints 'Lith. & Druck Wolfrum & Hauptmann Nürnberg' and 'Caspar Eder, Kunsthandlung Brixen', the last word struck",
+    "Seen in the image (back): 'Correspondenz-Karte' in Fraktur, embossed frame, unwritten"
+   ],
+   "images": [
+    {
+     "file": "images/undated_Eder_Brixen_gegen_Norden_Bressanone_overstamp_front_OMA-StadtarchivBrixen.jpg",
+     "caption": "Caspar Eder, Brixen; printed by Wolfrum & Hauptmann, Nürnberg; undated. Stadtarchiv Brixen, via OMA; rights with the archive."
+    },
+    {
+     "file": "images/undated_Eder_Brixen_gegen_Norden_Bressanone_overstamp_back_OMA-StadtarchivBrixen.jpg",
+     "caption": "The back. Stadtarchiv Brixen, via OMA."
+    }
+   ],
+   "file": "images/undated_Eder_Brixen_gegen_Norden_Bressanone_overstamp_front_OMA-StadtarchivBrixen.jpg",
+   "source": {
+    "label": "OMA, Stadtarchiv Brixen",
+    "url": "https://objekte-museen-archive.provinz.bz.it/Details/bz/960000490"
+   },
+   "creator": "Caspar Eder, Kunsthandlung, Brixen (publisher); Wolfrum & Hauptmann, Nürnberg (printer)",
+   "holder": "Stadtarchiv Brixen",
+   "rights": "Rechte: Stadtarchiv Brixen, Bestand Archiv Goldenes Kreuz Brixen (no licence stated; © presumed)",
+   "confidence": {
+    "level": "read",
+    "note": "undated by the holder; the year is inferred from the Italian overstamp"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://objekte-museen-archive.provinz.bz.it/Details/bz/960000490"
+   }
+  },
+  {
+   "no": "18.07",
+   "title": "Untermais station renamed “Maia di Sotto”, two photographs of 1919",
+   "type": "Photograph",
+   "date": "1919 (Touriseum print, after 1919; Ellmenreich negative, August 1919)",
+   "year": 1919,
+   "keywords": [
+    "language",
+    "wording",
+    "covering"
+   ],
+   "text": [],
+   "facts": [
+    "Touriseum inv. 4094165, collection 'Fotografien Meran (1914 - 1920)': 'Untermais - Gebäude am Bahnhof Untermais. Die italienische Bezeichnung \"Maia di Sotto\" wurde über die deutsche angebracht. Hs. Notiz auf RS: \"Maja di sotto statt Untermais\"' (record 140018122)",
+    "Palais Mamming, Nachlass Albert Ellmenreich, inv. 11165/2617, '08.1919': 'Meran - Bahnhof Untermais - Italianisierung der Eisenbahn- Stationsnamen' (record 80014202); Ellmenreich photographed the renamed stations of the Vinschgau and Bolzano lines in May–August 1919 (notes 18, §4, [V records])",
+    "The covering is described by the holder, not visible: the photographs show only the Italian sign (notes 18, §4)",
+    "Seen in the image (Touriseum print): a half-timbered station building, the long sign 'MAIA DI SOTTO' over the door, a small plaque to the right",
+    "Seen in the image (Ellmenreich negative, turned on its side as served): the same building and sign, a tree and a trellis"
+   ],
+   "images": [
+    {
+     "file": "images/1919_Untermais_station_Maia_di_Sotto_print_OMA-Touriseum.jpg",
+     "caption": "Untermais station, after 1919. Touriseum, via OMA (300 px); rights with the museum."
+    },
+    {
+     "file": "images/1919-08_Ellmenreich_Untermais_station_Maia_di_Sotto_negative_OMA-Mamming.jpg",
+     "caption": "Albert Ellmenreich, August 1919. Palais Mamming Museum, via OMA; rights with the museum."
+    }
+   ],
+   "file": "images/1919_Untermais_station_Maia_di_Sotto_print_OMA-Touriseum.jpg",
+   "source": {
+    "label": "OMA, Touriseum – Südtiroler Landesmuseum für Tourismus",
+    "url": "https://objekte-museen-archive.provinz.bz.it/Details/bz/140018122"
+   },
+   "creator": "unknown (Touriseum print); Albert Ellmenreich (Mamming negative)",
+   "holder": "Touriseum – Südtiroler Landesmuseum für Tourismus",
+   "rights": "Rechte: Touriseum - Südtiroler Landesmuseum für Tourismus (no licence stated; © presumed); Ellmenreich negative: Rechte: Palais Mamming Museum (no licence stated; © presumed)",
+   "confidence": {
+    "level": "read",
+    "note": "the covering is the holder's description; the images show only the Italian sign"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://objekte-museen-archive.provinz.bz.it/Details/bz/140018122"
+   }
+  },
+  {
+   "no": "18.08",
+   "title": "Austrian playing-card tax stamp struck with an Italian “BOLZANO” handstamp",
+   "type": "Object",
+   "date": "1919–22 (Commons)",
+   "year": 1919,
+   "keywords": [
+    "language",
+    "covering",
+    "law"
+   ],
+   "text": [],
+   "facts": [
+    "Commons: 'Photo: Italian provisional overprint Bolzano (on Austrian card tax stamp, 1919–1922)'; author 'Unbekannt (amtlicher Überdruck auf österr. Kartensteuerstempel)'; scan Peter Endebrock (file page)",
+    "Endebrock hedges: 'Der Überdruck könnte ein italienischer Datumsstempel sein … Als Ort ist hier \"BOLZANO\" angegeben'; a Merano example reads 'R. Ufficio delle Imposte', used in 1919 'um in Südtirol den früheren österreichischen Stempel ungültig zu machen' (notes 18, §7, [V])",
+    "Endebrock's 'bis zum Herbst 1919 österreichisch' is loose: Italian troops held Bolzano from November 1918, annexation was in October 1920 (notes 18, §7)",
+    "Seen in the image: a red ring 'ÖSTERR. KARTENSTEMPEL' around a blue double-headed eagle on the ornament of a playing card, a red heart below, and a violet circular handstamp across them reading '…OLZANO'"
+   ],
+   "images": [
+    {
+     "file": "images/1919-22_Bolzano_handstamp_on_Austrian_card_tax_stamp_Endebrock_Commons.jpg",
+     "caption": "Italian handstamp on an Austrian card-tax stamp, 1919–22; scan Peter Endebrock. Public domain (PD-Art, PD-old-assumed), Wikimedia Commons."
+    }
+   ],
+   "file": "images/1919-22_Bolzano_handstamp_on_Austrian_card_tax_stamp_Endebrock_Commons.jpg",
+   "source": {
+    "label": "Wikimedia Commons",
+    "url": "https://commons.wikimedia.org/wiki/File:SPKW-Stempel-Endebrock-Ueberdruck-Bozen-1919.jpg"
+   },
+   "creator": "Italian tax office (handstamp), unknown; scan Peter Endebrock",
+   "holder": "Peter Endebrock (scan)",
+   "rights": "Public domain: {{PD-art|PD-old-assumed}} (Commons file page)",
+   "confidence": {
+    "level": "read",
+    "note": "what the handstamp is (date stamp or invalidation) is hedged by the scan's author"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://commons.wikimedia.org/wiki/File:SPKW-Stempel-Endebrock-Ueberdruck-Bozen-1919.jpg"
+   }
+  },
+  {
+   "no": "18.09",
+   "title": "Gasthof “Zum goldenen Stern”, Reschen: brochure with “Tirol” blacked out and an Italian stamp",
+   "type": "Booklet",
+   "date": "c. 1920 (holder); printed before 1918, adapted 1922/23 per the holder",
+   "year": 1920,
+   "keywords": [
+    "tourism",
+    "language",
+    "covering",
+    "removal"
+   ],
+   "text": [],
+   "facts": [
+    "Touriseum inv. 4087804, printed by the Vereinsbuchdruckerei Innsbruck: 'Der Aufdruck \"Tirol\" ist geschwärzt, darunter befindet sich der Stempel \"J. Lindpointner Albergo alla Stella Gasthaus Stern Resia - Reschen\"'; prices '25 bis 30 Lire'; the text still mentions the 'k.k. Post- und Telegraphenamt' in the house (record)",
+    "Holder: 'Das Prospekt wurde wahrscheinlich noch vor 1918 gedruckt, ab 1922 / 23 an die politischen Gegebenheiten angepasst' (record)",
+    "Seen in the image: a photograph of the lake and village of Reschen; at right 'Reschen' in large type with a blue stamp 'RESIA' above it and a black block below it, the stamp of J. Lindpointner, a framed German verse; 'Gasthof „Zum goldenen Stern\"' across the foot"
+   ],
+   "images": [
+    {
+     "file": "images/c1920_Gasthof_Zum_goldenen_Stern_Reschen_Tirol_blacked_OMA-Touriseum.jpg",
+     "caption": "Vereinsbuchdruckerei Innsbruck, printed before 1918, adapted c. 1922–23. Touriseum, via OMA; rights with the museum."
+    }
+   ],
+   "file": "images/c1920_Gasthof_Zum_goldenen_Stern_Reschen_Tirol_blacked_OMA-Touriseum.jpg",
+   "source": {
+    "label": "OMA, Touriseum – Südtiroler Landesmuseum für Tourismus",
+    "url": "https://objekte-museen-archive.provinz.bz.it/Details/bz/140005391"
+   },
+   "creator": "Vereinsbuchdruckerei Innsbruck (printer); J. Lindpointner (stamp)",
+   "holder": "Touriseum – Südtiroler Landesmuseum für Tourismus",
+   "rights": "Rechte: Touriseum - Südtiroler Landesmuseum für Tourismus (no licence stated; © presumed)",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://objekte-museen-archive.provinz.bz.it/Details/bz/140005391"
+   }
+  },
+  {
+   "no": "18.10",
+   "title": "Motivo presso Bewaller sulla strada carezza al lago, Amonn postcard overprinted in Italian",
+   "type": "Postcard",
+   "date": "c. 1920 (holder)",
+   "year": 1920,
+   "keywords": [
+    "postcards",
+    "language",
+    "colour",
+    "covering",
+    "tourism"
+   ],
+   "text": [],
+   "facts": [
+    "Touriseum inv. 4085003, Amonn, series 'M 9369 n 508809?': 'Motiv bei Bewaller an der Karerseestrasse. Südtirol. … Die deutsche Benennung wurde überstempelt mit der italienischen'; keyword 'Italianisierung' (record)",
+    "Already named as a lead in notes 01 (Q5); now held (notes 18, §2)",
+    "Seen in the image: a forest road, log piles and a smoking hut, the Latemar peaks pink behind; at top right 'Motivo presso Bewaller sulla strada carezza al lago Dolomiti Alto Adige, Italia.' in black over a red German italic line"
+   ],
+   "images": [
+    {
+     "file": "images/c1920_Amonn_Bewaller_Carezza_al_lago_overprint_OMA-Touriseum.jpg",
+     "caption": "Johann F. Amonn, c. 1920. Touriseum, via OMA; rights with the museum."
+    }
+   ],
+   "file": "images/c1920_Amonn_Bewaller_Carezza_al_lago_overprint_OMA-Touriseum.jpg",
+   "source": {
+    "label": "OMA, Touriseum – Südtiroler Landesmuseum für Tourismus",
+    "url": "https://objekte-museen-archive.provinz.bz.it/Details/bz/140004442"
+   },
+   "creator": "Johann F. Amonn (publisher)",
+   "holder": "Touriseum – Südtiroler Landesmuseum für Tourismus",
+   "rights": "Rechte: Touriseum - Südtiroler Landesmuseum für Tourismus (no licence stated; © presumed)",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://objekte-museen-archive.provinz.bz.it/Details/bz/140004442"
+   }
+  },
+  {
+   "no": "18.11",
+   "title": "Karerseehotel, Amonn postcard with its German caption painted out",
+   "type": "Postcard",
+   "date": "1920–30 (holder)",
+   "year": 1920,
+   "keywords": [
+    "postcards",
+    "language",
+    "covering",
+    "removal",
+    "tourism"
+   ],
+   "text": [],
+   "facts": [
+    "Touriseum inv. 4084993, Amonn, 'M 19404': '1 Postkarte, farbig, Karerseehotel, deutsche Beschriftung übermalt (Überstempelung); Rückseite mit Stempel: Alto Adige, Italia'; keywords 'Hotel Italianisierung' (record)",
+    "Already named as a lead in notes 01 (Q5); the back is not served online (notes 18, §2)",
+    "Seen in the image: the long Karerseehotel among firs under the Latemar; at the top edge two black bars and no Italian title on the front"
+   ],
+   "images": [
+    {
+     "file": "images/1920-30_Amonn_Karerseehotel_German_blacked_OMA-Touriseum.jpg",
+     "caption": "Johann F. Amonn, 1920–30. Touriseum, via OMA; rights with the museum."
+    }
+   ],
+   "file": "images/1920-30_Amonn_Karerseehotel_German_blacked_OMA-Touriseum.jpg",
+   "source": {
+    "label": "OMA, Touriseum – Südtiroler Landesmuseum für Tourismus",
+    "url": "https://objekte-museen-archive.provinz.bz.it/Details/bz/140004432"
+   },
+   "creator": "Johann F. Amonn (publisher)",
+   "holder": "Touriseum – Südtiroler Landesmuseum für Tourismus",
+   "rights": "Rechte: Touriseum - Südtiroler Landesmuseum für Tourismus (no licence stated; © presumed)",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://objekte-museen-archive.provinz.bz.it/Details/bz/140004432"
+   }
+  },
+  {
+   "no": "18.12",
+   "title": "Südtiroler Landeszeitung, 11 May 1922, page 6: “Salurn. (Nächtliches Gewerbe.)”",
+   "type": "Newspaper page",
+   "date": "11 May 1922",
+   "year": 1922,
+   "keywords": [
+    "press",
+    "language",
+    "covering"
+   ],
+   "text": [],
+   "facts": [
+    "'In unserem Orte machten sich in der letzten Sonntagsnacht die Faschisten wieder einmal bemerkbar. Diesmal stach ihnen die deutsche Aufschrift auf dem Gemeindehause in die Augen, die sie überstrichen und in aller Eile durch die italienische ersetzten' (notes 18, §5, [V])",
+    "Done before the March on Rome, at night, 'bis 3 Uhr früh', in 'lautlose Patschen' (notes 18, §5, [V])",
+    "Seen in the image: a page in Fraktur, columns of local news under place names; the Salurn item in the first column, lower half"
+   ],
+   "images": [
+    {
+     "file": "images/1922-05-11_Suedtiroler_Landeszeitung_p6_Salurn_Gemeindehaus_Europeana.jpg",
+     "caption": "Südtiroler Landeszeitung, 11 May 1922, p. 6. Teßmann scan, Public Domain Mark, Europeana."
+    }
+   ],
+   "file": "images/1922-05-11_Suedtiroler_Landeszeitung_p6_Salurn_Gemeindehaus_Europeana.jpg",
+   "source": {
+    "label": "Europeana (Teßmann scan)",
+    "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000115210847"
+   },
+   "creator": "Südtiroler Landeszeitung",
+   "holder": "Teßmann Library (scan); Europeana",
+   "rights": "Public Domain Mark 1.0 (Europeana)",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://www.europeana.eu/item/9200333/BibliographicResource_3000115210847"
+   }
+  },
+  {
+   "no": "18.13",
+   "title": "Brixener Chronik (running head “Brixner Bote”), 15 August 1922, page 2: “Max und Moritz”",
+   "type": "Newspaper page",
+   "date": "15 August 1922",
+   "year": 1922,
+   "keywords": [
+    "press",
+    "language",
+    "covering",
+    "humour"
+   ],
+   "text": [],
+   "facts": [
+    "'Gestern, Sonntag, wurden die Bewohner von Brixen durch einen Ulk überrascht. Fast sämtliche Straßenschilder waren mit weißen Buchbinderplakatstreifen überklebt und enthielten italienische Bezeichnungen … Heute bemühen sich Angestellte der Stadt, die beschmutzten Schilder wieder von den Ueberklebungen zu reinigen' (notes 18, §4, [V])",
+    "Europeana files the issue as 'Brixener Chronik'; the page's running head reads 'Brixner Bote', Nr. 65 (manifest)",
+    "The paper treats the paste-over as a prank ('Man lachte!'); who did it is not said (notes 18, §4)",
+    "Seen in the image: a page in Fraktur; the item under 'Aus Stadt und Land' at the top of the right-hand column"
+   ],
+   "images": [
+    {
+     "file": "images/1922-08-15_Brixener_Chronik_p2_Strassenschilder_ueberklebt_Europeana.jpg",
+     "caption": "Brixener Chronik, 15 Aug 1922, p. 2. Teßmann scan, Public Domain Mark, Europeana."
+    }
+   ],
+   "file": "images/1922-08-15_Brixener_Chronik_p2_Strassenschilder_ueberklebt_Europeana.jpg",
+   "source": {
+    "label": "Europeana (Teßmann scan)",
+    "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000058973405"
+   },
+   "creator": "Brixener Chronik / Brixner Bote",
+   "holder": "Teßmann Library (scan); Europeana",
+   "rights": "Public Domain Mark 1.0 (Europeana)",
+   "confidence": {
+    "level": "read",
+    "note": "title differs between Europeana and the page head"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://www.europeana.eu/item/9200333/BibliographicResource_3000058973405"
+   }
+  },
+  {
+   "no": "18.14",
+   "title": "Hotel Elefant, Bressanone – Brixen: brochure with every “Brixen” overstamped “Bressanone”",
+   "type": "Booklet",
+   "date": "after 1924 – c. 1930 (holder)",
+   "year": 1924,
+   "keywords": [
+    "tourism",
+    "language",
+    "covering",
+    "wording"
+   ],
+   "text": [],
+   "facts": [
+    "Touriseum inv. 4082544, publisher A. Weger, 16 pp.: 'mit Überstempelung von Ortsbezeichnung \"Brixen\" mit \"Bressanone\" … Im Text wurden sämtliche Stellen, wo \"Brixen\" erwähnt wird, mit \"Bressanone\"- überstempelt'; owner W. Heiß (record)",
+    "Seen in the image: a grey-green cover with a drawing of the hotel and square in a scrolled frame, 'HOTEL ELEFANT' on a banner, an elephant below; 'BRESSANONE' printed at left and at right 'BRIXEN A. E.' under a violet stamp 'Bressanone'"
+   ],
+   "images": [
+    {
+     "file": "images/1924-30_Hotel_Elefant_Brixen_Bressanone_overstamp_OMA-Touriseum.jpg",
+     "caption": "A. Weger, after 1924 – c. 1930. Touriseum, via OMA; rights with the museum."
+    }
+   ],
+   "file": "images/1924-30_Hotel_Elefant_Brixen_Bressanone_overstamp_OMA-Touriseum.jpg",
+   "source": {
+    "label": "OMA, Touriseum – Südtiroler Landesmuseum für Tourismus",
+    "url": "https://objekte-museen-archive.provinz.bz.it/Details/bz/140002583"
+   },
+   "creator": "A. Weger (publisher)",
+   "holder": "Touriseum – Südtiroler Landesmuseum für Tourismus",
+   "rights": "Rechte: Touriseum - Südtiroler Landesmuseum für Tourismus (no licence stated; © presumed)",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://objekte-museen-archive.provinz.bz.it/Details/bz/140002583"
+   }
+  },
+  {
+   "no": "18.15",
+   "title": "St. Vigil in Enneberg, Fränzl postcard with “Südtirol” blacked out and “Alto Adige-Italia” stamped",
+   "type": "Postcard",
+   "date": "posted 23 July 1924",
+   "year": 1924,
+   "keywords": [
+    "postcards",
+    "language",
+    "covering",
+    "removal"
+   ],
+   "text": [],
+   "facts": [
+    "Touriseum inv. 4108612, Lorenz Fränzl, No. 350-14: title 'Südtirol (geschwärzt) St. Vigil 1215 m. in Enneberg mit Pares u. Neunersp. Alto Adige - Italia (nachträglich aufgestempelt)' (record)",
+    "Holder's note: 'Am 23. August 1923 tritt die Verordnung des Präfekten Guadagnini in Kraft, welche den Gebrauch des Namens \"Tirol\" ausnahmslos verbietet. Auch alle Ableitungen wie \"Südtirol\" dürfen nicht mehr verwendet werden' (record)",
+    "The German name of the Ladin village is left; only the region's name is covered (notes 18, §2, [INF])",
+    "Seen in the image (front): the village in its valley under Pares and Neunerspitze; at top left 'Südtirol' heavily struck, at top right a violet stamp 'Alto Adige-Italia'",
+    "Seen in the image (back): Italian 30 c stamp, postmark 'S. VIGILIO … (TRENTO)' 23.7.24, a message in Italian, 'No. 350-14. Originalaufnahme u. Verlag von Lorenz Fränzl, Bozen' up the left edge"
+   ],
+   "images": [
+    {
+     "file": "images/1924-07-23_Fraenzl_St_Vigil_Enneberg_Suedtirol_blacked_front_OMA-Touriseum.jpg",
+     "caption": "Lorenz Fränzl, Bozen; posted 23 July 1924. Touriseum, via OMA; rights with the museum."
+    },
+    {
+     "file": "images/1924-07-23_Fraenzl_St_Vigil_Enneberg_Suedtirol_blacked_back_OMA-Touriseum.jpg",
+     "caption": "The back. Touriseum, via OMA."
+    }
+   ],
+   "file": "images/1924-07-23_Fraenzl_St_Vigil_Enneberg_Suedtirol_blacked_front_OMA-Touriseum.jpg",
+   "source": {
+    "label": "OMA, Touriseum – Südtiroler Landesmuseum für Tourismus",
+    "url": "https://objekte-museen-archive.provinz.bz.it/Details/bz/140023252"
+   },
+   "creator": "Lorenz Fränzl, Bozen (photographer and publisher)",
+   "holder": "Touriseum – Südtiroler Landesmuseum für Tourismus",
+   "rights": "Rechte: Touriseum - Südtiroler Landesmuseum für Tourismus (no licence stated; © presumed)",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://objekte-museen-archive.provinz.bz.it/Details/bz/140023252"
+   }
+  },
+  {
+   "no": "18.16",
+   "title": "Merano, Porta Romana: Bährendt postcard of the Romanesque portal of Schloss Tirol, German struck through",
+   "type": "Postcard",
+   "date": "1925–43 (holder)",
+   "year": 1925,
+   "keywords": [
+    "postcards",
+    "language",
+    "wording",
+    "covering",
+    "romanita"
+   ],
+   "text": [],
+   "facts": [
+    "Palais Mamming inv. 9010, Leo Bährendt, Meran: 'Der deutsche Text \"Meran - Romanisches Portal im Schloß Tirol\" wurde durchgestrichen und durch den italienischen Text \"Merano, Porta Romana\" ersetzt. Auf der Rückseite wurde der deutsche Text \"Photograph u. Verlag Leo Bährendt, Meran\" ebenfalls durchgestrichen und durch \"Fotografo e Editore Leo Baehrendt Merano\" ersetzt' (record)",
+    "The Italian turns 'Romanisches Portal' (Romanesque portal) into 'Porta Romana' (Roman gate) [INF] (notes 18, §2)",
+    "Seen in the image (front): the carved Romanesque portal with its tympanum and beasts; at the top 'Merano, Porta Romana' above a printed row of short vertical bars over a red German line",
+    "Seen in the image (back): 'Fotografo e Editore Leo Baehrendt Merano' printed vertically at the left edge over traces of an earlier imprint; museum pencil notes"
+   ],
+   "images": [
+    {
+     "file": "images/1925-43_Baehrendt_Merano_Porta_Romana_struck_front_OMA-Mamming.jpg",
+     "caption": "Leo Bährendt, Meran, 1925–43. Palais Mamming Museum, via OMA; rights with the museum."
+    },
+    {
+     "file": "images/1925-43_Baehrendt_Merano_Porta_Romana_struck_back_OMA-Mamming.jpg",
+     "caption": "The back. Palais Mamming Museum, via OMA."
+    }
+   ],
+   "file": "images/1925-43_Baehrendt_Merano_Porta_Romana_struck_front_OMA-Mamming.jpg",
+   "source": {
+    "label": "OMA, Palais Mamming Museum",
+    "url": "https://objekte-museen-archive.provinz.bz.it/Details/bz/80007380"
+   },
+   "creator": "Leo Bährendt (1876–1957), Meran (photographer and publisher)",
+   "holder": "Palais Mamming Museum",
+   "rights": "Rechte: Palais Mamming Museum (no licence stated; © presumed)",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://objekte-museen-archive.provinz.bz.it/Details/bz/80007380"
+   }
+  },
+  {
+   "no": "18.17",
+   "title": "Südtirol (Innsbruck), 15 October 1925, page 4: the Brenner “Gasthof zur Post” under whitewash",
+   "type": "Newspaper page",
+   "date": "15 October 1925",
+   "year": 1925,
+   "keywords": [
+    "press",
+    "language",
+    "covering",
+    "brenner",
+    "counter-propaganda"
+   ],
+   "text": [],
+   "facts": [
+    "'Dem Bahnhof Brenner gegenüber ist ein stattliches Gebäude, früher \"Gasthof zur Post\"; nun ist diese Aufschrift übertüncht, darüber steht aufdringlich Albergo; doch der Gasthof leuchtet mit Tiroler Zähigkeit noch unter der Tünche hervor' (notes 18, §5, [V])",
+    "'in ganz Südtirol sind alle Glaser, Schuster, Spengler usw. unter der Tünche verschwunden, darüber erschien der vetraio, calzolaio und lattoniere!' (notes 18, §5, [V])",
+    "The same page reports that the Brixen sub-prefecture on 28 July 1925 forbade the Brixener Chronik German place names, even in brackets (notes 18, §1, [V])",
+    "An exile paper printed in Innsbruck, Folge 20; Europeana files it as 'Suedtiroler Heimat' (manifest)",
+    "Seen in the image: a page in Fraktur headed 'Seite 4, Folge 20 – Südtirol – Innsbruck, 15. Oktober 1925'; the article 'Südtirol' at lower left"
+   ],
+   "images": [
+    {
+     "file": "images/1925-10-15_Suedtirol_Innsbruck_p4_Brenner_Gasthof_zur_Post_Europeana.jpg",
+     "caption": "Südtirol (Innsbruck), 15 Oct 1925, p. 4. Teßmann scan, Public Domain Mark, Europeana."
+    }
+   ],
+   "file": "images/1925-10-15_Suedtirol_Innsbruck_p4_Brenner_Gasthof_zur_Post_Europeana.jpg",
+   "source": {
+    "label": "Europeana (Teßmann scan)",
+    "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000115186152"
+   },
+   "creator": "Südtirol (Innsbruck)",
+   "holder": "Teßmann Library (scan); Europeana",
+   "rights": "Public Domain Mark 1.0 (Europeana)",
+   "confidence": {
+    "level": "read",
+    "note": "exile press; an eyewitness travel piece"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://www.europeana.eu/item/9200333/BibliographicResource_3000115186152"
+   }
+  },
+  {
+   "no": "18.18",
+   "title": "Bollettino Ufficiale della Prefettura di Bolzano, 16 October 1927, pages 161–162: “Uso della lingua italiana”, circular n. 6480",
+   "type": "Law text",
+   "date": "circular 11 October 1927, printed 16 October 1927",
+   "year": 1927,
+   "keywords": [
+    "law",
+    "language",
+    "typeface",
+    "covering",
+    "removal"
+   ],
+   "text": [],
+   "facts": [
+    "Prefect Umberto Ricci's circular 11 Oct 1927 n. 6480 Gab. quotes the decree of the Prefect of the Venezia Tridentina of 28 Oct 1923 n. 14718: all 'insegne, etichette … tutte le scritte e leggende … anche se concernono interessi privati' only in Italian; a German translation, where allowed, 'in caratteri latini di non maggiore dimensione e appariscenza' (notes 18, §1, [V])",
+    "German lettering to be 'cancellate con raschiatura e coloritura radicali'; the podestà must not accept 'la semplice cancellatura della parte redatta in lingua tedesca, senza preoccuparsi dello squilibrio, anche estetico'; bilingual signs 'dovranno essere totalmente rinnovate' (notes 18, §1, [V])",
+    "Bilingual lettering still allowed only in Appiano, Bolzano (with Oltrisarco and Gries), Bressanone, Caldaro, Lana and Merano; deadline 30 Nov 1927; tableware, linen and glasses with German until 30 Nov 1929; house names in German included (notes 18, §1, [V])",
+    "This is the decree on private signs that notes 16 (§1, Gaps) did not find (notes 18, §1)",
+    "Seen in the image (p. 161): two columns under 'Comunicazioni varie'; the circular begins in the left column; a reader's pen brackets its heading and the passage on 'semplice cancellatura'",
+    "Seen in the image (p. 162): the end of the circular with underlinings, Ricci's signature, the 'Modello di Avviso' for the podestà, and a further circular"
+   ],
+   "images": [
+    {
+     "file": "images/1927-10-16_Bollettino_Prefettura_Bolzano_p161_circolare_6480_Europeana.jpg",
+     "caption": "R. Prefettura di Bolzano, Bollettino Ufficiale, 16 Oct 1927, p. 161. Teßmann scan, Public Domain Mark, Europeana."
+    },
+    {
+     "file": "images/1927-10-16_Bollettino_Prefettura_Bolzano_p162_circolare_6480_Europeana.jpg",
+     "caption": "The same, p. 162."
+    }
+   ],
+   "file": "images/1927-10-16_Bollettino_Prefettura_Bolzano_p161_circolare_6480_Europeana.jpg",
+   "source": {
+    "label": "Europeana (Teßmann scan)",
+    "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059013353"
+   },
+   "creator": "R. Prefettura di Bolzano; Prefect Umberto Ricci",
+   "holder": "Teßmann Library (scan); Europeana",
+   "rights": "Public Domain Mark 1.0 (Europeana)",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059013353"
+   }
+  },
+  {
+   "no": "18.19",
+   "title": "Bollettino Ufficiale della Prefettura di Bolzano, 16 November 1927, page 173: decree on “corretto uso della lingua italiana” and circular n. 7622 on funeral inscriptions",
+   "type": "Law text",
+   "date": "decree 3 November 1927; circular 16 November 1927",
+   "year": 1927,
+   "keywords": [
+    "law",
+    "language",
+    "wording"
+   ],
+   "text": [],
+   "facts": [
+    "Decree of 3 Nov 1927 (sent with circular n. 7308 of 4 Nov): every notice, sign or label for the public to be submitted to the commune in draft and corrected to 'corretta lezione italiana'; offenders reported under art. 434 of the penal code (notes 18, §1, [V])",
+    "Circular 16 Nov 1927 n. 7622: 'le inscrizioni funebri debbono essere redatte nella sola lingua italiana unicamente quando siano posteriori al giorno 30 settembre c. a. Le scritte anteriori non debbono, quindi, essere cancellate o sostituite'; German inscriptions 'di carattere storico ed artistico' decided case by case; hotels may ask for four languages on interior signs (notes 18, §1, [V])",
+    "Answers the gravestone question of notes 16 §1 and row 16.13; contradicts the Kastelruth announcement reported in Innsbruck on 15 Nov 1927 that old grave inscriptions had to be replaced by 30 Nov (notes 18, §6)",
+    "Seen in the image: p. 173 under 'Parte ufficiale – Comunicazioni varie'; the decree in the left column; the circular on funeral inscriptions at right, its key sentence underlined in pen"
+   ],
+   "images": [
+    {
+     "file": "images/1927-11-16_Bollettino_Prefettura_Bolzano_p173_circolare_7622_Europeana.jpg",
+     "caption": "R. Prefettura di Bolzano, Bollettino Ufficiale, 16 Nov 1927, p. 173. Teßmann scan, Public Domain Mark, Europeana."
+    }
+   ],
+   "file": "images/1927-11-16_Bollettino_Prefettura_Bolzano_p173_circolare_7622_Europeana.jpg",
+   "source": {
+    "label": "Europeana (Teßmann scan)",
+    "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059013363"
+   },
+   "creator": "R. Prefettura di Bolzano; Prefect Umberto Ricci",
+   "holder": "Teßmann Library (scan); Europeana",
+   "rights": "Public Domain Mark 1.0 (Europeana)",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059013363"
+   }
+  },
+  {
+   "no": "18.20",
+   "title": "Banda musicale del Renon. Alto Adige, Italia: Amonn postcard of the Ritten band, German title overprinted",
+   "type": "Postcard",
+   "date": "posted 23 March 1928",
+   "year": 1928,
+   "keywords": [
+    "postcards",
+    "language",
+    "colour",
+    "covering"
+   ],
+   "text": [],
+   "facts": [
+    "Touriseum inv. 4108659, 'Joh. F. Amonn, Bozen', M 11518 n: 'Der deutsche Titel der Postkarte wurde mit dem italienischen überstempelt bzw. überdruckt'; keywords include 'Faschismus Italienisierung'; an unposted twin is inv. 4108460a (record)",
+    "The Tyrolean band in costume keeps its picture; only its name is changed (notes 18, §2, [INF])",
+    "Seen in the image (front): the band, some forty men in jackets, white stockings and feathered hats, on a meadow before the Schlern; at top right 'Banda musicale del Renon. Alto Adige, Italia.' in black over a red German line",
+    "Seen in the image (back): oval 'Joh. F. Amonn Bozen', 'M 11518 n', Italian 30 c stamp, postmark 'LORETO 23.3.28', addressed to a priest at the sanctuary of Loreto (Marche)"
+   ],
+   "images": [
+    {
+     "file": "images/1928-03-23_Amonn_Banda_musicale_del_Renon_overprint_front_OMA-Touriseum.jpg",
+     "caption": "Joh. F. Amonn, Bozen; posted 23 March 1928. Touriseum, via OMA; rights with the museum."
+    },
+    {
+     "file": "images/1928-03-23_Amonn_Banda_musicale_del_Renon_overprint_back_OMA-Touriseum.jpg",
+     "caption": "The back. Touriseum, via OMA."
+    }
+   ],
+   "file": "images/1928-03-23_Amonn_Banda_musicale_del_Renon_overprint_front_OMA-Touriseum.jpg",
+   "source": {
+    "label": "OMA, Touriseum – Südtiroler Landesmuseum für Tourismus",
+    "url": "https://objekte-museen-archive.provinz.bz.it/Details/bz/140023535"
+   },
+   "creator": "Joh. F. Amonn, Bozen (publisher)",
+   "holder": "Touriseum – Südtiroler Landesmuseum für Tourismus",
+   "rights": "Rechte: Touriseum - Südtiroler Landesmuseum für Tourismus (no licence stated; © presumed)",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://objekte-museen-archive.provinz.bz.it/Details/bz/140023535"
+   }
+  },
+  {
+   "no": "18.21",
+   "title": "Bollettino Ufficiale della Prefettura di Bolzano, 16 April 1928, page 76: “Paracarri con le sigle tedesche”",
+   "type": "Law text",
+   "date": "circular 5 April 1928, printed 16 April 1928",
+   "year": 1928,
+   "keywords": [
+    "law",
+    "language",
+    "covering",
+    "removal"
+   ],
+   "text": [],
+   "facts": [
+    "Circular 5 Apr 1928 n. 3715 Gab. P. S.: kerbstones 'con le sigle in tedesco K. K.' on the Bolzano–Mendola road and between Fortezza and the Brenner; boundary stones 'S. B. G. (Südbahn-Gesellschaft)' along the Brenner line, 'U. B. (Ueberetscher-Bahn)' along the Caldaro line, 'S. W. (Staatswald)' in forests at Fleres and Colle Isarco (notes 18, §1, [V])",
+    "To be removed 'o per lo meno per la cancellazione delle sigle surriferite'; signed Umberto Ricci (notes 18, §1, [V])",
+    "No surviving stone with cancelled initials was found (notes 18, §6)",
+    "Seen in the image: p. 76, the circular at top left under 'R. Prefettura di Bolzano', followed by a circular on a 'giornata del fuoco' and the section 'Lavori pubblici'"
+   ],
+   "images": [
+    {
+     "file": "images/1928-04-16_Bollettino_Prefettura_Bolzano_p76_paracarri_KK_Europeana.jpg",
+     "caption": "R. Prefettura di Bolzano, Bollettino Ufficiale, 16 Apr 1928, p. 76. Teßmann scan, Public Domain Mark, Europeana."
+    }
+   ],
+   "file": "images/1928-04-16_Bollettino_Prefettura_Bolzano_p76_paracarri_KK_Europeana.jpg",
+   "source": {
+    "label": "Europeana (Teßmann scan)",
+    "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059013420"
+   },
+   "creator": "R. Prefettura di Bolzano; Prefect Umberto Ricci",
+   "holder": "Teßmann Library (scan); Europeana",
+   "rights": "Public Domain Mark 1.0 (Europeana)",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://www.europeana.eu/item/9200333/BibliographicResource_3000059013420"
+   }
+  },
+  {
+   "no": "18.22",
+   "title": "Der Südtiroler (Innsbruck), 1 December 1934, page 6: “Meran ist deutsch”",
+   "type": "Newspaper page",
+   "date": "1 December 1934",
+   "year": 1934,
+   "keywords": [
+    "press",
+    "language",
+    "covering",
+    "counter-propaganda"
+   ],
+   "text": [],
+   "facts": [
+    "Reports a complaint in Tolomei's 'Archivio per l'Alto Adige': 'Mitunter ist sogar die italienische Aufschrift durch die Witterung abgewaschen worden und die darunter befindliche deutsche Aufschrift allein sichtbar'; the Forst brewery told to call itself 'Foresta' (notes 18, §5, [V])",
+    "The covering wears off: the regime's own side complains that the German returns through the Italian (notes 18, §5, [INF])",
+    "The same page prints L. Steinberger's open letter to Tolomei; Steinberger's 1932 pamphlet is in thread 17 (notes 18, §5, [V])",
+    "Seen in the image: a page in Fraktur headed '6 – Der Südtiroler – Innsbruck, 1. Dezember 1934 – Folge 23'; 'Meran ist deutsch' in the left column, 'Offener Brief' at the foot"
+   ],
+   "images": [
+    {
+     "file": "images/1934-12-01_Der_Suedtiroler_p6_Meran_Aufschriften_Europeana.jpg",
+     "caption": "Der Südtiroler (Innsbruck), 1 Dec 1934, p. 6. Teßmann scan, Public Domain Mark, Europeana."
+    }
+   ],
+   "file": "images/1934-12-01_Der_Suedtiroler_p6_Meran_Aufschriften_Europeana.jpg",
+   "source": {
+    "label": "Europeana (Teßmann scan)",
+    "url": "https://www.europeana.eu/item/9200333/BibliographicResource_3000115186159"
+   },
+   "creator": "Der Südtiroler (Innsbruck)",
+   "holder": "Teßmann Library (scan); Europeana",
+   "rights": "Public Domain Mark 1.0 (Europeana)",
+   "confidence": {
+    "level": "read",
+    "note": "exile press reporting an Italian source second-hand"
+   },
+   "more": {
+    "kind": "source",
+    "target": "https://www.europeana.eu/item/9200333/BibliographicResource_3000115186159"
+   }
+  },
+  {
+   "no": "18.23",
+   "title": "Covered names in the provincial museum portal: 74 OMA records of covered, struck or overstamped German names, 1900–1980",
+   "type": "Table",
+   "date": "compiled 24 November 2026 (records dated 1900–1980)",
+   "year": 2026,
+   "keywords": [
+    "postcards",
+    "language",
+    "covering",
+    "archives"
+   ],
+   "text": [],
+   "facts": [
+    "One line per OMA record whose description reports a German name covered, struck, blacked, pasted over or replaced on the object, plus the 1919 station photographs and three comparison records (manifest)",
+    "38 Touriseum, 32 Palais Mamming, 2 Pharmaziemuseum Brixen, 2 Stadtarchiv Brixen; 54 postcards (19 of the Mamming ones untyped in the portal), 13 photographs, 2 brochures, an album, two pharmacy objects, a map of 1960–80, a passport of 1919 (notes 18, §2)",
+    "Rows 18.01–18.20 hold 15 of these records; the column 'held_as_row' says which (manifest)"
+   ],
+   "file": "oma_covered_names_index.csv",
+   "source": {
+    "label": "OMA, simple search and record pages",
+    "url": "https://objekte-museen-archive.provinz.bz.it/search/simple"
+   },
+   "creator": "derived from the provincial portal",
+   "holder": "Autonome Provinz Bozen – Südtirol (portal)",
+   "rights": "catalogue metadata of the provincial portal",
+   "confidence": {
+    "level": "read"
+   },
+   "more": {
+    "kind": "table",
+    "target": "oma_covered_names_index.csv",
+    "columns": [
+     "title",
+     "date",
+     "description"
+    ]
+   }
+  }
+ ]
+}

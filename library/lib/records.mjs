@@ -140,6 +140,8 @@ export async function loadLibrary(root) {
         }
       }
 
+      if (record.side_by_side !== undefined && typeof record.side_by_side !== 'boolean') fault('side_by_side is not true or false');
+
       if (record.sources !== undefined) {
         if (Array.isArray(record.sources)) citing.push({ file, row, sources: record.sources });
         else fault('sources is not a list');

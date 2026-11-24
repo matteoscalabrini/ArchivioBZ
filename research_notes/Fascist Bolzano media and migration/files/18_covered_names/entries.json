@@ -1,0 +1,56 @@
+{
+  "entries": [
+    {
+      "no": "18.05",
+      "title": "Kurort Meran, Amonn postcard M 14509, before and after “in Süd-Tirol” was blacked out",
+      "type": "Postcard",
+      "date": "1904–25 (holder); the covering undated",
+      "year": 1904,
+      "keywords": [
+        "postcards",
+        "language",
+        "wording",
+        "removal"
+      ],
+      "text": [
+        "The parish church of St. Nikolaus in Meran, seen from a path under a vine pergola, with a woman in a straw hat on the path. Johann F. Amonn of Bozen published the view as card M 14509 with the caption “Kurort Meran / in Süd-Tirol.”",
+        "Two copies of the card stand side by side. The first is the card as printed. On the second, kept by the Palais Mamming Museum in Meran, the words “in Süd-Tirol” lie under a black bar and “Merano. Chiesa parrocchiale” is printed above the old caption, across the woman's skirt. Only the lettering was changed: the picture, the woman included, is the same card. Her skirt is crimson on the first copy and grey on the second, where the red has faded or was printed weaker throughout.",
+        "The covering is not dated. The name Tirol was banned in August 1923 (row 16.06)."
+      ],
+      "facts": [
+        "Palais Mamming inv. 23354, 'Joh. F. Amonn Bozen M 14509 n': title 'Merano. Chiesa parocchiale Kurort Meran in Südtirol (\"in Südtirol\" geschwärzt)', dated 1904–1925 (record)",
+        "The ban on 'Tirol' and its derivatives took effect on 23 Aug 1923 according to the Touriseum (notes 18, §1, [V record])",
+        "Second copy: Aukro listing Z1409, 18 June 2025, https://aukro.cz/merano-meran-mesto-hory-sudtirol-alpy-italie-z1409-7017297764 ; unposted; back 'Joh. F. Amonn Bozen', 'M 14509', 'Kunstverlag Leo Stainer, Innsbruck.', 'JFA BOZEN' in the stamp box, '5013724' at the right edge (compare_18.05/findings.md)",
+        "Whether the 'n' of 'M 14509 n' in the Mamming record marks another printing is not known (compare_18.05/findings.md)",
+        "Seen in the image (Aukro copy): the caption 'Kurort Meran / in Süd-Tirol.' alone at lower left; the woman with a red band on her hat, a yellow striped blouse, a blue bundle under her arm and a crimson skirt",
+        "Seen in the image (Mamming copy): 'Merano. Chiesa parrocchiale' over 'Kurort Meran', a black bar over the line below; the woman in the same place and pose, her skirt grey-brown; the church roof grey-brown and the tower without red"
+      ],
+      "images": [
+        {
+          "file": "compare_18.05/1904-25_Amonn_M14509_Kurort_Meran_in_Sued-Tirol_front_Aukro.jpeg",
+          "caption": "As printed: “Kurort Meran / in Süd-Tirol.” Joh. F. Amonn, Bozen, M 14509, distributed by Kunstverlag Leo Stainer, Innsbruck; unposted. A dealer's photograph, Aukro listing Z1409, 2025; rights not stated."
+        },
+        {
+          "file": "images/1904-25_Amonn_Merano_Kurort_Meran_in_Suedtirol_blacked_OMA-Mamming.jpg",
+          "caption": "Covered: “in Süd-Tirol” under a black bar, “Merano. Chiesa parrocchiale” printed above. Palais Mamming Museum, Meran, inv. 23354, via OMA; rights with the museum."
+        }
+      ],
+      "side_by_side": true,
+      "file": "images/1904-25_Amonn_Merano_Kurort_Meran_in_Suedtirol_blacked_OMA-Mamming.jpg",
+      "source": {
+        "label": "OMA, Palais Mamming Museum, inv. 23354",
+        "url": "https://objekte-museen-archive.provinz.bz.it/Details/bz/80069713"
+      },
+      "creator": "Joh. F. Amonn, Bozen (publisher)",
+      "holder": "Palais Mamming Museum (the covered copy)",
+      "rights": "Covered copy: Palais Mamming Museum, no licence stated. Printed copy: a dealer's photograph, rights not stated.",
+      "confidence": {
+        "level": "read"
+      },
+      "more": {
+        "kind": "source",
+        "target": "https://objekte-museen-archive.provinz.bz.it/Details/bz/80069713"
+      }
+    }
+  ]
+}

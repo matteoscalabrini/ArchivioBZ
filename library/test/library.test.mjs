@@ -118,6 +118,21 @@ test('several pictures: ← n / N → under each picture and above its caption; 
   assert.doesNotMatch(single, /pic-nav|data-step|Previous picture|Next picture/);
 });
 
+test('side by side: every picture shows at once, in one strip, with no switcher', async () => {
+  const pictures = (n) => Array.from({ length: n }, (_, i) => ({ src: `img/x-${i + 1}.jpg`, w: 40, h: 30, caption: `Picture ${i + 1}.`, original: null }));
+  const html = await render({
+    edit(lib) {
+      Object.assign(entry(lib, '5.01'), { pictures: pictures(2), side_by_side: true });
+    },
+  });
+  const inner = row(html, '5.01').inner;
+  assert.match(inner, /<div class="pics side">/);
+  const figures = [...inner.matchAll(/<figure( hidden)?>([\s\S]*?)<\/figure>/g)];
+  assert.deepEqual(figures.map((m) => Boolean(m[1])), [false, false], 'both pictures show');
+  assert.deepEqual(figures.map(([, , f]) => /<figcaption>(.*?)<\/figcaption>/.exec(f)?.[1]), ['Picture 1.', 'Picture 2.']);
+  assert.doesNotMatch(inner, /pic-nav|data-step/);
+});
+
 test('a row with empty text and no picture still renders a body', async () => {
   const html = await builtIndex();
   const reference = row(html, '12.01').inner;
