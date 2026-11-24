@@ -1,19 +1,7 @@
 {
-  "0.01": {
-    "shows": ["a report on how Italians elsewhere came to know Bolzano under Fascism", "tourist posters that left the fascist city out", "newsreels, radio, the press and illustrated magazines that put Bolzano at the centre", "migrants, soldiers and optants", "what the city sells its visitors today", "Franz Lenhart's Merano poster of 1934 as its picture"],
-    "colours": ["green", "blue", "orange"]
-  },
-  "0.02": {
-    "shows": ["a report comparing the Semirurali of Bolzano with the regime's colonization villages", "the Agro Pontino, Libya, Ethiopia and the Dodecanese", "the housing institute and the office that decided who could move and be hired", "Asmara zoned by race", "the general plan of the Semirurali signed by Giulio Garbini as its picture", "house plots on streets named after Italian cities around Piazza Pontinia"],
-    "colours": ["monochrome"]
-  },
   "0.03": {
     "on": ["Monumento alla Vittoria", "Lido", "Semirurali", "Lager", "Zona industriale", "Buildings, streets, bridges, water: © OpenStreetMap contributors (ODbL)"],
     "shows": ["a map of the centre of Bolzano drawn in dots", "buildings, streets and mountain slopes from a laser survey", "the old town, the Talvera, the station and the fascist city across the river", "places with entries marked by small pictures of their rows", "newspaper pages and a photograph as markers on the map"],
     "colours": ["monochrome", "grey"]
-  },
-  "5.01": {
-    "shows": ["a three-arched stone bridge with eagles on tall pylons above the piers", "a pierced stone parapet", "houses and a mountain behind the bridge", "a dry riverbed under the arches", "Mario Gabinio's photograph of the bridge", "two stone eagle heads on a dark plinth in the crypt of the Victory Monument", "an exhibition label and panels on the wall behind the eagles", "the removal of the eagles in the 1970s"],
-    "colours": ["monochrome"]
   }
 }

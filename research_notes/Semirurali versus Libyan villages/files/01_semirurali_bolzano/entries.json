@@ -1,39 +1,6 @@
 {
   "entries": [
     {
-      "no": "8.00",
-      "title": "The Semirurali of Bolzano (\"Rione Dux\", 1936–1943) as a designed and administered object",
-      "type": "Notes",
-      "date": "2026",
-      "year": 2026,
-      "keywords": [
-        "semirurali",
-        "architecture",
-        "migration",
-        "colonization"
-      ],
-      "text": [
-        "The working notes on the Semirurali as a designed and administered object. They were planned in-house by the provincial housing institute; the only designer the documents name is its technical director, the engineer Giulio Garbini, “chiamato da Venezia”. No national law creates a “casa semirurale”: the vehicle was ordinary public-housing law.",
-        "The period sources agree on 228 houses and 808 dwellings at the inauguration of 8 October 1939; the Comune's final total is 327 houses and 1,151 dwellings. No period use of “colonia”, “colonizzazione” or “bonifica” for the Semirurali was found."
-      ],
-      "facts": [
-        "Thread notes in six questions: authorship and office; legal basis; typology, plots, costs and names; chronology and numbers; allocation and the vocabulary of colonization; afterlife (notes 01, headings).",
-        "The Semirurali were planned and designed in-house by the provincial housing institute (IFACP); the only designer the documents name is its technical director, Ing. Giulio Garbini, \"chiamato da Venezia\" (notes 01, §1).",
-        "No national law creates a \"casa semirurale\" category; the legal vehicle was ordinary public-housing law, T.U. 1165/1938, plus ruralist \"direttive\" (notes 01, §2).",
-        "Period sources agree on 228 houses and 808 dwellings at the inauguration of 8 Oct. 1939; the Comune's final total is 327 houses and 1,151 dwellings, and the 2015 booklet's lot breakdown conflicts with the period press (notes 01, §4).",
-        "No period use of \"colonia\", \"colonizzazione\" or \"bonifica\" for the Semirurali was found; the clearest bridge is the Commissario per le migrazioni e la colonizzazione chairing a Bolzano meeting in Jan. 1940 on replacing optants (notes 01, §5).",
-        "Tags used: [V] primary, [S] full secondary, [SS] snippet, [INF] inference (notes 01, header)."
-      ],
-      "confidence": {
-        "level": "read"
-      },
-      "more": {
-        "kind": "read",
-        "target": "../../../../library/content/reads/8.00.md",
-        "title": "The Semirurali: a house, a garden, and what became of them"
-      }
-    },
-    {
       "no": "8.01",
       "title": "R.D. 28 aprile 1938, n. 1165: Approvazione del testo unico delle disposizioni sull'edilizia popolare ed economica (Gazzetta Ufficiale n. 177, 5 agosto 1938, supplemento ordinario)",
       "type": "Law text",

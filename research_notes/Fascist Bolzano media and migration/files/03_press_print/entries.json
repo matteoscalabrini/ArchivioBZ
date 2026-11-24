@@ -1,38 +1,6 @@
 {
   "entries": [
     {
-      "no": "3.00",
-      "title": "Bolzano/Alto Adige in Italian print media and propaganda, 1919–1943: what is digitized, where, and a first article harvest",
-      "type": "Notes",
-      "date": "2026",
-      "year": 2026,
-      "keywords": [
-        "press",
-        "archives"
-      ],
-      "text": [
-        "The working notes on the press of 1919–43 about Bolzano: what is digitized, where, how to search it, and a first harvest of dated articles. The German-language dailies Alpenzeitung and Dolomiten can be searched as full text. The Italian La Provincia di Bolzano is online only as page images.",
-        "One practical finding: the Alpenzeitung has to be searched in its own German calques. “Semirurali” returns nothing, “halbländlichen” fifty pages. The notes then compare how each paper reported the same events to its own readers."
-      ],
-      "facts": [
-        "Notes of 22 October 2026 on the 1919-43 press about Bolzano: what is digitized, where, how to search it, and a harvest of 48 dated Alpenzeitung and Dolomiten items, 31 pinned to a page and downloaded (notes 03, §1)",
-        "Teßmann's own site blocked scripts, so all Teßmann content came through Europeana's 2019 copy under the Public Domain Mark; the web-search budget ran out partway (notes 03, method caveats, [V])",
-        "La Provincia di Bolzano is not on Teßmann; it is online as a page-image gallery without OCR at the Biblioteca Provinciale Italiana Claudia Augusta, 21.04.1927-27.04.1941 (notes 03, §1, Takeaway, [V])",
-        "Search tip: use the Alpenzeitung's German calques: 'halbländlichen' not 'semirurali', 'Volkszug' not 'treno popolare', 'Industriezone' not 'zona industriale' (notes 03, §1B, [V])",
-        "Compares the same events in LPB, AZ, Dolomiten and La Stampa (Victory Monument 1928, industrial zone 1935, Option 1939-40): LPB speaks to Italian readers, AZ and DOL to German speakers [I] (notes 03, §1E)",
-        "Further sections: the Touring Club's Le Vie d'Italia and the 1936 Giacomelli series, a La Stampa harvest, propaganda volumes, press photography ('Foto Walsa') (notes 03, §2-5)",
-        "Tags: [V] verified in the session, [V-img] read off a page image, [U] unopened summary or snippet, [I] inference (notes 03, header)"
-      ],
-      "confidence": {
-        "level": "read"
-      },
-      "more": {
-        "kind": "read",
-        "target": "../../../../library/content/reads/3.00.md",
-        "title": "Four papers, one city: the press on Bolzano, 1919–1943"
-      }
-    },
-    {
       "no": "3.01",
       "title": "Alto Adige: cenni geografici e statistici",
       "type": "Book",

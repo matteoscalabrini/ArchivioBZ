@@ -81,9 +81,8 @@ check('every row is among the first precise hits for its whole title, rows of on
 check('Spinne gives 3.06 and no other row', () => precise('Spinne').join() === '3.06' || first(precise('Spinne')));
 check('Fuehrer ruft gives 16.19 first', () => precise('Fuehrer ruft')[0] === '16.19' || first(precise('Fuehrer ruft')));
 check('Hochetsch gives 1.05 and 3.19, precise', () => holds(precise('Hochetsch'), '1.05', '3.19') || first(precise('Hochetsch')));
-check('funivia gives 1.02 and the tables 1.03 and 2.02, precise', () => holds(precise('funivia'), '1.02', '1.03', '2.02') || first(precise('funivia')));
-check('teschio gives the table 15.01 alone, the record as its reason', () =>
-  (precise('teschio').join() === '15.01' && reasonOf('teschio', '15.01')[0]?.label === 'in its table') || `${first(precise('teschio'))}; ${JSON.stringify(reasonOf('teschio', '15.01'))}`);
+// The checks on table records (funivia in 1.03 and 2.02, teschio in 15.01) went with the tables on 24 Nov 2026.
+check('funivia gives 1.02, precise', () => holds(precise('funivia'), '1.02') || first(precise('funivia')));
 check('Furer stands nowhere and gives 16.19 as a possible link, a near spelling', () =>
   (!precise('Furer').length && /^near /.test(reasonOf('Furer', '16.19', 'possible')[0]?.road ?? '')) || `precise ${first(precise('Furer'))}; possible ${first(nos(possible('Furer')))}`);
 check(`an ordinary word (poster) has more than ${POSSIBLE_SHOWN} possible links and puts ${POSSIBLE_SHOWN} on the page`, () => {

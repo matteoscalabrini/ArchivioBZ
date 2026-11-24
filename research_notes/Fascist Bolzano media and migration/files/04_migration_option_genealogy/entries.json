@@ -1,126 +1,6 @@
 {
   "entries": [
     {
-      "no": "4.00",
-      "title": "Migration into fascist Bolzano (1934–1943), the 1939 Option, and tracing the people: numbers, timeline, and a tested portal guide",
-      "type": "Notes",
-      "date": "2026",
-      "year": 2026,
-      "keywords": [
-        "migration",
-        "option",
-        "tracing-people",
-        "zona-industriale",
-        "semirurali"
-      ],
-      "text": [
-        "The working notes on who came to fascist Bolzano, who left in the Option of 1939, and how to trace either by name. They cover the industrial zone, the origins of the immigrants, the Semirurali, the Option and its land agency, the genealogy portals tested one by one, and the Lager as a model of tracing people by name.",
-        "The last section is a step-by-step guide for following one family back from Bolzano to its village of origin."
-      ],
-      "facts": [
-        "Research date 2026-10-22; notes in English, original titles and archive names kept (notes 04, head).",
-        "Seven sections: the Zona industriale (laws, firms, workforce, hiring policy, the Commissariato); where the immigrants came from and Bolzano's population by census and language group; the Semirurali; the 1939 Option, ADERSt/AdO and the ENTV; genealogy portals tested; the Lager Bozen as a model of name-level tracing; a guide to tracing a Polesine family that came to the Semirurali in 1938 (notes 04, §§1–7).",
-        "Labels used throughout: [VERIFIED-PORTAL], [VERIFIED-DOC], [SECONDARY], [INFERENCE] (notes 04, head).",
-        "Most cited files are in files/04_migration_option_genealogy, listed in its manifest.md (notes 04, head)."
-      ],
-      "confidence": {
-        "level": "read"
-      },
-      "more": {
-        "kind": "read",
-        "target": "../../../../library/content/reads/4.00.md",
-        "title": "Who came and who left: migration, the Option, and tracing a family by name"
-      }
-    },
-    {
-      "no": "4.01",
-      "title": "Andamento demografico nella provincia di Bolzano e nei più grandi centri della provincia, 1811–2017 (ASTAT, Annuario statistico 2018, tab. 3.2)",
-      "type": "Table",
-      "date": "1811–2017",
-      "year": 1811,
-      "keywords": [
-        "statistics",
-        "migration"
-      ],
-      "text": [
-        "Population of the province and its largest towns from 1811 to 2017, extracted from the provincial statistical yearbook. Bolzano had 32,679 inhabitants in 1921, 37,351 in 1931, 45,505 in 1936 and 70,898 in 1951.",
-        "No census was held in 1939 or 1941, so the years of fastest growth fall in a gap. The municipal register gives 56,812 for January 1939 and 64,494 for January 1943."
-      ],
-      "facts": [
-        "Own CSV extraction of table 3.2 of the ASTAT yearbook 2018: province total and Bolzano, Merano, Bressanone, Laives, Brunico at 18 dates, 1811–2017 (manifest; file).",
-        "Up to 1910 the figures count present population; from 1921, resident population; 1991 boundaries (manifest).",
-        "Bolzano city: 30,424 (1910), 32,679 (1921), 37,351 (1931), 45,505 (1936), 70,898 (1951), 88,799 (1961) (notes 04, §2, [VERIFIED-DOC]).",
-        "No census was held in 1939; 1941 was skipped (notes 04, §2).",
-        "Municipal-register values, not in this table: 56,812 on 1 January 1939 and 64,494 on 1 January 1943, per Mezzalira 2006 (notes 04, §2, [VERIFIED-DOC]).",
-        "The yearbook's own title for the table runs 1754–2017; the extraction starts at 1811 (yearbook index, file).",
-        "No ASTAT XLS or CSV of the historical tables was found online; this CSV is the researcher's extraction from the yearbook PDF (notes 04, §2, Gaps)."
-      ],
-      "file": "ASTAT_2018_Tab3.2_popolazione_provincia_Bolzano_citta_1811-2017.csv",
-      "source": {
-        "label": "ASTAT, Statistisches Jahrbuch / Annuario statistico 2018, tab. 3.2 (Wayback copy)",
-        "url": "https://web.archive.org/web/20191109134418/https://astat.provinz.bz.it/downloads/Jahrbuch_2018.pdf"
-      },
-      "creator": "ASTAT – Istituto provinciale di statistica",
-      "holder": "ASTAT, Provincia autonoma di Bolzano",
-      "rights": "Own extraction from the ASTAT yearbook. ASTAT publications may be reproduced with source citation; verify the current ASTAT terms.",
-      "confidence": {
-        "level": "read"
-      },
-      "more": {
-        "kind": "table",
-        "target": "ASTAT_2018_Tab3.2_popolazione_provincia_Bolzano_citta_1811-2017.csv",
-        "columns": [
-          "year",
-          "province_total",
-          "Bolzano"
-        ]
-      }
-    },
-    {
-      "no": "4.02",
-      "title": "Popolazione residente per gruppo linguistico ai censimenti dal 1880 al 2011 (ASTAT, Annuario statistico 2018, tab. 3.17)",
-      "type": "Table",
-      "date": "1880–2011",
-      "year": 1880,
-      "keywords": [
-        "statistics",
-        "language",
-        "migration"
-      ],
-      "text": [
-        "Residents of the province by language group at each census from 1880 to 2011. Italians numbered 7,339 in 1910 and 27,048 in 1921. By 1961 they were 128,271.",
-        "For the decades in between there is nothing: the censuses from 1931 to 1951 left the language question out. The decades in which the balance changed were not counted."
-      ],
-      "facts": [
-        "Own CSV extraction of table 3.17: Italians, Germans, Ladins, others and total for the province at each census, 1880–2011 (manifest; file).",
-        "Up to 1921 the figures count present population. No language data for 1931–1951 (manifest).",
-        "Italians: 7,339 in 1910, 27,048 in 1921, 128,271 in 1961 (notes 04, §2, [VERIFIED-DOC]).",
-        "Mezzalira (after Alexander) gives 20,306 Italians for 1921 against ASTAT's 27,048, probably because ASTAT counts present population (notes 04, §2, [VERIFIED-DOC]).",
-        "The 1921 total here, 254,735 (present population), differs from 256,610 in table 3.2 (resident population) (file; manifest).",
-        "Leidlmair: the official counts up to 1951 left out the language question (notes 04, §2, [SECONDARY])."
-      ],
-      "file": "ASTAT_2018_Tab3.17_gruppi_linguistici_provincia_1880-2011.csv",
-      "source": {
-        "label": "ASTAT, Statistisches Jahrbuch / Annuario statistico 2018, tab. 3.17 (Wayback copy)",
-        "url": "https://web.archive.org/web/20191109134418/https://astat.provinz.bz.it/downloads/Jahrbuch_2018.pdf"
-      },
-      "creator": "ASTAT – Istituto provinciale di statistica",
-      "holder": "ASTAT, Provincia autonoma di Bolzano",
-      "rights": "Own extraction from the ASTAT yearbook. ASTAT publications may be reproduced with source citation; verify the current ASTAT terms.",
-      "confidence": {
-        "level": "read"
-      },
-      "more": {
-        "kind": "table",
-        "target": "ASTAT_2018_Tab3.17_gruppi_linguistici_provincia_1880-2011.csv",
-        "columns": [
-          "census_year",
-          "italiani",
-          "tedeschi"
-        ]
-      }
-    },
-    {
       "no": "4.03",
       "title": "Elenco sovversivi e sospetti politici – Schedario – Div. I – Cat. A-8",
       "type": "Table",
@@ -853,7 +733,7 @@
         "language"
       ],
       "text": [
-        "The provincial statistical yearbook for 2018, 544 pages, saved from a web archive because the original address is gone. Two of its tables are extracted in this library: population by town (row 4.01) and by language group (row 4.02)."
+        "The provincial statistical yearbook for 2018, 544 pages, saved from a web archive because the original address is gone."
       ],
       "facts": [
         "ASTAT yearbook 2018, 544 pp., saved from a Wayback copy; the original URL now returns 404 (manifest; file).",
@@ -1201,45 +1081,6 @@
       }
     },
     {
-      "no": "4.32",
-      "title": "Elenco deportat* nel Lager di Bolzano 1944-45. Aggiornamento aprile 2025",
-      "type": "Table",
-      "date": "April 2025",
-      "year": 2025,
-      "keywords": [
-        "lager",
-        "tracing-people"
-      ],
-      "text": [
-        "The Comune's list of people deported to the Bolzano Lager, as updated in April 2025: 8,294 entries, surname and first name only, in alphabetical order. Venegoni's register of 2005 has 7,982 names, and estimates of the total run from about 9,500 to about 11,000.",
-        "The distance between the names and the totals is a finding in itself. Reconstruction by name leaves a remainder nobody has identified."
-      ],
-      "facts": [
-        "'Elenco deportat* nel Lager di Bolzano 1944-45 – Aggiornamento aprile 2025', Italian and German, 154 pages (notes 04, §6, [VERIFIED-DOC]; file).",
-        "8,294 entries, surname and first name only, numbered in alphabetical order and not by matricola (manifest; notes 04, §6, [VERIFIED-DOC]).",
-        "The Passaggio della Memoria memorial shows the names with audio testimonies; made with ANED, ANPI and the Jewish Community (notes 04, §6, [VERIFIED-PORTAL]).",
-        "Venegoni's 2005 book has 7,982 names; total prisoners are put at about 9,500 (Fondazione Memoria della Deportazione) or about 11,000 (Comune) (notes 04, §6).",
-        "The gap between the name lists and the totals is itself a finding: name-level reconstruction leaves an unidentified remainder (notes 04, §6, [INFERENCE]).",
-        "Exported from a spreadsheet: the PDF was made with Excel on 14 April 2025 (file).",
-        "A list of named deportees: catalogued here as a whole; no individual's name is copied into this record (cataloguing rule)."
-      ],
-      "file": "ComuneBZ_Elenco_deportati_Lager_Bolzano_1944-45.pdf",
-      "source": {
-        "label": "Comune di Bolzano",
-        "url": "https://www.comune.bolzano.bz.it/ocmultibinary/download/10069/265785/19/9ca07b740b4ff58b263432b17c887055.pdf/file/645ce31e8dd0a343cab57ebf09a4357c.pdf"
-      },
-      "creator": "Comune di Bolzano",
-      "holder": "Comune di Bolzano",
-      "rights": "CC BY 4.0.",
-      "confidence": {
-        "level": "read"
-      },
-      "place": "lager",
-      "more": {
-        "kind": "file"
-      }
-    },
-    {
       "no": "4.33",
       "title": "Genealogische Recherchen",
       "type": "Archive guide",
@@ -1349,52 +1190,6 @@
       },
       "more": {
         "kind": "file"
-      }
-    },
-    {
-      "no": "4.36",
-      "title": "Portale Antenati, pages of the Archivio di Stato di Bolzano and eleven origin archives, with registry searches for nine, 22 October 2026",
-      "type": "Table",
-      "date": "22 October 2026",
-      "year": 2026,
-      "keywords": [
-        "tracing-people",
-        "archives",
-        "migration"
-      ],
-      "text": [
-        "Twenty-one pages saved from the national genealogy portal on 22 October 2026: the page of the Archivio di Stato di Bolzano, eleven archives of the provinces the migrants came from, and registry searches for nine of them. The table summarises the nine searches.",
-        "For Bolzano the portal has nothing. For the provinces of origin the coverage is uneven: Verona has 35,290 registers covering 1870 to 1946, while Rovigo, Treviso, Venezia and Belluno are almost only Napoleonic. A family from the Polesine cannot be followed there."
-      ],
-      "facts": [
-        "21 saved pages of the Portale Antenati, 22 October 2026: 12 archive description pages and 9 registry-search result pages with facet counts; the CSV, the researcher's own extraction, summarises the 9 searches (manifest; folder).",
-        "Antenati has nothing for Bolzano: digitization 'Non prevista', 'L'Istituto non possiede le fonti in oggetto'; civil registration in South Tyrol began only on 1 January 1924 (notes 04, §5, [VERIFIED-PORTAL]).",
-        "Coverage of the origin provinces is uneven: Verona 35,290 registers, all Italian stato civile 1870–1946; Mantova 32,970; Rovigo, Treviso, Venezia and Belluno almost only Napoleonic, 1806–1815 (notes 04, §5a, [VERIFIED-PORTAL]; CSV).",
-        "Rovigo: 690 registers, only 30 of the Italian period (notes 04, §5a, [VERIFIED-PORTAL]; CSV).",
-        "No liste di leva or ruoli matricolari are online on Antenati for the nine origin archives parsed (notes 04, §5a, [VERIFIED-PORTAL]).",
-        "The AS Bolzano page lists as 'fonti online' the 'elenco dei sovversivi politici anni 1930 ca' and part of the IMI documentation (notes 04, §5a, [VERIFIED-PORTAL]).",
-        "The Rovigo and Padova pages disagree on the Ufficio di leva di Rovigo: classes 1855–1910 against 1855–1944 (notes 04, §5a).",
-        "The 12 archive pages, Bolzano, Trento and Ferrara among them, have no line in the CSV; the manifest says not to open the HTML as active pages (manifest; CSV)."
-      ],
-      "file": "antenati_pages/antenati_registry_facets_summary_2026-10-22.csv",
-      "source": {
-        "label": "Portale Antenati (MiC, Direzione Generale Archivi)",
-        "url": "https://antenati.cultura.gov.it/"
-      },
-      "creator": "Ministero della Cultura, Direzione Generale Archivi",
-      "holder": "Ministero della Cultura",
-      "rights": "© MiC (saved pages). The summary CSV is the researcher's own extraction, free to reuse.",
-      "confidence": {
-        "level": "read"
-      },
-      "more": {
-        "kind": "table",
-        "target": "antenati_pages/antenati_registry_facets_summary_2026-10-22.csv",
-        "columns": [
-          "archive",
-          "registers_total",
-          "register_year_hits_1900_1945"
-        ]
       }
     }
   ]

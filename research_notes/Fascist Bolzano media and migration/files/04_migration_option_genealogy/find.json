@@ -1,16 +1,4 @@
 {
-  "4.00": {
-    "shows": ["migration into fascist Bolzano, 1934 to 1943", "the 1939 Option for Germany and the optants", "the industrial zone and the Semirurali quarter", "genealogy portals and archives tested for tracing people", "a guide to tracing a family from the Polesine to the Semirurali"],
-    "names": ["Opzioni", "Industriezone", "Amtliche Deutsche Ein- und Rückwandererstelle", "Arbeitsgemeinschaft der Optanten", "Ente Nazionale per le Tre Venezie", "Durchgangslager Bozen"]
-  },
-  "4.01": {
-    "shows": ["population of the province of Bolzano, 1811 to 2017", "census population of Bolzano, Merano, Bressanone, Laives and Brunico", "the growth of Bolzano under fascism", "no census in 1939 or 1941"],
-    "names": ["Landesinstitut für Statistik", "Statistisches Jahrbuch für Südtirol", "Brixen", "Leifers", "Bruneck"]
-  },
-  "4.02": {
-    "shows": ["residents of the province by language group at each census, 1880 to 2011", "Italian, German and Ladin speakers in South Tyrol", "the rise of the Italian population", "no language count from 1931 to 1951"],
-    "names": ["Landesinstitut für Statistik", "Statistisches Jahrbuch für Südtirol"]
-  },
   "4.03": {
     "on": ["irredentisti antitaliani", "pangermanisti"],
     "shows": ["a police register of subversives and political suspects", "a handwritten ledger of names, parents, birthplaces, occupations and parties", "a legend coding political colour: anarchists, socialists, republicans, communists", "mostly Italian railway workers"],
@@ -147,11 +135,6 @@
     "shows": ["a fold-out leaflet in Italian, German and English", "the exhibition in the house at via Bari 11", "a map of the Semirurali quarter", "one of the few surviving semirural houses"],
     "names": ["Baristraße"]
   },
-  "4.32": {
-    "on": ["Verzeichnis der Deportierten ins Bozner NS-Lager 1944-45", "Stand April 2025"],
-    "shows": ["a list of the people deported to the Bolzano Lager", "8,294 names in alphabetical order", "the names shown at the Passaggio della Memoria", "a list in Italian and German"],
-    "names": ["Durchgangslager Bozen", "Polizei- und Durchgangslager Bozen"]
-  },
   "4.33": {
     "on": ["Verfachbücher"],
     "shows": ["family research in the South Tyrolean provincial archive", "church registers online up to 1924", "civil registration from 1 January 1924", "court books for house and farm histories"],
@@ -166,9 +149,5 @@
     "on": ["Endstation Heimkehr? Die Südtiroler Rückoption", "die bekannten 86 Prozent", "Wir können bis heute nicht genau sagen, wie viele Menschen letztendlich Südtirol im Zuge der Option verlassen haben", "ca. 32.000 Karteikarten"],
     "shows": ["an interview with the historian Eva Pfanzelter", "the return of the optants after the war", "the 86 per cent who opted for Germany", "a new book on the re-option", "a newspaper page"],
     "names": ["Opzioni"]
-  },
-  "4.36": {
-    "on": ["L’Istituto non possiede le fonti in oggetto", "Non prevista", "Stato civile napoleonico", "Stato civile italiano"],
-    "shows": ["the national genealogy portal and its archives", "civil registers of the provinces the migrants came from", "nothing online for Bolzano", "uneven coverage of the provinces of origin", "registry searches for nine archives"]
   }
 }

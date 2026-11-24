@@ -1,41 +1,6 @@
 {
   "entries": [
     {
-      "no": "10.00",
-      "title": "The bridge between Fascist “colonizzazione interna” and the Italianization of South Tyrol: offices, people, laws and words (1919-1943, scholarship to 2026)",
-      "type": "Notes",
-      "date": "2026",
-      "year": 2026,
-      "keywords": [
-        "colonization",
-        "agro-pontino",
-        "libya",
-        "option",
-        "language"
-      ],
-      "text": [
-        "The working notes on what tied the regime's internal colonization to the Italianization of South Tyrol: the Commissariato per le migrazioni e la colonizzazione interna, the veterans' body ONC, the land agency for the Tre Venezie, and the people and words they shared.",
-        "The tie turns out stronger in personnel and statute than in rhetoric. Its clearest piece is a circular of 21 December 1939: settlers replacing departing South Tyroleans were to come from the 56 provinces north of Perugia. The notes open by correcting six errors in the research's own starting assumptions."
-      ],
-      "facts": [
-        "Researcher notes compiled 2026-10-26 on the institutional bridge: the Commissariato per le migrazioni e la colonizzazione interna (CMCI), the ONC and the Agro Pontino, the ENTV, Luigi Razza, Pergher, and the regime's vocabulary (notes 03, header; README).",
-        "Opens with six corrections to the brief: the CMCI dates from 1930 (organic law L. 358/1931), not a 1926 decree; it did not end in 1939; the ENTV began as the ERA (R.D. 8 Sept 1921 n. 1343); Senate bill 328 (1949) concerns small peasant property; 'manodopera regnicola e non allogena' is not in R.D.L. 1621/1934; no source for 'bonifica dei cognomi' (notes 03, corrections 1-6).",
-        "Strongest documented institutional bridge to Bolzano: a CMCI circular of 21 Dec 1939 setting that settlers replacing departing South Tyroleans should come from the 56 northern and central provinces north of Perugia (notes 03, Q1, [S], via Di Michele, JMIS 2023, n. 22).",
-        "Person-level bridge: Razza, secretary of the Fascio di Trento in 1920, CMCI commissioner from 1930, and as Minister of Public Works the proposer of R.D.L. 234/1935 on Bolzano's industrial zone (notes 03, Q1: biography [S, tertiary], decree [V], the bridge reading [INF]).",
-        "Chain for the report writer: ONC (1917) → ERA (1921) → CMCI (1930/31) → Pontine settlement (1932-39) → ERATV purchases in Alto Adige (1931-38) → Bolzano industrial zone (1934-36) → Libyan ventimila (1938) → anti-urbanism law (1939) → Option and ENTV (1939) → CMCI circular (Dec 1939) → ENTV holdings (1949) (notes 03, Q8).",
-        "The bridge is stronger in personnel and statute than in rhetoric; pre-1939 land colonization in South Tyrol was small (0.6% of farmland) and the declared goal stayed assimilation, not removal, until the Option (notes 03, Q8, [INF]).",
-        "Tags: [V] read in the primary source, [S] full secondary source, [SS] search snippet, [INF] inference (notes 03, header)."
-      ],
-      "confidence": {
-        "level": "read"
-      },
-      "more": {
-        "kind": "read",
-        "target": "../../../../library/content/reads/10.00.md",
-        "title": "From the marshes to the Brenner: the offices and words of internal colonisation"
-      }
-    },
-    {
       "no": "10.01",
       "title": "Legge 9 aprile 1931, n. 358: Norme per la disciplina e lo sviluppo delle migrazioni e della colonizzazione interna",
       "type": "Law text",

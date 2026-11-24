@@ -1,40 +1,6 @@
 {
  "entries": [
   {
-   "no": "17.00",
-   "title": "A morning in the Monument to Victory, 14 November 2026: five printed pieces shown in BZ '18–'45, cut square and traced",
-   "type": "Notes",
-   "date": "2026",
-   "year": 2026,
-   "keywords": [
-    "monumento-vittoria",
-    "posters",
-    "exhibitions",
-    "press",
-    "heritage"
-   ],
-   "text": [
-    "The working notes on a morning in the crypt of the Monument to Victory. Five printed pieces hang there as reproductions in steel boxes: two exhibition posters, a pamphlet cover from Munich, a magazine cover and a poster for a column. Each was photographed from below, cut to its sheet and set square, then traced to an original, a maker and an occasion in catalogues and newspapers.",
-    "The rest of that morning's photographs follow as rows of their own, the eagle heads of Ponte Druso among them."
-   ],
-   "facts": [
-    "Thread 17 notes, research date 14 November 2026; extends notes 01 (posters), 03 (press), 05 §3–4 (the monument and the exhibition), 15 and 16 (notes 17, header)",
-    "49 photographs taken 12:36–13:04; 47 of the files first placed in the repository were 360 × 480 previews, the originals were exported from the Photos app (notes 17, §1, [V])",
-    "The five pieces were cut with library/tools/rectify.py; proportions worked out from each photograph's lens, not assumed; the cuts are described in rectify.json and can be made again (notes 17, §2, [V])",
-    "Three of the five trace to a holding: the 1929 and 1933 posters to the Museo Nazionale Collezione Salce, Treviso; the 1932 pamphlet to libraries in Munich, Innsbruck and Bolzano. For the 1935 cover no digitised issue and for the 1938 poster no original was found (notes 17, §3–§7)",
-    "Correction to notes 15: 'the 1938 column' is the Colonna Romana of 5 June 1938, not the Brenner boundary post of Luce B1312 (notes 17, §7, [V] and [INF])",
-    "The two eagle heads of Ponte Druso are on show in 2026, which notes 05 §1 could not say (notes 17, §1, [V])"
-   ],
-   "confidence": {
-    "level": "read"
-   },
-   "more": {
-    "kind": "read",
-    "target": "../../../../library/content/reads/17.00.md",
-    "title": "A morning under the Monument to Victory: five printed pieces, traced"
-   }
-  },
-  {
    "no": "17.01",
    "title": "Iª Esposizione Nazionale dell'Alto Adige, Bolzano, 10 agosto – 10 settembre 1929",
    "type": "Poster",

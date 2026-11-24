@@ -1,37 +1,6 @@
 {
   "entries": [
     {
-      "no": "1.00",
-      "title": "Posters, graphic advertising, postcards and illustrated promotion of Bolzano/Bozen, Merano/Meran and Alto Adige/Südtirol, 1919–1943",
-      "type": "Notes",
-      "date": "2026",
-      "year": 2026,
-      "keywords": [
-        "posters",
-        "postcards",
-        "tourism"
-      ],
-      "text": [
-        "The working notes on posters, postcards and illustrated promotion of Bolzano, Merano and the province between the wars. About fifty posters are documented from the provincial museum portal.",
-        "The main finding is an absence. Rome, Drusus, the Monument to Victory and the new fascist city appear on none of them. The regime enters through the emblems of the state tourist board and the railways, fascist-era dating, approval stamps and Italian place names. The new city shows up on postcards, not on posters."
-      ],
-      "facts": [
-        "Six questions: which posters exist (Q1), the artists (Q2), where they are held (Q3), iconography (Q4), postcards (Q5), scholarly literature (Q6) (notes 01)",
-        "About 50 posters of 1919–1943 for Merano, Bolzano-Gries, the Dolomites, Val Gardena, Carezza, Renon and the Brenner line documented from the provincial OMA portal with record URLs; the images stay under museum rights (notes 01, Q1, [DB✓])",
-        "Romanità, Drusus, the Victory Monument and the new fascist city do not appear on any tourist poster found; the regime enters through ENIT and FS logos, fascist dating, approval stamps and Italian toponyms; the new city surfaces in postcards, not posters (notes 01, Q4)",
-        "Franz Lenhart dominates the corpus and is read as the hinge figure for 'Bolzano seen from elsewhere' (notes 01, Q2, [INF])",
-        "Gaps: Collezione Salce records known only from index snippets [IDX]; no 1919–43 poster for a Fiera di Bolzano found (notes 01, Q1)"
-      ],
-      "confidence": {
-        "level": "read"
-      },
-      "more": {
-        "kind": "read",
-        "target": "../../../../library/content/reads/1.00.md",
-        "title": "Posters for the mountains, postcards for the new city"
-      }
-    },
-    {
       "no": "1.01",
       "title": "Elektrische Bahn Lana–Meran",
       "type": "Poster",
@@ -112,51 +81,6 @@
       "more": {
         "kind": "source",
         "target": "https://commons.wikimedia.org/wiki/File:Innsbruck-Museum_Zeughaus-Poster_Kohlerer_Bahn_Bozen-01ASD.jpg"
-      }
-    },
-    {
-      "no": "1.03",
-      "title": "Objekte Museen Archive Südtirol: 414 records of posters, postcards, brochures and guides dated 1919–1943",
-      "type": "Table",
-      "date": "1919–1943",
-      "year": 1919,
-      "keywords": [
-        "posters",
-        "postcards",
-        "tourism",
-        "archives"
-      ],
-      "text": [
-        "Every poster, postcard, brochure, guide and map dated 1919 to 1943 that keyword searches found in the provincial portal of museum objects: 414 records, among them 77 posters, 191 picture postcards and 84 brochures. Most are held by the Touriseum in Merano.",
-        "The records were built from the portal's results lists, so descriptions are cut short where the lists cut them. No images are included; they stay under the museums' rights."
-      ],
-      "facts": [
-        "Catalogue metadata (record URL, inventory no., type, title, date, makers, institution, description excerpt, search term) for every poster, postcard, brochure, guide, map or programme dated 1919–1943 found in keyword searches of the provincial portal on 2026-10-22 (manifest)",
-        "Measured: 414 rows; by type 191 Ansichtskarte, 84 Prospekt, 77 Plakat, 13 Werbeprospekt, 11 Zeichnung, 6 Grafik, 6 Landkarte, 5 Zeitschrift, 4 Werbekarte, 4 Postkarte and 13 others; this matches the notes' 414 records, 77 posters, 191 picture postcards plus 4 other postcards, 84 brochures plus 13 leaflets (file; notes 01, Q1 §F)",
-        "Measured: 273 rows from the Touriseum, 89 from the Amt für Film und Medien, 39 from Palais Mamming, 13 from six other institutions (file)",
-        "Built from the portal's results lists [DB✓, results-list level]; descriptions are truncated where the results list truncates them; 96 rows have no title, so the description excerpt carries them (notes 01, Q1 §F; manifest; file)",
-        "Catalogue date ranges are loose: some rows run from 1800 or 1900, and several Amt für Film und Medien datings look too early for their subjects (file; notes 01, Q5, [INF])",
-        "Images are not included; rights rest with the holding institutions (manifest)"
-      ],
-      "file": "oma_records_1919-1943.csv",
-      "source": {
-        "label": "Objekte Museen Archive Südtirol",
-        "url": "https://objekte-museen-archive.provinz.bz.it"
-      },
-      "holder": "Touriseum, Palais Mamming Museum, Amt für Film und Medien and six other institutions, via Objekte Museen Archive Südtirol",
-      "rights": "Images are not included; rights rest with the holding institutions.",
-      "confidence": {
-        "level": "read",
-        "note": "built at results-list level; descriptions truncated"
-      },
-      "more": {
-        "kind": "table",
-        "target": "oma_records_1919-1943.csv",
-        "columns": [
-          "type",
-          "date",
-          "description_excerpt"
-        ]
       }
     },
     {

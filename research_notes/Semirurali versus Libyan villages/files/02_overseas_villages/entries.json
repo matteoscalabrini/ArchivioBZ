@@ -1,39 +1,6 @@
 {
   "entries": [
     {
-      "no": "9.00",
-      "title": "Overseas agricultural settler villages 1933-1940 (Libya, Ethiopia, Dodecanese) as designed objects, for the comparison with the Bolzano Semirurali",
-      "type": "Notes",
-      "date": "2026",
-      "year": 2026,
-      "keywords": [
-        "libya",
-        "ethiopia",
-        "dodecanese",
-        "colonization",
-        "architecture"
-      ],
-      "text": [
-        "The working notes on the regime's farming villages overseas, in Libya, Ethiopia and the Dodecanese, read as designed objects for comparison with the Semirurali. Libya ran on three parts: an agency built the farms, the colonial public-works office built the village centre, and the Commissariato per le Migrazioni e la Colonizzazione Interna chose the families, most of them from the Veneto and the Po delta.",
-        "No transfer of plans or architects to the Bolzano housing institute was found. One person does appear in both places: the Luce art director who filmed the settlers' departure also filmed the Rione Dux."
-      ],
-      "facts": [
-        "Thread notes in six sections: Libya village by village; architects and the village programme; settlers; Ethiopia; the Dodecanese; cross-links to the Alps and the scholarship. Backbone source: Capresi 2007 (notes 02, header and headings).",
-        "Libya ran on a three-part machine: an agency (ECC/ECL or INFPS) built the farms, the colonial public-works office the \"centro rurale\", and the Commissariato per le Migrazioni e la Colonizzazione Interna selected the families (notes 02, §1).",
-        "Settlers were whole, large peasant families; both mass waves were dominated by the Veneto and the Po delta (notes 02, §3).",
-        "Ethiopia had regional colonization bodies (\"Romagna/Puglia/Veneto d'Etiopia\"); Campochiaro on Rhodes was settled with Fiemme and South Tyrolean families who left after the 1939 Option (notes 02, §4–5).",
-        "Cross-links: the same Luce art director, Arturo Gemmiti, for the Ventimila and the Bolzano \"Rione Popolare Dux\"; no documented transfer of plans or architects to the Bolzano IFACP (notes 02, §6)."
-      ],
-      "confidence": {
-        "level": "read"
-      },
-      "more": {
-        "kind": "read",
-        "target": "../../../../library/content/reads/9.00.md",
-        "title": "The villages overseas: Libya, Ethiopia and Rhodes, 1929–1940"
-      }
-    },
-    {
       "no": "9.01",
       "title": "Anonymous photographer, the piazza of Villaggio Battisti in Cyrenaica (Florestano Di Fausto)",
       "type": "Photograph",
@@ -78,53 +45,6 @@
       "more": {
         "kind": "source",
         "target": "https://commons.wikimedia.org/wiki/File:Villaggio_Battisti_1.jpg"
-      }
-    },
-    {
-      "no": "9.02",
-      "title": "Archivio Storico Istituto Luce, catalogue records of sixteen films: the Ventimila, the 1939 wave, Bari d'Etiopia, Pomezia and the Bolzano Rione Dux",
-      "type": "Table",
-      "date": "1938–41",
-      "year": 1938,
-      "keywords": [
-        "newsreels",
-        "libya",
-        "colonization",
-        "semirurali",
-        "wording"
-      ],
-      "text": [
-        "Catalogue records of sixteen Luce films, read as text: the departure of the twenty thousand settlers for Libya in 1938, the second wave of 1939, the founding of Pomezia, and one on Bolzano. That one, of 11 October 1939, shows “il salubre e ridente Rione Popolare Dux che ultimato consterà di 228 casette con 808 appartamenti e 8 negozi”.",
-        "Arturo Gemmiti is credited as art director on it and on the Libyan newsreels. The titles carry the vocabulary: “Quarta Sponda”, “flotta del lavoro”, “rurali”."
-      ],
-      "facts": [
-        "Sixteen catalogue-record text files: title, date, film code, credits and sequence list; the films were not downloaded or viewed (manifest).",
-        "Ventimila 1938: documentary \"I ventimila coloni nelle nuove province libiche\" (D028106) and Giornale Luce B1402, B1406, B1407, B1408, B1410, with B1361 on the Oberdan drawings; the 1939 wave: B1614, B1616, B1617, B1618, B1619; also B1423 (Bari d'Etiopia) and Incom's \"I figli dei 'Ventimila'\" (1941) (manifest).",
-        "B1599, 11/10/1939: \"il salubre e ridente Rione Popolare Dux che ultimato consterà di 228 casette con 808 appartamenti e 8 negozi\"; sequences of the IFACP sign, a blessing and the gardens (notes 02, §6, [V, catalogue]).",
-        "Arturo Gemmiti is art director on B1599 and on the Ventimila newsreels B1402, B1406, B1407, B1408, B1410 and B1614, B1616 (notes 02, §6, [V, catalogue]); the B1617 record also credits him, which the notes do not list (file).",
-        "B1295, 27/04/1938, founding of Pomezia: Mussolini, \"Italiani, dalle Alpi alla Libia oggi è un giorno di festa dell'agro Pontino e dell'agro romano\" (notes 02, §6, [V, catalogue]).",
-        "Wording in the titles: \"Quarta Sponda\", \"flotta del lavoro\", \"seconda trasmigrazione\", \"rurali\" (notes 02, §3, [V]).",
-        "The B1618 record spells the villages \"Marconà\" and \"Giordania Garibaldi\"; the manifest and notes give Marconi, Giordani and Garibaldi (file).",
-        "Index CSV derived on 2026-11-10 from the sixteen files (luce_records_index.csv; manifest)."
-      ],
-      "source": {
-        "label": "Archivio Luce web catalogue",
-        "url": "https://patrimonio.archivioluce.com/"
-      },
-      "holder": "Archivio Storico Istituto Luce",
-      "rights": "The records are on the Archivio Luce web catalogue, and the archive holds the rights to the footage.",
-      "confidence": {
-        "level": "read",
-        "note": "Catalogue text only; the films were not viewed."
-      },
-      "more": {
-        "kind": "table",
-        "target": "luce_records/luce_records_index.csv",
-        "columns": [
-          "title",
-          "date",
-          "series"
-        ]
       }
     },
     {

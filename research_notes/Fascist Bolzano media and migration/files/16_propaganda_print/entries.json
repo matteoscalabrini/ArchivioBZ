@@ -1,39 +1,6 @@
 {
  "entries": [
   {
-   "no": "16.00",
-   "title": "Propaganda in print, picture, object, school and ritual, 1916–1948, and the counter-propaganda it met",
-   "type": "Notes",
-   "date": "2026",
-   "year": 2026,
-   "keywords": [
-    "language",
-    "school",
-    "counter-propaganda",
-    "option",
-    "typeface"
-   ],
-   "text": [
-    "The working notes on propaganda in print, object, school and ritual, and on the print that answered it from the German side. The apparatus of Italianisation turns out to be, in large part, rules about words and letters: Tolomei's list of place names of 1916, the decree of 1923 that made it law, the decrees on schools and surnames.",
-    "The 1923 decree fixes even the lettering: a second name must stand second, in brackets, and “non può essere scritto con caratteri più appariscenti di quelli del nome italiano”."
-   ],
-   "facts": [
-    "Six sections: the Italianisation apparatus as printed matter (§1), the regime's magazine Atesia Augusta (§2), school and childhood (§3), ceremony and exhibition (§4), photographers (§5), the German, Austrian, Nazi and anti-Nazi answer (§6) (notes 16)",
-    "The 1916 Prontuario is online in full inside Archivio per l'Alto Adige XI in the BPI gallery, against notes 03 §4 which knew only a private PDF (notes 16, §1, [V])",
-    "R.D. 29 March 1923 n. 800, art. 3: a second name must stand second, in brackets, and 'non può essere scritto con caratteri più appariscenti di quelli del nome italiano' (notes 16, §1, [V])",
-    "Tolomei's programme was read out in the Stadttheater of Bozen on the morning of 15 July 1923 (Bozner Nachrichten, 16 July 1923) (notes 16, §1, [V])",
-    "Not found: a primary text banning German gravestone inscriptions, medals or postmarks for the Victory Monument, schoolbook covers with the Brenner (notes 16, Gaps)"
-   ],
-   "confidence": {
-    "level": "read"
-   },
-   "more": {
-    "kind": "read",
-    "target": "../../../../library/content/reads/16.00.md",
-    "title": "Italianisation on paper, and the print that answered it, 1916–1948"
-   }
-  },
-  {
    "no": "16.01",
    "title": "Ettore Tolomei, Prontuario dei nomi locali dell'Alto Adige, in Archivio per l'Alto Adige, annata XI (1916)",
    "type": "Book",

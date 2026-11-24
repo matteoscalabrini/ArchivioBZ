@@ -1,87 +1,6 @@
 {
  "entries": [
   {
-   "no": "15.00",
-   "title": "Propaganda in moving image and sound, 1924–1945: Bolzano and Alto Adige in Luce films and photographs, foreign and German-language eyes, feature films and their censorship, the EIAR station, and the cinemas of the city",
-   "type": "Notes",
-   "date": "2026",
-   "year": 2026,
-   "keywords": [
-    "film",
-    "newsreels",
-    "radio",
-    "cinemas",
-    "censorship"
-   ],
-   "text": [
-    "The working notes on propaganda in moving image and sound: the Luce films that can be watched and what they show, the Luce photographs, feature films and their censorship, the radio station, and the cinemas of the city and the valleys.",
-    "Two of Luis Trenker's films were approved for Italy and banned in the provinces of Bolzano and Trento alone. In November 1935 Bolzano's Edenkino began to call itself “Cinema Luce”. Nothing found, film or photograph, shows the Option of 1939."
-   ],
-   "facts": [
-    "Six threads: watchable Luce films with stills and full records (§1), the Luce photo archive (§2), other eyes (§3), feature films and censorship (§4), radio and sound (§5), cinema as an instrument in the city (§6) (notes 15)",
-    "Italian film censorship banned Trenker's 'Il figliuol prodigo' (1935) and 'L'imperatore della California' (1937) from public screens in the provinces of Bolzano and Trento while approving them for the rest of Italy (notes 15, §4, [V])",
-    "From 27 November 1935, nine days after the League sanctions were to enter into force, the Edenkino of Bolzano advertised itself as 'Cinema Luce (ex Edenkino)' (notes 15, §6, [V])",
-    "Luce photographed the Brenner meeting of 4 October 1940, for which no Luce film story had been found (notes 15, §2, [V])",
-    "No Luce film or photograph found shows the 1939 Option; of the photos found by place name, more were taken in Rome and Ostia (54) than in Bolzano (21) (notes 15, §1–2, [V])",
-    "British Pathé, Learning on Screen, the Bundesarchiv film portal and Wikimedia Commons could not be read by script on 12 November 2026; foreign newsreels remain leads (notes 15, §3)"
-   ],
-   "confidence": {
-    "level": "read"
-   },
-   "more": {
-    "kind": "read",
-    "target": "../../../../library/content/reads/15.00.md",
-    "title": "Film, photograph and radio: what was shown and what was kept back, 1926–1943"
-   }
-  },
-  {
-   "no": "15.01",
-   "title": "Italia Taglia: censorship records of the Trenker films (1930–1940) and of films titled for Bolzano, the Brenner, the Dolomites and the Tyrol (1921–1942), 13 records",
-   "type": "Table",
-   "date": "1921–1942",
-   "year": 1921,
-   "keywords": [
-    "film",
-    "censorship",
-    "language",
-    "archives"
-   ],
-   "text": [
-    "Thirteen records from the Italian film-censorship database: seven films under Luis Trenker's name, 1930 to 1940, and six whose titles name Bolzano, the Brenner, the Dolomites or the Tyrol. Two Trenker films passed for the rest of Italy with one condition. “Figliuol prodigo”, September 1935: “Le proiezioni in pubblico del film … sono vietate nelle Provincie di Bolzano e Trento.” “L'imperatore della California”, January 1937, the same.",
-    "The reasons are not in the records. The database lists the second as “Imperatrice (L') di California”, a slip for “Der Kaiser von Kalifornien”."
-   ],
-   "facts": [
-    "Seven Trenker films are listed under his name: 'Cavalieri della montagna' (visto 26066, 31 Oct 1930), 'Figliuol prodigo' (28980, 1935), 'Imperatrice (L') di California' [so listed; the film is 'L'imperatore della California'] (29418, 1936–37), 'Condottieri' (29671, 1937), 'La grande conquista' (30355, 1938), 'Lettere d'amore dall'Engadina' (30641, 1939), 'Il ribelle della montagna' (31160, 1940) (file; notes 15, §4, [V])",
-    "'Figliuol prodigo' (Der verlorene Sohn), 'Approvata con riserva', 31 Aug 1935: 'Le proiezioni in pubblico del film … sono vietate nelle Provincie di Bolzano e Trento. (settembre 1935)' (file, record FACNW0002815, [V])",
-    "'L'imperatore della California' (Der Kaiser von Kalifornien; listed by the database as 'Imperatrice (L') di California'), visto 29418: 'La proiezione di questa pellicola è vietata nelle Provincie di Trento e Bolzano. (gennaio 1937)' (file, record FWOIRV000278, [V])",
-    "'Condottieri' was recognised as a national film and admitted to the compulsory-screening benefit of R.D.L. 5 ottobre 1933 n. 1414 and Legge 13 giugno 1935 n. 1083 (file, record FWOVON000524, [V])",
-    "'S.M. il Re a Bolzano', production Zuliani, 250 m, visto 22963, dates 15 and 19 Aug 1926: a non-Luce film of the king in Bolzano, a month after the monument's first stone was laid on 12 July 1926 in his presence (file, [V]; it.wikipedia, 'Monumento alla Vittoria (Bolzano)', [W]); that it shows the ceremony is an inference, [INF]",
-    "Also: 'Bellezze italiche: da Bolzano a Cortina' (U.C.I., 1921), 'Quarta adunata sciatoria Valligiani al Brennero' (1922), the Austrian 'Dramma fra le Dolomiti' (1921, cut for its nihilist conspiracy), 'Dolomiti italiane' (1923) and 'Fra i monti del Tirolo' (Reichsbahnzentrale für den Deutschen Reiseverkehr, 1942) (file, [V])",
-    "'Montagne in fiamme' (Berge in Flammen) and 'Der Rebell' were not found in the database by title or director; the column 'dates_as_listed' keeps the dates in page order because the page does not label each one (file; notes 15, §4, Gaps)",
-    "Title corrected on 12 November 2026 after the author's check: the database's own fields read 'Imperatrice (L') di California' and 'titolo corretto: Imperatrice di California (L')' beside 'titolo originale: Der Kaiser von Kalifornien' (record FWOIRV000278, [V]); the Italian release title is 'L'imperatore della California' (film listings found by search, [SS])"
-   ],
-   "file": "italia_taglia_trenker_and_region_records.csv",
-   "source": {
-    "label": "Italia Taglia, banca dati della revisione cinematografica 1913–1943",
-    "url": "https://www.italiataglia.it/search/1913_1943"
-   },
-   "creator": "Ministero dell'Interno / Ministero della Cultura Popolare (the visas); MiBAC DG Cinema and Cineteca di Bologna (the database)",
-   "holder": "Italia Taglia (Ministero della Cultura, DG Cinema; Cineteca di Bologna)",
-   "rights": "Database pages: \"Copyright 2008 Ministero per i Beni e le Attività Culturali. Direzione Generale per il Cinema\"; derived research index",
-   "confidence": {
-    "level": "read"
-   },
-   "more": {
-    "kind": "table",
-    "target": "italia_taglia_trenker_and_region_records.csv",
-    "columns": [
-     "title",
-     "titolo originale",
-     "conditions"
-    ]
-   }
-  },
-  {
    "no": "15.02",
    "title": "Atti Parlamentari, Camera dei Deputati, tornata del 6 febbraio 1926, pages 5401–5404: Mussolini on Germany and the Alto Adige",
    "type": "Minutes",
@@ -126,49 +45,6 @@
    },
    "more": {
     "kind": "file"
-   }
-  },
-  {
-   "no": "15.03",
-   "title": "Istituto Luce, Foto Attualità: 144 photograph records found under \"bolzano\", \"brennero\" and \"alto adige\", 1928–1943",
-   "type": "Table",
-   "date": "1928–1943",
-   "year": 1928,
-   "keywords": [
-    "archives",
-    "brenner",
-    "monumento-vittoria"
-   ],
-   "text": [
-    "An index of 144 photographs in the Istituto Luce's news-photo fund found under “bolzano”, “brennero” and “alto adige”, 1928 to 1943, in 28 stories. The first research pass had counted the hits and not opened them. More were taken in Rome and Ostia (54), where the province's delegations were shown to the capital, than in Bolzano (21); the Brenner has 28.",
-    "Seventeen of the “bolzano” hits show the cruiser of that name. None shows the Option, and none the Semirurali."
-   ],
-   "facts": [
-    "The earlier pass counted 73 'Foto Attualità (1927–1956)' hits for 'bolzano' and did not open them (notes 02, §1, Gaps); this index holds those 73 plus 43 for 'brennero' and 30 for 'alto adige', 144 records after removing doubles, in 28 photo stories (file; notes 15, §2, [V])",
-    "Measured: by place of the shot, Roma 40, Ostia 14, Bolzano 21, the Brenner 28 (three spellings), the rest blank or regional; 17 of the 'bolzano' hits show the cruiser Bolzano, not the city (file)",
-    "Stories in Bolzano: the monument's inauguration (13.07.1928, 11 photos), a youth gymnastic display in the stadium (08.06.1931), the 'riconoscenza' rally (04.09.1938), a fur auction in the Palazzo Mercantile (16.01.1942), 'Ragazzi russi in grigio-verde' (10.06.1943) (file, [V])",
-    "Stories at the Brenner: Hitler's arrival (03.05.1938, 15 photos by Spartaco Appetiti), the meetings of 18.03.1940 (8) and 04.10.1940 (7) (file, [V])",
-    "Province shown in Rome: South Tyrolean union delegates at Palazzo Chigi (24.04.1928), bands of the Brenner and Bressanone (07.01.1929), Alto Adige young fascists (19.08.1931, 12), Giovani Italiane of the province at Ostia and Palazzo Venezia (29.03.1932, 17), 250 Bolzano giovani fasciste before Mussolini (10.12.1938) (file, [V])",
-    "No photograph of the 1939 Option and none of the Semirurali was found under these three words (file; notes 15, §2, [V])"
-   ],
-   "file": "luce_foto_attualita_bolzano_brennero_altoadige_index.csv",
-   "source": {
-    "label": "Archivio Storico Istituto Luce, online catalogue, Foto Attualità",
-    "url": "https://patrimonio.archivioluce.com/luce-web/search/result.html"
-   },
-   "holder": "Archivio Storico Istituto Luce (Istituto Luce-Cinecittà)",
-   "rights": "Catalogue text © presumed Istituto Luce-Cinecittà; derived research index",
-   "confidence": {
-    "level": "read"
-   },
-   "more": {
-    "kind": "table",
-    "target": "luce_foto_attualita_bolzano_brennero_altoadige_index.csv",
-    "columns": [
-     "date",
-     "servizio",
-     "caption"
-    ]
    }
   },
   {

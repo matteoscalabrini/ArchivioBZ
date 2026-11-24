@@ -1,40 +1,6 @@
 {
   "entries": [
     {
-      "no": "11.00",
-      "title": "Italian Eritrea and Asmara, 1890-1941 (afterlife to 2017): the control case for Fascist Bolzano as a colonial dual city",
-      "type": "Notes",
-      "date": "2026",
-      "year": 2026,
-      "keywords": [
-        "eritrea",
-        "race",
-        "colonization",
-        "planning",
-        "heritage"
-      ],
-      "text": [
-        "The working notes on Italian Eritrea and its capital, kept as the control case for Bolzano. Asmara was a dual city by law: decrees of 1908 reserved zones “esclusivamente” by legal status, and the plans of the 1930s built on them. Bolzano's new city never had a legal ban on German speakers living in it.",
-        "What the two cities shared was an office. The Commissariato per le migrazioni e la colonizzazione interna had a delegation in Asmara and ran the quotas for Pontine settlers, for workers bound for East Africa, and for Bolzano."
-      ],
-      "facts": [
-        "Thread 04 of the second investigation: Eritrea and Asmara as control case, covering 1908 racial zoning, the Cavagnari and Cafiero plans, the 1938-39 Italian majority, the CMCI worker flow, villaggi operai, UNESCO 2017 (README).",
-        "Five parts: the dual city and its plans 1908-1939 with the racial laws; the demographic flip 1905-1952; workers from the north and the CMCI; the earlier settler experiments (Franchetti, Tessenei); vocabulary, newsreels and the afterlife to 2017 (notes 04, headings).",
-        "Tags used: [V] read in the primary source, [S] full secondary source, [SS] snippet only, [INF] the researcher's inference (notes 04, tags).",
-        "The CMCI had a delegation in Asmara; the same office ran the quotas for Pontine settlers, AOI workers and Bolzano: 'the strongest institutional identity between Asmara and Bolzano found in this thread' (notes 04, §3, [INF]).",
-        "Contrast with Bolzano: Asmara's 1908 decrees reserved zones 'esclusivamente' by legal status; Bolzano's new city never had a legal residence ban on German-speakers (notes 04, §1, [INF]).",
-        "Asmara was inscribed by UNESCO on 8 July 2017 under criteria (ii) and (iv); the listing names 'racial segregation principles' as part of its value (notes 04, §5, [V])."
-      ],
-      "confidence": {
-        "level": "read"
-      },
-      "more": {
-        "kind": "read",
-        "target": "../../../../library/content/reads/11.00.md",
-        "title": "Asmara: a city divided by law, set beside Bolzano"
-      }
-    },
-    {
       "no": "11.01",
       "title": "La colonia Eritrea dalle sue origini fino al 1. marzo 1899",
       "type": "Book",
@@ -140,55 +106,6 @@
       },
       "more": {
         "kind": "file"
-      }
-    },
-    {
-      "no": "11.04",
-      "title": "Istituto Luce, 40 catalogue records on Eritrea, workers for East Africa and Bolzano, 1924–39",
-      "type": "Table",
-      "date": "1924–39",
-      "year": 1924,
-      "keywords": [
-        "newsreels",
-        "eritrea",
-        "colonization",
-        "semirurali",
-        "zona-industriale"
-      ],
-      "text": [
-        "Forty catalogue records from the Archivio Luce, 1924 to 1939, read as text; the films were not viewed. They follow workers leaving for East Africa, among them a thousand “operai-soldati” reviewed by Mussolini in November 1936, and the founding of two “villaggi operai” in Asmara in December 1937.",
-        "The same catalogue films Bolzano: the opening of the Ponte Littorio between the industrial zone and “il villaggio delle case popolari” in July 1939, and the Rione Dux, “228 casette con 808 appartamenti”, that October. No newsreel puts Asmara and Bolzano in a single item."
-      ],
-      "facts": [
-        "40 Archivio Luce catalogue records, text only (title, date, film code, credits, sequences, keywords, other items of the same issue); no footage was downloaded or viewed (manifest).",
-        "Index derived on 2026-11-10 into luce_records/luce_records_index.csv; dates run from '[1924-31]' (M004911, 'Eritrea, colonia primogenita d'Italia') to 11/10/1939 (B159907, Rione Dux) (the files).",
-        "Workers leaving for East Africa: B072705 (1935, Naples, 1,000 workers for Massaua), B099009 (11 Nov 1936, Mussolini reviews 1,000 'operai-soldati'), B099605 (25 Nov 1936, 2,000 workers incl. 50 from San Marino) (notes 04, §3, [V]).",
-        "B121507 (8 Dec 1937, Asmara): Governor De Feo starts two 'villaggi operai' named after Pietro Toselli and Arnaldo Mussolini (notes 04, §3, [V]).",
-        "Bolzano items: B134904 'La mostra dei prodotti dell'impero' (3 Aug 1938); B154001 Cobolli Gigli and Mastromattei open the Ponte Littorio linking 'la zona industriale con il villaggio delle case popolari' (5 Jul 1939); B159907 Rione Dux, '228 casette con 808 appartamenti' (11 Oct 1939) (notes 04, §5, [V]; manifest).",
-        "B073605 (21 Aug 1935): funeral of Luigi Razza, killed on the Cairo-Asmara flight; Asmara later named a workers' village 'L. Razza' (notes 04, §5, [V]).",
-        "No newsreel puts Asmara and Bolzano in a single item; about 420 video records were screened (notes 04, §3 gaps and §5).",
-        "Conflict: manifest and notes put B080306 (Bolzano ring offering) and B080409 (Badoglio at Massaua) in the same issue B0803; the files give issues B0803 and B0804, both dated 24/12/1935. B096705 and B096708 are both in issue B0967, as stated (the files)."
-      ],
-      "file": "luce_records/luce_records_index.csv",
-      "source": {
-        "label": "Archivio storico Istituto Luce",
-        "url": "https://patrimonio.archivioluce.com/"
-      },
-      "creator": "Istituto Nazionale Luce",
-      "holder": "Istituto Luce-Cinecittà",
-      "rights": "Catalogue text only; rights in the footage: Istituto Luce-Cinecittà",
-      "confidence": {
-        "level": "read",
-        "note": "Catalogue records read; footage not viewed (manifest)."
-      },
-      "more": {
-        "kind": "table",
-        "target": "luce_records/luce_records_index.csv",
-        "columns": [
-          "date",
-          "title",
-          "places"
-        ]
       }
     },
     {

@@ -1,41 +1,6 @@
 {
  "entries": [
   {
-   "no": "13.00",
-   "title": "The Cinema Corso, ex Palazzo del Turismo, Bolzano (Armando Ronca, 1938–41; a cinema from 1946; demolished in the 1980s)",
-   "type": "Notes",
-   "date": "2026",
-   "year": 2026,
-   "keywords": [
-    "cinemas",
-    "new-city",
-    "architecture",
-    "heritage",
-    "removal"
-   ],
-   "text": [
-    "The working notes on the Cinema Corso: built from 1938 as the Palazzo del Turismo to Armando Ronca's design, first used for an art show in October 1940, finished in November 1941 and at once given to the commissariat that carried out the Option. Under the German occupation it was the “Fremdenverkehrshaus”; from 1946 a cinema and theatre.",
-    "The provincial council's minutes, read by hand on Teßmann, give the demolition: permit issued on 15 February 1988, building still standing on 30 March, down by August 1989."
-   ],
-   "facts": [
-    "Thread 13 notes, research date 12 November 2026; extends notes 05, §2 on the Cinema Corso (notes 13, header)",
-    "Commissioned by the Bolzano tourist office from Armando Ronca, approved by Minister Alfieri on 16 June 1938, works begun 10 August 1938, building and fittings finished November 1941 [V] (notes 13, §1–2)",
-    "First used for the 9th syndical art exhibition of the Venezia Tridentina, 6 Oct–21 Nov 1940; from November 1941 seat of Agostino Podestà's Commissariat for the Italo-German (Option) agreements [V] (notes 13, §3–4)",
-    "Under German occupation the 'Fremdenverkehrshaus (ex Palazzo Turismo)': rallies, Reichsgautheater plays and concerts from spring 1944 [V] (notes 13, §5)",
-    "Cinema-Teatro Corso from 1946/47, 724 or about 800 seats; demolished by the builder Pietro Tosolini for offices, decided summer 1986, most sources say 1988 (others 1980, 1982) [S] (notes 13, §6–7)",
-    "Corrects notes 05: the 1942 art exhibition was held in the Istituto Tecnico 'C. Battisti', not here; Turris Babel 73 gives 1987 for Ronca's Siusi cinema, not for the Corso (notes 13, §3, §7)",
-    "Site: west corner of Corso Libertà and via Virgilio, today Corso Libertà 23, OSM way 239424576 (notes 13, §10)"
-   ],
-   "confidence": {
-    "level": "read"
-   },
-   "more": {
-    "kind": "read",
-    "target": "../../../../library/content/reads/13.00.md",
-    "title": "The Palazzo del Turismo, later the Cinema Corso, 1938–1988"
-   }
-  },
-  {
    "no": "13.01",
    "title": "Alpenzeitung, 15 September 1935, page 5",
    "type": "Newspaper page",
