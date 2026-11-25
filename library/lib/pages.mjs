@@ -25,6 +25,9 @@ import { placesWithRows } from './places.mjs';
 // `extra`, for edit mode: { css, js, data, mark }: its stylesheets and scripts join the page's,
 // `data` is written as the JSON of #edit-data, and mark(entry) gives the attributes it adds to
 // that row's <article>. -> { html, problems }: the problems are the rows whose type no kind names.
+// The labels the page script reads (#keyword-labels) are those of the keywords the rows carry or
+// the idea marks (idea.keywords), so that a keyword only a hidden row carries is not in the public
+// page; edit mode, whose picker offers the whole vocabulary, has every label.
 export function libraryPage(lib, { idea = null, kinds = [], present = false, depth = 0, sourceUrl = () => null, extra = null } = {}) {
   const { entries, keywords, places } = lib;
   const up = '../'.repeat(depth);
@@ -76,7 +79,7 @@ export function libraryPage(lib, { idea = null, kinds = [], present = false, dep
     '<div class="list">',
     ...list,
     '</div>',
-    `<script type="application/json" id="keyword-labels">${json(Object.fromEntries(Object.keys(keywords).map((id) => [id, label(id)])))}</script>`,
+    `<script type="application/json" id="keyword-labels">${json(Object.fromEntries(labelled(keywords, used, idea, extra).map((id) => [id, label(id)])))}</script>`,
     `<script type="application/json" id="keywords-on-map">${json(onMap)}</script>`,
     kinds.length ? `<script type="application/json" id="kind-labels">${json(Object.fromEntries(kinds.map((kind) => [kind.id, kind.label])))}</script>` : '',
     extra ? `<script type="application/json" id="edit-data">${json(extra.data ?? null)}</script>` : '',
@@ -85,6 +88,13 @@ export function libraryPage(lib, { idea = null, kinds = [], present = false, dep
   const css = ['web/detail.css', 'web/library.css', ...(extra?.css ?? [])];
   const js = ['web/library.js', ...(extra?.js ?? [])];
   return { html: page({ title: 'Library', tab: 'library', body, css, js, depth }), problems };
+}
+
+// The keywords whose labels the Library page carries, in the vocabulary's order.
+function labelled(keywords, used, idea, extra) {
+  if (extra) return Object.keys(keywords);
+  const named = new Set([...used, ...(idea?.keywords ?? [])]);
+  return Object.keys(keywords).filter((id) => named.has(id));
 }
 
 // The idea paragraph, unless there is none or it is a stand-in and the page is for a showing:
@@ -216,7 +226,9 @@ export function mapPage(lib, { meta, sourceUrl = () => null } = {}) {
     '</section>',
     `<p class="credit">${esc(credit(meta))}</p>`,
     '</div>',
-    `<script type="application/json" id="keyword-labels">${json(Object.fromEntries(Object.entries(keywords).map(([id, k]) => [id, k.label ?? id])))}</script>`,
+    // The labels of the keywords the rows carry, for the line that names the keyword filtered by.
+    `<script type="application/json" id="keyword-labels">${json(Object.fromEntries(Object.entries(keywords)
+      .filter(([id]) => entries.some((entry) => entry.keywords.includes(id))).map(([id, k]) => [id, k.label ?? id])))}</script>`,
   ].join('\n');
 
   const head = `<script type="importmap">${json(IMPORT_MAP)}</script>\n<script type="module" src="web/map.js"></script>`;

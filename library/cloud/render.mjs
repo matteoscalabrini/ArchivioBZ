@@ -142,8 +142,8 @@ function publicLib(doc, lists) {
 // The idea as the Library page takes it, parsed against the document's keywords; its stand-in label
 // stays while the text starts with `status: stand-in` (the cloud has no build for a showing).
 function theIdea(doc) {
-  const { html, standin, problems } = parseIdea(doc.idea ?? '', doc);
-  return { idea: { html, standin }, problems: problems.map(({ level, message }) => ({ level, where: 'the idea', message })) };
+  const { html, standin, keywords, problems } = parseIdea(doc.idea ?? '', doc);
+  return { idea: { html, standin, keywords }, problems: problems.map(({ level, message }) => ({ level, where: 'the idea', message })) };
 }
 
 // The rows of the draft that differ from the publish, in the story order: changed, added, hidden

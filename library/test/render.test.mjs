@@ -45,6 +45,25 @@ test('a hidden row is in no public file', () => {
   for (const [path, { body }] of files) for (const mark of ['HIDDEN-TITLE-7f3', 'HIDDEN-PIC', 'HIDDEN-TERM', `"${id}"`]) assert.ok(!body.includes(mark), `${mark} in ${path}`);
 });
 
+// The lists of keyword labels the page scripts read name only the keywords a visible row carries
+// or the idea marks: a keyword that only a hidden row carries is draft, and stays out.
+test('the label of a keyword only a hidden row carries is in no public file; edit mode has them all', () => {
+  const doc = fixtureDoc(); const id = '5.01';
+  doc.keywords['only-hidden'] = { label: 'HIDDEN-LABEL-q9' };
+  doc.keywords.unused = { label: 'UNUSED-LABEL-q9' };
+  doc.rows[id].record.keywords = ['only-hidden'];
+  doc.rows[id].hidden = true;
+  const { files } = renderSite(doc, lists);
+  for (const [path, { body }] of files) for (const mark of ['HIDDEN-LABEL-q9', 'only-hidden', 'UNUSED-LABEL-q9']) assert.ok(!body.includes(mark), `${mark} in ${path}`);
+  const labels = (html) => JSON.parse(/<script type="application\/json" id="keyword-labels">([\s\S]*?)<\/script>/.exec(html)[1]);
+  const index = labels(files.get('index.html').body);
+  assert.equal(index.press, 'Press', 'a keyword marked in the idea keeps its label');
+  assert.equal(index.typeface, 'Typeface', 'a keyword a visible row carries keeps its label');
+  const edit = labels(renderEditPage(doc, { version: 1, published: null, lists }));
+  assert.equal(edit['only-hidden'], 'HIDDEN-LABEL-q9');
+  assert.equal(edit.unused, 'UNUSED-LABEL-q9');
+});
+
 test('a hidden row on the map, with a place and a small picture, is in no public file either', () => {
   const doc = fixtureDoc(); const id = '5.01';
   assert.equal(doc.rows[id].record.place, 'ponte-druso');
