@@ -476,6 +476,23 @@ async function main() {
     check(!(await page.$('article.row.open')), 'a row is open');
   });
 
+  // The click on Publish takes the focus from the field, which saves it; the question waits for
+  // that save, so it counts the title just typed.
+  await step('a title left by a click on Publish is counted in its question', async () => {
+    await page.goto(`${base}/edit/`);
+    await page.waitForSelector('.ed-bar');
+    const before = await page.$eval('.ed-summary', (el) => el.textContent);
+    check(before === NOTHING, `the summary reads ${JSON.stringify(before)}`);
+    await typeTitle(page, '12.01', 'Left by Publish');
+    await page.click('.ed-bar .ed-publish');
+    const question = await page.waitForSelector('dialog.ed-dialog[open] .ed-question');
+    const asked = await question.evaluate((el) => el.textContent);
+    check(asked === 'Publish 1 change?', `asked ${JSON.stringify(asked)}`);
+    await page.click('dialog.ed-dialog[open] .ed-no');
+    await page.waitForSelector('dialog.ed-dialog[open]', { hidden: true });
+    await titleShows(page, '12.01', 'Left by Publish', 'the question cancelled');
+  });
+
   // Leaving by a click on Log out or Public site while a field is open: the press takes the focus
   // from the field, which saves it; the click waits for that save, then goes, with no question on
   // the page and no prompt from the browser, since nothing is left unsaved. Tried with a title,

@@ -64,7 +64,10 @@ export function makeBar() {
       if (error.status !== 401 && error.status !== 409) show(message, { text: error.message });
     }
   });
+  // The question waits for the edits on their way (a field left by this very click among them),
+  // so that it counts what the publish will carry.
   publish.addEventListener('click', async () => {
+    await settled();
     if (!(await ask(publishQuestion(state.summary), 'Publish'))) return;
     publish.disabled = true;
     try {
