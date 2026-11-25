@@ -18,10 +18,14 @@
   "engines": {
     "node": ">=24"
   },
-  "devDependencies": {
+  "dependencies": {
     "@neondatabase/serverless": "^1.2.1",
-    "@vercel/blob": "^2.9.0",
-    "mammoth": "^1.13.0",
+    "@vercel/functions": "^3.11.3",
     "marked": "^18.2.0"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.6.0",
+    "@vercel/blob": "^2.9.0",
+    "mammoth": "^1.13.0"
   }
 }
