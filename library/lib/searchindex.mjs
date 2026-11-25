@@ -9,6 +9,8 @@
 //
 // Earlier steps add what is optional here: entry.records (tables), entry.pages (long reads).
 
+import { rowKey } from './detail.mjs';
+
 const TAG = /\s*\[[A-Z][A-Za-z✓,/ -]*\]/g; // [V], [S], [IMG✓], [VERIFIED-DOC]; not [1924], not […]
 const TAIL = /\s*\((?:manifest|notes?|file|the file|record|row|own photograph)\b[^()]*\)\.?\s*$/i;
 const BLOCK = /<(p|li|h[2-6]|blockquote|figcaption|td)\b[^>]*>([\s\S]*?)<\/\1>/gi;
@@ -18,7 +20,7 @@ const ENTITIES = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ' }
 export function searchIndex(lib) {
   const label = (id) => lib.keywords?.[id]?.label ?? id;
   const rows = lib.entries.map((entry) => {
-    const row = { no: entry.no };
+    const row = { no: rowKey(entry) };
     const put = (key, list) => {
       const kept = list.map(tidy).filter(Boolean);
       if (kept.length) row[key] = kept;

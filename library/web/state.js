@@ -44,11 +44,11 @@ export function matches(row, state) {
   return (!state.k || row.kw.includes(state.k)) && (!state.t || row.kind === state.t);
 }
 
-// rows = {no, type, year}; key 'no', 'type' or 'date'. Ties fall back to number order.
+// rows = {at, type, year}; key 'no', 'type' or 'date'. `at` is a row's place in the story; the No. sort follows it and ties fall back to it.
 export function compare(a, b, key) {
-  if (key === 'type') return a.type.localeCompare(b.type, 'en') || byNumber(a, b);
-  if (key === 'date') return a.year - b.year || byNumber(a, b);
-  return byNumber(a, b);
+  if (key === 'type') return a.type.localeCompare(b.type, 'en') || byPlace(a, b);
+  if (key === 'date') return a.year - b.year || byPlace(a, b);
+  return byPlace(a, b);
 }
 
 // The picture `step` places on from `index` among `count`, held at the first and the last.
@@ -56,11 +56,7 @@ export function pictureAt(index, step, count) {
   return Math.min(count - 1, Math.max(0, index + step));
 }
 
-function byNumber(a, b) {
-  const [aSection, aRunning] = a.no.split('.').map(Number);
-  const [bSection, bRunning] = b.no.split('.').map(Number);
-  return aSection - bSection || aRunning - bRunning;
-}
+const byPlace = (a, b) => a.at - b.at;
 
 function decode(value) {
   try {

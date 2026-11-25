@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import path from 'node:path';
 import { readFile } from 'node:fs/promises';
-import { stripTags, paragraphs } from '../lib/searchindex.mjs';
+import { stripTags, paragraphs, searchIndex } from '../lib/searchindex.mjs';
 import { prepare, search } from '../web/search.js';
 import { buildFixtures } from './helpers.mjs';
 
@@ -51,4 +51,11 @@ test('the index answers a search', async () => {
   const engine = prepare(await builtIndex());
   assert.equal(search(engine, 'Drususbrücke').precise[0].no, '5.01');
   assert.equal(search(engine, '5.03').precise[0].no, '5.03');
+});
+
+test('a row with an id is indexed under its id, and its number is the first word of its line', () => {
+  const lib = { entries: [{ id: '18.04', no: '3.07', title: 'A title', type: 'Poster', date: '1930', keywords: [], text: [] }], keywords: {} };
+  const [row] = searchIndex(lib).rows;
+  assert.equal(row.no, '18.04');
+  assert.deepEqual(row.line.slice(0, 2), ['3.07', 'A title']);
 });

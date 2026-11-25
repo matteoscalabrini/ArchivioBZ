@@ -26,6 +26,7 @@ const onMapKeywords = new Set(readJson('keywords-on-map', [])); // keywords with
 const rows = [...list.querySelectorAll('article.row')].map((el) => ({
   el,
   no: el.dataset.no,
+  at: Number(el.dataset.at),
   type: el.dataset.type,
   kind: el.dataset.kind,
   year: Number(el.dataset.year),

@@ -10,7 +10,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { esc, page } from '../lib/shell.mjs';
 import { locatePlaces, placesWithRows } from '../lib/places.mjs';
-import { encodePath, rowArticle } from '../lib/detail.mjs';
+import { pictureSrc, rowArticle, rowKey } from '../lib/detail.mjs';
 
 const MAP_DATA = fileURLToPath(new URL('../map-data/', import.meta.url));
 const FILES = ['dots.json', 'dots.bin.gz']; // what the page draws from; the height grid is read here only
@@ -79,22 +79,22 @@ function marker(id, place, count) {
 // A row's small picture on the map, a button; without a picture, its type word in the same frame.
 // data-w: the width of the picture in px. No `src` until web/map.js first shows it.
 function picture(id, entry) {
-  const attrs = `data-for="${esc(id)}" data-no="${esc(entry.no)}" aria-label="${esc(`${entry.no} · ${entry.title}`)}"`;
+  const attrs = `data-for="${esc(id)}" data-no="${esc(rowKey(entry))}" aria-label="${esc(`${entry.no} · ${entry.title}`)}"`;
   const thumb = entry.thumb;
   if (!thumb?.src || !(thumb.w > 0) || !(thumb.h > 0)) {
     return `<button type="button" class="pin blank" ${attrs} data-w="${PICTURE.blank}">${esc(entry.type)}</button>`;
   }
   const w = Math.max(PICTURE.min, Math.min(PICTURE.max, Math.round((PICTURE.height * thumb.w) / thumb.h)));
   return `<button type="button" class="pin" ${attrs} data-w="${w}">`
-    + `<img data-src="${esc(encodePath(thumb.src))}" alt="" width="${thumb.w}" height="${thumb.h}"></button>`;
+    + `<img data-src="${esc(pictureSrc(thumb.src))}" alt="" width="${thumb.w}" height="${thumb.h}"></button>`;
 }
 
 const nameAndCount = (name, count) => `<span class="name">${esc(name)}</span> <span class="n">${count}</span>`;
 
 // No. · Title · Type, each a link to its row, open, in the Library.
 function rowList(rows, attrs = '') {
-  return `<ol class="rows"${attrs}>${rows.map((entry) => `<li data-no="${esc(entry.no)}" data-kw="${esc(entry.keywords.join(' '))}">`
-    + `<a href="index.html#o=${esc(encodeURIComponent(entry.no))}">`
+  return `<ol class="rows"${attrs}>${rows.map((entry) => `<li data-no="${esc(rowKey(entry))}" data-kw="${esc(entry.keywords.join(' '))}">`
+    + `<a href="index.html#o=${esc(encodeURIComponent(rowKey(entry)))}">`
     + `<span class="no">${esc(entry.no)}</span><span class="sep"> · </span>`
     + `<span class="title">${esc(entry.title)}</span><span class="sep"> · </span>`
     + `<span class="type">${esc(entry.type)}</span></a></li>`).join('')}</ol>`;

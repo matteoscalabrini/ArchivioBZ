@@ -70,18 +70,18 @@ test('pictureAt steps one picture either way and stops at the first and the last
   assert.equal(pictureAt(0, 1, 1), 0);
 });
 
-test('compare sorts 12.01 after 5.02 by number, and by year with number as tie-break', () => {
+test('compare sorts by place in the story, and by year with number as tie-break', () => {
   const rows = [
-    { no: '12.01', type: 'Reference', year: 1931 },
-    { no: '5.02', type: 'Newspaper page', year: 1931 },
-    { no: '5.10', type: 'Booklet', year: 2015 },
-    { no: '5.03', type: 'Table', year: 1928 },
+    { at: 3, no: '12.01', type: 'Reference', year: 1931 },
+    { at: 0, no: '5.02', type: 'Newspaper page', year: 1931 },
+    { at: 2, no: '5.10', type: 'Booklet', year: 2015 },
+    { at: 1, no: '5.03', type: 'Table', year: 1928 },
   ];
   const order = (key) => [...rows].sort((a, b) => compare(a, b, key)).map((r) => r.no);
   assert.deepEqual(order('no'), ['5.02', '5.03', '5.10', '12.01']);
   assert.deepEqual(order('date'), ['5.03', '5.02', '12.01', '5.10']);
   assert.deepEqual(order('type'), ['5.10', '5.02', '12.01', '5.03']);
-  const sameType = [{ no: '12.01', type: 'Table', year: 1 }, { no: '5.02', type: 'Table', year: 1 }];
+  const sameType = [{ at: 1, no: '12.01', type: 'Table', year: 1 }, { at: 0, no: '5.02', type: 'Table', year: 1 }];
   assert.deepEqual(sameType.sort((a, b) => compare(a, b, 'type')).map((r) => r.no), ['5.02', '12.01']);
 });
 
@@ -92,4 +92,10 @@ test('q is read, cut at 200 characters, written first and round-trips', () => {
   assert.equal(formatState(state), '#q=%3Cb%3E%20%22rosso%22%20%26&k=press&o=5.01');
   assert.deepEqual(parseState(formatState(state), known), state);
   assert.equal(formatState({ q: '  ', k: null, t: null, o: [], s: 'no' }), '');
+});
+
+test('compare orders by place in the story, and falls back to it on ties', () => {
+  assert.ok(compare({ at: 2, no: 'r1' }, { at: 1, no: '1.01' }, 'no') > 0);
+  assert.ok(compare({ at: 0, type: 'Poster' }, { at: 1, type: 'Poster' }, 'type') < 0);
+  assert.ok(compare({ at: 3, year: 1930 }, { at: 1, year: 1930 }, 'date') > 0);
 });

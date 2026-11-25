@@ -212,3 +212,21 @@ test('a place the dot data was made without is named in a warning, and still dra
   const clean = await render();
   assert.equal(clean.problems.find((p) => p.where === 'library/map-data/dots.json'), undefined, 'Ponte Druso was in the data');
 });
+
+test('a row with an id is keyed by it on the map, and its number only reads', async () => {
+  const { html } = await render((lib) => {
+    const e = lib.entries.find((x) => x.no === '5.01');
+    e.id = '5.02'; e.no = '1.04';
+    e.thumb = { src: 'img/t/a.jpg', w: 220, h: 147 };
+  });
+  assert.equal(pins(html)[0].no, '5.02');
+  assert.match(pins(html)[0].label, /^1\.04 · /);
+  assert.match(html, /<li data-no="5\.02" data-kw="[^"]*"><a href="index\.html#o=5\.02"><span class="no">1\.04<\/span>/);
+  assert.match(html, /<article class="entry" data-no="5\.02" hidden><p class="e-meta">1\.04 · /);
+  assert.match(html, /<a class="e-library" href="index\.html#o=5\.02">/);
+});
+
+test('a thumbnail at an absolute address is used as it is', async () => {
+  const { html } = await render((lib) => { lib.entries.find((x) => x.no === '5.01').thumb = { src: 'https://x.public.blob.vercel-storage.com/t.jpg', w: 220, h: 147 }; });
+  assert.match(html, /<img data-src="https:\/\/x\.public\.blob\.vercel-storage\.com\/t\.jpg"/);
+});

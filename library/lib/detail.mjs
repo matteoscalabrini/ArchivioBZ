@@ -9,6 +9,15 @@ const CONFIDENCE = { read: 'Read in the source', secondary: 'From a secondary so
 const NO_CONFIDENCE = new Set(['Report', 'Notes', 'Map']);
 const READ = { Story: 'Read the full story →', Report: 'Read the report →', Notes: 'Read the notes →' };
 const WEB = /^https?:\/\//i;
+const ABSOLUTE = /^(https?:)?\//;
+
+// What names a row in the pages (data-no, #o=, the ids of its body): its id when it has one, else
+// its number. The number is only what a reader sees; it moves when rows are arranged, the id never does.
+export const rowKey = (entry) => entry.id ?? entry.no;
+
+// A picture's address: one that is already absolute (a Blob address, a root path) as it is, any
+// other relative to the page's top folder.
+export const pictureSrc = (src, up = '') => (ABSOLUTE.test(src) ? src : up + encodePath(src));
 
 // The <div class="detail …"> of a row. `onMap`: for the Map page's panel, where the Place line is
 // left out. `away`: anywhere but the Library page, so a link to another row leads to the Library.
@@ -37,7 +46,7 @@ function pictureBlock(pictures, up, side = false) {
     const size = Number.isInteger(picture.w) && Number.isInteger(picture.h) ? ` width="${picture.w}" height="${picture.h}"` : '';
     const original = picture.original ? ` data-original="${esc(picture.original)}"` : '';
     const image = `<button type="button" class="pic-open"${original} aria-label="Show the picture full screen">`
-      + `<img data-src="${esc(up + encodePath(picture.src))}" alt=""${size}></button>`;
+      + `<img data-src="${esc(pictureSrc(picture.src, up))}" alt=""${size}></button>`;
     const nav = count < 2 ? '' : '<p class="pic-nav">'
       + `<button type="button" data-step="-1" aria-label="Previous picture"${n === 0 ? ' disabled' : ''}>←</button>`
       + `<span class="pic-n">${n + 1} / ${count}</span>`
@@ -52,10 +61,11 @@ function pictureBlock(pictures, up, side = false) {
 // A row as a panel shows it: number · type · date, the title, what the Library shows in the open
 // row, and the way to that row in the Library. `under`: what stands between the title and the rest.
 export function rowArticle(entry, { ctx, places, onMap = false, away = true, up = '', under = '' }) {
+  const key = rowKey(entry);
   const facts = [entry.no, entry.type, entry.date].filter(Boolean).map(esc).join(' · ');
-  return `<article class="entry" data-no="${esc(entry.no)}" hidden><p class="e-meta">${facts}</p>`
+  return `<article class="entry" data-no="${esc(key)}" hidden><p class="e-meta">${facts}</p>`
     + `<h3 tabindex="-1">${esc(entry.title)}</h3>${under}${rowDetail(entry, { ctx, places, onMap, away, up })}`
-    + `<a class="e-library" href="${up}index.html#o=${esc(encodeURIComponent(entry.no))}">Open in the Library →</a></article>`;
+    + `<a class="e-library" href="${up}index.html#o=${esc(encodeURIComponent(key))}">Open in the Library →</a></article>`;
 }
 
 function previewTable({ columns = [], rows, total }) {
@@ -85,9 +95,12 @@ function meta(entry, places, { onMap, away, up }) {
   }
   if (Array.isArray(entry.sources) && entry.sources.length) {
     const n = entry.sources.length;
-    const links = entry.sources.map((no) => (away
-      ? `<a href="${up}index.html#o=${esc(encodeURIComponent(no))}">${esc(no)}</a>` // another row: in the Library
-      : `<a href="#o=${esc(encodeURIComponent(no))}" data-jump="${esc(no)}">${esc(no)}</a>`));
+    const links = entry.sources.map((key, i) => {
+      const shown = esc(entry.sourceNumbers?.[i] || key); // the number it has now; the key when none is given
+      return away
+        ? `<a href="${up}index.html#o=${esc(encodeURIComponent(key))}">${shown}</a>` // another row: in the Library
+        : `<a href="#o=${esc(encodeURIComponent(key))}" data-jump="${esc(key)}">${shown}</a>`;
+    });
     lines.push(['Sources', `${n} ${n === 1 ? 'row' : 'rows'}: ${links.join(', ')}`]);
   }
   if (!lines.length) return '';
@@ -118,6 +131,7 @@ function more(entry, ctx, up) {
     href = up + encodePath(entry.page);
     words = READ[entry.type] ?? READ.Story;
   } else if (kind === 'file') {
+    if (entry.dir == null) return ''; // a row that lives in the database holds no file beside it
     const file = typeof target === 'string' && target && !WEB.test(target) ? path.resolve(entry.dir, target) : entry.abs;
     href = file && ctx.sourceUrl(file);
     if (!href) return '';

@@ -497,3 +497,32 @@ test('every row has a place for the reason it was found, empty until a search', 
   for (const r of rows(html)) assert.match(r.inner, /<h2 class="c-title"><button[^>]*>[\s\S]*?<\/button><span class="why"><\/span><\/h2>/, r.no);
   assert.equal(rows(html).length, 6);
 });
+
+test('a row with an id is keyed by its id and shows its number', async () => {
+  const { html } = await renderFull({ edit: (lib) => { const e = lib.entries[0]; e.id = e.no; e.no = '3.07'; } });
+  const id = /data-no="([^"]+)"/.exec(html)[1];
+  assert.notEqual(id, '3.07');
+  assert.match(html, new RegExp(`<span class="c-no">3\\.07</span>`));
+  assert.match(html, new RegExp(`id="body-${id.replace('.', '\\.')}"`));
+});
+
+test('a picture at an absolute address is linked as it is', async () => {
+  const { html } = await renderFull({ edit: (lib) => { lib.entries[0].pictures = [{ src: 'https://x.public.blob.vercel-storage.com/p/a-Zq9.jpg', w: 10, h: 10, caption: '' }, { src: '/dev-img/b.jpg', w: 10, h: 10, caption: '' }]; } });
+  assert.match(html, /data-src="https:\/\/x\.public\.blob\.vercel-storage\.com\/p\/a-Zq9\.jpg"/);
+  assert.match(html, /data-src="\/dev-img\/b\.jpg"/);
+});
+
+test('rows carry their place in the story', async () => {
+  const { html } = await renderFull();
+  assert.deepEqual([...html.matchAll(/data-at="(\d+)"/g)].map((m) => Number(m[1])).slice(0, 3), [0, 1, 2]);
+});
+
+test('a row without a held file links none, and its sources show their numbers', async () => {
+  const { html } = await renderFull({ edit: (lib) => {
+    const e = lib.entries.find((x) => x.more?.kind === 'file') ?? lib.entries[0];
+    e.more = { kind: 'file' };
+    e.dir = null; e.abs = null;
+    e.sources = ['r1']; e.sourceNumbers = ['2.05'];
+  } });
+  assert.match(html, /data-jump="r1">2\.05<\/a>/);
+});

@@ -8,7 +8,7 @@
 // entry.preview and entry.page (tables, long reads), place.inside (the map; undefined counts as
 // inside). A read or table row links its page only when entry.page says it was written.
 import { esc, page } from '../lib/shell.mjs';
-import { rowDetail } from '../lib/detail.mjs';
+import { rowDetail, rowKey } from '../lib/detail.mjs';
 import { readKinds, kindOf } from '../lib/kinds.mjs';
 
 
@@ -26,12 +26,12 @@ export default async function library(ctx) {
   // The kind of each row, and the rows whose type no kind names: they show under no kind.
   const { kinds, problems } = await readKinds(ctx.root);
   ctx.problems.push(...problems);
-  const kindOfRow = new Map(entries.map((entry) => [entry.no, kindOf(entry.type, kinds)]));
+  const kindOfRow = new Map(entries.map((entry) => [rowKey(entry), kindOf(entry.type, kinds)]));
   const inKind = new Map();
   for (const id of kindOfRow.values()) if (id) inKind.set(id, (inKind.get(id) ?? 0) + 1);
   if (kinds.length) {
     const stray = new Map(); // type -> row numbers
-    for (const entry of entries) if (!kindOfRow.get(entry.no)) stray.set(entry.type, [...(stray.get(entry.type) ?? []), entry.no]);
+    for (const entry of entries) if (!kindOfRow.get(rowKey(entry))) stray.set(entry.type, [...(stray.get(entry.type) ?? []), entry.no]);
     for (const [type, nos] of stray) {
       ctx.problems.push({ level: 'warn', where: 'library/content/kinds.json', message: `no kind names the type "${type}" (${nos.join(', ')}): these rows show under no kind` });
     }
@@ -46,7 +46,7 @@ export default async function library(ctx) {
     kindLine(kinds, inKind),
     COLUMN_HEADS,
     '<div class="list">',
-    ...entries.map((entry) => row(entry, { ctx, label, places, kind: kindOfRow.get(entry.no) })),
+    ...entries.map((entry, at) => row(entry, { ctx, label, places, at, kind: kindOfRow.get(rowKey(entry)) })),
     '</div>',
     `<script type="application/json" id="keyword-labels">${json(Object.fromEntries(Object.keys(keywords).map((id) => [id, label(id)])))}</script>`,
     `<script type="application/json" id="keywords-on-map">${json(onMap)}</script>`,
@@ -94,11 +94,13 @@ const COLUMN_HEADS = '<div class="colhead">'
   + '<span>Keywords</span>'
   + '</div>';
 
-function row(entry, { ctx, label, places, kind }) {
+// `at`: the row's place in the story (its index among the entries), which the No. sort follows.
+function row(entry, { ctx, label, places, at, kind }) {
+  const key = esc(rowKey(entry));
   const no = esc(entry.no);
   const head = '<div class="row-head">'
     + `<span class="c-no">${no}</span>`
-    + `<h2 class="c-title"><button type="button" aria-expanded="false" aria-controls="body-${no}">${esc(entry.title)}</button><span class="why"></span></h2>`
+    + `<h2 class="c-title"><button type="button" aria-expanded="false" aria-controls="body-${key}">${esc(entry.title)}</button><span class="why"></span></h2>`
     + `<span class="c-type">${esc(entry.type)}</span>`
     + `<span class="c-date">${esc(entry.date)}</span>`
     + `<span class="c-kw">${keywordList(entry.keywords, label)}</span>`
@@ -106,9 +108,9 @@ function row(entry, { ctx, label, places, kind }) {
 
   const detail = rowDetail(entry, { ctx, places });
 
-  return `<article class="row" data-no="${no}" data-kw="${esc(entry.keywords.join(' '))}" data-type="${esc(entry.type)}" data-year="${esc(entry.year)}"${kind ? ` data-kind="${esc(kind)}"` : ''}>
+  return `<article class="row" data-no="${key}" data-at="${at}" data-kw="${esc(entry.keywords.join(' '))}" data-type="${esc(entry.type)}" data-year="${esc(entry.year)}"${kind ? ` data-kind="${esc(kind)}"` : ''}>
 ${head}
-<div class="row-body" id="body-${no}" inert><div class="row-inner">${detail}</div></div>
+<div class="row-body" id="body-${key}" inert><div class="row-inner">${detail}</div></div>
 </article>`;
 }
 
