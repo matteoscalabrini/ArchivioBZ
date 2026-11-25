@@ -23,7 +23,15 @@ const PUBLIC_HEADERS = {
   'Cache-Tag': 'site',
   'Vercel-Cache-Tag': 'site',
 };
-const NO_STORE = { 'Cache-Control': 'no-store' };
+// Every answer but a public file: never kept, never sniffed for another type, never shown in a frame
+// (a second layer under the cookie's SameSite=Strict), and its address not sent to another site.
+const NO_STORE = {
+  'Cache-Control': 'no-store',
+  'X-Content-Type-Options': 'nosniff',
+  'X-Frame-Options': 'DENY',
+  'Content-Security-Policy': "frame-ancestors 'none'",
+  'Referrer-Policy': 'same-origin',
+};
 const HTML = 'text/html; charset=utf-8';
 const JSON_TYPE = 'application/json; charset=utf-8';
 const TEXT = 'text/plain; charset=utf-8';

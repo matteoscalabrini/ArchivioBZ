@@ -108,6 +108,24 @@ test('without the rewrite\'s query, the path names the file or the route', async
   assert.match(await (await h.edit(at('https://a.test/edit/'))).text(), /id="edit-data"/);
 });
 
+// A second layer under SameSite=Strict: edit mode's answers are not sniffed, framed or named in a
+// Referer sent to another site.
+test('edit answers say nosniff, no framing and a same-origin referrer', async () => {
+  const answers = [
+    await h.edit(get('')),
+    await h.edit(get('', { cookie: '' })),
+    await h.edit(hide('a')),
+    await h.edit(login('wrong', {})),
+    await h.edit(post('logout', {})),
+  ];
+  for (const res of answers) {
+    assert.equal(res.headers.get('x-content-type-options'), 'nosniff', res.status);
+    assert.equal(res.headers.get('x-frame-options'), 'DENY', res.status);
+    assert.equal(res.headers.get('content-security-policy'), "frame-ancestors 'none'", res.status);
+    assert.equal(res.headers.get('referrer-policy'), 'same-origin', res.status);
+  }
+});
+
 test('an op without a session answers logged-out', async () => {
   const res = await h.edit(post('op', { version: 1, op: { op: 'hide-row', id: 'a', hidden: true } }, { cookie: '' }));
   assert.equal(res.status, 401);
