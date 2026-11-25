@@ -10,3 +10,4 @@ library/test/
 library/mapgen/
 .superpowers/
 .impeccable/
+.env*
