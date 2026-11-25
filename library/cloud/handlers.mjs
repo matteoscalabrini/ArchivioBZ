@@ -6,6 +6,7 @@
 // The route is a query parameter because vercel.json rewrites /index.html to /api/site?path=… and
 // /edit/<route> to /api/edit?route=<route>; a request without it is read by its own path (/,
 // /map.html, /edit/op), which names the same file or route.
+import { createHash } from 'node:crypto';
 import { applyOp, OpError } from './ops.mjs';
 import { ConflictError } from './store.mjs';
 import { numbering, chapterNumbers } from './doc.mjs';
@@ -14,8 +15,8 @@ import { verifyPassword, makeSession, readSession, sessionCookie, clearedCookie 
 import { page, esc } from '../lib/shell.mjs';
 
 const PUBLIC_FILES = ['index.html', 'map.html', 'about.html', 'search.json'];
-// The browser asks again every time; Vercel's edge keeps the file for a year, or until a publish
-// deletes everything tagged `site`. Vercel documents the tag's header as Vercel-Cache-Tag;
+// The browser asks again every time, and is answered 304 while its copy's ETag is the file's;
+// Vercel's edge keeps the file for a year, or until a publish deletes everything tagged `site`. Vercel documents the tag's header as Vercel-Cache-Tag;
 // Cache-Tag, the name the design gives, is sent beside it.
 const PUBLIC_HEADERS = {
   'Cache-Control': 'public, max-age=0, must-revalidate',
@@ -227,15 +228,20 @@ ${line ? `<p class="login-line" role="alert">${esc(line)}</p>\n` : ''}</form>`,
   const OPEN = ['', 'login'];
 
   return {
+    // One query and no tables made: the move-in and edit mode make them, and a database without
+    // them has nothing published. A browser that holds the file as it is gets 304 and no body.
     async site(request) {
       const path = fileOf(new URL(request.url));
       if (!PUBLIC_FILES.includes(path)) return text(404, 'Not found');
       try {
-        await init();
         const file = await store.siteFile(path);
         if (!file) return text(503, 'Not published yet');
-        return new Response(file.body, { status: 200, headers: { 'Content-Type': file.type, ...PUBLIC_HEADERS } });
+        const tag = etagOf(file);
+        const headers = { ...PUBLIC_HEADERS, ETag: tag };
+        if (holds(request.headers.get('if-none-match'), tag)) return new Response(null, { status: 304, headers });
+        return new Response(file.body, { status: 200, headers: { 'Content-Type': file.type, ...headers } });
       } catch (error) {
+        if (error?.code === UNDEFINED_TABLE) return text(503, 'Not published yet');
         console.error(`site ${path}:`, error);
         return text(500, 'Server error');
       }
@@ -261,6 +267,19 @@ ${line ? `<p class="login-line" role="alert">${esc(line)}</p>\n` : ''}</form>`,
       }
     },
   };
+}
+
+// Postgres's code for a table that does not exist.
+const UNDEFINED_TABLE = '42P01';
+
+// A public file's ETag: the publish it was drawn from and a digest of what was drawn, since the
+// same publish is drawn again after a deploy of new page code (npm run draft -- rerender).
+const etagOf = (file) => `"${file.publishId}-${createHash('sha256').update(file.body).digest('base64url').slice(0, 16)}"`;
+
+// Whether an If-None-Match header names `tag` (a weak W/ tag counts, as a GET compares weakly).
+function holds(header, tag) {
+  if (!header) return false;
+  return header.split(',').map((t) => t.trim().replace(/^W\//, '')).some((t) => t === '*' || t === tag);
 }
 
 const fileOf = (url) => url.searchParams.get('path') ?? (url.pathname === '/' ? 'index.html' : url.pathname.slice(1));

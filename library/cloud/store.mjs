@@ -131,9 +131,10 @@ export function makeStore(db) {
       return db.query('select id, at, kind, summary from publishes order by id desc');
     },
 
+    // A public file as last drawn, with the publish it was drawn from.
     async siteFile(path) {
-      const [row] = await db.query('select body, content_type from site_files where path = $1', [path]);
-      return row ? { body: row.body, type: row.content_type } : null;
+      const [row] = await db.query('select body, content_type, publish_id from site_files where path = $1', [path]);
+      return row ? { body: row.body, type: row.content_type, publishId: row.publish_id } : null;
     },
 
     async recentLoginFailures(minutes) {

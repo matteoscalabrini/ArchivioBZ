@@ -69,6 +69,53 @@ test('the public page carries the cache tag and the published body', async () =>
   assert.equal(await index.text(), renderSite(sample(), lists).files.get('search.json').body);
 });
 
+// Minor 2 (clean review): a returning visitor's browser asks again every time (max-age=0,
+// must-revalidate); with an ETag the answer is 304 and no body while the file is the one it holds.
+// The tag names the publish and the drawing: a publish, or the same publish drawn again after a
+// deploy of new page code (rerender), gives another.
+test('a public file carries an ETag, and a request that holds it is answered 304 without a body', async () => {
+  const first = await site('index.html');
+  const tag = first.headers.get('etag');
+  assert.match(tag, /^"1-[A-Za-z0-9_-]{16}"$/, 'the publish id and a digest of the file');
+  assert.notEqual((await site('map.html')).headers.get('etag'), tag, 'each file its own');
+  const ask = (path, held) => h.site(new Request(`https://a.test/api/site?path=${path}`, { headers: { 'if-none-match': held } }));
+  for (const held of [tag, `W/${tag}`, `"0-x", ${tag}`, '*']) {
+    const again = await ask('index.html', held);
+    assert.equal(again.status, 304, held);
+    assert.equal(await again.text(), '');
+    assert.equal(again.headers.get('etag'), tag);
+    assert.equal(again.headers.get('cache-control'), 'public, max-age=0, must-revalidate');
+    assert.equal(again.headers.get('cache-tag'), 'site');
+  }
+  assert.equal((await ask('index.html', '"1-other"')).status, 200);
+  const changed = sample();
+  changed.rows.a.record.title = 'Published again';
+  await store.saveDraft(changed, 1);
+  await store.publish(2, renderSite(changed, lists).files, 'second');
+  const after = await ask('index.html', tag);
+  assert.equal(after.status, 200, 'a publish gives a new tag');
+  assert.match(after.headers.get('etag'), /^"2-/);
+  const { id } = await store.latestPublish();
+  await store.rewriteSite(id, renderSite(sample(), lists).files);
+  const redrawn = await ask('index.html', after.headers.get('etag'));
+  assert.equal(redrawn.status, 200, 'the same publish drawn anew gives a new tag');
+  assert.match(redrawn.headers.get('etag'), /^"2-/);
+});
+
+// Minor 3 (clean review): the public function makes no tables (the move-in and edit mode do); a
+// database without them is a site not published yet.
+test('the public site makes no tables, and a database without them is not published yet', async () => {
+  const empty = new PGlite();
+  const bare = makeStore(pgliteDb(empty));
+  let inits = 0;
+  const res = await makeHandlers({ store: { ...bare, init: async () => { inits++; } }, env: {}, lists }).site(new Request('https://a.test/api/site?path=index.html'));
+  assert.equal(res.status, 503);
+  assert.equal(await res.text(), 'Not published yet');
+  assert.equal(inits, 0);
+  assert.equal((await empty.query("select count(*)::int as n from pg_tables where tablename = 'site_files'")).rows[0].n, 0);
+  await empty.close();
+});
+
 test('before any publish the site says so and is not cached', async () => {
   const empty = new PGlite();
   const fresh = makeStore(pgliteDb(empty));
@@ -449,6 +496,7 @@ test('the store is set up once per instance, not on every request', async () => 
   const counted = { ...store, init: async () => { inits++; return store.init(); } };
   const once = make({ store: counted });
   await once.site(new Request('https://a.test/api/site?path=index.html'));
+  assert.equal(inits, 0, 'the public files need no tables made');
   await once.edit(get(''));
   await once.edit(hide('b', 1));
   assert.equal(inits, 1);
