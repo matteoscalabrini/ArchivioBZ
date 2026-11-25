@@ -1,6 +1,7 @@
-// What edit mode works out without the page: where a dragged row or chapter lands, a text as
-// paragraphs and back, the queue that sends the edits one at a time, the number of changes the
-// summary names, and a record after a saved edit. Pure, shared by edit.js and the tests.
+// What edit mode works out without the page: where a dragged row or chapter lands and what the
+// order is meanwhile, a text as paragraphs and back, a typed year, a picture moved, the keywords
+// offered, the queue that sends the edits one at a time, the number of changes the summary names,
+// and a record after a saved edit. Pure, shared by edit.js and the tests.
 
 // Where a row dropped in the list goes. `sequence`: the list after the drop, its headings and rows
 // in the order they now stand, [{ kind: 'chapter' | 'row', id }]. The row joins the chapter of the
@@ -34,6 +35,79 @@ export function chapterIndex(sequence, chapterId) {
   }
   return index;
 }
+
+// Each row's place in the story, from the chapters in their order: id -> { at, chapter }, `at`
+// counting every row before it, hidden ones too, as the page's data-at does.
+export function storyPlaces(chapters) {
+  const places = new Map();
+  let at = 0;
+  for (const chapter of chapters) for (const id of chapter.rows) places.set(id, { at: at++, chapter: chapter.id });
+  return places;
+}
+
+// The chapters as rescan() takes them for the headings: each numbered by its place.
+export function headingsOf(chapters) {
+  return chapters.map(({ id, title }, i) => ({ id, no: String(i + 1), title }));
+}
+
+// Where a row stands: its chapter and its index among that chapter's rows, or null.
+export function rowPlace(chapters, id) {
+  for (const chapter of chapters) {
+    const index = chapter.rows.indexOf(id);
+    if (index >= 0) return { chapter: chapter.id, index };
+  }
+  return null;
+}
+
+// The chapters with a row taken out of where it stood and put in `chapter` at `index` (past the
+// end is last), as the server's move-row does: what the page shows of a drag until the answer
+// comes. New lists; those given are not changed.
+export function placeRow(chapters, id, chapter, index) {
+  const next = chapters.map((c) => ({ ...c, rows: c.rows.filter((r) => r !== id) }));
+  const target = next.find((c) => c.id === chapter);
+  if (target) target.rows.splice(Math.max(0, Math.min(index, target.rows.length)), 0, id);
+  return next;
+}
+
+// The chapters with one of them moved to `index` among the others (past the end is last).
+export function placeChapter(chapters, id, index) {
+  const moved = chapters.find((c) => c.id === id);
+  if (!moved) return chapters.slice();
+  const next = chapters.filter((c) => c !== moved);
+  next.splice(Math.max(0, Math.min(index, next.length)), 0, moved);
+  return next;
+}
+
+// The year as the author typed it: nothing is no year, a whole number is that number, anything
+// else is sent as it was typed, for the server to refuse in its own words.
+export function yearValue(text) {
+  const typed = String(text ?? '').trim();
+  if (!typed) return null;
+  return /^-?\d+$/.test(typed) ? Number(typed) : typed;
+}
+
+// A row's pictures with the one at `index` moved one place on (+1) or back (-1), held at the
+// ends. A new list.
+export function movePicture(pictures, index, step) {
+  const next = pictures.slice();
+  const to = index + step;
+  if (to < 0 || to >= next.length) return next;
+  [next[index], next[to]] = [next[to], next[index]];
+  return next;
+}
+
+// The keywords a row can be given: those of the vocabulary it does not hold, by label, narrowed
+// to the labels holding what is typed, whatever its accents and case. -> [{ id, label }]
+export function offered(keywords, held, typed = '') {
+  const want = fold(typed.trim());
+  return Object.entries(keywords)
+    .filter(([id]) => !held.includes(id))
+    .map(([id, keyword]) => ({ id, label: keyword.label ?? id }))
+    .filter(({ label }) => fold(label).includes(want))
+    .sort((a, b) => a.label.localeCompare(b.label, 'en'));
+}
+
+const fold = (text) => String(text).normalize('NFD').replace(/\p{M}/gu, '').toLowerCase();
 
 // A row's text is one field, its paragraphs parted by an empty line (a line of spaces counts as
 // empty). Each paragraph is trimmed; one line end inside a paragraph stays as typed.

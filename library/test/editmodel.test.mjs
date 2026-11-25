@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { dropTarget, chapterIndex, toParagraphs, fromParagraphs, OpQueue, changesIn, publishQuestion, mergeFields } from '../web/editmodel.js';
+import { dropTarget, chapterIndex, toParagraphs, fromParagraphs, OpQueue, changesIn, publishQuestion, mergeFields, storyPlaces, headingsOf, placeRow, rowPlace, placeChapter, yearValue, movePicture, offered } from '../web/editmodel.js';
 import { applyOp } from '../cloud/ops.mjs';
 import { diffDocs } from '../cloud/doc.mjs';
 import { summaryLine } from '../cloud/render.mjs';
@@ -153,4 +153,59 @@ test('merging leaves the record it is given as it was', () => {
   const copy = structuredClone(record);
   mergeFields(record, { holder: '', title: 'U' });
   assert.deepEqual(record, copy);
+});
+
+const chapters = () => [{ id: 'c1', title: 'One', rows: ['a', 'h', 'b'] }, { id: 'c2', title: 'Two', rows: [] }, { id: 'c3', title: 'Three', rows: ['c'] }];
+
+test('each row takes its place in the story from the chapters, hidden rows counted', () => {
+  assert.deepEqual([...storyPlaces(chapters())], [['a', { at: 0, chapter: 'c1' }], ['h', { at: 1, chapter: 'c1' }], ['b', { at: 2, chapter: 'c1' }], ['c', { at: 3, chapter: 'c3' }]]);
+});
+
+test('the headings rescan takes: each chapter numbered by its place', () => {
+  assert.deepEqual(headingsOf(chapters()), [{ id: 'c1', no: '1', title: 'One' }, { id: 'c2', no: '2', title: 'Two' }, { id: 'c3', no: '3', title: 'Three' }]);
+});
+
+test('a row put at a place leaves where it was and goes there, the chapters given unchanged', () => {
+  const given = chapters();
+  assert.deepEqual(placeRow(given, 'a', 'c3', 1).map((c) => c.rows), [['h', 'b'], [], ['c', 'a']]);
+  assert.deepEqual(placeRow(given, 'b', 'c1', 0).map((c) => c.rows), [['b', 'a', 'h'], [], ['c']]);
+  assert.deepEqual(placeRow(given, 'c', 'c2', 9).map((c) => c.rows), [['a', 'h', 'b'], ['c'], []], 'past the end is last');
+  assert.deepEqual(placeRow(given, 'new', 'c2', 0).map((c) => c.rows), [['a', 'h', 'b'], ['new'], ['c']], 'a row not yet anywhere is added');
+  assert.deepEqual(given, chapters());
+  assert.deepEqual(rowPlace(given, 'b'), { chapter: 'c1', index: 2 });
+  assert.equal(rowPlace(given, 'zz'), null);
+});
+
+test('a chapter put at a place among the others', () => {
+  const given = chapters();
+  assert.deepEqual(placeChapter(given, 'c3', 0).map((c) => c.id), ['c3', 'c1', 'c2']);
+  assert.deepEqual(placeChapter(given, 'c1', 2).map((c) => c.id), ['c2', 'c3', 'c1']);
+  assert.deepEqual(placeChapter(given, 'c1', 7).map((c) => c.id), ['c2', 'c3', 'c1']);
+  assert.deepEqual(given, chapters());
+});
+
+test('the year as typed: empty is none, a whole number is a number, anything else goes as typed for the server to refuse', () => {
+  assert.equal(yearValue(''), null);
+  assert.equal(yearValue('  '), null);
+  assert.equal(yearValue(' 1934 '), 1934);
+  assert.equal(yearValue('-50'), -50);
+  assert.equal(yearValue('1934–40'), '1934–40');
+  assert.equal(yearValue('19.5'), '19.5');
+});
+
+test('a picture moved one place on or back, held at the ends', () => {
+  const list = [{ src: 'a' }, { src: 'b' }, { src: 'c' }];
+  assert.deepEqual(movePicture(list, 0, 1).map((p) => p.src), ['b', 'a', 'c']);
+  assert.deepEqual(movePicture(list, 2, -1).map((p) => p.src), ['a', 'c', 'b']);
+  assert.deepEqual(movePicture(list, 0, -1).map((p) => p.src), ['a', 'b', 'c']);
+  assert.deepEqual(movePicture(list, 2, 1).map((p) => p.src), ['a', 'b', 'c']);
+  assert.deepEqual(list.map((p) => p.src), ['a', 'b', 'c']);
+});
+
+test('the keywords offered to a row: the others, by label, narrowed by what is typed whatever its accents and case', () => {
+  const vocabulary = { press: { label: 'Press' }, citta: { label: 'Città nuova' }, alpha: { label: 'Alpha' }, wall: { label: 'Wall' } };
+  assert.deepEqual(offered(vocabulary, ['wall'], '').map((k) => k.id), ['alpha', 'citta', 'press']);
+  assert.deepEqual(offered(vocabulary, [], 'CITTA').map((k) => k.id), ['citta']);
+  assert.deepEqual(offered(vocabulary, [], ' re ').map((k) => k.id), ['press']);
+  assert.deepEqual(offered(vocabulary, [], 'zz'), []);
 });
