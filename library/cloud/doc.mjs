@@ -164,8 +164,10 @@ export function withoutTerms(doc) {
 }
 
 // What differs between two documents, as ids and yes/no. `changed`: rows in both whose record,
-// find or pictures differ. `order`: the visible rows both have sit in other chapters or another sequence. A null `before` (nothing published) counts as an empty document. `count`:
-// how many things the author would be publishing.
+// find or pictures differ. `order`: the visible rows both have sit in other chapters or another
+// sequence. `chapters`: the titles of the chapters that hold a row differ. A null `before`
+// (nothing published) counts as an empty document. `count`: how many things the author would be
+// publishing.
 export function diffDocs(before, after) {
   before ??= { chapters: [], rows: {}, keywords: {}, aliases: {}, places: {}, idea: '', about: '' }; // nothing published yet
   const same = (a, b) => stable(a) === stable(b);
@@ -178,9 +180,12 @@ export function diffDocs(before, after) {
   const hidden = both.filter((id) => !before.rows[id].hidden && after.rows[id].hidden);
   const shown = both.filter((id) => before.rows[id].hidden && !after.rows[id].hidden);
   const common = new Set(both.filter((id) => !before.rows[id].hidden && !after.rows[id].hidden));
-  const sequence = (doc) => doc.chapters.map((chapter) => chapter.rows.filter((id) => common.has(id))); // by chapter: a row that crosses a boundary has a new number
+  // By chapter, so that a row that crosses a boundary (and has a new number) counts; a chapter
+  // left with none of these rows drops out, so an empty chapter added or removed is no change.
+  const sequence = (doc) => doc.chapters.map((chapter) => chapter.rows.filter((id) => common.has(id))).filter((rows) => rows.length);
   const order = !same(sequence(before), sequence(after));
-  const titles = (doc) => doc.chapters.map((chapter) => chapter.title);
+  // The titles of the chapters that hold a row: one with none is on no page and in no row's number.
+  const titles = (doc) => doc.chapters.filter((chapter) => chapter.rows.length).map((chapter) => chapter.title);
   const chapters = !same(titles(before), titles(after));
   const idea = before.idea !== after.idea;
   const about = before.about !== after.about;

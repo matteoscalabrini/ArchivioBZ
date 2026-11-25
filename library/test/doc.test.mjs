@@ -224,6 +224,31 @@ test('a row moved across a chapter boundary is an order change, though the flat 
   assert.equal(d.count, 1);
 });
 
+// Minor 4 (clean review): a chapter that holds no row is on no page and in no row's number, so
+// adding one, naming it or removing it changes nothing a publish would carry; it counts once it
+// holds a row.
+test('an empty chapter added, renamed or removed is no change; a row moved into it is', () => {
+  const before = sample();
+  const after = structuredClone(before);
+  after.chapters.splice(1, 0, { id: 'c3', title: 'New', rows: [] });
+  after.next.chapter = 4;
+  let d = diffDocs(before, after);
+  assert.deepEqual([d.order, d.chapters, d.count], [false, false, 0]);
+  after.chapters[1].title = 'Renamed';
+  assert.equal(diffDocs(before, after).count, 0);
+  after.chapters[0].rows = ['a', 'c'];
+  after.chapters[1].rows = ['b'];
+  d = diffDocs(before, after);
+  assert.deepEqual([d.order, d.chapters, d.count], [true, true, 2], 'its row has another chapter, the page another heading');
+  assert.deepEqual(diffDocs(after, before).count, 2, 'and back');
+  after.rows.b.hidden = true;
+  d = diffDocs(before, after);
+  assert.deepEqual([d.hidden, d.order, d.chapters, d.count], [['b'], false, true, 2], 'holding a hidden row, the chapter is the author\'s change all the same');
+  const emptied = structuredClone(before);
+  emptied.chapters.push({ id: 'c3', title: 'Empty', rows: [] });
+  assert.equal(diffDocs(emptied, before).count, 0, 'an empty chapter removed');
+});
+
 test('with nothing published yet, every row is added', () => {
   const doc = sample();
   const d = diffDocs(null, doc);
