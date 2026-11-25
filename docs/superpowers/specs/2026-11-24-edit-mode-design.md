@@ -288,6 +288,12 @@ drawing, small, at the end of what they act on, shown only in edit mode. **(call
 - Keywords: added from a row (5); renamed in one place, from a list of keywords reached from the
   edit bar, where each shows its count; a keyword on no row can be deleted. Folds (`into`) are
   kept as they are and resolved at migration. **(call)**
+- **(M)** The order of "All keywords" is the author's: "the keywords in the All the keywords cannot
+  get moved. and put in an order" (25 Nov 2026, on the first day of edit mode). In edit mode its
+  keywords are dragged into an order, kept as the vocabulary's order in the draft, and the public
+  strip shows that order after Publish. A keyword new from a row joins the strip at once, at its
+  end, with its count, and every count follows the draft as it changes: "New keywords added next
+  to a file, do not get placed in the 'all the keywords' top field" (same day).
 - Places: chosen in a row; a new place is a name and coordinates (typed, or pasted from a map
   link). It is a point on the map; see Non-goals for its buildings. **(call)**
 
@@ -361,8 +367,10 @@ own:
    date, year, keywords (from the existing list, plus a new one), place (from the existing list),
    the idea and About; draft, Discard and Publish; the command line for sessions (§11). Pictures
    in round one are the migrated ones; a row's pictures can be removed and reordered, captions
-   edited, side by side switched.
-2. **After it**: uploading new pictures; the History screen and Removed rows (until then, the
+   edited, side by side switched. **(M)** Moved into round one on its first day online: ＋ picture
+   (§6), since "when you edit a row, remove the image, and want to put another image into it.
+   Nothing enables you to do so" (25 Nov 2026); and the order of "All keywords" (§7).
+2. **After it**: the History screen and Removed rows (until then, the
    publishes are stored all the same, and a session can restore one from the command line); the
    keyword list with rename and delete; new places; `npm run import`; `npm run pull`; the
    "Hidden" fold for search terms and facts in edit mode (until then, sessions edit them through
