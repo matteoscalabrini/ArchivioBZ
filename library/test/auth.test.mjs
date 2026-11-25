@@ -51,3 +51,44 @@ test('the password tool reads without echo, refuses a short or differing pair, a
   await assert.rejects((await run(['short'])).done, /at least 12/);
   await assert.rejects((await run(['correct horse battery', 'correct horse batterY'])).done, /differ/);
 });
+
+// `! npm run password` in a session may have no terminal behind it: raw mode would not exist and
+// the password would be echoed into the transcript. Run with a terminal, the tool sets the hash
+// and a new session secret (so every session open ends with the old password) as Secrets.
+test('the password tool refuses without a terminal, and sets the hash and a new session secret as secrets', async () => {
+  const { setPassword } = await import('../tools/password.mjs');
+  const { PassThrough } = await import('node:stream');
+  const lines = [];
+  const calls = [];
+  const vercel = (args, input) => { calls.push({ args, input }); return { status: 0 }; };
+  const piped = new PassThrough();
+  await assert.rejects(setPassword({ input: piped, output: { write: () => {} }, log: (l) => lines.push(l), vercel }),
+    /^Error: There is no terminal to type the password in: run npm run password in a Terminal window\.$/);
+  assert.deepEqual(calls, []);
+
+  const input = Object.assign(new PassThrough(), { isTTY: true, isRaw: false, setRawMode() {} });
+  const done = setPassword({ input, output: { write: () => {} }, log: (l) => lines.push(l), vercel });
+  for (const line of ['correct horse battery', 'correct horse battery']) { await new Promise((r) => setImmediate(r)); input.write(`${line}\r`); }
+  await done;
+  const added = calls.filter((c) => c.args[1] === 'add');
+  assert.deepEqual(added.map((c) => c.args.slice(0, 4)), [
+    ['env', 'add', 'EDIT_PASSWORD_HASH', 'production'], ['env', 'add', 'EDIT_PASSWORD_HASH', 'preview'],
+    ['env', 'add', 'SESSION_SECRET', 'production'], ['env', 'add', 'SESSION_SECRET', 'preview'],
+  ]);
+  for (const call of added) assert.ok(call.args.includes('--sensitive'), call.args.join(' '));
+  const [hash] = added.map((c) => c.input);
+  assert.ok(await verifyPassword('correct horse battery', hash));
+  const secrets = added.filter((c) => c.args[2] === 'SESSION_SECRET').map((c) => c.input);
+  assert.equal(secrets[0], secrets[1], 'one secret for both');
+  assert.equal(Buffer.from(secrets[0], 'base64').length, 32);
+  assert.ok(!lines.join('\n').includes(secrets[0]) && !lines.join('\n').includes('correct horse'), 'neither is printed');
+});
+
+test('the password tool stops when its input ends', async () => {
+  const { askPassword } = await import('../tools/password.mjs');
+  const { PassThrough } = await import('node:stream');
+  const input = new PassThrough();
+  const done = askPassword(input, { write: () => {} });
+  input.end('half typ');
+  await assert.rejects(done, /Stopped/);
+});
