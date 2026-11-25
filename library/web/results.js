@@ -54,6 +54,19 @@ export function inChapters(rows, chapters, { shows = () => true, narrowed = fals
   return items;
 }
 
+// The headings after an edit, from the chapters in the story order (edit mode's rescan): each
+// chapter's heading kept if the page holds one (`held`: the ids of those it holds), else made,
+// in the order given; the held ones of chapters no longer there are to be dropped. The page's
+// own headings cannot say this while a search or another sort keeps them out of the list.
+export function headingPlan(chapters, held) {
+  const holding = new Set(held);
+  const named = new Set(chapters.map((chapter) => chapter.id));
+  return {
+    order: chapters.map(({ id, no, title }) => ({ id, no, title, make: !holding.has(id) })),
+    drop: [...holding].filter((id) => !named.has(id)),
+  };
+}
+
 // The status line: what narrows the list, and how many rows that leaves. `narrowed` = the labels
 // of the kind and the keyword chosen; `ready` = the index is there; `failed` = it could not be had.
 export function summary({ total, shown, precise = 0, possible = 0, narrowed = [], q = '', ready = false, failed = false }) {

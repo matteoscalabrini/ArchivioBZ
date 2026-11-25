@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { prepare, search } from '../web/search.js';
-import { layout, summary, reasonHtml, inChapters, POSSIBLE_SHOWN } from '../web/results.js';
+import { layout, summary, reasonHtml, inChapters, headingPlan, POSSIBLE_SHOWN } from '../web/results.js';
 import { INDEX } from './search-index.mjs';
 
 // The rows as library.js holds them: the rows of section 1 carry the keyword "posters".
@@ -100,4 +100,22 @@ test('rows in no chapter have no heading', () => {
   const loose = [{ id: 'x' }, ...story.slice(0, 2), { id: 'y' }];
   assert.deepEqual(drawn(inChapters(loose, ['c1'])), ['x', '#c1', 'a', 'b', 'y']);
   assert.deepEqual(drawn(inChapters(loose, [])), ['x', 'a', 'b', 'y']);
+});
+
+// Edit mode: after an edit the chapters come from the server's answer, in the story order, and
+// the headings follow them, whatever the list showed when the edit was made.
+test('the headings follow the chapters given: kept, made, put in order, and the gone ones dropped', () => {
+  const plan = headingPlan([{ id: 'c2', no: '1', title: 'Two' }, { id: 'c4', no: '2', title: 'New' }, { id: 'c1', no: '3', title: 'One' }], ['c1', 'c2', 'c3']);
+  assert.deepEqual(plan.order, [{ id: 'c2', no: '1', title: 'Two', make: false }, { id: 'c4', no: '2', title: 'New', make: true }, { id: 'c1', no: '3', title: 'One', make: false }]);
+  assert.deepEqual(plan.drop, ['c3']);
+  assert.deepEqual(headingPlan([], ['c1']), { order: [], drop: ['c1'] });
+});
+
+test('in edit mode a chapter emptied by a move keeps its heading in the story order, between its neighbours', () => {
+  // c1's only row went to c2: c1 now has no rows, and its heading still stands first.
+  const moved = [['a', 'c2'], ['c', 'c2'], ['d', 'c3']].map(([id, chapter]) => ({ id, chapter }));
+  assert.deepEqual(drawn(inChapters(moved, ['c1', 'c2', 'c3'])), ['#c1', '#c2', 'a', 'c', '#c3', 'd']);
+  // A new chapter at the end, before it has rows; a keyword or a kind filter hides it.
+  assert.deepEqual(drawn(inChapters(moved, ['c1', 'c2', 'c3', 'c9'])), ['#c1', '#c2', 'a', 'c', '#c3', 'd', '#c9']);
+  assert.deepEqual(drawn(inChapters(moved, ['c1', 'c2', 'c3', 'c9'], { shows: () => true, narrowed: true })), ['-c1', '#c2', 'a', 'c', '#c3', 'd', '-c9']);
 });

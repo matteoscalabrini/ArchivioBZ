@@ -29,6 +29,7 @@
   "devDependencies": {
     "@electric-sql/pglite": "^0.6.0",
     "@vercel/blob": "^2.9.0",
-    "mammoth": "^1.13.0"
+    "mammoth": "^1.13.0",
+    "puppeteer-core": "^25.18.1"
   }
 }

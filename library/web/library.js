@@ -10,10 +10,12 @@
 // A library in chapters has a heading over each chapter's rows (h2.chapter, lib/pages.mjs): it
 // stands in the list only in the story order (the No. sort) with nothing searched, and is hidden
 // while none of its chapter's rows shows. Edit mode changes the list in place and then calls
-// rescan(), which reads the page again.
+// rescan(), which reads the page again; it gives the chapters in the story order with it, and the
+// headings follow them. After each drawing the list says whether it stands in the story order
+// (the event "drawn"), for edit mode, which drags only then.
 import { parseState, formatState, matches, compare } from './state.js';
 import { prepare, search } from './search.js';
-import { layout, summary, reasonHtml, inChapters } from './results.js';
+import { layout, summary, reasonHtml, inChapters, headingPlan } from './results.js';
 import { load, stepPicture } from './pictures.js';
 import './lightbox.js';
 
@@ -129,8 +131,11 @@ document.addEventListener('keydown', (event) => {
 
 // For edit mode, after it has changed the list: the page is read again and drawn in the same
 // state, less what is no longer on it (a removed row is not open, a keyword gone filters nothing).
-export function rescan() {
-  scan();
+// `chapters`, the chapters in the story order as [{ id, no, title }], makes the headings: one for
+// each, in that order, with its number and title; a heading of a chapter not named goes. Without
+// it the headings are read from the page, which holds them only in the story order.
+export function rescan({ chapters } = {}) {
+  scan({ chapters });
   state.o = state.o.filter((no) => known.rows.has(no));
   if (state.k && !known.keywords.has(state.k)) state.k = null;
   if (state.t && !known.kinds.has(state.t)) state.t = null;
@@ -140,8 +145,9 @@ export function rescan() {
 
 // Reads from the page the keywords, the kinds, the rows and the chapters' headings. While a search
 // or another sort leaves the headings out of the list they are not on the page to be read, so
-// those held stay, and any new one in the list joins them.
-function scan() {
+// those held stay, and any new one in the list joins them; given the chapters, the headings
+// follow them instead.
+function scan({ chapters } = {}) {
   keywordButtons = [...document.querySelectorAll('button[data-k]')];
   kindButtons = [...document.querySelectorAll('button[data-kind]')];
   labels = readJson('keyword-labels', {});
@@ -154,8 +160,36 @@ function scan() {
     kinds: new Set(kindButtons.map((b) => b.dataset.kind)),
     rows: new Set(byNo.keys()),
   };
+  if (chapters) return placeHeadings(chapters);
   if (headed) headings.clear();
   for (const el of list.querySelectorAll('h2.chapter')) headings.set(el.dataset.chapter, el);
+}
+
+// The headings of the chapters given, in their order: those held are kept, with the number and the
+// title brought up to date, the others made as lib/pages.mjs makes them, and those of chapters
+// that are gone taken off the page. Edit mode wraps a heading's title in .ch-title, to stand its
+// controls around it; a heading as the server wrote it holds the title as text after the number.
+function placeHeadings(chapters) {
+  for (const el of list.querySelectorAll('h2.chapter')) if (!headings.has(el.dataset.chapter)) headings.set(el.dataset.chapter, el);
+  const plan = headingPlan(chapters, [...headings.keys()]);
+  for (const id of plan.drop) headings.get(id).remove();
+  const kept = new Map(headings);
+  headings.clear();
+  for (const { id, no, title, make } of plan.order) {
+    const el = make ? newHeading(id) : kept.get(id);
+    setText(el.querySelector('.ch-no'), no);
+    const words = el.querySelector('.ch-title');
+    if (words) setText(words, title);
+    else if (el.lastChild.textContent !== ` ${title}`) el.lastChild.textContent = ` ${title}`;
+    headings.set(id, el);
+  }
+}
+
+function newHeading(id) {
+  const el = Object.assign(document.createElement('h2'), { className: 'chapter' });
+  el.dataset.chapter = id;
+  el.append(Object.assign(document.createElement('span'), { className: 'ch-no' }), ' ');
+  return el;
 }
 
 function readRow(el) {
@@ -266,6 +300,9 @@ function render() {
   clearTimeout(addressing);
   if (typing) addressing = setTimeout(writeAddress, 300);
   else writeAddress();
+
+  // The story order: the No. sort, nothing typed in the search, no keyword and no kind.
+  list.dispatchEvent(new CustomEvent('drawn', { detail: { story: state.s === 'no' && !typed && !state.k && !state.t } }));
 }
 
 function writeAddress() {
@@ -309,7 +346,7 @@ function filter(k) {
 // To the top of the list: the kinds line when the page has one, so it stays in reach.
 function toList() {
   const head = document.querySelector('.kinds') ?? colhead;
-  scrollTo({ top: head.getBoundingClientRect().top + scrollY - status.offsetHeight, behavior: motion() });
+  scrollTo({ top: head.getBoundingClientRect().top + scrollY - covered(), behavior: motion() });
 }
 
 function toggle(row) {
@@ -361,7 +398,13 @@ function setText(el, text) {
 
 // Puts a row just under the sticky status line.
 function reveal(el, behavior) {
-  scrollTo({ top: el.getBoundingClientRect().top + scrollY - status.offsetHeight, behavior });
+  scrollTo({ top: el.getBoundingClientRect().top + scrollY - covered(), behavior });
+}
+
+// How much of the window's top the sticky status line covers: its height, and in edit mode, where
+// it sticks under the edit bar, the bar's height too.
+function covered() {
+  return status.offsetHeight + (parseFloat(getComputedStyle(status).top) || 0);
 }
 
 // True while the reader is selecting text in this row head rather than clicking it.
