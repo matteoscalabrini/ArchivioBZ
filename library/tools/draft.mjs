@@ -13,7 +13,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { checkDoc } from '../cloud/doc.mjs';
+import { checkDoc, raiseCounters } from '../cloud/doc.mjs';
 import { loadLists, renderSite, renderEditPage, summaryOf, publishLine } from '../cloud/render.mjs';
 import { ConflictError } from '../cloud/store.mjs';
 
@@ -45,13 +45,16 @@ export async function runDraft(args, { store, root, purge, out = console }) {
       }
       case 'push': {
         const file = path.resolve(arg ?? DEFAULT_FILE);
-        const { version, doc } = JSON.parse(await readFile(file, 'utf8'));
-        const problems = checkDoc(doc);
+        const pulled = JSON.parse(await readFile(file, 'utf8'));
+        const { version } = pulled;
+        const problems = checkDoc(pulled.doc);
         if (problems.length) {
           for (const problem of problems) out.error(`  ${problem}`);
           out.error('Not pushed: the document has faults.');
           return 1;
         }
+        // The draft's counters where they are higher: a push never gives an id again.
+        const doc = raiseCounters(pulled.doc, draft.doc);
         // Drawn once as edit mode and as a publish would draw it, so that nothing is pushed that
         // would stop the edit page or the Publish button.
         const refusal = drawn(doc, await published(), await loadLists(root));

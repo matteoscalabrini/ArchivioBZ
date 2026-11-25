@@ -3,6 +3,7 @@
 // that depends on the draft's version says which version it expects; if the draft has moved on it
 // is refused with a ConflictError that carries the current version, and nothing has changed.
 import { readFileSync } from 'node:fs';
+import { raiseCounters } from './doc.mjs';
 
 export class ConflictError extends Error {
   constructor(version) {
@@ -34,6 +35,8 @@ export function makeStore(db) {
 
     // With `replace`, a draft that exists is kept as a 'set-aside' and the new document is written
     // at the next version, so a window holding the old version is refused rather than overwriting it.
+    // Here, at a discard and at a restore, the document put in place keeps the draft's counters
+    // where they are higher (raiseCounters): an id once given is never given again.
     async createDraft(doc, { replace = false } = {}) {
       return db.transaction(async (q) => {
         const [old] = await q('select doc from draft where id = 1 for update');
@@ -43,7 +46,7 @@ export function makeStore(db) {
           return 1;
         }
         await q("insert into publishes (kind, doc, summary) values ('set-aside', $1::json, 'Set aside before a replace')", [json(old.doc)]);
-        const rows = await q('update draft set doc = $1::json, version = version + 1, saved_at = now() where id = 1 returning version', [json(doc)]);
+        const rows = await q('update draft set doc = $1::json, version = version + 1, saved_at = now() where id = 1 returning version', [json(raiseCounters(doc, old.doc))]);
         return rows[0].version;
       });
     },
@@ -103,7 +106,7 @@ export function makeStore(db) {
         const [draft] = await q('select doc from draft where id = 1 and version = $1 for update', [expected]);
         if (!draft) throw await conflict(q);
         await q("insert into publishes (kind, doc, summary) values ('set-aside', $1::json, 'Set aside before a discard')", [json(draft.doc)]);
-        const rows = await q('update draft set doc = $1::json, version = version + 1, saved_at = now() where id = 1 returning version', [json(latest.doc)]);
+        const rows = await q('update draft set doc = $1::json, version = version + 1, saved_at = now() where id = 1 returning version', [json(raiseCounters(latest.doc, draft.doc))]);
         return rows[0].version;
       });
     },
@@ -118,7 +121,7 @@ export function makeStore(db) {
         await q("insert into publishes (kind, doc, summary) values ('set-aside', $1::json, $2)", [json(draft.doc), `Set aside before restoring publish ${publishId}`]);
         const rows = await q(
           'update draft set doc = $1::json, version = version + 1, saved_at = now() where id = 1 returning version',
-          [json(target.doc)],
+          [json(raiseCounters(target.doc, draft.doc))],
         );
         return rows[0].version;
       });

@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { PGlite } from '@electric-sql/pglite';
 import { pgliteDb } from '../cloud/db.mjs';
 import { makeStore, ConflictError } from '../cloud/store.mjs';
+import { applyOp } from '../cloud/ops.mjs';
 import { sampleDoc } from './docs.mjs';
 
 const sample = () => sampleDoc();
@@ -28,7 +29,7 @@ test('a second draft is refused unless it replaces the first', async () => {
   await assert.rejects(store.createDraft(sample()), /There is a draft already; --replace to overwrite it/);
   const other = sampleDoc({ c1: ['z'] });
   assert.equal(await store.createDraft(other, { replace: true }), 2);
-  assert.deepEqual((await store.getDraft()).doc, other);
+  assert.deepEqual((await store.getDraft()).doc, { ...other, next: { row: 1, chapter: 3 } }, 'with the old draft\'s counter, which is higher');
   // The old draft is kept, and a window that held version 1 is refused.
   const [{ doc }] = (await pg.query("select doc from publishes where kind = 'set-aside'")).rows;
   assert.deepEqual(doc, sample());
@@ -92,6 +93,43 @@ test('restore sets the draft aside first', async () => {
   assert.deepEqual(doc, changed);
   assert.equal((await store.latestPublish()).id, id); // a set-aside is not a publish
   await assert.rejects(store.restore(id, 2), (e) => e instanceof ConflictError && e.version === 3);
+});
+
+// I4 (clean review): the counters that name a new row or chapter never go back, so an id given once,
+// in the draft or in any publish, is never given to another: a link #o=r1 shared after a publish
+// keeps naming that row whatever is restored or discarded later, and a removed row stays its own.
+test('restore, discard and a draft that replaces another never give an id again', async () => {
+  const edit = async (version, op) => {
+    const { doc, result } = applyOp((await store.getDraft()).doc, op);
+    await store.saveDraft(doc, version);
+    return result.id;
+  };
+  const addRow = (version) => edit(version, { op: 'add-row', chapter: 'c1', index: 0, title: 'Foo', type: 'Poster' });
+  const addChapter = (version) => edit(version, { op: 'add-chapter', index: 0, title: 'New' });
+  await store.createDraft(sample());
+  const { id: first } = await store.publish(1, files(), 's');
+  assert.equal(await addRow(1), 'r1');
+  assert.equal(await addChapter(2), 'c3');
+  await store.publish(3, files(), 's'); // publish 2 holds r1 and c3
+
+  assert.equal(await store.restore(first, 3), 4);
+  let { doc } = await store.getDraft();
+  assert.ok(!doc.rows.r1, 'the publish restored has no r1');
+  assert.deepEqual(doc.next, { row: 2, chapter: 4 });
+  assert.deepEqual(Object.keys(doc), Object.keys(sample()), 'the document keeps its shape and order');
+  assert.equal(await addRow(4), 'r2');
+  assert.equal(await addChapter(5), 'c4');
+
+  assert.equal(await store.discard(6), 7); // back to publish 2, whose counters lie below the draft's
+  ({ doc } = await store.getDraft());
+  assert.ok(doc.rows.r1 && !doc.rows.r2);
+  assert.deepEqual(doc.next, { row: 3, chapter: 5 });
+  assert.equal(await addRow(7), 'r3');
+
+  assert.equal(await store.createDraft(sample(), { replace: true }), 9);
+  assert.deepEqual((await store.getDraft()).doc.next, { row: 4, chapter: 5 }, 'a draft moved in afresh likewise');
+  const [aside] = (await pg.query("select doc from publishes where kind = 'set-aside' order by id desc limit 1")).rows;
+  assert.deepEqual(aside.doc.next, { row: 4, chapter: 5 }, 'the draft set aside is kept as it was');
 });
 
 test('a publish against an older version changes nothing', async () => {

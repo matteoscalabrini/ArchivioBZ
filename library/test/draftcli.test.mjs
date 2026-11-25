@@ -72,6 +72,22 @@ test('a push that edit mode could not draw is refused and nothing changes: a tex
   assert.equal((await store.getDraft()).version, 1);
 });
 
+// I4: a pushed document cannot set the counters back either, so no id the draft gave is given again.
+test('a push keeps the draft\'s counters where they are higher', async () => {
+  await store.saveDraft({ ...sampleDoc(), next: { row: 5, chapter: 7 } }, 1);
+  const file = path.join(dir, 'd.json');
+  await run(['pull', file]);
+  const pulled = JSON.parse(await readFile(file, 'utf8'));
+  pulled.doc.next = { row: 1, chapter: 3 };
+  pulled.doc.rows.a.record.title = 'Changed';
+  await writeFile(file, JSON.stringify(pulled));
+  assert.equal(await run(['push', file]), 0);
+  const draft = await store.getDraft();
+  assert.equal(draft.doc.rows.a.record.title, 'Changed');
+  assert.deepEqual(draft.doc.next, { row: 5, chapter: 7 });
+  assert.deepEqual(JSON.parse(await readFile(file, 'utf8')).doc.next, { row: 5, chapter: 7 }, 'the file holds what was saved');
+});
+
 test('publish from the command line purges', async () => {
   let purged = 0;
   assert.equal(await run(['publish'], { purge: async () => { purged++; } }), 0);

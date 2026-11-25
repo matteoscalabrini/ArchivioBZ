@@ -61,6 +61,23 @@ export function docFromLibrary(lib, { root, chapterTitles = {}, pictures = new M
   };
 }
 
+// `doc` with its counters (next.row, next.chapter) raised to the highest of `others`', so that a
+// document put in place of the draft (a publish restored, the latest one at a discard, a move-in
+// afresh, a session's push) never names a new row or chapter with an id the draft has given
+// already. The draft's counters then never go back, and every publish is a copy of the draft, so no
+// id held by any publish is given again: a link #o=r1 keeps naming one row. Nothing else changes,
+// and `next` keeps its place among the keys.
+export function raiseCounters(doc, ...others) {
+  const next = { ...doc.next };
+  for (const other of others) {
+    for (const what of ['row', 'chapter']) {
+      const n = other?.next?.[what];
+      if (Number.isInteger(n) && !(n <= next[what])) next[what] = n;
+    }
+  }
+  return { ...doc, next };
+}
+
 // Each chapter's number: its place among the chapters that have a row not hidden, from 1. A chapter
 // with no such row, every row hidden or none at all, has none (''): it is not on the public page,
 // and the chapters after it close up, as the rows after a hidden row do (the author, 25 Nov 2026).
