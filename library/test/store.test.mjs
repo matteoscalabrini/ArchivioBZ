@@ -97,3 +97,16 @@ test('login failures are counted in their window', async () => {
   await pg.query("update login_failures set at = now() - interval '20 minutes'");
   assert.equal(await store.recentLoginFailures(15), 0);
 });
+
+test('a login try is counted from the moment it is recorded, and one forgotten no longer counts', async () => {
+  const first = await store.recordLoginFailure();
+  const second = await store.recordLoginFailure();
+  assert.notEqual(first, second);
+  assert.equal(await store.recentLoginFailures(15), 2);
+  await store.forgetLoginFailure(first);
+  assert.equal(await store.recentLoginFailures(15), 1);
+  await store.forgetLoginFailure(first);
+  assert.equal(await store.recentLoginFailures(15), 1, 'forgetting twice is forgetting once');
+  await store.forgetLoginFailure(second);
+  assert.equal(await store.recentLoginFailures(15), 0);
+});

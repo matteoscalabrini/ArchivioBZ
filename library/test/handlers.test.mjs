@@ -225,7 +225,7 @@ test('publish writes the site and purges the cache', async () => {
   const { id } = await res.json();
   assert.equal(id, (await store.latestPublish()).id);
   assert.match(await (await site('index.html')).text(), /A title from edit mode/);
-  assert.equal(purged, 1);
+  assert.equal(purged, 2, 'once at once, once more later');
   assert.equal((await store.listPublishes())[0].summary, '1 row changed');
   const after = await (await h.edit(post('op', { version: 2, op: { op: 'set-row', id: 'a', fields: { title: 'A title from edit mode' } } }))).json();
   assert.equal(after.summary, 'No changes since the last publish');
@@ -240,12 +240,27 @@ test('a hidden row leaves the public site at publish', async () => {
   }
 });
 
+test('publish purges once more later, for a page drawn from the old files just before it, and a failure then is only logged', async () => {
+  const pending = [];
+  let calls = 0;
+  const res = await make({ purge: async () => { calls++; }, later: (task) => { pending.push(task); } }).edit(post('publish', { version: 1 }));
+  assert.equal(res.status, 200);
+  assert.deepEqual([calls, pending.length], [1, 1], 'the second purge is left for after the answer');
+  await pending[0]();
+  assert.equal(calls, 2);
+  const failing = [];
+  const fine = await make({ purge: async () => { if (failing.length) throw new Error('down'); }, later: (task) => { failing.push(task); } }).edit(post('publish', { version: 1 }));
+  assert.equal(fine.status, 200);
+  await assert.doesNotReject(failing[0](), 'the answer has gone; the failure is logged');
+});
+
 test('a purge that fails is tried once more, and a second failure is said', async () => {
   let calls = 0;
-  const flaky = await make({ purge: async () => { if (++calls === 1) throw new Error('429'); } }).edit(post('publish', { version: 1 }));
+  const later = () => {};
+  const flaky = await make({ purge: async () => { if (++calls === 1) throw new Error('429'); }, later }).edit(post('publish', { version: 1 }));
   assert.equal(flaky.status, 200);
   assert.deepEqual([calls, waits], [2, [1000]]);
-  const down = await make({ purge: async () => { throw new Error('down'); } }).edit(post('publish', { version: 1 }));
+  const down = await make({ purge: async () => { throw new Error('down'); }, later }).edit(post('publish', { version: 1 }));
   assert.equal(down.status, 500);
   const body = await down.json();
   assert.equal(body.error, 'Published, but the public site may still show the old version. Publish again to refresh it.');
@@ -322,10 +337,32 @@ test('a wrong password waits, counts and refuses after ten', async () => {
   assert.equal(await store.recentLoginFailures(15), 10, 'a refused try is not counted, so the window does not stretch');
 });
 
-test('the typed password is checked as typed', async () => {
+test('the typed password is checked as typed, and the right one is not counted', async () => {
   assert.equal((await h.edit(login(` ${PASSWORD}`))).status, 401);
   assert.equal((await h.edit(login(PASSWORD.toUpperCase()))).status, 401);
   assert.equal((await h.edit(login(PASSWORD))).status, 303);
+  assert.equal(await store.recentLoginFailures(15), 2);
+});
+
+// How many tries sent at once are checked depends on how their statements interleave (PGlite runs
+// every try's insert before the first count, so none is); what holds in any order is the cap.
+const burst = async (n) => {
+  const tally = { 401: 0, 429: 0 };
+  for (const res of await Promise.all(Array.from({ length: n }, (_, i) => h.edit(login(`guess ${i}`))))) tally[res.status]++;
+  return tally;
+};
+
+test('tries sent at once cannot pass the cap: with nine failures recorded, at most one of thirty is checked', async () => {
+  for (let i = 0; i < 9; i++) await store.recordLoginFailure();
+  const tally = await burst(30);
+  assert.ok(tally[401] <= 1, `${tally[401]} checked`);
+  assert.equal(tally[401] + tally[429], 30);
+  assert.equal(await store.recentLoginFailures(15), 9 + tally[401], 'the refused tries are forgotten');
+});
+
+test('under the cap, tries sent at once are all checked', async () => {
+  assert.deepEqual(await burst(4), { 401: 4, 429: 0 });
+  assert.equal(await store.recentLoginFailures(15), 4);
 });
 
 test('logging in sets the locked cookie and sends to /edit/', async () => {

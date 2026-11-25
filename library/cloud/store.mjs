@@ -122,8 +122,18 @@ export function makeStore(db) {
       return row.n;
     },
 
+    // A login try counts as a failure from the moment it arrives, before its password is checked:
+    // the row is written and committed on its own, and only then are the tries counted, so tries
+    // sent at once each see every one written before them. Returns the row's id, for
+    // forgetLoginFailure when the try proves right or is refused, as text so that Neon and PGlite
+    // give it alike.
     async recordLoginFailure() {
-      await db.query('insert into login_failures default values');
+      const [row] = await db.query('insert into login_failures default values returning id::text as id');
+      return row.id;
+    },
+
+    async forgetLoginFailure(id) {
+      await db.query('delete from login_failures where id = $1::bigint', [id]);
     },
   };
 }

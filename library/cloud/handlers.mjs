@@ -29,7 +29,8 @@ const TEXT = 'text/plain; charset=utf-8';
 // The largest body that comes in is one op with a long text; a whole document never does.
 const MAX_BODY = 2 * 1024 * 1024;
 // Once this many wrong passwords fall within the window, every login (the eleventh try and on) is
-// refused until the oldest of them leaves it.
+// refused until the oldest of them leaves it. A try counts itself, so it is checked only while the
+// count is at most the limit.
 const LOGIN_LIMIT = 10;
 const LOGIN_WINDOW_MINUTES = 15;
 const FAILURE_WAIT_MS = 1000;
@@ -59,6 +60,9 @@ export function makeHandlers({
   purge = async () => {},
   secure = true,
   wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms)),
+  // Runs a task after the answer has gone: in the cloud a few seconds later, kept alive with
+  // waitUntil (api/edit.mjs); by default at once, so that the tests see it done.
+  later = (task) => task(),
 }) {
   // The tables are made once per instance, before its first query; a failure is tried again on
   // the next request.
@@ -103,21 +107,27 @@ export function makeHandlers({
 ${line ? `<p class="login-line" role="alert">${esc(line)}</p>\n` : ''}</form>`,
   });
 
+  // A try is recorded as a failure before its password is checked, then the tries in the window are
+  // counted: tries sent at once each count every one recorded before them, so no more are checked
+  // than the limit leaves room for, however many arrive during the check of the first. A try that
+  // proves right, or is refused, is forgotten again, so refused tries cannot keep the window open.
   async function login(request) {
     if (!env.EDIT_PASSWORD_HASH || !env.SESSION_SECRET) {
       return text(500, 'Edit mode is not set up: EDIT_PASSWORD_HASH and SESSION_SECRET are needed in the environment.');
     }
-    // A refused try is not counted, so a flood cannot keep the window open.
-    if ((await store.recentLoginFailures(LOGIN_WINDOW_MINUTES)) >= LOGIN_LIMIT) {
+    // As typed: the form's encoding undone and nothing else; auth.mjs normalises it itself. Read
+    // first, so a body too large is refused before it is counted.
+    const password = new URLSearchParams(await readBody(request)).get('password') ?? '';
+    const tried = await store.recordLoginFailure();
+    if ((await store.recentLoginFailures(LOGIN_WINDOW_MINUTES)) > LOGIN_LIMIT) {
+      await store.forgetLoginFailure(tried);
       await wait(FAILURE_WAIT_MS);
       return html(429, loginPage(`Too many wrong passwords. Try again in ${LOGIN_WINDOW_MINUTES} minutes.`));
     }
-    // As typed: the form's encoding undone and nothing else; auth.mjs normalises it itself.
-    const password = new URLSearchParams(await readBody(request)).get('password') ?? '';
     if (await verifyPassword(password, env.EDIT_PASSWORD_HASH)) {
+      await store.forgetLoginFailure(tried);
       return seeOther('/edit/', { 'Set-Cookie': sessionCookie(makeSession(env.SESSION_SECRET), { secure }) });
     }
-    await store.recordLoginFailure();
     await wait(FAILURE_WAIT_MS);
     return html(401, loginPage('Wrong password.'));
   }
@@ -152,7 +162,8 @@ ${line ? `<p class="login-line" role="alert">${esc(line)}</p>\n` : ''}</form>`,
   }
 
   // The draft drawn as the public site, stored as a publish with its four files, then the edge's
-  // copies deleted. A page that cannot be drawn without an error publishes nothing.
+  // copies deleted, at once and once more later. A page that cannot be drawn without an error
+  // publishes nothing.
   async function publish(request) {
     const { version } = await readJson(request);
     const [draft, published] = await Promise.all([theDraft(), publishedDoc()]);
@@ -164,7 +175,17 @@ ${line ? `<p class="login-line" role="alert">${esc(line)}</p>\n` : ''}</form>`,
     }
     for (const { where, message } of problems) console.warn(`publish: ${where}: ${message}`);
     const { id } = await store.publish(version, files, summaryLine(diffDocs(published, draft.doc)));
-    if (!(await purgeSite())) return json(500, { error: NOT_PURGED, id });
+    const purged = await purgeSite();
+    // A visit that read the old files just before the publish committed can reach the edge after
+    // the purge above and be kept for a year; a second purge, after the answer, deletes it.
+    await later(async () => {
+      try {
+        await purge();
+      } catch (error) {
+        console.error('purge, after the publish:', error);
+      }
+    });
+    if (!purged) return json(500, { error: NOT_PURGED, id });
     return json(200, { id });
   }
 

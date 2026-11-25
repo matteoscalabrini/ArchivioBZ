@@ -5,5 +5,6 @@ create table if not exists draft (id smallint primary key default 1 check (id = 
 create table if not exists publishes (id serial primary key, at timestamptz not null default now(), kind text not null check (kind in ('publish', 'set-aside')), doc jsonb not null, summary text);
 -- The four public files as rendered at the last publish.
 create table if not exists site_files (path text primary key, body text not null, content_type text not null, publish_id integer not null references publishes (id));
--- One row per failed login, counted over a window to refuse a flood.
-create table if not exists login_failures (at timestamptz not null default now());
+-- One row per login try, written before its password is checked and deleted when it proves right or
+-- is refused, so what stays is the failures; counted over a window to refuse a flood.
+create table if not exists login_failures (id bigserial primary key, at timestamptz not null default now());
