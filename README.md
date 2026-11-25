@@ -43,9 +43,11 @@ npm run db:sync -- --dry-run  # says what it would upload
 npm run draft -- pull [file]    # the draft as { version, doc }, default library/.cache/draft.json
 npm run draft -- push [file]    # checks it, saves it if the draft is still at that version
 npm run draft -- status | publish | discard | restore <publish id> | publishes
+npm run draft -- rerender       # the public files drawn again from the latest publish, after a deploy of new page code
+npm run draft -- unlock         # forgets the failed logins (delete from login_failures)
 ```
 
-`--dev` works on the local draft (`library/.cache/dev-db`). `publish` does what the Publish button does, then deletes the edge's copies with `vercel cache dangerously-delete --tag site`. `npm run find:check -- --doc library/.cache/draft.json` runs the search checks on a pulled draft.
+`--dev` works on the local draft (`library/.cache/dev-db`). `publish` does what the Publish button does, then deletes the edge's copies with `vercel cache dangerously-delete --tag site`; `rerender` does the same from the latest publish, leaving the draft as it is. Discard and restore keep the draft they replace as a set-aside, which `publishes` lists and `restore` brings back. More than ten wrong passwords in fifteen minutes refuse every login, the author's too, until the oldest leaves the window; `unlock` lets the author in at once (sessions already open are not affected). `npm run find:check -- --doc library/.cache/draft.json` runs the search checks on a pulled draft.
 
 ### Adding material
 

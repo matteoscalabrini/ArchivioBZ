@@ -1,10 +1,13 @@
 // How a session changes the archive: through the draft in the database, with the same version
 // check edit mode uses, instead of editing records in files.
-//   npm run draft -- status | pull [file] | push [file] | publish | discard | restore <id> | publishes  [--dev]
+//   npm run draft -- status | pull [file] | push [file] | publish | discard | restore <id> | publishes
+//                     | rerender | unlock  [--dev]
 // `pull` writes { version, doc } (default library/.cache/draft.json); change `doc`, then `push`
 // sends it back if the draft is still at that version. `publish` does what the Publish button does
-// and then deletes the edge's copies. --dev works on the local draft (library/.cache/dev-db), and
-// has nothing to purge.
+// and then deletes the edge's copies. `rerender` draws the public files again from the latest
+// publish (after a deploy of new page code), the draft untouched, and deletes the edge's copies.
+// `unlock` forgets the failed logins, when more than ten in fifteen minutes refuse every login.
+// --dev works on the local draft (library/.cache/dev-db), and has nothing to purge.
 import { realpathSync } from 'node:fs';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -16,13 +19,15 @@ import { ConflictError } from '../cloud/store.mjs';
 
 const LIBRARY = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const DEFAULT_FILE = path.join(LIBRARY, '.cache', 'draft.json');
-const USAGE = 'usage: npm run draft -- status | pull [file] | push [file] | publish | discard | restore <publish id> | publishes  [--dev]';
+const USAGE = 'usage: npm run draft -- status | pull [file] | push [file] | publish | discard | restore <publish id> | publishes | rerender | unlock  [--dev]';
+// The commands that work without a draft.
+const NO_DRAFT = ['publishes', 'rerender', 'unlock'];
 const conflictLine = (version) => `The draft changed since it was pulled (now version ${version}). Pull again.`;
 
 export async function runDraft(args, { store, root, purge, out = console }) {
   const [command, arg] = args;
-  const draft = await store.getDraft();
-  if (!draft) { out.error('There is no draft yet.'); return 1; }
+  const draft = NO_DRAFT.includes(command) ? null : await store.getDraft();
+  if (!draft && !NO_DRAFT.includes(command)) { out.error('There is no draft yet.'); return 1; }
   const published = async () => (await store.latestPublish())?.doc ?? null;
   const summary = async (doc) => summaryOf(await published(), doc);
   try {
@@ -85,6 +90,28 @@ export async function runDraft(args, { store, root, purge, out = console }) {
       case 'restore':
         if (!arg) { out.error(USAGE); return 1; }
         out.log(`Restored publish ${arg}: the draft is now version ${await store.restore(Number(arg), draft.version)}`);
+        return 0;
+      case 'rerender': {
+        const latest = await store.latestPublish();
+        if (!latest) { out.error('Nothing has been published yet.'); return 1; }
+        const { files, problems } = renderSite(latest.doc, await loadLists(root));
+        const errors = problems.filter((problem) => problem.level === 'error');
+        if (errors.length) {
+          out.error(`Not drawn: ${errors.map(({ where, message }) => `${where}: ${message}`).join('; ')}.`);
+          return 1;
+        }
+        await store.rewriteSite(latest.id, files);
+        out.log(`Drawn again from publish ${latest.id}; the draft is as it was.`);
+        try {
+          await purge();
+        } catch (error) {
+          out.error(`Drawn again, but the edge's copies were not deleted: ${error.message}`);
+          return 1;
+        }
+        return 0;
+      }
+      case 'unlock':
+        out.log(`Logins unlocked: ${await store.clearLoginFailures()} failed tries cleared.`);
         return 0;
       case 'publishes':
         for (const row of await store.listPublishes()) out.log(`${row.id}\t${new Date(row.at).toISOString()}\t${row.kind}\t${row.summary ?? ''}`);

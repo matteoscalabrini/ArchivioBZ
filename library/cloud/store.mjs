@@ -79,6 +79,21 @@ export function makeStore(db) {
       });
     },
 
+    // The public files drawn again for publish `publishId`, which must still be the latest; the
+    // draft's row is locked as a publish locks it, so the two cannot interleave. The draft and the
+    // publishes are not changed.
+    async rewriteSite(publishId, files) {
+      return db.transaction(async (q) => {
+        await q('select version from draft where id = 1 for update');
+        const [latest] = await q("select max(id) as id from publishes where kind = 'publish'");
+        if (latest?.id !== publishId) throw new Error(`Publish ${publishId} is no longer the latest; run it again.`);
+        await q('delete from site_files');
+        for (const [path, { body, type }] of files) {
+          await q('insert into site_files (path, body, content_type, publish_id) values ($1, $2, $3, $4)', [path, body, type, publishId]);
+        }
+      });
+    },
+
     // The draft is kept as a 'set-aside' entry before the latest publish replaces it: publishes are
     // rare, and one confirmed click would otherwise lose everything since the last.
     async discard(expected) {
@@ -135,6 +150,12 @@ export function makeStore(db) {
 
     async forgetLoginFailure(id) {
       await db.query('delete from login_failures where id = $1::bigint', [id]);
+    },
+
+    // Every failed login forgotten, so that the cap no longer refuses: how many there were.
+    async clearLoginFailures() {
+      const [row] = await db.query('with gone as (delete from login_failures returning 1) select count(*)::int as n from gone');
+      return row.n;
     },
   };
 }

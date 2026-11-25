@@ -79,3 +79,45 @@ test('publish from the command line purges', async () => {
   assert.ok(await store.siteFile('index.html'));
   assert.equal((await store.listPublishes()).length, 1);
 });
+
+// More than ten wrong passwords in fifteen minutes refuse every login, the author's too: one line
+// clears them.
+test('unlock clears the failed logins, with no draft needed', async () => {
+  for (let i = 0; i < 11; i++) await store.recordLoginFailure();
+  const empty = new PGlite();
+  const bare = makeStore(pgliteDb(empty));
+  await bare.init();
+  await bare.recordLoginFailure();
+  assert.equal(await runDraft(['unlock'], { store: bare, root: ROOT, purge: async () => {}, out }), 0);
+  assert.equal(await bare.recentLoginFailures(15), 0);
+  await empty.close();
+  assert.equal(await run(['unlock']), 0);
+  assert.equal(await store.recentLoginFailures(15), 0);
+  assert.ok(lines.includes('Logins unlocked: 11 failed tries cleared.'), lines.join('\n'));
+});
+
+// After a code deploy the stored pages are the old code's drawing: rerender draws them again from
+// the latest publish, leaving the draft as it is, and purges.
+test('rerender draws the public files again from the latest publish, the draft untouched, and purges', async () => {
+  let purged = 0;
+  assert.equal(await run(['rerender']), 1);
+  assert.ok(lines.includes('Nothing has been published yet.'), lines.join('\n'));
+  await run(['publish']);
+  const changed = sampleDoc();
+  changed.rows.a.record.title = 'Draft only';
+  await store.saveDraft(changed, 1);
+  await pg.query("update site_files set body = 'drawn by old code'");
+  const publishes = (await store.listPublishes()).length;
+  assert.equal(await run(['rerender'], { purge: async () => { purged++; } }), 0);
+  assert.equal(purged, 1);
+  const index = (await store.siteFile('index.html')).body;
+  assert.match(index, /Row a/);
+  assert.doesNotMatch(index, /Draft only/);
+  const draft = await store.getDraft();
+  assert.deepEqual([draft.version, draft.doc.rows.a.record.title], [2, 'Draft only']);
+  assert.equal((await store.listPublishes()).length, publishes, 'no publish is added');
+  const { id } = await store.latestPublish();
+  assert.deepEqual((await pg.query('select distinct publish_id from site_files')).rows, [{ publish_id: id }]);
+  assert.equal(await run(['rerender'], { purge: async () => { throw new Error('no'); } }), 1);
+  assert.ok(lines.some((line) => line.startsWith('Drawn again, but the edge\'s copies were not deleted')), lines.join('\n'));
+});
