@@ -197,7 +197,7 @@ export function redraw() {
       if (no.textContent !== shown) no.textContent = shown;
     }
   }
-  rescan({ chapters: headingsOf(state.chapters) });
+  rescan({ chapters: headingsOf(state.chapters, (id) => Boolean(state.doc.rows[id]) && state.doc.rows[id].hidden !== true) });
 }
 
 function dress(el) {

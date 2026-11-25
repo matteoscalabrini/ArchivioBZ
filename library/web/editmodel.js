@@ -45,9 +45,12 @@ export function storyPlaces(chapters) {
   return places;
 }
 
-// The chapters as rescan() takes them for the headings: each numbered by its place.
-export function headingsOf(chapters) {
-  return chapters.map(({ id, title }, i) => ({ id, no: String(i + 1), title }));
+// The chapters as rescan() takes them for the headings in edit mode: each numbered by its place
+// among the chapters that have a row shown (`shown(id)`: the row is not hidden), as the server
+// numbers them (chapterNumbers in cloud/doc.mjs); a chapter with none is marked —, as a hidden row is.
+export function headingsOf(chapters, shown) {
+  let n = 0;
+  return chapters.map(({ id, title, rows }) => ({ id, no: rows.some(shown) ? String(++n) : '—', title }));
 }
 
 // Where a row stands: its chapter and its index among that chapter's rows, or null.

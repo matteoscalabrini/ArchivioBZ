@@ -61,16 +61,29 @@ export function docFromLibrary(lib, { root, chapterTitles = {}, pictures = new M
   };
 }
 
-// Each row's number, which is its place: chapter, a dot, its position among the chapter's rows
-// that are not hidden, two digits at least. A hidden row has none ('').
-export function numbering(doc) {
+// Each chapter's number: its place among the chapters that have a row not hidden, from 1. A chapter
+// with no such row, every row hidden or none at all, has none (''): it is not on the public page,
+// and the chapters after it close up, as the rows after a hidden row do (the author, 25 Nov 2026).
+export function chapterNumbers(doc) {
   const numbers = new Map();
-  doc.chapters.forEach((chapter, i) => {
+  let n = 0;
+  for (const chapter of doc.chapters) {
+    numbers.set(chapter.id, chapter.rows.some((id) => doc.rows[id] && !doc.rows[id].hidden) ? String(++n) : '');
+  }
+  return numbers;
+}
+
+// Each row's number, which is its place: its chapter's number, a dot, its position among the
+// chapter's rows that are not hidden, two digits at least. A hidden row has none ('').
+export function numbering(doc) {
+  const chapters = chapterNumbers(doc);
+  const numbers = new Map();
+  for (const chapter of doc.chapters) {
     let position = 0;
     for (const id of chapter.rows) {
-      numbers.set(id, doc.rows[id]?.hidden ? '' : `${i + 1}.${String(++position).padStart(2, '0')}`);
+      numbers.set(id, doc.rows[id]?.hidden ? '' : `${chapters.get(chapter.id)}.${String(++position).padStart(2, '0')}`);
     }
-  });
+  }
   return numbers;
 }
 
@@ -78,6 +91,7 @@ export function numbering(doc) {
 // only when `hidden` (edit mode). `lists`: the shared search lists, which live in files, not here.
 export function libFromDoc(doc, { hidden = false, lists = { colours: {}, names: [], glossary: [] } } = {}) {
   const numbers = numbering(doc);
+  const chapterNo = chapterNumbers(doc);
   const entries = [];
   const chapters = [];
   doc.chapters.forEach((chapter, i) => {
@@ -105,7 +119,7 @@ export function libFromDoc(doc, { hidden = false, lists = { colours: {}, names: 
       });
       ids.push(id);
     }
-    chapters.push({ id: chapter.id, no: String(i + 1), title: chapter.title, ids });
+    chapters.push({ id: chapter.id, no: chapterNo.get(chapter.id), title: chapter.title, ids });
   });
   return {
     entries,

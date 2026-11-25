@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { applyOp, OpError } from '../cloud/ops.mjs';
-import { checkDoc } from '../cloud/doc.mjs';
+import { checkDoc, numbering } from '../cloud/doc.mjs';
 import { sampleDoc } from './docs.mjs';
 
 const sample = () => sampleDoc({ c1: ['a', 'b', 'c', 'd'], c2: ['e', 'f'] });
@@ -24,6 +24,16 @@ test('a chapter that does not exist is refused by name', () =>
 test('hidden rows are not counted when placing by number', () => {
   const doc = sample(); doc.rows.b.hidden = true;
   assert.deepEqual(applyOp(doc, { op: 'set-number', id: 'f', number: '1.02' }).doc.chapters[0].rows, ['a', 'b', 'f', 'c', 'd']);
+});
+// A typed number names a chapter as the page numbers it: one with no row shown has no number and
+// is passed over; it is reached by dragging or by ＋ row here.
+test('a typed chapter number counts only the chapters that have a number', () => {
+  const doc = sampleDoc({ c1: ['a'], c2: ['b'], c3: ['c', 'd'] });
+  doc.rows.b.hidden = true;
+  assert.deepEqual(applyOp(doc, { op: 'set-number', id: 'a', number: '2.02' }).doc.chapters.map((c) => c.rows), [[], ['b'], ['c', 'a', 'd']]);
+  refused(doc, { op: 'set-number', id: 'a', number: '3.01' }, 'There is no chapter 3.');
+  const after = applyOp(doc, { op: 'set-number', id: 'a', number: '2.01' }).doc;
+  assert.deepEqual(Object.fromEntries(numbering(after)), { a: '1.01', b: '', c: '1.02', d: '1.03' }, 'its old chapter emptied, the row is in chapter 1 now');
 });
 test('a row can be given a place later in its own chapter', () =>
   assert.deepEqual(applyOp(sample(), { op: 'set-number', id: 'a', number: '1.03' }).doc.chapters[0].rows, ['b', 'c', 'a', 'd']));

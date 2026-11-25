@@ -163,6 +163,7 @@ test('an op that moves or adds gives back what the page needs', async () => {
   const moved = await (await h.edit(post('op', { version: 1, op: { op: 'set-number', id: 'd', number: '1.01' } }))).json();
   assert.equal(moved.row, undefined, 'a move swaps no row');
   assert.deepEqual(moved.chapters.map((c) => c.rows), [['d', 'a', 'b', 'c'], []]);
+  assert.deepEqual(moved.chapters.map((c) => c.no), ['1', ''], 'a chapter with no row shown has no number');
   assert.equal(moved.numbers.d, '1.01');
   const added = await (await h.edit(post('op', { version: 2, op: { op: 'add-row', chapter: 'c2', title: 'New', type: 'Poster' } }))).json();
   assert.deepEqual(added.result, { id: 'r1' });

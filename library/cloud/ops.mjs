@@ -5,7 +5,7 @@
 // as a broken publish later.
 import { TYPES } from '../lib/records.mjs';
 import { parseIdea } from '../lib/idea.mjs';
-import { checkDoc, NUMBER_KEY, LEVELS } from './doc.mjs';
+import { checkDoc, chapterNumbers, NUMBER_KEY, LEVELS } from './doc.mjs';
 
 export class OpError extends Error {}
 
@@ -180,9 +180,11 @@ const OPS = {
     const n = match ? Number(match[1]) : 0;
     const p = match ? Number(match[2]) : 0;
     if (!match || n < 1 || p < 1) refuse('A number is a chapter and a place, as in 2.05.');
-    if (n > doc.chapters.length) refuse(`There is no chapter ${n}.`);
+    // Chapter n as the page numbers it before the move: a chapter with no row shown has no number.
+    const numbered = chapterNumbers(doc);
+    const chapter = doc.chapters.find((c) => numbered.get(c.id) === String(n));
+    if (!chapter) refuse(`There is no chapter ${n}.`);
     takeOut(doc, id);
-    const chapter = doc.chapters[n - 1];
     const visible = chapter.rows.filter((r) => !doc.rows[r].hidden);
     const before = visible[p - 1];
     chapter.rows.splice(before === undefined ? chapter.rows.length : chapter.rows.indexOf(before), 0, id);

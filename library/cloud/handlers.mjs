@@ -7,7 +7,7 @@
 // /edit/<route> to /api/edit?route=<route>.
 import { applyOp, OpError } from './ops.mjs';
 import { ConflictError } from './store.mjs';
-import { numbering } from './doc.mjs';
+import { numbering, chapterNumbers } from './doc.mjs';
 import { renderSite, renderEditPage, renderEditRow, editSearch, summaryOf, publishLine } from './render.mjs';
 import { verifyPassword, makeSession, readSession, sessionCookie, clearedCookie } from './auth.mjs';
 import { page, esc } from '../lib/shell.mjs';
@@ -150,10 +150,11 @@ ${line ? `<p class="login-line" role="alert">${esc(line)}</p>\n` : ''}</form>`,
     if (draft.version !== version) throw new ConflictError(draft.version);
     const { doc, result } = applyOp(draft.doc, wanted);
     const saved = await store.saveDraft(doc, version);
+    const chapterNo = chapterNumbers(doc);
     const reply = {
       version: saved,
       numbers: Object.fromEntries(numbering(doc)),
-      chapters: doc.chapters.map((chapter, i) => ({ id: chapter.id, no: String(i + 1), title: chapter.title, rows: chapter.rows })),
+      chapters: doc.chapters.map((chapter) => ({ id: chapter.id, no: chapterNo.get(chapter.id), title: chapter.title, rows: chapter.rows })),
       summary: summaryOf(published, doc),
       result, // the new id after add-row, add-chapter and add-keyword
     };

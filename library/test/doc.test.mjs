@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { loadLibrary } from '../lib/records.mjs';
 import { locatePlaces } from '../lib/places.mjs';
-import { docFromLibrary, numbering, libFromDoc, diffDocs, checkDoc, RECORD_FIELDS, withoutTerms } from '../cloud/doc.mjs';
+import { docFromLibrary, numbering, chapterNumbers, libFromDoc, diffDocs, checkDoc, RECORD_FIELDS, withoutTerms } from '../cloud/doc.mjs';
 import { cleanRoot } from './helpers.mjs';
 import { sampleDoc, sampleWith } from './docs.mjs';
 
@@ -81,6 +81,21 @@ test('numbers follow the place and skip hidden rows', () => {
   const doc = sample();
   doc.rows.b.hidden = true;
   assert.deepEqual(Object.fromEntries(numbering(doc)), { a: '1.01', b: '', c: '1.02', d: '2.01' });
+});
+
+// The author's ruling of 25 Nov 2026 (M2): chapters close up as rows do. A chapter counts only
+// when it has a row that is not hidden; one with none, every row hidden or no row at all, has no
+// number, and the chapters after it number on from the last that had one.
+test('a chapter with no row shown has no number, and the chapters after it close up', () => {
+  const doc = sampleDoc({ c1: ['a'], c2: ['b', 'c'], c3: [], c4: ['d'] });
+  doc.rows.b.hidden = true;
+  doc.rows.c.hidden = true;
+  assert.deepEqual(Object.fromEntries(chapterNumbers(doc)), { c1: '1', c2: '', c3: '', c4: '2' });
+  assert.deepEqual(Object.fromEntries(numbering(doc)), { a: '1.01', b: '', c: '', d: '2.01' });
+  assert.deepEqual(libFromDoc(doc, { hidden: true }).chapters.map((c) => [c.id, c.no]), [['c1', '1'], ['c2', ''], ['c3', ''], ['c4', '2']]);
+  assert.deepEqual(libFromDoc(doc).chapters.filter((c) => c.ids.length).map((c) => [c.id, c.no]), [['c1', '1'], ['c4', '2']]);
+  doc.rows.c.hidden = false;
+  assert.deepEqual(Object.fromEntries(numbering(doc)), { a: '1.01', b: '', c: '2.01', d: '3.01' });
 });
 
 test('ten rows and more keep two digits', () => assert.equal(numbering(sampleWith(12)).get('l'), '1.12'));

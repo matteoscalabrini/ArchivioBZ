@@ -101,6 +101,26 @@ test('the public Library has chapter headings and numbers from the place', () =>
   assert.match(articleOf(renderSite(doc, lists).files.get('index.html').body, '5.01'), /<span class="c-no">2\.01<\/span>/, 'a hidden row takes no place');
 });
 
+// M2: a chapter whose rows are all hidden has no heading on the public page, and the chapters
+// after it number on from the one before; in edit mode its heading stands with no number (the page
+// script shows — there, as for a hidden row).
+test('a chapter whose rows are all hidden leaves no gap in the numbers', () => {
+  const doc = fixtureDoc();
+  doc.rows['0.01'].hidden = true;
+  const { files } = renderSite(doc, lists);
+  const html = files.get('index.html').body;
+  assert.doesNotMatch(html, /data-chapter="c1"/);
+  assert.match(html, /<h2 class="chapter" data-chapter="c2"><span class="ch-no">1<\/span> Thread five<\/h2>/);
+  assert.match(html, /<h2 class="chapter" data-chapter="c3"><span class="ch-no">2<\/span> References<\/h2>/);
+  assert.match(articleOf(html, '5.00'), /<span class="c-no">1\.01<\/span>/);
+  assert.match(articleOf(html, '12.01'), /<span class="c-no">2\.01<\/span>/);
+  assert.deepEqual(JSON.parse(files.get('search.json').body).rows.find((row) => row.no === '12.01').line[0], '2.01');
+  assert.match(files.get('map.html').body, /<a href="index\.html#o=5\.01"><span class="no">1\.02<\/span>/);
+  const page = renderEditPage(doc, { version: 1, published: fixtureDoc(), lists });
+  assert.match(page, /<h2 class="chapter" data-chapter="c1"><span class="ch-no"><\/span> Reports<\/h2>/);
+  assert.match(page, /<h2 class="chapter" data-chapter="c2"><span class="ch-no">1<\/span> Thread five<\/h2>/);
+});
+
 test('an address naming a hidden row opens nothing: the row is not on the page', () => {
   const doc = fixtureDoc(); const id = '5.01';
   doc.rows[id].hidden = true;

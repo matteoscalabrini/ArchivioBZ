@@ -172,8 +172,10 @@ test('each row takes its place in the story from the chapters, hidden rows count
   assert.deepEqual([...storyPlaces(chapters())], [['a', { at: 0, chapter: 'c1' }], ['h', { at: 1, chapter: 'c1' }], ['b', { at: 2, chapter: 'c1' }], ['c', { at: 3, chapter: 'c3' }]]);
 });
 
-test('the headings rescan takes: each chapter numbered by its place', () => {
-  assert.deepEqual(headingsOf(chapters()), [{ id: 'c1', no: '1', title: 'One' }, { id: 'c2', no: '2', title: 'Two' }, { id: 'c3', no: '3', title: 'Three' }]);
+test('the headings rescan takes: each chapter numbered among those with a row shown, the others —', () => {
+  const shown = (id) => id !== 'h';
+  assert.deepEqual(headingsOf(chapters(), shown), [{ id: 'c1', no: '1', title: 'One' }, { id: 'c2', no: '—', title: 'Two' }, { id: 'c3', no: '2', title: 'Three' }]);
+  assert.deepEqual(headingsOf(chapters(), (id) => id === 'c').map((c) => c.no), ['—', '—', '1'], 'a chapter of hidden rows has no number either');
 });
 
 test('a row put at a place leaves where it was and goes there, the chapters given unchanged', () => {

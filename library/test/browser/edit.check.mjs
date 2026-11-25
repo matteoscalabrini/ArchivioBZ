@@ -108,6 +108,19 @@ async function listShows(page, want, when) {
   check(shown === want, `${when}, the list should read\n    ${want}\n  but reads\n    ${shown}`);
 }
 
+// Waits until the chapters' headings read `want`, each as "<chapter id>=<its number>".
+async function headingsRead(page, want, when) {
+  const read = () => page.evaluate(() => [...document.querySelectorAll('.list > h2.chapter')]
+    .map((h) => `${h.dataset.chapter}=${h.querySelector('.ch-no').textContent.trim()}`).join(' '));
+  const deadline = Date.now() + WAIT;
+  let shown = await read();
+  while (shown !== want && Date.now() < deadline) {
+    await pause(50);
+    shown = await read();
+  }
+  check(shown === want, `${when}, the headings should read ${want} but read ${shown}`);
+}
+
 // Waits until a row's title reads `want` (and holds no element: markup typed stays text).
 async function titleShows(page, id, want, when) {
   try {
@@ -299,16 +312,20 @@ async function main() {
     await titleShows(page, '5.02', MARKED, 'after a reload');
   });
 
-  await step('2.01 typed on the row of chapter 1 moves it to the head of chapter 2, and the numbers follow', async () => {
+  // Chapter 1 left empty has no number, and the chapters after it close up (the author's ruling
+  // of 25 Nov 2026): the row typed 2.01 is 1.01 once it is there.
+  await step('2.01 typed on the row of chapter 1 moves it to the head of chapter 2; chapter 1, empty, loses its number and the rest close up', async () => {
     await typeNumber(page, '0.01', '2.01');
     const answered = answerTo(page, 'op');
     await page.keyboard.press('Enter');
     check((await answered).status() === 200, 'the number was not taken');
-    const want = '# c1 # c2 0.01=2.01 5.00=2.02 5.01=2.03 5.02=2.04 5.03=2.05 # c3 12.01=3.01';
+    const want = '# c1 # c2 0.01=1.01 5.00=1.02 5.01=1.03 5.02=1.04 5.03=1.05 # c3 12.01=2.01';
     await listShows(page, want, 'after 2.01');
+    await headingsRead(page, 'c1=— c2=1 c3=2', 'after 2.01');
     await page.reload();
     await page.waitForSelector('.ed-bar');
     await listShows(page, want, 'after a reload');
+    await headingsRead(page, 'c1=— c2=1 c3=2', 'after a reload');
   });
 
   await step('a row dragged below another stays there after a reload', async () => {
@@ -318,7 +335,7 @@ async function main() {
     const move = sent.at(-1).body?.op;
     check(move?.op === 'move-row' && move.id === '5.00' && move.chapter === 'c2' && move.index === 2,
       `the drop sent ${JSON.stringify(move)}, not move-row of 5.00 to c2 at 2`);
-    const want = '# c1 # c2 0.01=2.01 5.01=2.02 5.00=2.03 5.02=2.04 5.03=2.05 # c3 12.01=3.01';
+    const want = '# c1 # c2 0.01=1.01 5.01=1.02 5.00=1.03 5.02=1.04 5.03=1.05 # c3 12.01=2.01';
     await listShows(page, want, 'after the drop');
     await page.reload();
     await page.waitForSelector('.ed-bar');
@@ -329,7 +346,7 @@ async function main() {
     const answered = answerTo(page, 'op');
     await page.click('article.row[data-no="5.01"] button.ed[data-ed="hide"]');
     check((await answered).status() === 200, 'the row was not hidden');
-    await listShows(page, '# c1 # c2 0.01=2.01 5.01=— 5.00=2.02 5.02=2.03 5.03=2.04 # c3 12.01=3.01', 'after 👁');
+    await listShows(page, '# c1 # c2 0.01=1.01 5.01=— 5.00=1.02 5.02=1.03 5.03=1.04 # c3 12.01=2.01', 'after 👁');
     check(await page.$eval('article.row[data-no="5.01"]', (el) => el.hasAttribute('data-hidden')), 'the hidden row carries no data-hidden');
   });
 
@@ -399,6 +416,19 @@ async function main() {
     await page.waitForSelector('.ed-bar');
     await listShows(page, want, 'after a reload');
     await titleShows(page, '12.01', 'Left for a drag', 'after a reload');
+  });
+
+  await step('a chapter whose one row is hidden is numbered —, the chapters after it close up, and shown again it comes back', async () => {
+    let answered = answerTo(page, 'op');
+    await page.click('article.row[data-no="0.01"] button.ed[data-ed="hide"]');
+    check((await answered).status() === 200, 'the row was not hidden');
+    await listShows(page, '# c1 0.01=— # c2 5.01=— 5.00=1.01 5.02=1.02 5.03=1.03 # c3 12.01=2.01', 'after 👁');
+    await headingsRead(page, 'c1=— c2=1 c3=2', 'after 👁');
+    answered = answerTo(page, 'op');
+    await page.click('article.row[data-no="0.01"] button.ed[data-ed="hide"]');
+    check((await answered).status() === 200, 'the row was not shown again');
+    await listShows(page, '# c1 0.01=1.01 # c2 5.01=— 5.00=2.01 5.02=2.02 5.03=2.03 # c3 12.01=3.01', 'shown again');
+    await headingsRead(page, 'c1=1 c2=2 c3=3', 'shown again');
   });
 
   await step('a title saved after the session ended stays in its field with the logged-out line; logged in on another tab, it saves', async () => {
