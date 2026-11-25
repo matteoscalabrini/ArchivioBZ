@@ -1,12 +1,15 @@
 // How a session changes the archive: through the draft in the database, with the same version
 // check edit mode uses, instead of editing records in files.
 //   npm run draft -- status | pull [file] | push [file] | publish | discard | restore <id> | publishes
-//                     | rerender | unlock  [--dev]
+//                     | rerender | unlock | compare <folder>  [--dev]
 // `pull` writes { version, doc } (default library/.cache/draft.json); change `doc`, then `push`
 // sends it back if the draft is still at that version. `publish` does what the Publish button does
 // and then deletes the edge's copies. `rerender` draws the public files again from the latest
 // publish (after a deploy of new page code), the draft untouched, and deletes the edge's copies.
 // `unlock` forgets the failed logins, when more than ten in fifteen minutes refuse every login.
+// `compare` draws the draft as the public site and compares its rows with the Library page of a
+// static build in <folder> (the site online until the first Publish), row by row (tools/compare.mjs),
+// and fails when any differs: the check before the first Publish (design §10).
 // --dev works on the local draft (library/.cache/dev-db), and has nothing to purge.
 import { realpathSync } from 'node:fs';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
@@ -16,10 +19,11 @@ import { fileURLToPath } from 'node:url';
 import { checkDoc, raiseCounters } from '../cloud/doc.mjs';
 import { loadLists, renderSite, renderEditPage, summaryOf, publishLine } from '../cloud/render.mjs';
 import { ConflictError } from '../cloud/store.mjs';
+import { compareRows } from './compare.mjs';
 
 const LIBRARY = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const DEFAULT_FILE = path.join(LIBRARY, '.cache', 'draft.json');
-const USAGE = 'usage: npm run draft -- status | pull [file] | push [file] | publish | discard | restore <publish id> | publishes | rerender | unlock  [--dev]';
+const USAGE = 'usage: npm run draft -- status | pull [file] | push [file] | publish | discard | restore <publish id> | publishes | rerender | unlock | compare <static folder>  [--dev]';
 // The commands that work without a draft.
 const NO_DRAFT = ['publishes', 'rerender', 'unlock'];
 const conflictLine = (version) => `The draft changed since it was pulled (now version ${version}). Pull again.`;
@@ -112,6 +116,21 @@ export async function runDraft(args, { store, root, purge, out = console }) {
           return 1;
         }
         return 0;
+      }
+      case 'compare': {
+        if (!arg) { out.error(USAGE); return 1; }
+        const where = path.join(path.resolve(arg), 'index.html');
+        let there;
+        try {
+          there = await readFile(where, 'utf8');
+        } catch {
+          out.error(`There is no index.html in ${path.resolve(arg)}.`);
+          return 1;
+        }
+        const here = renderSite(draft.doc, await loadLists(root)).files.get('index.html').body;
+        const { lines, differ } = compareRows(there, here, { where });
+        for (const line of lines) out.log(line);
+        return differ ? 1 : 0;
       }
       case 'unlock':
         out.log(`Logins unlocked: ${await store.clearLoginFailures()} failed tries cleared.`);

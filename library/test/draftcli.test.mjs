@@ -1,12 +1,13 @@
 import { test, beforeEach, afterEach } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, readFile, writeFile, rm } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, writeFile, rm } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { PGlite } from '@electric-sql/pglite';
 import { pgliteDb } from '../cloud/db.mjs';
 import { makeStore } from '../cloud/store.mjs';
 import { runDraft } from '../tools/draft.mjs';
+import { loadLists, renderSite } from '../cloud/render.mjs';
 import { sampleDoc } from './docs.mjs';
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', '..');
@@ -136,4 +137,58 @@ test('rerender draws the public files again from the latest publish, the draft u
   assert.deepEqual((await pg.query('select distinct publish_id from site_files')).rows, [{ publish_id: id }]);
   assert.equal(await run(['rerender'], { purge: async () => { throw new Error('no'); } }), 1);
   assert.ok(lines.some((line) => line.startsWith('Drawn again, but the edge\'s copies were not deleted')), lines.join('\n'));
+});
+
+// I6 (clean review), design §10: before the first Publish, the draft drawn as the public site is
+// compared with the site online, row by row, on what a reader sees of a row apart from its number
+// and chapter: its id, title, text, number of pictures, keywords and place.
+test('compare lists the rows that differ from a static site, by what differs, and counts them', async () => {
+  const live = path.join(dir, 'static');
+  await mkdir(live);
+  const before = sampleDoc();
+  before.rows.a.pictures = [{ src: '/x/a-1.jpg', w: 4, h: 3, caption: '' }, { src: '/x/a-2.jpg', w: 4, h: 3, caption: '' }];
+  before.rows.c.record.text = ['One paragraph & "quotes".', 'A second.'];
+  before.rows.d.record.place = 'piazza';
+  before.rows.d.record.keywords = ['march'];
+  await writeFile(path.join(live, 'index.html'), renderSite(before, await loadLists(ROOT)).files.get('index.html').body);
+  // The site online was built with other picture addresses, and the draft numbers by chapters.
+  const draft = structuredClone(before);
+  draft.rows.a.pictures = draft.rows.a.pictures.map((p) => ({ ...p, src: `https://blob.example/${p.src.slice(3)}` }));
+  draft.chapters = [{ id: 'c1', title: 'One', rows: ['a', 'b'] }, { id: 'c2', title: 'Two', rows: ['c', 'd'] }];
+  await store.saveDraft(draft, 1);
+  assert.equal(await run(['compare', live]), 0);
+  assert.deepEqual(lines, [
+    `Compared with ${path.join(live, 'index.html')}: 4 rows there, 4 in the draft drawn as the public site, in the same order.`,
+    'No row differs.',
+  ]);
+
+  const changed = structuredClone(draft);
+  changed.rows.a.record.title = 'Changed';
+  changed.rows.a.pictures.pop();
+  changed.rows.b.hidden = true;
+  changed.rows.c.record.text = ['One paragraph & "quotes".', 'Another second.'];
+  changed.rows.d.record.keywords = ['march', 'wall'];
+  delete changed.rows.d.record.place;
+  changed.rows.r1 = structuredClone(changed.rows.b);
+  changed.rows.r1.hidden = false;
+  changed.chapters[1].rows = ['d', 'c', 'r1'];
+  changed.next.row = 2;
+  await store.saveDraft(changed, 2);
+  lines.length = 0;
+  assert.equal(await run(['compare', live]), 1);
+  assert.deepEqual(lines, [
+    `Compared with ${path.join(live, 'index.html')}: 4 rows there, 4 in the draft drawn as the public site, in another order.`,
+    '  a  title: "Row a" there, "Changed" in the draft; pictures: 2 there, 1 in the draft',
+    '  b  only there: hidden or removed in the draft',
+    '  c  text, paragraph 2: "A second." there, "Another second." in the draft',
+    '  d  keywords: "march" there, "march wall" in the draft; place: "piazza" there, none in the draft',
+    '  r1  only in the draft',
+    '5 rows differ.',
+  ]);
+  lines.length = 0;
+  assert.equal(await run(['compare', path.join(dir, 'nowhere')]), 1);
+  assert.deepEqual(lines, [`There is no index.html in ${path.join(dir, 'nowhere')}.`]);
+  lines.length = 0;
+  assert.equal(await run(['compare']), 1);
+  assert.match(lines[0], /^usage: npm run draft -- /);
 });
