@@ -79,15 +79,16 @@ export function makeStore(db) {
       });
     },
 
+    // The draft is kept as a 'set-aside' entry before the latest publish replaces it: publishes are
+    // rare, and one confirmed click would otherwise lose everything since the last.
     async discard(expected) {
       return db.transaction(async (q) => {
         const [latest] = await q("select doc from publishes where kind = 'publish' order by id desc limit 1");
         if (!latest) throw new Error('Nothing has been published yet');
-        const rows = await q(
-          'update draft set doc = $1::json, version = version + 1, saved_at = now() where id = 1 and version = $2 returning version',
-          [json(latest.doc), expected],
-        );
-        if (!rows.length) throw await conflict(q);
+        const [draft] = await q('select doc from draft where id = 1 and version = $1 for update', [expected]);
+        if (!draft) throw await conflict(q);
+        await q("insert into publishes (kind, doc, summary) values ('set-aside', $1::json, 'Set aside before a discard')", [json(draft.doc)]);
+        const rows = await q('update draft set doc = $1::json, version = version + 1, saved_at = now() where id = 1 returning version', [json(latest.doc)]);
         return rows[0].version;
       });
     },

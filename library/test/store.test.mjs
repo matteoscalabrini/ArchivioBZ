@@ -65,6 +65,19 @@ test('discard goes back to the latest publish', async () => {
   await assert.rejects(store.discard(2), (e) => e instanceof ConflictError && e.version === 3);
 });
 
+test('discard sets the draft aside first, so a confirmed click loses nothing', async () => {
+  await store.createDraft(sample());
+  await store.publish(1, files(), 's');
+  const changed = sample();
+  changed.rows.a.record.title = 'Hours of work';
+  await store.saveDraft(changed, 1);
+  assert.equal(await store.discard(2), 3);
+  const [aside] = (await pg.query("select kind, doc, summary from publishes where kind = 'set-aside'")).rows;
+  assert.deepEqual(aside, { kind: 'set-aside', doc: changed, summary: 'Set aside before a discard' });
+  await assert.rejects(store.discard(2), ConflictError);
+  assert.equal((await pg.query("select count(*)::int as n from publishes where kind = 'set-aside'")).rows[0].n, 1, 'a refused discard sets nothing aside');
+});
+
 test('restore sets the draft aside first', async () => {
   await store.createDraft(sample());
   const { id } = await store.publish(1, files(), 's');
