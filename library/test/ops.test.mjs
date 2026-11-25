@@ -234,6 +234,14 @@ test('set-idea refuses an unknown marked keyword, accepts a known one', () => {
   assert.equal(applyOp(sample(), { op: 'set-idea', text: 'A [[wall]] and [[Walls]].' }).doc.idea, 'A [[wall]] and [[Walls]].');
   refused(sample(), { op: 'set-idea', text: 'A [[nothing]] here.' });
 });
+// The design (§5): the stand-in flag goes when the author first saves an idea of their own.
+test('set-idea drops the stand-in line, and says what it stored', () => {
+  const { doc, result } = applyOp(sample(), { op: 'set-idea', text: 'status: stand-in\n\nMy own idea, about a [[wall]].' });
+  assert.equal(doc.idea, 'My own idea, about a [[wall]].');
+  assert.deepEqual(result, { text: 'My own idea, about a [[wall]].' });
+  assert.equal(applyOp(sample(), { op: 'set-idea', text: 'Status: Stand-in  \r\nOne line.' }).doc.idea, 'One line.');
+  assert.equal(applyOp(sample(), { op: 'set-idea', text: 'A line.\nstatus: stand-in' }).doc.idea, 'A line.\nstatus: stand-in', 'only a first line is the flag');
+});
 test('set-about stores the text', () => assert.equal(applyOp(sample(), { op: 'set-about', text: 'Hello' }).doc.about, 'Hello'));
 
 test('an unknown operation is refused', () => refused(sample(), { op: 'explode' }));

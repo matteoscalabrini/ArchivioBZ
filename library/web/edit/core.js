@@ -162,7 +162,7 @@ function keep(op, answer) {
     // library.js names a keyword in the status line from this list.
     const labels = document.getElementById('keyword-labels');
     if (labels) labels.textContent = JSON.stringify({ ...JSON.parse(labels.textContent), [answer.result.id]: label }).replace(/</g, '\\u003c');
-  } else if (op.op === 'set-idea') doc.idea = op.text;
+  } else if (op.op === 'set-idea') doc.idea = typeof answer.result?.text === 'string' ? answer.result.text : op.text; // without the stand-in line
   else if (op.op === 'set-about') doc.about = op.text;
 }
 

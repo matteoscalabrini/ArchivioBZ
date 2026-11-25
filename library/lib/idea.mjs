@@ -7,6 +7,16 @@ import { esc } from './shell.mjs';
 const STANDIN = /^status:\s*stand-in\s*$/i;
 const MARK = /\[\[([^[\]]*)\]\]/g;
 
+// The idea without its first line `status: stand-in` and the empty lines after it: what edit mode
+// stores when the author saves an idea, which is then their own (design §5).
+export function withoutStandin(text) {
+  const lines = String(text).replace(/^\uFEFF/, '').split(/\r?\n/);
+  if (!STANDIN.test(lines[0].trim())) return String(text);
+  lines.shift();
+  while (lines.length && !lines[0].trim()) lines.shift();
+  return lines.join('\n');
+}
+
 // problems: [{level, message}]; the caller knows which file they belong to.
 export function parseIdea(text, { keywords, aliases }) {
   const find = lookup(keywords, aliases);

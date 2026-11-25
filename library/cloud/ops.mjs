@@ -4,7 +4,7 @@
 // operation the document is checked again, so a gap in an operation shows as an error here and not
 // as a broken publish later.
 import { TYPES } from '../lib/records.mjs';
-import { parseIdea } from '../lib/idea.mjs';
+import { parseIdea, withoutStandin } from '../lib/idea.mjs';
 import { checkDoc, chapterNumbers, NUMBER_KEY, LEVELS } from './doc.mjs';
 
 export class OpError extends Error {}
@@ -252,12 +252,13 @@ const OPS = {
     doc.keywords[id] = { label: shown };
     return { id, existed: false };
   },
+  // The author's own idea: the stand-in flag of the moved-in text goes at the first save.
   'set-idea'(doc, { text }) {
     if (!isText(text)) refuse('The idea must be text.');
     const error = parseIdea(text, doc).problems.find((p) => p.level === 'error');
     if (error) refuse(`The idea cannot be saved: ${error.message}.`);
-    doc.idea = text;
-    return {};
+    doc.idea = withoutStandin(text);
+    return { text: doc.idea };
   },
   'set-about'(doc, { text }) {
     if (!isText(text)) refuse('The about page must be text.');
