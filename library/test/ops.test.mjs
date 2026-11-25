@@ -142,6 +142,26 @@ test('set-row checks year, place, confidence, source, side_by_side and strings',
   const record = applyOp(sample(), { op: 'set-row', id: 'a', fields: { confidence: { level: 'read', note: 'seen' }, source: { label: 'L', url: 'https://x.org' }, creator: 'C', rights: 'R' } }).doc.rows.a.record;
   assert.deepEqual([record.confidence, record.source, record.creator, record.rights], [{ level: 'read', note: 'seen' }, { label: 'L', url: 'https://x.org' }, 'C', 'R']);
 });
+// Minor 9 (clean review): a year far out of range is a slip of the keys, a date is stored trimmed,
+// and a Source address that is not a web address would be stored and shown as words that link
+// nowhere, so it is refused with a sentence.
+test('set-row: the year within 1000 to 2100, the words trimmed, a Source address on the web', () => {
+  const YEAR = 'The year must be a whole number between 1000 and 2100.';
+  for (const year of [1.939e22, 19340, 999, 2101, -50]) refused(sample(), { op: 'set-row', id: 'a', fields: { year } }, YEAR);
+  for (const year of [1000, 1858, 2026, 2100]) assert.equal(applyOp(sample(), { op: 'set-row', id: 'a', fields: { year } }).doc.rows.a.record.year, year);
+  const trimmed = applyOp(sample(), { op: 'set-row', id: 'a', fields: { date: ' 1931–34 ', holder: ' Archive ', creator: '\tC ', rights: ' R' } }).doc.rows.a.record;
+  assert.deepEqual([trimmed.date, trimmed.holder, trimmed.creator, trimmed.rights], ['1931–34', 'Archive', 'C', 'R']);
+  assert.ok(!Object.hasOwn(applyOp(sample(), { op: 'set-row', id: 'a', fields: { holder: '   ' } }).doc.rows.a.record, 'holder'), 'spaces alone are nothing');
+  const ADDRESS = 'The address of a source starts with http:// or https://.';
+  for (const url of ['www.example.org', 'javascript:alert(1)', 'ftp://x.org', 'example.org/https://']) {
+    refused(sample(), { op: 'set-row', id: 'a', fields: { source: { label: 'L', url } } }, ADDRESS);
+  }
+  const source = (value) => applyOp(sample(), { op: 'set-row', id: 'a', fields: { source: value } }).doc.rows.a.record.source;
+  assert.deepEqual(source({ label: ' L ', url: ' HTTPS://x.org/a ' }), { label: 'L', url: 'HTTPS://x.org/a' });
+  assert.deepEqual(source({ label: 'Words only', url: '' }), { label: 'Words only' });
+  assert.deepEqual(source({ label: '', url: 'http://x.org' }), { url: 'http://x.org' });
+});
+
 test('a sixth keyword is refused, a folded one resolved', () => {
   const doc = sample();
   for (const id of ['k1', 'k2', 'k3', 'k4', 'k5', 'k6']) doc.keywords[id] = { label: id };

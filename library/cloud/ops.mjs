@@ -10,6 +10,12 @@ import { checkDoc, chapterNumbers, NUMBER_KEY, LEVELS } from './doc.mjs';
 export class OpError extends Error {}
 
 const MAX_KEYWORDS = 5;
+// The years a row may carry: the library's run from 1858 to now, with room either side; a year
+// outside is a slip of the keys (19340, or 1.939e22).
+const YEARS = [1000, 2100];
+// A Source's address is a web address: lib/detail.mjs links only these, so any other would be
+// stored and shown as words that lead nowhere.
+const WEB = /^https?:\/\//i;
 // A chapter and a place, parted by a full stop or by a comma: a phone set to a region that writes
 // decimals with a comma (Italy) offers only a comma on its decimal keypad.
 const NUMBER = /^\s*(\d{1,3})[.,](\d{1,3})\s*$/;
@@ -49,11 +55,13 @@ function checkedField(doc, name, value) {
   }
   if (STRING_FIELDS.includes(name)) {
     if (value !== null && !isText(value)) refuse(`The ${name} must be text.`);
-    return isEmpty(value) ? undefined : value;
+    const words = value?.trim() ?? '';
+    return words ? words : undefined;
   }
   if (name === 'year') {
-    if (value !== null && !Number.isInteger(value)) refuse('The year must be a whole number.');
-    return value ?? undefined;
+    if (value === null) return undefined;
+    if (!Number.isInteger(value) || value < YEARS[0] || value > YEARS[1]) refuse(`The year must be a whole number between ${YEARS[0]} and ${YEARS[1]}.`);
+    return value;
   }
   if (name === 'keywords') {
     if (!Array.isArray(value)) refuse('The keywords must be a list.');
@@ -79,7 +87,8 @@ function checkedField(doc, name, value) {
   if (name === 'source') {
     if (value === null) return undefined;
     if (!LIVE(value) || ['label', 'url'].some((k) => value[k] !== undefined && !isText(value[k]))) refuse('The source needs a label and an address, as text.');
-    const source = Object.fromEntries(['label', 'url'].filter((k) => value[k]).map((k) => [k, value[k]]));
+    const source = Object.fromEntries(['label', 'url'].map((k) => [k, value[k]?.trim()]).filter(([, words]) => words));
+    if (source.url && !WEB.test(source.url)) refuse('The address of a source starts with http:// or https://.');
     return Object.keys(source).length ? source : undefined;
   }
   if (name === 'place') {
