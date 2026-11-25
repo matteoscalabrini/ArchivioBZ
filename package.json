@@ -7,6 +7,7 @@
   "scripts": {
     "build": "node library/build.mjs",
     "check": "npm run build -- --check",
+    "check:edit": "node library/test/browser/edit.check.mjs",
     "db:sync": "node --env-file-if-exists=library/.deploy/.env.local library/db/sync.mjs",
     "deploy": "node library/deploy.mjs",
     "dev": "node library/tools/dev.mjs",
