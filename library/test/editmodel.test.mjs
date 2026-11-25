@@ -156,14 +156,14 @@ test('the number of changes is read from the summary line as diffDocs counts the
   const diff = diffDocs(before, after);
   assert.equal(summaryLine(diff), '2 rows changed, 1 added, 1 removed, 1 hidden, order changed, idea changed');
   assert.equal(changesIn(summaryLine(diff)), diff.count);
-  assert.equal(changesIn(summaryLine(diffDocs(null, before))), diffDocs(null, before).count);
   assert.equal(changesIn('No changes since the last publish'), 0);
 });
 
-test('the question before a publish', () => {
-  assert.equal(publishQuestion(9), 'Publish 9 changes?');
-  assert.equal(publishQuestion(1), 'Publish 1 change?');
-  assert.equal(publishQuestion(0), 'Publish again? Nothing has changed since the last publish.');
+test('the question before a publish, from the summary', () => {
+  assert.equal(publishQuestion('6 rows changed, 2 added, 1 hidden'), 'Publish 9 changes?');
+  assert.equal(publishQuestion('order changed'), 'Publish 1 change?');
+  assert.equal(publishQuestion('No changes since the last publish'), 'Publish again? Nothing has changed since the last publish.');
+  assert.equal(publishQuestion('Nothing published yet: 277 rows in 18 chapters'), 'Publish for the first time? 277 rows in 18 chapters.');
 });
 
 const chapters = () => [{ id: 'c1', title: 'One', rows: ['a', 'h', 'b'] }, { id: 'c2', title: 'Two', rows: [] }, { id: 'c3', title: 'Three', rows: ['c'] }];

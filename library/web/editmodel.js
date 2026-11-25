@@ -208,8 +208,14 @@ export function changesIn(summary) {
   }, 0);
 }
 
-// The question before a publish. With nothing changed a publish still refreshes the public site.
-export function publishQuestion(n) {
+// The question before a publish, from the bar's summary line. Before the first publish it says
+// what the site will show ("Nothing published yet: 277 rows in 18 chapters" asks "Publish for the
+// first time? 277 rows in 18 chapters."); with nothing changed a publish still refreshes the
+// public site.
+export function publishQuestion(summary) {
+  const first = /^Nothing published yet: (.+)$/.exec(String(summary ?? ''));
+  if (first) return `Publish for the first time? ${first[1]}.`;
+  const n = changesIn(summary);
   if (n === 0) return 'Publish again? Nothing has changed since the last publish.';
   return `Publish ${n} ${n === 1 ? 'change' : 'changes'}?`;
 }

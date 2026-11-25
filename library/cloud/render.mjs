@@ -61,11 +61,11 @@ export function renderSite(doc, lists) {
 // The Library in edit mode, at /edit/: every row of the draft, hidden ones too, a hidden row marked
 // data-hidden and a row that differs from the latest publish data-changed; the draft itself, its
 // version, the row types, the summary line and the changed rows' ids as #edit-data for web/edit.js.
-// `published`: the latest publish's document, or null when there is none (every row is then new).
+// `published`: the latest publish's document, or null when there is none: then no row is marked,
+// since every one would be, and the summary counts what the first publish would show.
 export function renderEditPage(doc, { version, published, lists }) {
-  const diff = diffDocs(published, doc);
-  const changed = changedRows(doc, diff);
-  return editPage(doc, lists, changed, { version, doc, types: TYPES, summary: summaryLine(diff), changed: [...changed] });
+  const changed = changedRows(doc, published);
+  return editPage(doc, lists, changed, { version, doc, types: TYPES, summary: summaryOf(published, doc), changed: [...changed] });
 }
 
 // One row of the edit page, its <article class="row"> exactly as renderEditPage draws it for the
@@ -73,7 +73,7 @@ export function renderEditPage(doc, { version, published, lists }) {
 // out of it, so the two cannot differ: every word of a row is escaped, so the first </article>
 // after the row's start is its end.
 export function renderEditRow(doc, id, lists, { published = null } = {}) {
-  const html = editPage(doc, lists, changedRows(doc, diffDocs(published, doc)), null);
+  const html = editPage(doc, lists, changedRows(doc, published), null);
   const start = html.indexOf(`<article class="row" data-no="${esc(id)}"`);
   if (start < 0) throw new Error(`no row ${id} in the draft`);
   const end = html.indexOf('</article>', start) + '</article>'.length;
@@ -83,6 +83,26 @@ export function renderEditRow(doc, id, lists, { published = null } = {}) {
 // What the search in edit mode reads: search.json of the draft, hidden rows included.
 export function editSearch(doc, lists) {
   return searchIndex(libFromDoc(doc, { hidden: true, lists }));
+}
+
+// "277 rows in 18 chapters": the rows a publish of the document shows (not the hidden ones), and
+// its chapters.
+export function counted(doc) {
+  const rows = doc.chapters.reduce((n, chapter) => n + chapter.rows.filter((id) => doc.rows[id] && !doc.rows[id].hidden).length, 0);
+  const chapters = doc.chapters.length;
+  return `${rows} ${rows === 1 ? 'row' : 'rows'} in ${chapters} ${chapters === 1 ? 'chapter' : 'chapters'}`;
+}
+
+// The edit bar's line for the draft against the latest publish (`published`, null when there is
+// none): what a publish would carry, or, before the first, "Nothing published yet: 277 rows in 18
+// chapters", where every row, title and word would otherwise count as a change.
+export function summaryOf(published, doc) {
+  return published ? summaryLine(diffDocs(published, doc)) : `Nothing published yet: ${counted(doc)}`;
+}
+
+// The line a publish is stored with, which the list of publishes shows.
+export function publishLine(published, doc) {
+  return published ? summaryLine(diffDocs(published, doc)) : `First publish: ${counted(doc)}`;
 }
 
 // The words in the edit bar for what a publish would carry, from diffDocs: "6 rows changed, 2 added,
@@ -128,7 +148,10 @@ function theIdea(doc) {
 
 // The rows of the draft that differ from the publish, in the story order: changed, added, hidden
 // or shown again. A row that only moved is not one of them; the summary says the order changed.
-function changedRows(doc, diff) {
+// None before the first publish.
+function changedRows(doc, published) {
+  if (!published) return new Set();
+  const diff = diffDocs(published, doc);
   const ids = new Set([...diff.changed, ...diff.added, ...diff.hidden, ...diff.shown]);
   return new Set(doc.chapters.flatMap((chapter) => chapter.rows).filter((id) => ids.has(id)));
 }

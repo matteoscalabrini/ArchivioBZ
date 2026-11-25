@@ -6,10 +6,11 @@ import { readFile } from 'node:fs/promises';
 import { loadLibrary, TYPES } from '../lib/records.mjs';
 import { locatePlaces } from '../lib/places.mjs';
 import { docFromLibrary } from '../cloud/doc.mjs';
-import { loadLists, renderSite, renderEditPage, renderEditRow, editSearch, summaryLine } from '../cloud/render.mjs';
+import { loadLists, renderSite, renderEditPage, renderEditRow, editSearch, summaryLine, summaryOf, publishLine } from '../cloud/render.mjs';
 import { parseState } from '../web/state.js';
 import { esc } from '../lib/shell.mjs';
 import { cleanRoot } from './helpers.mjs';
+import { sampleWith } from './docs.mjs';
 
 // The fixtures moved in once, as the cloud holds them: a picture per held image at a root path,
 // a small one for a row with a place, three chapters, a stand-in idea and the fixtures' About.
@@ -138,9 +139,13 @@ test('the edit page marks what changed since the last publish', () => {
   assert.deepEqual(marked, ['5.00', '5.02', '12.01']);
   assert.deepEqual(editData(page).changed, marked);
   assert.equal(editData(page).summary, '1 row changed, 1 hidden, 1 shown again');
-  const fresh = renderEditPage(fixtureDoc(), { version: 1, published: null, lists });
-  assert.equal(editData(fresh).summary, `${ids(BASE).length} added, order changed, chapters changed, idea changed, About changed, keywords changed`, 'nothing published: every row is added, and all else is new');
-  assert.equal(fresh.match(/data-changed="true"/g).length, ids(BASE).length);
+  // Nothing published yet: the bar counts what a publish would show, and no row is marked.
+  const first = fixtureDoc();
+  first.rows['5.01'].hidden = true;
+  const fresh = renderEditPage(first, { version: 1, published: null, lists });
+  assert.equal(editData(fresh).summary, `Nothing published yet: ${ids(BASE).length - 1} rows in 3 chapters`);
+  assert.doesNotMatch(fresh, /data-changed/);
+  assert.deepEqual(editData(fresh).changed, []);
   const same = renderEditPage(fixtureDoc(), { version: 1, published: fixtureDoc(), lists });
   assert.equal(editData(same).summary, 'No changes since the last publish');
   assert.doesNotMatch(same, /data-changed/);
@@ -154,8 +159,18 @@ test('one row is drawn exactly as the edit page draws it', () => {
   const page = renderEditPage(doc, { version: 3, published, lists });
   for (const id of ids(doc)) assert.equal(renderEditRow(doc, id, lists, { published }), articleOf(page, id), id);
   assert.match(renderEditRow(doc, '5.01', lists, { published }), /data-hidden="true" data-changed="true"/);
-  assert.match(renderEditRow(doc, '5.01', lists), /data-changed="true"/, 'with no publish given, every row is new');
+  assert.doesNotMatch(renderEditRow(doc, '5.01', lists), /data-changed/, 'with nothing published, no row is marked');
   assert.throws(() => renderEditRow(doc, 'r404', lists), /r404/);
+});
+
+test('the summary and the stored line before the first publish and after it', () => {
+  const doc = sampleWith(1);
+  assert.equal(summaryOf(null, doc), 'Nothing published yet: 1 row in 1 chapter');
+  assert.equal(publishLine(null, fixtureDoc()), `First publish: ${ids(BASE).length} rows in 3 chapters`);
+  const changed = structuredClone(doc);
+  changed.rows.a.record.title = 'Other';
+  assert.equal(summaryOf(doc, changed), '1 row changed');
+  assert.equal(publishLine(doc, changed), '1 row changed');
 });
 
 test('summaryLine', () => {

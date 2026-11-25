@@ -21,7 +21,6 @@ import { pgliteDb } from '../../cloud/db.mjs';
 import { makeStore } from '../../cloud/store.mjs';
 import { moveIn, devPictures } from '../../tools/move-in.mjs';
 import { startDev } from '../../tools/dev.mjs';
-import { changesIn, publishQuestion } from '../../web/editmodel.js';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const LIBRARY = path.resolve(HERE, '..', '..');
@@ -282,6 +281,10 @@ async function main() {
     check(bar.label === 'Draft', `the bar's label is ${JSON.stringify(bar.label)}`);
     check(JSON.stringify(bar.buttons) === JSON.stringify(BUTTONS), `the bar's buttons are ${JSON.stringify(bar.buttons)}`);
     await listShows(page, '# c1 0.01=1.01 # c2 5.00=2.01 5.01=2.02 5.02=2.03 5.03=2.04 # c3 12.01=3.01', 'logged in');
+    // Nothing is published yet: the bar counts the draft, and no row is marked as changed.
+    const summary = await page.$eval('.ed-summary', (el) => el.textContent);
+    check(summary === 'Nothing published yet: 6 rows in 3 chapters', `the summary reads ${JSON.stringify(summary)}`);
+    check(!(await page.$('article.row[data-changed]')), 'a row is marked changed before the first publish');
   });
 
   await step('a title changed, with markup typed in it, is shown as typed, and again after a reload', async () => {
@@ -426,14 +429,15 @@ async function main() {
   });
 
   await step('Publish asks with the exact line, publishes, and the summary says nothing differs', async () => {
+    // 5.01 is hidden by now: five rows show, in the three chapters.
     const summary = await page.$eval('.ed-summary', (el) => el.textContent);
+    check(summary === 'Nothing published yet: 5 rows in 3 chapters', `the summary reads ${JSON.stringify(summary)}`);
     await page.screenshot({ path: path.join(SHOTS, 'edit-page.png'), fullPage: true });
     await page.click('.ed-bar .ed-publish');
     const question = await page.waitForSelector('dialog.ed-dialog[open] .ed-question');
     const asked = await question.evaluate((el) => el.textContent);
-    const want = publishQuestion(changesIn(summary));
-    check(asked === want, `asked ${JSON.stringify(asked)}, not ${JSON.stringify(want)} (the summary read ${JSON.stringify(summary)})`);
-    check(changesIn(summary) > 0, `the summary ${JSON.stringify(summary)} counts no change`);
+    const want = 'Publish for the first time? 5 rows in 3 chapters.';
+    check(asked === want, `asked ${JSON.stringify(asked)}, not ${JSON.stringify(want)}`);
     const answered = answerTo(page, 'publish');
     await page.click('dialog.ed-dialog[open] .ed-yes');
     check((await answered).status() === 200, 'the publish was refused');

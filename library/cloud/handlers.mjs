@@ -7,8 +7,8 @@
 // /edit/<route> to /api/edit?route=<route>.
 import { applyOp, OpError } from './ops.mjs';
 import { ConflictError } from './store.mjs';
-import { diffDocs, numbering } from './doc.mjs';
-import { renderSite, renderEditPage, renderEditRow, editSearch, summaryLine } from './render.mjs';
+import { numbering } from './doc.mjs';
+import { renderSite, renderEditPage, renderEditRow, editSearch, summaryOf, publishLine } from './render.mjs';
 import { verifyPassword, makeSession, readSession, sessionCookie, clearedCookie } from './auth.mjs';
 import { page, esc } from '../lib/shell.mjs';
 
@@ -154,7 +154,7 @@ ${line ? `<p class="login-line" role="alert">${esc(line)}</p>\n` : ''}</form>`,
       version: saved,
       numbers: Object.fromEntries(numbering(doc)),
       chapters: doc.chapters.map((chapter, i) => ({ id: chapter.id, no: String(i + 1), title: chapter.title, rows: chapter.rows })),
-      summary: summaryLine(diffDocs(published, doc)),
+      summary: summaryOf(published, doc),
       result, // the new id after add-row, add-chapter and add-keyword
     };
     if (ROW_OPS.includes(wanted.op)) {
@@ -178,7 +178,7 @@ ${line ? `<p class="login-line" role="alert">${esc(line)}</p>\n` : ''}</form>`,
       return json(422, { error: `Not published: ${errors.map(({ where, message }) => `${where}: ${message}`).join('; ')}.` });
     }
     for (const { where, message } of problems) console.warn(`publish: ${where}: ${message}`);
-    const { id } = await store.publish(version, files, summaryLine(diffDocs(published, draft.doc)));
+    const { id } = await store.publish(version, files, publishLine(published, draft.doc));
     const purged = await purgeSite();
     // A visit that read the old files just before the publish committed can reach the edge after
     // the purge above and be kept for a year; a second purge, after the answer, deletes it.

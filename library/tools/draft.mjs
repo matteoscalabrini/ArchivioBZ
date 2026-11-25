@@ -10,8 +10,8 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { checkDoc, diffDocs } from '../cloud/doc.mjs';
-import { loadLists, renderSite, renderEditPage, summaryLine } from '../cloud/render.mjs';
+import { checkDoc } from '../cloud/doc.mjs';
+import { loadLists, renderSite, renderEditPage, summaryOf, publishLine } from '../cloud/render.mjs';
 import { ConflictError } from '../cloud/store.mjs';
 
 const LIBRARY = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
@@ -24,7 +24,7 @@ export async function runDraft(args, { store, root, purge, out = console }) {
   const draft = await store.getDraft();
   if (!draft) { out.error('There is no draft yet.'); return 1; }
   const published = async () => (await store.latestPublish())?.doc ?? null;
-  const summary = async (doc) => summaryLine(diffDocs(await published(), doc));
+  const summary = async (doc) => summaryOf(await published(), doc);
   try {
     switch (command) {
       case 'status':
@@ -68,7 +68,7 @@ export async function runDraft(args, { store, root, purge, out = console }) {
           return 1;
         }
         for (const { where, message } of problems) out.error(`warning: ${where}: ${message}`);
-        const line = await summary(draft.doc);
+        const line = publishLine(await published(), draft.doc);
         const { id } = await store.publish(draft.version, files, line);
         out.log(`Published (publish ${id}): ${line}`);
         try {

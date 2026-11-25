@@ -3,7 +3,7 @@
 // words, a line for what went wrong where no field was open, and for a conflict, which asks for a
 // reload since every later edit would meet it too.
 import { state, bus, send, post, setSummary, settled, during, unsaved, leave, watchUnsaved, CONFLICT } from './core.js';
-import { changesIn, publishQuestion } from '../editmodel.js';
+import { publishQuestion } from '../editmodel.js';
 import { wordButton } from './icons.js';
 import { ask } from './dialog.js';
 import { textarea } from './field.js';
@@ -65,7 +65,7 @@ export function makeBar() {
     }
   });
   publish.addEventListener('click', async () => {
-    if (!(await ask(publishQuestion(changesIn(state.summary)), 'Publish'))) return;
+    if (!(await ask(publishQuestion(state.summary), 'Publish'))) return;
     publish.disabled = true;
     try {
       await send({ op: 'publish' });
