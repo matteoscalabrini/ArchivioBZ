@@ -111,6 +111,31 @@ test('the map shows the first picture a row has now: after a removal, a move, or
   assert.match(pin(placed, '0.01').pin, /data-src="\/dev-img\/0\.01-1\.jpg"/);
 });
 
+// I3 (clean review): "Open the source →" follows the Source. Moved in, a row whose link is its
+// source carries the address twice, as more.target and as source.url (112 of the 124 such rows);
+// an edited Source must not leave the old address under the link, and an emptied one no link.
+test('"Open the source →" follows an edited or emptied Source; a link to a page of its own stays', () => {
+  const link = (doc, id) => /<a class="more" href="([^"]*)"[^>]*>([^<]*)<\/a>/.exec(articleOf(renderSite(doc, lists).files.get('index.html').body, id))?.slice(1);
+  const doc = fixtureDoc();
+  doc.rows['12.01'].record.more = { kind: 'source', target: 'https://example.org/reference' };
+  assert.deepEqual(link(doc, '12.01'), ['https://example.org/reference', 'Open the source →']);
+  const edited = applyOp(doc, { op: 'set-row', id: '12.01', fields: { source: { label: 'Example page', url: 'https://example.org/moved' } } }).doc;
+  assert.deepEqual(link(edited, '12.01'), ['https://example.org/moved', 'Open the source →']);
+  assert.ok(!renderSite(edited, lists).files.get('index.html').body.includes('https://example.org/reference'), 'the old address is nowhere');
+  const emptied = applyOp(edited, { op: 'set-row', id: '12.01', fields: { source: null } }).doc;
+  assert.equal(link(emptied, '12.01'), undefined, 'no Source, no link');
+  const again = applyOp(emptied, { op: 'set-row', id: '12.01', fields: { source: { label: 'Back', url: 'https://example.org/back' } } }).doc;
+  assert.deepEqual(link(again, '12.01'), ['https://example.org/back', 'Open the source →'], 'a Source given again brings the link back');
+  const words = applyOp(doc, { op: 'set-row', id: '12.01', fields: { title: 'Another title' } }).doc;
+  assert.deepEqual(words.rows['12.01'].record.more, doc.rows['12.01'].record.more, 'an edit of another field leaves the link as it is');
+
+  // A link to another page than the Source's (a newspaper's page beside its catalogue record) is
+  // the row's own, and stays until the link has a field of its own.
+  doc.rows['12.01'].record.more = { kind: 'source', target: 'https://example.org/page-of-its-own' };
+  const own = applyOp(doc, { op: 'set-row', id: '12.01', fields: { source: null } }).doc;
+  assert.deepEqual(link(own, '12.01'), ['https://example.org/page-of-its-own', 'Open the source →']);
+});
+
 test('a row that cites a hidden or a removed row names neither in the public pages', () => {
   const doc = fixtureDoc();
   doc.rows['5.03'].record.sources = ['5.01', 'r404', '5.02'];

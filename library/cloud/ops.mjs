@@ -106,6 +106,15 @@ const OPS = {
   'set-row'(doc, { id, fields }) {
     const row = rowOf(doc, id);
     if (!LIVE(fields)) refuse('There are no fields to set.');
+    // A row whose link at the bottom is its source ("Open the source →") holds the Source's address
+    // again as more.target, as the record files had it. When the Source is set, that copy goes, so
+    // the link follows the Source as it now is (lib/detail.mjs reads source.url without a target)
+    // and goes with it when it is emptied. A target that is another page than the Source's is the
+    // row's own and stays: edit mode has no field for it.
+    const more = row.record.more;
+    if (Object.hasOwn(fields, 'source') && more?.kind === 'source' && more.target !== undefined && more.target === row.record.source?.url) {
+      row.record.more = Object.fromEntries(Object.entries(more).filter(([key]) => key !== 'target'));
+    }
     for (const [name, value] of Object.entries(fields)) {
       const stored = checkedField(doc, name, value);
       if (stored === undefined || (isEmpty(stored) && !KEPT.includes(name))) delete row.record[name];

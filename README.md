@@ -49,6 +49,8 @@ npm run draft -- unlock         # forgets the failed logins (delete from login_f
 
 `--dev` works on the local draft (`library/.cache/dev-db`). `publish` does what the Publish button does, then deletes the edge's copies with `vercel cache dangerously-delete --tag site`; `rerender` does the same from the latest publish, leaving the draft as it is. Discard and restore keep the draft they replace as a set-aside, which `publishes` lists and `restore` brings back. More than ten wrong passwords in fifteen minutes refuse every login, the author's too, until the oldest leaves the window; `unlock` lets the author in at once (sessions already open are not affected). `npm run find:check -- --doc library/.cache/draft.json` runs the search checks on a pulled draft.
 
+A row's last link, "Open the source →", follows its Source: when edit mode sets or empties the Source, the copy of the old address in `record.more.target` goes, and the link reads the Source's address, or is gone with it. Twelve rows link to another page than their Source's (a Tessmann page beside a Europeana record, for example: 3.04, 3.05, 3.14, 3.17, 3.31, 3.34, 3.39, 12.36, 15.08, 15.11, 16.16, 17.19) and keep that link whatever the Source says until the link has a field of its own in edit mode; until then a session changes it in a pulled draft, in the row's `record.more.target`.
+
 ### Adding material
 
 1. **File it.** Put the download in the matching `files/` folder and add its line to that folder's `manifest.md`: file, source address, maker, date, rights. Nothing changes here from before.
