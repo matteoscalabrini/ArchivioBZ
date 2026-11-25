@@ -87,6 +87,11 @@ export function numbering(doc) {
   return numbers;
 }
 
+// The small picture a row shows on the map: the one made at the move-in, or, once an edit has
+// changed which picture is first (the operations then set thumb to null) or for a row given its
+// place after the move-in, the first picture itself, which the map draws at the same small size.
+const mapPicture = (row) => row.thumb ?? (row.pictures?.[0] ? { src: row.pictures[0].src, w: row.pictures[0].w, h: row.pictures[0].h } : null);
+
 // The `lib` the page functions take, from a document. Entries are in story order; hidden rows
 // only when `hidden` (edit mode). `lists`: the shared search lists, which live in files, not here.
 export function libFromDoc(doc, { hidden = false, lists = { colours: {}, names: [], glossary: [] } } = {}) {
@@ -112,7 +117,7 @@ export function libFromDoc(doc, { hidden = false, lists = { colours: {}, names: 
         images: [],
         find: row.find,
         pictures: row.pictures ?? [],
-        thumb: row.thumb ?? null,
+        thumb: mapPicture(row),
         dir: null,
         abs: null,
         sourceNumbers: (record.sources ?? []).map((source) => numbers.get(source) ?? ''),

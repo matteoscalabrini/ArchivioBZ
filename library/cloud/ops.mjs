@@ -276,12 +276,22 @@ function unsavable(value) {
   return LIVE(value) && Object.values(value).some(unsavable);
 }
 
+// A row's small picture (`thumb`, the one the map shows) was made at the move-in from its first
+// picture. Whatever operation changes which picture is first lets it go; the map then shows the
+// first picture as it is now (libFromDoc), until a small one can be made in the cloud.
+function letThumbsFollow(before, after) {
+  for (const [id, row] of Object.entries(after.rows)) {
+    if (row.thumb && row.pictures[0]?.src !== before.rows[id]?.pictures?.[0]?.src) row.thumb = null;
+  }
+}
+
 // Applies one operation to a copy of the document: { doc, result }.
 export function applyOp(doc, op) {
   const run = LIVE(op) && isText(op.op) && Object.hasOwn(OPS, op.op) ? OPS[op.op] : refuse(`There is no operation "${op?.op}".`);
   if (unsavable(op)) refuse(UNSAVABLE);
   const next = structuredClone(doc);
   const result = run(next, op);
+  letThumbsFollow(doc, next);
   const problems = checkDoc(next);
   if (problems.length) throw new Error(`Operation ${op.op} left the document unsound: ${problems.join('; ')}`);
   return { doc: next, result };

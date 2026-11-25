@@ -6,6 +6,7 @@ import { readFile } from 'node:fs/promises';
 import { loadLibrary, TYPES } from '../lib/records.mjs';
 import { locatePlaces } from '../lib/places.mjs';
 import { docFromLibrary } from '../cloud/doc.mjs';
+import { applyOp } from '../cloud/ops.mjs';
 import { loadLists, renderSite, renderEditPage, renderEditRow, editSearch, summaryLine, summaryOf, publishLine } from '../cloud/render.mjs';
 import { parseState } from '../web/state.js';
 import { esc } from '../lib/shell.mjs';
@@ -72,6 +73,42 @@ test('a hidden row on the map, with a place and a small picture, is in no public
   const { files } = renderSite(doc, lists);
   for (const [path, { body }] of files) for (const mark of ['HIDDEN-TITLE-7f3', 'HIDDEN-THUMB', 'dev-img/5.01', `"${id}"`, `#o=${id}`]) assert.ok(!body.includes(mark), `${mark} in ${path}`);
   assert.doesNotMatch(files.get('map.html').body, /data-place="ponte-druso"/, 'a place whose only row is hidden is not drawn');
+});
+
+// I2 (clean review): the small picture on the map is of the row's first picture. An edit that
+// changes which picture is first lets the stored small one go, and the map shows the first picture
+// as it now is; so does a row that had no place when it moved in and is given one.
+test('the map shows the first picture a row has now: after a removal, a move, or a place given later', () => {
+  const pin = (doc, id) => {
+    const body = renderSite(doc, lists).files.get('map.html').body;
+    return { body, pin: new RegExp(`<button type="button" class="pin[^"]*" data-for="[^"]*" data-no="${id.replace('.', '\\.')}"[^>]*>[\\s\\S]*?</button>`).exec(body)?.[0] };
+  };
+  const base = fixtureDoc();
+  assert.match(pin(base, '5.01').pin, /data-src="\/dev-img\/5\.01-thumb\.jpg"/);
+  const captioned = applyOp(base, { op: 'set-caption', id: '5.01', src: '/dev-img/5.01-1.jpg', caption: 'New words' }).doc;
+  assert.deepEqual(captioned.rows['5.01'].thumb, base.rows['5.01'].thumb, 'a caption leaves the small picture as it is');
+
+  const moved = applyOp(base, { op: 'move-picture', id: '5.01', src: '/dev-img/5.01-1.jpg', step: 1 }).doc;
+  assert.equal(moved.rows['5.01'].thumb, null);
+  let shown = pin(moved, '5.01');
+  assert.match(shown.pin, /data-src="\/dev-img\/5\.01-2\.jpg" alt="" width="40" height="30"/);
+  assert.ok(!shown.body.includes('5.01-thumb'), 'the old small picture is on no map');
+  const back = applyOp(moved, { op: 'move-picture', id: '5.01', src: '/dev-img/5.01-1.jpg', step: -1 }).doc;
+  assert.match(pin(back, '5.01').pin, /data-src="\/dev-img\/5\.01-1\.jpg"/, 'moved back, the first picture is shown again');
+
+  const removed = applyOp(base, { op: 'remove-picture', id: '5.01', src: '/dev-img/5.01-1.jpg' }).doc;
+  assert.equal(removed.rows['5.01'].thumb, null);
+  shown = pin(removed, '5.01');
+  assert.match(shown.pin, /data-src="\/dev-img\/5\.01-2\.jpg"/);
+  assert.ok(!shown.body.includes('5.01-thumb') && !shown.body.includes('5.01-1.jpg'), 'the removed picture is on no map');
+  const none = applyOp(removed, { op: 'remove-picture', id: '5.01', src: '/dev-img/5.01-2.jpg' }).doc;
+  assert.match(pin(none, '5.01').pin, /^<button type="button" class="pin blank"[^>]*>Photograph<\/button>$/, 'with no picture, the type word');
+  const set = applyOp(base, { op: 'set-pictures', id: '5.01', pictures: [{ src: '/dev-img/5.01-2.jpg' }, { src: '/dev-img/5.01-1.jpg' }] }).doc;
+  assert.equal(set.rows['5.01'].thumb, null, 'set-pictures that reorders likewise');
+
+  assert.equal(base.rows['0.01'].thumb, null, '0.01 has a picture and had no place');
+  const placed = applyOp(base, { op: 'set-row', id: '0.01', fields: { place: 'semirurali' } }).doc;
+  assert.match(pin(placed, '0.01').pin, /data-src="\/dev-img\/0\.01-1\.jpg"/);
 });
 
 test('a row that cites a hidden or a removed row names neither in the public pages', () => {
