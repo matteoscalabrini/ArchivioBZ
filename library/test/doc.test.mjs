@@ -95,3 +95,20 @@ test('checkDoc names the other faults', () => {
   assert.match(text((d) => (d.rows.a.record.year = 1.5)), /year/);
   assert.deepEqual(checkDoc(sample()), []);
 });
+
+test('a row moved across a chapter boundary is an order change, though the flat order is the same', () => {
+  const before = sample();
+  const after = structuredClone(before);
+  after.chapters[0].rows.pop(); // c
+  after.chapters[1].rows.unshift('c');
+  const d = diffDocs(before, after);
+  assert.equal(d.order, true);
+  assert.equal(d.count, 1);
+});
+
+test('with nothing published yet, every row is added', () => {
+  const doc = sample();
+  const d = diffDocs(null, doc);
+  assert.deepEqual(d.added, ['a', 'b', 'c', 'd']);
+  assert.deepEqual([d.changed, d.removed, d.hidden, d.shown], [[], [], [], []]);
+});

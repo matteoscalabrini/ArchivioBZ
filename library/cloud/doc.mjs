@@ -106,9 +106,10 @@ export function libFromDoc(doc, { hidden = false, lists = { colours: {}, names: 
 }
 
 // What differs between two documents, as ids and yes/no. `changed`: rows in both whose record,
-// find or pictures differ. `order`: the visible rows both have come in another sequence. `count`:
+// find or pictures differ. `order`: the visible rows both have sit in other chapters or another sequence. A null `before` (nothing published) counts as an empty document. `count`:
 // how many things the author would be publishing.
 export function diffDocs(before, after) {
+  before ??= { chapters: [], rows: {}, keywords: {}, aliases: {}, places: {}, idea: '', about: '' }; // nothing published yet
   const same = (a, b) => stable(a) === stable(b);
   const ids = (doc) => Object.keys(doc.rows);
   const both = ids(after).filter((id) => before.rows[id]);
@@ -119,7 +120,7 @@ export function diffDocs(before, after) {
   const hidden = both.filter((id) => !before.rows[id].hidden && after.rows[id].hidden);
   const shown = both.filter((id) => before.rows[id].hidden && !after.rows[id].hidden);
   const common = new Set(both.filter((id) => !before.rows[id].hidden && !after.rows[id].hidden));
-  const sequence = (doc) => doc.chapters.flatMap((chapter) => chapter.rows).filter((id) => common.has(id));
+  const sequence = (doc) => doc.chapters.map((chapter) => chapter.rows.filter((id) => common.has(id))); // by chapter: a row that crosses a boundary has a new number
   const order = !same(sequence(before), sequence(after));
   const titles = (doc) => doc.chapters.map((chapter) => chapter.title);
   const chapters = !same(titles(before), titles(after));
