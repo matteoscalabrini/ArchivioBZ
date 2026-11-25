@@ -3,6 +3,9 @@ node_modules/
 library/dist/
 library/.deploy/
 library/.cache/
+library/.public/
+.vercel/
+.env*.local
 .superpowers/
 .DS_Store
 

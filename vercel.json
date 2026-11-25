@@ -1,0 +1,15 @@
+{
+  "buildCommand": "node library/cloud/assemble.mjs",
+  "outputDirectory": "library/.public",
+  "installCommand": "npm install",
+  "regions": ["fra1"],
+  "cleanUrls": false,
+  "functions": { "api/*.mjs": { "includeFiles": "library/{content/kinds.json,content/colours.json,content/names.json,content/glossary.json,map-data/dots.json}" } },
+  "redirects": [{ "source": "/edit", "destination": "/edit/", "permanent": false }],
+  "rewrites": [
+    { "source": "/", "destination": "/api/site?path=index.html" },
+    { "source": "/(index\\.html|map\\.html|about\\.html|search\\.json)", "destination": "/api/site?path=$1" },
+    { "source": "/edit/", "destination": "/api/edit?route=" },
+    { "source": "/edit/:route", "destination": "/api/edit?route=:route" }
+  ]
+}

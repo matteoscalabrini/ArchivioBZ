@@ -1,0 +1,11 @@
+research_notes/
+reports/
+Foto Vittoria/
+docs/
+library/.cache/
+library/dist/
+library/.deploy/
+library/.public/
+library/test/
+library/mapgen/
+.superpowers/
