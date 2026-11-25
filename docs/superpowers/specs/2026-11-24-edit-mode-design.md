@@ -383,6 +383,70 @@ own:
    "Hidden" fold for search terms and facts in edit mode (until then, sessions edit them through
    the command line).
 
+### 14. Links in every text, a way back, and pages (proposed 25 Nov 2026, evening)
+
+**(M)** The author, on the first day online: "When you edit the idea title for example, hyperlinks
+can be added. Would be useful … to leave in the edit screen a small legend that explains how to use
+them, or to create a small text editor interface that can also be reused in other sections of the
+website that enables to link material into text, from direct rows … or apply as a filter for
+categories." Asked when, where and how a row link opens, they answered: "1 - all now, + a way to
+add pages to the website (both next to the top links (map, about, library) and entry specific
+pages that could expand on a specific entry by making a text on it. 2 - ideally where there is
+text, so about, and future added text pages … 3 - no. if the reference is in the small text of an
+entry it would simply move you back up or down to that opened entry. Ideally there needs to be a
+way to get back to the original entry without having to search it back."
+
+**Links, one form wherever there is text** (the idea, About, every row's text, every page):
+- `[[words|keyword]]` (as in the idea today): the words filter the Library by that keyword; from
+  another page they lead to the Library so filtered. **(M)**
+- `[[words|@id]]`: the words open that row. In the Library the list moves up or down to the row
+  and opens it, **(M)** never a side panel; from another page they lead to the Library with the row
+  open. The code holds the row's permanent id, so a link survives every move; the 🔗 finder writes
+  it and nobody has to type it. **(call)**
+- `[[words|page:address]]`: the words open that page. **(call)**
+- The idea, About and the pages are Markdown as now (paragraphs, *italic*, **bold**, web links
+  `[words](https://…)`, and `##` headings in pages). A row's text stays plain paragraphs and gains
+  only the `[[…]]` links, so nothing in the 277 texts changes (none holds `[[`, `](` or `*`).
+  **(call)**
+- On the public site a link to a hidden or removed row, a hidden page, or a keyword no shown row
+  carries is drawn as its words alone: nothing only the draft holds leads anywhere. In edit mode
+  such a link is shown dotted, its title saying why. The search reads the words, never the code.
+  **(call)**
+
+**The way back.** **(M)** A row link followed in the Library leaves a small "↩ Back to 2.08" at
+the bottom of the screen; it returns to where the jump started (that row, open, or the idea, or the
+place in the list) at the same height. Jumps stack: from A to B to C, back goes to B, then A. The
+browser's own Back does the same, each jump being a step in the address (`#o=`). **(call)** for
+both.
+
+**The editor**, one piece reused by every text field (idea, About, a row's text, a page's text):
+- 🔗 over the field: with words selected (or none), it opens a finder; typing a number, a title, a
+  keyword or a page's title lists the matches; a click or Enter writes the link around the
+  selected words (with none selected, the row's title, the keyword or the page's title become the
+  words); Escape closes. **(M)** for the tool, **(call)** for its shape.
+- A legend under the field, always there while it is open: one line and one example for each kind
+  of link, "🔗 writes them; you can also type them", and for Markdown fields a line on paragraphs,
+  *italic*, **bold**, headings and web links. **(M)**
+
+**Pages.** **(M)** Two kinds, both written in edit mode with the editor above, both in the draft and
+published with everything else:
+1. **Site pages**, each a tab in the header beside Library, Map and About. **(call)** They stand
+   between Map and About, About staying last, in the author's order. In edit mode "＋ page" at the
+   end of the tabs makes one (its title asked); on a page: its title ✎, its text ✎, ← → to move its
+   tab, Hide (out of the public site, kept in the draft), Remove (asked first).
+2. **Row pages**, a text that expands on one row. In an open row in edit mode, "＋ page about this
+   row" makes one. The open row shows under its text "Read: <page title> →" (on the public site
+   too, once published and while the row is shown). The page opens with the row's number, title
+   and first picture and "← Back to the row" (the Library with the row open). A row may have
+   several, in the order made. **(call)**
+- **(call)** A page's address is `/pages/<address>.html`, made from its title when it is made and
+  never changed after (a renamed page keeps it, as a row keeps its id). A hidden row's pages are not
+  published. A row page's text is found by the search as part of its row; site pages are not in the
+  search this round (it lists rows only). Pictures inside a page's text wait; a row page shows its
+  row's first picture. The summary line says `pages changed`. The map is unchanged.
+- In the document: `pages: [{ id: 'p1', address, title, text, row: null | '<row id>', hidden }]`
+  and `next.page`; a site page has `row: null`, and the tabs follow the list's order. **(call)**
+
 ### 13. Tests
 
 Kept: the rendering tests, fed from records in the new shape. New: numbering (drag, typed number,
