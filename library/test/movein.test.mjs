@@ -1,7 +1,7 @@
 import test, { before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import path from 'node:path';
-import { readFile, readdir } from 'node:fs/promises';
+import { cp, readFile, readdir } from 'node:fs/promises';
 import { PGlite } from '@electric-sql/pglite';
 import { pgliteDb } from '../cloud/db.mjs';
 import { makeStore } from '../cloud/store.mjs';
@@ -51,6 +51,19 @@ test('a section without a chapter title stops everything', async () => {
   const empty = await tempDir('move-in-empty-');
   await assert.rejects(moveIn({ root, store: fresh, putPicture: devPictures(empty), chapterTitles: { 0: 'Zero', 5: 'Five' } }), /section 12/);
   assert.equal(await fresh.getDraft(), null);
+  assert.deepEqual(await readdir(empty), []);
+});
+
+// After the record files leave the repository (Task 13, step 7) the files hold no row: a move-in
+// then, with --replace, would have set the author's draft aside for an empty one.
+test('a library with no rows moves nothing in, and a draft there stays as it is', async () => {
+  const bare = await tempDir('move-in-bare-');
+  await cp(root, bare, { recursive: true, filter: (src) => !/^(entries.*|find)\.json$/.test(path.basename(src)) });
+  const before = await store.getDraft();
+  const empty = await tempDir('move-in-none-');
+  await assert.rejects(moveIn({ root: bare, store, putPicture: devPictures(empty), chapterTitles: TITLES, replace: true }),
+    /There is no row in the record files, so nothing was moved in: the draft in the database is the archive now\./);
+  assert.equal((await store.getDraft()).version, before.version);
   assert.deepEqual(await readdir(empty), []);
 });
 

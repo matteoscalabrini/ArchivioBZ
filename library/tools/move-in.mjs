@@ -3,8 +3,9 @@
 // temporary folder, stripped of metadata, and put where the cloud reads them (the public Blob
 // store, or a local folder with --dev); the document that names them goes into the draft.
 //   npm run move-in [-- --dev] [--replace] [--dry-run]
-// Anything wrong stops it before the first write: an error in the records, a section with no
-// chapter title, a JPEG that stripping would still change, an upload whose size is not the file's.
+// Anything wrong stops it before the first write: no row at all, an error in the records, a section
+// with no chapter title, a JPEG that stripping would still change, an upload whose size is not the
+// file's.
 import { realpathSync } from 'node:fs';
 import { copyFile, mkdir, mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
@@ -60,6 +61,9 @@ export async function moveIn({ root, store, putPicture, chapterTitles = CHAPTER_
   const lib = await loadLibrary(root);
   const errors = lib.problems.filter((p) => p.level === 'error');
   if (errors.length) throw new Error(`${errors.length} error${errors.length === 1 ? '' : 's'} in the records, nothing moved: ${errors.map((p) => `${p.where}: ${p.message}`).join('; ')}`);
+  // Once the record files have left the repository there is nothing to move, and --replace would
+  // set the author's draft aside for an empty one.
+  if (!lib.entries.length) throw new Error('There is no row in the record files, so nothing was moved in: the draft in the database is the archive now.');
   for (const section of [...new Set(lib.entries.map((e) => e.section))].sort((a, b) => a - b)) {
     if (!chapterTitles[section]) throw new Error(`section ${section} has no chapter title`);
   }
