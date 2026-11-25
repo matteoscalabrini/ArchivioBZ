@@ -134,6 +134,13 @@ button.ed-words .ed-icon { display: inline-block; }
 .sortable-ghost { opacity: 0.25; }
 .sortable-fallback { opacity: 0.92; background: var(--paper); outline: 1px solid var(--ink); }
 
+/* "All keywords": each keyword is dragged into the author's order (edit/strip.js) and still
+   filters on a press, so the pointer is an open hand over it, and a closed one over the strip
+   while a keyword is held. */
+.keywords button[data-k] { cursor: grab; }
+.keywords:has(.sortable-chosen),
+.keywords:has(.sortable-chosen) button[data-k] { cursor: grabbing; }
+
 /* An open row: ✎ after the text and after each line under it, the empty lines too. */
 dl.meta dd.ed-unset { color: var(--grey); }
 dl.meta dd button.ed { margin-left: 2px; }

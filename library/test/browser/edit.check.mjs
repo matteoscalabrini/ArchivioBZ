@@ -718,8 +718,19 @@ async function main() {
   });
 
   // A hand's press may slip a pixel between down and up; it is still a press (fallbackTolerance in
-  // edit/strip.js: without it, Sortable takes the slip for a drag and swallows the click).
-  await step('a press on a keyword of All keywords still filters, one that slips a pixel too, and a second press shows every row again', async () => {
+  // edit/strip.js: without it, Sortable takes the slip for a drag and swallows the click). In edit
+  // mode the pointer over a keyword is a hand, closed while the keyword is held, so that the author
+  // sees it can be moved; on the public page it stays the pointer of a button.
+  await step('a keyword of All keywords shows a hand in edit mode only; a press still filters, one that slips a pixel too, and a second press shows every row again', async () => {
+    const cursor = () => page.$eval('.keywords button[data-k="press"]', (b) => getComputedStyle(b).cursor);
+    await page.goto(`${base}/`);
+    await page.waitForSelector('.keywords button[data-k="press"]');
+    const pub = await cursor();
+    check(pub === 'pointer', `on the public page the pointer over a keyword is ${pub}`);
+    await page.goto(`${base}/edit/`);
+    await page.waitForSelector('.ed-bar');
+    const open = await cursor();
+    check(open === 'grab', `in edit mode the pointer over a keyword is ${open}, not grab`);
     await listShows(page, ALL_ROWS, 'before the press');
     await page.click('.keywords button[data-k="press"]');
     await listShows(page, '# c2 5.02=2.01', 'press pressed');
@@ -729,6 +740,8 @@ async function main() {
     const { x, y } = await centre(page, '.keywords button[data-k="press"]');
     await page.mouse.move(x, y);
     await page.mouse.down();
+    const held = await cursor();
+    check(held === 'grabbing', `while the keyword is held the pointer is ${held}, not grabbing`);
     await page.mouse.move(x + 1, y + 1);
     await page.mouse.up();
     await listShows(page, '# c2 5.02=2.01', 'press pressed with a slip of a pixel');
@@ -853,6 +866,39 @@ async function main() {
     check(await page.evaluate(() => scrollY) > 0, 'the swipe did not scroll the page');
     check(await stripReads(page) === strip, `after the swipe, All keywords reads ${await stripReads(page)}`);
     await page.setViewport({ width: 1280, height: 1600 });
+  });
+
+  // The strip's order is not the list's, so it drags whatever narrows the list (the rows' drag
+  // stops there): a keyword pressed, a kind pressed, a search typed. Each time the last keyword
+  // goes to the front, and the list stays narrowed as it was.
+  await step('All keywords drags with a keyword filter on, with a kind filter on, and with a search typed', async () => {
+    const ways = [
+      ['a keyword filter', () => page.click('.keywords button[data-k="press"]'), '.keywords button[data-k="press"][aria-pressed="true"]'],
+      ['a kind filter', () => page.click('.kinds button[data-kind="press"]'), '.kinds button[data-kind="press"][aria-pressed="true"]'],
+      ['a search', async () => {
+        await page.click('form.find input');
+        await page.keyboard.type('bridge');
+      }, '.list .group'],
+    ];
+    for (const [way, narrow, narrowed] of ways) {
+      await page.goto(`${base}/edit/`);
+      await page.waitForSelector('.ed-bar');
+      await narrow();
+      await page.waitForSelector(narrowed);
+      await page.waitForSelector('.list:not(.story)'); // the rows do not drag now
+      await page.evaluate(() => scrollTo(0, 0));
+      await stillAt(page, '.keywords button[data-k]');
+      const read = (await stripReads(page)).split(', ');
+      const [first, last] = [read[1], read.at(-1)].map((k) => k.split(' ')[0]);
+      const answered = answerTo(page, 'op').catch(() => null);
+      await dragAcross(page, `.keywords button[data-k="${last}"]`, `.keywords button[data-k="${first}"]`, 0.2);
+      const res = await answered;
+      check(res?.status() === 200, `with ${way}, ${res ? `the move was answered ${res.status()}` : 'the drop sent no move'}`);
+      const move = sent.at(-1).body?.op;
+      check(move?.op === 'move-keyword' && move.id === last && move.before === first, `with ${way}, the drop sent ${JSON.stringify(move)}`);
+      await stripShows(page, (now) => now.startsWith(`lab, ${last} `), `with ${way}, after the drop`);
+      check(Boolean(await page.$(narrowed)), `with ${way}, the list is no longer narrowed after the drop`);
+    }
   });
 
   console.log(`All ${n} steps hold. Screenshots: ${['edit-page.png', 'public-page.png', 'edit-phone.png'].map((name) => path.join(SHOTS, name)).join(', ')}`);
