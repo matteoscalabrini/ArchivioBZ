@@ -45,6 +45,13 @@ export async function attachFind({ root, files, entries, report }) {
     if (bare.length) report('warn', findFile, `with a picture and no entry in find.json: ${bare.join(', ')}`);
   }
 
+  return readSearchLists(root, report);
+}
+
+// The three shared lists alone, from library/content/ under `root`: the colours' names, the sets of
+// names, the glossary. The cloud reads them so, since its rows live in the archive document.
+// `report(level, abs, message)`, as above.
+export async function readSearchLists(root, report) {
   const content = path.join(root, 'library', 'content');
   return {
     colours: await colourNames(path.join(content, 'colours.json'), report),
