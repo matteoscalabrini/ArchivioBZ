@@ -9,7 +9,7 @@ import { openField, input, textarea, select } from './field.js';
 import { ask } from './dialog.js';
 import { openPicker } from './keywords.js';
 import { dressPictures } from './pictures.js';
-import { toParagraphs, fromParagraphs, yearValue, removeQuestion } from '../editmodel.js';
+import { toParagraphs, fromParagraphs, yearValue, numberValue, removeQuestion } from '../editmodel.js';
 
 const CONFIDENCE = [['read', 'Read in the source'], ['secondary', 'From a secondary source'], ['lead', 'Lead, not yet a fact']];
 // The lines under an open row's text, in the order lib/detail.mjs writes them.
@@ -139,12 +139,15 @@ list.addEventListener('change', (event) => {
 
 const setRow = (id, fields) => (value, box) => send({ op: 'set-row', id, fields: fields(value) }, { field: box });
 
+// The number on the decimal keypad, which has digits and the region's decimal separator, a full
+// stop or a comma (an iPhone set to Italy shows only a comma; the numeric keypad would show
+// neither); both are taken.
 function editNumber(row, id, opener) {
   const shown = row.querySelector('.ed-no');
   const field = input(state.numbers[id] ?? '', 'Number', { className: 'ed-in-no', mode: 'decimal' });
   openField({
     controls: [field],
-    read: () => field.value.trim(),
+    read: () => numberValue(field.value),
     save: (number, box) => send({ op: 'set-number', id, number }, { field: box }),
     place: (box) => shown.after(box),
     hide: [shown, opener],

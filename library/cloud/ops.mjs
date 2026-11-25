@@ -10,7 +10,9 @@ import { checkDoc, chapterNumbers, NUMBER_KEY, LEVELS } from './doc.mjs';
 export class OpError extends Error {}
 
 const MAX_KEYWORDS = 5;
-const NUMBER = /^\s*(\d{1,3})\.(\d{1,3})\s*$/;
+// A chapter and a place, parted by a full stop or by a comma: a phone set to a region that writes
+// decimals with a comma (Italy) offers only a comma on its decimal keypad.
+const NUMBER = /^\s*(\d{1,3})[.,](\d{1,3})\s*$/;
 const STRING_FIELDS = ['date', 'holder', 'creator', 'rights'];
 // Fields that stay in the record when emptied; every other emptied field is removed.
 const KEPT = ['title', 'type', 'keywords', 'text'];

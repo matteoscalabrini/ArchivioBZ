@@ -13,10 +13,13 @@ test('typing a number moves the row there and the rest move down', () => {
   assert.deepEqual(doc.chapters.map((c) => c.rows), [['a', 'e', 'b', 'c', 'd'], ['f']]);
   assert.deepEqual(checkDoc(doc), []);
 });
-for (const [typed, rows] of [['1.2', ['a', 'f', 'b', 'c', 'd']], [' 01.02 ', ['a', 'f', 'b', 'c', 'd']], ['1.99', ['a', 'b', 'c', 'd', 'f']]]) {
+// A phone whose region writes decimals with a comma (Italy) offers only a comma on its decimal
+// keypad (I5, clean review): 2,05 is 2.05.
+for (const [typed, rows] of [['1.2', ['a', 'f', 'b', 'c', 'd']], [' 01.02 ', ['a', 'f', 'b', 'c', 'd']], ['1.99', ['a', 'b', 'c', 'd', 'f']],
+  ['1,02', ['a', 'f', 'b', 'c', 'd']], [' 1,2 ', ['a', 'f', 'b', 'c', 'd']]]) {
   test(`"${typed}" is understood`, () => assert.deepEqual(applyOp(sample(), { op: 'set-number', id: 'f', number: typed }).doc.chapters[0].rows, rows));
 }
-for (const typed of ['3', '1.00', '0.01', 'abc', '']) {
+for (const typed of ['3', '1.00', '0.01', 'abc', '', '1,,02', '1.,02', '1,0,2']) {
   test(`"${typed}" is refused`, () => assert.throws(() => applyOp(sample(), { op: 'set-number', id: 'f', number: typed }), { message: NUMBER_LINE }));
 }
 test('a chapter that does not exist is refused by name', () =>

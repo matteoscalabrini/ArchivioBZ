@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { dropTarget, chapterIndex, toParagraphs, fromParagraphs, OpQueue, Underway, changesIn, publishQuestion, removeQuestion, storyPlaces, headingsOf, placeRow, rowPlace, placeChapter, yearValue, offered } from '../web/editmodel.js';
+import { dropTarget, chapterIndex, toParagraphs, fromParagraphs, OpQueue, Underway, changesIn, publishQuestion, removeQuestion, storyPlaces, headingsOf, placeRow, rowPlace, placeChapter, yearValue, numberValue, offered } from '../web/editmodel.js';
 import { diffDocs } from '../cloud/doc.mjs';
 import { summaryLine } from '../cloud/render.mjs';
 import { sampleDoc } from './docs.mjs';
@@ -210,6 +210,18 @@ test('the year as typed: empty is none, a whole number is a number, anything els
   assert.equal(yearValue('-50'), -50);
   assert.equal(yearValue('1934–40'), '1934–40');
   assert.equal(yearValue('19.5'), '19.5');
+});
+
+// I5 (clean review): the decimal keypad of a phone set to a region that writes 2,05 has a comma and
+// no full stop; the number goes to the server with a full stop, anything else as typed for the
+// server to refuse in its own words.
+test('a number typed with a comma goes with a full stop; anything else as typed', () => {
+  assert.equal(numberValue('2,05'), '2.05');
+  assert.equal(numberValue(' 2,5 '), '2.5');
+  assert.equal(numberValue(' 2.05 '), '2.05');
+  assert.equal(numberValue('abc'), 'abc');
+  assert.equal(numberValue('1,0,2'), '1,0,2');
+  assert.equal(numberValue(''), '');
 });
 
 test('the keywords offered to a row: the others, by label, narrowed by what is typed whatever its accents and case', () => {

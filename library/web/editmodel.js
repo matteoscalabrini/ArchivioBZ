@@ -89,6 +89,14 @@ export function yearValue(text) {
   return /^-?\d+$/.test(typed) ? Number(typed) : typed;
 }
 
+// A typed number as it is sent: trimmed, and with a full stop where it was typed with a comma, as
+// the decimal keypad of a phone set to a region that writes 2,05 offers (the server takes either).
+// Anything else goes as typed, for the server to refuse in its own words.
+export function numberValue(text) {
+  const typed = String(text ?? '').trim();
+  return /^\d+,\d+$/.test(typed) ? typed.replace(',', '.') : typed;
+}
+
 // The keywords a row can be given: those of the vocabulary it does not hold, by label, narrowed
 // to the labels holding what is typed, whatever its accents and case. -> [{ id, label }]
 export function offered(keywords, held, typed = '') {
