@@ -24,7 +24,6 @@ export const state = {
   chapters: copy(data.doc.chapters),
   confirmed: copy(data.doc.chapters),
   numbers: Object.fromEntries([...list.querySelectorAll('article.row')].map((el) => [el.dataset.no, el.querySelector('.c-no').textContent.trim()])),
-  conflict: false,
 };
 
 // What the parts say to each other: 'summary' (the bar's line changed), 'say' ({ text, kind }:
@@ -87,7 +86,6 @@ function wordsFor(error) {
 // is waiting, the order the page shows goes back to the server's, undoing a refused drag.
 function refused(error) {
   if (error.status === 409) {
-    state.conflict = true;
     tell('conflict');
   } else if (error.status === 401) {
     say(LOGGED_OUT, 'logged-out');
