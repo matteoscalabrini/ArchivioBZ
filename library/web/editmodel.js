@@ -211,6 +211,14 @@ export function changesIn(summary) {
   }, 0);
 }
 
+// The question before a row is removed. `published`: whether a publish holds the row, from which
+// it could be brought back; a row added since the last publish is in none.
+export function removeQuestion(title, published) {
+  return published
+    ? `Remove “${title}”? It goes at the next publish and can be brought back from an older publish.`
+    : `Remove “${title}”? It has never been published, so it cannot be brought back.`;
+}
+
 // The question before a publish, from the bar's summary line. Before the first publish it says
 // what the site will show ("Nothing published yet: 277 rows in 18 chapters" asks "Publish for the
 // first time? 277 rows in 18 chapters."); with nothing changed a publish still refreshes the

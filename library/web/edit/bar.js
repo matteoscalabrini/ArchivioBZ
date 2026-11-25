@@ -106,9 +106,11 @@ export function makeBar() {
   });
 }
 
-// After a publish the draft is what is public: no row differs from it any more.
+// After a publish the draft is what is public: no row differs from it any more, and every row is
+// in a publish.
 function published() {
   setSummary(NOTHING);
+  for (const id of Object.keys(state.doc.rows)) state.published.add(id);
   for (const row of document.querySelectorAll('article.row[data-changed]')) row.removeAttribute('data-changed');
 }
 

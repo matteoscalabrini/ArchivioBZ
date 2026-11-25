@@ -164,7 +164,7 @@ test('the edit page carries hidden rows, marked, and the draft as data', () => {
   assert.match(page, /<link rel="stylesheet" href="\.\.\/web\/edit\.css">/);
   assert.match(page, /<script type="module" src="\.\.\/web\/edit\.js"><\/script>/);
   assert.match(page, /<a href="\.\.\/map\.html"/, 'the page lives one folder down, at /edit/');
-  assert.deepEqual(editData(page), { version: 1, doc, types: TYPES, summary: '1 hidden', changed: [id] });
+  assert.deepEqual(editData(page), { version: 1, doc, types: TYPES, summary: '1 hidden', changed: [id], published: ids(published) });
 });
 
 test('the edit page marks what changed since the last publish', () => {
@@ -185,6 +185,7 @@ test('the edit page marks what changed since the last publish', () => {
   assert.equal(editData(fresh).summary, `Nothing published yet: ${ids(BASE).length - 1} rows in 3 chapters`);
   assert.doesNotMatch(fresh, /data-changed/);
   assert.deepEqual(editData(fresh).changed, []);
+  assert.deepEqual(editData(fresh).published, [], 'no row is in a publish yet');
   const same = renderEditPage(fixtureDoc(), { version: 1, published: fixtureDoc(), lists });
   assert.equal(editData(same).summary, 'No changes since the last publish');
   assert.doesNotMatch(same, /data-changed/);

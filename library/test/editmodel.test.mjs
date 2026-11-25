@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { dropTarget, chapterIndex, toParagraphs, fromParagraphs, OpQueue, Underway, changesIn, publishQuestion, storyPlaces, headingsOf, placeRow, rowPlace, placeChapter, yearValue, offered } from '../web/editmodel.js';
+import { dropTarget, chapterIndex, toParagraphs, fromParagraphs, OpQueue, Underway, changesIn, publishQuestion, removeQuestion, storyPlaces, headingsOf, placeRow, rowPlace, placeChapter, yearValue, offered } from '../web/editmodel.js';
 import { diffDocs } from '../cloud/doc.mjs';
 import { summaryLine } from '../cloud/render.mjs';
 import { sampleDoc } from './docs.mjs';
@@ -157,6 +157,12 @@ test('the number of changes is read from the summary line as diffDocs counts the
   assert.equal(summaryLine(diff), '2 rows changed, 1 added, 1 removed, 1 hidden, order changed, idea changed');
   assert.equal(changesIn(summaryLine(diff)), diff.count);
   assert.equal(changesIn('No changes since the last publish'), 0);
+});
+
+// A removed row can be brought back from an older publish only if some publish holds it.
+test('the question before a row is removed says whether it can come back', () => {
+  assert.equal(removeQuestion('Mendola', true), 'Remove “Mendola”? It goes at the next publish and can be brought back from an older publish.');
+  assert.equal(removeQuestion('New row', false), 'Remove “New row”? It has never been published, so it cannot be brought back.');
 });
 
 test('the question before a publish, from the summary', () => {

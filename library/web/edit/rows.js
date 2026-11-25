@@ -9,7 +9,7 @@ import { openField, input, textarea, select } from './field.js';
 import { ask } from './dialog.js';
 import { openPicker } from './keywords.js';
 import { dressPictures } from './pictures.js';
-import { toParagraphs, fromParagraphs, yearValue } from '../editmodel.js';
+import { toParagraphs, fromParagraphs, yearValue, removeQuestion } from '../editmodel.js';
 
 const CONFIDENCE = [['read', 'Read in the source'], ['secondary', 'From a secondary source'], ['lead', 'Lead, not yet a fact']];
 // The lines under an open row's text, in the order lib/detail.mjs writes them.
@@ -262,6 +262,6 @@ function editLine(row, id, opener, term) {
 
 async function removeRow(id) {
   const title = record(id).title ?? id;
-  if (!(await ask(`Remove “${title}”? It goes at the next publish and can be brought back from an older publish.`, 'Remove'))) return;
+  if (!(await ask(removeQuestion(title, state.published.has(id)), 'Remove'))) return;
   await act({ op: 'remove-row', id });
 }

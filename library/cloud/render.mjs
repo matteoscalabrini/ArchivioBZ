@@ -60,12 +60,14 @@ export function renderSite(doc, lists) {
 
 // The Library in edit mode, at /edit/: every row of the draft, hidden ones too, a hidden row marked
 // data-hidden and a row that differs from the latest publish data-changed; the draft itself, its
-// version, the row types, the summary line and the changed rows' ids as #edit-data for web/edit.js.
+// version, the row types, the summary line, the changed rows' ids and the ids of the rows the
+// latest publish holds (which a removal can bring back) as #edit-data for web/edit.js.
 // `published`: the latest publish's document, or null when there is none: then no row is marked,
 // since every one would be, and the summary counts what the first publish would show.
 export function renderEditPage(doc, { version, published, lists }) {
   const changed = changedRows(doc, published);
-  return editPage(doc, lists, changed, { version, doc, types: TYPES, summary: summaryOf(published, doc), changed: [...changed] });
+  const data = { version, doc, types: TYPES, summary: summaryOf(published, doc), changed: [...changed], published: published ? Object.keys(published.rows) : [] };
+  return editPage(doc, lists, changed, data);
 }
 
 // One row of the edit page, its <article class="row"> exactly as renderEditPage draws it for the
