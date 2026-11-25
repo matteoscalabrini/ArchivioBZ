@@ -56,10 +56,13 @@ export async function askPassword(input, output) {
 const runVercel = (args, input) => spawnSync('vercel', args, { input, encoding: 'utf8', stdio: ['pipe', 'inherit', 'inherit'] });
 
 // Sets one variable anew in an environment, as a Secret; the value goes on stdin, never in argv.
+// Nothing may be asked on stdin, which the value has used up: in the Vercel CLI (65.16.0) `env add`
+// asks "Git branch?" for preview unless --yes is given, and with --yes and no --git-branch the
+// value holds for every preview branch. --force replaces a value already there in one call, so the
+// variable is never missing between a removal and an add that fails. The environment is named
+// with --environment; the bare argument is deprecated.
 function setVariable(vercel, name, env, value) {
-  // The variable may not exist yet; then removing it fails and that is fine.
-  vercel(['env', 'rm', name, env, '--yes', '--cwd', DEPLOY]);
-  const added = vercel(['env', 'add', name, env, '--sensitive', '--cwd', DEPLOY], value);
+  const added = vercel(['env', 'add', name, '--environment', env, '--sensitive', '--yes', '--force', '--cwd', DEPLOY], value);
   if (added.status !== 0) throw new Error(`vercel env add ${name} failed for ${env}.`);
 }
 

@@ -70,12 +70,15 @@ test('the password tool refuses without a terminal, and sets the hash and a new 
   const done = setPassword({ input, output: { write: () => {} }, log: (l) => lines.push(l), vercel });
   for (const line of ['correct horse battery', 'correct horse battery']) { await new Promise((r) => setImmediate(r)); input.write(`${line}\r`); }
   await done;
-  const added = calls.filter((c) => c.args[1] === 'add');
-  assert.deepEqual(added.map((c) => c.args.slice(0, 4)), [
-    ['env', 'add', 'EDIT_PASSWORD_HASH', 'production'], ['env', 'add', 'EDIT_PASSWORD_HASH', 'preview'],
-    ['env', 'add', 'SESSION_SECRET', 'production'], ['env', 'add', 'SESSION_SECRET', 'preview'],
+  // Each call answers every question the CLI (65.16.0) would otherwise ask on stdin, which the value
+  // has used up: --yes skips "Git branch?" for preview (and so sets it for every preview branch),
+  // --force replaces a value already there, so no `env rm` goes before it.
+  const flags = (name, env) => ['env', 'add', name, '--environment', env, '--sensitive', '--yes', '--force', '--cwd', 'library/.deploy'];
+  assert.deepEqual(calls.map((c) => c.args), [
+    flags('EDIT_PASSWORD_HASH', 'production'), flags('EDIT_PASSWORD_HASH', 'preview'),
+    flags('SESSION_SECRET', 'production'), flags('SESSION_SECRET', 'preview'),
   ]);
-  for (const call of added) assert.ok(call.args.includes('--sensitive'), call.args.join(' '));
+  const added = calls;
   const [hash] = added.map((c) => c.input);
   assert.ok(await verifyPassword('correct horse battery', hash));
   const secrets = added.filter((c) => c.args[2] === 'SESSION_SECRET').map((c) => c.input);
