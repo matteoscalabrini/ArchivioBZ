@@ -1,21 +1,25 @@
 // A row's pictures in edit mode: under each, ✕ (off the row, never out of storage), ← and → (one
 // place back or on) and ✎ on its caption; with two pictures or more, the switch "Side by side".
-// Each change sends the row's whole list of pictures (set-pictures), as the server keeps it.
+// Each change names the one picture it is about, by its source (remove-picture, move-picture,
+// set-caption), and the server applies it to the row as it then stands: two clicks made before the
+// first is answered both count, which a whole list sent from the page could not promise.
 import { state, list, send, act, say, showPicture } from './core.js';
 import { iconButton } from './icons.js';
 import { openField, input } from './field.js';
-import { movePicture } from '../editmodel.js';
 
 const held = (id) => (state.doc.rows[id]?.pictures ?? []).filter((p) => p?.src);
-const listed = (pictures) => pictures.map(({ src, caption }) => ({ src, caption: caption ?? '' }));
 
+// Each figure's tools carry its picture's source, as the row was drawn: the page's draft may run
+// ahead of a row that waits to be drawn again (core.js), so an index would name another picture.
 export function dressPictures(el) {
   const pics = el.querySelector('.row-body .pics');
   if (!pics) return;
   const figures = [...pics.querySelectorAll(':scope > figure')];
+  const pictures = held(el.dataset.no);
   figures.forEach((figure, n) => {
     const tools = document.createElement('p');
     tools.className = 'ed-pic';
+    tools.dataset.picture = pictures[n]?.src ?? '';
     const back = iconButton('back', 'Move the picture back', { key: `pic-back:${n}` });
     const on = iconButton('on', 'Move the picture on', { key: `pic-on:${n}` });
     back.disabled = n === 0;
@@ -28,6 +32,7 @@ export function dressPictures(el) {
     }
     const words = Object.assign(document.createElement('span'), { className: 'ed-v', textContent: caption.textContent });
     caption.replaceChildren(words, caption.textContent ? ' ' : '', iconButton('edit', 'Edit the caption', { key: `pic-caption:${n}` }));
+    caption.dataset.picture = tools.dataset.picture;
     caption.before(tools);
   });
   if (figures.length > 1) {
@@ -49,16 +54,17 @@ list.addEventListener('click', (event) => {
   const id = row.dataset.no;
   const [what, at] = button.dataset.ed.split(':');
   const n = Number(at);
-  const pictures = listed(held(id));
+  const src = button.closest('[data-picture]')?.dataset.picture;
+  if (!src) return;
   if (what === 'pic-x') {
     showPicture.set(id, Math.max(0, n - 1));
-    act({ op: 'set-pictures', id, pictures: pictures.filter((_, i) => i !== n) });
+    act({ op: 'remove-picture', id, src });
   } else if (what === 'pic-back' || what === 'pic-on') {
     const step = what === 'pic-back' ? -1 : 1;
     showPicture.set(id, n + step);
-    act({ op: 'set-pictures', id, pictures: movePicture(pictures, n, step) });
+    act({ op: 'move-picture', id, src, step });
   } else if (what === 'pic-caption') {
-    editCaption(button, id, n);
+    editCaption(button, id, n, src);
   }
 });
 
@@ -72,14 +78,14 @@ list.addEventListener('change', (event) => {
   });
 });
 
-function editCaption(opener, id, n) {
+function editCaption(opener, id, n, src) {
   const caption = opener.closest('figcaption');
   const words = caption.querySelector('.ed-v');
-  const field = input(held(id)[n]?.caption ?? '', 'Caption', { className: 'ed-in-line' });
+  const field = input(held(id).find((p) => p.src === src)?.caption ?? '', 'Caption', { className: 'ed-in-line' });
   openField({
     controls: [field],
     read: () => field.value.trim(),
-    save: (text, box) => send({ op: 'set-pictures', id, pictures: listed(held(id)).map((p, i) => (i === n ? { ...p, caption: text } : p)) }, { field: box }),
+    save: (text, box) => send({ op: 'set-caption', id, src, caption: text }, { field: box }),
     place: (box) => opener.after(box),
     hide: [words, opener],
     opener,

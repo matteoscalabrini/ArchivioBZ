@@ -45,7 +45,7 @@ export function openPicker(row, id, opener) {
     if (busy) return;
     busy = true;
     try {
-      await send({ op: 'set-row', id, fields: { keywords: [...held(), kid] } });
+      await send({ op: 'give-keyword', id, keyword: kid }); // the one keyword, whatever else is on its way
       close();
     } catch (refusal) {
       fail(refusal);

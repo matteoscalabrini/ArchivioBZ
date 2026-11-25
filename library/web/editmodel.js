@@ -1,8 +1,7 @@
 // What edit mode works out without the page: where a dragged row or chapter lands and what the
-// order is meanwhile, a text as paragraphs and back, a typed year, a picture moved, the keywords
-// offered, the queue that sends the edits one at a time, what is under way until the page has
-// settled, the number of changes the summary names, and a record after a saved edit. Pure, shared
-// by edit.js and the tests.
+// order is meanwhile, a text as paragraphs and back, a typed year, the keywords offered, the queue
+// that sends the edits one at a time, what is under way until the page has settled, and the number
+// of changes the summary names. Pure, shared by edit.js and the tests.
 
 // Where a row dropped in the list goes. `sequence`: the list after the drop, its headings and rows
 // in the order they now stand, [{ kind: 'chapter' | 'row', id }]. The row joins the chapter of the
@@ -85,16 +84,6 @@ export function yearValue(text) {
   const typed = String(text ?? '').trim();
   if (!typed) return null;
   return /^-?\d+$/.test(typed) ? Number(typed) : typed;
-}
-
-// A row's pictures with the one at `index` moved one place on (+1) or back (-1), held at the
-// ends. A new list.
-export function movePicture(pictures, index, step) {
-  const next = pictures.slice();
-  const to = index + step;
-  if (to < 0 || to >= next.length) return next;
-  [next[index], next[to]] = [next[to], next[index]];
-  return next;
 }
 
 // The keywords a row can be given: those of the vocabulary it does not hold, by label, narrowed
@@ -223,39 +212,4 @@ export function changesIn(summary) {
 export function publishQuestion(n) {
   if (n === 0) return 'Publish again? Nothing has changed since the last publish.';
   return `Publish ${n} ${n === 1 ? 'change' : 'changes'}?`;
-}
-
-// A row's record after a saved set-row, as cloud/ops.mjs stores it: the title trimmed, empty
-// paragraphs dropped, an emptied field removed (but the title, type, keywords and text, which stay
-// even when empty), a confidence or source reduced to what it holds. Only for fields the server
-// took: what it refuses never reaches here. Returns a new record.
-export function mergeFields(record, fields) {
-  const next = structuredClone(record);
-  for (const [name, value] of Object.entries(fields)) {
-    const stored = storedValue(name, value);
-    if (stored === undefined || (empty(stored) && !KEPT.includes(name))) delete next[name];
-    else next[name] = stored;
-  }
-  return next;
-}
-
-const KEPT = ['title', 'type', 'keywords', 'text'];
-const empty = (value) => value === '' || value === null || (Array.isArray(value) && value.length === 0);
-
-function storedValue(name, value) {
-  if (name === 'title') return value.trim();
-  if (name === 'year') return value ?? undefined;
-  if (name === 'text') return value.filter((p) => p.trim());
-  if (name === 'confidence') {
-    if (value === null) return undefined;
-    return value.note ? { level: value.level, note: value.note } : { level: value.level };
-  }
-  if (name === 'source') {
-    if (value === null) return undefined;
-    const source = Object.fromEntries(['label', 'url'].filter((k) => value[k]).map((k) => [k, value[k]]));
-    return Object.keys(source).length ? source : undefined;
-  }
-  if (name === 'place') return value === null || value === '' ? undefined : value;
-  if (['date', 'holder', 'creator', 'rights'].includes(name)) return empty(value) ? undefined : value;
-  return value; // type, keywords, side_by_side
 }

@@ -36,8 +36,8 @@ const LOGIN_WINDOW_MINUTES = 15;
 const FAILURE_WAIT_MS = 1000;
 const CONFLICT = 'Changed in another window. Reload to see it.';
 const NOT_PURGED = 'Published, but the public site may still show the old version. Publish again to refresh it.';
-// The ops after which the page swaps in the row as drawn again.
-const ROW_OPS = ['set-row', 'set-pictures', 'add-row', 'hide-row'];
+// The ops after which the page swaps in the row as drawn again, and holds the row as stored.
+const ROW_OPS = ['set-row', 'set-pictures', 'add-row', 'hide-row', 'give-keyword', 'remove-keyword', 'remove-picture', 'move-picture', 'set-caption'];
 
 // A request refused with a status and a sentence, answered as { error }.
 class Refused extends Error {
@@ -157,7 +157,11 @@ ${line ? `<p class="login-line" role="alert">${esc(line)}</p>\n` : ''}</form>`,
       summary: summaryLine(diffDocs(published, doc)),
       result, // the new id after add-row, add-chapter and add-keyword
     };
-    if (ROW_OPS.includes(wanted.op)) reply.row = renderEditRow(doc, result.id ?? wanted.id, lists, { published });
+    if (ROW_OPS.includes(wanted.op)) {
+      const id = result.id ?? wanted.id;
+      reply.row = renderEditRow(doc, id, lists, { published });
+      reply.stored = doc.rows[id]; // what the page's fields then start from: the server's own words
+    }
     return json(200, reply);
   }
 

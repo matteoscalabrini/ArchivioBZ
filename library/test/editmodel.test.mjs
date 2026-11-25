@@ -1,7 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { dropTarget, chapterIndex, toParagraphs, fromParagraphs, OpQueue, Underway, changesIn, publishQuestion, mergeFields, storyPlaces, headingsOf, placeRow, rowPlace, placeChapter, yearValue, movePicture, offered } from '../web/editmodel.js';
-import { applyOp } from '../cloud/ops.mjs';
+import { dropTarget, chapterIndex, toParagraphs, fromParagraphs, OpQueue, Underway, changesIn, publishQuestion, storyPlaces, headingsOf, placeRow, rowPlace, placeChapter, yearValue, offered } from '../web/editmodel.js';
 import { diffDocs } from '../cloud/doc.mjs';
 import { summaryLine } from '../cloud/render.mjs';
 import { sampleDoc } from './docs.mjs';
@@ -167,44 +166,6 @@ test('the question before a publish', () => {
   assert.equal(publishQuestion(0), 'Publish again? Nothing has changed since the last publish.');
 });
 
-// The page keeps the records it edits; after a saved set-row it must hold what the server stored.
-test('fields merged into a record as the server stores them', () => {
-  const cases = [
-    { title: '  A title with room  ' },
-    { date: '1930s', year: 1934 },
-    { date: '', year: null },
-    { holder: 'Archivio', creator: '', rights: 'CC BY 4.0' },
-    { text: ['One', '', '  ', 'Two'] },
-    { keywords: ['wall', 'march'] },
-    { confidence: { level: 'read', note: '' } },
-    { confidence: { level: 'lead', note: 'Photographer unclear' } },
-    { confidence: null },
-    { source: { label: 'Teßmann', url: '' } },
-    { source: { label: '', url: '' } },
-    { source: { label: 'A paper', url: 'https://example.org/a' } },
-    { place: 'piazza' },
-    { place: '' },
-    { side_by_side: true },
-    { side_by_side: false },
-    { type: 'Postcard' },
-  ];
-  let doc = sampleDoc({ c1: ['a'] });
-  doc.rows.a.record = { ...doc.rows.a.record, holder: 'Old', creator: 'Someone', confidence: { level: 'secondary' }, source: { label: 'Old' }, place: 'piazza' };
-  let local = structuredClone(doc.rows.a.record);
-  for (const fields of cases) {
-    doc = applyOp(doc, { op: 'set-row', id: 'a', fields }).doc;
-    local = mergeFields(local, fields);
-    assert.deepEqual(local, doc.rows.a.record, JSON.stringify(fields));
-  }
-});
-
-test('merging leaves the record it is given as it was', () => {
-  const record = { title: 'T', type: 'Poster', holder: 'H', keywords: [], text: [] };
-  const copy = structuredClone(record);
-  mergeFields(record, { holder: '', title: 'U' });
-  assert.deepEqual(record, copy);
-});
-
 const chapters = () => [{ id: 'c1', title: 'One', rows: ['a', 'h', 'b'] }, { id: 'c2', title: 'Two', rows: [] }, { id: 'c3', title: 'Three', rows: ['c'] }];
 
 test('each row takes its place in the story from the chapters, hidden rows counted', () => {
@@ -241,15 +202,6 @@ test('the year as typed: empty is none, a whole number is a number, anything els
   assert.equal(yearValue('-50'), -50);
   assert.equal(yearValue('1934–40'), '1934–40');
   assert.equal(yearValue('19.5'), '19.5');
-});
-
-test('a picture moved one place on or back, held at the ends', () => {
-  const list = [{ src: 'a' }, { src: 'b' }, { src: 'c' }];
-  assert.deepEqual(movePicture(list, 0, 1).map((p) => p.src), ['b', 'a', 'c']);
-  assert.deepEqual(movePicture(list, 2, -1).map((p) => p.src), ['a', 'c', 'b']);
-  assert.deepEqual(movePicture(list, 0, -1).map((p) => p.src), ['a', 'b', 'c']);
-  assert.deepEqual(movePicture(list, 2, 1).map((p) => p.src), ['a', 'b', 'c']);
-  assert.deepEqual(list.map((p) => p.src), ['a', 'b', 'c']);
 });
 
 test('the keywords offered to a row: the others, by label, narrowed by what is typed whatever its accents and case', () => {

@@ -174,6 +174,52 @@ test('set-pictures keeps the named pictures in the given order and refuses a str
   refused(doc, { op: 'set-pictures', id: 'a', pictures: [{ src: '/p/1.jpg', caption: '' }, { src: '/p/1.jpg', caption: '' }] });
 });
 
+// Edit mode sends what the author meant, one keyword or one picture, so that two clicks made
+// before the first is answered each apply to the row as the one before left it.
+test('give-keyword and remove-keyword change one keyword of the row as it stands', () => {
+  let { doc } = applyOp(sample(), { op: 'give-keyword', id: 'a', keyword: 'wall' });
+  ({ doc } = applyOp(doc, { op: 'give-keyword', id: 'a', keyword: 'march' }));
+  ({ doc } = applyOp(doc, { op: 'give-keyword', id: 'a', keyword: 'poster' }));
+  assert.deepEqual(doc.rows.a.record.keywords, ['wall', 'march', 'poster']);
+  assert.deepEqual(applyOp(doc, { op: 'give-keyword', id: 'a', keyword: 'walls' }).doc.rows.a.record.keywords, ['wall', 'march', 'poster'], 'a folded id is its target, held already');
+  // Two removals, each from the list the one before left: both go.
+  const one = applyOp(doc, { op: 'remove-keyword', id: 'a', keyword: 'wall' }).doc;
+  const two = applyOp(one, { op: 'remove-keyword', id: 'a', keyword: 'march' }).doc;
+  assert.deepEqual(two.rows.a.record.keywords, ['poster']);
+  assert.deepEqual(applyOp(two, { op: 'remove-keyword', id: 'a', keyword: 'wall' }).doc.rows.a.record.keywords, ['poster'], 'removed twice is removed once');
+  refused(doc, { op: 'give-keyword', id: 'a', keyword: 'nothing' }, '"nothing" is not a keyword.');
+  const full = sample();
+  full.keywords = { k1: { label: '1' }, k2: { label: '2' }, k3: { label: '3' }, k4: { label: '4' }, k5: { label: '5' }, k6: { label: '6' } };
+  full.aliases = {};
+  full.rows.a.record.keywords = ['k1', 'k2', 'k3', 'k4', 'k5'];
+  refused(full, { op: 'give-keyword', id: 'a', keyword: 'k6' }, 'A row has at most 5 keywords.');
+  refused(sample(), { op: 'remove-keyword', id: 'a', keyword: ['wall'] });
+});
+
+test('remove-picture, move-picture and set-caption change one picture, named by its source', () => {
+  const doc = sample();
+  doc.rows.a.pictures = [{ src: '/p/1.jpg', w: 1, h: 2, caption: 'one' }, { src: '/p/2.jpg', w: 3, h: 4, caption: 'two' }, { src: '/p/3.jpg', w: 5, h: 6, caption: '' }];
+  const srcs = (d) => d.rows.a.pictures.map((p) => p.src);
+  let out = applyOp(doc, { op: 'remove-picture', id: 'a', src: '/p/1.jpg' }).doc;
+  out = applyOp(out, { op: 'remove-picture', id: 'a', src: '/p/2.jpg' }).doc;
+  assert.deepEqual(out.rows.a.pictures, [{ src: '/p/3.jpg', w: 5, h: 6, caption: '' }]);
+  assert.deepEqual(srcs(applyOp(out, { op: 'remove-picture', id: 'a', src: '/p/1.jpg' }).doc), ['/p/3.jpg'], 'removed twice is removed once');
+  // → twice on the first picture moves it two places; at the end it stays.
+  out = applyOp(doc, { op: 'move-picture', id: 'a', src: '/p/1.jpg', step: 1 }).doc;
+  out = applyOp(out, { op: 'move-picture', id: 'a', src: '/p/1.jpg', step: 1 }).doc;
+  assert.deepEqual(srcs(out), ['/p/2.jpg', '/p/3.jpg', '/p/1.jpg']);
+  assert.deepEqual(srcs(applyOp(out, { op: 'move-picture', id: 'a', src: '/p/1.jpg', step: 1 }).doc), ['/p/2.jpg', '/p/3.jpg', '/p/1.jpg']);
+  assert.deepEqual(srcs(applyOp(out, { op: 'move-picture', id: 'a', src: '/p/2.jpg', step: -1 }).doc), ['/p/2.jpg', '/p/3.jpg', '/p/1.jpg']);
+  assert.deepEqual(srcs(applyOp(out, { op: 'move-picture', id: 'a', src: '/p/1.jpg', step: -1 }).doc), ['/p/2.jpg', '/p/1.jpg', '/p/3.jpg']);
+  const captioned = applyOp(doc, { op: 'set-caption', id: 'a', src: '/p/2.jpg', caption: 'Deux' }).doc;
+  assert.deepEqual(captioned.rows.a.pictures[1], { src: '/p/2.jpg', w: 3, h: 4, caption: 'Deux' });
+  refused(doc, { op: 'move-picture', id: 'a', src: '/p/9.jpg', step: 1 }, 'Row a has no picture /p/9.jpg.');
+  refused(doc, { op: 'move-picture', id: 'a', src: '/p/1.jpg', step: 2 });
+  refused(doc, { op: 'set-caption', id: 'a', src: '/p/9.jpg', caption: 'x' }, 'Row a has no picture /p/9.jpg.');
+  refused(doc, { op: 'set-caption', id: 'a', src: '/p/1.jpg', caption: 3 });
+  refused(doc, { op: 'remove-picture', id: 'a', src: 7 });
+});
+
 test('set-idea refuses an unknown marked keyword, accepts a known one', () => {
   assert.equal(applyOp(sample(), { op: 'set-idea', text: 'A [[wall]] and [[Walls]].' }).doc.idea, 'A [[wall]] and [[Walls]].');
   refused(sample(), { op: 'set-idea', text: 'A [[nothing]] here.' });

@@ -3,7 +3,7 @@
 // the server's own drawing (lib/pages.mjs): an answer that carries a row is swapped in, and the
 // order, the numbers and the chapters' headings follow the answer's lists; library.js then reads
 // the page again (rescan) and draws it in the state it was in.
-import { OpQueue, Underway, mergeFields, storyPlaces, headingsOf } from '../editmodel.js';
+import { OpQueue, Underway, storyPlaces, headingsOf } from '../editmodel.js';
 import { rescan, forgetIndex } from '../library.js';
 import { load } from '../pictures.js';
 
@@ -149,25 +149,14 @@ function applied(op, answer, field) {
   if (pending === 0) forgetIndex();
 }
 
-// The draft the page holds, brought up to what the server stored, for the fields' values.
+// The draft the page holds, brought up to what the server stored, for the fields' values. An edit
+// of a row is answered with the row as stored (`stored`), which the page takes as it is: what each
+// field then starts from is the server's own, and the next edit is built on it.
 function keep(op, answer) {
   const { doc } = state;
-  const row = doc.rows[op.id];
-  if (op.op === 'set-row' && row) row.record = mergeFields(row.record, op.fields);
-  else if (op.op === 'set-pictures' && row) {
-    const held = new Map(row.pictures.map((p) => [p.src, p]));
-    row.pictures = op.pictures.map(({ src, caption }) => ({ ...held.get(src), caption }));
-  } else if (op.op === 'hide-row' && row) row.hidden = op.hidden;
+  if (answer?.stored && typeof answer.stored === 'object') doc.rows[answer.result?.id ?? op.id] = answer.stored;
   else if (op.op === 'remove-row') delete doc.rows[op.id];
-  else if (op.op === 'add-row' && answer.result?.id) {
-    doc.rows[answer.result.id] = {
-      hidden: false,
-      record: { title: op.title.trim(), type: op.type, date: '', year: null, keywords: [], text: [] },
-      find: { on: [], shows: [], colours: [], names: [] },
-      pictures: [],
-      thumb: null,
-    };
-  } else if (op.op === 'add-keyword' && answer.result?.id && !answer.result.existed) {
+  else if (op.op === 'add-keyword' && answer.result?.id && !answer.result.existed) {
     const label = op.label.trim().replace(/\s+/g, ' ');
     doc.keywords[answer.result.id] = { label };
     // library.js names a keyword in the status line from this list.

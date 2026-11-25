@@ -134,6 +134,12 @@ function record(page) {
     sent.push({ route, body, status: response.status() });
   });
 }
+// Waits until `count` more edits than `before` have been answered.
+async function sentSince(before, count) {
+  const deadline = Date.now() + WAIT;
+  while (sent.length < before + count && Date.now() < deadline) await pause(50);
+  check(sent.length >= before + count, `${sent.length - before} edits were answered, not ${count}`);
+}
 const answerTo = (page, route) => page.waitForResponse((r) => r.request().method() === 'POST' && new URL(r.url()).pathname === `/edit/${route}`, { timeout: WAIT });
 
 async function logIn(page, base) {
@@ -322,6 +328,46 @@ async function main() {
     check((await answered).status() === 200, 'the row was not hidden');
     await listShows(page, '# c1 # c2 0.01=2.01 5.01=— 5.00=2.02 5.02=2.03 5.03=2.04 # c3 12.01=3.01', 'after 👁');
     check(await page.$eval('article.row[data-no="5.01"]', (el) => el.hasAttribute('data-hidden')), 'the hidden row carries no data-hidden');
+  });
+
+  // Two clicks in one moment, before the first is answered: each edit names the one keyword or
+  // picture it is about, so the second does not carry the list the first had not changed yet.
+  await step('two keywords taken off a row in one moment both go, and stay gone after a reload', async () => {
+    const row = 'article.row[data-no="5.03"]';
+    const before = sent.length;
+    const keys = await page.$$eval(`${row} .c-kw button.ed-kw-x`, (buttons) => buttons.map((b) => b.dataset.ed));
+    check(keys.length === 2, `5.03 has ${keys.length} keywords to take off, not 2: ${JSON.stringify(keys)}`);
+    await page.$$eval(`${row} .c-kw button.ed-kw-x`, (buttons) => buttons.forEach((b) => b.click()));
+    await sentSince(before, 2);
+    const two = sent.slice(before);
+    check(two.every((s) => s.status === 200), `answered ${two.map((s) => s.status).join(' and ')}`);
+    await page.waitForFunction((sel) => document.querySelector(sel)?.dataset.kw === '', { timeout: WAIT }, row)
+      .catch(async () => { throw new Error(`answered, 5.03 holds the keywords ${JSON.stringify(await page.$eval(row, (el) => el.dataset.kw))}`); });
+    await page.reload();
+    await page.waitForSelector('.ed-bar');
+    const kept = await page.$eval(row, (el) => [el.dataset.kw, el.querySelectorAll('.c-kw button[data-k]').length]);
+    check(kept[0] === '' && kept[1] === 0, `after a reload, 5.03 holds the keywords ${JSON.stringify(kept[0])}`);
+  });
+
+  await step('both pictures of a row taken off in one moment both go, and stay gone after a reload', async () => {
+    const row = 'article.row[data-no="5.01"]';
+    await page.click(`${row} .c-title button`);
+    await page.waitForSelector(`${row}.open .ed-pic button[data-ed^="pic-x:"]`);
+    const before = sent.length;
+    const count = await page.$$eval(`${row} .ed-pic button[data-ed^="pic-x:"]`, (buttons) => {
+      buttons.forEach((b) => b.click());
+      return buttons.length;
+    });
+    check(count === 2, `5.01 has ${count} pictures to take off, not 2`);
+    await sentSince(before, 2);
+    const two = sent.slice(before);
+    check(two.every((s) => s.status === 200), `answered ${two.map((s) => s.status).join(' and ')}`);
+    await page.waitForFunction((sel) => document.querySelector(sel) && !document.querySelector(`${sel} .pics figure`), { timeout: WAIT }, row)
+      .catch(async () => { throw new Error(`answered, 5.01 shows ${await page.$$eval(`${row} .pics figure`, (f) => f.length)} pictures`); });
+    await page.goto(`${base}/edit/`); // without #o=5.01: the row closed again for the steps after
+    await page.waitForSelector('.ed-bar');
+    const left = await page.$$eval(`${row} .pics figure`, (f) => f.length);
+    check(left === 0, `after a reload, 5.01 shows ${left} pictures`);
   });
 
   await step('a title left and a row dragged at once are both saved, in order, with no conflict', async () => {

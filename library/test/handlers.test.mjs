@@ -143,6 +143,7 @@ test('an op saves, renumbers and gives back the row', async () => {
     { id: 'c2', no: '2', title: 'Chapter c2', rows: ['d'] },
   ]);
   assert.equal(body.summary, '1 hidden');
+  assert.deepEqual(body.stored, { ...sample().rows.b, hidden: true }, 'the row as stored, for the page to hold');
   assert.equal(res.headers.get('cache-control'), 'no-store');
   const draft = await store.getDraft();
   assert.equal(draft.version, 2);
@@ -168,6 +169,10 @@ test('an op that moves or adds gives back what the page needs', async () => {
   assert.match(added.row, /^<article class="row" data-no="r1"/);
   const keyword = await (await h.edit(post('op', { version: 3, op: { op: 'add-keyword', label: 'Covered names' } }))).json();
   assert.deepEqual(keyword.result, { id: 'covered-names', existed: false });
+  assert.equal(keyword.stored, undefined, 'an edit of no row gives back no row');
+  const given = await (await h.edit(post('op', { version: 4, op: { op: 'give-keyword', id: 'r1', keyword: 'covered-names' } }))).json();
+  assert.match(given.row, /^<article class="row" data-no="r1"[^>]* data-kw="covered-names"/);
+  assert.deepEqual(given.stored.record.keywords, ['covered-names']);
 });
 
 test('an op the document refuses answers 422 with the sentence the author reads', async () => {

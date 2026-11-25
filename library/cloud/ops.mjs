@@ -93,6 +93,13 @@ function checkedField(doc, name, value) {
 }
 const LIVE = (value) => value !== null && typeof value === 'object' && !Array.isArray(value);
 
+function pictureAt(row, id, src) {
+  if (!isText(src)) refuse('A picture is named by its source.');
+  const at = row.pictures.findIndex((p) => p.src === src);
+  if (at < 0) refuse(`Row ${id} has no picture ${src}.`);
+  return at;
+}
+
 const slug = (label) => label.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 
 const OPS = {
@@ -119,6 +126,45 @@ const OPS = {
       seen.add(src);
       return { ...held.get(src), caption: isText(caption) ? caption : '' };
     });
+    return {};
+  },
+  // One keyword given to the row or taken off it, applied to the row as it now stands, so that two
+  // clicks made before the first is answered both count. Taking off one it lacks does nothing.
+  'give-keyword'(doc, { id, keyword }) {
+    const row = rowOf(doc, id);
+    const held = row.record.keywords ?? [];
+    const [wanted] = checkedField(doc, 'keywords', [keyword]);
+    if (!held.includes(wanted)) row.record.keywords = checkedField(doc, 'keywords', [...held, wanted]);
+    return {};
+  },
+  'remove-keyword'(doc, { id, keyword }) {
+    const row = rowOf(doc, id);
+    if (!isText(keyword)) refuse('A keyword is named by its id.');
+    const wanted = Object.hasOwn(doc.aliases, keyword) ? doc.aliases[keyword] : keyword;
+    row.record.keywords = (row.record.keywords ?? []).filter((k) => k !== wanted);
+    return {};
+  },
+  // One picture, named by its source, taken off the row (never out of storage), moved one place on
+  // (+1) or back (-1), held at the ends, or given a caption.
+  'remove-picture'(doc, { id, src }) {
+    const row = rowOf(doc, id);
+    if (!isText(src)) refuse('A picture is named by its source.');
+    row.pictures = row.pictures.filter((p) => p.src !== src);
+    return {};
+  },
+  'move-picture'(doc, { id, src, step }) {
+    const row = rowOf(doc, id);
+    const at = pictureAt(row, id, src);
+    if (step !== 1 && step !== -1) refuse('A picture moves one place on or back.');
+    const to = at + step;
+    if (to >= 0 && to < row.pictures.length) [row.pictures[at], row.pictures[to]] = [row.pictures[to], row.pictures[at]];
+    return {};
+  },
+  'set-caption'(doc, { id, src, caption }) {
+    const row = rowOf(doc, id);
+    const at = pictureAt(row, id, src);
+    if (!isText(caption)) refuse('A caption must be text.');
+    row.pictures[at] = { ...row.pictures[at], caption: caption.trim() };
     return {};
   },
   'move-row'(doc, { id, chapter, index }) {

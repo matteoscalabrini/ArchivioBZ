@@ -116,7 +116,9 @@ list.addEventListener('click', (event) => {
   if (key === 'date') return editDate(row, id, button);
   if (key === 'text') return editText(row, id, button);
   if (key.startsWith('line:')) return editLine(row, id, button, key.slice(5));
-  if (key.startsWith('kw:')) return act({ op: 'set-row', id, fields: { keywords: (record(id).keywords ?? []).filter((k) => k !== key.slice(3)) } });
+  // The one keyword clicked, not the row's list less it: a second ✕ made before the first is
+  // answered would otherwise send the list the first had not yet changed, and put its keyword back.
+  if (key.startsWith('kw:')) return act({ op: 'remove-keyword', id, keyword: key.slice(3) });
   if (key === 'kw-add') return openPicker(row, id, button);
   if (key === 'hide') return act({ op: 'hide-row', id, hidden: state.doc.rows[id]?.hidden !== true });
   if (key === 'remove') return removeRow(id);
