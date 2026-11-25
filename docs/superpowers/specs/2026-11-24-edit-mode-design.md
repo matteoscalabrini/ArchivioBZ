@@ -181,8 +181,12 @@ are retired; its media half (backing up the research files on disk to the privat
   tourism", "Browser checks", "The Semirurali", "Overseas villages", "Internal colonization",
   "Defusing by form: references", "The Cinema Corso", "City architecture", "Film and radio",
   "Print", "The Monument visit", "Covered names"); the author renames them. **(call)**
-- Chapters are numbered from 1 by their order. A chapter can be added (anywhere), renamed,
-  dragged to another place (its rows renumber with it) and deleted once empty. **(call)**
+- Chapters are numbered from 1 by their order, counting only chapters with at least one row that
+  is not hidden: a chapter whose rows are all hidden, or that has none, takes no number (edit mode
+  shows `—`), and the chapters after it close up. Typing a number names a numbered chapter; an
+  unnumbered one is reached by dragging or by ＋ row here. **(M)** "Ideally yes", 25 Nov 2026, to
+  the chapter numbers closing up. A chapter can be added (anywhere), renamed, dragged to another
+  place (its rows renumber with it) and deleted once empty. **(call)**
 - **The public Library shows a heading line per chapter** (number and title, in the serif of the
   headers) above its rows, in the story order. Sorting by type or date, and the search's two
   groups, drop the headings. Filtering by a keyword or a kind keeps the headings of chapters that
