@@ -27,8 +27,17 @@ test('a second draft is refused unless it replaces the first', async () => {
   await store.createDraft(sample());
   await assert.rejects(store.createDraft(sample()), /There is a draft already; --replace to overwrite it/);
   const other = sampleDoc({ c1: ['z'] });
-  assert.equal(await store.createDraft(other, { replace: true }), 1);
+  assert.equal(await store.createDraft(other, { replace: true }), 2);
   assert.deepEqual((await store.getDraft()).doc, other);
+  // The old draft is kept, and a window that held version 1 is refused.
+  const [{ doc }] = (await pg.query("select doc from publishes where kind = 'set-aside'")).rows;
+  assert.deepEqual(doc, sample());
+  await assert.rejects(store.saveDraft(sample(), 1), (e) => e instanceof ConflictError && e.version === 2);
+  const empty = new PGlite();
+  const fresh = makeStore(pgliteDb(empty));
+  await fresh.init();
+  assert.equal(await fresh.createDraft(other, { replace: true }), 1);
+  await empty.close();
 });
 
 test('publish stores the document and replaces the site files', async () => {
@@ -66,6 +75,8 @@ test('restore sets the draft aside first', async () => {
   assert.deepEqual((await store.getDraft()).doc, sample());
   const aside = (await store.listPublishes()).find((p) => p.kind === 'set-aside');
   assert.ok(aside);
+  const [{ doc }] = (await pg.query("select doc from publishes where kind = 'set-aside'")).rows;
+  assert.deepEqual(doc, changed);
   assert.equal((await store.latestPublish()).id, id); // a set-aside is not a publish
   await assert.rejects(store.restore(id, 2), (e) => e instanceof ConflictError && e.version === 3);
 });

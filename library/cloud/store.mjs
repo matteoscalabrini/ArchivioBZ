@@ -32,15 +32,19 @@ export function makeStore(db) {
       return row ? { version: row.version, doc: row.doc, savedAt: row.saved_at } : null;
     },
 
+    // With `replace`, a draft that exists is kept as a 'set-aside' and the new document is written
+    // at the next version, so a window holding the old version is refused rather than overwriting it.
     async createDraft(doc, { replace = false } = {}) {
       return db.transaction(async (q) => {
-        if (!replace && (await currentVersion(q)) !== null) throw new Error('There is a draft already; --replace to overwrite it');
-        await q(
-          `insert into draft (id, version, doc) values (1, 1, $1::jsonb)
-           on conflict (id) do update set version = 1, doc = excluded.doc, saved_at = now()`,
-          [json(doc)],
-        );
-        return 1;
+        const [old] = await q('select doc from draft where id = 1 for update');
+        if (old && !replace) throw new Error('There is a draft already; --replace to overwrite it');
+        if (!old) {
+          await q('insert into draft (id, version, doc) values (1, 1, $1::jsonb)', [json(doc)]);
+          return 1;
+        }
+        await q("insert into publishes (kind, doc, summary) values ('set-aside', $1::jsonb, 'Set aside before a replace')", [json(old.doc)]);
+        const rows = await q('update draft set doc = $1::jsonb, version = version + 1, saved_at = now() where id = 1 returning version', [json(doc)]);
+        return rows[0].version;
       });
     },
 

@@ -5,9 +5,15 @@
 //                      fn returns and rolls back when fn throws
 //   end() -> close
 import { Pool } from '@neondatabase/serverless';
+import { attachDatabasePool } from '@vercel/functions';
 
 export function neonDb(url) {
-  const pool = new Pool({ connectionString: url });
+  // idleTimeoutMillis is set so that attachDatabasePool can close idle connections before the
+  // function is suspended; the error listener keeps a connection that dies while idle from
+  // throwing an uncaught exception out of the pool.
+  const pool = new Pool({ connectionString: url, idleTimeoutMillis: 5000 });
+  pool.on('error', (error) => console.error('database pool:', error));
+  attachDatabasePool(pool);
   return {
     async query(text, params = []) {
       return (await pool.query(text, params)).rows;
