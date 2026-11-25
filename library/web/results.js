@@ -32,6 +32,28 @@ export function layout(rows, state, found, { allPossible = false } = {}) {
   return { items, shown: precise.length + showing.length, precise: precise.length, possible: possible.length, searched: true };
 }
 
+// The list without a search, in the story order, with the chapters' headings among its rows: each
+// heading over the first row of its chapter, and that of a chapter without rows after the rows of
+// the chapter before it. `rows` = [{ chapter }] in the story order (a row in no chapter has none);
+// `chapters` = the chapter ids of the headings, in theirs; `shows(row)`: the row passes the
+// filters. Items: { row } and { chapter, hidden }. A heading is hidden when none of its chapter's
+// rows shows; that of a chapter without rows, only when the list is `narrowed`.
+export function inChapters(rows, chapters, { shows = () => true, narrowed = false } = {}) {
+  const place = new Map(chapters.map((id, n) => [id, n]));
+  const having = new Set(rows.map((row) => row.chapter));
+  const showing = new Set(rows.filter(shows).map((row) => row.chapter));
+  const heading = (id) => ({ chapter: id, hidden: having.has(id) ? !showing.has(id) : narrowed });
+  const items = [];
+  let next = 0; // the first heading not yet placed
+  for (const row of rows) {
+    const at = place.get(row.chapter) ?? -1;
+    while (next <= at) items.push(heading(chapters[next++]));
+    items.push({ row });
+  }
+  while (next < chapters.length) items.push(heading(chapters[next++]));
+  return items;
+}
+
 // The status line: what narrows the list, and how many rows that leaves. `narrowed` = the labels
 // of the kind and the keyword chosen; `ready` = the index is there; `failed` = it could not be had.
 export function summary({ total, shown, precise = 0, possible = 0, narrowed = [], q = '', ready = false, failed = false }) {

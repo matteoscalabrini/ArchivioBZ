@@ -6,9 +6,14 @@
 // types: search.js finds the rows in the index the build wrote (search.json, fetched when the
 // field is first used), results.js says what the list then holds, and this file puts it there:
 // the rows found in two groups, each under its line, and under each title why it was found.
+//
+// A library in chapters has a heading over each chapter's rows (h2.chapter, lib/pages.mjs): it
+// stands in the list only in the story order (the No. sort) with nothing searched, and is hidden
+// while none of its chapter's rows shows. Edit mode changes the list in place and then calls
+// rescan(), which reads the page again.
 import { parseState, formatState, matches, compare } from './state.js';
 import { prepare, search } from './search.js';
-import { layout, summary, reasonHtml } from './results.js';
+import { layout, summary, reasonHtml, inChapters } from './results.js';
 import { load, stepPicture } from './pictures.js';
 import './lightbox.js';
 
@@ -17,32 +22,23 @@ const status = document.querySelector('.status');
 const colhead = document.querySelector('.colhead');
 const form = document.querySelector('form.find');
 const field = form?.querySelector('input') ?? null;
-const keywordButtons = [...document.querySelectorAll('button[data-k]')];
-const kindButtons = [...document.querySelectorAll('button[data-kind]')];
 const sortButtons = [...colhead.querySelectorAll('button[data-sort]')];
-const labels = readJson('keyword-labels', {});
-const kindLabels = readJson('kind-labels', {});
-const onMapKeywords = new Set(readJson('keywords-on-map', [])); // keywords with a row placed on the map
-const rows = [...list.querySelectorAll('article.row')].map((el) => ({
-  el,
-  no: el.dataset.no,
-  at: Number(el.dataset.at),
-  type: el.dataset.type,
-  kind: el.dataset.kind,
-  year: Number(el.dataset.year),
-  kw: el.dataset.kw.split(' ').filter(Boolean),
-  title: el.querySelector('.c-title button'),
-  body: el.querySelector('.row-body'),
-  why: el.querySelector('.why'),
-  said: '', // the reasons now written under the title, as HTML
-}));
-const byNo = new Map(rows.map((row) => [row.no, row]));
-const known = {
-  keywords: new Set(keywordButtons.map((b) => b.dataset.k)),
-  kinds: new Set(kindButtons.map((b) => b.dataset.kind)),
-  rows: new Set(byNo.keys()),
-};
+const onMap = status.querySelector('.on-map');
+const mapAddress = onMap.getAttribute('href'); // map.html, or the way up to it from a page below the top
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+
+// What the page holds, read from it by scan(): once here, and again on rescan().
+let keywordButtons = [];
+let kindButtons = [];
+let labels = {};
+let kindLabels = {};
+let onMapKeywords = new Set(); // keywords with a row placed on the map
+let rows = [];
+let byNo = new Map();
+let known = { keywords: new Set(), kinds: new Set(), rows: new Set() };
+const headings = new Map(); // chapter id -> its heading, in the story order
+let headed = true; // the headings stand in the list, as the page came
+scan();
 
 // What a search adds to the list: a line over each group, a line that offers the possible links
 // not yet shown, and a line for a search that found nothing. Made once, put in when needed.
@@ -131,6 +127,55 @@ document.addEventListener('keydown', (event) => {
   stepPicture(arrow, event.key === 'ArrowLeft' ? -1 : 1);
 });
 
+// For edit mode, after it has changed the list: the page is read again and drawn in the same
+// state, less what is no longer on it (a removed row is not open, a keyword gone filters nothing).
+export function rescan() {
+  scan();
+  state.o = state.o.filter((no) => known.rows.has(no));
+  if (state.k && !known.keywords.has(state.k)) state.k = null;
+  if (state.t && !known.kinds.has(state.t)) state.t = null;
+  sortedBy = null; // a row's place in the story may have changed
+  render();
+}
+
+// Reads from the page the keywords, the kinds, the rows and the chapters' headings. While a search
+// or another sort leaves the headings out of the list they are not on the page to be read, so
+// those held stay, and any new one in the list joins them.
+function scan() {
+  keywordButtons = [...document.querySelectorAll('button[data-k]')];
+  kindButtons = [...document.querySelectorAll('button[data-kind]')];
+  labels = readJson('keyword-labels', {});
+  kindLabels = readJson('kind-labels', {});
+  onMapKeywords = new Set(readJson('keywords-on-map', []));
+  rows = [...list.querySelectorAll('article.row')].map(readRow);
+  byNo = new Map(rows.map((row) => [row.no, row]));
+  known = {
+    keywords: new Set(keywordButtons.map((b) => b.dataset.k)),
+    kinds: new Set(kindButtons.map((b) => b.dataset.kind)),
+    rows: new Set(byNo.keys()),
+  };
+  if (headed) headings.clear();
+  for (const el of list.querySelectorAll('h2.chapter')) headings.set(el.dataset.chapter, el);
+}
+
+function readRow(el) {
+  const why = el.querySelector('.why');
+  return {
+    el,
+    no: el.dataset.no,
+    at: Number(el.dataset.at),
+    chapter: el.dataset.chapter,
+    type: el.dataset.type,
+    kind: el.dataset.kind,
+    year: Number(el.dataset.year),
+    kw: el.dataset.kw.split(' ').filter(Boolean),
+    title: el.querySelector('.c-title button'),
+    body: el.querySelector('.row-body'),
+    why,
+    said: why?.innerHTML ?? '', // the reasons now written under the title, as HTML
+  };
+}
+
 // The state as the address gives it, applied without animation, the first open row in view.
 function restore() {
   if (field && field.value !== state.q) field.value = state.q;
@@ -174,8 +219,18 @@ function render() {
     lines.push(none);
   }
   // Without a search every row keeps its place in the order of the column heads and the ones
-  // left out are hidden where they stand. With one, the rows found come first, in their groups.
-  const wanted = view.searched ? [...lines, ...sorted.filter((row) => !shown.has(row)).map((row) => row.el)] : sorted.map((row) => row.el);
+  // left out are hidden where they stand; in the story order each chapter's heading stands over
+  // its rows. With a search, the rows found come first, in their groups, and no heading stands.
+  headed = !view.searched && state.s === 'no';
+  let wanted;
+  if (view.searched) {
+    wanted = [...lines, ...sorted.filter((row) => !shown.has(row)).map((row) => row.el)];
+  } else if (headed && headings.size) {
+    wanted = inChapters(sorted, [...headings.keys()], { shows: (row) => shown.has(row), narrowed: Boolean(state.k || state.t) })
+      .map((item) => (item.row ? item.row.el : heading(item)));
+  } else {
+    wanted = sorted.map((row) => row.el);
+  }
   // Moved only when the order changes: a row put back in the list would lose the keyboard's focus.
   if (wanted.length !== list.children.length || wanted.some((el, n) => el !== list.children[n])) list.replaceChildren(...wanted);
 
@@ -203,9 +258,8 @@ function render() {
   setText(status.querySelector('.what'), says.what);
   setText(status.querySelector('.n'), says.n);
   status.querySelector('.show-all').hidden = !narrowed.length && !searching;
-  const onMap = status.querySelector('.on-map');
   onMap.hidden = !state.k || !onMapKeywords.has(state.k);
-  onMap.href = state.k ? `map.html#k=${encodeURIComponent(state.k)}` : 'map.html';
+  onMap.href = state.k ? `${mapAddress}#k=${encodeURIComponent(state.k)}` : mapAddress;
 
   // The address follows at once, except while one types: then it waits for a pause, since a
   // browser allows only so many changes of the address in a short time (Safari: 100 in 30 s).
@@ -285,6 +339,13 @@ function setOpen(row, open) {
   row.title.setAttribute('aria-expanded', String(open));
   row.body.inert = !open;
   if (open) row.el.querySelectorAll('.pics figure:not([hidden]) img').forEach(load);
+}
+
+// A chapter's heading as the list wants it, shown or hidden.
+function heading({ chapter, hidden }) {
+  const el = headings.get(chapter);
+  if (el.hidden !== hidden) el.hidden = hidden;
+  return el;
 }
 
 // The line over a group: its name, the number of its rows, and in grey what the group is.

@@ -90,6 +90,22 @@ html { scroll-padding-top: 48px; } /* keeps a focused row clear of the sticky st
 .c-kw button[aria-pressed="true"] { text-decoration: underline; text-underline-offset: 3px; }
 .c-kw .sep { color: var(--grey); }
 
+/* A chapter's heading, over its first row (a library in chapters): in the headers' serif one size
+   above the rows' titles, with the room of a section break over it; its number stands in the No.
+   column (64 px, as in --cols), its title over the rows' titles. */
+.chapter {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  column-gap: var(--col-gap);
+  align-items: baseline;
+  padding: 64px var(--gutter) 16px;
+  border-top: var(--rule);
+  font: 400 var(--size-idea)/1.12 var(--serif);
+  letter-spacing: -0.018em;
+  overflow-wrap: break-word;
+}
+.ch-no { font-variant-numeric: tabular-nums; }
+
 /* A search (web/search.js): the rows found stand in two groups, each under its line; under a
    found row's title, why it was found, the words that matched in black. */
 .group { padding: 8px var(--gutter); border-top: var(--rule); font-size: var(--size-meta); }
@@ -131,6 +147,7 @@ html { scroll-padding-top: 48px; } /* keeps a focused row clear of the sticky st
   .c-type { grid-area: type; }
   .c-date { grid-area: date; }
   .c-kw { grid-area: kw; }
+  .chapter { grid-template-columns: 44px minmax(0, 1fr); column-gap: 14px; padding-top: 44px; } /* the narrow No. column */
   .detail { display: block; padding: 6px var(--gutter) 36px; }
   .detail .txt,
   .detail.wide .txt,

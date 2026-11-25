@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { prepare, search } from '../web/search.js';
-import { layout, summary, reasonHtml, POSSIBLE_SHOWN } from '../web/results.js';
+import { layout, summary, reasonHtml, inChapters, POSSIBLE_SHOWN } from '../web/results.js';
 import { INDEX } from './search-index.mjs';
 
 // The rows as library.js holds them: the rows of section 1 carry the keyword "posters".
@@ -75,4 +75,29 @@ test('a search of nothing but punctuation is no search', () => {
   assert.equal(layout(rows, state({ q: 'Merano' }), search(e, 'Merano')).searched, true);
   assert.equal(layout(rows, state({ q: 'xyzzy' }), search(e, 'xyzzy')).searched, true, 'words that find nothing are still a search');
   assert.equal(layout(rows, state(), null).searched, false);
+});
+
+// Rows of chapters as library.js holds them, in the story order; `shown`: the ids of those that pass.
+const story = [['a', 'c1'], ['b', 'c1'], ['c', 'c2'], ['d', 'c3'], ['e', 'c3']].map(([id, chapter]) => ({ id, chapter }));
+const drawn = (items) => items.map((item) => (item.row ? item.row.id : `${item.hidden ? '-' : '#'}${item.chapter}`));
+
+test('each heading stands over the first row of its chapter', () => {
+  assert.deepEqual(drawn(inChapters(story, ['c1', 'c2', 'c3'])), ['#c1', 'a', 'b', '#c2', 'c', '#c3', 'd', 'e']);
+});
+
+test('a heading whose rows are all filtered out is hidden; the others stay', () => {
+  const shows = (row) => ['b', 'e'].includes(row.id);
+  assert.deepEqual(drawn(inChapters(story, ['c1', 'c2', 'c3'], { shows, narrowed: true })), ['#c1', 'a', 'b', '-c2', 'c', '#c3', 'd', 'e']);
+});
+
+test('a chapter without rows keeps its place among the others, hidden only when the list is narrowed', () => {
+  const chapters = ['c0', 'c1', 'cx', 'c2', 'c3', 'cz'];
+  assert.deepEqual(drawn(inChapters(story, chapters)), ['#c0', '#c1', 'a', 'b', '#cx', '#c2', 'c', '#c3', 'd', 'e', '#cz']);
+  assert.deepEqual(drawn(inChapters(story, chapters, { shows: () => true, narrowed: true })), ['-c0', '#c1', 'a', 'b', '-cx', '#c2', 'c', '#c3', 'd', 'e', '-cz']);
+});
+
+test('rows in no chapter have no heading', () => {
+  const loose = [{ id: 'x' }, ...story.slice(0, 2), { id: 'y' }];
+  assert.deepEqual(drawn(inChapters(loose, ['c1'])), ['x', '#c1', 'a', 'b', 'y']);
+  assert.deepEqual(drawn(inChapters(loose, [])), ['x', 'a', 'b', 'y']);
 });
