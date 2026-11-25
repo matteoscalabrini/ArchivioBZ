@@ -5,13 +5,12 @@
 // as a broken publish later.
 import { TYPES } from '../lib/records.mjs';
 import { parseIdea } from '../lib/idea.mjs';
-import { checkDoc, NUMBER_KEY } from './doc.mjs';
+import { checkDoc, NUMBER_KEY, LEVELS } from './doc.mjs';
 
 export class OpError extends Error {}
 
 const MAX_KEYWORDS = 5;
 const NUMBER = /^\s*(\d{1,3})\.(\d{1,3})\s*$/;
-const LEVELS = ['read', 'secondary', 'lead'];
 const STRING_FIELDS = ['date', 'holder', 'creator', 'rights'];
 // Fields that stay in the record when emptied; every other emptied field is removed.
 const KEPT = ['title', 'type', 'keywords', 'text'];

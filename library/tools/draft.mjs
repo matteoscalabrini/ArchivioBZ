@@ -11,7 +11,7 @@ import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { checkDoc, diffDocs } from '../cloud/doc.mjs';
-import { loadLists, renderSite, summaryLine } from '../cloud/render.mjs';
+import { loadLists, renderSite, renderEditPage, summaryLine } from '../cloud/render.mjs';
 import { ConflictError } from '../cloud/store.mjs';
 
 const LIBRARY = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
@@ -45,6 +45,13 @@ export async function runDraft(args, { store, root, purge, out = console }) {
         if (problems.length) {
           for (const problem of problems) out.error(`  ${problem}`);
           out.error('Not pushed: the document has faults.');
+          return 1;
+        }
+        // Drawn once as edit mode and as a publish would draw it, so that nothing is pushed that
+        // would stop the edit page or the Publish button.
+        const refusal = drawn(doc, await published(), await loadLists(root));
+        if (refusal) {
+          out.error(`Not pushed: ${refusal}.`);
           return 1;
         }
         const next = await store.saveDraft(doc, version);
@@ -90,6 +97,18 @@ export async function runDraft(args, { store, root, purge, out = console }) {
     if (error instanceof ConflictError) { out.error(conflictLine(error.version)); return 1; }
     out.error(error.message);
     return 1;
+  }
+}
+
+// Why the pages cannot be drawn from `doc`, or null when both can: the edit page, and the public
+// files without an error.
+function drawn(doc, published, lists) {
+  try {
+    renderEditPage(doc, { version: 0, published, lists });
+    const errors = renderSite(doc, lists).problems.filter((problem) => problem.level === 'error');
+    return errors.length ? errors.map(({ where, message }) => `${where}: ${message}`).join('; ') : null;
+  } catch (error) {
+    return `the pages cannot be drawn from it (${error.message})`;
   }
 }
 

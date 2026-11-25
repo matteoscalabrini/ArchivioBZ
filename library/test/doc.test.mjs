@@ -137,6 +137,55 @@ test('checkDoc names the other faults', () => {
   assert.deepEqual(checkDoc(sample()), []);
 });
 
+// A document a session pushes passes through checkDoc alone, and the pages take every field as the
+// edit operations leave it: a shape they never leave would stop the edit page and the publish.
+test('checkDoc names every shape the edit operations never leave', () => {
+  const text = (edit) => { const doc = sample(); edit(doc); return checkDoc(doc).join('\n'); };
+  const cases = [
+    [(d) => (d.rows.a.record.text = 'one paragraph'), /row a: text is not a list of text/],
+    [(d) => (d.rows.a.record.keywords = 'wall'), /row a: keywords is not a list of text/],
+    [(d) => (d.rows.a.record.facts = [1]), /row a: facts is not a list of text/],
+    [(d) => (d.rows.a.record.sources = 'b'), /row a: sources is not a list of text/],
+    [(d) => (d.rows.a.record.date = 1931), /row a: date is not text/],
+    [(d) => (d.rows.a.record.holder = ['x']), /row a: holder is not text/],
+    [(d) => (d.rows.a.record.title = 7), /row a has an empty title/],
+    [(d) => (d.rows.a.record.confidence = 'read'), /row a: confidence is not one of read, secondary, lead/],
+    [(d) => (d.rows.a.record.confidence = { level: 'sure' }), /row a: confidence is not one of read, secondary, lead/],
+    [(d) => (d.rows.a.record.confidence = { level: 'read', note: 3 }), /row a: the note on its confidence is not text/],
+    [(d) => (d.rows.a.record.source = 'https://x'), /row a: source is not a label and an address/],
+    [(d) => (d.rows.a.record.more = 'map'), /row a: more is not a kind of link/],
+    [(d) => (d.rows.a.record.side_by_side = 'yes'), /row a: side_by_side is not true or false/],
+    [(d) => (d.rows.a.hidden = 'yes'), /row a: hidden is not true or false/],
+    [(d) => delete d.rows.a.hidden, /row a: hidden is not true or false/],
+    [(d) => (d.rows.a.record = null), /row a has no record/],
+    [(d) => (d.rows.a.find = { on: [] }), /row a: find is not four lists of text/],
+    [(d) => (d.rows.a.find.colours = 'red'), /row a: find is not four lists of text/],
+    [(d) => (d.rows.a.pictures = 'x.jpg'), /row a: pictures is not a list of pictures/],
+    [(d) => (d.rows.a.pictures = [{ src: '/p/1.jpg', w: '4', h: 3 }]), /row a: pictures is not a list of pictures/],
+    [(d) => (d.rows.a.pictures = [{ src: '/p/1.jpg', w: 4, h: 3, caption: null }]), /row a: pictures is not a list of pictures/],
+    [(d) => (d.rows.a.thumb = { src: '/t.jpg' }), /row a: thumb is not a small picture/],
+    [(d) => { d.rows.r1 = structuredClone(d.rows.a); d.chapters[0].rows.push('r1'); }, /row r1 is not below next\.row \(1\)/],
+    [(d) => d.chapters.push({ id: 'c3', title: 'Three', rows: [] }), /chapter c3 is not below next\.chapter \(3\)/],
+    [(d) => (d.chapters[0].title = ''), /chapter c1 has no title/],
+    [(d) => (d.next = { row: 1 }), /next\.chapter is not a whole number/],
+    [(d) => (d.idea = null), /the idea is not text/],
+    [(d) => (d.about = 3), /About is not text/],
+    [(d) => (d.keywords.wall = 'Wall'), /keyword wall has no label/],
+    [(d) => (d.aliases.walls = 'nothing'), /alias walls names no keyword/],
+    [(d) => (d.places.piazza.x = '10'), /place piazza is on the map without its x, y and z/],
+    [(d) => (d.places.piazza.name = ''), /place piazza has no name/],
+  ];
+  for (const [edit, pattern] of cases) assert.match(text(edit), pattern, String(edit));
+  const fine = sample();
+  fine.rows.a.record = { title: 'A', type: 'Poster', date: '1931', year: 1931, keywords: ['wall'], text: ['p'], confidence: { level: 'lead', note: 'n' }, facts: ['f'], source: { label: 'l', url: 'https://x' }, rights: 'r', file: 'f.pdf', more: { kind: 'source' }, creator: 'c', holder: 'h', place: 'piazza', side_by_side: true, sources: ['b'] };
+  fine.rows.a.pictures = [{ src: '/p/1.jpg', w: 4, h: 3, caption: '' }, { src: '/p/2.jpg', w: 4, h: 3 }];
+  fine.rows.a.thumb = { src: '/t.jpg', w: 2, h: 1 };
+  fine.rows.r4 = structuredClone(fine.rows.b); fine.chapters[1].rows.push('r4'); fine.next.row = 5;
+  fine.places.away = { name: 'Away', lat: 45, lon: 11, inside: false, x: null, y: null, z: null };
+  assert.deepEqual(checkDoc(fine), []);
+  assert.deepEqual(checkDoc({}), ['the document has no chapters, rows, keywords, aliases or places']);
+});
+
 test('a row moved across a chapter boundary is an order change, though the flat order is the same', () => {
   const before = sample();
   const after = structuredClone(before);

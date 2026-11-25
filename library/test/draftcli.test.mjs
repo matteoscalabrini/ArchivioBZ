@@ -55,6 +55,23 @@ test('a push of a broken document is refused and nothing changes', async () => {
   assert.equal((await store.getDraft()).version, 1);
 });
 
+test('a push that edit mode could not draw is refused and nothing changes: a text that is not a list, an idea naming no keyword', async () => {
+  const file = path.join(dir, 'd.json');
+  await run(['pull', file]);
+  const pulled = JSON.parse(await readFile(file, 'utf8'));
+  pulled.doc.rows.a.record.text = 'one paragraph';
+  await writeFile(file, JSON.stringify(pulled));
+  assert.equal(await run(['push', file]), 1);
+  assert.ok(lines.includes('  row a: text is not a list of text'), lines.join('\n'));
+  pulled.doc.rows.a.record.text = ['one paragraph'];
+  pulled.doc.idea = 'The [[nothing]] here.';
+  await writeFile(file, JSON.stringify(pulled));
+  lines.length = 0;
+  assert.equal(await run(['push', file]), 1);
+  assert.ok(lines.includes('Not pushed: the idea: unknown keyword "nothing".'), lines.join('\n'));
+  assert.equal((await store.getDraft()).version, 1);
+});
+
 test('publish from the command line purges', async () => {
   let purged = 0;
   assert.equal(await run(['publish'], { purge: async () => { purged++; } }), 0);

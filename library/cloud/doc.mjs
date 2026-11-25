@@ -15,6 +15,8 @@ export const RECORD_FIELDS = ['title', 'type', 'date', 'year', 'keywords', 'text
 // cloud holds them, replace them).
 const NOT_RECORD = ['no', 'images', 'section', 'dir', 'abs', 'find', 'pictures', 'thumb'];
 const MAX_KEYWORDS = 5;
+// A row's confidence: read in the source, from a secondary source, a lead.
+export const LEVELS = ['read', 'secondary', 'lead'];
 // A key that JavaScript reads as an array index ("1939") goes before every other key of an object,
 // whatever order the document has it in; the pages show the keywords and the places in the
 // document's order, so neither may have such an id.
@@ -152,14 +154,24 @@ function stable(value) {
     ? Object.fromEntries(Object.entries(v).sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))) : v));
 }
 
-// The faults of a document, as plain sentences; none when it is sound.
+// The faults of a document, as plain sentences; none when it is sound. Sound is what the edit
+// operations leave and the pages take: a document pushed from a session passes through this alone,
+// so each field's shape is checked as well as what it names.
 export function checkDoc(doc, { types = TYPES } = {}) {
+  if (!isObject(doc) || !Array.isArray(doc.chapters) || ![doc.rows, doc.keywords, doc.aliases, doc.places].every(isObject)) {
+    return ['the document has no chapters, rows, keywords, aliases or places'];
+  }
   const problems = [];
   const seenChapters = new Set();
   const placed = new Map(); // row id -> chapters that hold it
   for (const chapter of doc.chapters) {
+    if (!isObject(chapter) || !isText(chapter.id) || !isList(chapter.rows, isText)) {
+      problems.push(`a chapter is not an id, a title and a list of rows: ${JSON.stringify(chapter)?.slice(0, 80)}`);
+      continue;
+    }
     if (seenChapters.has(chapter.id)) problems.push(`chapter ${chapter.id} appears twice`);
     seenChapters.add(chapter.id);
+    if (!isText(chapter.title) || !chapter.title.trim()) problems.push(`chapter ${chapter.id} has no title`);
     for (const id of chapter.rows) {
       if (!Object.hasOwn(doc.rows, id)) problems.push(`row ${id} is in chapter ${chapter.id}, but there is no row ${id}`);
       placed.set(id, [...(placed.get(id) ?? []), chapter.id]);
@@ -168,24 +180,88 @@ export function checkDoc(doc, { types = TYPES } = {}) {
   for (const [id, where] of placed) {
     if (where.length > 1) problems.push(`row ${id} is in two chapters: ${where.join(', ')}`);
   }
+  // The counters that name the next row and chapter added must lie past every id already used.
+  for (const [what, ids, prefix] of [['row', Object.keys(doc.rows), 'r'], ['chapter', [...seenChapters], 'c']]) {
+    const next = doc.next?.[what];
+    if (!Number.isInteger(next) || next < 1) {
+      problems.push(`next.${what} is not a whole number`);
+      continue;
+    }
+    for (const id of ids) {
+      const n = new RegExp(`^${prefix}(\\d+)$`).exec(id);
+      if (n && Number(n[1]) >= next) problems.push(`${what} ${id} is not below next.${what} (${next})`);
+    }
+  }
+  if (!isText(doc.idea)) problems.push('the idea is not text');
+  if (!isText(doc.about)) problems.push('About is not text');
   for (const [what, ids] of [['keyword', Object.keys(doc.keywords)], ['place', Object.keys(doc.places)]]) {
     for (const id of ids.filter((key) => NUMBER_KEY.test(key))) problems.push(`${what} id "${id}" is a whole number, which cannot keep its place in the order`);
   }
+  for (const [id, keyword] of Object.entries(doc.keywords)) {
+    if (!isObject(keyword) || !isText(keyword.label) || !keyword.label.trim()) problems.push(`keyword ${id} has no label`);
+  }
+  for (const [id, target] of Object.entries(doc.aliases)) {
+    if (!isText(target) || !Object.hasOwn(doc.keywords, target)) problems.push(`alias ${id} names no keyword`);
+  }
+  for (const [id, place] of Object.entries(doc.places)) {
+    if (!isObject(place) || !isText(place.name) || !place.name.trim()) problems.push(`place ${id} has no name`);
+    else if (place.inside === true && !['x', 'y', 'z'].every((axis) => Number.isFinite(place[axis]))) problems.push(`place ${id} is on the map without its x, y and z`);
+  }
   for (const [id, row] of Object.entries(doc.rows)) {
     if (!placed.has(id)) problems.push(`row ${id} is in no chapter`);
-    const record = row.record ?? {};
-    if (!String(record.title ?? '').trim()) problems.push(`row ${id} has an empty title`);
-    if (!types.includes(record.type)) problems.push(`row ${id} has an unknown type "${record.type}"`);
-    if (record.year != null && !Number.isInteger(record.year)) problems.push(`row ${id} has a year that is not a whole number`);
-    const keywords = record.keywords ?? [];
-    if (keywords.length > MAX_KEYWORDS) problems.push(`row ${id} has ${keywords.length} keywords, at most ${MAX_KEYWORDS}`);
-    for (const keyword of keywords) {
-      if (!Object.hasOwn(doc.keywords, keyword) && !Object.hasOwn(doc.aliases, keyword)) problems.push(`row ${id} has an unknown keyword "${keyword}"`);
+    if (!isObject(row) || !isObject(row.record)) {
+      problems.push(`row ${id} has no record`);
+      continue;
     }
-    if (record.place != null && record.place !== '' && !Object.hasOwn(doc.places, record.place)) problems.push(`row ${id} has an unknown place "${record.place}"`);
-    for (const field of Object.keys(record)) {
-      if (!RECORD_FIELDS.includes(field)) problems.push(`row ${id} has a field "${field}" that a record does not have`);
-    }
+    problems.push(...rowFaults(doc, id, row, types));
   }
+  return problems;
+}
+
+const isObject = (value) => value !== null && typeof value === 'object' && !Array.isArray(value);
+const isText = (value) => typeof value === 'string';
+const isList = (value, item) => Array.isArray(value) && value.every(item);
+const isSize = (value) => Number.isFinite(value) && value >= 0;
+const TEXT_FIELDS = ['date', 'rights', 'file', 'creator', 'holder', 'place'];
+const LIST_FIELDS = ['keywords', 'text', 'facts', 'sources'];
+const FIND = ['on', 'shows', 'colours', 'names'];
+
+// The faults of one row: its record's fields, its search terms, its pictures.
+function rowFaults(doc, id, row, types) {
+  const problems = [];
+  const { record } = row;
+  if (typeof row.hidden !== 'boolean') problems.push(`row ${id}: hidden is not true or false`);
+  if (!isText(record.title) || !record.title.trim()) problems.push(`row ${id} has an empty title`);
+  if (!types.includes(record.type)) problems.push(`row ${id} has an unknown type "${record.type}"`);
+  if (record.year != null && !Number.isInteger(record.year)) problems.push(`row ${id} has a year that is not a whole number`);
+  for (const field of TEXT_FIELDS) {
+    if (record[field] !== undefined && !isText(record[field])) problems.push(`row ${id}: ${field} is not text`);
+  }
+  for (const field of LIST_FIELDS) {
+    if (record[field] !== undefined && !isList(record[field], isText)) problems.push(`row ${id}: ${field} is not a list of text`);
+  }
+  const { confidence, source, more } = record;
+  if (confidence !== undefined) {
+    if (!isObject(confidence) || !LEVELS.includes(confidence.level)) problems.push(`row ${id}: confidence is not one of ${LEVELS.join(', ')}`);
+    else if (confidence.note !== undefined && !isText(confidence.note)) problems.push(`row ${id}: the note on its confidence is not text`);
+  }
+  if (source !== undefined && (!isObject(source) || ['label', 'url'].some((k) => source[k] !== undefined && !isText(source[k])))) {
+    problems.push(`row ${id}: source is not a label and an address`);
+  }
+  if (more !== undefined && (!isObject(more) || !isText(more.kind))) problems.push(`row ${id}: more is not a kind of link`);
+  if (record.side_by_side !== undefined && typeof record.side_by_side !== 'boolean') problems.push(`row ${id}: side_by_side is not true or false`);
+  const keywords = Array.isArray(record.keywords) ? record.keywords : [];
+  if (keywords.length > MAX_KEYWORDS) problems.push(`row ${id} has ${keywords.length} keywords, at most ${MAX_KEYWORDS}`);
+  for (const keyword of keywords) {
+    if (!Object.hasOwn(doc.keywords, keyword) && !Object.hasOwn(doc.aliases, keyword)) problems.push(`row ${id} has an unknown keyword "${keyword}"`);
+  }
+  if (isText(record.place) && record.place !== '' && !Object.hasOwn(doc.places, record.place)) problems.push(`row ${id} has an unknown place "${record.place}"`);
+  for (const field of Object.keys(record)) {
+    if (!RECORD_FIELDS.includes(field)) problems.push(`row ${id} has a field "${field}" that a record does not have`);
+  }
+  if (!isObject(row.find) || !FIND.every((list) => isList(row.find[list], isText))) problems.push(`row ${id}: find is not four lists of text`);
+  const picture = (p) => isObject(p) && isText(p.src) && p.src !== '' && isSize(p.w) && isSize(p.h) && (p.caption === undefined || isText(p.caption));
+  if (!isList(row.pictures, picture)) problems.push(`row ${id}: pictures is not a list of pictures`);
+  if (row.thumb !== null && !(isObject(row.thumb) && isText(row.thumb.src) && isSize(row.thumb.w) && isSize(row.thumb.h))) problems.push(`row ${id}: thumb is not a small picture`);
   return problems;
 }
