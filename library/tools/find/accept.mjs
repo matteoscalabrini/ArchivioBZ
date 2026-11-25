@@ -5,6 +5,8 @@
 // reads the index it wrote and runs each line as a named check: "ok", "FAIL" with what was found,
 // or "--" for a line that waits for the hidden terms (find.json) and the shared lists. Ends with
 // the size of the index and the time of the first search. Exit 1 on any failure.
+// With --doc <file>, a draft pulled by npm run draft -- pull, the index is made from that document
+// (as a publish would make it) instead of from the files.
 //
 // The rows named here are today's. A check that fails after the library has grown is a line to
 // read again, not always a fault.
@@ -13,24 +15,35 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { build } from '../../build.mjs';
+import { libFromDoc } from '../../cloud/doc.mjs';
+import { loadLists } from '../../cloud/render.mjs';
+import { searchIndex } from '../../lib/searchindex.mjs';
 import { loadLibrary } from '../../lib/records.mjs';
 import { prepare, search, words } from '../../web/search.js';
 import { layout, POSSIBLE_SHOWN } from '../../web/results.js';
 
-const temp = await mkdtemp(path.join(os.tmpdir(), 'find-check-'));
-const say = console.log;
-console.log = () => {}; // the build prints every warning; they are npm run check's to show
+const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..', '..');
+const docAt = process.argv.indexOf('--doc');
 let json;
-try {
-  const status = await build({ out: path.join(temp, 'site') }).finally(() => { console.log = say; });
-  if (status) {
-    console.error('the library does not build: run npm run check');
-    process.exit(1);
+if (docAt > 0) {
+  const { doc } = JSON.parse(await readFile(path.resolve(process.argv[docAt + 1] ?? ''), 'utf8'));
+  json = JSON.stringify(searchIndex(libFromDoc(doc, { lists: await loadLists(REPO) })));
+} else {
+  const temp = await mkdtemp(path.join(os.tmpdir(), 'find-check-'));
+  const say = console.log;
+  console.log = () => {}; // the build prints every warning; they are npm run check's to show
+  try {
+    const status = await build({ out: path.join(temp, 'site') }).finally(() => { console.log = say; });
+    if (status) {
+      console.error('the library does not build: run npm run check');
+      process.exit(1);
+    }
+    json = await readFile(path.join(temp, 'site', 'search.json'), 'utf8');
+  } finally {
+    await rm(temp, { recursive: true, force: true });
   }
-  json = await readFile(path.join(temp, 'site', 'search.json'), 'utf8');
-} finally {
-  await rm(temp, { recursive: true, force: true });
 }
+const say = console.log;
 const index = JSON.parse(json);
 const started = performance.now();
 const engine = prepare(index);
@@ -66,7 +79,8 @@ function check(name, run, { waits = false } = {}) {
 
 // With the engine alone.
 check('every row is the first precise hit for its own number', () => {
-  const wrong = index.rows.filter((r) => precise(r.no)[0] !== r.no).map((r) => r.no);
+  // Typed as the row shows it (its number, which is its key in files; in a draft the key is the id).
+  const wrong = index.rows.filter((r) => precise(r.line[0])[0] !== r.no).map((r) => r.no);
   return !wrong.length || `not first: ${first(wrong)}`;
 });
 check('every row is among the first precise hits for its whole title, rows of one title together', () => {
@@ -120,7 +134,7 @@ check('Siegesdenkmal gives every row with the keyword Monumento alla Vittoria', 
   const missing = kept.filter((no) => !found.includes(no));
   return !missing.length || `missing ${first(missing)}`;
 }, { waits });
-const { problems } = await loadLibrary(path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..', '..'));
+const { problems } = await loadLibrary(REPO);
 const bare = problems.filter((p) => /no entry in find\.json/.test(p.message));
 say(bare.length ? `${waits ? '--  ' : 'FAIL'}  rows with a picture and no entry in find.json, in ${bare.length} ${bare.length === 1 ? 'folder' : 'folders'}` : 'ok    every row with a picture has an entry in find.json');
 if (bare.length && !waits) failed++;
