@@ -3,10 +3,12 @@
 // headings move. The page shows the new order at once and sends it; the server's answer brings
 // the numbers. Dragging works only in the story order (the No. sort, nothing searched, no
 // filter): elsewhere a place in the list says nothing of a place in the story, and the status
-// line says so.
+// line says so. In the compact view a row dropped just under a folded chapter's heading goes first
+// in that chapter, wherever among its rows, out of sight, Sortable put it.
 import Sortable from '../vendor/sortable.esm.js';
 import { state, list, act, redraw } from './core.js';
 import { dropTarget, chapterIndex, rowPlace, placeRow, placeChapter } from '../editmodel.js';
+import { isFolded } from './compact.js';
 
 const OFF = 'Drag works in the story order: clear the search, the filters and the sort.';
 
@@ -48,7 +50,9 @@ function fold(heading, on) {
 function dropped(item) {
   const sequence = [...list.children]
     .filter((el) => el.matches('article.row, h2.chapter'))
-    .map((el) => (el.matches('h2.chapter') ? { kind: 'chapter', id: el.dataset.chapter } : { kind: 'row', id: el.dataset.no }));
+    .map((el) => (el.matches('h2.chapter')
+      ? { kind: 'chapter', id: el.dataset.chapter, folded: isFolded(el.dataset.chapter) }
+      : { kind: 'row', id: el.dataset.no }));
   if (item.matches('h2.chapter')) {
     const chapter = item.dataset.chapter;
     const index = chapterIndex(sequence, chapter);

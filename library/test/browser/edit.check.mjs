@@ -5,8 +5,9 @@
 // puppeteer-core with a profile of its own, and each step below checked on the page. Each step
 // that holds is printed; the first that does not stops the check with what the page showed
 // instead, and the exit code is 1. The server, the browser and the temporary folders go in every
-// outcome. Screenshots of the edit page, of the public page after Publish and of the edit page at
-// a phone's width are written to library/.cache/check-edit/. Not part of npm test, since it needs Chrome.
+// outcome. Screenshots of the edit page, of the public page after Publish, of the edit page at a
+// phone's width and of the compact view, at both widths, are written to library/.cache/check-edit/.
+// Not part of npm test, since it needs Chrome.
 //
 // The fixtures' draft, by row id: chapter c1 "Zero" [0.01], c2 "Five" [5.00 5.01 5.02 5.03],
 // c3 "Twelve" [12.01]; numbered 1.01, 2.01 to 2.04 and 3.01 to begin with. The steps build on
@@ -316,6 +317,89 @@ async function stripShows(page, holds, when) {
     read = await stripReads(page);
   }
   check(holds(read), `${when}, All keywords reads ${read}`);
+}
+
+// Rows added to the draft through /edit/op, as the page sends its edits, each last in its chapter
+// and called "Added row <n>"; then the page loaded again with them. A chapter as long as the real
+// library's longest without thirty dialogs. `wanted`: [{ chapter, count }]. -> the new rows' ids.
+async function addRows(page, base, wanted) {
+  await page.goto(`${base}/edit/`); // the version the page holds is the draft's
+  await page.waitForSelector('.ed-bar');
+  const ids = await page.evaluate(async (wanted) => {
+    const data = JSON.parse(document.getElementById('edit-data').textContent);
+    let { version } = data;
+    const added = [];
+    for (const { chapter, count } of wanted) {
+      for (let i = 0; i < count; i += 1) {
+        const op = { op: 'add-row', chapter, index: null, title: `Added row ${added.length + 1}`, type: data.types[0] };
+        const response = await fetch('op', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ version, op }) });
+        const body = await response.json();
+        if (!response.ok) return `add-row was answered ${response.status}: ${body?.error}`;
+        version = body.version;
+        added.push(body.result.id);
+      }
+    }
+    return added;
+  }, wanted);
+  check(Array.isArray(ids), ids);
+  await page.goto(`${base}/edit/`);
+  await page.waitForSelector('.ed-bar');
+  return ids;
+}
+
+// Each id with its number, from place `from` on in chapter `chapter`: "r2=2.04 r3=2.05 …".
+const numbered = (ids, chapter, from) => ids.map((id, i) => `${id}=${chapter}.${String(from + i).padStart(2, '0')}`).join(' ');
+
+// Whether the element is on the screen, below the bar and the status line that stick at its top.
+const inView = (page, selector) => page.$eval(selector, (el) => {
+  const box = el.getBoundingClientRect();
+  const top = document.querySelector('.status').getBoundingClientRect().bottom;
+  return box.top >= top - 1 && box.bottom <= window.innerHeight + 1;
+});
+
+// The bar's switch "Compact", its checkbox.
+async function compactSwitch(page) {
+  const box = await page.evaluateHandle(() => [...document.querySelectorAll('.ed-bar label')]
+    .find((label) => label.textContent.trim() === 'Compact')?.querySelector('input[type=checkbox][role=switch]') ?? null);
+  check(await box.evaluate((el) => el !== null), 'the bar has no switch Compact');
+  return box;
+}
+
+async function setCompact(page, on) {
+  const box = await compactSwitch(page);
+  if (await box.evaluate((el) => el.checked) !== on) await box.click();
+  await page.waitForFunction((want) => document.querySelector('.list').classList.contains('compact') === want, { timeout: WAIT }, on)
+    .catch(() => { throw new Error(`the switch did not turn the compact view ${on ? 'on' : 'off'}`); });
+}
+
+const fold = (page, chapter) => page.click(`h2.chapter[data-chapter="${chapter}"] button.ed-fold`);
+
+// Waits until a chapter is folded with `count` on its heading and its rows out of sight, or, for
+// null, unfolded with its rows in sight; else fails with what the heading and the rows show.
+async function foldShows(page, chapter, count, when) {
+  const read = () => page.evaluate((id) => {
+    const heading = document.querySelector(`h2.chapter[data-chapter="${id}"]`);
+    const button = heading?.querySelector('button.ed-fold');
+    const counted = heading?.querySelector('.ed-count');
+    const rows = [...document.querySelectorAll(`.list > article.row[data-chapter="${id}"]`)];
+    return {
+      sign: button?.textContent ?? null,
+      label: button?.getAttribute('aria-label') ?? null,
+      count: counted && !counted.hidden && getComputedStyle(counted).display !== 'none' ? counted.textContent : null,
+      rows: rows.length,
+      shown: rows.filter((row) => getComputedStyle(row).display !== 'none').length,
+    };
+  }, chapter);
+  const holds = (s) => (count
+    ? s.sign === '▸' && s.label === 'Unfold the chapter' && s.count === count && s.shown === 0
+    : s.sign === '▾' && s.label === 'Fold the chapter' && s.count === null && s.shown === s.rows);
+  const deadline = Date.now() + WAIT;
+  let seen = await read();
+  while (!holds(seen) && Date.now() < deadline) {
+    await pause(50);
+    seen = await read();
+  }
+  check(holds(seen), `${when}, chapter ${chapter} shows ${JSON.stringify(seen)}`);
 }
 
 async function main() {
@@ -901,7 +985,245 @@ async function main() {
     }
   });
 
-  console.log(`All ${n} steps hold. Screenshots: ${['edit-page.png', 'public-page.png', 'edit-phone.png'].map((name) => path.join(SHOTS, name)).join(', ')}`);
+  // Moving fast inside a chapter (design §5, 25 Nov 2026): "there is no way to move elements fast
+  // inside thematic categories". A chapter as long as the real library's longest (36 rows) and a
+  // window shorter than the page: the author typed 18.07 in a chapter of three, the row went to
+  // 18.04 at the bottom of a long page, and it looked lost. Two rows go to the end of chapter 1
+  // and 31 to the end of chapter 2, so that chapter 1 keeps a row to drag and one to type a number
+  // on when 0.01 has left it, and chapter 2 holds 36 once 0.01 is in it.
+  let fillers = [];
+  await step('a closed row\'s number is a button: clicked, it is the number field in its place, the row still closed; 7.01 is refused in its words, and Escape puts the number back', async () => {
+    await page.setViewport({ width: 1280, height: 900 });
+    await page.goto(`${base}/edit/`);
+    await page.waitForSelector('.ed-bar');
+    fillers = await addRows(page, base, [{ chapter: 'c1', count: 2 }, { chapter: 'c2', count: 31 }]);
+    check(fillers.length === 33, `${fillers.length} rows were added, not 33`);
+    await listShows(page, `# c1 0.01=1.01 ${numbered(fillers.slice(0, 2), 1, 2)} # c2 5.01=— 5.02=2.01 5.03=2.02 5.00=2.03 ${numbered(fillers.slice(2), 2, 4)} # c3 12.01=3.01`, 'the rows added');
+    const last = fillers.at(-1); // 2.34, the bottom of chapter 2
+    const row = `article.row[data-no="${last}"]`;
+    const number = `${row} .c-no button.ed-no`;
+    check(await page.$eval(number, (b) => b.textContent.trim()), `the number of ${last} is not a button`);
+    await page.click(number);
+    const input = `${row} .ed-field[data-ed="number"] input`;
+    await page.waitForSelector(input);
+    const field = await page.$eval(input, (el) => ({ value: el.value, mode: el.inputMode, cls: el.className }));
+    check(field.value === '2.34' && field.mode === 'decimal' && field.cls === 'ed-in-no', `the field is ${JSON.stringify(field)}`);
+    check(await page.$eval(number, (b) => b.hidden), 'the number stays shown beside its field');
+    check(!(await page.$eval(row, (el) => el.classList.contains('open'))), 'the click on the number opened the row');
+    await page.$eval(input, (el) => el.select());
+    await page.keyboard.type('7.01');
+    const refused = answerTo(page, 'op');
+    await page.keyboard.press('Enter');
+    check((await refused).status() === 422, 'the number 7.01 was not refused');
+    await page.waitForFunction((sel) => document.querySelector(`${sel} .row-head > .ed-error`)?.textContent === 'There is no chapter 7.', { timeout: WAIT }, row)
+      .catch(async () => { throw new Error(`the field says ${JSON.stringify(await page.$eval(`${row} .row-head`, (el) => el.querySelector('.ed-error')?.textContent ?? 'nothing'))}`); });
+    await page.keyboard.press('Escape');
+    await page.waitForSelector(input, { hidden: true });
+    const back = await page.$eval(number, (b) => ({ shown: !b.hidden, text: b.textContent }));
+    check(back.shown && back.text === '2.34', `after Escape the number is ${JSON.stringify(back)}`);
+    check(!(await page.$(`${row} .ed-error`)), 'the refusal stays after Escape');
+  });
+
+  await step('2.01 typed on the closed row at the bottom of chapter 2 makes it the first of chapter 2, still closed, in view and marked, and the bar says nothing more', async () => {
+    const last = fillers.at(-1);
+    const row = `article.row[data-no="${last}"]`;
+    await page.evaluate(() => scrollTo(0, document.documentElement.scrollHeight));
+    await page.click(`${row} .c-no button.ed-no`);
+    const input = `${row} .ed-field[data-ed="number"] input`;
+    await page.waitForSelector(input);
+    await page.$eval(input, (el) => el.select());
+    await page.keyboard.type('2.01');
+    const answered = answerTo(page, 'op');
+    await page.keyboard.press('Enter');
+    check((await answered).status() === 200, 'the number was not taken');
+    await listShows(page, `# c1 0.01=1.01 ${numbered(fillers.slice(0, 2), 1, 2)} # c2 5.01=— ${last}=2.01 5.02=2.02 5.03=2.03 5.00=2.04 ${numbered(fillers.slice(2, -1), 2, 5)} # c3 12.01=3.01`, 'after 2.01');
+    await page.waitForFunction((sel) => document.querySelector(sel)?.classList.contains('ed-placed'), { timeout: 1000 }, row)
+      .catch(() => { throw new Error('the row is not marked'); });
+    await stillAt(page, row);
+    check(await inView(page, row), `the row is not in view: ${JSON.stringify(await page.$eval(row, (el) => el.getBoundingClientRect().toJSON()))}`);
+    check(!(await page.$eval(row, (el) => el.classList.contains('open'))), 'the row opened');
+    const line = await page.$eval('.ed-msg', (el) => (el.hidden ? '' : el.textContent));
+    check(line === '', `the bar says ${JSON.stringify(line)}, though the row is where the number said`);
+    await page.waitForFunction((sel) => !document.querySelector(sel)?.classList.contains('ed-placed'), { timeout: 2500 }, row)
+      .catch(() => { throw new Error('the row is still marked after 2.5 s'); });
+  });
+
+  // k, the rows of chapter 2 shown before the move, counted on the page. Typed in the open row,
+  // whose number is text, as before, with ✎ beside it.
+  await step('a number past the end of chapter 2, typed in an open row, puts the row last in it, follows it down the page and says Placed at 2.<k+1>, the end of chapter 2., as information', async () => {
+    await page.evaluate(() => scrollTo(0, 0));
+    const k = await page.$$eval('article.row[data-chapter="c2"] .c-no button.ed-no', (buttons) => buttons.filter((b) => b.textContent.trim() !== '—').length);
+    check(k === 34, `chapter 2 shows ${k} rows, not 34`);
+    const row = 'article.row[data-no="0.01"]';
+    await page.click(`${row} .c-title button`);
+    await page.waitForSelector(`${row}.open`);
+    const text = await page.$eval(`${row} .c-no button.ed-no`, (b) => ({ pointer: getComputedStyle(b).pointerEvents, tab: b.tabIndex }));
+    check(text.pointer === 'none' && text.tab === -1, `on the open row the number is not text: ${JSON.stringify(text)}`);
+    await page.click(`${row} .c-no button.ed-edit`);
+    const input = `${row} .ed-field[data-ed="number"] input`;
+    await page.waitForSelector(input);
+    await page.$eval(input, (el) => el.select());
+    await page.keyboard.type('2.99');
+    const answered = answerTo(page, 'op');
+    await page.keyboard.press('Enter');
+    check((await answered).status() === 200, 'the number was not taken');
+    const want = `Placed at 2.${k + 1}, the end of chapter 2.`;
+    await page.waitForFunction((line) => document.querySelector('.ed-msg')?.textContent === line, { timeout: WAIT }, want)
+      .catch(async () => { throw new Error(`the bar says ${JSON.stringify(await page.$eval('.ed-msg', (el) => (el.hidden ? '' : el.textContent)))}, not ${JSON.stringify(want)}`); });
+    const said = await page.$eval('.ed-msg', (el) => ({ shown: !el.hidden, kind: el.dataset.kind, role: el.getAttribute('role'), buttons: el.querySelectorAll('button').length }));
+    check(said.shown && said.kind === 'info' && said.role === 'status' && said.buttons === 0, `the line is said as ${JSON.stringify(said)}, not as information`);
+    const order = await listing(page);
+    check(order.includes(` 0.01=2.${k + 1} # c3 `), `0.01 is not last in chapter 2: ${order}`);
+    const head = `${row} > .row-head`;
+    await stillAt(page, head);
+    check(await inView(page, head), `the row's head is not in view: ${JSON.stringify(await page.$eval(head, (el) => el.getBoundingClientRect().toJSON()))}`);
+    check(await page.$eval(row, (el) => el.classList.contains('open')), 'the row closed');
+  });
+
+  // The switch is this browser's own (localStorage), as are the folds.
+  await step('Compact on: every closed row is one line at most 32 px high, without its type, date and keywords, and the 36 rows of chapter 2 fit in 1150 px', async () => {
+    await page.goto(`${base}/edit/`); // every row closed
+    await page.waitForSelector('.ed-bar');
+    await setCompact(page, true);
+    const rows = await page.$$eval('.list > article.row:not(.open)', (els) => els.map((el) => {
+      const end = el.querySelector(':scope > .ed-end');
+      const hiddenCells = [...el.querySelectorAll('.row-head > .c-type, .row-head > .c-date, .row-head > .c-kw')].every((cell) => getComputedStyle(cell).display === 'none');
+      const title = el.querySelector('.c-title > button:not(.ed)');
+      const cut = getComputedStyle(title);
+      return { id: el.dataset.no, height: el.getBoundingClientRect().height - (end ? end.getBoundingClientRect().height : 0), hiddenCells, cut: cut.textOverflow === 'ellipsis' && cut.whiteSpace === 'nowrap' };
+    }));
+    const tall = rows.filter((r) => r.height > 32);
+    check(!tall.length, `rows higher than 32 px: ${tall.map((r) => `${r.id} ${r.height.toFixed(1)}`).join(', ')}`);
+    const shownCells = rows.filter((r) => !r.hiddenCells);
+    check(!shownCells.length, `rows that still show their type, date or keywords: ${shownCells.map((r) => r.id).join(', ')}`);
+    const uncut = rows.filter((r) => !r.cut);
+    check(!uncut.length, `rows whose title is not cut with an ellipsis: ${uncut.map((r) => r.id).join(', ')}`);
+    const chapter = await page.$$eval('article.row[data-chapter="c2"]', (els) => ({ n: els.length, span: els.at(-1).getBoundingClientRect().bottom - els[0].getBoundingClientRect().top }));
+    check(chapter.n === 36, `chapter 2 holds ${chapter.n} rows, not 36`);
+    check(chapter.span <= 1150, `the 36 rows of chapter 2 take ${chapter.span.toFixed(0)} px, more than 1150`);
+  });
+
+  await step('a chapter folded hides its rows and its heading says how many (36 rows, 1 row); unfolded, they come back', async () => {
+    await fold(page, 'c2');
+    await foldShows(page, 'c2', '36 rows', 'chapter 2 folded');
+    await page.$eval('.colhead', (el) => scrollTo(0, el.getBoundingClientRect().top + scrollY - 150));
+    await page.screenshot({ path: path.join(SHOTS, 'edit-compact.png') });
+    await fold(page, 'c3');
+    await foldShows(page, 'c3', '1 row', 'chapter 3 folded');
+    await fold(page, 'c3');
+    await foldShows(page, 'c3', null, 'chapter 3 unfolded');
+    await foldShows(page, 'c2', '36 rows', 'chapter 3 unfolded');
+  });
+
+  // Down onto the folded heading, Sortable puts the row just after it; up from the next chapter's
+  // first row onto that chapter's heading, it puts the row after the folded rows, just before the
+  // next heading. On the screen both are just under the folded heading.
+  await step('a row dragged under a folded chapter\'s heading becomes its first, from above and from below', async () => {
+    const one = fillers[0];
+    let answered = answerTo(page, 'op');
+    await drag(page, `article.row[data-no="${one}"] .ed-grip`, 'h2.chapter[data-chapter="c2"]', 0.75);
+    check((await answered).status() === 200, 'the move from above was not saved');
+    let move = sent.at(-1).body?.op;
+    check(move?.op === 'move-row' && move.id === one && move.chapter === 'c2' && move.index === 0, `the drop from above sent ${JSON.stringify(move)}, not move-row of ${one} to c2 at 0`);
+    await foldShows(page, 'c2', '37 rows', 'dropped from above');
+    answered = answerTo(page, 'op');
+    await drag(page, 'article.row[data-no="12.01"] .ed-grip', 'h2.chapter[data-chapter="c3"]', 0.5);
+    check((await answered).status() === 200, 'the move from below was not saved');
+    move = sent.at(-1).body?.op;
+    check(move?.op === 'move-row' && move.id === '12.01' && move.chapter === 'c2' && move.index === 0, `the drop from below sent ${JSON.stringify(move)}, not move-row of 12.01 to c2 at 0`);
+    await foldShows(page, 'c2', '38 rows', 'dropped from below');
+    await headingsRead(page, 'c1=1 c2=2 c3=—', 'after the drops');
+    // The line of the last typed number was information about that edit: the next one clears it.
+    const line = await page.$eval('.ed-msg', (el) => (el.hidden ? '' : el.textContent));
+    check(line === '', `after the drops the bar still says ${JSON.stringify(line)}`);
+  });
+
+  await step('a reload keeps Compact on and chapter 2 folded', async () => {
+    await page.reload();
+    await page.waitForSelector('.ed-bar');
+    check(await page.$eval('.list', (el) => el.classList.contains('compact')), 'after a reload the list is not compact');
+    check(await compactSwitch(page).then((box) => box.evaluate((el) => el.checked)), 'after a reload the switch is off');
+    await foldShows(page, 'c2', '38 rows', 'after a reload');
+  });
+
+  // The last row of chapter 1 typed into the folded chapter 2: chapter 1, empty, loses its number,
+  // so the row typed 2.01 is 1.01, and the bar says so.
+  await step('a number typed into a folded chapter unfolds it, follows the row there and says Placed at 1.01. when the chapter before closed up', async () => {
+    const row = `article.row[data-no="${fillers[1]}"]`;
+    await page.click(`${row} .c-no button.ed-no`);
+    const input = `${row} .ed-field[data-ed="number"] input`;
+    await page.waitForSelector(input);
+    await page.$eval(input, (el) => el.select());
+    await page.keyboard.type('2.01');
+    const answered = answerTo(page, 'op');
+    await page.keyboard.press('Enter');
+    check((await answered).status() === 200, 'the number was not taken');
+    await foldShows(page, 'c2', null, 'the row typed into it');
+    await page.waitForFunction(() => document.querySelector('.ed-msg')?.textContent === 'Placed at 1.01.', { timeout: WAIT })
+      .catch(async () => { throw new Error(`the bar says ${JSON.stringify(await page.$eval('.ed-msg', (el) => (el.hidden ? '' : el.textContent)))}`); });
+    await stillAt(page, row);
+    check(await inView(page, row), `the row is not in view: ${JSON.stringify(await page.$eval(row, (el) => el.getBoundingClientRect().toJSON()))}`);
+    const order = await listing(page);
+    check(order.startsWith(`# c1 # c2 ${fillers[1]}=1.01 12.01=1.02 ${fillers[0]}=1.03 5.01=— ${fillers.at(-1)}=1.04 5.02=1.05 `), `the list reads ${order}`);
+  });
+
+  await step('at a phone\'s width a compact row is one line and the page is no wider than the screen', async () => {
+    await page.setViewport({ width: 390, height: 844, isMobile: true, hasTouch: true });
+    await page.goto(`${base}/edit/`);
+    await page.waitForSelector('.list.compact');
+    const wider = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+    check(wider <= 0, `the page is ${wider} px wider than the screen`);
+    const rows = await page.$$eval('.list > article.row:not(.open)', (els) => els.map((el) => {
+      const head = el.querySelector('.row-head').getBoundingClientRect();
+      const title = el.querySelector('.c-title > button:not(.ed)');
+      const lineHeight = parseFloat(getComputedStyle(title).lineHeight);
+      return { id: el.dataset.no, head: head.height, lines: Math.round(title.getBoundingClientRect().height / lineHeight), right: head.right };
+    }));
+    const tall = rows.filter((r) => r.head > 32 || r.lines !== 1 || r.right > 390);
+    check(!tall.length, `rows not on one line within the screen: ${tall.slice(0, 5).map((r) => JSON.stringify(r)).join(', ')}`);
+    await page.screenshot({ path: path.join(SHOTS, 'edit-compact-phone.png') });
+    await page.setViewport({ width: 1280, height: 900 });
+  });
+
+  await step('Compact off: the page is as before and the folds are forgotten; on again, nothing is folded, and so after a reload', async () => {
+    await page.goto(`${base}/edit/`);
+    await page.waitForSelector('.list.compact');
+    await fold(page, 'c2');
+    await foldShows(page, 'c2', '39 rows', 'folded');
+    await setCompact(page, false);
+    const off = await page.evaluate(() => ({
+      shown: [...document.querySelectorAll('.list > article.row')].filter((el) => getComputedStyle(el).display !== 'none').length,
+      all: document.querySelectorAll('.list > article.row').length,
+      folds: [...document.querySelectorAll('h2.chapter .ed-fold')].filter((b) => getComputedStyle(b).display !== 'none').length,
+      dates: [...document.querySelectorAll('.list > article.row .c-date')].filter((c) => getComputedStyle(c).display !== 'none').length,
+    }));
+    check(off.shown === off.all && off.folds === 0 && off.dates === off.all, `with Compact off: ${JSON.stringify(off)}`);
+    await setCompact(page, true);
+    await foldShows(page, 'c2', null, 'Compact on again');
+    await page.reload();
+    await page.waitForSelector('.list.compact');
+    await foldShows(page, 'c2', null, 'after a reload');
+    await setCompact(page, false);
+  });
+
+  // A browser that keeps nothing (storage blocked, a private window): every read and write of the
+  // switch fails, and the page works the same for the visit.
+  await step('with storage refused, the page works and the switch still makes the list compact', async () => {
+    const other = watch(await browser.newPage());
+    await other.setViewport({ width: 1280, height: 900 });
+    await other.evaluateOnNewDocument(() => {
+      Object.defineProperty(window, 'localStorage', { get() { throw new DOMException('The operation is insecure.', 'SecurityError'); } });
+    });
+    await other.goto(`${base}/edit/`);
+    await other.waitForSelector('.ed-bar');
+    check(!(await other.$eval('.list', (el) => el.classList.contains('compact'))), 'the list is compact with nothing kept');
+    await setCompact(other, true);
+    await fold(other, 'c2');
+    await foldShows(other, 'c2', '39 rows', 'storage refused');
+    await other.close();
+  });
+
+  console.log(`All ${n} steps hold. Screenshots: ${['edit-page.png', 'public-page.png', 'edit-phone.png', 'edit-compact.png', 'edit-compact-phone.png'].map((name) => path.join(SHOTS, name)).join(', ')}`);
 }
 
 try {

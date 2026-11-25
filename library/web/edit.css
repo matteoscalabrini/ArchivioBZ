@@ -51,6 +51,8 @@ button.ed-words .ed-icon { display: inline-block; }
 .ed-actions button.ed.ed-publish:hover { background: var(--paper); color: var(--ink); outline: 1px solid var(--ink); outline-offset: -1px; }
 .ed-about .ed-icon { display: inline-block; }
 .ed-msg { flex-basis: 100%; }
+.ed-bar .ed-switch { margin-top: 0; align-items: baseline; } /* its words on the line of the buttons' */
+.ed-bar .ed-switch input { top: 3px; }
 .ed-msg a { text-underline-offset: 4px; }
 .ed-msg button.ed-words { text-decoration: underline; text-underline-offset: 4px; }
 .status { top: var(--edit-bar, 0px); }
@@ -81,7 +83,11 @@ button.ed-words .ed-icon { display: inline-block; }
 }
 .row[data-hidden] > .row-head { color: var(--grey); }
 .c-no { white-space: nowrap; }
-.c-no button.ed { margin-left: 3px; }
+.c-no button.ed-edit { margin-left: 3px; }
+/* The number of a closed row is a button (edit/rows.js), set as the number it is; on an open row,
+   the number as text, ✎ beside it. */
+.c-no button.ed-no { display: inline; margin: 0 -1px; vertical-align: baseline; font-variant-numeric: tabular-nums; }
+.row.open .c-no button.ed-no { pointer-events: none; }
 .c-title { display: grid; grid-template-columns: auto minmax(14px, 1fr); column-gap: 6px; align-items: baseline; justify-items: start; }
 .c-title > .why,
 .c-title > .ed-field { grid-column: 1 / -1; justify-self: stretch; }
@@ -128,11 +134,40 @@ button.ed-words .ed-icon { display: inline-block; }
 .ch-line button.ed { vertical-align: 0.1em; }
 .ch-line .ed-field { display: inline-block; width: 100%; }
 
+/* A row moved by a typed number, where it landed: an outline that fades (edit/rows.js). */
+.row.ed-placed { animation: ed-placed 1.2s ease-in; }
+@keyframes ed-placed {
+  0%, 40% { outline: 2px solid var(--ink); outline-offset: -2px; }
+  100% { outline: 2px solid transparent; outline-offset: -2px; }
+}
+
 /* Dragging: the place a held row or chapter would land is greyed; the one under the pointer
    floats over the list. While a chapter is held its rows fold away. */
 .list.folding article.row { display: none; }
 .sortable-ghost { opacity: 0.25; }
 .sortable-fallback { opacity: 0.92; background: var(--paper); outline: 1px solid var(--ink); }
+
+/* The compact view (edit/compact.js), for arranging: every closed row one line about 28 px high,
+   the grip, the number and the title cut short, its type, date and keywords out of sight; an open
+   row opens in full. The headings closer together, each with its fold before the title (▾, ▸ when
+   folded) and, folded, the count of its rows after it; a folded chapter's rows out of sight. */
+.list.compact article.row:not(.open) > .row-head { grid-template-columns: 64px minmax(0, 1fr) auto; align-items: center; padding-top: 2px; padding-bottom: 2px; }
+.list.compact article.row:not(.open) > .row-head > :is(.c-type, .c-date, .c-kw) { display: none; }
+.list.compact article.row:not(.open) .c-title { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 19px; line-height: 24px; }
+.list.compact article.row:not(.open) .c-title > button:not(.ed) { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.list.compact article.row:not(.open) .c-title > button.ed { flex: none; align-self: center; margin-top: -3px; }
+.list.compact article.row:not(.open) .c-title > .ed-field { flex: 1 1 auto; min-width: 0; }
+.list.compact article.row:not(.open) .c-title > .why { display: none; }
+.list.compact article.row:not(.open) .ed-grip { top: 7px; }
+.list.compact .row[data-changed]:not(.open) > .row-head::after { top: 12px; }
+.list.compact article.row.ed-folded { display: none; }
+.list.compact .ed-end { padding-top: 2px; padding-bottom: 8px; }
+.list.compact .chapter > .ed-end { padding-top: 8px; }
+.list.compact h2.chapter { padding-top: 24px; padding-bottom: 8px; }
+.list.compact h2.chapter > .ed-grip { top: calc(24px + 14px); }
+.ch-line button.ed-fold { width: 1em; font: 400 24px/1 var(--sans); letter-spacing: 0; vertical-align: 0.15em; }
+.ch-line .ed-count { font: 400 var(--size-meta)/1 var(--sans); letter-spacing: 0; color: var(--grey); vertical-align: 0.4em; }
+.list:not(.compact) :is(.ed-fold, .ed-count) { display: none; }
 
 /* "All keywords": each keyword is dragged into the author's order (edit/strip.js) and still
    filters on a press, so the pointer is an open hand over it, and a closed one over the strip
@@ -264,4 +299,5 @@ dl.meta dd .ed-field .ed-error { flex-basis: 100%; }
   .ed-end { padding-left: calc(var(--gutter) + 58px); }
   .chapter > .ed-end { padding-left: 58px; }
   .ed-here { left: calc(var(--gutter) + 52px); }
+  .list.compact article.row:not(.open) > .row-head { grid-template-areas: "no title acts"; grid-template-columns: 44px minmax(0, 1fr) auto; }
 }

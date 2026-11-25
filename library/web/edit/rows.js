@@ -1,21 +1,25 @@
 // A row in edit mode: the row as the server drew it, with its controls. In the head: the grip to
 // drag it, ✎ on the number, the title and the date, the type as a choice, each keyword with ✕ and
-// a ＋ for another, 👁 to hide or show it, 🗑 to remove it. In the open row: ✎ on the text and
+// a ＋ for another, 👁 to hide or show it, 🗑 to remove it; on a closed row the number itself is a
+// button too, the quick way to move a row without opening it. In the open row: ✎ on the text and
 // on each line under it (Holder, Creator, Rights, Confidence, Source, Place), shown even when
-// empty so that it can be filled. A click on any of these never opens or closes the row.
-import { state, list, onRow, send, act, say } from './core.js';
+// empty so that it can be filled. A click on any of these never opens or closes the row. Once a
+// typed number is answered, the page follows the row to where it went.
+import { state, list, onRow, send, act, say, rowEl } from './core.js';
 import { iconButton } from './icons.js';
 import { openField, input, textarea, select } from './field.js';
 import { ask } from './dialog.js';
 import { openPicker } from './keywords.js';
 import { dressPictures } from './pictures.js';
-import { toParagraphs, fromParagraphs, yearValue, numberValue, removeQuestion } from '../editmodel.js';
+import { unfold } from './compact.js';
+import { toParagraphs, fromParagraphs, yearValue, numberValue, removeQuestion, placedLine } from '../editmodel.js';
 
 const CONFIDENCE = [['read', 'Read in the source'], ['secondary', 'From a secondary source'], ['lead', 'Lead, not yet a fact']];
 // The lines under an open row's text, in the order lib/detail.mjs writes them.
 const LINES = ['Holder', 'Creator', 'Rights', 'Confidence', 'Source', 'Place'];
 
 const record = (id) => state.doc.rows[id]?.record ?? {};
+const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 
 onRow(dressHead);
 onRow(dressBody);
@@ -26,8 +30,12 @@ function dressHead(el) {
   const head = el.querySelector('.row-head');
   head.prepend(iconButton('grip', 'Drag to move the row', { className: 'ed-grip' }));
 
+  // The number, a button that opens its field as ✎ does; on an open row it is the number as
+  // text again (edit.css, and out of the keyboard's way after each drawing, below), so the open
+  // row's head is as it was.
   const no = head.querySelector('.c-no');
-  const number = Object.assign(document.createElement('span'), { className: 'ed-no', textContent: no.textContent || '—' });
+  const number = Object.assign(document.createElement('button'), { type: 'button', className: 'ed ed-no', textContent: no.textContent || '—', title: 'Change the number' });
+  number.dataset.ed = 'number';
   no.replaceChildren(number, iconButton('edit', 'Change the number', { key: 'number' }));
 
   head.querySelector('.c-title button').after(iconButton('edit', 'Edit the title', { key: 'title' }));
@@ -125,6 +133,12 @@ list.addEventListener('click', (event) => {
   return undefined;
 });
 
+// An open row's number is out of the keyboard's way, as its pointer's (edit.css): ✎ beside it
+// opens the field there, as before.
+list.addEventListener('drawn', () => {
+  for (const number of list.querySelectorAll('button.ed-no')) number.tabIndex = number.closest('article.row').classList.contains('open') ? -1 : 0;
+});
+
 // The type, a choice that saves at once; refused, it goes back.
 list.addEventListener('change', (event) => {
   const choice = event.target instanceof HTMLSelectElement && event.target.dataset.ed === 'type' ? event.target : null;
@@ -141,21 +155,45 @@ const setRow = (id, fields) => (value, box) => send({ op: 'set-row', id, fields:
 
 // The number on the decimal keypad, which has digits and the region's decimal separator, a full
 // stop or a comma (an iPhone set to Italy shows only a comma; the numeric keypad would show
-// neither); both are taken.
+// neither); both are taken. Opened by ✎ or by the number itself; either way both stand aside.
 function editNumber(row, id, opener) {
   const shown = row.querySelector('.ed-no');
+  const pencil = row.querySelector('.c-no > button.ed-edit');
   const field = input(state.numbers[id] ?? '', 'Number', { className: 'ed-in-no', mode: 'decimal' });
   openField({
     controls: [field],
     read: () => numberValue(field.value),
-    save: (number, box) => send({ op: 'set-number', id, number }, { field: box }),
+    save: (number, box) => send({ op: 'set-number', id, number }, { field: box }).then(() => {
+      requestAnimationFrame(() => follow(id, number)); // once the field has closed
+    }),
     place: (box) => shown.after(box),
-    hide: [shown, opener],
+    hide: [shown, pencil],
     opener,
     key: 'number',
     errorPlace: (line) => row.querySelector('.row-head').append(line),
   });
 }
+
+// After a typed number, the row where it went: its chapter unfolded, its head in the middle of the
+// window (at once for a reader who asks for less motion), an outline that fades on it for a moment,
+// and, when it is not at the number typed (past its chapter's end, or the chapters closed up after
+// the one it left), a line in the bar that says where it is. A drag does not come here: the row is
+// under the pointer already.
+function follow(id, typed) {
+  const row = rowEl(id);
+  if (!row) return;
+  unfold(row.dataset.chapter);
+  const line = placedLine(typed, state.numbers[id]);
+  if (line) say(line, 'info');
+  row.querySelector('.row-head').scrollIntoView({ block: 'center', behavior: reduced.matches ? 'instant' : 'smooth' });
+  row.classList.remove('ed-placed');
+  void row.offsetWidth; // the outline starts again on a row marked a moment ago
+  row.classList.add('ed-placed');
+}
+
+list.addEventListener('animationend', (event) => {
+  if (event.animationName === 'ed-placed') event.target.classList.remove('ed-placed');
+});
 
 function editTitle(row, id, opener) {
   const button = row.querySelector('.c-title button');

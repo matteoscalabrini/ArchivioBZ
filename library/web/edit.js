@@ -10,6 +10,7 @@
 //   edit/keywords.js  the keywords offered under ＋
 //   edit/chapters.js  the headings, ＋ row here, ＋ chapter here
 //   edit/drag.js      dragging rows and chapters
+//   edit/compact.js   the compact view: every closed row one line, chapters that fold
 //   edit/strip.js     "All keywords": the answers' strip, its keywords dragged into an order
 //   edit/bar.js       the bar: the summary, About, Public site, Discard, Publish, Log out
 //   edit/idea.js      ✎ on the idea

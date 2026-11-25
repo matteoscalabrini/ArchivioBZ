@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { dropTarget, chapterIndex, toParagraphs, fromParagraphs, OpQueue, Underway, changesIn, publishQuestion, removeQuestion, storyPlaces, headingsOf, placeRow, rowPlace, placeChapter, yearValue, numberValue, offered } from '../web/editmodel.js';
+import { dropTarget, chapterIndex, toParagraphs, fromParagraphs, OpQueue, Underway, changesIn, publishQuestion, removeQuestion, storyPlaces, headingsOf, placeRow, rowPlace, placeChapter, yearValue, numberValue, offered, placedLine, rowCount } from '../web/editmodel.js';
 import { diffDocs } from '../cloud/doc.mjs';
 import { summaryLine } from '../cloud/render.mjs';
 import { sampleDoc } from './docs.mjs';
@@ -15,6 +15,35 @@ test('a row dropped just under a heading is first in that chapter, and hidden ro
   assert.deepEqual(dropTarget(seq('#c1', 'a', 'b', '#c2', 'x', 'c'), 'x'), { chapter: 'c2', index: 0 });
   assert.deepEqual(dropTarget(seq('#c1', 'a', 'h', 'x', '#c2', 'c'), 'x'), { chapter: 'c1', index: 2 }, 'h stands for a hidden row: it is in the chapter, so it counts');
   assert.deepEqual(dropTarget(seq('#c1', 'a', '#c2', '#c3', 'x'), 'x'), { chapter: 'c3', index: 0 }, 'under an empty chapter that follows another');
+});
+
+// The compact view folds a chapter's rows away (display: none), and the dragged row may land among
+// them, before or after: either way just under the folded heading, which is the chapter's head.
+test('a row dropped under a folded chapter\'s heading is the first of that chapter, wherever among its folded rows it lands', () => {
+  const folding = (...items) => seq(...items).map((item) => (item.kind === 'chapter' && item.id === 'c2' ? { ...item, folded: true } : item));
+  assert.deepEqual(dropTarget(folding('#c1', 'a', '#c2', 'x', 'b', 'c', '#c3', 'd'), 'x'), { chapter: 'c2', index: 0 });
+  assert.deepEqual(dropTarget(folding('#c1', 'a', '#c2', 'b', 'c', 'x', '#c3', 'd'), 'x'), { chapter: 'c2', index: 0 }, 'after the folded rows, before the next heading');
+  assert.deepEqual(dropTarget(folding('#c1', 'a', 'x', '#c2', 'b', 'c', '#c3'), 'x'), { chapter: 'c1', index: 1 }, 'above the folded heading: the chapter before, as ever');
+  assert.deepEqual(dropTarget(folding('#c1', 'a', '#c2', 'b', '#c3', 'x', 'd'), 'x'), { chapter: 'c3', index: 0 }, 'under the next heading, which is not folded');
+});
+
+test('a folded chapter\'s count of rows', () => {
+  assert.equal(rowCount(31), '31 rows');
+  assert.equal(rowCount(1), '1 row');
+  assert.equal(rowCount(0), '0 rows');
+});
+
+// The author typed 18.07 in a chapter of three and the row went to 18.04, the end of chapter 18, at
+// the bottom of a long page: it looked lost. The page follows the row and, when it is not where the
+// number typed said, says where it went.
+test('the line after a typed number: none at the place typed, else where the row went, and when it went to the end of its chapter, that', () => {
+  assert.equal(placedLine('2.5', '2.05'), null);
+  assert.equal(placedLine('2,05', '2.05'), null);
+  assert.equal(placedLine(' 02.05 ', '2.05'), null);
+  assert.equal(placedLine('18.07', '18.04'), 'Placed at 18.04, the end of chapter 18.');
+  assert.equal(placedLine('4.02', '3.02'), 'Placed at 3.02.', 'the chapter it left was the only one before and is now empty: the chapters close up');
+  assert.equal(placedLine('2.07', '1.05'), 'Placed at 1.05, the end of chapter 1.', 'past the end, and the chapters closed up');
+  assert.equal(placedLine('2.01', ''), null, 'a hidden row has no number to say');
 });
 
 test('a chapter dropped among the others takes the place of the headings before it', () => {

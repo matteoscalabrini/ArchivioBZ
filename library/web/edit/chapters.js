@@ -1,7 +1,7 @@
 // The chapters in edit mode: each heading with its grip, ✎ on its title and, once it holds no row,
-// 🗑; "＋ row here" under each row (shown while the pointer is on the row, and under the open row,
-// which is how a touch screen reaches it) and at the end of each
-// chapter, and "＋ chapter here" after each chapter's last row. Adding asks for a title (and a
+// 🗑, and the fold of the compact view (compact.js); "＋ row here" under each row (shown while the
+// pointer is on the row, and under the open row, which is how a touch screen reaches it) and at the
+// end of each chapter, and "＋ chapter here" after each chapter's last row. Adding asks for a title (and a
 // row for its type); a new row opens. Only in the story order: elsewhere a place in a chapter
 // means nothing.
 import { state, list, act, send, rowEl } from './core.js';
@@ -9,11 +9,12 @@ import { iconButton, wordButton } from './icons.js';
 import { openField, input } from './field.js';
 import { form } from './dialog.js';
 import { rowPlace } from '../editmodel.js';
+import { dressFold, showFolds } from './compact.js';
 
 const dressed = new WeakSet();
 
 // After each drawing of the list: the headings dressed, the lines at the ends of the chapters
-// where they now are, 🗑 on the empty chapters only.
+// where they now are, 🗑 on the empty chapters only, the folds as they stand.
 list.addEventListener('drawn', () => {
   const ends = new Map(); // the element that ends each chapter -> the chapter
   for (const chapter of state.chapters) {
@@ -35,6 +36,7 @@ list.addEventListener('drawn', () => {
   for (const row of list.querySelectorAll('article.row')) {
     if (!row.querySelector(':scope > .ed-here')) row.append(hereLine());
   }
+  showFolds();
 });
 
 // A heading as the server wrote it holds its title as text after the number: the title goes into
@@ -51,6 +53,7 @@ function dressHeading(heading) {
   line.append(title, ' ', iconButton('edit', 'Rename the chapter', { key: 'chapter-title' }), ' ', iconButton('trash', 'Remove the chapter', { key: 'chapter-remove' }));
   heading.append(line);
   heading.prepend(iconButton('grip', 'Drag to move the chapter', { className: 'ed-grip' }));
+  dressFold(heading);
 }
 
 function endLine(chapter) {

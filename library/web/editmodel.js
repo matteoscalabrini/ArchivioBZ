@@ -1,18 +1,23 @@
 // What edit mode works out without the page: where a dragged row or chapter lands and what the
-// order is meanwhile, a text as paragraphs and back, a typed year, the keywords offered, the queue
-// that sends the edits one at a time, what is under way until the page has settled, and the number
-// of changes the summary names. Pure, shared by edit.js and the tests.
+// order is meanwhile, what the bar says after a typed number, a folded chapter's count, a text as
+// paragraphs and back, a typed year, the keywords offered, the queue that sends the edits one at a
+// time, what is under way until the page has settled, and the number of changes the summary names.
+// Pure, shared by edit.js and the tests.
 
 // Where a row dropped in the list goes. `sequence`: the list after the drop, its headings and rows
-// in the order they now stand, [{ kind: 'chapter' | 'row', id }]. The row joins the chapter of the
-// nearest heading above it, at its place among that chapter's rows (hidden rows are rows of the
-// chapter, so they count). Dropped above every heading, it goes first in the first chapter.
+// in the order they now stand, [{ kind: 'chapter' | 'row', id, folded? }]. The row joins the
+// chapter of the nearest heading above it, at its place among that chapter's rows (hidden rows are
+// rows of the chapter, so they count). Dropped above every heading, it goes first in the first
+// chapter. Under a folded heading (the compact view) the chapter's rows are not on the screen, so
+// wherever among them the row landed it was dropped just under the heading: it goes first.
 export function dropTarget(sequence, draggedId) {
   let chapter = null;
+  let folded = false;
   let index = 0;
   for (const item of sequence) {
     if (item.kind === 'chapter') {
       chapter = item.id;
+      folded = item.folded === true;
       index = 0;
     } else if (item.id === draggedId) {
       break;
@@ -21,7 +26,26 @@ export function dropTarget(sequence, draggedId) {
     }
   }
   if (chapter === null) return { chapter: sequence.find((item) => item.kind === 'chapter')?.id ?? null, index: 0 };
-  return { chapter, index };
+  return { chapter, index: folded ? 0 : index };
+}
+
+// How many rows a folded chapter holds, as its heading says it: "31 rows", "1 row".
+export function rowCount(n) {
+  return `${n} ${n === 1 ? 'row' : 'rows'}`;
+}
+
+// The line the bar says once a typed number is answered, from the number typed and the number the
+// answer gives the row; null when the row is where the number said (2.5 and 2,05 are 2.05). The
+// server puts a row typed past its chapter's end last in it, so a place smaller than the one
+// typed is the chapter's end; a chapter number smaller than the one typed means the chapter the
+// row left is now empty and the chapters after it closed up. A hidden row has no number to say.
+export function placedLine(typed, given) {
+  const want = /^\s*(\d+)[.,](\d+)\s*$/.exec(String(typed ?? ''));
+  const got = /^(\d+)\.(\d+)$/.exec(String(given ?? ''));
+  if (!want || !got) return null;
+  const [chapter, place] = [Number(got[1]), Number(got[2])];
+  if (Number(want[1]) === chapter && Number(want[2]) === place) return null;
+  return place < Number(want[2]) ? `Placed at ${given}, the end of chapter ${chapter}.` : `Placed at ${given}.`;
 }
 
 // Where a chapter dropped among the others goes: its place among the chapters, which is how many

@@ -1,12 +1,14 @@
 // The edit bar, above the idea and held under the top of the window: "Draft · " and how the draft
-// differs from what is public, then About ✎, Public site, Discard, Publish and Log out. Under its
-// words, a line for what went wrong where no field was open, and for a conflict, which asks for a
-// reload since every later edit would meet it too.
+// differs from what is public, then the switch Compact (compact.js), About ✎, Public site,
+// Discard, Publish and Log out. Under its words, a line for what went wrong where no field was
+// open, for a conflict, which asks for a reload since every later edit would meet it too, and for
+// where a row went when it is not where its typed number said.
 import { state, bus, send, post, setSummary, settled, during, unsaved, leave, watchUnsaved, CONFLICT } from './core.js';
 import { publishQuestion } from '../editmodel.js';
 import { wordButton } from './icons.js';
 import { ask } from './dialog.js';
 import { textarea } from './field.js';
+import { compactSwitch } from './compact.js';
 
 const NOTHING = 'No changes since the last publish';
 
@@ -30,7 +32,7 @@ export function makeBar() {
   const discard = wordButton('Discard');
   const publish = wordButton('Publish', { className: 'ed-publish' });
   const logout = wordButton('Log out');
-  actions.append(about, site, discard, publish, logout);
+  actions.append(compactSwitch(), about, site, discard, publish, logout);
 
   const message = document.createElement('p');
   message.className = 'ed-msg';
@@ -49,9 +51,10 @@ export function makeBar() {
   });
   bus.addEventListener('say', (event) => show(message, event.detail));
   bus.addEventListener('conflict', () => show(message, { text: CONFLICT, kind: 'conflict' }));
-  // Logged in again on another tab: the next edit that goes through clears the line.
+  // Logged in again on another tab: the next edit that goes through clears the line; it clears
+  // the line about the edit before it too.
   bus.addEventListener('answered', () => {
-    if (message.dataset.kind === 'logged-out') hide(message);
+    if (message.dataset.kind === 'logged-out' || message.dataset.kind === 'info') hide(message);
   });
 
   about.addEventListener('click', () => editAbout());
@@ -115,13 +118,17 @@ function published() {
 }
 
 // The bar's line: an error as it stands; the session's end as a link that logs in again in a new
-// tab, so that this one keeps what is typed; a conflict with the reload it asks for.
+// tab, so that this one keeps what is typed; a conflict with the reload it asks for; information
+// (kind 'info') as words alone, read out politely, until the next edit is answered.
 function show(message, { text, kind = 'error' }) {
   if (message.dataset.kind === 'conflict') return; // the reload stays asked for
   message.replaceChildren();
   message.hidden = false;
   message.dataset.kind = kind;
-  if (kind === 'logged-out') {
+  message.setAttribute('role', kind === 'info' ? 'status' : 'alert');
+  if (kind === 'info') {
+    message.append(text);
+  } else if (kind === 'logged-out') {
     message.append(Object.assign(document.createElement('a'), { href: '/edit/', target: '_blank', rel: 'opener', textContent: text }));
   } else if (kind === 'conflict') {
     const reload = Object.assign(document.createElement('button'), { type: 'button', className: 'ed ed-words', textContent: 'Reload' });
