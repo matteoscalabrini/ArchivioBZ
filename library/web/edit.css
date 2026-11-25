@@ -1,0 +1,257 @@
+/* Edit mode on the Library page (web/edit.js): the same page, black on white, with small line
+   icons at the end of what they act on, a bar at the top held under the window's edge, and the
+   fields in the place and the font of what they edit. No boxes but the fields that hold a text
+   and the dialogs. */
+
+:root {
+  /* A sixth column, at the end of each row's head, for 👁 and 🗑. */
+  --cols: 64px minmax(0, 1fr) 150px 120px minmax(0, 300px) 44px;
+}
+html { scroll-padding-top: calc(48px + var(--edit-bar, 0px)); }
+
+/* Icons: 14 px, lines in the text's colour. */
+.ed-icon { display: block; width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; overflow: visible; }
+.ed-icon-grip { fill: currentColor; stroke: none; }
+button.ed {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  vertical-align: -2px;
+  margin: -3px -1px;
+  padding: 3px 1px;
+  color: inherit;
+  text-decoration: none;
+  letter-spacing: 0;
+}
+button.ed:hover:not(:disabled) { background: var(--ink); color: var(--paper); }
+button.ed:disabled { color: var(--grey); cursor: default; opacity: 0.45; }
+button.ed-words { font: 400 var(--size-meta)/1.2 var(--sans); }
+button.ed-words .ed-icon { display: inline-block; }
+
+/* The bar: Draft · what differs, then the buttons; the line under them for what went wrong. */
+.ed-bar {
+  position: sticky;
+  top: 0;
+  z-index: 7;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 24px;
+  padding: 10px var(--gutter);
+  background: var(--paper);
+  border-bottom: var(--rule);
+  font-size: var(--size-meta);
+}
+.ed-bar p { margin: 0; }
+.ed-actions { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 20px; margin-left: auto !important; }
+.ed-actions > a,
+.ed-actions > button.ed-words:not(.ed-publish) { text-decoration: underline; text-underline-offset: 4px; }
+.ed-actions > button.ed-words:hover:not(.ed-publish) { background: none; color: inherit; text-decoration-thickness: 2px; }
+.ed-actions button.ed.ed-publish { margin: -3px 0; padding: 3px 10px; background: var(--ink); color: var(--paper); }
+.ed-actions button.ed.ed-publish:hover { background: var(--paper); color: var(--ink); outline: 1px solid var(--ink); outline-offset: -1px; }
+.ed-about .ed-icon { display: inline-block; }
+.ed-msg { flex-basis: 100%; }
+.ed-msg a { text-underline-offset: 4px; }
+.ed-msg button.ed-words { text-decoration: underline; text-underline-offset: 4px; }
+.status { top: var(--edit-bar, 0px); }
+.ed-dragoff { color: var(--grey); }
+
+/* The idea's ✎ sits in its label, not among its keywords. */
+.idea .lab button.ed { margin: -3px 0 -3px 2px; padding: 3px 1px; text-decoration: none; }
+
+/* A row's head: the grip in the margin, a dot there for a row changed since the last publish,
+   the number and the title each with ✎, the type a choice, the date with ✎, the keywords each
+   with ✕ and a ＋, then 👁 and 🗑. A hidden row is grey and has no number. */
+.row { position: relative; }
+.row-head { position: relative; }
+.ed-grip { position: absolute; left: max(1px, calc(var(--gutter) - 26px)); top: 15px; cursor: grab; }
+.chapter > .ed-grip { top: calc(64px + 14px); }
+.sortable-chosen .ed-grip,
+.sortable-chosen .ed-grip:hover { cursor: grabbing; }
+.list:not(.story) .ed-grip { visibility: hidden; }
+.row[data-changed] > .row-head::after {
+  content: "";
+  position: absolute;
+  left: max(17px, calc(var(--gutter) - 9px));
+  top: 20px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--ink);
+}
+.row[data-hidden] > .row-head { color: var(--grey); }
+.c-no { white-space: nowrap; }
+.c-no button.ed { margin-left: 3px; }
+.c-title { display: grid; grid-template-columns: auto minmax(14px, 1fr); column-gap: 6px; align-items: baseline; justify-items: start; }
+.c-title > .why,
+.c-title > .ed-field { grid-column: 1 / -1; justify-self: stretch; }
+.c-title > button.ed { align-self: start; margin-top: 4px; }
+.c-type select {
+  max-width: 100%;
+  field-sizing: content; /* as wide as the type chosen, where the browser can */
+  margin: 0;
+  padding: 0 14px 0 0;
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10' width='10' height='10'%3E%3Cpath d='M2 3.5 5 6.5 8 3.5' fill='none' stroke='%23000' stroke-width='1.2'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1px center;
+}
+.row[data-hidden] .c-type select { color: var(--grey); }
+.c-date button.ed { margin-left: 3px; }
+.c-kw { position: relative; }
+.c-kw .ed-kw-x { margin-left: 1px; }
+.ed-acts { display: flex; justify-content: flex-end; gap: 10px; }
+
+/* "＋ row here" under a row while the pointer is on it, on its lower rule; at the end of each
+   chapter, "＋ row here" and "＋ chapter here" on a line of their own. Only in the story order. */
+.ed-here { position: absolute; z-index: 2; left: calc(var(--gutter) + 64px + var(--col-gap) - 6px); bottom: -9px; padding: 0 6px; background: var(--paper); display: none; }
+.list.story .row:hover > .ed-here,
+.list.story .ed-here:focus-within { display: block; }
+.row:has(> .ed-end) > .ed-here { display: none !important; }
+.ed-end { display: flex; gap: 24px; padding: 4px var(--gutter) 14px calc(var(--gutter) + 64px + var(--col-gap)); }
+.chapter > .ed-end { grid-column: 1 / -1; padding: 16px 0 0 calc(64px + var(--col-gap)); font: 400 var(--size-meta)/1.45 var(--sans); letter-spacing: 0; }
+.ed-end .ed-add-chapter { margin-left: auto; }
+.list:not(.story) .ed-end,
+.list:not(.story) .ed-here { display: none; }
+
+/* A chapter's heading: grip, number, title with ✎, and 🗑 while it holds no row. */
+.chapter { position: relative; }
+.ch-line button.ed { vertical-align: 0.1em; }
+.ch-line .ed-field { display: inline-block; width: 100%; }
+
+/* Dragging: the place a held row or chapter would land is greyed; the one under the pointer
+   floats over the list. While a chapter is held its rows fold away. */
+.list.folding article.row { display: none; }
+.sortable-ghost { opacity: 0.25; }
+.sortable-fallback { opacity: 0.92; background: var(--paper); outline: 1px solid var(--ink); }
+
+/* An open row: ✎ after the text and after each line under it, the empty lines too. */
+dl.meta dd.ed-unset { color: var(--grey); }
+dl.meta dd button.ed { margin-left: 2px; }
+.detail .txt p.ed-empty { margin-bottom: 14px; }
+.ed-pic { display: flex; gap: 12px; margin: 8px 0 0; }
+figcaption.ed-unset { margin-top: 6px; }
+
+/* Side by side: a small switch. */
+.pics > .ed-switch { grid-column: 1 / -1; justify-self: start; }
+.ed-switch { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; font-size: var(--size-meta); cursor: pointer; }
+.ed-switch input { position: relative; width: 24px; height: 14px; margin: 0; border: 1px solid var(--ink); border-radius: 7px; appearance: none; -webkit-appearance: none; background: var(--paper); cursor: pointer; }
+.ed-switch input::before { content: ""; position: absolute; top: 2px; left: 2px; width: 8px; height: 8px; border-radius: 50%; background: var(--ink); transition: left 0.15s; }
+.ed-switch input:checked { background: var(--ink); }
+.ed-switch input:checked::before { left: 12px; background: var(--paper); }
+
+/* Fields: no box for a line, one hairline under it, two in focus; a text has a hairline frame. */
+.ed-field input,
+.ed-field select,
+.ed-field textarea,
+.ed-pick input,
+.ed-dialog input,
+.ed-dialog select,
+.ed-dialog textarea {
+  max-width: 100%;
+  margin: 0;
+  padding: 0 0 1px;
+  font: inherit;
+  color: var(--ink);
+  background: none;
+  border: 0;
+  border-bottom: var(--rule);
+  border-radius: 0;
+  outline: none;
+}
+.ed-field input:focus,
+.ed-pick input:focus,
+.ed-dialog input:focus { border-bottom-width: 2px; padding-bottom: 0; }
+.ed-field input { width: calc(var(--chars, 12) * 1ch + 6px); }
+.ed-field select { padding-right: 2px; cursor: pointer; }
+.ed-field textarea,
+.ed-dialog textarea { display: block; width: 100%; padding: 8px 10px; border: var(--rule); line-height: inherit; resize: vertical; }
+.ed-field :focus-visible,
+.ed-pick :focus-visible,
+.ed-dialog input:focus-visible,
+.ed-dialog select:focus-visible,
+.ed-dialog textarea:focus-visible { outline: none; }
+.ed-field textarea:focus,
+.ed-dialog textarea:focus { border-width: 2px; padding: 7px 9px; }
+.ed-field select:focus,
+.ed-dialog select:focus { border-bottom-width: 2px; padding-bottom: 0; }
+.ed-field { color: var(--ink); }
+.ed-field.busy { color: var(--grey); }
+.ed-field.busy input,
+.ed-field.busy textarea { color: var(--grey); }
+.ed-error { display: block; margin: 4px 0 0; font: 400 var(--size-meta)/1.45 var(--sans); letter-spacing: 0; color: var(--ink); }
+.ed-error::before { content: "↑ "; }
+.row-head > .ed-error { grid-column: 1 / -1; margin-top: 6px; } /* under the head, for a field too narrow to hold it */
+.ed-in-title,
+.ed-in-chapter { width: 100% !important; }
+.ed-in-no { width: 6ch !important; font-variant-numeric: tabular-nums; }
+.c-date .ed-field { display: inline-grid; gap: 4px; max-width: 100%; }
+.ed-in-date,
+.ed-in-year { width: 100% !important; }
+.ed-in-line { width: min(100%, calc(var(--chars, 12) * 1ch + 6px)) !important; min-width: 12ch; }
+dl.meta dd .ed-field { display: inline-flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; max-width: 100%; }
+dl.meta dd .ed-field .ed-error { flex-basis: 100%; }
+.ed-in-text { min-height: 9em; }
+.idea .ed-field { margin-top: 4px; }
+.ed-in-idea { min-height: 12em; font: 400 var(--size-title)/1.3 var(--serif) !important; letter-spacing: 0; }
+.ed-block { display: block; margin-bottom: 14px; }
+
+/* The keywords offered to a row, under its ＋. */
+.ed-pick {
+  position: absolute;
+  z-index: 6;
+  top: calc(100% + 6px);
+  right: 0;
+  width: 240px;
+  max-width: calc(100vw - 2 * var(--gutter));
+  padding: 10px 12px;
+  background: var(--paper);
+  border: var(--rule);
+  font: 400 var(--size-meta)/1.45 var(--sans);
+  cursor: default;
+}
+.ed-pick input { width: 100%; }
+.ed-pick ul { max-height: 260px; margin: 8px 0 0; padding: 0; overflow-y: auto; list-style: none; }
+.ed-pick li button { display: block; width: 100%; padding: 2px 0; }
+.ed-pick li button:hover,
+.ed-pick li button:focus-visible { text-decoration: underline; text-underline-offset: 3px; }
+.ed-pick .ed-pick-new { margin-top: 4px; padding-top: 6px; border-top: var(--rule); }
+
+/* The questions: a dialog, hairline frame, the page whitened behind it. */
+.ed-dialog {
+  width: min(520px, calc(100vw - 32px));
+  max-width: none;
+  padding: 26px 28px 24px;
+  color: var(--ink);
+  background: var(--paper);
+  border: var(--rule);
+  font: 400 var(--size-text)/1.45 var(--sans);
+}
+.ed-dialog::backdrop { background: rgba(255, 255, 255, 0.78); }
+.ed-question { margin: 0 0 18px; font: 400 var(--size-title)/1.2 var(--serif); }
+.ed-form-line { display: grid; grid-template-columns: 64px minmax(0, 1fr); align-items: baseline; gap: 12px; margin: 0 0 14px; }
+.ed-form-line > span { font-size: var(--size-meta); color: var(--grey); }
+.ed-form-line input { width: 100%; }
+.ed-form-line select { justify-self: start; padding-right: 2px; cursor: pointer; }
+.ed-dialog-actions { display: flex; align-items: baseline; gap: 20px; margin: 22px 0 0; font-size: var(--size-meta); }
+.ed-dialog .ed-yes { padding: 4px 12px; background: var(--ink); color: var(--paper); }
+.ed-dialog .ed-yes:hover { outline: 1px solid var(--ink); background: var(--paper); color: var(--ink); }
+.ed-dialog .ed-no { text-decoration: underline; text-underline-offset: 4px; }
+.ed-about-dialog { width: min(900px, calc(100vw - 32px)); }
+.ed-about-dialog textarea.ed-about-text { height: min(60vh, 640px); overflow-y: auto; }
+
+@media (max-width: 800px) {
+  .row-head { grid-template-areas: "no title title acts" ". type date date" ". kw kw kw"; grid-template-columns: 44px auto minmax(0, 1fr) auto; }
+  .ed-acts { grid-area: acts; }
+  .ed-actions { margin-left: 0 !important; }
+  .ed-end { padding-left: calc(var(--gutter) + 58px); }
+  .chapter > .ed-end { padding-left: 58px; }
+  .ed-here { left: calc(var(--gutter) + 52px); }
+}
