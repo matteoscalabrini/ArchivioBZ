@@ -62,8 +62,8 @@ function dressBody(el) {
   if (!txt) return;
   const paragraphs = [...txt.children].filter((child) => child.tagName === 'P');
   let last = paragraphs.at(-1);
-  if (!last) {
-    last = Object.assign(document.createElement('p'), { className: 'ed-empty' });
+  if (!last) { // no text yet: a line that says where it goes
+    last = Object.assign(document.createElement('p'), { className: 'ed-empty', textContent: 'Text' });
     txt.prepend(last);
   }
   last.append(' ', iconButton('edit', 'Edit the text', { key: 'text' }));

@@ -135,7 +135,8 @@ button.ed-words .ed-icon { display: inline-block; }
 /* An open row: ✎ after the text and after each line under it, the empty lines too. */
 dl.meta dd.ed-unset { color: var(--grey); }
 dl.meta dd button.ed { margin-left: 2px; }
-.detail .txt p.ed-empty { margin-bottom: 14px; }
+.detail .txt p.ed-empty { margin-bottom: 14px; font-size: var(--size-meta); color: var(--grey); }
+.detail .txt p.ed-empty button.ed { color: var(--ink); }
 .ed-pic { display: flex; gap: 12px; margin: 8px 0 0; }
 figcaption.ed-unset { margin-top: 6px; }
 

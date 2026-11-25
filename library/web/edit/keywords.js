@@ -7,7 +7,9 @@ import { offered } from '../editmodel.js';
 let open = null; // the list now open: { pick, close }
 
 export function openPicker(row, id, opener) {
+  const again = open?.opener === opener; // ＋ a second time closes the list
   open?.close();
+  if (again) return;
   const held = () => state.doc.rows[id]?.record.keywords ?? [];
   const pick = document.createElement('div');
   pick.className = 'ed-pick';
@@ -107,7 +109,7 @@ export function openPicker(row, id, opener) {
   });
 
   opener.closest('.c-kw').append(pick);
-  open = { pick, close };
+  open = { pick, close, opener };
   document.addEventListener('pointerdown', outside, true);
   draw();
   find.focus({ preventScroll: true });
