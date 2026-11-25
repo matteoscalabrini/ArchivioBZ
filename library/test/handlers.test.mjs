@@ -91,6 +91,23 @@ test('the site answers only its four files', async () => {
   }
 });
 
+// vercel.json rewrites to ?path= and ?route=; should a request come with its own path and no query,
+// the path names the same file or route.
+test('without the rewrite\'s query, the path names the file or the route', async () => {
+  const at = (url) => new Request(url, { headers: headersOf() });
+  const index = await h.site(at('https://a.test/'));
+  assert.equal(index.status, 200);
+  assert.equal(await index.text(), renderSite(sample(), lists).files.get('index.html').body);
+  assert.equal((await h.site(at('https://a.test/map.html'))).status, 200);
+  assert.equal((await h.site(at('https://a.test/secret.txt'))).status, 404);
+  const search = await h.edit(at('https://a.test/edit/search.json'));
+  assert.equal(search.status, 200);
+  assert.ok(Array.isArray((await search.json()).rows));
+  const op = await h.edit(new Request('https://a.test/edit/op', { method: 'POST', headers: headersOf({ type: 'application/json' }), body: JSON.stringify({ version: 1, op: { op: 'hide-row', id: 'a', hidden: true } }) }));
+  assert.equal(op.status, 200);
+  assert.match(await (await h.edit(at('https://a.test/edit/'))).text(), /id="edit-data"/);
+});
+
 test('an op without a session answers logged-out', async () => {
   const res = await h.edit(post('op', { version: 1, op: { op: 'hide-row', id: 'a', hidden: true } }, { cookie: '' }));
   assert.equal(res.status, 401);

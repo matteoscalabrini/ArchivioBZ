@@ -4,7 +4,8 @@
 // they use is given (the store, the environment, the lists, the purge, the wait), so the tests run
 // them on PGlite, the local server runs them on its own, and api/ only wires them to Neon.
 // The route is a query parameter because vercel.json rewrites /index.html to /api/site?path=… and
-// /edit/<route> to /api/edit?route=<route>.
+// /edit/<route> to /api/edit?route=<route>; a request without it is read by its own path (/,
+// /map.html, /edit/op), which names the same file or route.
 import { applyOp, OpError } from './ops.mjs';
 import { ConflictError } from './store.mjs';
 import { numbering, chapterNumbers } from './doc.mjs';
@@ -219,7 +220,7 @@ ${line ? `<p class="login-line" role="alert">${esc(line)}</p>\n` : ''}</form>`,
 
   return {
     async site(request) {
-      const path = new URL(request.url).searchParams.get('path');
+      const path = fileOf(new URL(request.url));
       if (!PUBLIC_FILES.includes(path)) return text(404, 'Not found');
       try {
         await init();
@@ -233,7 +234,7 @@ ${line ? `<p class="login-line" role="alert">${esc(line)}</p>\n` : ''}</form>`,
     },
 
     async edit(request) {
-      const route = new URL(request.url).searchParams.get('route') ?? '';
+      const route = routeOf(new URL(request.url));
       if (!Object.hasOwn(ROUTES, route)) return json(404, { error: 'Not found.' });
       const run = Object.hasOwn(ROUTES[route], request.method) ? ROUTES[route][request.method] : null;
       if (!run) return json(405, { error: 'Not allowed.' }, { Allow: Object.keys(ROUTES[route]).join(', ') });
@@ -253,6 +254,9 @@ ${line ? `<p class="login-line" role="alert">${esc(line)}</p>\n` : ''}</form>`,
     },
   };
 }
+
+const fileOf = (url) => url.searchParams.get('path') ?? (url.pathname === '/' ? 'index.html' : url.pathname.slice(1));
+const routeOf = (url) => url.searchParams.get('route') ?? /^\/edit\/(.*)$/.exec(url.pathname)?.[1] ?? '';
 
 // Whether the page that sent this POST is on this site: its Origin's host is the Host asked for.
 // A browser sends Origin with every POST; a request without one, or with "null", is refused.
