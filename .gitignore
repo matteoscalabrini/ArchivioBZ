@@ -25,3 +25,6 @@ reports/*.docx
 
 # own photographs as dropped in from the phone, with their GPS: kept out of the repository
 Foto Vittoria/
+
+# the design tool's cache holds a home-directory path
+.impeccable/

@@ -4,7 +4,7 @@
 // move means to change, and its pictures' addresses, which it moves: the id (data-no), the title,
 // the text, how many pictures, the keywords and the place. Both pages are drawn by lib/pages.mjs,
 // so the same row reads the same on both sides; the words are compared as the page escapes them
-// and shown unescaped. Kept until the record files leave git (Task 13, Step 7).
+// and shown unescaped. It compares the draft with any static build folder, and npm run draft, the README and the draft CLI test depend on it, so it stays.
 
 const ARTICLE = /<article class="row" data-no="([^"]+)"([^>]*)>([\s\S]*?)<\/article>/g;
 const UNESCAPE = { '&amp;': '&', '&lt;': '<', '&gt;': '>', '&quot;': '"', '&#39;': "'" };

@@ -238,7 +238,10 @@ ${line ? `<p class="login-line" role="alert">${esc(line)}</p>\n` : ''}</form>`,
         if (!file) return text(503, 'Not published yet');
         const tag = etagOf(file);
         const headers = { ...PUBLIC_HEADERS, ETag: tag };
-        if (holds(request.headers.get('if-none-match'), tag)) return new Response(null, { status: 304, headers });
+        // A 304 goes to the browser only, with no CDN header and no tag, so the edge can never keep an empty 304 as the page.
+        if (holds(request.headers.get('if-none-match'), tag)) {
+          return new Response(null, { status: 304, headers: { 'Cache-Control': PUBLIC_HEADERS['Cache-Control'], ETag: tag } });
+        }
         return new Response(file.body, { status: 200, headers: { 'Content-Type': file.type, ...headers } });
       } catch (error) {
         if (error?.code === UNDEFINED_TABLE) return text(503, 'Not published yet');

@@ -85,8 +85,15 @@ test('a public file carries an ETag, and a request that holds it is answered 304
     assert.equal(await again.text(), '');
     assert.equal(again.headers.get('etag'), tag);
     assert.equal(again.headers.get('cache-control'), 'public, max-age=0, must-revalidate');
-    assert.equal(again.headers.get('cache-tag'), 'site');
+    assert.equal(again.headers.get('cache-tag'), null, '304: no cache tag');
+    assert.equal(again.headers.get('vercel-cache-tag'), null, '304: no cache tag');
+    assert.equal(again.headers.get('vercel-cdn-cache-control'), null, '304: nothing for the edge to keep');
   }
+  const whole = await site('index.html');
+  assert.equal(whole.headers.get('cache-tag'), 'site');
+  assert.equal(whole.headers.get('vercel-cache-tag'), 'site');
+  assert.equal(whole.headers.get('vercel-cdn-cache-control'), 'max-age=31536000');
+  assert.equal(whole.headers.get('cache-control'), 'public, max-age=0, must-revalidate');
   assert.equal((await ask('index.html', '"1-other"')).status, 200);
   const changed = sample();
   changed.rows.a.record.title = 'Published again';
