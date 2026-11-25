@@ -242,6 +242,13 @@ drawing, small, at the end of what they act on, shown only in edit mode. **(call
 
 - **⠿ drag handle** on every row and chapter heading: drag to move. On a phone, where dragging a
   long list is awkward, typing the number does the same. **(call)**
+- **(M)** Moving fast inside a chapter: "there is no way to move elements fast inside thematic
+  categories" (25 Nov 2026, first day online); of the ways offered, the author chose **the number
+  on the closed row** (a click on a row's number in the list makes it a field without opening the
+  row) and **a compact arrange view** (a switch that makes every row one short line and lets
+  chapters fold, so a chapter fits on the screen and a drag is short). After a typed number the
+  page follows the row to where it went, and when that is not the number typed (past a chapter's
+  end) it says so, since a row that left the screen looked lost. **(call)** for following it.
 - **✎** turns the thing it follows into a field in the same place and font. Enter or leaving the
   field saves; Escape puts it back. The row text is one field, paragraphs separated by an empty
   line. **(call)**
