@@ -34,6 +34,9 @@ const LOGGED_OUT = 'Logged out. Log in again; what you typed is kept.';
 const NOTHING = 'No changes since the last publish';
 const BUTTONS = ['About', 'Public site', 'Discard', 'Publish', 'Log out'];
 
+// The list once steps 1 to 20 have run, every row shown.
+const ALL_ROWS = '# c1 0.01=1.01 # c2 5.01=— 5.02=2.01 5.03=2.02 5.00=2.03 # c3 12.01=3.01';
+
 // Typed as the title of 5.02: markup that must be shown as typed and never read as markup.
 const MARKED = 'Alpenzeitung & <b>"Dolomiten"</b> </script>';
 // 5.01's title: once 5.01 is hidden, none of the public files may hold it.
@@ -268,6 +271,51 @@ async function drag(page, gripSelector, targetSelector, at) {
   }
   await pause(200);
   await page.mouse.up();
+}
+
+// A keyword of "All keywords" dragged as a hand drags it: down on it, moved in steps to a point of
+// another (`at`: how far along it, 0 to 1), held there while Sortable looks, then let go.
+async function dragAcross(page, fromSelector, toSelector, at) {
+  const from = await (await page.$(fromSelector))?.boundingBox();
+  const to = await (await page.$(toSelector))?.boundingBox();
+  check(from && to, `nothing to drag: ${fromSelector} or ${toSelector} is not on the page`);
+  const x = from.x + from.width / 2;
+  const y = from.y + from.height / 2;
+  const toX = to.x + to.width * at;
+  const toY = to.y + to.height / 2;
+  await page.mouse.move(x, y);
+  await page.mouse.down();
+  await pause(50);
+  const steps = 15;
+  for (let i = 1; i <= steps; i += 1) {
+    await page.mouse.move(x + ((toX - x) * i) / steps, y + ((toY - y) * i) / steps);
+    await pause(30);
+  }
+  await pause(200);
+  await page.mouse.up();
+}
+
+// The middle of the element `selector`, in the window.
+async function centre(page, selector) {
+  const box = await (await page.$(selector))?.boundingBox();
+  check(box, `${selector} is not on the page`);
+  return { x: box.x + box.width / 2, y: box.y + box.height / 2 };
+}
+
+// "All keywords" as it stands: "lab" for its label, then each keyword as "<id> <count>".
+const stripReads = (page) => page.$$eval('.keywords > *', (els) => els
+  .map((el) => (el.matches('button[data-k]') ? `${el.dataset.k} ${el.querySelector('sup')?.textContent}` : el.className))
+  .join(', '));
+
+// Waits until "All keywords" reads as `holds(read)` wants; else fails with what it reads.
+async function stripShows(page, holds, when) {
+  const deadline = Date.now() + WAIT;
+  let read = await stripReads(page);
+  while (!holds(read) && Date.now() < deadline) {
+    await pause(50);
+    read = await stripReads(page);
+  }
+  check(holds(read), `${when}, All keywords reads ${read}`);
 }
 
 async function main() {
@@ -619,6 +667,191 @@ async function main() {
     const number = sent.at(-1).body?.op;
     check(number?.op === 'set-number' && number.number === '2.01', `the field sent ${JSON.stringify(number)}`);
     await listShows(page, '# c1 0.01=1.01 # c2 5.01=— 5.02=2.01 5.03=2.02 5.00=2.03 # c3 12.01=3.01', 'after 2,01');
+    await page.setViewport({ width: 1280, height: 1600 });
+  });
+
+  // "All keywords" follows the draft and takes the author's order (design §7, 25 Nov 2026): "New
+  // keywords added next to a file, do not get placed in the 'all the keywords' top field" and "the
+  // keywords in the All the keywords cannot get moved. and put in an order".
+  await step('a keyword new from a row is last in All keywords at once, with count 1, and a press on it filters to that row', async () => {
+    await page.goto(`${base}/edit/`);
+    await page.waitForSelector('.ed-bar');
+    const row = 'article.row[data-no="5.03"]';
+    check(!(await stripReads(page)).includes('covered-names'), `All keywords holds covered-names already: ${await stripReads(page)}`);
+    const before = sent.length;
+    await page.click(`${row} button.ed[data-ed="kw-add"]`);
+    await page.waitForSelector(`${row} .ed-pick input`);
+    await page.keyboard.type('Covered names');
+    await page.keyboard.press('Enter'); // no keyword is called so: Enter makes it and gives it to the row
+    await sentSince(before, 2);
+    const two = sent.slice(before).map((s) => `${s.body?.op?.op} ${s.status}`);
+    check(two.join(', ') === 'add-keyword 200, give-keyword 200', `the edits sent were ${two.join(', ')}`);
+    await stripShows(page, (read) => read.endsWith(', covered-names 1') && read.startsWith('lab, '), 'the keyword given');
+    await page.click('.keywords button[data-k="covered-names"]');
+    await listShows(page, '# c2 5.03=2.02', 'covered-names pressed');
+    const status = await page.$eval('.status .now', (el) => `${el.querySelector('.what').textContent} · ${el.querySelector('.n').textContent}`);
+    check(status === 'Covered names · 1 of 6 entries', `the status line reads ${JSON.stringify(status)}`);
+  });
+
+  // Sorted by date the rows do not drag (their place in the list is not their place in the story),
+  // but the strip's order is its own.
+  await step('a keyword dragged to the front of All keywords, the list sorted by date, is sent before the first, filters nothing, and is first after a reload', async () => {
+    await page.goto(`${base}/edit/`);
+    await page.waitForSelector('.ed-bar');
+    await page.click('.colhead button[data-sort="date"]');
+    await page.waitForSelector('.list:not(.story)');
+    const first = (await stripReads(page)).split(', ')[1].split(' ')[0];
+    check(first !== 'covered-names', 'covered-names is first already');
+    const answered = answerTo(page, 'op');
+    await dragAcross(page, '.keywords button[data-k="covered-names"]', `.keywords button[data-k="${first}"]`, 0.2);
+    check((await answered).status() === 200, 'the move was not saved');
+    const move = sent.at(-1).body?.op;
+    check(move?.op === 'move-keyword' && move.id === 'covered-names' && move.before === first,
+      `the drop sent ${JSON.stringify(move)}, not move-keyword of covered-names before ${first}`);
+    await stripShows(page, (read) => read.startsWith('lab, covered-names 1, '), 'after the drop');
+    const pressed = await page.$$eval('.keywords button[aria-pressed="true"]', (buttons) => buttons.map((b) => b.dataset.k));
+    const what = await page.$eval('.status .what', (el) => el.textContent);
+    check(pressed.length === 0 && what === 'All entries', `the drop filtered: ${JSON.stringify(pressed)} pressed, the status line says ${JSON.stringify(what)}`);
+    await page.goto(`${base}/edit/`); // the story order again, for the steps after
+    await page.waitForSelector('.ed-bar');
+    await stripShows(page, (read) => read.startsWith('lab, covered-names 1, '), 'after a reload');
+  });
+
+  // A hand's press may slip a pixel between down and up; it is still a press (fallbackTolerance in
+  // edit/strip.js: without it, Sortable takes the slip for a drag and swallows the click).
+  await step('a press on a keyword of All keywords still filters, one that slips a pixel too, and a second press shows every row again', async () => {
+    await listShows(page, ALL_ROWS, 'before the press');
+    await page.click('.keywords button[data-k="press"]');
+    await listShows(page, '# c2 5.02=2.01', 'press pressed');
+    check(await page.$eval('.keywords button[data-k="press"]', (b) => b.getAttribute('aria-pressed')) === 'true', 'press is not shown pressed');
+    await page.click('.keywords button[data-k="press"]');
+    await listShows(page, ALL_ROWS, 'press pressed again');
+    const { x, y } = await centre(page, '.keywords button[data-k="press"]');
+    await page.mouse.move(x, y);
+    await page.mouse.down();
+    await page.mouse.move(x + 1, y + 1);
+    await page.mouse.up();
+    await listShows(page, '# c2 5.02=2.01', 'press pressed with a slip of a pixel');
+    await page.click('.keywords button[data-k="press"]');
+    await listShows(page, ALL_ROWS, 'press pressed again');
+  });
+
+  await step('a keyword moved after the session ended goes back to where the last answer had it', async () => {
+    const cookies = (await browser.cookies()).filter((c) => c.name === 'archivio_edit');
+    check(cookies.length === 1, 'there is no session cookie to delete');
+    await browser.deleteCookie(...cookies);
+    const last = (await stripReads(page)).split(', ').at(-1).split(' ')[0];
+    const answered = answerTo(page, 'op');
+    await dragAcross(page, '.keywords button[data-k="covered-names"]', `.keywords button[data-k="${last}"]`, 0.8);
+    check((await answered).status() === 401, 'the move was not refused as logged out');
+    const move = sent.at(-1).body?.op;
+    check(move?.op === 'move-keyword' && move.id === 'covered-names' && move.before === null, `the drop to the end sent ${JSON.stringify(move)}`);
+    await stripShows(page, (read) => read.startsWith('lab, covered-names 1, '), 'refused');
+    const bar = await page.$eval('.ed-msg', (el) => (el.hidden ? '' : el.textContent));
+    check(bar === LOGGED_OUT, `the bar says ${JSON.stringify(bar)}`);
+    const other = watch(await browser.newPage());
+    await logIn(other, base);
+    await other.close();
+    await page.bringToFront();
+  });
+
+  // An edit answered while a keyword of the strip is pressed or dragged (a keyword taken off a row,
+  // here by a click the page makes, since the mouse is held) must not take the keyword from under
+  // the hand: its strip waits for the press to end. The keywords of 12.01 are humour and irony.
+  await step('an answer that comes while a keyword is pressed or dragged waits: the press still filters, the drop still moves, then the strip follows', async () => {
+    await page.goto(`${base}/edit/`);
+    await page.waitForSelector('.ed-bar');
+    const takeOff = async (keyword) => {
+      const answered = answerTo(page, 'op');
+      await page.$eval(`article.row[data-no="12.01"] button.ed[data-ed="kw:${keyword}"]`, (b) => b.click());
+      check((await answered).status() === 200, `${keyword} was not taken off`);
+      await pause(200);
+    };
+    const inHand = () => page.evaluate(() => window.inHand.isConnected);
+
+    const press = await centre(page, '.keywords button[data-k="press"]');
+    await page.mouse.move(press.x, press.y);
+    await page.mouse.down();
+    await page.evaluate(() => { window.inHand = document.querySelector('.keywords button[data-k="press"]'); });
+    await takeOff('humour');
+    check(await inHand(), 'the pressed keyword was taken from under the hand');
+    await page.mouse.up();
+    await listShows(page, '# c2 5.02=2.01', 'press let go');
+    await stripShows(page, (read) => !read.includes('humour'), 'press let go');
+    await page.click('.keywords button[data-k="press"]');
+    await listShows(page, ALL_ROWS, 'press pressed again');
+
+    const from = await centre(page, '.keywords button[data-k="archives"]');
+    const to = await (await page.$('.keywords button[data-k="ponte-druso"]')).boundingBox();
+    const toX = to.x + to.width * 0.2;
+    await page.mouse.move(from.x, from.y);
+    await page.mouse.down();
+    await page.evaluate(() => { window.inHand = document.querySelector('.keywords button[data-k="archives"]'); });
+    for (let i = 1; i <= 5; i += 1) {
+      await page.mouse.move(from.x + ((toX - from.x) * i) / 10, from.y);
+      await pause(30);
+    }
+    await takeOff('irony');
+    check(await inHand(), 'the dragged keyword was taken from under the hand');
+    const answered = answerTo(page, 'op');
+    for (let i = 6; i <= 10; i += 1) {
+      await page.mouse.move(from.x + ((toX - from.x) * i) / 10, from.y);
+      await pause(30);
+    }
+    await pause(200);
+    await page.mouse.up();
+    check((await answered).status() === 200, 'the move was not saved');
+    const move = sent.at(-1).body?.op;
+    check(move?.op === 'move-keyword' && move.id === 'archives' && move.before === 'ponte-druso', `the drop sent ${JSON.stringify(move)}`);
+    await stripShows(page, (read) => read === 'lab, covered-names 1, archives 1, ponte-druso 1, press 1, theory 1, typeface 1', 'after the drop');
+  });
+
+  // On the phone, the author's second window, a swipe that starts on the strip must scroll the
+  // page, so a keyword drags only after a short hold (delay 150 ms, on touch only).
+  await step('on a touch screen a tap on a keyword filters, a hold then a move drags, and a swipe from the strip scrolls and moves nothing', async () => {
+    await page.setViewport({ width: 390, height: 844, isMobile: true, hasTouch: true });
+    await page.goto(`${base}/edit/`);
+    await page.waitForSelector('.ed-bar');
+    await page.tap('.keywords button[data-k="press"]');
+    await listShows(page, '# c2 5.02=2.01', 'press tapped');
+    await stillAt(page, '.keywords button[data-k="press"]'); // a keyword pressed scrolls the page to the list
+    await page.tap('.keywords button[data-k="press"]');
+    await listShows(page, ALL_ROWS, 'press tapped again');
+
+    await page.evaluate(() => scrollTo(0, 0));
+    await stillAt(page, '.keywords button[data-k="theory"]');
+    const start = await centre(page, '.keywords button[data-k="theory"]');
+    const to = await (await page.$('.keywords button[data-k="covered-names"]')).boundingBox();
+    const toX = to.x + to.width * 0.2;
+    const toY = to.y + to.height / 2;
+    const answered = answerTo(page, 'op');
+    await page.touchscreen.touchStart(start.x, start.y);
+    await pause(300); // the hold
+    const steps = 15;
+    for (let i = 1; i <= steps; i += 1) {
+      await page.touchscreen.touchMove(start.x + ((toX - start.x) * i) / steps, start.y + ((toY - start.y) * i) / steps);
+      await pause(30);
+    }
+    await pause(200);
+    await page.touchscreen.touchEnd();
+    check((await answered).status() === 200, 'the move was not saved');
+    const move = sent.at(-1).body?.op;
+    check(move?.op === 'move-keyword' && move.id === 'theory' && move.before === 'covered-names', `the drop sent ${JSON.stringify(move)}`);
+    await stripShows(page, (read) => read.startsWith('lab, theory 1, covered-names 1, '), 'after the hold and the move');
+
+    const strip = await stripReads(page);
+    const before = sent.length;
+    const from = await centre(page, '.keywords button[data-k="archives"]');
+    await page.touchscreen.touchStart(from.x, from.y);
+    for (let i = 1; i <= 10; i += 1) {
+      await page.touchscreen.touchMove(from.x, from.y - i * 20);
+      await pause(10);
+    }
+    await page.touchscreen.touchEnd();
+    await stillAt(page, '.keywords'); // the page glides on a while after a swipe
+    check(sent.length === before, `the swipe sent ${JSON.stringify(sent.slice(before).map((s) => s.body?.op))}`);
+    check(await page.evaluate(() => scrollY) > 0, 'the swipe did not scroll the page');
+    check(await stripReads(page) === strip, `after the swipe, All keywords reads ${await stripReads(page)}`);
     await page.setViewport({ width: 1280, height: 1600 });
   });
 

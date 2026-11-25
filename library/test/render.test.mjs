@@ -7,7 +7,7 @@ import { loadLibrary, TYPES } from '../lib/records.mjs';
 import { locatePlaces } from '../lib/places.mjs';
 import { docFromLibrary } from '../cloud/doc.mjs';
 import { applyOp } from '../cloud/ops.mjs';
-import { loadLists, renderSite, renderEditPage, renderEditRow, editSearch, summaryLine, summaryOf, publishLine } from '../cloud/render.mjs';
+import { loadLists, renderSite, renderEditPage, renderEditRow, renderEditStrip, editSearch, summaryLine, summaryOf, publishLine } from '../cloud/render.mjs';
 import { parseState } from '../web/state.js';
 import { esc } from '../lib/shell.mjs';
 import { cleanRoot } from './helpers.mjs';
@@ -263,6 +263,23 @@ test('one row is drawn exactly as the edit page draws it', () => {
   assert.match(renderEditRow(doc, '5.01', lists, { published }), /data-hidden="true" data-changed="true"/);
   assert.doesNotMatch(renderEditRow(doc, '5.01', lists), /data-changed/, 'with nothing published, no row is marked');
   assert.throws(() => renderEditRow(doc, 'r404', lists), /r404/);
+});
+
+// "All keywords" in edit mode counts the rows the edit page draws, the hidden ones too; the public
+// strip counts the rows a publish shows. An op's answer carries the edit page's own strip.
+test('the strip is drawn as the edit page draws it, hidden rows counted; the public one leaves them out', () => {
+  const doc = fixtureDoc();
+  doc.rows['5.01'].hidden = true; // ponte-druso, which no other row carries
+  doc.rows['5.03'].hidden = true; // archives, which 5.00 carries too
+  const stripOf = (html) => /<div class="keywords">[\s\S]*?<\/div>/.exec(html)[0];
+  const counts = (strip) => Object.fromEntries([...strip.matchAll(/data-k="([^"]+)" aria-pressed="false">[^<]*<sup>(\d+)<\/sup>/g)].map((m) => [m[1], Number(m[2])]));
+  const strip = renderEditStrip(doc);
+  assert.equal(strip, stripOf(renderEditPage(doc, { version: 1, published: null, lists })));
+  assert.equal(counts(strip)['ponte-druso'], 1);
+  assert.equal(counts(strip).archives, 2);
+  const shown = counts(stripOf(renderSite(doc, lists).files.get('index.html').body));
+  assert.equal(shown['ponte-druso'], undefined);
+  assert.equal(shown.archives, 1);
 });
 
 test('the summary and the stored line before the first publish and after it', () => {

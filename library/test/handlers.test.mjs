@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { PGlite } from '@electric-sql/pglite';
 import { pgliteDb } from '../cloud/db.mjs';
 import { makeStore, ConflictError } from '../cloud/store.mjs';
-import { loadLists, renderSite } from '../cloud/render.mjs';
+import { loadLists, renderSite, renderEditPage } from '../cloud/render.mjs';
 import { hashPassword, makeSession, SESSION_MS } from '../cloud/auth.mjs';
 import { makeHandlers } from '../cloud/handlers.mjs';
 import { sampleDoc } from './docs.mjs';
@@ -263,6 +263,44 @@ test('an op that moves or adds gives back what the page needs', async () => {
   const given = await (await h.edit(post('op', { version: 4, op: { op: 'give-keyword', id: 'r1', keyword: 'covered-names' } }))).json();
   assert.match(given.row, /^<article class="row" data-no="r1"[^>]* data-kw="covered-names"/);
   assert.deepEqual(given.stored.record.keywords, ['covered-names']);
+});
+
+// Design §7: "All keywords" follows the draft. Every op is answered with the strip as the edit page
+// would now draw it: a keyword new from a row is its last button, with its count, at once; a
+// keyword moved keeps its place in the draft, and on the public page after a publish.
+test('every op answer carries the strip: a keyword new from a row is last, a keyword moved keeps its place, published too', async () => {
+  let version = 1;
+  const op = async (wanted) => {
+    const res = await h.edit(post('op', { version, op: wanted }));
+    assert.equal(res.status, 200, JSON.stringify(wanted));
+    version++;
+    return res.json();
+  };
+  const buttons = (strip) => [...strip.matchAll(/<button type="button" data-k="([^"]+)" aria-pressed="false">([^<]*)<sup>(\d+)<\/sup><\/button>/g)]
+    .map(([, id, label, count]) => `${id} ${label} ${count}`);
+  const stripOf = (html) => /<div class="keywords">[\s\S]*?<\/div>/.exec(html)[0];
+
+  assert.deepEqual(buttons((await op({ op: 'give-keyword', id: 'a', keyword: 'wall' })).strip), ['wall Wall 1']);
+  await op({ op: 'give-keyword', id: 'b', keyword: 'march' });
+  const given = await op({ op: 'give-keyword', id: 'c', keyword: 'wall' });
+  assert.match(given.strip, /^<div class="keywords"><span class="lab">All keywords<\/span><button [^]*<\/button><\/div>$/);
+  assert.deepEqual(buttons(given.strip), ['wall Wall 2', 'march March 1'], 'in the vocabulary\'s order, each with its count');
+  const added = await op({ op: 'add-keyword', label: 'Covered names' });
+  assert.equal(added.strip, given.strip, 'a keyword on no row is not in the strip');
+  const fresh = await op({ op: 'give-keyword', id: 'd', keyword: 'covered-names' });
+  assert.deepEqual(buttons(fresh.strip), ['wall Wall 2', 'march March 1', 'covered-names Covered names 1'], 'the new keyword last, with count 1');
+  assert.equal(stripOf(renderEditPage((await store.getDraft()).doc, { version, published: null, lists })), fresh.strip, 'as the edit page draws it');
+
+  const moved = await op({ op: 'move-keyword', id: 'covered-names', before: 'wall' });
+  assert.deepEqual(buttons(moved.strip), ['covered-names Covered names 1', 'wall Wall 2', 'march March 1']);
+  assert.equal(moved.row, undefined, 'a keyword moved swaps no row');
+  assert.deepEqual(Object.keys((await store.getDraft()).doc.keywords), ['covered-names', 'wall', 'poster', 'march']);
+  assert.equal(moved.summary, '4 rows changed, keywords changed');
+  const other = await op({ op: 'add-chapter', index: 2, title: 'Empty' });
+  assert.equal(other.strip, moved.strip, 'an op that touches no keyword is answered with the strip too');
+
+  assert.equal((await h.edit(post('publish', { version }))).status, 200);
+  assert.equal(stripOf(await (await site('index.html')).text()), moved.strip, 'the public page in the same order');
 });
 
 test('an op the document refuses answers 422 with the sentence the author reads', async () => {

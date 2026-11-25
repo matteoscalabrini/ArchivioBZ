@@ -37,6 +37,10 @@ function chapterOf(doc, id) {
   if (!chapter) refuse(`There is no chapter ${id}.`);
   return chapter;
 }
+function keywordOf(doc, id) {
+  if (!isText(id) || !Object.hasOwn(doc.keywords, id)) refuse(`There is no keyword ${id}.`);
+  return doc.keywords[id];
+}
 function takeOut(doc, id) {
   for (const chapter of doc.chapters) {
     const at = chapter.rows.indexOf(id);
@@ -271,6 +275,19 @@ const OPS = {
     for (let n = 2; Object.hasOwn(doc.keywords, id) || Object.hasOwn(doc.aliases, id); n++) id = `${base}-${n}`;
     doc.keywords[id] = { label: shown };
     return { id, existed: false };
+  },
+  // The order of "All keywords" is the author's, kept as the vocabulary's order: a keyword dragged
+  // in the strip goes just before the keyword it was let go in front of, or last for null. Keyword
+  // ids are never whole numbers (checkDoc), so the object keeps the order it is given. A folded id
+  // has no place in the order and is refused like any id the vocabulary does not hold.
+  'move-keyword'(doc, { id, before }) {
+    keywordOf(doc, id);
+    if (before !== null) keywordOf(doc, before);
+    if (before === id) return {};
+    const order = Object.keys(doc.keywords).filter((k) => k !== id);
+    order.splice(before === null ? order.length : order.indexOf(before), 0, id);
+    doc.keywords = Object.fromEntries(order.map((k) => [k, doc.keywords[k]]));
+    return {};
   },
   // The author's own idea: the stand-in flag of the moved-in text goes at the first save.
   'set-idea'(doc, { text }) {

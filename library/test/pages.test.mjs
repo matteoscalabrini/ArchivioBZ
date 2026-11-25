@@ -6,7 +6,7 @@ import { loadLibrary, sourceUrl } from '../lib/records.mjs';
 import { readKinds } from '../lib/kinds.mjs';
 import { locatePlaces } from '../lib/places.mjs';
 import { renderMarkdown } from '../lib/longread.mjs';
-import { libraryPage, mapPage, aboutPage } from '../lib/pages.mjs';
+import { libraryPage, mapPage, aboutPage, keywordStrip } from '../lib/pages.mjs';
 import { cleanRoot } from './helpers.mjs';
 
 // The fixtures, loaded afresh for each test, since a test may set chapters or places on them.
@@ -79,6 +79,19 @@ test('a row\'s mark is asked of that row', async () => {
   const { html } = libraryPage(lib, { extra: { css: [], js: [], data: {}, mark: (entry) => (entry.no === marked ? ' data-changed="true"' : '') } });
   const changed = [...html.matchAll(/<article class="row"([^>]*)>/g)].filter(([, attrs]) => attrs.includes('data-changed="true"'));
   assert.deepEqual(changed.map(([, attrs]) => /data-no="([^"]*)"/.exec(attrs)[1]), [marked]);
+});
+
+// "All keywords" is drawn by one function, for the page and for edit mode's answers: the keywords
+// some row carries, in the vocabulary's order, each with its count; one that no row carries, or
+// that the vocabulary does not hold, is not in it.
+test('keywordStrip draws "All keywords", and the Library page holds it as it draws it', async () => {
+  const lib = { entries: [{ keywords: ['b', 'a', 'stray'] }, { keywords: ['b'] }], keywords: { a: { label: 'A & "co"' }, unused: { label: 'Unused' }, b: { label: 'B' } } };
+  assert.equal(keywordStrip(lib), '<div class="keywords"><span class="lab">All keywords</span>'
+    + '<button type="button" data-k="a" aria-pressed="false">A &amp; &quot;co&quot;<sup>1</sup></button>'
+    + '<button type="button" data-k="b" aria-pressed="false">B<sup>2</sup></button></div>');
+  assert.equal(keywordStrip({ entries: [], keywords: lib.keywords }), '<div class="keywords"><span class="lab">All keywords</span></div>');
+  const { lib: fixture } = await fixtures();
+  assert.ok(libraryPage(fixture, {}).html.includes(`\n${keywordStrip(fixture)}\n`));
 });
 
 test('at depth 1 the page reaches the site\'s files and the map one folder up', async () => {

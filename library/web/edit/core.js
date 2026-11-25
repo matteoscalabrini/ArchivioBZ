@@ -1,8 +1,9 @@
 // What the parts of edit mode share: the draft as the page holds it, the queue that sends each
 // edit to the server in turn, and what the page does with an answer. The rows on the page are
-// the server's own drawing (lib/pages.mjs): an answer that carries a row is swapped in, and the
-// order, the numbers and the chapters' headings follow the answer's lists; library.js then reads
-// the page again (rescan) and draws it in the state it was in.
+// the server's own drawing (lib/pages.mjs): an answer that carries a row is swapped in, "All
+// keywords" is the answer's strip (strip.js), and the order, the numbers and the chapters'
+// headings follow the answer's lists; library.js then reads the page again (rescan) and draws it
+// in the state it was in.
 import { OpQueue, Underway, storyPlaces, headingsOf } from '../editmodel.js';
 import { rescan, forgetIndex } from '../library.js';
 import { load } from '../pictures.js';
@@ -42,6 +43,14 @@ let pending = 0; // edits sent or waiting, not yet answered
 // given): an edit is answered before the field that sent it has closed, so settled() waits for
 // the save as well, which the field marks with during().
 const underway = new Underway();
+
+// "All keywords" as the last answer drew it, the page's own until the first answer; what puts it
+// on the page (strip.js) says whether the page changed.
+let strip = document.querySelector('.keywords')?.outerHTML ?? '';
+let putStrip = () => false;
+export const onStrip = (fn) => {
+  putStrip = fn;
+};
 
 // Resolves once every edit sent so far has its answer and every save has ended: each field left
 // has closed, or stays open with what was refused.
@@ -119,17 +128,18 @@ function wordsFor(error) {
 }
 
 // A conflict or the end of the session is said in the bar whatever was being edited. Once nothing
-// is waiting, the order the page shows goes back to the server's, undoing a refused drag.
+// is waiting, the order the page shows goes back to the server's, and "All keywords" to the last
+// answer's, undoing a refused drag of a row, a chapter or a keyword.
 function refused(error) {
   if (error.status === 409) {
     tell('conflict');
   } else if (error.status === 401) {
     say(LOGGED_OUT, 'logged-out');
   }
-  if (pending === 0 && !sameOrder(state.chapters, state.confirmed)) {
-    state.chapters = copy(state.confirmed);
-    redraw();
-  }
+  if (pending > 0) return;
+  const back = !sameOrder(state.chapters, state.confirmed);
+  if (back) state.chapters = copy(state.confirmed);
+  if (putStrip(strip) || back) redraw();
 }
 
 function applied(op, answer, field) {
@@ -140,10 +150,14 @@ function applied(op, answer, field) {
   keep(op, answer);
   if (op.op === 'remove-row') rowEl(op.id)?.remove();
   if (typeof answer?.row === 'string') putRow(answer.result?.id ?? op.id, answer.row, field);
+  if (typeof answer?.strip === 'string') strip = answer.strip;
   if (!Array.isArray(answer?.chapters)) return;
-  // While edits wait behind this one, the page keeps the order it shows (a drag made meanwhile);
-  // the answer to the last of them brings the server's order.
-  if (pending === 0) state.chapters = copy(state.confirmed);
+  // While edits wait behind this one, the page keeps the order it shows and "All keywords" as it
+  // stands (a drag made meanwhile); the answer to the last of them brings the server's.
+  if (pending === 0) {
+    state.chapters = copy(state.confirmed);
+    putStrip(strip);
+  }
   redraw();
   // The search's index is the draft's as it was: once nothing more is on its way, it is sent for
   // again, so a new title, an added row and a number as it now stands are found.

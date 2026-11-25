@@ -10,6 +10,7 @@
 //   edit/keywords.js  the keywords offered under ＋
 //   edit/chapters.js  the headings, ＋ row here, ＋ chapter here
 //   edit/drag.js      dragging rows and chapters
+//   edit/strip.js     "All keywords": the answers' strip, its keywords dragged into an order
 //   edit/bar.js       the bar: the summary, About, Public site, Discard, Publish, Log out
 //   edit/idea.js      ✎ on the idea
 //   edit/dialog.js    the questions asked
@@ -18,6 +19,7 @@ import { redraw } from './edit/core.js';
 import './edit/rows.js';
 import './edit/chapters.js';
 import './edit/drag.js';
+import './edit/strip.js';
 import { makeBar } from './edit/bar.js';
 import { dressIdea } from './edit/idea.js';
 

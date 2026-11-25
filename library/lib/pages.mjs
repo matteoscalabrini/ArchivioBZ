@@ -34,9 +34,7 @@ export function libraryPage(lib, { idea = null, kinds = [], present = false, dep
   const ctx = { sourceUrl }; // what an open row asks of the build
   const problems = [];
   const label = (id) => keywords[id]?.label ?? id;
-  const counts = new Map();
-  for (const entry of entries) for (const id of entry.keywords) counts.set(id, (counts.get(id) ?? 0) + 1);
-  const used = Object.keys(keywords).filter((id) => counts.has(id)); // in the vocabulary's order
+  const { used } = keywordCounts(lib);
   // The keywords with at least one row at a place on the map: only for these does the status
   // line offer "On the map →" (library.js reads the list).
   const placed = entries.filter((entry) => entry.place && places?.[entry.place] && places[entry.place].inside !== false);
@@ -70,9 +68,7 @@ export function libraryPage(lib, { idea = null, kinds = [], present = false, dep
 
   const body = [
     top(idea, present, used, label),
-    `<div class="keywords"><span class="lab">All keywords</span>${used
-      .map((id) => keywordButton(id, `${esc(label(id))}<sup>${counts.get(id)}</sup>`))
-      .join('')}</div>`,
+    keywordStrip(lib),
     status(entries.length, up),
     kindLine(kinds, inKind),
     COLUMN_HEADS,
@@ -88,6 +84,26 @@ export function libraryPage(lib, { idea = null, kinds = [], present = false, dep
   const css = ['web/detail.css', 'web/library.css', ...(extra?.css ?? [])];
   const js = ['web/library.js', ...(extra?.js ?? [])];
   return { html: page({ title: 'Library', tab: 'library', body, css, js, depth }), problems };
+}
+
+// "All keywords", under the idea: every keyword some row of `lib` carries, in the vocabulary's
+// order, each with the number of rows that carry it. Edit mode draws it from the rows its page
+// draws, hidden ones too, and puts it in place of the one on the page after every edit
+// (cloud/render.mjs, web/edit/strip.js).
+export function keywordStrip(lib) {
+  const { counts, used } = keywordCounts(lib);
+  const label = (id) => lib.keywords[id]?.label ?? id;
+  return `<div class="keywords"><span class="lab">All keywords</span>${used
+    .map((id) => keywordButton(id, `${esc(label(id))}<sup>${counts.get(id)}</sup>`))
+    .join('')}</div>`;
+}
+
+// How many rows carry each keyword, and the keywords of the vocabulary that some row carries, in
+// its order.
+function keywordCounts({ entries, keywords }) {
+  const counts = new Map();
+  for (const entry of entries) for (const id of entry.keywords) counts.set(id, (counts.get(id) ?? 0) + 1);
+  return { counts, used: Object.keys(keywords).filter((id) => counts.has(id)) };
 }
 
 // The keywords whose labels the Library page carries, in the vocabulary's order.

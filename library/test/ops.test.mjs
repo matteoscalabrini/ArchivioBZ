@@ -1,7 +1,8 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { applyOp, OpError } from '../cloud/ops.mjs';
-import { checkDoc, numbering } from '../cloud/doc.mjs';
+import { checkDoc, numbering, diffDocs } from '../cloud/doc.mjs';
+import { summaryOf } from '../cloud/render.mjs';
 import { sampleDoc } from './docs.mjs';
 
 const sample = () => sampleDoc({ c1: ['a', 'b', 'c', 'd'], c2: ['e', 'f'] });
@@ -198,6 +199,37 @@ test('add-keyword gives a label of digits an id that is not a number, and keeps 
   assert.equal(applyOp(sample(), { op: 'add-keyword', label: '1939 – 1943' }).result.id, '1939-1943');
 });
 
+// The order of "All keywords" is the author's (design §7): a keyword dragged in the strip goes just
+// before the keyword it was let go in front of, or last; the vocabulary's order is the strip's.
+test('move-keyword puts a keyword just before another, or last, and leaves the labels as they were', () => {
+  const doc = sample(); // wall, poster, march
+  const order = (op) => Object.keys(applyOp(doc, { op: 'move-keyword', ...op }).doc.keywords);
+  assert.deepEqual(order({ id: 'march', before: 'wall' }), ['march', 'wall', 'poster']);
+  assert.deepEqual(order({ id: 'wall', before: 'march' }), ['poster', 'wall', 'march']);
+  assert.deepEqual(order({ id: 'wall', before: null }), ['poster', 'march', 'wall']);
+  assert.deepEqual(order({ id: 'march', before: null }), ['wall', 'poster', 'march'], 'last already');
+  assert.deepEqual(order({ id: 'wall', before: 'poster' }), ['wall', 'poster', 'march'], 'in front of it already');
+  assert.deepEqual(order({ id: 'poster', before: 'poster' }), ['wall', 'poster', 'march'], 'before itself: nothing changes');
+  const { doc: moved } = applyOp(doc, { op: 'move-keyword', id: 'march', before: 'wall' });
+  assert.deepEqual(moved.keywords, doc.keywords, 'the same keywords and labels');
+  assert.deepEqual(moved.aliases, doc.aliases);
+  assert.deepEqual(checkDoc(moved), []);
+  refused(doc, { op: 'move-keyword', id: 'nothing', before: 'wall' }, 'There is no keyword nothing.');
+  refused(doc, { op: 'move-keyword', id: 'wall', before: 'nothing' }, 'There is no keyword nothing.');
+});
+
+// diffDocs compares objects whatever the order of their keys, so the order of the keywords is
+// compared on its own: a publish carries it to the public strip.
+test('keywords in another order are a change: the summary says keywords changed', () => {
+  const doc = sample();
+  const { doc: moved } = applyOp(doc, { op: 'move-keyword', id: 'march', before: 'wall' });
+  const diff = diffDocs(doc, moved);
+  assert.equal(diff.keywords, true);
+  assert.equal(diff.count, 1);
+  assert.equal(summaryOf(doc, moved), 'keywords changed');
+  assert.equal(diffDocs(doc, applyOp(moved, { op: 'move-keyword', id: 'march', before: null }).doc).keywords, false, 'moved back');
+});
+
 test('set-pictures keeps the named pictures in the given order and refuses a stranger', () => {
   const doc = sample();
   doc.rows.a.pictures = [{ src: '/p/1.jpg', w: 1, h: 2, caption: 'one' }, { src: '/p/2.jpg', w: 3, h: 4, caption: 'two' }, { src: '/p/3.jpg', w: 5, h: 6, caption: '' }];
@@ -302,6 +334,11 @@ test('malformed requests are refused as OpError and change nothing', () => {
     { op: 'set-number', id: ['f'], number: '1.01' },
     { op: 'hide-row', id: ['a'], hidden: true },
     { op: 'remove-chapter', chapter: ['c2'] },
+    { op: 'move-keyword', id: ['wall'], before: null },
+    { op: 'move-keyword', id: 'constructor', before: null },
+    { op: 'move-keyword', id: 'wall', before: '__proto__' },
+    { op: 'move-keyword', id: 'wall' },
+    { op: 'move-keyword', id: 'walls', before: null },
     { op: '__proto__' },
     { op: ['set-about'], text: 'x' },
     { op: 'constructor' },

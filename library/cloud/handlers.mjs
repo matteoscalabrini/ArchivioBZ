@@ -10,7 +10,7 @@ import { createHash } from 'node:crypto';
 import { applyOp, OpError } from './ops.mjs';
 import { ConflictError } from './store.mjs';
 import { numbering, chapterNumbers } from './doc.mjs';
-import { renderSite, renderEditPage, renderEditRow, editSearch, summaryOf, publishLine } from './render.mjs';
+import { renderSite, renderEditPage, renderEditRow, renderEditStrip, editSearch, summaryOf, publishLine } from './render.mjs';
 import { verifyPassword, makeSession, readSession, sessionCookie, clearedCookie } from './auth.mjs';
 import { page, esc } from '../lib/shell.mjs';
 
@@ -166,6 +166,7 @@ ${line ? `<p class="login-line" role="alert">${esc(line)}</p>\n` : ''}</form>`,
       numbers: Object.fromEntries(numbering(doc)),
       chapters: doc.chapters.map((chapter) => ({ id: chapter.id, no: chapterNo.get(chapter.id), title: chapter.title, rows: chapter.rows })),
       summary: summaryOf(published, doc),
+      strip: renderEditStrip(doc), // "All keywords" as the edit page would now draw it
       result, // the new id after add-row, add-chapter and add-keyword
     };
     if (ROW_OPS.includes(wanted.op)) {

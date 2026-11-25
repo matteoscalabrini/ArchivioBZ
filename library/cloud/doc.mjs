@@ -189,7 +189,9 @@ export function diffDocs(before, after) {
   const chapters = !same(titles(before), titles(after));
   const idea = before.idea !== after.idea;
   const about = before.about !== after.about;
-  const vocabulary = (doc) => [doc.keywords, doc.aliases, doc.places];
+  // stable() compares objects whatever the order of their keys, so the order of the keywords,
+  // which is the order of "All keywords" (move-keyword), is compared as a list of its own.
+  const vocabulary = (doc) => [doc.keywords, Object.keys(doc.keywords), doc.aliases, doc.places];
   const keywords = !same(vocabulary(before), vocabulary(after));
   const count = changed.length + added.length + removed.length + hidden.length + shown.length
     + [order, chapters, idea, about, keywords].filter(Boolean).length;

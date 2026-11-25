@@ -8,7 +8,7 @@ import path from 'node:path';
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { libFromDoc, diffDocs } from './doc.mjs';
-import { libraryPage, mapPage, aboutPage } from '../lib/pages.mjs';
+import { libraryPage, mapPage, aboutPage, keywordStrip } from '../lib/pages.mjs';
 import { searchIndex } from '../lib/searchindex.mjs';
 import { parseIdea } from '../lib/idea.mjs';
 import { renderMarkdown } from '../lib/markdown.mjs'; // not longread.mjs, which loads mammoth
@@ -80,6 +80,13 @@ export function renderEditRow(doc, id, lists, { published = null } = {}) {
   if (start < 0) throw new Error(`no row ${id} in the draft`);
   const end = html.indexOf('</article>', start) + '</article>'.length;
   return html.slice(start, end);
+}
+
+// "All keywords" of the edit page, exactly as renderEditPage draws it: from the rows that page
+// draws, hidden ones too, with their counts, in the vocabulary's order. Every op is answered with
+// it, to be swapped into the page, so a keyword a row has just been given is in it at once.
+export function renderEditStrip(doc) {
+  return keywordStrip(libFromDoc(doc, { hidden: true }));
 }
 
 // What the search in edit mode reads: search.json of the draft, hidden rows included.
