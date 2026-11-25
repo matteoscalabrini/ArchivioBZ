@@ -1,7 +1,7 @@
 // The ＋ after a row's keywords: a list of the vocabulary under it, the keywords the row has left
 // out, narrowed as one types, with a last line "New keyword…" that adds a keyword to the
 // vocabulary and gives it to the row. A row has at most five; the server says so.
-import { state, send } from './core.js';
+import { state, send, during } from './core.js';
 import { offered } from '../editmodel.js';
 
 let open = null; // the list now open: { pick, close }
@@ -53,17 +53,21 @@ export function openPicker(row, id, opener) {
       busy = false;
     }
   };
-  const make = async (label) => {
-    if (busy || !label.trim()) return;
+  // Two edits, the keyword added and then given to the row: under way (core.js) as one, so that
+  // Log out or Public site does not go in the moment between them.
+  const make = (label) => {
+    if (busy || !label.trim()) return undefined;
     busy = true;
-    try {
-      const answer = await send({ op: 'add-keyword', label });
-      busy = false;
-      await give(answer.result.id);
-    } catch (refusal) {
-      fail(refusal);
-      busy = false;
-    }
+    return during((async () => {
+      try {
+        const answer = await send({ op: 'add-keyword', label });
+        busy = false;
+        await give(answer.result.id);
+      } catch (refusal) {
+        fail(refusal);
+        busy = false;
+      }
+    })());
   };
 
   const outside = (event) => {

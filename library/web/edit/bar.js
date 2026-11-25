@@ -2,7 +2,7 @@
 // differs from what is public, then About ✎, Public site, Discard, Publish and Log out. Under its
 // words, a line for what went wrong where no field was open, and for a conflict, which asks for a
 // reload since every later edit would meet it too.
-import { state, bus, send, post, setSummary, settled, unsaved, leave, watchUnsaved, CONFLICT } from './core.js';
+import { state, bus, send, post, setSummary, settled, during, unsaved, leave, watchUnsaved, CONFLICT } from './core.js';
 import { changesIn, publishQuestion } from '../editmodel.js';
 import { wordButton } from './icons.js';
 import { ask } from './dialog.js';
@@ -161,7 +161,7 @@ function editAbout() {
     const text = area.value;
     if (text === saved) return Promise.resolve(true);
     area.readOnly = true;
-    saving = send({ op: 'set-about', text })
+    saving = during(send({ op: 'set-about', text })
       .then(() => {
         saved = text;
         error.hidden = true;
@@ -174,7 +174,7 @@ function editAbout() {
       .finally(() => {
         saving = null;
         area.readOnly = false;
-      });
+      }));
     return saving;
   };
   const end = () => {

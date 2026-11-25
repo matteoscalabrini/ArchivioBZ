@@ -3,7 +3,7 @@
 // the server's own drawing (lib/pages.mjs): an answer that carries a row is swapped in, and the
 // order, the numbers and the chapters' headings follow the answer's lists; library.js then reads
 // the page again (rescan) and draws it in the state it was in.
-import { OpQueue, mergeFields, storyPlaces, headingsOf } from '../editmodel.js';
+import { OpQueue, Underway, mergeFields, storyPlaces, headingsOf } from '../editmodel.js';
 import { rescan, forgetIndex } from '../library.js';
 import { load } from '../pictures.js';
 
@@ -37,19 +37,19 @@ export const say = (text, kind = 'error') => tell('say', { text, kind });
 const ROUTES = { publish: 'publish', discard: 'discard' };
 const queue = new OpQueue(({ version, op }) => (ROUTES[op.op] ? post(ROUTES[op.op], { version }) : post('op', { version, op })), data.version);
 let pending = 0; // edits sent or waiting, not yet answered
-let calm = []; // what waits for every edit to be answered (settled)
+// The edits on their way, and the saves that send them (a field, About, a keyword added and then
+// given): an edit is answered before the field that sent it has closed, so settled() waits for
+// the save as well, which the field marks with during().
+const underway = new Underway();
 
-// Resolves once every edit sent so far has its answer.
-export function settled() {
-  return pending === 0 ? Promise.resolve() : new Promise((resolve) => calm.push(resolve));
-}
+// Resolves once every edit sent so far has its answer and every save has ended: each field left
+// has closed, or stays open with what was refused.
+export const settled = () => underway.settled();
+export const during = (work) => underway.during(work);
 
 function answered() {
   pending--;
-  if (pending > 0) return;
-  const waiting = calm;
-  calm = [];
-  for (const resolve of waiting) resolve();
+  underway.end();
 }
 
 // Leaving the page (another address, a reload, closing the tab) asks first while an edit is on
@@ -88,6 +88,7 @@ export async function post(route, body) {
 // message is the sentence to show, and its status.
 export async function send(op, { field = null } = {}) {
   pending++;
+  underway.begin();
   let answer;
   try {
     answer = await queue.push(op);

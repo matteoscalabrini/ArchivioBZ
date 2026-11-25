@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { dropTarget, chapterIndex, toParagraphs, fromParagraphs, OpQueue, changesIn, publishQuestion, mergeFields, storyPlaces, headingsOf, placeRow, rowPlace, placeChapter, yearValue, movePicture, offered } from '../web/editmodel.js';
+import { dropTarget, chapterIndex, toParagraphs, fromParagraphs, OpQueue, Underway, changesIn, publishQuestion, mergeFields, storyPlaces, headingsOf, placeRow, rowPlace, placeChapter, yearValue, movePicture, offered } from '../web/editmodel.js';
 import { applyOp } from '../cloud/ops.mjs';
 import { diffDocs } from '../cloud/doc.mjs';
 import { summaryLine } from '../cloud/render.mjs';
@@ -90,6 +90,56 @@ test('an answer without a version (a publish) leaves the version as it is; a fai
   await q.push({});
   assert.equal(q.version, 11);
   assert.equal(n, 3);
+});
+
+// The field left by a click on Log out: its edit is answered, then the field closes, a few
+// microtasks later. Log out waits for settled() and then asks whether anything is unsaved; were it
+// told before the field had closed, it would find the field still saving and ask for nothing.
+test('settled waits for a save past the answer to its edit, until what follows the answer has run', async () => {
+  const underway = new Underway();
+  const seen = [];
+  let answer;
+  const edit = underway.during(new Promise((resolve) => { answer = resolve; }));
+  const save = underway.during(edit.then(() => seen.push('field closed')));
+  underway.settled().then(() => seen.push('settled'));
+  answer();
+  await save;
+  await underway.settled();
+  assert.deepEqual(seen, ['field closed', 'settled']);
+});
+
+test('settled answers at once when nothing is under way, and after a refusal as after a success', async () => {
+  const underway = new Underway();
+  let resolved = false;
+  await underway.settled().then(() => { resolved = true; });
+  assert.equal(resolved, true);
+  const refused = underway.during(Promise.reject(new Error('There is no chapter 7.')));
+  let after = false;
+  const waited = underway.settled().then(() => { after = true; });
+  await assert.rejects(refused, { message: 'There is no chapter 7.' });
+  await waited;
+  assert.equal(after, true);
+});
+
+test('settled waits for work begun while it waits (a keyword added, then given to the row)', async () => {
+  const underway = new Underway();
+  const seen = [];
+  let addAnswered;
+  let giveAnswered;
+  const whole = underway.during((async () => {
+    await underway.during(new Promise((resolve) => { addAnswered = resolve; }));
+    seen.push('added');
+    await underway.during(new Promise((resolve) => { giveAnswered = resolve; }));
+    seen.push('given');
+  })());
+  underway.settled().then(() => seen.push('settled'));
+  addAnswered();
+  await new Promise((resolve) => setTimeout(resolve, 0));
+  assert.deepEqual(seen, ['added'], 'not settled between the two edits');
+  giveAnswered();
+  await whole;
+  await underway.settled();
+  assert.deepEqual(seen, ['added', 'given', 'settled']);
 });
 
 test('the number of changes is read from the summary line as diffDocs counts them', () => {

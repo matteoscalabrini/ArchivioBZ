@@ -4,7 +4,7 @@
 // nothing typed is lost (a session that ended, a number that is not one). While a save is on its
 // way the field cannot be changed: what was typed meanwhile would go with the field when the
 // answer closes it.
-import { fieldClosed, watchUnsaved } from './core.js';
+import { fieldClosed, watchUnsaved, during } from './core.js';
 
 // `controls`: the inputs, selects and textareas of the field, filled. `read()`: their value now.
 // `save(value, box)`: sends it; resolves when the server has taken it, rejects with the sentence
@@ -67,7 +67,9 @@ export function openField({ controls, read, save, place, hide = [], opener = nul
       return Promise.resolve(true);
     }
     hold(true);
-    saving = Promise.resolve()
+    // Under way (core.js) until the field has closed or shown the refusal, so that a click on
+    // Log out or Public site that left it finds it so, and not still saving.
+    saving = during(Promise.resolve()
       .then(() => save(value, box))
       .then(() => {
         close();
@@ -80,7 +82,7 @@ export function openField({ controls, read, save, place, hide = [], opener = nul
       .finally(() => {
         saving = null;
         hold(false);
-      });
+      }));
     return saving;
   };
 

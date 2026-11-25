@@ -1,7 +1,8 @@
 // What edit mode works out without the page: where a dragged row or chapter lands and what the
 // order is meanwhile, a text as paragraphs and back, a typed year, a picture moved, the keywords
-// offered, the queue that sends the edits one at a time, the number of changes the summary names,
-// and a record after a saved edit. Pure, shared by edit.js and the tests.
+// offered, the queue that sends the edits one at a time, what is under way until the page has
+// settled, the number of changes the summary names, and a record after a saved edit. Pure, shared
+// by edit.js and the tests.
 
 // Where a row dropped in the list goes. `sequence`: the list after the drop, its headings and rows
 // in the order they now stand, [{ kind: 'chapter' | 'row', id }]. The row joins the chapter of the
@@ -172,6 +173,38 @@ export class OpQueue {
     });
     this.#tail = run.catch(() => {});
     return run;
+  }
+}
+
+// What is under way: each edit from its sending to its answer, and each save around it, from a
+// field left to the field closed (or keeping what was refused). settled() resolves once nothing
+// is: what waits for it (Log out, Public site) then finds every field as its save left it, not
+// still saving in the moment between the answer and the field's own closing. A count, not a list:
+// work begun while settled() waits (the second edit of a keyword added, then given) is waited for.
+export class Underway {
+  #count = 0;
+  #waiting = [];
+
+  begin() {
+    this.#count++;
+  }
+
+  end() {
+    this.#count--;
+    if (this.#count > 0) return;
+    const waiting = this.#waiting;
+    this.#waiting = [];
+    for (const resolve of waiting) resolve();
+  }
+
+  // `work`, a promise, counted until it settles; given back as it settles.
+  during(work) {
+    this.begin();
+    return Promise.resolve(work).finally(() => this.end());
+  }
+
+  settled() {
+    return this.#count === 0 ? Promise.resolve() : new Promise((resolve) => this.#waiting.push(resolve));
   }
 }
 
