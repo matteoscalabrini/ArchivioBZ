@@ -109,10 +109,12 @@ button.ed-words .ed-icon { display: inline-block; }
 .c-kw .ed-kw-x { margin-left: 1px; }
 .ed-acts { display: flex; justify-content: flex-end; gap: 10px; }
 
-/* "＋ row here" under a row while the pointer is on it, on its lower rule; at the end of each
-   chapter, "＋ row here" and "＋ chapter here" on a line of their own. Only in the story order. */
+/* "＋ row here" under a row while the pointer is on it, and under the open row, on its lower rule
+   (a touch screen has no pointer resting on a row: a tap opens it); at the end of each chapter,
+   "＋ row here" and "＋ chapter here" on a line of their own. Only in the story order. */
 .ed-here { position: absolute; z-index: 2; left: calc(var(--gutter) + 64px + var(--col-gap) - 6px); bottom: -9px; padding: 0 6px; background: var(--paper); display: none; }
 .list.story .row:hover > .ed-here,
+.list.story .row.open > .ed-here,
 .list.story .ed-here:focus-within { display: block; }
 .row:has(> .ed-end) > .ed-here { display: none !important; }
 .ed-end { display: flex; gap: 24px; padding: 4px var(--gutter) 14px calc(var(--gutter) + 64px + var(--col-gap)); }

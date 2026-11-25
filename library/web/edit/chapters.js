@@ -1,5 +1,6 @@
 // The chapters in edit mode: each heading with its grip, ✎ on its title and, once it holds no row,
-// 🗑; "＋ row here" under each row (shown while the pointer is on the row) and at the end of each
+// 🗑; "＋ row here" under each row (shown while the pointer is on the row, and under the open row,
+// which is how a touch screen reaches it) and at the end of each
 // chapter, and "＋ chapter here" after each chapter's last row. Adding asks for a title (and a
 // row for its type); a new row opens. Only in the story order: elsewhere a place in a chapter
 // means nothing.

@@ -5,8 +5,8 @@
 // puppeteer-core with a profile of its own, and each step below checked on the page. Each step
 // that holds is printed; the first that does not stops the check with what the page showed
 // instead, and the exit code is 1. The server, the browser and the temporary folders go in every
-// outcome. Screenshots of the edit page and of the public page after Publish are written to
-// library/.cache/check-edit/. Not part of npm test, since it needs Chrome.
+// outcome. Screenshots of the edit page, of the public page after Publish and of the edit page at
+// a phone's width are written to library/.cache/check-edit/. Not part of npm test, since it needs Chrome.
 //
 // The fixtures' draft, by row id: chapter c1 "Zero" [0.01], c2 "Five" [5.00 5.01 5.02 5.03],
 // c3 "Twelve" [12.01]; numbered 1.01, 2.01 to 2.04 and 3.01 to begin with. The steps build on
@@ -224,6 +224,20 @@ async function leaveBy(page, by, open, op) {
   const last = sent.filter((s) => s.route === 'op').at(-1);
   const holds = last && last.status === 200 && Object.entries(op).every(([key, value]) => last.body?.op?.[key] === value);
   check(holds, `the last edit sent was ${JSON.stringify(last)}, not the field's ${JSON.stringify(op)}`);
+}
+
+// Waits until the element `selector` stays where it is for a moment (a transition has ended).
+async function stillAt(page, selector) {
+  const where = () => page.$eval(selector, (el) => JSON.stringify(el.getBoundingClientRect()));
+  const deadline = Date.now() + WAIT;
+  let before = await where();
+  for (;;) {
+    await pause(150);
+    const now = await where();
+    if (now === before) return;
+    check(Date.now() < deadline, `${selector} keeps moving`);
+    before = now;
+  }
 }
 
 // Logs in on the login form the page shows.
@@ -566,7 +580,49 @@ async function main() {
     await listShows(page, '# c1 0.01=1.01 # c2 5.01=— 5.03=2.01 5.00=2.02 5.02=2.03 # c3 12.01=3.01', 'back in edit mode');
   });
 
-  console.log(`All ${n} steps hold. Screenshots: ${path.join(SHOTS, 'edit-page.png')} and ${path.join(SHOTS, 'public-page.png')}`);
+  // The phone is the author's second window (Minor 7, clean review). A touch screen has no hover to
+  // show "＋ row here" under a row, so it stands under the open row; the pointer is moved away first,
+  // so that only the open row can show it. A number typed with a comma, as the decimal keypad of a
+  // phone set to Italy offers it (I5), moves the row.
+  await step('at a phone\'s width the page fits, ＋ row here stands under the open row, and 2,01 typed moves a row', async () => {
+    await page.setViewport({ width: 390, height: 844, isMobile: true, hasTouch: true });
+    await page.goto(`${base}/edit/`);
+    await page.waitForSelector('.ed-bar');
+    const wider = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+    check(wider <= 0, `the page is ${wider} px wider than the screen`);
+    const outside = await page.$$eval('.ed-bar .ed-actions > button, .ed-bar .ed-actions > a', (els) => els
+      .filter((el) => { const box = el.getBoundingClientRect(); return box.left < 0 || box.right > window.innerWidth; })
+      .map((el) => el.textContent.trim()));
+    check(outside.length === 0, `the bar's ${outside.join(', ')} stand outside the screen`);
+    const row = 'article.row[data-no="5.00"]';
+    const here = `${row} > .ed-here`;
+    const shown = (selector) => page.$eval(selector, (el) => getComputedStyle(el).display !== 'none' && el.getBoundingClientRect().height > 0);
+    await page.tap(`${row} .c-title button`);
+    await page.waitForSelector(`${row}.open`);
+    await page.mouse.move(1, 1);
+    check(await shown(here), '＋ row here is not shown under the open row');
+    check(!(await shown('article.row[data-no="5.02"] > .ed-here')), '＋ row here is shown under a row that is not open');
+    // The row opens with a transition that moves its lower rule down: tapped before it ends, the
+    // tap would land where the line was.
+    await stillAt(page, `${here} button.ed-add-row`);
+    await page.screenshot({ path: path.join(SHOTS, 'edit-phone.png') });
+    await page.tap(`${here} button.ed-add-row`);
+    const question = await page.waitForSelector('dialog.ed-dialog[open] .ed-question');
+    const asked = await question.evaluate((el) => el.textContent);
+    check(asked === 'A new row', `＋ row here asked ${JSON.stringify(asked)}`);
+    await page.tap('dialog.ed-dialog[open] .ed-no');
+    await page.waitForSelector('dialog.ed-dialog[open]', { hidden: true });
+    await typeNumber(page, '5.02', '2,01');
+    const answered = answerTo(page, 'op');
+    await page.keyboard.press('Enter');
+    check((await answered).status() === 200, 'the number typed with a comma was refused');
+    const number = sent.at(-1).body?.op;
+    check(number?.op === 'set-number' && number.number === '2.01', `the field sent ${JSON.stringify(number)}`);
+    await listShows(page, '# c1 0.01=1.01 # c2 5.01=— 5.02=2.01 5.03=2.02 5.00=2.03 # c3 12.01=3.01', 'after 2,01');
+    await page.setViewport({ width: 1280, height: 1600 });
+  });
+
+  console.log(`All ${n} steps hold. Screenshots: ${['edit-page.png', 'public-page.png', 'edit-phone.png'].map((name) => path.join(SHOTS, name)).join(', ')}`);
 }
 
 try {
