@@ -137,8 +137,13 @@ export function makeStore(db) {
       return row ? { body: row.body, type: row.content_type, publishId: row.publish_id } : null;
     },
 
+    // The failed logins of the last `minutes`; those older are deleted in the same statement, so
+    // the table never holds more than one window's worth.
     async recentLoginFailures(minutes) {
-      const [row] = await db.query("select count(*)::int as n from login_failures where at > now() - $1 * interval '1 minute'", [minutes]);
+      const [row] = await db.query(
+        "with gone as (delete from login_failures where at <= now() - $1 * interval '1 minute') select count(*)::int as n from login_failures where at > now() - $1 * interval '1 minute'",
+        [minutes],
+      );
       return row.n;
     },
 

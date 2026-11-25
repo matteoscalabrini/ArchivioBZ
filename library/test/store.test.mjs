@@ -158,12 +158,17 @@ test('the draft and every publish come back with their keys in the order they we
   assert.deepEqual(order((await store.latestPublish()).doc), order(doc));
 });
 
-test('login failures are counted in their window', async () => {
+// Minor 6 (clean review): the failures that have left the window are deleted as the tries are
+// counted, so the table holds no more than one window's worth.
+test('login failures are counted in their window, and those that left it are deleted', async () => {
   assert.equal(await store.recentLoginFailures(15), 0);
   for (let i = 0; i < 3; i++) await store.recordLoginFailure();
   assert.equal(await store.recentLoginFailures(15), 3);
+  await pg.query("update login_failures set at = now() - interval '20 minutes' where id = (select min(id) from login_failures)");
+  assert.equal(await store.recentLoginFailures(15), 2);
   await pg.query("update login_failures set at = now() - interval '20 minutes'");
   assert.equal(await store.recentLoginFailures(15), 0);
+  assert.equal((await pg.query('select count(*)::int as n from login_failures')).rows[0].n, 0);
 });
 
 test('a login try is counted from the moment it is recorded, and one forgotten no longer counts', async () => {
