@@ -120,6 +120,13 @@ export function libFromDoc(doc, { hidden = false, lists = { colours: {}, names: 
   };
 }
 
+// The rows, hidden ones too, in the story order, that have a picture and no search terms: what
+// the build warned of as "with a picture and no entry in find.json" while the terms were files.
+export function withoutTerms(doc) {
+  const empty = (find) => !find || ['on', 'shows', 'colours', 'names'].every((list) => !find[list]?.length);
+  return doc.chapters.flatMap((chapter) => chapter.rows).filter((id) => doc.rows[id]?.pictures?.length && empty(doc.rows[id].find));
+}
+
 // What differs between two documents, as ids and yes/no. `changed`: rows in both whose record,
 // find or pictures differ. `order`: the visible rows both have sit in other chapters or another sequence. A null `before` (nothing published) counts as an empty document. `count`:
 // how many things the author would be publishing.

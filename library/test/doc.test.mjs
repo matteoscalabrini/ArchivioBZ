@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { loadLibrary } from '../lib/records.mjs';
 import { locatePlaces } from '../lib/places.mjs';
-import { docFromLibrary, numbering, libFromDoc, diffDocs, checkDoc, RECORD_FIELDS } from '../cloud/doc.mjs';
+import { docFromLibrary, numbering, libFromDoc, diffDocs, checkDoc, RECORD_FIELDS, withoutTerms } from '../cloud/doc.mjs';
 import { cleanRoot } from './helpers.mjs';
 import { sampleDoc, sampleWith } from './docs.mjs';
 
@@ -62,6 +62,19 @@ test('a field of a record the document does not know stops the move-in, and chec
   const doc = sample();
   doc.rows.a.record.pictures = [];
   assert.match(checkDoc(doc).join('\n'), /row a has a field "pictures" that a record does not have/);
+});
+
+// find:check --doc reads its rows from a pulled draft once the record files are gone, and with them
+// find.json: a row whose search terms are missing is one with a picture and four empty lists.
+test('the rows with a picture and no search terms, hidden ones too, in the story order', () => {
+  const doc = sample();
+  const picture = [{ src: '/p.jpg', w: 1, h: 1, caption: '' }];
+  for (const id of ['a', 'b', 'd']) doc.rows[id].pictures = picture;
+  doc.rows.a.find.shows = ['a wall'];
+  doc.rows.d.hidden = true;
+  assert.deepEqual(withoutTerms(doc), ['b', 'd']);
+  doc.rows.b.find.colours = ['red'];
+  assert.deepEqual(withoutTerms(doc), ['d']);
 });
 
 test('numbers follow the place and skip hidden rows', () => {

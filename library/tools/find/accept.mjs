@@ -15,7 +15,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { build } from '../../build.mjs';
-import { libFromDoc } from '../../cloud/doc.mjs';
+import { libFromDoc, withoutTerms } from '../../cloud/doc.mjs';
 import { loadLists } from '../../cloud/render.mjs';
 import { searchIndex } from '../../lib/searchindex.mjs';
 import { loadLibrary } from '../../lib/records.mjs';
@@ -25,8 +25,9 @@ import { layout, POSSIBLE_SHOWN } from '../../web/results.js';
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..', '..');
 const docAt = process.argv.indexOf('--doc');
 let json;
+let doc = null;
 if (docAt > 0) {
-  const { doc } = JSON.parse(await readFile(path.resolve(process.argv[docAt + 1] ?? ''), 'utf8'));
+  ({ doc } = JSON.parse(await readFile(path.resolve(process.argv[docAt + 1] ?? ''), 'utf8')));
   json = JSON.stringify(searchIndex(libFromDoc(doc, { lists: await loadLists(REPO) })));
 } else {
   const temp = await mkdtemp(path.join(os.tmpdir(), 'find-check-'));
@@ -134,10 +135,17 @@ check('Siegesdenkmal gives every row with the keyword Monumento alla Vittoria', 
   const missing = kept.filter((no) => !found.includes(no));
   return !missing.length || `missing ${first(missing)}`;
 }, { waits });
-const { problems } = await loadLibrary(REPO);
-const bare = problems.filter((p) => /no entry in find\.json/.test(p.message));
-say(bare.length ? `${waits ? '--  ' : 'FAIL'}  rows with a picture and no entry in find.json, in ${bare.length} ${bare.length === 1 ? 'folder' : 'folders'}` : 'ok    every row with a picture has an entry in find.json');
-if (bare.length && !waits) failed++;
+// From the document with --doc (the record files and find.json may be gone), else from the files.
+if (doc) {
+  const bare = withoutTerms(doc);
+  say(bare.length ? `${waits ? '--  ' : 'FAIL'}  rows with a picture and no search terms: ${first(bare)}` : 'ok    every row with a picture has search terms');
+  if (bare.length && !waits) failed++;
+} else {
+  const { problems } = await loadLibrary(REPO);
+  const bare = problems.filter((p) => /no entry in find\.json/.test(p.message));
+  say(bare.length ? `${waits ? '--  ' : 'FAIL'}  rows with a picture and no entry in find.json, in ${bare.length} ${bare.length === 1 ? 'folder' : 'folders'}` : 'ok    every row with a picture has an entry in find.json');
+  if (bare.length && !waits) failed++;
+}
 
 // How heavy and how fast.
 say(`\nsearch.json: ${(Buffer.byteLength(json) / 1e6).toFixed(2)} MB, ${index.rows.length} rows, ${engine.units.length} strings, ${engine.where.size} distinct words`);
