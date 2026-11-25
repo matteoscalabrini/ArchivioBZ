@@ -4,7 +4,7 @@
 // order, the numbers and the chapters' headings follow the answer's lists; library.js then reads
 // the page again (rescan) and draws it in the state it was in.
 import { OpQueue, mergeFields, storyPlaces, headingsOf } from '../editmodel.js';
-import { rescan } from '../library.js';
+import { rescan, forgetIndex } from '../library.js';
 import { load } from '../pictures.js';
 
 export const LOGGED_OUT = 'Logged out. Log in again; what you typed is kept.';
@@ -37,6 +37,40 @@ export const say = (text, kind = 'error') => tell('say', { text, kind });
 const ROUTES = { publish: 'publish', discard: 'discard' };
 const queue = new OpQueue(({ version, op }) => (ROUTES[op.op] ? post(ROUTES[op.op], { version }) : post('op', { version, op })), data.version);
 let pending = 0; // edits sent or waiting, not yet answered
+let calm = []; // what waits for every edit to be answered (settled)
+
+// Resolves once every edit sent so far has its answer.
+export function settled() {
+  return pending === 0 ? Promise.resolve() : new Promise((resolve) => calm.push(resolve));
+}
+
+function answered() {
+  pending--;
+  if (pending > 0) return;
+  const waiting = calm;
+  calm = [];
+  for (const resolve of waiting) resolve();
+}
+
+// Leaving the page (another address, a reload, closing the tab) asks first while an edit is on
+// its way or a field holds what is not saved: typed and not yet left, refused, or saving. The
+// parts that hold such a field say so here; leave() goes without asking, once the author has.
+const unsavedChecks = new Set();
+export function watchUnsaved(check) {
+  unsavedChecks.add(check);
+  return () => unsavedChecks.delete(check);
+}
+export const unsaved = () => pending > 0 || [...unsavedChecks].some((check) => check());
+let leaving = false;
+export function leave(go) {
+  leaving = true;
+  go();
+}
+addEventListener('beforeunload', (event) => {
+  if (leaving || !unsaved()) return;
+  event.preventDefault();
+  event.returnValue = ''; // older browsers ask only when this is set
+});
 
 export async function post(route, body) {
   const response = await fetch(route, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
@@ -58,11 +92,11 @@ export async function send(op, { field = null } = {}) {
   try {
     answer = await queue.push(op);
   } catch (error) {
-    pending--;
+    answered();
     refused(error);
     throw Object.assign(new Error(wordsFor(error)), { status: error.status, body: error.body });
   }
-  pending--;
+  answered();
   applied(op, answer, field);
   return answer;
 }
@@ -109,6 +143,9 @@ function applied(op, answer, field) {
   // the answer to the last of them brings the server's order.
   if (pending === 0) state.chapters = copy(state.confirmed);
   redraw();
+  // The search's index is the draft's as it was: once nothing more is on its way, it is sent for
+  // again, so a new title, an added row and a number as it now stands are found.
+  if (pending === 0) forgetIndex();
 }
 
 // The draft the page holds, brought up to what the server stored, for the fields' values.

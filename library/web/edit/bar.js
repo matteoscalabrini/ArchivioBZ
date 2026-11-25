@@ -2,7 +2,7 @@
 // differs from what is public, then About ✎, Public site, Discard, Publish and Log out. Under its
 // words, a line for what went wrong where no field was open, and for a conflict, which asks for a
 // reload since every later edit would meet it too.
-import { state, bus, send, post, setSummary, CONFLICT } from './core.js';
+import { state, bus, send, post, setSummary, settled, unsaved, leave, watchUnsaved, CONFLICT } from './core.js';
 import { changesIn, publishQuestion } from '../editmodel.js';
 import { wordButton } from './icons.js';
 import { ask } from './dialog.js';
@@ -59,7 +59,7 @@ export function makeBar() {
     if (!(await ask('Discard the draft and go back to what is public?', 'Discard'))) return;
     try {
       await send({ op: 'discard' });
-      location.reload();
+      leave(() => location.reload()); // asked already: what is typed goes with the draft
     } catch (error) {
       if (error.status !== 401 && error.status !== 409) show(message, { text: error.message });
     }
@@ -82,12 +82,23 @@ export function makeBar() {
       publish.disabled = false;
     }
   });
-  // Whatever the answer (401 when the session had ended already), the way out is the login.
+  // The public site once the edits on their way are saved (a field left by this click among
+  // them); a field still holding what is not saved makes the browser ask before the page goes.
+  site.addEventListener('click', async (event) => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    await settled();
+    location.assign(site.href);
+  });
+  // Once the edits on their way are saved; if a field still holds what is not saved, asked first.
+  // Then, whatever the answer (401 when the session had ended already), the way out is the login.
   logout.addEventListener('click', async () => {
+    await settled();
+    if (unsaved() && !(await ask('Log out? What is typed and not saved will be lost.', 'Log out'))) return;
     try {
       await post('logout', {});
     } finally {
-      location.assign('/edit/');
+      leave(() => location.assign('/edit/'));
     }
   });
 }
@@ -143,10 +154,13 @@ function editAbout() {
 
   let saved = area.value;
   let saving = null;
+  const unwatch = watchUnsaved(() => saving !== null || area.value !== saved);
+  // Read only while a save is on its way, so nothing is typed that the save would not carry.
   const save = () => {
     if (saving) return saving;
     const text = area.value;
     if (text === saved) return Promise.resolve(true);
+    area.readOnly = true;
     saving = send({ op: 'set-about', text })
       .then(() => {
         saved = text;
@@ -157,10 +171,14 @@ function editAbout() {
         error.hidden = false;
         return false;
       })
-      .finally(() => { saving = null; });
+      .finally(() => {
+        saving = null;
+        area.readOnly = false;
+      });
     return saving;
   };
   const end = () => {
+    unwatch();
     dialog.close();
     dialog.remove();
   };

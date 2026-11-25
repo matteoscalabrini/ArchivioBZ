@@ -11,8 +11,9 @@
 // stands in the list only in the story order (the No. sort) with nothing searched, and is hidden
 // while none of its chapter's rows shows. Edit mode changes the list in place and then calls
 // rescan(), which reads the page again; it gives the chapters in the story order with it, and the
-// headings follow them. After each drawing the list says whether it stands in the story order
-// (the event "drawn"), for edit mode, which drags only then.
+// headings follow them; and once an edit is saved it calls forgetIndex(), since the search's
+// index is the draft's as it was. After each drawing the list says whether it stands in the story
+// order (the event "drawn"), for edit mode, which drags only then.
 import { parseState, formatState, matches, compare } from './state.js';
 import { prepare, search } from './search.js';
 import { layout, summary, reasonHtml, inChapters, headingPlan } from './results.js';
@@ -55,6 +56,7 @@ let sorted = [...rows]; // every row in the order the column heads ask for
 let sortedBy = 'no';
 let engine = null; // the index, ready to be searched
 let asked = false; // the index has been sent for
+let indexRound = 0; // grows each time edit mode drops the index: an answer for an older one is not used
 let failed = false; // and could not be had
 let allPossible = false; // every possible link shows, not the first thirty
 let typing = false; // this drawing follows a keystroke in the search field
@@ -320,15 +322,33 @@ function writeAddress() {
 function needIndex() {
   if (asked) return;
   asked = true;
+  const round = indexRound;
   fetch('search.json')
     .then((response) => (response.ok ? response.json() : Promise.reject(new Error(`search.json: ${response.status}`))))
     .then((index) => {
-      engine = prepare(index);
+      if (round === indexRound) engine = prepare(index);
     })
     .catch(() => {
+      if (round !== indexRound) return;
+      engine = null;
       failed = true;
     })
-    .finally(render);
+    .finally(() => {
+      if (round === indexRound) render();
+    });
+}
+
+// For edit mode, once an edit is saved: the index (the draft's search.json, never kept by the
+// browser) is the draft as it was when it came, with the titles and numbers of then, so it is
+// sent for again. While a search is on, the old one answers until the new one is here, so the
+// list does not empty meanwhile; else it is dropped and sent for at the next search. The public
+// page never calls this.
+export function forgetIndex() {
+  indexRound++;
+  asked = false;
+  failed = false;
+  if (state.q.trim()) needIndex();
+  else engine = null;
 }
 
 function clearSearch() {

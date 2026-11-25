@@ -1,8 +1,10 @@
 // A field in place of what ✎ follows, in the same place and font. It saves on Enter (in a line
 // of its own, or in a select) and when the focus leaves it; Escape puts back what was there. A
 // save the server refuses keeps the field open with what was typed and its answer under it, so
-// nothing typed is lost (a session that ended, a number that is not one).
-import { fieldClosed } from './core.js';
+// nothing typed is lost (a session that ended, a number that is not one). While a save is on its
+// way the field cannot be changed: what was typed meanwhile would go with the field when the
+// answer closes it.
+import { fieldClosed, watchUnsaved } from './core.js';
 
 // `controls`: the inputs, selects and textareas of the field, filled. `read()`: their value now.
 // `save(value, box)`: sends it; resolves when the server has taken it, rejects with the sentence
@@ -27,10 +29,26 @@ export function openField({ controls, read, save, place, hide = [], opener = nul
   const initial = JSON.stringify(read());
   let saving = null;
   let closed = false;
+  // Leaving the page asks first while this field holds what is not saved (core.js).
+  const unwatch = watchUnsaved(() => box.isConnected && (saving !== null || JSON.stringify(read()) !== initial));
+
+  // Held while a save is on its way: a line or a text read only, a choice kept as it is (a
+  // disabled select would lose the focus).
+  const hold = (on) => {
+    box.classList.toggle('busy', on);
+    box.setAttribute('aria-busy', String(on));
+    for (const el of controls) if (el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement) el.readOnly = on;
+  };
+  const stopWhileSaving = (event) => {
+    if (saving && event.target instanceof HTMLSelectElement && !(event.type === 'keydown' && event.key === 'Tab')) event.preventDefault();
+  };
+  box.addEventListener('keydown', stopWhileSaving, true);
+  box.addEventListener('mousedown', stopWhileSaving, true);
 
   const close = () => {
     if (closed) return;
     closed = true;
+    unwatch();
     const had = box.contains(document.activeElement);
     box.remove();
     error.remove();
@@ -48,7 +66,7 @@ export function openField({ controls, read, save, place, hide = [], opener = nul
       close();
       return Promise.resolve(true);
     }
-    box.classList.add('busy');
+    hold(true);
     saving = Promise.resolve()
       .then(() => save(value, box))
       .then(() => {
@@ -61,7 +79,7 @@ export function openField({ controls, read, save, place, hide = [], opener = nul
       })
       .finally(() => {
         saving = null;
-        box.classList.remove('busy');
+        hold(false);
       });
     return saving;
   };
