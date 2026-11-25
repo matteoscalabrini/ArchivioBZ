@@ -11,7 +11,7 @@ import { libFromDoc, diffDocs } from './doc.mjs';
 import { libraryPage, mapPage, aboutPage } from '../lib/pages.mjs';
 import { searchIndex } from '../lib/searchindex.mjs';
 import { parseIdea } from '../lib/idea.mjs';
-import { renderMarkdown } from '../lib/longread.mjs';
+import { renderMarkdown } from '../lib/markdown.mjs'; // not longread.mjs, which loads mammoth
 import { readKinds } from '../lib/kinds.mjs';
 import { readSearchLists } from '../lib/find.mjs';
 import { TYPES } from '../lib/records.mjs';
