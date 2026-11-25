@@ -4,11 +4,12 @@
 // and again five seconds later.
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { dangerouslyDeleteByTag, waitUntil } from '@vercel/functions';
+import { waitUntil } from '@vercel/functions';
 import { makeStore } from '../library/cloud/store.mjs';
 import { neonDb } from '../library/cloud/db.mjs';
 import { loadLists } from '../library/cloud/render.mjs';
 import { makeHandlers } from '../library/cloud/handlers.mjs';
+import { deleteTag } from '../library/cloud/purge.mjs';
 
 // The repository as the function holds it: library/content/*.json and library/map-data/dots.json
 // reach it through vercel.json's includeFiles.
@@ -25,7 +26,7 @@ const handlers = loadLists(ROOT).then((lists) => {
     store: makeStore(neonDb(process.env.DATABASE_URL)),
     env: { EDIT_PASSWORD_HASH: process.env.EDIT_PASSWORD_HASH, SESSION_SECRET: process.env.SESSION_SECRET },
     lists,
-    purge: () => dangerouslyDeleteByTag('site'),
+    purge: () => deleteTag('site'), // fails, rather than doing nothing, without the runtime's purge API
     later,
   });
 });
