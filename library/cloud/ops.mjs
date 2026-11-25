@@ -267,9 +267,19 @@ const OPS = {
   },
 };
 
+// Whether a value sent holds, in any of its words, a NUL or half of a surrogate pair: a page cannot
+// show either as typed (a browser turns both into a stand-in character).
+const UNSAVABLE = 'The text holds a character that cannot be saved: an invisible NUL or half of an emoji. Type that part again.';
+function unsavable(value) {
+  if (isText(value)) return value.includes('\u0000') || !value.isWellFormed();
+  if (Array.isArray(value)) return value.some(unsavable);
+  return LIVE(value) && Object.values(value).some(unsavable);
+}
+
 // Applies one operation to a copy of the document: { doc, result }.
 export function applyOp(doc, op) {
   const run = LIVE(op) && isText(op.op) && Object.hasOwn(OPS, op.op) ? OPS[op.op] : refuse(`There is no operation "${op?.op}".`);
+  if (unsavable(op)) refuse(UNSAVABLE);
   const next = structuredClone(doc);
   const result = run(next, op);
   const problems = checkDoc(next);

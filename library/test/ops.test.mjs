@@ -244,6 +244,17 @@ test('set-idea drops the stand-in line, and says what it stored', () => {
 });
 test('set-about stores the text', () => assert.equal(applyOp(sample(), { op: 'set-about', text: 'Hello' }).doc.about, 'Hello'));
 
+// A NUL, or half of a surrogate pair (half an emoji, from a broken paste), cannot reach a page as
+// typed: the operation is refused with a sentence and nothing changes.
+test('text holding a NUL or half an emoji is refused with a sentence; a whole emoji is text', () => {
+  const line = 'The text holds a character that cannot be saved: an invisible NUL or half of an emoji. Type that part again.';
+  refused(sample(), { op: 'set-row', id: 'a', fields: { title: 'a\u0000b' } }, line);
+  refused(sample(), { op: 'set-row', id: 'a', fields: { text: ['fine', 'x\uD83D'] } }, line);
+  refused(sample(), { op: 'set-about', text: '\uDE00 alone' }, line);
+  refused(sample(), { op: 'add-keyword', label: 'Nul\u0000' }, line);
+  assert.equal(applyOp(sample(), { op: 'set-row', id: 'a', fields: { title: 'A 😀 title' } }).doc.rows.a.record.title, 'A 😀 title');
+});
+
 test('an unknown operation is refused', () => refused(sample(), { op: 'explode' }));
 
 test('malformed requests are refused as OpError and change nothing', () => {
