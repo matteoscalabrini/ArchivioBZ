@@ -1,7 +1,7 @@
 // The store: every statement the edit mode sends to the database, in one place. Documents go in
-// as JSON text cast to jsonb and come back parsed. A write that depends on the draft's version
-// says which version it expects; if the draft has moved on it is refused with a ConflictError
-// that carries the current version, and nothing has changed.
+// as JSON text cast to json and come back parsed, their keys in the order they went in. A write
+// that depends on the draft's version says which version it expects; if the draft has moved on it
+// is refused with a ConflictError that carries the current version, and nothing has changed.
 import { readFileSync } from 'node:fs';
 
 export class ConflictError extends Error {
@@ -39,18 +39,18 @@ export function makeStore(db) {
         const [old] = await q('select doc from draft where id = 1 for update');
         if (old && !replace) throw new Error('There is a draft already; --replace to overwrite it');
         if (!old) {
-          await q('insert into draft (id, version, doc) values (1, 1, $1::jsonb)', [json(doc)]);
+          await q('insert into draft (id, version, doc) values (1, 1, $1::json)', [json(doc)]);
           return 1;
         }
-        await q("insert into publishes (kind, doc, summary) values ('set-aside', $1::jsonb, 'Set aside before a replace')", [json(old.doc)]);
-        const rows = await q('update draft set doc = $1::jsonb, version = version + 1, saved_at = now() where id = 1 returning version', [json(doc)]);
+        await q("insert into publishes (kind, doc, summary) values ('set-aside', $1::json, 'Set aside before a replace')", [json(old.doc)]);
+        const rows = await q('update draft set doc = $1::json, version = version + 1, saved_at = now() where id = 1 returning version', [json(doc)]);
         return rows[0].version;
       });
     },
 
     async saveDraft(doc, expected) {
       const rows = await db.query(
-        'update draft set doc = $1::jsonb, version = version + 1, saved_at = now() where id = 1 and version = $2 returning version',
+        'update draft set doc = $1::json, version = version + 1, saved_at = now() where id = 1 and version = $2 returning version',
         [json(doc), expected],
       );
       if (!rows.length) throw await conflict(db.query);
@@ -68,7 +68,7 @@ export function makeStore(db) {
         const held = await q('update draft set saved_at = saved_at where id = 1 and version = $1 returning doc', [expected]);
         if (!held.length) throw await conflict(q);
         const [{ id }] = await q(
-          "insert into publishes (kind, doc, summary) values ('publish', $1::jsonb, $2) returning id",
+          "insert into publishes (kind, doc, summary) values ('publish', $1::json, $2) returning id",
           [json(held[0].doc), summary ?? null],
         );
         await q('delete from site_files');
@@ -84,7 +84,7 @@ export function makeStore(db) {
         const [latest] = await q("select doc from publishes where kind = 'publish' order by id desc limit 1");
         if (!latest) throw new Error('Nothing has been published yet');
         const rows = await q(
-          'update draft set doc = $1::jsonb, version = version + 1, saved_at = now() where id = 1 and version = $2 returning version',
+          'update draft set doc = $1::json, version = version + 1, saved_at = now() where id = 1 and version = $2 returning version',
           [json(latest.doc), expected],
         );
         if (!rows.length) throw await conflict(q);
@@ -99,9 +99,9 @@ export function makeStore(db) {
         if (!target) throw new Error(`There is no publish ${publishId}`);
         const [draft] = await q('select doc from draft where id = 1 and version = $1 for update', [expected]);
         if (!draft) throw await conflict(q);
-        await q("insert into publishes (kind, doc, summary) values ('set-aside', $1::jsonb, $2)", [json(draft.doc), `Set aside before restoring publish ${publishId}`]);
+        await q("insert into publishes (kind, doc, summary) values ('set-aside', $1::json, $2)", [json(draft.doc), `Set aside before restoring publish ${publishId}`]);
         const rows = await q(
-          'update draft set doc = $1::jsonb, version = version + 1, saved_at = now() where id = 1 returning version',
+          'update draft set doc = $1::json, version = version + 1, saved_at = now() where id = 1 returning version',
           [json(target.doc)],
         );
         return rows[0].version;

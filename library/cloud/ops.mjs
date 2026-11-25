@@ -5,7 +5,7 @@
 // as a broken publish later.
 import { TYPES } from '../lib/records.mjs';
 import { parseIdea } from '../lib/idea.mjs';
-import { checkDoc } from './doc.mjs';
+import { checkDoc, NUMBER_KEY } from './doc.mjs';
 
 export class OpError extends Error {}
 
@@ -197,8 +197,9 @@ const OPS = {
     for (const [id, keyword] of Object.entries(doc.keywords)) {
       if (foldLabel(keyword.label) === foldLabel(shown)) return { id, existed: true };
     }
-    const base = slug(shown);
-    if (!base) refuse('A keyword needs letters or digits.');
+    const words = slug(shown);
+    if (!words) refuse('A keyword needs letters or digits.');
+    const base = NUMBER_KEY.test(words) ? `k-${words}` : words; // a number would leave the vocabulary's order
     let id = base;
     for (let n = 2; Object.hasOwn(doc.keywords, id) || Object.hasOwn(doc.aliases, id); n++) id = `${base}-${n}`;
     doc.keywords[id] = { label: shown };

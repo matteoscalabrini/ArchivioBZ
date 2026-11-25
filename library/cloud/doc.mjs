@@ -6,19 +6,32 @@
 import path from 'node:path';
 import { TYPES } from '../lib/records.mjs';
 
-// Fields of an entry that the loader adds and the document does not keep in a row's record.
-const LOADED = ['no', 'images', 'section', 'dir', 'abs', 'find'];
+// The fields a row's record may hold, as in entries.json less `no` and `images`; a field the record
+// does not have stays absent.
+export const RECORD_FIELDS = ['title', 'type', 'date', 'year', 'keywords', 'text', 'confidence', 'facts', 'source', 'rights',
+  'file', 'more', 'creator', 'holder', 'place', 'side_by_side', 'sources'];
+// Fields of an entry that are not its record: what the loader adds (the search terms go to the
+// row's `find`), and what the build's picture step sets (the row's own pictures and thumb, as the
+// cloud holds them, replace them).
+const NOT_RECORD = ['no', 'images', 'section', 'dir', 'abs', 'find', 'pictures', 'thumb'];
 const MAX_KEYWORDS = 5;
+// A key that JavaScript reads as an array index ("1939") goes before every other key of an object,
+// whatever order the document has it in; the pages show the keywords and the places in the
+// document's order, so neither may have such an id.
+export const NUMBER_KEY = /^(0|[1-9]\d*)$/;
 
 // The document made from a library read from files. `lib` has had locatePlaces run on it.
 // `chapterTitles`: section number -> title; one chapter per section that has rows, in section
 // order, ids c1…cN. `pictures`: row number -> { pictures, thumb } as held in the cloud.
-// A row's id is the number it has today; it never changes after this.
+// A row's id is the number it has today; it never changes after this. An entry with a field that
+// is neither a record field nor one of NOT_RECORD throws, so that nothing is left behind unsaid.
 export function docFromLibrary(lib, { root, chapterTitles = {}, pictures = new Map(), idea = '', about = '' }) {
   const rows = {};
   const bySection = new Map();
   for (const entry of lib.entries) {
-    const record = Object.fromEntries(Object.entries(entry).filter(([key]) => !LOADED.includes(key)));
+    const stray = Object.keys(entry).find((key) => !RECORD_FIELDS.includes(key) && !NOT_RECORD.includes(key));
+    if (stray) throw new Error(`row ${entry.no} has a field "${stray}" that the document does not keep`);
+    const record = Object.fromEntries(Object.entries(entry).filter(([key]) => RECORD_FIELDS.includes(key)));
     if (entry.abs && record.file !== undefined) record.file = path.relative(path.resolve(root), entry.abs).split(path.sep).join('/');
     const held = pictures.get(entry.no);
     rows[entry.no] = {
@@ -155,6 +168,9 @@ export function checkDoc(doc, { types = TYPES } = {}) {
   for (const [id, where] of placed) {
     if (where.length > 1) problems.push(`row ${id} is in two chapters: ${where.join(', ')}`);
   }
+  for (const [what, ids] of [['keyword', Object.keys(doc.keywords)], ['place', Object.keys(doc.places)]]) {
+    for (const id of ids.filter((key) => NUMBER_KEY.test(key))) problems.push(`${what} id "${id}" is a whole number, which cannot keep its place in the order`);
+  }
   for (const [id, row] of Object.entries(doc.rows)) {
     if (!placed.has(id)) problems.push(`row ${id} is in no chapter`);
     const record = row.record ?? {};
@@ -167,6 +183,9 @@ export function checkDoc(doc, { types = TYPES } = {}) {
       if (!Object.hasOwn(doc.keywords, keyword) && !Object.hasOwn(doc.aliases, keyword)) problems.push(`row ${id} has an unknown keyword "${keyword}"`);
     }
     if (record.place != null && record.place !== '' && !Object.hasOwn(doc.places, record.place)) problems.push(`row ${id} has an unknown place "${record.place}"`);
+    for (const field of Object.keys(record)) {
+      if (!RECORD_FIELDS.includes(field)) problems.push(`row ${id} has a field "${field}" that a record does not have`);
+    }
   }
   return problems;
 }

@@ -63,6 +63,10 @@ export async function moveIn({ root, store, putPicture, chapterTitles = CHAPTER_
   for (const section of [...new Set(lib.entries.map((e) => e.section))].sort((a, b) => a - b)) {
     if (!chapterTitles[section]) throw new Error(`section ${section} has no chapter title`);
   }
+  // The document once without its pictures, so that a field it does not keep, or a fault, stops
+  // the move-in before a picture is sent.
+  const early = checkDoc(docFromLibrary(lib, { root, chapterTitles }));
+  if (early.length) throw new Error(`the document is not sound, nothing moved: ${early.join('; ')}`);
   // Refused before a single picture is sent, so a refusal leaves nothing behind in the store.
   if (!dryRun) {
     await store.init();

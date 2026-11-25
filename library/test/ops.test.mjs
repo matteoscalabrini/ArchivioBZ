@@ -156,6 +156,14 @@ test('add-keyword numbers a taken id, an alias counting as taken, and refuses no
   refused(sample(), { op: 'add-keyword', label: ' ' });
   refused(sample(), { op: 'add-keyword', label: '!!!' });
 });
+// JavaScript puts a key that is a whole number before every other key of an object, so such an id
+// would leave its place in the vocabulary's order.
+test('add-keyword gives a label of digits an id that is not a number, and keeps it last', () => {
+  const { doc, result } = applyOp(sample(), { op: 'add-keyword', label: '1939' });
+  assert.deepEqual(result, { id: 'k-1939', existed: false });
+  assert.deepEqual(Object.keys(doc.keywords), ['wall', 'poster', 'march', 'k-1939']);
+  assert.equal(applyOp(sample(), { op: 'add-keyword', label: '1939 – 1943' }).result.id, '1939-1943');
+});
 
 test('set-pictures keeps the named pictures in the given order and refuses a stranger', () => {
   const doc = sample();

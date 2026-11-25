@@ -90,6 +90,23 @@ test('a publish against an older version changes nothing', async () => {
   assert.equal((await store.listPublishes()).length, 1);
 });
 
+// The pages read the vocabulary's order from the document's objects ("All keywords", the map's
+// places), so the database must give every object back with its keys as they were written: a
+// jsonb column would sort them by length, then by bytes.
+test('the draft and every publish come back with their keys in the order they were written', async () => {
+  const doc = sample();
+  doc.keywords = { 'ponte-druso': { label: 'Ponte Druso' }, monumento: { label: 'Monumento alla Vittoria' }, law: { label: 'Law' }, a: { label: 'A' }, poster: { label: 'Poster' } };
+  doc.places = { zeta: { name: 'Zeta', lat: 46, lon: 11, inside: true, x: 1, y: 2, z: 0 }, piazza: doc.places.piazza, ab: { name: 'Ab', lat: 46, lon: 11, inside: false, x: 0, y: 0, z: 0 } };
+  doc.rows.a.record = { title: 'Row a', type: 'Poster', date: '', year: null, keywords: ['poster', 'law'], text: [], confidence: { level: 'read' }, more: 'x' };
+  const order = (d) => [Object.keys(d.keywords), Object.keys(d.places), Object.keys(d.rows.a.record), Object.keys(d.places.zeta)];
+  await store.createDraft(doc);
+  assert.deepEqual(order((await store.getDraft()).doc), order(doc));
+  await store.saveDraft(doc, 1);
+  assert.deepEqual(order((await store.getDraft()).doc), order(doc));
+  await store.publish(2, files(), 's');
+  assert.deepEqual(order((await store.latestPublish()).doc), order(doc));
+});
+
 test('login failures are counted in their window', async () => {
   assert.equal(await store.recentLoginFailures(15), 0);
   for (let i = 0; i < 3; i++) await store.recordLoginFailure();

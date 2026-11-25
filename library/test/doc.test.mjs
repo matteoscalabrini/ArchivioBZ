@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { loadLibrary } from '../lib/records.mjs';
 import { locatePlaces } from '../lib/places.mjs';
-import { docFromLibrary, numbering, libFromDoc, diffDocs, checkDoc } from '../cloud/doc.mjs';
+import { docFromLibrary, numbering, libFromDoc, diffDocs, checkDoc, RECORD_FIELDS } from '../cloud/doc.mjs';
 import { cleanRoot } from './helpers.mjs';
 import { sampleDoc, sampleWith } from './docs.mjs';
 
@@ -23,6 +23,45 @@ test('moving in keeps every row, in order, under its section', async () => {
   assert.equal(doc.idea, 'x');
   const withFile = lib.entries.find((e) => e.file);
   assert.equal(doc.rows[withFile.no].record.file, withFile.abs.slice(root.length + 1));
+});
+
+// moveIn runs the build's picture step before it makes the document, and that step sets
+// entry.pictures and entry.thumb with the build's own addresses: they belong to the row, as the
+// cloud holds them, and never to its record.
+test('a record holds only the record fields; pictures, thumb and the search terms go to the row, and back', async () => {
+  const root = await cleanRoot();
+  const lib = await loadLibrary(root);
+  await locatePlaces(lib);
+  for (const entry of lib.entries) {
+    entry.pictures = entry.images.map((image, n) => ({ src: `img/${entry.no}-${n + 1}.jpg`, original: null, w: 4, h: 3, caption: '' }));
+    entry.thumb = { src: `img/t/${entry.no}.jpg`, w: 2, h: 1 };
+  }
+  const withPictures = lib.entries.find((e) => e.images.length);
+  const held = new Map([[withPictures.no, { pictures: [{ src: 'https://blob/x.jpg', w: 40, h: 30, caption: 'A caption' }], thumb: { src: 'https://blob/t.jpg', w: 20, h: 15 } }]]);
+  const doc = docFromLibrary(lib, { root, chapterTitles: { 0: 'Zero', 5: 'Five', 12: 'Twelve' }, pictures: held });
+  assert.deepEqual(checkDoc(doc), []);
+  for (const [id, row] of Object.entries(doc.rows)) {
+    for (const field of Object.keys(row.record)) assert.ok(RECORD_FIELDS.includes(field), `${id}: ${field}`);
+  }
+  const row = doc.rows[withPictures.no];
+  assert.deepEqual(row.pictures, held.get(withPictures.no).pictures);
+  assert.deepEqual(row.thumb, held.get(withPictures.no).thumb);
+  assert.deepEqual(row.find, withPictures.find);
+  const other = lib.entries.find((e) => !held.has(e.no));
+  assert.deepEqual([doc.rows[other.no].pictures, doc.rows[other.no].thumb], [[], null]);
+  // And back: the pages get the row's pictures, thumb and terms, not a copy from the record.
+  const entry = libFromDoc(doc).entries.find((e) => e.id === withPictures.no);
+  assert.deepEqual([entry.pictures, entry.thumb, entry.find], [row.pictures, row.thumb, row.find]);
+});
+
+test('a field of a record the document does not know stops the move-in, and checkDoc names one', async () => {
+  const root = await cleanRoot();
+  const lib = await loadLibrary(root);
+  lib.entries[0].colour = 'red';
+  assert.throws(() => docFromLibrary(lib, { root }), new RegExp(`row ${lib.entries[0].no.replace('.', '\\.')} has a field "colour"`));
+  const doc = sample();
+  doc.rows.a.record.pictures = [];
+  assert.match(checkDoc(doc).join('\n'), /row a has a field "pictures" that a record does not have/);
 });
 
 test('numbers follow the place and skip hidden rows', () => {
@@ -93,6 +132,8 @@ test('checkDoc names the other faults', () => {
   assert.match(text((d) => (d.rows.a.record.keywords = ['wall', 'poster', 'march', 'wall', 'poster', 'march'])), /at most 5/);
   assert.match(text((d) => (d.rows.a.record.title = ' ')), /empty title/);
   assert.match(text((d) => (d.rows.a.record.year = 1.5)), /year/);
+  assert.match(text((d) => (d.keywords['1939'] = { label: '1939' })), /keyword id "1939" is a whole number/);
+  assert.match(text((d) => (d.places['7'] = d.places.piazza)), /place id "7" is a whole number/);
   assert.deepEqual(checkDoc(sample()), []);
 });
 
