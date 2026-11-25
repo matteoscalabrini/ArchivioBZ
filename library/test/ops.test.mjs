@@ -173,3 +173,39 @@ test('set-idea refuses an unknown marked keyword, accepts a known one', () => {
 test('set-about stores the text', () => assert.equal(applyOp(sample(), { op: 'set-about', text: 'Hello' }).doc.about, 'Hello'));
 
 test('an unknown operation is refused', () => refused(sample(), { op: 'explode' }));
+
+test('malformed requests are refused as OpError and change nothing', () => {
+  const bad = [
+    { op: 'set-row', fields: { title: 'x' } },
+    { op: 'set-row', id: ['a'], fields: { title: 'x' } },
+    { op: 'set-row', id: '__proto__', fields: { title: 'x' } },
+    { op: 'set-row', id: 'constructor', fields: { title: 'x' } },
+    { op: 'set-row', id: 'a', fields: 'title' },
+    { op: 'set-row', id: 'a', fields: null },
+    { op: 'set-row', id: 'a', fields: JSON.parse('{"__proto__": "x"}') },
+    { op: 'set-row', id: 'a', fields: { constructor: 'x' } },
+    { op: 'set-row', id: 'a', fields: { place: ['piazza'] } },
+    { op: 'set-row', id: 'a', fields: { keywords: [['wall']] } },
+    { op: 'set-row', id: 'a', fields: { keywords: ['constructor'] } },
+    { op: 'set-pictures', id: 'a', pictures: [null] },
+    { op: 'set-pictures', id: 'a', pictures: ['x'] },
+    { op: 'set-pictures', id: 'a', pictures: 'x' },
+    { op: 'remove-row', id: ['a'] },
+    { op: 'move-row', id: ['a'], chapter: 'c1', index: 0 },
+    { op: 'move-row', id: 'a', chapter: ['c1'], index: 0 },
+    { op: 'set-number', id: ['f'], number: '1.01' },
+    { op: 'hide-row', id: ['a'], hidden: true },
+    { op: 'remove-chapter', chapter: ['c2'] },
+    { op: '__proto__' },
+    { op: ['set-about'], text: 'x' },
+    { op: 'constructor' },
+    null,
+    'set-about',
+  ];
+  for (const op of bad) {
+    const doc = sample();
+    const copy = structuredClone(doc);
+    assert.throws(() => applyOp(doc, op), (e) => e instanceof OpError, JSON.stringify(op));
+    assert.deepEqual(doc, copy);
+  }
+});

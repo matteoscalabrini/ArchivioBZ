@@ -22,7 +22,7 @@ const isEmpty = (value) => value === '' || value === null || (Array.isArray(valu
 const clamp = (index, length) => Math.max(0, Math.min(length, Number.isInteger(index) ? index : length));
 
 function rowOf(doc, id) {
-  if (!Object.hasOwn(doc.rows, id)) refuse(`There is no row ${id}.`);
+  if (!isText(id) || !Object.hasOwn(doc.rows, id)) refuse(`There is no row ${id}.`);
   return doc.rows[id];
 }
 function chapterOf(doc, id) {
@@ -57,8 +57,8 @@ function checkedField(doc, name, value) {
   if (name === 'keywords') {
     if (!Array.isArray(value)) refuse('The keywords must be a list.');
     const ids = value.map((k) => {
-      if (Object.hasOwn(doc.keywords, k)) return k;
-      if (Object.hasOwn(doc.aliases, k)) return doc.aliases[k];
+      if (isText(k) && Object.hasOwn(doc.keywords, k)) return k;
+      if (isText(k) && Object.hasOwn(doc.aliases, k)) return doc.aliases[k];
       return refuse(`"${k}" is not a keyword.`);
     });
     if (new Set(ids).size !== ids.length) refuse('A keyword can be given once.');
@@ -83,7 +83,7 @@ function checkedField(doc, name, value) {
   }
   if (name === 'place') {
     if (value === null || value === '') return undefined;
-    if (!Object.hasOwn(doc.places, value)) refuse(`"${value}" is not a place.`);
+    if (!isText(value) || !Object.hasOwn(doc.places, value)) refuse(`"${value}" is not a place.`);
     return value;
   }
   if (name === 'side_by_side') {
@@ -112,7 +112,9 @@ const OPS = {
     if (!Array.isArray(pictures)) refuse('The pictures must be a list.');
     const held = new Map(row.pictures.map((p) => [p.src, p]));
     const seen = new Set();
-    row.pictures = pictures.map(({ src, caption }) => {
+    row.pictures = pictures.map((entry) => {
+      if (!LIVE(entry)) refuse('Each picture needs a source.');
+      const { src, caption } = entry;
       if (!held.has(src)) refuse(`Row ${id} has no picture ${src}.`);
       if (seen.has(src)) refuse(`The picture ${src} is listed twice.`);
       seen.add(src);
@@ -218,7 +220,7 @@ const OPS = {
 
 // Applies one operation to a copy of the document: { doc, result }.
 export function applyOp(doc, op) {
-  const run = LIVE(op) && Object.hasOwn(OPS, op.op) ? OPS[op.op] : refuse(`There is no operation "${op?.op}".`);
+  const run = LIVE(op) && isText(op.op) && Object.hasOwn(OPS, op.op) ? OPS[op.op] : refuse(`There is no operation "${op?.op}".`);
   const next = structuredClone(doc);
   const result = run(next, op);
   const problems = checkDoc(next);
