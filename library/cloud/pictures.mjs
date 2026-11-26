@@ -20,6 +20,8 @@ import { stripJpeg } from '../lib/metadata.mjs';
 export const TAKEN = ['image/jpeg', 'image/png', 'image/webp'];
 export const MAX_ORIGINAL = 104857600; // 100 MB
 export const NOT_A_PICTURE = 'That file is not a picture the site can take: JPEG, PNG or WebP.';
+// sharp's own limit, kept: 268,402,689 pixels (16383 × 16383), which an A1 scan at 600 dpi passes.
+export const TOO_LARGE = 'That picture is too large: at most 268 million pixels.';
 const NOT_AN_ORIGINAL = 'That is not the name of an original.';
 const NOT_TAKEN = 'Only JPEG, PNG and WebP pictures are taken.';
 
@@ -46,8 +48,9 @@ const isObject = (value) => value !== null && typeof value === 'object' && !Arra
 // sharp keeps none unless asked. The original is decoded once, into the large picture's pixels, and
 // the small one is made from those, so that an original of 100 MB is held and read once in the
 // function. A file sharp cannot read, or reads as another kind than JPEG, PNG or WebP (a GIF, a
-// TIFF, an SVG sent under another type), is refused with the sentence. `sharp`: given only by the
-// tests.
+// TIFF, an SVG sent under another type), is refused with the sentence; one over sharp's pixel limit
+// with TOO_LARGE. What sharp said goes to the function's log first, since the sentence names no
+// cause. `sharp`: given only by the tests.
 export async function makePictures(original, { sharp } = {}) {
   sharp ??= (await import('sharp')).default;
   try {
@@ -70,7 +73,8 @@ export async function makePictures(original, { sharp } = {}) {
     return { large: await jpeg(raw()), small: await jpeg(raw().resize(...inside(SMALL))) };
   } catch (error) {
     if (error instanceof OpError) throw error;
-    throw new OpError(NOT_A_PICTURE);
+    console.error('edit picture: sharp refused the original:', error);
+    throw new OpError(/exceeds pixel limit/i.test(String(error?.message)) ? TOO_LARGE : NOT_A_PICTURE);
   }
 }
 

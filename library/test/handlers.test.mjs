@@ -626,7 +626,8 @@ test('the handshake answers a token for a name under originals/ and refuses any 
   assert.match((await none.json()).error, /BLOB_READ_WRITE_TOKEN and PICTURES_READ_WRITE_TOKEN/);
 });
 
-test('picture refuses a name outside originals/, a row that does not exist, and a file that is not a picture, and leaves the draft as it was', async () => {
+test('picture refuses a name outside originals/, a row that does not exist, and a file that is not a picture, and leaves the draft as it was', async (t) => {
+  t.mock.method(console, 'error', () => {}); // what sharp says of the text file (cloud/pictures.mjs)
   const local = await localStore();
   const dev = make({ pictures: local.pictures });
   for (const pathname of ['../x', 'pictures/x.jpg', 'originals/a/b.jpg', 'originals/..', 'originals/%2e%2e', 'originals/.%2E', 'originals/a?b.jpg', 7]) {

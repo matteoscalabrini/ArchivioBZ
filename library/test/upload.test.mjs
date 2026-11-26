@@ -6,9 +6,10 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import path from 'node:path';
 import { readFile, readdir } from 'node:fs/promises';
+import zlib from 'node:zlib';
 import sharp from 'sharp';
 import { getPayloadFromClientToken } from '@vercel/blob/client';
-import { makePictures, cloudStores, localStores, publicPut, NOT_A_PICTURE, TAKEN, MAX_ORIGINAL } from '../cloud/pictures.mjs';
+import { makePictures, cloudStores, localStores, publicPut, NOT_A_PICTURE, TOO_LARGE, TAKEN, MAX_ORIGINAL } from '../cloud/pictures.mjs';
 import { OpError } from '../cloud/ops.mjs';
 import { stripJpeg } from '../lib/metadata.mjs';
 import { tempDir } from './helpers.mjs';
@@ -111,15 +112,50 @@ test('a PNG with transparency comes out a JPEG, white where it was clear', async
   assert.ok(near(pixel(6, 10), [255, 0, 0]), `the red half stays red, not ${pixel(6, 10)}`);
 });
 
-test('a text file is refused with the sentence, and so is a picture of a kind not taken', async () => {
+test('a text file is refused with the sentence, and so is a picture of a kind not taken; what sharp said goes to the log', async (t) => {
+  const logged = t.mock.method(console, 'error', () => {});
   const refused = (e) => e instanceof OpError && e.message === NOT_A_PICTURE;
   assert.equal(NOT_A_PICTURE, 'That file is not a picture the site can take: JPEG, PNG or WebP.');
   await assert.rejects(makePictures(Buffer.from('Notes on the Monument, not a picture.\n')), refused);
+  assert.equal(logged.mock.callCount(), 1, 'sharp\'s refusal is logged');
+  const [words, cause] = logged.mock.calls[0].arguments;
+  assert.equal(words, 'edit picture: sharp refused the original:');
+  assert.ok(cause instanceof Error && /unsupported image format/i.test(cause.message), `the cause logged: ${cause}`);
   await assert.rejects(makePictures(Buffer.alloc(0)), refused);
   const gif = await sharp({ create: { width: 10, height: 10, channels: 3, background: '#000' } }).gif().toBuffer();
+  const before = logged.mock.callCount();
   await assert.rejects(makePictures(gif), refused, 'sharp reads a GIF, but the site takes JPEG, PNG and WebP');
+  assert.equal(logged.mock.callCount(), before, 'a GIF is refused here, not by sharp: nothing to log');
   const cut = (await phonePhoto()).subarray(0, 4000);
   await assert.rejects(makePictures(cut), refused, 'a JPEG cut short');
+  assert.equal(logged.mock.callCount(), before + 1);
+});
+
+// A PNG whose header says `w` × `h` pixels, with one row of grey after it: sharp reads the size
+// before any pixel.
+function pngSaying(w, h) {
+  const chunk = (type, data) => {
+    const typed = Buffer.concat([Buffer.from(type, 'latin1'), data]);
+    const length = Buffer.alloc(4);
+    length.writeUInt32BE(data.length);
+    const crc = Buffer.alloc(4);
+    crc.writeUInt32BE(zlib.crc32(typed));
+    return Buffer.concat([length, typed, crc]);
+  };
+  const header = Buffer.alloc(13);
+  header.writeUInt32BE(w, 0);
+  header.writeUInt32BE(h, 4);
+  header[8] = 8; // 8 bits of grey
+  return Buffer.concat([Buffer.from('89504e470d0a1a0a', 'hex'), chunk('IHDR', header), chunk('IDAT', zlib.deflateSync(Buffer.alloc(w + 1))), chunk('IEND', Buffer.alloc(0))]);
+}
+
+test('a picture over sharp\'s pixel limit is refused as too large, not as no picture, and what sharp said is logged', async (t) => {
+  const logged = t.mock.method(console, 'error', () => {});
+  assert.equal(TOO_LARGE, 'That picture is too large: at most 268 million pixels.');
+  const huge = pngSaying(20000, 20000); // 400 million pixels; an A1 scan at 600 dpi is 279 million
+  await assert.rejects(makePictures(huge), (e) => e instanceof OpError && e.message === TOO_LARGE);
+  assert.equal(logged.mock.callCount(), 1);
+  assert.match(logged.mock.calls[0].arguments[1]?.message ?? '', /exceeds pixel limit/);
 });
 
 // The client-upload handshake (@vercel/blob/client's handleUpload): a token for one original,
