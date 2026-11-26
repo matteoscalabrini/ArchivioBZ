@@ -122,6 +122,28 @@ test('a link [[more|page:<address>]] in a row\'s text leads to the page; to a hi
   assert.ok(edit.includes('<span class="dead-link" title="The page is hidden.">this</span>'));
 });
 
+// A Markdown table parts its rows into cells at every | (GFM); the | inside a link typed in a cell
+// parts nothing (lib/markdown.mjs, shield).
+test('a link in a Markdown table\'s cell, in a page or in About, is one link: to a hidden row its words alone, its code in no public file; to a shown row a link in its cell', () => {
+  const table = '| what | where |\n|---|---|\n| [[the secret|@r7]] | here |';
+  const doc = run({ ...sampleDoc({ c1: ['a', 'r7'], c2: ['d'] }), next: { row: 8, chapter: 3 } }, [
+    { op: 'add-page', title: 'Table', row: null },
+    { op: 'set-page', id: 'p1', text: table },
+    { op: 'set-about', text: table },
+  ]);
+  const hidden = renderSite(run(doc, [{ op: 'hide-row', id: 'r7', hidden: true }]), lists).files;
+  for (const path of ['pages/table.html', 'about.html']) {
+    assert.match(body(hidden, path), /<tbody><tr>\n<td>the secret<\/td>\n<td>here<\/td>\n<\/tr>/, path);
+  }
+  for (const [path, { body: html }] of hidden) {
+    for (const mark of ['@r7', '[[the', '#o=r7']) assert.ok(!html.includes(mark), `${mark} in ${path}`);
+  }
+  const shown = renderSite(doc, lists).files;
+  assert.match(body(shown, 'pages/table.html'), /<tbody><tr>\n<td><a href="\.\.\/index\.html#o=r7">the secret<\/a><\/td>\n<td>here<\/td>\n<\/tr>/);
+  assert.match(body(shown, 'about.html'), /<tbody><tr>\n<td><a href="index\.html#o=r7">the secret<\/a><\/td>\n<td>here<\/td>\n<\/tr>/);
+  for (const [path, { body: html }] of shown) assert.ok(!html.includes('@r7') && !html.includes('[[the'), path);
+});
+
 test('a row page\'s words are found as its row\'s; a site page and a hidden page are not in the search', () => {
   const doc = run(pagesDoc(), [{ op: 'add-page', title: 'Hidden on b', row: 'b' }, { op: 'set-page', id: 'p6', text: 'HIDDEN-ON-B-z4' }, { op: 'hide-page', id: 'p6', hidden: true }]);
   const index = JSON.parse(body(renderSite(doc, lists).files, 'search.json'));

@@ -26,12 +26,31 @@ const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '.
 // keepTitle: a heading of the first level that opens the text is drawn (as an <h2>, as every heading
 // is); by default it is the file's title, which its page draws as its own <h1>, and is left out.
 export function renderMarkdown(text, options = {}) {
-  const md = reader(options);
-  const tokens = md.lexer(String(text));
+  const { src, bar } = shield(text, options);
+  const md = reader({ ...options, bar });
+  const tokens = md.lexer(src);
   const first = tokens.findIndex((t) => t.type !== 'space');
   if (!options.keepTitle && first >= 0 && tokens[first].type === 'heading' && tokens[first].depth === 1) tokens.splice(first, 1);
-  return sheets(md.parser(tokens));
+  return unshield(sheets(md.parser(tokens)), bar);
 }
+
+// A table's row parts into cells at every | (GFM), and so would a link's [[words|target]] in a cell:
+// "[[the secret" in one cell and "@r7]]" in the next, its code in the page. Where the text's links
+// are drawn (`links`), the | inside each [[…]] on one line is read as a character the text does not
+// hold (`bar`, one of the private use area), which parts no cell, and the link's reading puts the |
+// back (textLinks), as unshield does in everything drawn; so a link in a cell is one link, drawn
+// as anywhere else. Without `links` (the long reads) the text is read as it is.
+const ONE_LINE_LINK = /\[\[[^[\]\n]*\]\]/g;
+function shield(text, { links } = {}) {
+  const src = String(text);
+  if (!links || !src.includes('|')) return { src, bar: null };
+  let code = 0xe000;
+  while (code <= 0xf8ff && src.includes(String.fromCharCode(code))) code++;
+  if (code > 0xf8ff) return { src, bar: null };
+  const bar = String.fromCharCode(code);
+  return { src: src.replace(ONE_LINE_LINK, (link) => link.replaceAll('|', bar)), bar };
+}
+const unshield = (text, bar) => (bar ? text.replaceAll(bar, '|') : text);
 
 // A page's text (design §14), as its page draws it: Markdown with its headings, every one typed,
 // the first too (the page's title is its own, not the text's), and the links typed in it (`links`:
@@ -45,21 +64,22 @@ export function renderPageText(text, links) {
 // level is in parts, each from its heading to the next, and the heading is the part's title.
 // Any other text is one part with no title, rendered as renderMarkdown renders it.
 export function renderParts(text, options = {}) {
-  const md = reader(options);
-  const tokens = md.lexer(String(text));
+  const { src, bar } = shield(text, options);
+  const md = reader({ ...options, bar });
+  const tokens = md.lexer(src);
   const heads = tokens.flatMap((t, i) => (t.type === 'heading' && t.depth === 1 ? [i] : []));
   if (heads.length < 2) return [{ title: null, html: renderMarkdown(text, options) }];
   return heads.map((at, n) => {
     const body = tokens.slice(at + 1, heads[n + 1] ?? tokens.length);
     body.links = tokens.links; // what the lexer gathered for the whole text
-    return { title: tokens[at].text.trim(), html: sheets(md.parser(body)) };
+    return { title: unshield(tokens[at].text.trim(), bar), html: unshield(sheets(md.parser(body)), bar) };
   });
 }
 
-function reader({ linkBase = REPO, root = REPO, rowLink, held, published, links } = {}) {
+function reader({ linkBase = REPO, root = REPO, rowLink, held, published, links, bar = null } = {}) {
   return new Marked({
     gfm: true,
-    extensions: links ? [textLinks(links)] : [],
+    extensions: links ? [textLinks(links, bar)] : [],
     renderer: {
       html: ({ text: raw }) => esc(raw),
       heading({ tokens, depth }) {
@@ -101,8 +121,8 @@ function reader({ linkBase = REPO, root = REPO, rowLink, held, published, links 
 
 // [[words|target]] as one piece of a line, read before anything else there, so that its words
 // stay as typed (no emphasis, no link of Markdown's own inside); a code span that starts before it
-// keeps it as code.
-function textLinks(ctx) {
+// keeps it as code. `bar`: what stands for the | inside a link while the text is read (shield).
+function textLinks(ctx, bar) {
   return {
     name: 'textLink',
     level: 'inline',
@@ -112,7 +132,7 @@ function textLinks(ctx) {
     },
     tokenizer(src) {
       const end = src.startsWith('[[') ? src.indexOf(']]') + 2 : 0;
-      const [link] = end > 2 ? linksIn(src.slice(0, end)) : [];
+      const [link] = end > 2 ? linksIn(unshield(src.slice(0, end), bar)) : [];
       if (link?.start === 0) return { type: 'textLink', raw: src.slice(0, link.end), link };
       return undefined;
     },
