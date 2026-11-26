@@ -2,7 +2,7 @@
 // are drawn by the server (lib/idea.mjs, which knows the keywords), so once saved the page asks
 // for itself again and takes the idea from it. The idea an answer brings (core.js: an edit changed
 // what one of its links names) is dressed here too.
-import { state, send, redraw, onIdea } from './core.js';
+import { state, send, redraw, onIdea, putIdea } from './core.js';
 import { iconButton } from './icons.js';
 import { openField, textarea } from './field.js';
 
@@ -28,7 +28,7 @@ function editIdea(section, label, opener) {
     read: () => area.value,
     save: async (text, box) => {
       await send({ op: 'set-idea', text }, { field: box });
-      await redrawIdea(section);
+      await redrawIdea();
     },
     place: (box) => label.after(box),
     hide: [...section.children].filter((el) => el !== label),
@@ -38,14 +38,16 @@ function editIdea(section, label, opener) {
   });
 }
 
-async function redrawIdea(section) {
+// The idea as the page drawn now has it, with the draft version that page was drawn from: an edit
+// answered meanwhile may have brought a newer drawing already, which stays (core.js, putIdea).
+async function redrawIdea() {
   try {
     const response = await fetch(location.pathname, { headers: { Accept: 'text/html' } });
-    const fresh = new DOMParser().parseFromString(await response.text(), 'text/html').querySelector('section.idea');
+    const page = new DOMParser().parseFromString(await response.text(), 'text/html');
+    const fresh = page.querySelector('section.idea');
     if (!response.ok || !fresh) return;
-    section.replaceWith(document.adoptNode(fresh));
-    dressIdea();
-    redraw(); // library.js reads the idea's keywords again
+    const { version } = JSON.parse(page.getElementById('edit-data').textContent);
+    if (putIdea(fresh.outerHTML, version, { own: true })) redraw(); // library.js reads the idea's keywords again
   } catch {
     // The idea is saved; the page shows the new words at the next reload.
   }

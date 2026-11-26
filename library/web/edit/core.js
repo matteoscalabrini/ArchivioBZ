@@ -1,10 +1,10 @@
 // What the parts of edit mode share: the draft as the page holds it, the queue that sends each
 // edit to the server in turn, and what the page does with an answer. The rows on the page are
-// the server's own drawing (lib/pages.mjs): an answer that carries a row is swapped in, and so
-// are the other rows and the idea whose links the edit changed (`relinked`), "All keywords" is
+// the server's own drawing (lib/pages.mjs): an answer that carries a row is swapped in, the links
+// the edit changed in other rows and the idea are put in theirs (`relinked`), "All keywords" is
 // the answer's strip (strip.js), and the order, the numbers and the chapters' headings follow the
 // answer's lists; library.js then reads the page again (rescan) and draws it in the state it was in.
-import { OpQueue, Underway, storyPlaces, headingsOf } from '../editmodel.js';
+import { OpQueue, Underway, IdeaDrawings, storyPlaces, headingsOf } from '../editmodel.js';
 import { rescan, forgetIndex } from '../library.js';
 import { load } from '../pictures.js';
 
@@ -155,9 +155,9 @@ function applied(op, answer, field) {
   keep(op, answer);
   if (op.op === 'remove-row') rowEl(op.id)?.remove();
   if (typeof answer?.row === 'string') putRow(answer.result?.id ?? op.id, answer.row, field);
-  for (const [id, html] of Object.entries(answer?.relinked?.rows ?? {})) if (rowEl(id)) putRow(id, html, null);
-  if (op.op === 'set-idea') waitingIdea = null; // the idea's own save draws it again (idea.js)
-  if (typeof answer?.relinked?.idea === 'string') putIdea(answer.relinked.idea);
+  for (const [id, html] of Object.entries(answer?.relinked?.rows ?? {})) relink(id, html);
+  if (op.op === 'set-idea') ideas.saved(); // the idea's own save draws it again (idea.js)
+  if (typeof answer?.relinked?.idea === 'string') putIdea(answer.relinked.idea, answer.version);
   if (typeof answer?.strip === 'string') strip = answer.strip;
   if (!Array.isArray(answer?.chapters)) return;
   // While edits wait behind this one, the page keeps the order it shows and "All keywords" as it
@@ -248,12 +248,44 @@ function putRow(id, html, field) {
   swap(old, fresh);
 }
 
+// Another row whose links an edit changed (a row it names hidden or retitled, a keyword no longer
+// carried): `html`, the row as the server now draws it, gives the links, and only the links that
+// read otherwise are put in, each in place of its old one. The row itself stays, and with it what
+// is open or under way in it: a field, the keyword list, a file chooser, a held drag, the focus, a
+// link a jump left from. Its text's own field hides those paragraphs and reads none of them, so
+// they are brought up to date under it. A drawing of the row that waits for a field (putRow) is
+// older than this one, which takes its place.
+function relink(id, html) {
+  if (waiting.has(id)) waiting.set(id, html);
+  const row = rowEl(id);
+  if (!row) return;
+  const fresh = [...fromHtml(html).querySelectorAll('.row-body .txt > p')];
+  const shown = [...row.querySelectorAll('.row-body .txt > p:not(.ed-empty)')];
+  if (fresh.length !== shown.length) return; // not the text the server drew: the row's own answer brings it
+  shown.forEach((p, i) => {
+    const old = [...p.children].filter((el) => !el.matches('.ed')); // the links, less edit mode's ✎
+    const now = [...fresh[i].children];
+    if (old.length !== now.length) return;
+    old.forEach((el, k) => {
+      if (sameLink(el, now[k])) return;
+      const focused = el === document.activeElement;
+      el.replaceWith(now[k]);
+      if (focused) now[k].focus({ preventScroll: true });
+    });
+  });
+}
+
+// The same link as drawn, less what library.js sets on a keyword's button (aria-pressed).
+const sameLink = (a, b) => a.outerHTML.replace(/ aria-pressed="(?:true|false)"/, '') === b.outerHTML;
+
 // Called by a field when it closes, with its row or the idea: what waited for it goes in now.
 export function fieldClosed(row) {
   if (!row?.isConnected) return;
   if (row.matches('section.idea')) {
-    if (waitingIdea && !row.querySelector('.ed-field')) {
-      putIdea(waitingIdea);
+    if (row.querySelector('.ed-field')) return;
+    const html = ideas.closed();
+    if (html) {
+      showIdea(row, html);
       redraw();
     }
     return;
@@ -266,23 +298,26 @@ export function fieldClosed(row) {
   redraw();
 }
 
-// The idea as the server now draws it, after an edit changed what one of its links names: put in
-// place of the page's and dressed again (idea.js, onIdea). While its field is open it waits, and
-// goes in when the field closes.
+// The idea as the server draws it, with the draft version it was drawn from: after an edit changed
+// what one of its links names (an answer's `relinked.idea`), or once the idea is saved (idea.js,
+// `own`, which takes the place of its open field). Put in place of the page's and dressed again
+// (idea.js, onIdea), unless a newer drawing is shown or waiting; while its field is open it waits,
+// and goes in when the field closes (editmodel.js, IdeaDrawings). -> whether it went in.
 let dressIdea = () => {};
 export const onIdea = (fn) => {
   dressIdea = fn;
 };
-let waitingIdea = null;
+const ideas = new IdeaDrawings(data.version);
 
-function putIdea(html) {
+export function putIdea(html, version, { own = false } = {}) {
   const section = document.querySelector('section.idea');
-  if (!section) return;
-  if (section.querySelector('.ed-field')) {
-    waitingIdea = html;
-    return;
-  }
-  waitingIdea = null;
+  if (!section) return false;
+  if (ideas.offer(html, version, { fieldOpen: Boolean(section.querySelector('.ed-field')), own }) !== 'put') return false;
+  showIdea(section, html);
+  return true;
+}
+
+function showIdea(section, html) {
   section.replaceWith(fromHtml(html));
   dressIdea();
 }

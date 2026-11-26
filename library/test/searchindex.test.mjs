@@ -75,3 +75,15 @@ test('a link in a row\'s text or a read is indexed as its words', () => {
   assert.deepEqual(second.read, ['Notes', 'Read it.']);
   assert.ok(!JSON.stringify(searchIndex(lib)).includes('[['));
 });
+
+// The edit search finds a row by what the edit page shows; the public one by what the public page
+// shows. A link with no words to a hidden row shows that row's title in edit mode and nothing on
+// the public site; to a keyword only hidden rows carry, its label in edit mode and its name as
+// typed on the public site.
+test('the edit search reads a link as the edit page shows it, the public search as the public page', () => {
+  const hidden = { id: '5.01', no: '', hidden: true, title: 'Two photographs of a bridge', type: 'Photograph', date: '', keywords: ['ponte-druso'], text: [] };
+  const linking = { id: '5.02', no: '2.01', hidden: false, title: 'A page', type: 'Press', date: '', keywords: [], text: ['See [[@5.01]] and [[ponte druso]].'] };
+  const vocabulary = { keywords: { 'ponte-druso': { label: 'Ponte Druso' } }, aliases: {} };
+  assert.deepEqual(searchIndex({ ...vocabulary, entries: [hidden, linking] }, { edit: true }).rows[1].text, ['See Two photographs of a bridge and Ponte Druso.']);
+  assert.deepEqual(searchIndex({ ...vocabulary, entries: [linking] }).rows[0].text, ['See and ponte druso.']);
+});

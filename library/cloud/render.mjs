@@ -119,9 +119,10 @@ export function renderEditStrip(doc) {
   return keywordStrip(libFromDoc(doc, { hidden: true }));
 }
 
-// What the search in edit mode reads: search.json of the draft, hidden rows included.
+// What the search in edit mode reads: search.json of the draft, hidden rows included, its links'
+// words as the edit page shows them.
 export function editSearch(doc, lists) {
-  return searchIndex(libFromDoc(doc, { hidden: true, lists }));
+  return searchIndex(libFromDoc(doc, { hidden: true, lists }), { edit: true });
 }
 
 // "277 rows in 18 chapters": the rows a publish of the document shows (not the hidden ones), and

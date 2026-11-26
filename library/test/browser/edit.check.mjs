@@ -2152,6 +2152,47 @@ async function main() {
     await linksRead(shown, '5.00 shown again');
   });
 
+  // A row whose links an edit elsewhere changes is not drawn anew: only those links are, so what
+  // the author has open in it stays (Task 17 re-review B).
+  await step('12.01, its link to 5.00 dotted by 5.00\'s hide while its keyword list is open with words typed: the list, the words, the focus and the row stay, the other link too', async () => {
+    await page.goto(`${base}/edit/`);
+    await page.waitForSelector('.ed-bar');
+    // Marked by a property, not an attribute: an attribute would make the link read otherwise.
+    await page.$eval(rowAt('12.01'), (row) => {
+      row.kept = true;
+      row.querySelector('.txt .dead-link').kept = true; // to 5.01, which the hide leaves as it is
+    });
+    await page.emulateNetworkConditions({ offline: false, download: 100e6, upload: 100e6, latency: 1500 });
+    try {
+      const answered = answerTo(page, 'op');
+      await page.click(`${rowAt('5.00')} button.ed[data-ed="hide"]`);
+      await page.click(`${rowAt('12.01')} button.ed[data-ed="kw-add"]`);
+      await page.waitForSelector(`${rowAt('12.01')} .ed-pick input`);
+      await page.keyboard.type('quok');
+      check((await answered).status() === 200, 'the row was not hidden');
+      await page.waitForFunction((sel) => [...document.querySelectorAll(sel)].some((el) => el.textContent === 'the fixture notes'), { timeout: WAIT }, `${rowAt('12.01')} .txt .dead-link[title="The row is hidden."]`)
+        .catch(() => { throw new Error('12.01\'s link to 5.00 is not dotted'); });
+    } finally {
+      await page.emulateNetworkConditions(null);
+    }
+    const kept = await page.evaluate((sel) => {
+      const row = document.querySelector(sel);
+      const input = row.querySelector('.ed-pick input');
+      return {
+        row: row.kept === true,
+        link: [...row.querySelectorAll('.txt .dead-link')].some((el) => el.kept === true && el.textContent === 'the hidden one'),
+        typed: input?.value ?? null,
+        focused: Boolean(input) && input === document.activeElement,
+      };
+    }, rowAt('12.01'));
+    check(JSON.stringify(kept) === JSON.stringify({ row: true, link: true, typed: 'quok', focused: true }), `after the answer 12.01 holds ${JSON.stringify(kept)}`);
+    await page.keyboard.press('Escape');
+    const answered = answerTo(page, 'op');
+    await page.click(`${rowAt('5.00')} button.ed[data-ed="hide"]`);
+    check((await answered).status() === 200, 'the row was not shown again');
+    await page.waitForSelector(linkTo('12.01', '5.00'));
+  });
+
   await step('at a phone\'s width the way back stands at the bottom, inside the screen, and returns', async () => {
     await page.setViewport({ width: 390, height: 844, isMobile: true, hasTouch: true });
     await page.goto(`${base}/edit/`);

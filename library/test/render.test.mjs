@@ -456,6 +456,14 @@ test('edit mode searches the hidden rows too; the public search does not', () =>
   assert.ok(!pub.rows.some((row) => row.no === '5.01'));
 });
 
+test('the edit search reads a row\'s links as the edit page shows them', () => {
+  const doc = fixtureDoc();
+  doc.rows['5.02'].record.text = ['See [[@5.01]] and [[ponte druso]].'];
+  doc.rows['5.01'].hidden = true; // which alone carries ponte-druso
+  assert.deepEqual(editSearch(doc, lists).rows.find((row) => row.no === '5.02').text, ['See Two photographs of a bridge and Ponte Druso.']);
+  assert.deepEqual(JSON.parse(renderSite(doc, lists).files.get('search.json').body).rows.find((row) => row.no === '5.02').text, ['See and ponte druso.']);
+});
+
 test('the lists: colours, names and glossary of the root, its kinds, the dot data beside the code', async () => {
   assert.deepEqual(lists.colours.red, ['red', 'rosso', 'rot']);
   assert.deepEqual(lists.names, [['Bolzano', 'Bozen'], ['Ponte Druso', 'Drususbrücke']]);

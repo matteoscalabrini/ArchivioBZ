@@ -205,6 +205,45 @@ export class OpQueue {
 // is: what waits for it (Log out, Public site) then finds every field as its save left it, not
 // still saving in the moment between the answer and the field's own closing. A count, not a list:
 // work begun while settled() waits (the second edit of a keyword added, then given) is waited for.
+// Which drawing of the idea the page shows (edit/core.js). Each comes with the draft version it
+// was drawn from (the page's own, an answer's `relinked.idea`, the page asked again once the idea
+// is saved), and they can come out of order: the page asked for after a save may answer after an
+// edit queued behind that save, with the draft from before it. One older than the drawing shown or
+// waiting is never put in. One that comes while the idea's field is open waits for the field to
+// close, unless it is that field's own save's, which takes the field's place.
+export class IdeaDrawings {
+  #version;
+  #waiting = null;
+
+  constructor(version) {
+    this.#version = version;
+  }
+
+  // -> 'put' (put it in now), 'wait' (kept until the field closes) or 'old' (never put in).
+  offer(html, version, { fieldOpen = false, own = false } = {}) {
+    if (version < this.#version) return 'old';
+    this.#version = version;
+    if (fieldOpen && !own) {
+      this.#waiting = html;
+      return 'wait';
+    }
+    this.#waiting = null;
+    return 'put';
+  }
+
+  // The idea's field has closed: the drawing that waited for it, or null.
+  closed() {
+    const html = this.#waiting;
+    this.#waiting = null;
+    return html;
+  }
+
+  // The idea's own save was answered: what waited was drawn from the text before it.
+  saved() {
+    this.#waiting = null;
+  }
+}
+
 export class Underway {
   #count = 0;
   #waiting = [];

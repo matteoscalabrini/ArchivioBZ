@@ -6,8 +6,9 @@
 //   text, facts   its description, and its notes with their source tags taken out
 //   table, read   what hangs from it: each record of its table, each paragraph of its read
 // and the three shared lists. A list that is empty is left out of its row. A link typed in the
-// text or the read (lib/links.mjs) is there as its words, as the public page shows them, never its
-// code, from what links.mjs makes of the same lib as the pages do.
+// text or the read (lib/links.mjs) is there as its words, never its code: as the public page shows
+// them, or with `edit` as the edit page shows them, from what links.mjs makes of the same lib as
+// the pages do.
 //
 // Earlier steps add what is optional here: entry.records (tables), entry.pages (long reads).
 
@@ -20,9 +21,9 @@ const BLOCK = /<(p|li|h[2-6]|blockquote|figcaption|td)\b[^>]*>([\s\S]*?)<\/\1>/g
 const BREAK = /<\/?(?:br|p|li|ul|ol|div|blockquote|h[1-6]|td|tr|figure|figcaption)\b[^>]*>/gi;
 const ENTITIES = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ' };
 
-export function searchIndex(lib) {
+export function searchIndex(lib, { edit = false } = {}) {
   const label = (id) => lib.keywords?.[id]?.label ?? id;
-  const links = linksOf(lib);
+  const links = linksOf(lib, { edit });
   const words = (text) => wordsOf(text, links);
   const rows = lib.entries.map((entry) => {
     const row = { no: rowKey(entry) };

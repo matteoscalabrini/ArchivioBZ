@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { dropTarget, chapterIndex, toParagraphs, fromParagraphs, OpQueue, Underway, changesIn, publishQuestion, removeQuestion, storyPlaces, headingsOf, placeRow, rowPlace, placeChapter, yearValue, numberValue, offered, placedLine, rowCount } from '../web/editmodel.js';
+import { dropTarget, chapterIndex, toParagraphs, fromParagraphs, OpQueue, Underway, IdeaDrawings, changesIn, publishQuestion, removeQuestion, storyPlaces, headingsOf, placeRow, rowPlace, placeChapter, yearValue, numberValue, offered, placedLine, rowCount } from '../web/editmodel.js';
 import { diffDocs } from '../cloud/doc.mjs';
 import { summaryLine } from '../cloud/render.mjs';
 import { sampleDoc } from './docs.mjs';
@@ -259,4 +259,32 @@ test('the keywords offered to a row: the others, by label, narrowed by what is t
   assert.deepEqual(offered(vocabulary, [], 'CITTA').map((k) => k.id), ['citta']);
   assert.deepEqual(offered(vocabulary, [], ' re ').map((k) => k.id), ['press']);
   assert.deepEqual(offered(vocabulary, [], 'zz'), []);
+});
+
+// The idea's drawings come with the draft version each was drawn from, and not always in order:
+// the page asked again after the idea is saved can answer after an edit queued behind that save,
+// with the draft from before that edit (the race of Task 17's re-review).
+test('IdeaDrawings: a drawing older than the one shown or waiting is never put in; one that comes while the field is open waits for it', () => {
+  const ideas = new IdeaDrawings(5);
+  assert.equal(ideas.offer('<v6>', 6), 'put');
+  assert.equal(ideas.offer('<v5>', 5), 'old', 'older than the one shown');
+  assert.equal(ideas.offer('<v6 again>', 6), 'put', 'as new as the one shown');
+  assert.equal(ideas.closed(), null, 'nothing waits');
+
+  // The idea saved at 7 with its field still open; the hide behind it answered at 8 with the idea
+  // as it now reads; then the page asked again after the save answers, drawn at 7.
+  ideas.saved();
+  assert.equal(ideas.offer('<v8, 5.00 hidden>', 8, { fieldOpen: true }), 'wait');
+  assert.equal(ideas.offer('<v7, 5.00 live>', 7, { fieldOpen: true, own: true }), 'old');
+  assert.equal(ideas.closed(), '<v8, 5.00 hidden>', 'the field closed: what waited goes in');
+  assert.equal(ideas.closed(), null);
+
+  // The save's own drawing goes in though its field is open, and what waited before it is dropped.
+  assert.equal(ideas.offer('<v9>', 9, { fieldOpen: true }), 'wait');
+  assert.equal(ideas.offer('<v10, own>', 10, { fieldOpen: true, own: true }), 'put');
+  assert.equal(ideas.closed(), null);
+  // The idea's own save answered: what waited was drawn from the text before it.
+  assert.equal(ideas.offer('<v11>', 11, { fieldOpen: true }), 'wait');
+  ideas.saved();
+  assert.equal(ideas.closed(), null);
 });
