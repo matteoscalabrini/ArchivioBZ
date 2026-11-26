@@ -1,18 +1,20 @@
 // A row in edit mode: the row as the server drew it, with its controls. In the head: the grip to
 // drag it, ✎ on the number, the title and the date, the type as a choice, each keyword with ✕ and
 // a ＋ for another, 👁 to hide or show it, 🗑 to remove it; on a closed row the number itself is a
-// button too, the quick way to move a row without opening it. In the open row: ✎ on the text and
-// on each line under it (Holder, Creator, Rights, Confidence, Source, Place), shown even when
-// empty so that it can be filled. A click on any of these never opens or closes the row. Once a
-// typed number is answered, the page follows the row to where it went.
+// button too, the quick way to move a row without opening it. In the open row: ✎ on the text,
+// under it the pages about the row (Read: … →, a hidden one dotted) and "＋ page about this row"
+// (pages.js), and ✎ on each line under them (Holder, Creator, Rights, Confidence, Source, Place),
+// shown even when empty so that it can be filled. A click on any of these never opens or closes
+// the row. Once a typed number is answered, the page follows the row to where it went.
 import { state, list, onRow, send, act, say, rowEl, onTheirWay } from './core.js';
-import { iconButton } from './icons.js';
+import { iconButton, wordButton } from './icons.js';
 import { openField, input, textarea, select } from './field.js';
 import { ask } from './dialog.js';
 import { openPicker } from './keywords.js';
 import { attachLinker } from './linker.js';
 import { dressPictures } from './pictures.js';
 import { unfold } from './compact.js';
+import { addPage } from './pages.js';
 import { toParagraphs, fromParagraphs, yearValue, numberValue, removeQuestion, placedLine } from '../editmodel.js';
 
 const CONFIDENCE = [['read', 'Read in the source'], ['secondary', 'From a secondary source'], ['lead', 'Lead, not yet a fact']];
@@ -77,6 +79,19 @@ function dressBody(el) {
   }
   last.append(' ', iconButton('edit', 'Edit the text', { key: 'text' }));
 
+  // The pages about the row, as the server drew them under the text, or a list for none yet, and
+  // ＋ page about this row last in it.
+  let reads = txt.querySelector(':scope > ul.reads');
+  if (!reads) {
+    reads = Object.assign(document.createElement('ul'), { className: 'reads' });
+    last.after(reads);
+  }
+  const add = wordButton('page about this row', { first: 'add', className: 'ed-add-page' });
+  add.dataset.ed = 'page-add';
+  const item = Object.assign(document.createElement('li'), { className: 'ed-add-read' });
+  item.append(add);
+  reads.append(item);
+
   // Every line, those the server left out because they are empty included, each with its ✎.
   let dl = txt.querySelector('dl.meta');
   if (!dl) {
@@ -131,6 +146,7 @@ list.addEventListener('click', (event) => {
   if (key === 'kw-add') return openPicker(row, id, button);
   if (key === 'hide') return act({ op: 'hide-row', id, hidden: state.doc.rows[id]?.hidden !== true });
   if (key === 'remove') return removeRow(id);
+  if (key === 'page-add') return addPage({ row: id, offered: `On ${record(id).title ?? ''}` });
   return undefined;
 });
 

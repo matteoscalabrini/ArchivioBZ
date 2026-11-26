@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { loadLibrary } from '../lib/records.mjs';
 import { locatePlaces } from '../lib/places.mjs';
-import { docFromLibrary, numbering, chapterNumbers, libFromDoc, diffDocs, checkDoc, RECORD_FIELDS, withoutTerms } from '../cloud/doc.mjs';
+import { docFromLibrary, numbering, chapterNumbers, libFromDoc, diffDocs, checkDoc, raiseCounters, RECORD_FIELDS, withoutTerms } from '../cloud/doc.mjs';
 import { cleanRoot } from './helpers.mjs';
 import { sampleDoc, sampleWith } from './docs.mjs';
 
@@ -19,7 +19,7 @@ test('moving in keeps every row, in order, under its section', async () => {
   assert.deepEqual(checkDoc(doc), []);
   const row = doc.rows[lib.entries[0].no];
   for (const gone of ['no', 'images', 'section', 'dir', 'abs', 'find']) assert.equal(row.record[gone], undefined, gone);
-  assert.deepEqual(doc.next, { row: 1, chapter: 4 });
+  assert.deepEqual(doc.next, { row: 1, chapter: 4, page: 1 });
   assert.equal(doc.idea, 'x');
   const withFile = lib.entries.find((e) => e.file);
   assert.equal(doc.rows[withFile.no].record.file, withFile.abs.slice(root.length + 1));
@@ -260,4 +260,89 @@ test('with nothing published yet, every row is added', () => {
   const d = diffDocs(null, doc);
   assert.deepEqual(d.added, ['a', 'b', 'c', 'd']);
   assert.deepEqual([d.changed, d.removed, d.hidden, d.shown], [[], [], [], []]);
+});
+
+// Pages (design §14): `pages: [{ id, address, title, text, row, hidden }]` and next.page. A
+// document from before them has neither: no pages, and next.page 1.
+const withPages = () => {
+  const doc = sample();
+  doc.pages = [
+    { id: 'p1', address: 'on-the-bridge', title: 'On the bridge', text: 'Words.', row: null, hidden: false },
+    { id: 'p2', address: 'more-on-b', title: 'More on b', text: '', row: 'b', hidden: false },
+    { id: 'p3', address: 'kept-back', title: 'Kept back', text: '', row: null, hidden: true },
+  ];
+  doc.next.page = 4;
+  return doc;
+};
+
+test('a document moved in has no pages yet and next.page 1; one without them is sound', async () => {
+  const root = await cleanRoot();
+  const lib = await loadLibrary(root);
+  await locatePlaces(lib);
+  const doc = docFromLibrary(lib, { root });
+  assert.deepEqual(doc.pages, []);
+  assert.equal(doc.next.page, 1);
+  assert.deepEqual(Object.keys(doc), ['v', 'chapters', 'rows', 'keywords', 'aliases', 'places', 'idea', 'about', 'pages', 'next']);
+  assert.deepEqual(checkDoc(sample()), [], 'no pages and no next.page');
+  assert.deepEqual(checkDoc(withPages()), []);
+});
+
+test('checkDoc on pages: an unknown row, an address twice, a bad id, and every other shape the operations never leave', () => {
+  const text = (edit) => { const doc = withPages(); edit(doc); return checkDoc(doc).join('\n'); };
+  const cases = [
+    [(d) => (d.pages[1].row = 'zz'), /page p2 is about row zz, but there is no row zz/],
+    [(d) => (d.pages[2].address = 'on-the-bridge'), /the address on-the-bridge is given to two pages: p1, p3/],
+    [(d) => (d.pages[0].id = 'x1'), /a page has no id of the form p1/],
+    [(d) => (d.pages[0].id = 'p0'), /a page has no id of the form p1/],
+    [(d) => (d.pages[2].id = 'p1'), /page p1 appears twice/],
+    [(d) => (d.pages[0].address = 'On-the-bridge'), /page p1 has an address that is not one: "On-the-bridge"/],
+    [(d) => (d.pages[0].address = '-on'), /page p1 has an address that is not one/],
+    [(d) => (d.pages[0].address = 'on--the'), /page p1 has an address that is not one/],
+    [(d) => (d.pages[0].address = ''), /page p1 has an address that is not one/],
+    [(d) => (d.pages[0].title = ' '), /page p1 has no title/],
+    [(d) => (d.pages[0].text = null), /page p1: its text is not text/],
+    [(d) => (d.pages[0].row = undefined), /page p1 is about no row and is no site page/],
+    [(d) => (d.pages[0].row = 7), /page p1 is about no row and is no site page/],
+    [(d) => (d.pages[0].hidden = 'no'), /page p1: hidden is not true or false/],
+    [(d) => (d.pages[0].order = 1), /page p1 has a field "order" that a page does not have/],
+    [(d) => (d.pages = {}), /pages is not a list/],
+    [(d) => (d.pages[1] = 'p2'), /a page has no id of the form p1/],
+    [(d) => (d.next.page = 3), /page p3 is not below next\.page \(3\)/],
+    [(d) => delete d.next.page, /next\.page is not a whole number/],
+  ];
+  for (const [edit, pattern] of cases) assert.match(text(edit), pattern, String(edit));
+  const empty = sample();
+  empty.pages = [];
+  assert.deepEqual(checkDoc(empty), [], 'an empty list wants no next.page');
+});
+
+test('diffDocs reports the pages; raiseCounters raises next.page', () => {
+  const before = withPages();
+  assert.equal(diffDocs(before, structuredClone(before)).pages, false);
+  for (const edit of [(d) => (d.pages[0].text = 'Other words.'), (d) => (d.pages[2].hidden = false), (d) => d.pages.reverse(), (d) => d.pages.pop()]) {
+    const after = structuredClone(before);
+    edit(after);
+    const d = diffDocs(before, after);
+    assert.deepEqual([d.pages, d.count], [true, 1], String(edit));
+  }
+  assert.equal(diffDocs(null, withPages()).pages, true, 'the first publish carries them');
+  assert.equal(diffDocs(sample(), { ...sample(), pages: [] }).pages, false);
+  assert.deepEqual(raiseCounters(sample(), withPages()).next, { row: 1, chapter: 3, page: 4 });
+  assert.deepEqual(raiseCounters(withPages(), sample()).next, { row: 1, chapter: 3, page: 4 });
+  assert.deepEqual(raiseCounters({ ...withPages(), next: { row: 1, chapter: 3, page: 9 } }, withPages()).next.page, 9);
+});
+
+test('libFromDoc: the public lib holds the pages a publish shows, the edit lib every one, and each row its own', () => {
+  const doc = withPages();
+  doc.pages.push({ id: 'p4', address: 'about-c', title: 'About c', text: '', row: 'c', hidden: false });
+  doc.next.page = 5;
+  doc.rows.c.hidden = true;
+  const pub = libFromDoc(doc);
+  assert.deepEqual(pub.pages.map((p) => [p.address, p.shown]), [['on-the-bridge', true], ['more-on-b', true]]);
+  assert.deepEqual(pub.entries.find((e) => e.id === 'b').rowPages.map((p) => p.address), ['more-on-b']);
+  assert.deepEqual(pub.entries.find((e) => e.id === 'a').rowPages, []);
+  const edit = libFromDoc(doc, { hidden: true });
+  assert.deepEqual(edit.pages.map((p) => [p.address, p.shown]), [['on-the-bridge', true], ['more-on-b', true], ['kept-back', false], ['about-c', false]]);
+  assert.deepEqual(edit.entries.find((e) => e.id === 'c').rowPages.map((p) => [p.address, p.shown]), [['about-c', false]]);
+  assert.deepEqual(libFromDoc(sample()).pages, [], 'a document without pages');
 });

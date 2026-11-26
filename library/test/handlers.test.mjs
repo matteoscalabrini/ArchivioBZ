@@ -688,3 +688,103 @@ test('end to end on this computer: original, picture, add-picture; the row holds
   assert.deepEqual([draft.version, draft.doc.rows.a.pictures, draft.doc.rows.a.thumb], [2, [picture], picture.small]);
   assert.equal(body.summary, '1 row changed');
 });
+
+// Pages (design §14): each page a publish shows is a public file at pages/<address>.html, served as
+// the other four are; nothing else under pages/ is. In edit mode a page is at
+// /edit/pages/<address>, for a session only.
+const PAGE_OPS = [
+  { op: 'add-page', title: 'On the bridge', row: null },
+  { op: 'set-page', id: 'p1', text: 'Words on the [[bridge|@b]].' },
+  { op: 'add-page', title: 'More on b', row: 'b' },
+];
+async function withPages() {
+  let version = 1;
+  for (const op of PAGE_OPS) {
+    const res = await h.edit(post('op', { version, op }));
+    assert.equal(res.status, 200, JSON.stringify(op));
+    version++;
+  }
+  return version;
+}
+
+test('a page published is served at pages/<address>.html with the public headers; nothing else under pages/ is', async () => {
+  const version = await withPages();
+  assert.equal((await site('pages/on-the-bridge.html')).status, 404, 'not before it is published');
+  assert.equal((await h.edit(post('publish', { version }))).status, 200);
+  const res = await site('pages/on-the-bridge.html');
+  assert.equal(res.status, 200);
+  for (const [name, value] of Object.entries({ 'cache-control': 'public, max-age=0, must-revalidate', 'vercel-cdn-cache-control': 'max-age=31536000', 'cache-tag': 'site', 'vercel-cache-tag': 'site' })) {
+    assert.equal(res.headers.get(name), value, name);
+  }
+  assert.match(res.headers.get('content-type'), /^text\/html/);
+  assert.match(res.headers.get('etag'), /^"2-/);
+  assert.match(await res.text(), /<h1>On the bridge<\/h1>\n<article class="read page">\n<p>Words on the <a href="\.\.\/index\.html#o=b">bridge<\/a>\.<\/p>/);
+  assert.equal((await site('pages/more-on-b.html')).status, 200);
+  const at = (url) => h.site(new Request(url));
+  assert.equal((await at('https://a.test/pages/more-on-b.html')).status, 200, 'by its own path, without the rewrite\'s query');
+  for (const path of ['pages/../x.html', 'pages/../index.html', 'pages/X.html', 'pages/On-the-bridge.html', 'pages/nothing.html', 'pages/on-the-bridge.htm', 'pages/.html', 'pages/a/b.html', 'pages/on-the-bridge.html%00', 'pages/', 'pages']) {
+    const missing = await site(path);
+    assert.equal(missing.status, 404, path);
+    assert.equal(missing.headers.get('cache-control'), 'no-store', path);
+    assert.equal(missing.headers.get('cache-tag'), null, path);
+  }
+});
+
+test('a page hidden or removed since the last publish answers 404 after the next one', async () => {
+  let version = await withPages();
+  assert.equal((await h.edit(post('publish', { version }))).status, 200);
+  assert.equal((await h.edit(post('op', { version: version++, op: { op: 'hide-page', id: 'p1', hidden: true } }))).status, 200);
+  assert.equal((await h.edit(post('op', { version: version++, op: { op: 'remove-page', id: 'p2' } }))).status, 200);
+  assert.equal((await site('pages/on-the-bridge.html')).status, 200, 'still public until the next publish');
+  assert.equal((await h.edit(post('publish', { version }))).status, 200);
+  assert.equal((await site('pages/on-the-bridge.html')).status, 404);
+  assert.equal((await site('pages/more-on-b.html')).status, 404);
+  assert.doesNotMatch(await (await site('index.html')).text(), /On the bridge|more-on-b/);
+  assert.equal((await store.listPublishes())[0].summary, 'pages changed');
+});
+
+test('/edit/pages/<address>: 401 without the cookie, the page in edit mode with it, 404 for a page the draft does not have', async () => {
+  await withPages();
+  const out = await h.edit(get('pages/on-the-bridge', { cookie: '' }));
+  assert.equal(out.status, 401);
+  assert.equal(out.headers.get('cache-control'), 'no-store');
+  const login = await out.text();
+  assert.match(login, /<form class="login" method="post" action="\.\.\/login">/, 'the login, sent to /edit/login');
+  assert.match(login, /<link rel="stylesheet" href="\.\.\/\.\.\/web\/base\.css">/);
+  assert.doesNotMatch(login, /edit-data|Words on the/);
+  const res = await h.edit(get('pages/on-the-bridge'));
+  assert.equal(res.status, 200);
+  assert.equal(res.headers.get('cache-control'), 'no-store');
+  assert.equal(res.headers.get('x-frame-options'), 'DENY');
+  const html = await res.text();
+  assert.match(html, /<article class="read page" data-page="p1">/);
+  const data = JSON.parse(/<script type="application\/json" id="edit-data">([\s\S]*?)<\/script>/.exec(html)[1]);
+  assert.deepEqual([data.version, data.page, data.summary], [4, 'p1', 'pages changed']);
+  const byPath = await h.edit(new Request('https://a.test/edit/pages/more-on-b', { headers: headersOf() }));
+  assert.equal(byPath.status, 200, 'by its own path, without the rewrite\'s query');
+  for (const route of ['pages/nothing', 'pages/constructor', 'pages/On-the-bridge', 'pages/on-the-bridge.html', 'pages/', 'pages/a/b']) {
+    const missing = await h.edit(get(route));
+    assert.equal(missing.status, 404, route);
+  }
+  assert.match(await (await h.edit(get('pages/nothing'))).text(), /There is no page nothing in the draft\./);
+  assert.equal((await h.edit(post('pages/on-the-bridge', {}))).status, 405);
+});
+
+test('an op answers with the draft\'s pages, and an edit of a page with its tabs and its text as the page in edit mode draws them', async () => {
+  const added = await (await h.edit(post('op', { version: 1, op: { op: 'add-page', title: 'On the bridge', row: null } }))).json();
+  assert.deepEqual(added.result, { id: 'p1', address: 'on-the-bridge' });
+  assert.deepEqual(added.pages, [{ id: 'p1', address: 'on-the-bridge', title: 'On the bridge', text: '', row: null, hidden: false }]);
+  assert.equal(added.summary, 'pages changed');
+  const written = await (await h.edit(post('op', { version: 2, op: { op: 'set-page', id: 'p1', text: 'Words on the [[bridge|@b]].' } }))).json();
+  const html = await (await h.edit(get('pages/on-the-bridge'))).text();
+  assert.ok(html.includes(written.page.article), 'the text as the page draws it');
+  assert.ok(html.includes(written.page.nav), 'the tabs as the page draws them');
+  assert.match(written.page.article, /<a href="\.\.\/\.\.\/edit\/#o=b">bridge<\/a>/);
+  const hidden = await (await h.edit(post('op', { version: 3, op: { op: 'hide-page', id: 'p1', hidden: true } }))).json();
+  assert.match(hidden.page.nav, /<a href="\.\.\/\.\.\/edit\/pages\/on-the-bridge" aria-current="page" class="dead-link" title="The page is hidden\.">On the bridge<\/a>/);
+  const plain = await (await h.edit(hide('a', 4))).json();
+  assert.equal(plain.page, undefined, 'an edit of a row draws no page');
+  assert.equal(plain.pages[0].hidden, true);
+  const removed = await (await h.edit(post('op', { version: 5, op: { op: 'remove-page', id: 'p1' } }))).json();
+  assert.deepEqual([removed.pages, removed.page], [[], undefined]);
+});

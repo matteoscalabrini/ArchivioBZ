@@ -2,8 +2,9 @@
 // differs from what is public, then the switch Compact (compact.js), About ✎, Public site,
 // Discard, Publish and Log out. Under its words, a line for what went wrong where no field was
 // open, for a conflict, which asks for a reload since every later edit would meet it too, and for
-// where a row went when it is not where its typed number said.
-import { state, bus, send, post, setSummary, settled, during, unsaved, leave, watchUnsaved, CONFLICT } from './core.js';
+// where a row went when it is not where its typed number said. A page in edit mode (pages.js) has
+// the bar too, without Compact, since it has no list of rows.
+import { state, bus, list, send, post, setSummary, settled, during, unsaved, leave, watchUnsaved, CONFLICT } from './core.js';
 import { publishQuestion } from '../editmodel.js';
 import { wordButton } from './icons.js';
 import { ask } from './dialog.js';
@@ -33,7 +34,7 @@ export function makeBar() {
   const discard = wordButton('Discard');
   const publish = wordButton('Publish', { className: 'ed-publish' });
   const logout = wordButton('Log out');
-  actions.append(compactSwitch(), about, site, discard, publish, logout);
+  actions.append(...(list ? [compactSwitch()] : []), about, site, discard, publish, logout);
 
   const message = document.createElement('p');
   message.className = 'ed-msg';

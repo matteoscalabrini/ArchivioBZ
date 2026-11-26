@@ -8,7 +8,7 @@ import http from 'node:http';
 import path from 'node:path';
 import { readFile, readdir, stat } from 'node:fs/promises';
 import { createServer } from '../serve.mjs';
-import { linksIn, linkHtml, withLinks, wordsOf } from '../lib/links.mjs';
+import { linksIn, linkHtml, withLinks, wordsOf, linksOf } from '../lib/links.mjs';
 import { buildFixtures } from './helpers.mjs';
 
 // What a text's links know of the document, as render.mjs gives it: rows by id with their numbers
@@ -66,6 +66,26 @@ test('a page: its address under pages/, from the Library and elsewhere; with no 
   assert.equal(draw('[[more|page:on-the-bridge]]', LIBRARY), '<a href="pages/on-the-bridge.html">more</a>');
   assert.equal(draw('[[more|page:on-the-bridge]]', OTHER), '<a href="../pages/on-the-bridge.html">more</a>');
   assert.equal(draw('[[page:on-the-bridge]]', OTHER), '<a href="../pages/on-the-bridge.html">On the bridge</a>');
+});
+
+// Edit mode has its own Library (/edit/) and its own address for a page (/edit/pages/<address>), so a
+// link followed there stays in edit mode, where a page not yet published is.
+test('in edit mode a page links to the page in edit mode, and from elsewhere than the Library a row or a keyword to the Library in edit mode', () => {
+  const away = { ...CTX, here: 'other', up: '../../', edit: true };
+  assert.equal(draw('[[more|page:on-the-bridge]]', { ...EDIT, up: '../' }), '<a href="../edit/pages/on-the-bridge">more</a>');
+  assert.equal(draw('[[page:on-the-bridge]]', away), '<a href="../../edit/pages/on-the-bridge">On the bridge</a>');
+  assert.equal(draw('[[the postcard|@1.09]]', away), '<a href="../../edit/#o=1.09">the postcard</a>');
+  assert.equal(draw('[[a bridge|Ponte Druso]]', away), '<a href="../../edit/#k=ponte-druso">a bridge</a>');
+  assert.equal(draw('[[the postcard|@1.09]]', { ...EDIT, up: '../' }), '<a href="#o=1.09" data-row="1.09">the postcard</a>', 'on the Library, as ever');
+  assert.equal(draw('[[a bridge|Ponte Druso]]', { ...EDIT, up: '../' }), '<button type="button" data-k="ponte-druso">a bridge</button>');
+});
+
+// The pages a lib holds (cloud/doc.mjs, libFromDoc): on the public site those a publish shows, in
+// edit mode every one, `shown` saying whether a publish shows it.
+test('linksOf knows the lib\'s pages by their addresses, and none when it has none', () => {
+  const lib = { entries: [], keywords: {}, aliases: {}, pages: [{ address: 'on-the-bridge', title: 'On the bridge', row: null, shown: true }, { address: 'kept', title: 'Kept', row: 'x', shown: false }] };
+  assert.deepEqual([...linksOf(lib).pages], [['on-the-bridge', { title: 'On the bridge', shown: true }], ['kept', { title: 'Kept', shown: false }]]);
+  assert.deepEqual([...linksOf({ entries: [] }).pages], []);
 });
 
 test('the words are escaped in every kind, live or dead, and so is a title drawn as the words', () => {

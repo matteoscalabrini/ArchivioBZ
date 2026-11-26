@@ -1,7 +1,8 @@
-// The site's three pages, the Library, the Map and About, each made from a library and what it is
-// given, reading no file: the build's steps read the files and write what these return, and the
-// same functions make the pages from the archive document in the cloud. A library made from the
-// document has chapters (lib.chapters); one read from the record files has none.
+// The site's pages, the Library, the Map, About and the pages written in edit mode, each made from a
+// library and what it is given, reading no file: the build's steps read the files and write what
+// these return, and the same functions make the pages from the archive document in the cloud. A
+// library made from the document has chapters (lib.chapters) and may have pages (lib.pages, design
+// §14), whose site pages each have a tab; one read from the record files has neither.
 import { esc, page } from './shell.mjs';
 import { pictureSrc, rowArticle, rowDetail, rowKey } from './detail.mjs';
 import { kindOf } from './kinds.mjs';
@@ -85,8 +86,12 @@ export function libraryPage(lib, { idea = null, kinds = [], present = false, dep
 
   const css = ['web/detail.css', 'web/library.css', ...(extra?.css ?? [])];
   const js = ['web/library.js', ...(extra?.js ?? [])];
-  return { html: page({ title: 'Library', tab: 'library', body, css, js, depth }), problems };
+  return { html: page({ title: 'Library', tab: 'library', body, css, js, depth, pages: sitePages(lib), edit: Boolean(extra) }), problems };
 }
+
+// The site pages of a lib, for the tabs: those whose tab the public sees, or in edit mode every one,
+// a hidden one so marked.
+const sitePages = (lib) => (lib.pages ?? []).filter((p) => p.row === null).map(({ address, title, shown }) => ({ address, title, hidden: shown === false }));
 
 // "All keywords", under the idea: every keyword some row of `lib` carries, in the vocabulary's
 // order, each with the number of rows that carry it. Edit mode draws it from the rows its page
@@ -251,7 +256,7 @@ export function mapPage(lib, { meta, sourceUrl = () => null, links = null } = {}
   ].join('\n');
 
   const head = `<script type="importmap">${json(IMPORT_MAP)}</script>\n<script type="module" src="web/map.js"></script>`;
-  return { html: page({ title: 'Map', tab: 'map', body, css: ['web/detail.css', 'web/map.css'], head }), problems };
+  return { html: page({ title: 'Map', tab: 'map', body, css: ['web/detail.css', 'web/map.css'], head, pages: sitePages(lib) }), problems };
 }
 
 // The name and count of a place, a button that web/map.js stands on the point (x, y, z).
@@ -315,7 +320,45 @@ ${types.map(([type, count]) => `<tr><td>${esc(type)}</td><td>${count}</td></tr>`
 </table></div>
 <p class="totals">${totals}</p>
 </article>`;
-  return page({ title: 'About', tab: 'about', body, css: ['web/read.css'] });
+  return page({ title: 'About', tab: 'about', body, css: ['web/read.css'], pages: sitePages(lib) });
+}
+
+// A page of the site's own (design §14), at pages/<address>.html: a site page, whose tab stands
+// between Map and About, or a row page, which expands on one row. Its title is the page's one
+// <h1> and its text (`html`, its Markdown drawn) stands in the long-read column. A row page opens
+// with its row (`entry`, as the Library has it): the row's number, title and first picture, and
+// "← Back to the row", the Library with the row open. `depth`: how far below the site's top the
+// page stands, 1 on the public site. `extra`, for edit mode: { css, js, data }, as for the Library
+// page; the frame is then edit mode's, ← Back leads to the Library in edit mode, and the text says
+// which page it is (data-page).
+export function textPage(lib, { page: shown, html, entry = null, depth = 1, extra = null }) {
+  const up = '../'.repeat(depth);
+  const library = extra ? `${up}edit/` : `${up}index.html`;
+  const top = entry ? rowTop(entry, { up, back: `${library}#o=${encodeURIComponent(rowKey(entry))}` }) : '';
+  const body = `${top}<h1>${esc(shown.title)}</h1>
+<article class="read page"${extra ? ` data-page="${esc(shown.id)}"` : ''}>
+${html}
+</article>${extra ? `\n<script type="application/json" id="edit-data">${json(extra.data ?? null)}</script>` : ''}`;
+  return page({
+    title: shown.title,
+    tab: shown.row === null ? `page:${shown.address}` : null,
+    body,
+    css: ['web/read.css', ...(extra?.css ?? [])],
+    js: extra?.js ?? [],
+    depth,
+    pages: sitePages(lib),
+    edit: Boolean(extra),
+  });
+}
+
+// The top of a row page: the row's first picture, its number and title, and the way back to it.
+function rowTop(entry, { up, back }) {
+  const first = (Array.isArray(entry.pictures) ? entry.pictures : []).find((p) => p?.src);
+  const size = first && Number.isInteger(first.w) && Number.isInteger(first.h) ? ` width="${first.w}" height="${first.h}"` : '';
+  const picture = first ? `<img src="${esc(pictureSrc(first.src, up))}" alt=""${size}>` : '';
+  const no = entry.no ? `<span class="no">${esc(entry.no)}</span> ` : '';
+  return `<div class="page-row">${picture}<p class="page-row-head">${no}${esc(entry.title)}</p>`
+    + `<a class="back" href="${esc(back)}">← Back to the row</a></div>\n`;
 }
 
 // JSON inside a <script>: a `<` written as <, so no text in it can close the tag.

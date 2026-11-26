@@ -26,12 +26,13 @@ export const pictureSrc = (src, up = '') => (ABSOLUTE.test(src) ? src : up + enc
 // add is optional: entry.pictures, entry.preview, entry.page; a place's `inside`. The text's
 // paragraphs are words, escaped, and the links typed in them (lib/links.mjs) when ctx.links says
 // what those know of the document; a build from the files gives none, and they stay as typed.
+// Under the text, a line for each page about the row (entry.rowPages, from the document).
 export function rowDetail(entry, { ctx, places, onMap = false, away = onMap, up = '' }) {
   const pictures = (Array.isArray(entry.pictures) ? entry.pictures : []).filter((p) => p?.src);
   const preview = !pictures.length && entry.preview?.rows?.length ? entry.preview : null;
   const links = ctx?.links ? { ...ctx.links, here: away ? 'other' : 'library', up } : null;
   const text = entry.text.filter((p) => String(p).trim()).map((p) => `<p>${links ? withLinks(p, links) : esc(p)}</p>`).join('');
-  const txt = `<div class="txt">${text}${meta(entry, places, { onMap, away, up })}${more(entry, ctx, up)}</div>`;
+  const txt = `<div class="txt">${text}${reads(entry, ctx, up)}${meta(entry, places, { onMap, away, up })}${more(entry, ctx, up)}</div>`;
   return pictures.length ? `<div class="detail">${pictureBlock(pictures, up, entry.side_by_side === true)}${txt}</div>`
     : preview ? `<div class="detail table">${previewTable(preview)}${txt}</div>`
     : `<div class="detail wide">${txt}</div>`;
@@ -60,6 +61,22 @@ function pictureBlock(pictures, up, side = false) {
     return `<figure${n && !side ? ' hidden' : ''}>${image}${nav}${caption}</figure>`;
   });
   return `<div class="pics${side && pictures.length > 1 ? ' side' : ''}">${figures.join('')}</div>`;
+}
+
+// "Read: <title> →", one line for each page about the row (design §14), in the order they were made.
+// On the public site the row holds only the pages a publish shows; in edit mode (ctx.links.edit)
+// it holds every one, each leading to the page in edit mode, a hidden one dotted, its title saying
+// why the public does not see it.
+function reads(entry, ctx, up) {
+  const pages = Array.isArray(entry.rowPages) ? entry.rowPages : [];
+  if (!pages.length) return '';
+  const edit = ctx?.links?.edit === true;
+  const line = ({ address, title, shown }) => {
+    const href = esc(edit ? `${up}edit/pages/${address}` : `${up}pages/${address}.html`);
+    const words = `Read: ${esc(title)} →`;
+    return edit && !shown ? `<li><a class="dead-link" href="${href}" title="The page is hidden.">${words}</a></li>` : `<li><a href="${href}">${words}</a></li>`;
+  };
+  return `<ul class="reads">${pages.map(line).join('')}</ul>`;
 }
 
 // A row as a panel shows it: number · type · date, the title, what the Library shows in the open

@@ -9,7 +9,9 @@
   "rewrites": [
     { "source": "/", "destination": "/api/site?path=index.html" },
     { "source": "/(index\\.html|map\\.html|about\\.html|search\\.json)", "destination": "/api/site?path=$1" },
+    { "source": "/pages/:file", "destination": "/api/site?path=pages/:file" },
     { "source": "/edit/", "destination": "/api/edit?route=" },
+    { "source": "/edit/pages/:address", "destination": "/api/edit?route=pages/:address" },
     { "source": "/edit/:route", "destination": "/api/edit?route=:route" }
   ]
 }

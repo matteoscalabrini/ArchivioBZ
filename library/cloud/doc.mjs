@@ -57,20 +57,22 @@ export function docFromLibrary(lib, { root, chapterTitles = {}, pictures = new M
     places: structuredClone(lib.places),
     idea,
     about,
-    next: { row: 1, chapter: chapters.length + 1 },
+    pages: [],
+    next: { row: 1, chapter: chapters.length + 1, page: 1 },
   };
 }
 
-// `doc` with its counters (next.row, next.chapter) raised to the highest of `others`', so that a
-// document put in place of the draft (a publish restored, the latest one at a discard, a move-in
-// afresh, a session's push) never names a new row or chapter with an id the draft has given
-// already. The draft's counters then never go back, and every publish is a copy of the draft, so no
-// id held by any publish is given again: a link #o=r1 keeps naming one row. Nothing else changes,
-// and `next` keeps its place among the keys.
+// `doc` with its counters (next.row, next.chapter, next.page) raised to the highest of `others`', so
+// that a document put in place of the draft (a publish restored, the latest one at a discard, a
+// move-in afresh, a session's push) never names a new row, chapter or page with an id the draft has
+// given already. The draft's counters then never go back, and every publish is a copy of the draft,
+// so no id held by any publish is given again: a link #o=r1 keeps naming one row. Nothing else
+// changes, and `next` keeps its place among the keys. A document from before the pages has no
+// next.page; it gains one only from another that has.
 export function raiseCounters(doc, ...others) {
   const next = { ...doc.next };
   for (const other of others) {
-    for (const what of ['row', 'chapter']) {
+    for (const what of ['row', 'chapter', 'page']) {
       const n = other?.next?.[what];
       if (Number.isInteger(n) && !(n <= next[what])) next[what] = n;
     }
@@ -111,11 +113,23 @@ export function numbering(doc) {
 // after the move-in.
 const mapPicture = (row) => row.thumb ?? (row.pictures?.[0] ? { src: row.pictures[0].src, w: row.pictures[0].w, h: row.pictures[0].h } : null);
 
+// The pages of a document (design §14), in its order: a site page (row null), whose tab stands
+// between Map and About, or a page about one row. A document from before them has none.
+export const pagesOf = (doc) => (Array.isArray(doc?.pages) ? doc.pages : []);
+
+// Whether a publish shows a page: not hidden, and a row page only while its row is shown, since a
+// hidden row's pages are not published.
+export const pageShown = (doc, page) => !page.hidden && (page.row === null || (Object.hasOwn(doc.rows, page.row) && !doc.rows[page.row].hidden));
+
 // The `lib` the page functions take, from a document. Entries are in story order; hidden rows
 // only when `hidden` (edit mode). `lists`: the shared search lists, which live in files, not here.
+// `pages`: those a publish shows, or with `hidden` every one, each with `shown` (whether a publish
+// shows it); every entry holds the pages about it as `rowPages`, in the order they were made, for
+// its Read: lines and the search.
 export function libFromDoc(doc, { hidden = false, lists = { colours: {}, names: [], glossary: [] } } = {}) {
   const numbers = numbering(doc);
   const chapterNo = chapterNumbers(doc);
+  const pages = pagesOf(doc).map((page) => ({ ...structuredClone(page), shown: pageShown(doc, page) })).filter((page) => hidden || page.shown);
   const entries = [];
   const chapters = [];
   doc.chapters.forEach((chapter, i) => {
@@ -140,6 +154,7 @@ export function libFromDoc(doc, { hidden = false, lists = { colours: {}, names: 
         dir: null,
         abs: null,
         sourceNumbers: (record.sources ?? []).map((source) => numbers.get(source) ?? ''),
+        rowPages: pages.filter((page) => page.row === id),
       });
       ids.push(id);
     }
@@ -151,6 +166,7 @@ export function libFromDoc(doc, { hidden = false, lists = { colours: {}, names: 
     keywords: doc.keywords,
     aliases: doc.aliases,
     places: doc.places,
+    pages,
     colours: lists.colours,
     names: lists.names,
     glossary: lists.glossary,
@@ -167,7 +183,8 @@ export function withoutTerms(doc) {
 
 // What differs between two documents, as ids and yes/no. `changed`: rows in both whose record,
 // find or pictures differ. `order`: the visible rows both have sit in other chapters or another
-// sequence. `chapters`: the titles of the chapters that hold a row differ. A null `before`
+// sequence. `chapters`: the titles of the chapters that hold a row differ. `pages`: a page made,
+// written, moved, hidden or removed (none and an empty list are the same). A null `before`
 // (nothing published) counts as an empty document. `count`: how many things the author would be
 // publishing.
 export function diffDocs(before, after) {
@@ -195,9 +212,10 @@ export function diffDocs(before, after) {
   // which is the order of "All keywords" (move-keyword), is compared as a list of its own.
   const vocabulary = (doc) => [doc.keywords, Object.keys(doc.keywords), doc.aliases, doc.places];
   const keywords = !same(vocabulary(before), vocabulary(after));
+  const pages = !same(pagesOf(before), pagesOf(after));
   const count = changed.length + added.length + removed.length + hidden.length + shown.length
-    + [order, chapters, idea, about, keywords].filter(Boolean).length;
-  return { changed, added, removed, hidden, shown, order, chapters, idea, about, keywords, count };
+    + [order, chapters, idea, about, keywords, pages].filter(Boolean).length;
+  return { changed, added, removed, hidden, shown, order, chapters, idea, about, keywords, pages, count };
 }
 
 // JSON with keys sorted, so that two values that mean the same compare equal.
@@ -232,8 +250,12 @@ export function checkDoc(doc, { types = TYPES } = {}) {
   for (const [id, where] of placed) {
     if (where.length > 1) problems.push(`row ${id} is in two chapters: ${where.join(', ')}`);
   }
-  // The counters that name the next row and chapter added must lie past every id already used.
-  for (const [what, ids, prefix] of [['row', Object.keys(doc.rows), 'r'], ['chapter', [...seenChapters], 'c']]) {
+  // The counters that name the next row, chapter and page added must lie past every id already
+  // used. A document from before the pages has no next.page, and needs none while it has none.
+  const pageIds = Array.isArray(doc.pages) ? doc.pages.filter((page) => isObject(page) && isText(page.id)).map((page) => page.id) : [];
+  const counters = [['row', Object.keys(doc.rows), 'r'], ['chapter', [...seenChapters], 'c']];
+  if (pageIds.length || doc.next?.page !== undefined) counters.push(['page', pageIds, 'p']);
+  for (const [what, ids, prefix] of counters) {
     const next = doc.next?.[what];
     if (!Number.isInteger(next) || next < 1) {
       problems.push(`next.${what} is not a whole number`);
@@ -266,6 +288,45 @@ export function checkDoc(doc, { types = TYPES } = {}) {
       continue;
     }
     problems.push(...rowFaults(doc, id, row, types));
+  }
+  problems.push(...pageFaults(doc));
+  return problems;
+}
+
+// The fields of a page, and the address a page is made with in ops.mjs: lower case letters and
+// digits, single dashes between them; the public function answers pages/<address>.html for no other.
+const PAGE_FIELDS = ['id', 'address', 'title', 'text', 'row', 'hidden'];
+export const PAGE_ADDRESS = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+
+// The faults of the pages: each an id p1, p2…, given once; an address that is one, given once; a
+// title; its text; a site page (row null) or a page about a row the document has; hidden yes or no.
+function pageFaults(doc) {
+  if (doc.pages === undefined) return [];
+  if (!Array.isArray(doc.pages)) return ['pages is not a list'];
+  const problems = [];
+  const ids = new Set();
+  const addresses = new Map(); // address -> ids of the pages that have it
+  for (const page of doc.pages) {
+    if (!isObject(page) || !isText(page.id) || !/^p[1-9]\d*$/.test(page.id)) {
+      problems.push(`a page has no id of the form p1: ${JSON.stringify(page)?.slice(0, 80)}`);
+      continue;
+    }
+    const { id } = page;
+    if (ids.has(id)) problems.push(`page ${id} appears twice`);
+    ids.add(id);
+    if (!isText(page.address) || !PAGE_ADDRESS.test(page.address)) problems.push(`page ${id} has an address that is not one: ${JSON.stringify(page.address)}`);
+    else addresses.set(page.address, [...(addresses.get(page.address) ?? []), id]);
+    if (!isText(page.title) || !page.title.trim()) problems.push(`page ${id} has no title`);
+    if (!isText(page.text)) problems.push(`page ${id}: its text is not text`);
+    if (page.row !== null && !isText(page.row)) problems.push(`page ${id} is about no row and is no site page`);
+    else if (page.row !== null && !Object.hasOwn(doc.rows, page.row)) problems.push(`page ${id} is about row ${page.row}, but there is no row ${page.row}`);
+    if (typeof page.hidden !== 'boolean') problems.push(`page ${id}: hidden is not true or false`);
+    for (const field of Object.keys(page)) {
+      if (!PAGE_FIELDS.includes(field)) problems.push(`page ${id} has a field "${field}" that a page does not have`);
+    }
+  }
+  for (const [address, holders] of addresses) {
+    if (holders.length > 1) problems.push(`the address ${address} is given to two pages: ${holders.join(', ')}`);
   }
   return problems;
 }

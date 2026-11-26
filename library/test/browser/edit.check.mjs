@@ -6,14 +6,16 @@
 // that holds is printed; the first that does not stops the check with what the page showed
 // instead, and the exit code is 1. The server, the browser and the temporary folders go in every
 // outcome. Screenshots of the edit page, of the public page after Publish, of the edit page at a
-// phone's width, of the compact view, at both widths, of the way back after a row link, and of 🔗's
-// finder at both widths, are written to library/.cache/check-edit/.
+// phone's width, of the compact view, at both widths, of the way back after a row link, of 🔗's
+// finder at both widths, and of a page in edit mode, public and at a phone's width, are written to
+// library/.cache/check-edit/.
 // Not part of npm test, since it needs Chrome. Then steps add pictures (＋ picture): on this
 // computer's stores first, then as the cloud's page does, the Blob client in the page given a
 // stand-in for Vercel's Blob service, so that nothing leaves this computer. The last steps follow
 // the links typed in a row's text and the way back from them, in edit mode and, once published,
-// on the public page; and the last write such links with 🔗 in a row's text, the idea and About,
-// with the legend under each field.
+// on the public page; then such links are written with 🔗 in a row's text, the idea and About,
+// with the legend under each field; and the last make pages, a site page and a page about a row,
+// in edit mode and on the public site.
 //
 // The fixtures' draft, by row id: chapter c1 "Zero" [0.01], c2 "Five" [5.00 5.01 5.02 5.03],
 // c3 "Twelve" [12.01]; numbered 1.01, 2.01 to 2.04 and 3.01 to begin with. The steps build on
@@ -2583,7 +2585,250 @@ async function main() {
     await page.setViewport({ width: 1280, height: 900 });
   });
 
-  console.log(`All ${n} steps hold. Screenshots: ${['edit-page.png', 'public-page.png', 'edit-phone.png', 'edit-compact.png', 'edit-compact-phone.png', 'way-back.png', 'linker.png', 'linker-phone.png'].map((name) => path.join(SHOTS, name)).join(', ')}`);
+  // Pages (Task 19, design §14). ＋ page after the tabs asks the title of a new site page and opens
+  // it in edit mode, its tab between Map and About; its text gets a link to a row through 🔗 and is
+  // saved; Hide dots its tab. ＋ page about this row on an open row offers "On <its title>" and opens
+  // the new page with the row at its top; its ← Back to the row leads to the Library in edit mode
+  // with the row open, which says Read: … →. Published, the row page is public, its row on the
+  // public Library leads to it and it back to the row; the hidden page answers 404.
+  const tabsRead = () => page.$$eval('header.site nav.tabs > a', (tabs) => tabs.map((a) => `${a.textContent}${a.classList.contains('dead-link') ? ' (dotted)' : ''}`));
+  const SITE_PAGE = 'On the bridges';
+  const sitePage = '/edit/pages/on-the-bridges';
+  let rowPage = null; // the page about 5.00: { title, address }
+
+  await step('＋ page after the tabs asks Title of the new page, a title wanted; the page opens in edit mode, the bar over it, its tab between Map and About', async () => {
+    await page.goto(`${base}/edit/`);
+    await page.waitForSelector('.ed-bar');
+    const frame = await page.$$eval('header.site nav.tabs > *', (els) => els.map((el) => (el.tagName === 'FORM' ? 'search' : el.textContent.trim())));
+    check(JSON.stringify(frame) === JSON.stringify(['Library', 'Map', 'About', 'page', 'search']), `the tabs read ${JSON.stringify(frame)}`);
+    await page.click('header.site nav.tabs button.ed-add-page');
+    const question = await page.waitForSelector('dialog.ed-dialog[open] .ed-question');
+    check(await question.evaluate((el) => el.textContent) === 'Title of the new page', `asked ${await question.evaluate((el) => el.textContent)}`);
+    const count = sent.length;
+    await page.click('dialog.ed-dialog[open] .ed-yes');
+    const said = await page.$eval('dialog.ed-dialog[open] .ed-error', (el) => (el.hidden ? '' : el.textContent));
+    check(said === 'A page needs a title.' && sent.length === count, `with no title the dialog says ${JSON.stringify(said)} and ${sent.length - count} edits went`);
+    await page.type('dialog.ed-dialog[open] input', SITE_PAGE);
+    await Promise.all([page.waitForNavigation(), page.click('dialog.ed-dialog[open] .ed-yes')]);
+    check(new URL(page.url()).pathname === sitePage, `the page opened is ${page.url()}`);
+    check(JSON.stringify(sent[count]?.body?.op) === JSON.stringify({ op: 'add-page', title: SITE_PAGE, row: null }), `the edit sent was ${JSON.stringify(sent[count]?.body?.op)}`);
+    await page.waitForSelector('.ed-page-text button.ed[data-ed="page-text"]');
+    const drawn = await page.evaluate(() => ({
+      bar: document.querySelector('main > .ed-bar .ed-label')?.textContent,
+      compact: Boolean(document.querySelector('.ed-bar .ed-compact')),
+      title: document.querySelector('main > h1 .ed-v')?.textContent,
+      pencil: Boolean(document.querySelector('main > h1 button.ed[data-ed="page-title"]')),
+      tab: document.title,
+      acts: [...document.querySelectorAll('.ed-page-acts > button')].map((b) => `${b.getAttribute('aria-label') ?? b.textContent}${b.disabled ? ' (off)' : ''}`),
+      empty: document.querySelector('.ed-page-text .ed-empty')?.hidden === false,
+      hrefs: [...document.querySelectorAll('header.site nav.tabs > a')].map((a) => a.getAttribute('href')),
+      current: document.querySelector('header.site nav.tabs > a[aria-current="page"]')?.textContent,
+    }));
+    check(drawn.bar === 'Draft' && !drawn.compact && drawn.title === SITE_PAGE && drawn.pencil && drawn.tab === SITE_PAGE && drawn.empty, `the page is drawn ${JSON.stringify(drawn)}`);
+    check(JSON.stringify(drawn.acts) === JSON.stringify(['Move the tab back (off)', 'Move the tab on (off)', 'Hide', 'Remove']), `over the page stand ${JSON.stringify(drawn.acts)}`);
+    check(JSON.stringify(await tabsRead()) === JSON.stringify(['Library', 'Map', SITE_PAGE, 'About']) && drawn.current === SITE_PAGE, `the tabs read ${JSON.stringify(await tabsRead())}, ${drawn.current} marked`);
+    check(JSON.stringify(drawn.hrefs) === JSON.stringify(['../../edit/', '../../map.html', '../../edit/pages/on-the-bridges', '../../about.html']), `the tabs lead to ${JSON.stringify(drawn.hrefs)}`);
+    check(await page.$('header.site nav.tabs button.ed-add-page') !== null, 'no ＋ page on the page');
+  });
+
+  await step('the page\'s text, the Markdown legend under its field, given a link to a row through 🔗 and saved: the page shows its heading and the link', async () => {
+    const box = '.ed-field[data-ed="page-text"]';
+    const area = `${box} textarea`;
+    await page.click('.ed-page-text button.ed[data-ed="page-text"]');
+    await page.waitForSelector(area);
+    const legend = await legendIn(box);
+    check(JSON.stringify(legend) === JSON.stringify([...LEGEND, MARKDOWN, '## a heading']), `the legend reads ${JSON.stringify(legend, null, 1)}`);
+    await page.keyboard.type('## Two crossings');
+    await page.keyboard.press('Enter');
+    await page.keyboard.press('Enter');
+    await page.keyboard.type('The postcard of the bridge.');
+    const before = (await fieldIs(area)).value;
+    const at = before.indexOf('postcard');
+    await page.$eval(area, (el, from, to) => el.setSelectionRange(from, to), at, at + 'postcard'.length);
+    const target = await page.evaluate(() => {
+      const data = JSON.parse(document.getElementById('edit-data').textContent);
+      return { no: data.numbers['5.03'], title: data.doc.rows['5.03'].record.title };
+    });
+    await page.click(`${box} button.ed-link`);
+    await page.waitForSelector(`${box} .ed-finder input`, { visible: true });
+    await page.keyboard.type(target.title.slice(0, 9).trim());
+    const option = `${box} .ed-finder li[aria-selected="true"]`;
+    await page.waitForSelector(option);
+    check(await page.$eval(option, (li) => li.textContent) === `${target.no} · ${target.title}`, `the first match reads ${await page.$eval(option, (li) => li.textContent)}`);
+    await page.keyboard.press('Enter');
+    const want = '## Two crossings\n\nThe [[postcard|@5.03]] of the bridge.';
+    check((await fieldIs(area)).value === want, `the field holds ${JSON.stringify((await fieldIs(area)).value)}`);
+    const answered = answerTo(page, 'op');
+    await page.keyboard.down('Control');
+    await page.keyboard.press('Enter');
+    await page.keyboard.up('Control');
+    check((await answered).status() === 200, 'the text was not saved');
+    check(JSON.stringify(sent.at(-1).body.op) === JSON.stringify({ op: 'set-page', id: 'p1', text: want }), `the edit sent was ${JSON.stringify(sent.at(-1).body.op)}`);
+    await page.waitForSelector(box, { hidden: true });
+    const shown = await page.$eval('article.page', (el) => ({ html: el.innerHTML.trim(), hidden: el.hidden }));
+    check(!shown.hidden && shown.html === '<h2>Two crossings</h2>\n<p>The <a href="../../edit/#o=5.03">postcard</a> of the bridge.</p>', `the page shows ${JSON.stringify(shown)}`);
+    check(await page.$eval('.ed-page-text .ed-empty', (el) => el.hidden), 'Text still stands under a text');
+    check(await page.$eval('.ed-page-text button.ed', (el) => el === document.activeElement), 'the focus is not back on ✎');
+  });
+
+  await step('Hide dots the page\'s tab and says the public does not see it; drawn again, the page and the Library show it so', async () => {
+    const answered = answerTo(page, 'op');
+    await page.click('.ed-page-acts .ed-page-hide');
+    check((await answered).status() === 200, 'the page was not hidden');
+    check(JSON.stringify(sent.at(-1).body.op) === JSON.stringify({ op: 'hide-page', id: 'p1', hidden: true }), `the edit sent was ${JSON.stringify(sent.at(-1).body.op)}`);
+    await page.waitForFunction(() => document.querySelector('.ed-page-acts .ed-page-hide').textContent === 'Show', { timeout: WAIT });
+    const dotted = ['Library', 'Map', `${SITE_PAGE} (dotted)`, 'About'];
+    check(JSON.stringify(await tabsRead()) === JSON.stringify(dotted), `the tabs read ${JSON.stringify(await tabsRead())}`);
+    const tab = await page.$eval('header.site nav.tabs > a.dead-link', (a) => ({ title: a.title, current: a.getAttribute('aria-current') }));
+    check(tab.title === 'The page is hidden.' && tab.current === 'page', `the dotted tab is ${JSON.stringify(tab)}`);
+    check(await page.$eval('.ed-page-unseen', (el) => el.textContent) === 'Hidden: not on the public site.', 'the page does not say it is hidden');
+    await page.screenshot({ path: path.join(SHOTS, 'page-edit.png'), fullPage: true });
+    await page.reload();
+    await page.waitForSelector('.ed-page-acts .ed-page-hide');
+    check(JSON.stringify(await tabsRead()) === JSON.stringify(dotted), `reloaded, the tabs read ${JSON.stringify(await tabsRead())}`);
+    check(await page.$eval('.ed-page-acts .ed-page-hide', (b) => b.textContent) === 'Show', 'reloaded, the page offers Hide');
+    await Promise.all([page.waitForNavigation(), page.click('header.site nav.tabs > a:first-child')]);
+    check(new URL(page.url()).pathname === '/edit/', `the Library tab leads to ${page.url()}`);
+    await page.waitForSelector('.ed-bar');
+    check(JSON.stringify(await tabsRead()) === JSON.stringify(dotted), `on the Library the tabs read ${JSON.stringify(await tabsRead())}`);
+  });
+
+  await step('＋ page about this row on an open row offers On <its title> and opens the page, the row at its top; ← Back to the row leads to the Library with the row open, which says Read: … →', async () => {
+    const row = rowAt('5.00');
+    const add = `${row}.open button.ed[data-ed="page-add"]`;
+    await page.click(`${row} .c-title > button:not(.ed)`);
+    await page.waitForSelector(add);
+    await stillAt(page, add);
+    const shown = await page.$eval(row, (el) => ({
+      no: el.querySelector('.c-no').textContent.trim(),
+      title: el.querySelector('.c-title > button:not(.ed)').textContent,
+      picture: el.querySelector('.pics figure img')?.dataset.src ?? null,
+      label: el.querySelector('button.ed[data-ed="page-add"]').textContent.trim(),
+    }));
+    check(shown.label === 'page about this row', `the button reads ${JSON.stringify(shown.label)}`);
+    await page.click(add);
+    const input = 'dialog.ed-dialog[open] input';
+    await page.waitForSelector(input);
+    check(await page.$eval('dialog.ed-dialog[open] .ed-question', (el) => el.textContent) === 'Title of the new page', 'not asked Title of the new page');
+    const offered = await page.$eval(input, (el) => el.value);
+    check(offered === `On ${shown.title}`, `offered ${JSON.stringify(offered)}`);
+    const count = sent.length;
+    await Promise.all([page.waitForNavigation(), page.click('dialog.ed-dialog[open] .ed-yes')]);
+    check(JSON.stringify(sent[count]?.body?.op) === JSON.stringify({ op: 'add-page', title: offered, row: '5.00' }), `the edit sent was ${JSON.stringify(sent[count]?.body?.op)}`);
+    const address = new URL(page.url()).pathname.replace(/^\/edit\/pages\//, '');
+    check(/^on-[a-z0-9-]+$/.test(address), `the page opened is ${page.url()}`);
+    rowPage = { title: offered, address };
+    await page.waitForSelector('.page-row a.back');
+    const top = await page.evaluate(() => ({
+      head: document.querySelector('.page-row .page-row-head').textContent,
+      picture: document.querySelector('.page-row img')?.getAttribute('src') ?? null,
+      back: document.querySelector('.page-row a.back').getAttribute('href'),
+      words: document.querySelector('.page-row a.back').textContent,
+      title: document.querySelector('main > h1 .ed-v').textContent,
+      acts: [...document.querySelectorAll('.ed-page-acts > button')].map((b) => b.textContent),
+    }));
+    check(top.head === `${shown.no} ${shown.title}` && top.picture === shown.picture && top.title === offered, `the page opens with ${JSON.stringify(top)}`);
+    check(top.back === '../../edit/#o=5.00' && top.words === '← Back to the row', `the way back is ${JSON.stringify(top)}`);
+    check(JSON.stringify(top.acts) === JSON.stringify(['Hide', 'Remove']), `a row page offers ${JSON.stringify(top.acts)}`);
+    check(JSON.stringify(await tabsRead()) === JSON.stringify(['Library', 'Map', `${SITE_PAGE} (dotted)`, 'About']), `a row page has a tab: ${JSON.stringify(await tabsRead())}`);
+    await Promise.all([page.waitForNavigation(), page.click('.page-row a.back')]);
+    check(new URL(page.url()).pathname === '/edit/' && decodeURIComponent(new URL(page.url()).hash) === '#o=5.00', `the way back leads to ${page.url()}`);
+    await page.waitForSelector(`${row}.open .reads a`);
+    const read = await page.$eval(`${row} .reads a`, (a) => ({ words: a.textContent, href: a.getAttribute('href'), dotted: a.classList.contains('dead-link') }));
+    check(JSON.stringify(read) === JSON.stringify({ words: `Read: ${offered} →`, href: `../edit/pages/${address}`, dotted: false }), `the row says ${JSON.stringify(read)}`);
+    check(await inView(page, `${row} > .row-head`), '5.00 is not in view');
+    await stillAt(page, `${row} .reads`);
+    await page.screenshot({ path: path.join(SHOTS, 'page-read.png') });
+  });
+
+  await step('published, the row page is public at /pages/<address>.html: the row leads to it, Read: … →, and it back to the row; the hidden page has no tab and answers 404', async () => {
+    await page.click('.ed-bar .ed-publish');
+    await page.waitForSelector('dialog.ed-dialog[open] .ed-yes');
+    const answered = answerTo(page, 'publish');
+    await page.click('dialog.ed-dialog[open] .ed-yes');
+    check((await answered).status() === 200, 'the publish was refused');
+    await page.goto(`${base}/`);
+    check(JSON.stringify(await tabsRead()) === JSON.stringify(['Library', 'Map', 'About']), `the public tabs read ${JSON.stringify(await tabsRead())}`);
+    const row = rowAt('5.00');
+    await page.click(`${row} .c-title button`);
+    await page.waitForSelector(`${row}.open .reads a`);
+    const read = await page.$eval(`${row} .reads a`, (a) => ({ words: a.textContent, href: a.getAttribute('href') }));
+    check(JSON.stringify(read) === JSON.stringify({ words: `Read: ${rowPage.title} →`, href: `pages/${rowPage.address}.html` }), `the public row says ${JSON.stringify(read)}`);
+    // Clicked once the row has ended opening, where the line stands; then the page's own answer
+    // waited for, not the first step of the address: the Library writes the open row into the
+    // address (state.js) a moment after it opens, a step within the same page.
+    await stillAt(page, `${row} .reads a`);
+    const [opened] = await Promise.all([page.waitForResponse((r) => new URL(r.url()).pathname === `/pages/${rowPage.address}.html`), page.click(`${row} .reads a`)])
+      .catch((error) => { throw new Error(`Read: … → led nowhere (${error.message}); the page is at ${page.url()}`); });
+    await page.waitForSelector('.page-row a.back');
+    check(opened.status() === 200 && new URL(page.url()).pathname === `/pages/${rowPage.address}.html`, `the page answered ${opened.status()} at ${page.url()}`);
+    const top = await page.evaluate(() => ({ title: document.querySelector('main > h1').textContent, back: document.querySelector('.page-row a.back')?.getAttribute('href'), edit: Boolean(document.querySelector('.ed-bar, [data-page], #edit-data')) }));
+    check(top.title === rowPage.title && top.back === '../index.html#o=5.00' && !top.edit, `the public page is ${JSON.stringify(top)}`);
+    await page.screenshot({ path: path.join(SHOTS, 'page-public.png'), fullPage: true });
+    await page.click('.page-row a.back');
+    await page.waitForSelector(`${row}.open`);
+    check(new URL(page.url()).pathname === '/index.html', `the way back leads to ${page.url()}`);
+    const hidden = await page.goto(`${base}/pages/on-the-bridges.html`);
+    check(hidden.status() === 404, `the hidden page answers ${hidden.status()}`);
+  });
+
+  await step('at a phone\'s width a page in edit mode and the public row page stand inside the screen', async () => {
+    await page.setViewport({ width: 390, height: 844, isMobile: true, hasTouch: true });
+    for (const address of [`${base}${sitePage}`, `${base}/edit/pages/${rowPage.address}`, `${base}/pages/${rowPage.address}.html`]) {
+      await page.goto(address);
+      await page.waitForSelector('main > h1');
+      check(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${address} is wider than the screen`);
+    }
+    await page.screenshot({ path: path.join(SHOTS, 'page-phone.png'), fullPage: true });
+    await page.setViewport({ width: 1280, height: 900 });
+  });
+
+  await step('a second site page: ← and → move its tab among the site pages, off at the ends; Remove asks Remove the page "<title>"? and leads back to the Library, its tab gone', async () => {
+    await page.goto(`${base}${sitePage}`);
+    await page.waitForSelector('header.site nav.tabs button.ed-add-page');
+    await page.click('header.site nav.tabs button.ed-add-page');
+    await page.waitForSelector('dialog.ed-dialog[open] input');
+    await page.type('dialog.ed-dialog[open] input', 'Second page');
+    await Promise.all([page.waitForNavigation(), page.click('dialog.ed-dialog[open] .ed-yes')]);
+    check(new URL(page.url()).pathname === '/edit/pages/second-page', `the page opened is ${page.url()}`);
+    await page.waitForSelector('.ed-page-acts button[data-ed="page-back"]');
+    const arrows = () => page.$$eval('.ed-page-acts > button[data-ed]', (bs) => bs.map((b) => `${b.dataset.ed}${b.disabled ? ' (off)' : ''}`));
+    check(JSON.stringify(await tabsRead()) === JSON.stringify(['Library', 'Map', `${SITE_PAGE} (dotted)`, 'Second page', 'About']), `the tabs read ${JSON.stringify(await tabsRead())}`);
+    check(JSON.stringify(await arrows()) === JSON.stringify(['page-back', 'page-on (off)']), `the arrows are ${JSON.stringify(await arrows())}`);
+    let answered = answerTo(page, 'op');
+    await page.click('.ed-page-acts button[data-ed="page-back"]');
+    check((await answered).status() === 200, 'the tab was not moved');
+    check(JSON.stringify(sent.at(-1).body.op) === JSON.stringify({ op: 'move-page', id: 'p3', step: -1 }), `the edit sent was ${JSON.stringify(sent.at(-1).body.op)}`);
+    const moved = ['Library', 'Map', 'Second page', `${SITE_PAGE} (dotted)`, 'About'];
+    await page.waitForFunction((want) => JSON.stringify([...document.querySelectorAll('header.site nav.tabs > a')].map((a) => `${a.textContent}${a.classList.contains('dead-link') ? ' (dotted)' : ''}`)) === want, { timeout: WAIT }, JSON.stringify(moved))
+      .catch(async () => { throw new Error(`moved back, the tabs read ${JSON.stringify(await tabsRead())}`); });
+    check(JSON.stringify(await arrows()) === JSON.stringify(['page-back (off)', 'page-on']), `moved back, the arrows are ${JSON.stringify(await arrows())}`);
+    check(await page.$eval('.ed-page-acts button[data-ed="page-on"]', (b) => b === document.activeElement), 'the focus did not go to the arrow still on');
+    check(await page.$eval('header.site nav.tabs > a[aria-current="page"]', (a) => a.textContent) === 'Second page', 'its own tab is not marked');
+    check(await page.$('header.site nav.tabs > a + button.ed-add-page + form.find') !== null, '＋ page is not after the tabs');
+    answered = answerTo(page, 'op');
+    await page.click('.ed-page-acts button[data-ed="page-on"]');
+    check((await answered).status() === 200, 'the tab was not moved on');
+    await page.waitForFunction(() => document.querySelector('header.site nav.tabs > a:nth-of-type(4)')?.textContent === 'Second page', { timeout: WAIT });
+    const count = sent.length;
+    await page.click('.ed-page-acts .ed-page-remove');
+    const question = await page.waitForSelector('dialog.ed-dialog[open] .ed-question');
+    check(await question.evaluate((el) => el.textContent) === 'Remove the page "Second page"?', `asked ${await question.evaluate((el) => el.textContent)}`);
+    await page.click('dialog.ed-dialog[open] .ed-no');
+    await page.waitForSelector('dialog.ed-dialog[open]', { hidden: true });
+    check(sent.length === count && new URL(page.url()).pathname === '/edit/pages/second-page', 'Cancel removed the page');
+    await page.click('.ed-page-acts .ed-page-remove');
+    await page.waitForSelector('dialog.ed-dialog[open] .ed-yes');
+    await Promise.all([page.waitForNavigation(), page.click('dialog.ed-dialog[open] .ed-yes')]);
+    check(JSON.stringify(sent[count]?.body?.op) === JSON.stringify({ op: 'remove-page', id: 'p3' }), `the edit sent was ${JSON.stringify(sent[count]?.body?.op)}`);
+    check(new URL(page.url()).pathname === '/edit/', `removed, the page went to ${page.url()}`);
+    await page.waitForSelector('.ed-bar');
+    check(JSON.stringify(await tabsRead()) === JSON.stringify(['Library', 'Map', `${SITE_PAGE} (dotted)`, 'About']), `the tabs read ${JSON.stringify(await tabsRead())}`);
+    const gone = await page.goto(`${base}/edit/pages/second-page`);
+    check(gone.status() === 404 && (await page.$eval('main', (el) => el.textContent)).includes('There is no page second-page in the draft.'), `the page removed answers ${gone.status()}`);
+  });
+
+  console.log(`All ${n} steps hold. Screenshots: ${['edit-page.png', 'public-page.png', 'edit-phone.png', 'edit-compact.png', 'edit-compact-phone.png', 'way-back.png', 'linker.png', 'linker-phone.png', 'page-edit.png', 'page-read.png', 'page-public.png', 'page-phone.png'].map((name) => path.join(SHOTS, name)).join(', ')}`);
 }
 
 try {

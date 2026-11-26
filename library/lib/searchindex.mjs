@@ -4,16 +4,19 @@
 //   place, maker, holder   what belongs to that line and the closed row does not show
 //   on, shows, colours, names   the thing itself, from find.json (lib/find.mjs)
 //   text, facts   its description, and its notes with their source tags taken out
-//   table, read   what hangs from it: each record of its table, each paragraph of its read
+//   table, read   what hangs from it: each record of its table, each paragraph of its read and
+//                 of the pages written about it (design §14: a row page's title and text)
 // and the three shared lists. A list that is empty is left out of its row. A link typed in the
-// text or the read (lib/links.mjs) is there as its words, never its code: as the public page shows
-// them, or with `edit` as the edit page shows them, from what links.mjs makes of the same lib as
-// the pages do.
+// text, the read or a page (lib/links.mjs) is there as its words, never its code: as the public
+// page shows them, or with `edit` as the edit page shows them, from what links.mjs makes of the
+// same lib as the pages do. The site pages are not searched: the search lists rows.
 //
-// Earlier steps add what is optional here: entry.records (tables), entry.pages (long reads).
+// Earlier steps add what is optional here: entry.records (tables), entry.pages (long reads);
+// entry.rowPages comes from the document (cloud/doc.mjs), holding what the lib holds of them.
 
 import { rowKey } from './detail.mjs';
 import { linksOf, wordsOf } from './links.mjs';
+import { renderPageText } from './markdown.mjs';
 
 const TAG = /\s*\[[A-Z][A-Za-z✓,/ -]*\]/g; // [V], [S], [IMG✓], [VERIFIED-DOC]; not [1924], not […]
 const TAIL = /\s*\((?:manifest|notes?|file|the file|record|row|own photograph)\b[^()]*\)\.?\s*$/i;
@@ -42,7 +45,9 @@ export function searchIndex(lib, { edit = false } = {}) {
     put('text', (Array.isArray(entry.text) ? entry.text : []).map(words));
     put('facts', (Array.isArray(entry.facts) ? entry.facts : []).map(stripTags));
     put('table', (entry.records?.rows ?? []).map((cells) => cells.map(tidy).filter(Boolean).join(' · ')));
-    put('read', (entry.pages ?? []).flatMap((page) => [page.title ?? '', ...paragraphs(page.html ?? '')]).map(words));
+    // The pages about the row read as its long reads are: each title, then each block of its text.
+    const written = (entry.rowPages ?? []).map((page) => ({ title: page.title, html: renderPageText(page.text, { ...links, here: 'other', up: '../' }) }));
+    put('read', [...(entry.pages ?? []), ...written].flatMap((page) => [page.title ?? '', ...paragraphs(page.html ?? '')]).map(words));
     return row;
   });
   return { v: 1, colours: lib.colours ?? {}, names: lib.names ?? [], glossary: lib.glossary ?? [], rows };

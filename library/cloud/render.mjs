@@ -1,17 +1,18 @@
-// The pages made from the archive document: the public site from a publish, and the Library in edit
-// mode from the draft. The same page functions as the build's (lib/pages.mjs), given what the steps
-// give them, so a publish shows the rows as a build of the same rows would. A hidden row is on the
-// edit page and nowhere in the public files, not even as a source another row cites.
+// The pages made from the archive document: the public site from a publish, and the Library and the
+// pages in edit mode from the draft. The same page functions as the build's (lib/pages.mjs), given
+// what the steps give them, so a publish shows the rows as a build of the same rows would. A hidden
+// row is on the edit page and nowhere in the public files, not even as a source another row cites;
+// a hidden page, and a page of a hidden row, likewise.
 // The rows come from the document; the shared lists and the dot data are files of the code, read
 // once in loadLists.
 import path from 'node:path';
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
-import { libFromDoc, diffDocs } from './doc.mjs';
-import { libraryPage, mapPage, aboutPage, keywordStrip } from '../lib/pages.mjs';
+import { libFromDoc, diffDocs, numbering } from './doc.mjs';
+import { libraryPage, mapPage, aboutPage, textPage, keywordStrip } from '../lib/pages.mjs';
 import { searchIndex } from '../lib/searchindex.mjs';
 import { parseIdea } from '../lib/idea.mjs';
-import { renderMarkdown } from '../lib/markdown.mjs'; // not longread.mjs, which loads mammoth
+import { renderMarkdown, renderPageText } from '../lib/markdown.mjs'; // not longread.mjs, which loads mammoth
 import { linksOf, withLinks } from '../lib/links.mjs';
 import { readKinds } from '../lib/kinds.mjs';
 import { readSearchLists } from '../lib/find.mjs';
@@ -41,9 +42,11 @@ export async function loadLists(root) {
   return { colours, names, glossary, kinds: kinds.kinds, mapMeta, problems };
 }
 
-// The four public files of a publish, hidden rows left out of each, and a link to one drawn as its
-// words: path -> { body, type }. `problems`: the idea's unknown keywords (errors) and what the page
-// functions warn of (a type no kind names, a place the dot data was made without).
+// The public files of a publish: the four, then pages/<address>.html for each page a publish shows
+// (not hidden, and a row page only while its row is shown), hidden rows and pages left out of each,
+// and a link to one drawn as its words: path -> { body, type }. `problems`: the idea's unknown
+// keywords (errors) and what the page functions warn of (a type no kind names, a place the dot
+// data was made without).
 export function renderSite(doc, lists) {
   const lib = publicLib(doc, lists);
   const links = linksOf(lib);
@@ -57,8 +60,49 @@ export function renderSite(doc, lists) {
     ['about.html', { body: aboutPage(lib, { aboutHtml }), type: HTML }],
     ['search.json', { body: JSON.stringify(searchIndex(lib)), type: JSON_TYPE }],
   ]);
+  for (const shown of lib.pages) {
+    files.set(`pages/${shown.address}.html`, { body: pageFile(lib, shown, links, { depth: 1 }), type: HTML });
+  }
   return { files, problems: [...problems, ...library.problems, ...map.problems] };
 }
+
+// A page as drawn at `depth` below the site's top, its text's links from `links`; `extra` for edit
+// mode (lib/pages.mjs, textPage). A row page opens with its row as the lib has it.
+function pageFile(lib, shown, links, { depth, extra = null }) {
+  const html = renderPageText(shown.text, { ...links, here: 'other', up: '../'.repeat(depth) });
+  const entry = shown.row === null ? null : lib.entries.find((e) => e.id === shown.row) ?? null;
+  return textPage(lib, { page: shown, html, entry, depth, extra });
+}
+
+// A page of the draft in edit mode, at /edit/pages/<address>: drawn as a publish would draw it, every
+// row and page of the draft known to its links (a hidden one dotted), in edit mode's frame (its
+// tabs lead to the pages in edit mode, a hidden one dotted), with the draft itself as #edit-data for
+// web/edit/pages.js: as the Library's, and the rows' numbers (`numbers`, for 🔗's finder) and the
+// page's id. Null when the draft has no page at that address.
+export function renderPageEdit(doc, address, { version, published, lists, originals = null }) {
+  const lib = libFromDoc(doc, { hidden: true, lists });
+  const shown = lib.pages.find((p) => p.address === address);
+  if (!shown) return null;
+  const data = {
+    version, doc, types: TYPES, summary: summaryOf(published, doc), changed: [...changedRows(doc, published)],
+    published: published ? Object.keys(published.rows) : [], originals, numbers: Object.fromEntries(numbering(doc)), page: shown.id,
+  };
+  return pageEdit(lib, shown, data);
+}
+
+// What an edit of a page changes of it in edit mode: its tabs (<nav class="tabs">, renamed, moved,
+// hidden) and its text (<article class="read page">), each exactly as renderPageEdit draws them, to
+// be put in place of the page's. Null when the draft has no page `id`. Every word of a page is
+// escaped, so the first </nav> and </article> after their starts are their ends.
+export function renderPageParts(doc, id, lists) {
+  const lib = libFromDoc(doc, { hidden: true, lists });
+  const shown = lib.pages.find((p) => p.id === id);
+  if (!shown) return null;
+  const html = pageEdit(lib, shown, null);
+  return { nav: cut(html, '<nav class="tabs"', '</nav>', 'no tabs'), article: cut(html, '<article class="read page"', '</article>', 'no text') };
+}
+
+const pageEdit = (lib, shown, data) => pageFile(lib, shown, editLinks(lib), { depth: 2, extra: { css: ['web/edit.css'], js: ['web/edit/pages.js'], data } });
 
 // The Library in edit mode, at /edit/: every row of the draft, hidden ones too, a hidden row marked
 // data-hidden and a row that differs from the latest publish data-changed; the draft itself, its
@@ -159,6 +203,7 @@ export function summaryLine(diff) {
     diff.chapters && 'chapters changed',
     diff.idea && 'idea changed',
     diff.about && 'About changed',
+    diff.pages && 'pages changed',
     diff.keywords && 'keywords changed',
   ].filter(Boolean);
   return parts.length ? parts.join(', ') : 'No changes since the last publish';

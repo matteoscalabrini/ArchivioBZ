@@ -1,5 +1,6 @@
-// The frame every page shares: wordmark on the left, three tabs and the search field on the
-// right, base.css first, and web/find.js, which makes the field work on every page.
+// The frame every page shares: wordmark on the left, the tabs and the search field on the right,
+// base.css first, and web/find.js, which makes the field work on every page. The tabs are Library,
+// Map, a tab for each site page (design §14) in the author's order, and About, always last.
 
 const ENTITIES = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
 
@@ -7,22 +8,22 @@ export function esc(s) {
   return String(s ?? '').replace(/[&<>"']/g, (c) => ENTITIES[c]);
 }
 
-const TABS = [
-  ['library', 'Library', 'index.html'],
-  ['map', 'Map', 'map.html'],
-  ['about', 'About', 'about.html'],
-];
 const BASE_CSS = 'web/base.css';
 const FIND_JS = 'web/find.js';
+const HIDDEN_PAGE = 'The page is hidden.';
 
-export function page({ title, tab, body, css = [], js = [], depth = 0, head = '' }) {
+// `tab`: the tab of the page, 'library', 'map', 'about' or 'page:<address>' for a site page.
+// `pages`: the site pages, [{ address, title, hidden }], in their order. `edit`: the frame of edit
+// mode, whose Library is /edit/ and whose page tabs lead to the pages in edit mode, a hidden one
+// dotted, its title saying why; on the public site a hidden page has no tab.
+export function page({ title, tab, body, css = [], js = [], depth = 0, head = '', pages = [], edit = false }) {
   const up = '../'.repeat(depth);
   const styles = [BASE_CSS, ...css.filter((href) => href !== BASE_CSS)]
     .map((href) => `<link rel="stylesheet" href="${esc(up + href)}">`);
   const scripts = [FIND_JS, ...js.filter((src) => src !== FIND_JS)]
     .map((src) => `<script type="module" src="${esc(up + src)}"></script>`);
-  const tabs = TABS.map(([id, label, href]) =>
-    `<a href="${up}${href}"${id === tab ? ' aria-current="page"' : ''}>${label}</a>`);
+  const tabs = tabList(pages, edit).map(({ id, label, href, hidden }) => `<a href="${esc(up + href)}"${id === tab ? ' aria-current="page"' : ''}`
+    + `${hidden ? ` class="dead-link" title="${HIDDEN_PAGE}"` : ''}>${esc(label)}</a>`);
   // The search: on the Library it narrows the list as one types, elsewhere Enter leads there.
   const find = `<form class="find" role="search" action="${up}index.html">`
     + '<input type="text" name="q" placeholder="Search" aria-label="Search the library" autocomplete="off" spellcheck="false"></form>';
@@ -46,4 +47,15 @@ ${body}
 </body>
 </html>
 `;
+}
+
+function tabList(pages, edit) {
+  const sites = pages.filter((p) => edit || !p.hidden).map(({ address, title, hidden }) => (
+    { id: `page:${address}`, label: title, href: edit ? `edit/pages/${address}` : `pages/${address}.html`, hidden: edit && hidden === true }));
+  return [
+    { id: 'library', label: 'Library', href: edit ? 'edit/' : 'index.html' },
+    { id: 'map', label: 'Map', href: 'map.html' },
+    ...sites,
+    { id: 'about', label: 'About', href: 'about.html' },
+  ];
 }

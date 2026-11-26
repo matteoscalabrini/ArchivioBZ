@@ -31,6 +31,13 @@ export function renderMarkdown(text, options = {}) {
   return sheets(md.parser(tokens));
 }
 
+// A page's text (design §14), as its page draws it: Markdown with its headings and the links typed
+// in it (`links`: what they know, here and up included), web links and #fragments. A picture or a
+// link to a file is its words: pictures inside a page wait, and the files are not on the web.
+export function renderPageText(text, links) {
+  return renderMarkdown(String(text ?? ''), { held: () => null, published: () => null, links });
+}
+
 // renderParts(text, options) -> [{title, html}]. A text with two or more headings of the first
 // level is in parts, each from its heading to the next, and the heading is the part's title.
 // Any other text is one part with no title, rendered as renderMarkdown renders it.

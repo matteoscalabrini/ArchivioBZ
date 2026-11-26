@@ -4,8 +4,9 @@
 // the edit changed in other rows and the idea are put in theirs (`relinked`), "All keywords" is
 // the answer's strip (strip.js), and the order, the numbers and the chapters' headings follow the
 // answer's lists; library.js then reads the page again (rescan) and draws it in the state it was in.
+// A page of the draft in edit mode (/edit/pages/<address>, edit/pages.js) shares the draft, the
+// queue and the bar, and has no Library: no list, no rows to draw.
 import { OpQueue, Underway, IdeaDrawings, storyPlaces, headingsOf } from '../editmodel.js';
-import { rescan, forgetIndex } from '../library.js';
 import { load } from '../pictures.js';
 
 export const LOGGED_OUT = 'Logged out. Log in again; what you typed is kept.';
@@ -13,18 +14,28 @@ export const CONFLICT = 'Changed in another window. Reload to see it.';
 
 const data = JSON.parse(document.getElementById('edit-data').textContent);
 
+// The Library's list; null on a page in edit mode.
 export const list = document.querySelector('.list');
+
+// What the Library's own script (library.js) does after an edit: read the page again (rescan), and
+// drop the search's index, which is the draft's as it was (forgetIndex). edit.js gives them; a page
+// in edit mode has no Library, and neither.
+let library = { rescan() {}, forgetIndex() {} };
+export const useLibrary = (given) => {
+  library = given;
+};
 
 // `chapters`: the order the page shows, [{ id, title, rows }], which runs ahead of the server's
 // while a dragged row is on its way; `confirmed`: the order of the last answer. `numbers`: each
-// row's number by its id, '' for a hidden row.
+// row's number by its id, '' for a hidden row: read from the Library's rows, or given with the
+// draft on a page in edit mode, which has none.
 export const state = {
   doc: data.doc,
   types: data.types,
   summary: data.summary,
   chapters: copy(data.doc.chapters),
   confirmed: copy(data.doc.chapters),
-  numbers: Object.fromEntries([...list.querySelectorAll('article.row')].map((el) => [el.dataset.no, el.querySelector('.c-no').textContent.trim()])),
+  numbers: list ? Object.fromEntries([...list.querySelectorAll('article.row')].map((el) => [el.dataset.no, el.querySelector('.c-no').textContent.trim()])) : data.numbers ?? {},
   published: new Set(data.published ?? []), // the rows some publish holds; a removal can bring them back
   originals: data.originals ?? null, // where a picture's original goes: 'upload' (the cloud) or 'original' (this computer)
 };
@@ -85,8 +96,10 @@ addEventListener('beforeunload', (event) => {
   event.returnValue = ''; // older browsers ask only when this is set
 });
 
+// Every route is edit mode's own, at /edit/<route>, from the Library at /edit/ and from a page at
+// /edit/pages/<address> alike.
 export async function post(route, body) {
-  const response = await fetch(route, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+  const response = await fetch(`/edit/${route}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
   let answer = null;
   try {
     answer = await response.json();
@@ -169,14 +182,16 @@ function applied(op, answer, field) {
   redraw();
   // The search's index is the draft's as it was: once nothing more is on its way, it is sent for
   // again, so a new title, an added row and a number as it now stands are found.
-  if (pending === 0) forgetIndex();
+  if (pending === 0) library.forgetIndex();
 }
 
 // The draft the page holds, brought up to what the server stored, for the fields' values. An edit
 // of a row is answered with the row as stored (`stored`), which the page takes as it is: what each
-// field then starts from is the server's own, and the next edit is built on it.
+// field then starts from is the server's own, and the next edit is built on it. Every answer
+// carries the draft's pages as stored (🔗's finder lists them; a page in edit mode reads its own).
 function keep(op, answer) {
   const { doc } = state;
+  if (Array.isArray(answer?.pages)) doc.pages = answer.pages;
   if (answer?.stored && typeof answer.stored === 'object') doc.rows[answer.result?.id ?? op.id] = answer.stored;
   else if (op.op === 'remove-row') delete doc.rows[op.id];
   else if (op.op === 'add-keyword' && answer.result?.id && !answer.result.existed) {
@@ -194,7 +209,7 @@ export function setSummary(summary) {
   tell('summary', summary);
 }
 
-export const rowEl = (id) => list.querySelector(`article.row[data-no="${CSS.escape(id)}"]`);
+export const rowEl = (id) => list?.querySelector(`article.row[data-no="${CSS.escape(id)}"]`) ?? null;
 
 // What each part does to a row drawn by the server, once per row element (rows.js).
 const rowParts = [];
@@ -203,8 +218,9 @@ const dressed = new WeakSet();
 
 // The page brought to the order and the numbers held: each row's place in the story and its
 // chapter, its number ('—' for a hidden row), its controls; then library.js reads the page again,
-// with the chapters for the headings.
+// with the chapters for the headings. A page in edit mode has no rows.
 export function redraw() {
+  if (!list) return;
   const places = storyPlaces(state.chapters);
   for (const el of list.querySelectorAll('article.row')) {
     const id = el.dataset.no;
@@ -220,7 +236,7 @@ export function redraw() {
       if (no.textContent !== shown) no.textContent = shown;
     }
   }
-  rescan({ chapters: headingsOf(state.chapters, (id) => Boolean(state.doc.rows[id]) && state.doc.rows[id].hidden !== true) });
+  library.rescan({ chapters: headingsOf(state.chapters, (id) => Boolean(state.doc.rows[id]) && state.doc.rows[id].hidden !== true) });
 }
 
 function dress(el) {
@@ -234,6 +250,7 @@ function dress(el) {
 const waiting = new Map(); // row id -> its HTML
 
 function putRow(id, html, field) {
+  if (!list) return;
   const fresh = fromHtml(html);
   const old = rowEl(id);
   if (!old) {

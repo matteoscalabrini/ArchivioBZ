@@ -1,8 +1,13 @@
 /* What an open row shows, on the Library page and in the Map page's panel: pictures with their
-   switcher and caption, the text, the facts, the link at the bottom, a table's first records.
-   Where these sit (the Library's columns, the panel's one column) is each page's own business. */
+   switcher and caption, the text, the pages about it, the facts, the link at the bottom, a table's
+   first records. Where these sit (the Library's columns, the panel's one column) is each page's
+   own business. */
 
 .detail .txt p { margin: 0 0 14px; }
+/* "Read: <title> →" under the text, one line for each page about the row. */
+.reads { margin: 0 0 14px; padding: 0; list-style: none; }
+.reads li { margin: 0 0 4px; }
+.reads a { text-underline-offset: 4px; }
 
 .pics figure { margin: 0; }
 /* Side by side (a row's `side_by_side`, for a before and an after): every picture at once, in two

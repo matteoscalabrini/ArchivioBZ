@@ -30,7 +30,7 @@ try {
   // Storage refused: the view is off, as the page comes. A kept value that cannot be read leaves
   // it on, with nothing folded.
 }
-list.classList.toggle('compact', on);
+list?.classList.toggle('compact', on); // a page in edit mode has no list, and no switch (bar.js)
 
 function keep() {
   try {
@@ -53,7 +53,7 @@ export function compactSwitch() {
   box.addEventListener('change', () => keepingPlace(() => {
     on = box.checked;
     if (!on) folded.clear();
-    list.classList.toggle('compact', on);
+    list?.classList.toggle('compact', on); // a page in edit mode has no list, and no switch (bar.js)
     keep();
     showFolds();
   }));
@@ -78,7 +78,7 @@ export function unfold(chapter) {
 
 // Folded, a chapter's open rows close as a reader closes them (library.js, which keeps the address
 // in step): out of sight, they would stay open in the address and unfold the chapter at a reload.
-list.addEventListener('click', (event) => {
+list?.addEventListener('click', (event) => {
   const button = event.target instanceof Element ? event.target.closest('h2.chapter button.ed-fold') : null;
   if (!button) return;
   const chapter = button.closest('h2.chapter').dataset.chapter;

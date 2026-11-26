@@ -1,22 +1,28 @@
-// The request logic of the two functions. `site` answers the four public files of the latest
-// publish, which Vercel's edge keeps until a publish clears them; `edit` answers the edit mode at
-// /edit/: the login, the Library drawn from the draft, and the requests its page sends. Everything
+// The request logic of the two functions. `site` answers the public files of the latest publish
+// (the four, and a page's pages/<address>.html), which Vercel's edge keeps until a publish clears
+// them; `edit` answers the edit mode at /edit/: the login, the Library drawn from the draft, a page
+// of the draft at /edit/pages/<address>, and the requests their pages send. Everything
 // they use is given (the store, the environment, the lists, the purge, the wait), so the tests run
 // them on PGlite, the local server runs them on its own, and api/ only wires them to Neon.
 // The route is a query parameter because vercel.json rewrites /index.html to /api/site?path=… and
 // /edit/<route> to /api/edit?route=<route>; a request without it is read by its own path (/,
-// /map.html, /edit/op), which names the same file or route. The pictures the author adds go through
-// stores given as `pictures` (cloud/pictures.mjs, which this file never imports, so that the public
-// site's function does not carry sharp): the cloud's, or this computer's.
+// /map.html, /pages/<address>.html, /edit/op), which names the same file or route. The pictures
+// the author adds go through stores given as `pictures` (cloud/pictures.mjs, which this file never
+// imports, so that the public site's function does not carry sharp): the cloud's, or this
+// computer's.
 import { createHash } from 'node:crypto';
 import { applyOp, OpError } from './ops.mjs';
 import { ConflictError } from './store.mjs';
 import { numbering, chapterNumbers } from './doc.mjs';
-import { renderSite, renderEditPage, renderEditRow, renderEditStrip, renderRelinked, editSearch, summaryOf, publishLine } from './render.mjs';
+import { renderSite, renderEditPage, renderEditRow, renderEditStrip, renderRelinked, renderPageEdit, renderPageParts, editSearch, summaryOf, publishLine } from './render.mjs';
 import { verifyPassword, makeSession, readSession, sessionCookie, clearedCookie } from './auth.mjs';
 import { page, esc } from '../lib/shell.mjs';
 
 const PUBLIC_FILES = ['index.html', 'map.html', 'about.html', 'search.json'];
+// A page's file, by the address it was made with (ops.mjs); nothing else under pages/ is answered.
+const PAGE_FILE = /^pages\/[a-z0-9-]+\.html$/;
+// A page of the draft in edit mode, by its address.
+const PAGE_ROUTE = /^pages\/([a-z0-9-]+)$/;
 // The browser asks again every time, and is answered 304 while its copy's ETag is the file's;
 // Vercel's edge keeps the file for a year, or until a publish deletes everything tagged `site`. Vercel documents the tag's header as Vercel-Cache-Tag;
 // Cache-Tag, the name the design gives, is sent beside it.
@@ -50,6 +56,8 @@ const CONFLICT = 'Changed in another window. Reload to see it.';
 const NOT_PURGED = 'Published, but the public site may still show the old version. Publish again to refresh it.';
 // The ops after which the page swaps in the row as drawn again, and holds the row as stored.
 const ROW_OPS = ['set-row', 'set-pictures', 'add-row', 'hide-row', 'give-keyword', 'remove-keyword', 'remove-picture', 'move-picture', 'set-caption', 'add-picture'];
+// The ops after which a page in edit mode puts in its tabs and its text as drawn again.
+const PAGE_OPS = ['set-page', 'move-page', 'hide-page'];
 const NO_PICTURES = 'Pictures cannot be added: BLOB_READ_WRITE_TOKEN and PICTURES_READ_WRITE_TOKEN are needed in the environment.';
 
 // A request refused with a status and a sentence, answered as { error }.
@@ -111,13 +119,15 @@ export function makeHandlers({
     }
   };
 
-  const loginPage = (line = '') => page({
+  // At /edit/, or one folder further down (`depth` 2, a page's address), where the form still sends
+  // to /edit/login.
+  const loginPage = (line = '', depth = 1) => page({
     title: 'Log in',
     tab: null,
-    depth: 1,
+    depth,
     css: ['web/login.css'],
     head: '<meta name="robots" content="noindex">',
-    body: `<form class="login" method="post" action="login">
+    body: `<form class="login" method="post" action="${'../'.repeat(depth - 1)}login">
 <label for="password">Password</label>
 <input type="password" id="password" name="password" autocomplete="current-password" required autofocus>
 <button type="submit">Log in</button>
@@ -153,6 +163,24 @@ ${line ? `<p class="login-line" role="alert">${esc(line)}</p>\n` : ''}</form>`,
     if (!loggedIn) return html(200, loginPage());
     const [draft, published] = await Promise.all([theDraft(), publishedDoc()]);
     return html(200, renderEditPage(draft.doc, { version: draft.version, published, lists, originals: originalsRoute() }));
+  }
+
+  // A page of the draft at /edit/pages/<address>, in edit mode; without a session the login, sent
+  // back to /edit/ once logged in. An address the draft does not have is said so, with the way to
+  // the Library.
+  async function pageEdit(address, loggedIn) {
+    if (!loggedIn) return html(401, loginPage('', 2));
+    const [draft, published] = await Promise.all([theDraft(), publishedDoc()]);
+    const drawn = renderPageEdit(draft.doc, address, { version: draft.version, published, lists, originals: originalsRoute() });
+    if (drawn) return html(200, drawn);
+    return html(404, page({
+      title: 'No such page',
+      tab: null,
+      depth: 2,
+      css: ['web/read.css'],
+      head: '<meta name="robots" content="noindex">',
+      body: `<p>There is no page ${esc(address)} in the draft. <a href="../../edit/">Back to the Library</a></p>`,
+    }));
   }
 
   // Where the page sends an original: through the handshake at upload to the private store, or,
@@ -211,8 +239,10 @@ ${line ? `<p class="login-line" role="alert">${esc(line)}</p>\n` : ''}</form>`,
       chapters: doc.chapters.map((chapter) => ({ id: chapter.id, no: chapterNo.get(chapter.id), title: chapter.title, rows: chapter.rows })),
       summary: summaryOf(published, doc),
       strip: renderEditStrip(doc), // "All keywords" as the edit page would now draw it
-      result, // the new id after add-row, add-chapter and add-keyword
+      result, // the new id after add-row, add-chapter and add-keyword; the id and address after add-page
+      pages: doc.pages ?? [], // the draft's pages, for the page to hold (🔗's finder, a page in edit mode)
     };
+    if (PAGE_OPS.includes(wanted.op)) reply.page = renderPageParts(doc, wanted.id, lists);
     const skip = [];
     if (ROW_OPS.includes(wanted.op)) {
       const id = result.id ?? wanted.id;
@@ -226,9 +256,10 @@ ${line ? `<p class="login-line" role="alert">${esc(line)}</p>\n` : ''}</form>`,
     return json(200, reply);
   }
 
-  // The draft drawn as the public site, stored as a publish with its four files, then the edge's
-  // copies deleted, at once and once more later. A page that cannot be drawn without an error
-  // publishes nothing.
+  // The draft drawn as the public site, stored as a publish with its files (the four and the pages'),
+  // in place of every file the last one stored, so that a page hidden or removed since is gone;
+  // then the edge's copies deleted, at once and once more later. A page that cannot be drawn without
+  // an error publishes nothing.
   async function publish(request) {
     const { version } = await readJson(request);
     const [draft, published] = await Promise.all([theDraft(), publishedDoc()]);
@@ -285,10 +316,12 @@ ${line ? `<p class="login-line" role="alert">${esc(line)}</p>\n` : ''}</form>`,
     // them has nothing published. A browser that holds the file as it is gets 304 and no body.
     async site(request) {
       const path = fileOf(new URL(request.url));
-      if (!PUBLIC_FILES.includes(path)) return text(404, 'Not found');
+      const page = PAGE_FILE.test(path);
+      if (!PUBLIC_FILES.includes(path) && !page) return text(404, 'Not found');
       try {
         const file = await store.siteFile(path);
-        if (!file) return text(503, 'Not published yet');
+        // A page the latest publish does not show (hidden or removed since, or never made) is none.
+        if (!file) return page ? text(404, 'Not found') : text(503, 'Not published yet');
         const tag = etagOf(file);
         const headers = { ...PUBLIC_HEADERS, ETag: tag };
         // A 304 goes to the browser only, with no CDN header and no tag, so the edge can never keep an empty 304 as the page.
@@ -297,7 +330,7 @@ ${line ? `<p class="login-line" role="alert">${esc(line)}</p>\n` : ''}</form>`,
         }
         return new Response(file.body, { status: 200, headers: { 'Content-Type': file.type, ...headers } });
       } catch (error) {
-        if (error?.code === UNDEFINED_TABLE) return text(503, 'Not published yet');
+        if (error?.code === UNDEFINED_TABLE) return page ? text(404, 'Not found') : text(503, 'Not published yet');
         console.error(`site ${path}:`, error);
         return text(500, 'Server error');
       }
@@ -305,12 +338,15 @@ ${line ? `<p class="login-line" role="alert">${esc(line)}</p>\n` : ''}</form>`,
 
     async edit(request) {
       const route = routeOf(new URL(request.url));
-      if (!Object.hasOwn(ROUTES, route)) return json(404, { error: 'Not found.' });
-      const run = Object.hasOwn(ROUTES[route], request.method) ? ROUTES[route][request.method] : null;
-      if (!run) return json(405, { error: 'Not allowed.' }, { Allow: Object.keys(ROUTES[route]).join(', ') });
+      const address = PAGE_ROUTE.exec(route)?.[1];
+      const methods = address ? { GET: (req, loggedIn) => pageEdit(address, loggedIn) } : Object.hasOwn(ROUTES, route) ? ROUTES[route] : null;
+      if (!methods) return json(404, { error: 'Not found.' });
+      const run = Object.hasOwn(methods, request.method) ? methods[request.method] : null;
+      if (!run) return json(405, { error: 'Not allowed.' }, { Allow: Object.keys(methods).join(', ') });
       if (request.method === 'POST' && !sameOrigin(request)) return json(403, { error: 'Refused: the request comes from another site.' });
       const loggedIn = readSession(request.headers.get('cookie'), env.SESSION_SECRET);
-      if (!loggedIn && !OPEN.includes(route)) return json(401, { error: 'logged-out' });
+      // A page's address answers 401 with the login (pageEdit); every other route but the two open ones with logged-out.
+      if (!loggedIn && !OPEN.includes(route) && !address) return json(401, { error: 'logged-out' });
       try {
         await init();
         return await run(request, loggedIn);

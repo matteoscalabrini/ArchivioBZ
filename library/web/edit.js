@@ -15,17 +15,22 @@
 //   edit/strip.js     "All keywords": the answers' strip, its keywords dragged into an order
 //   edit/bar.js       the bar: the summary, About, Public site, Discard, Publish, Log out
 //   edit/idea.js      ✎ on the idea
+//   edit/pages.js     ＋ page after the tabs; and a page in edit mode, of which it is the script
 //   edit/dialog.js    the questions asked
 //   edit/icons.js     the icons
-import { redraw } from './edit/core.js';
+import { rescan, forgetIndex } from './library.js';
+import { redraw, useLibrary } from './edit/core.js';
 import './edit/rows.js';
 import './edit/chapters.js';
 import './edit/drag.js';
 import './edit/strip.js';
 import { makeBar } from './edit/bar.js';
 import { dressIdea } from './edit/idea.js';
+import { dressTabs } from './edit/pages.js';
 
+useLibrary({ rescan, forgetIndex });
 makeBar();
+dressTabs();
 dressIdea();
 // Each row dressed, the hidden ones numbered "—", and the headings made from the draft's
 // chapters, those of empty chapters too, which the server does not write.

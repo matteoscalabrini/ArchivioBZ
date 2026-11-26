@@ -5,7 +5,7 @@
 // as a broken publish later.
 import { TYPES } from '../lib/records.mjs';
 import { parseIdea, withoutStandin } from '../lib/idea.mjs';
-import { checkDoc, chapterNumbers, NUMBER_KEY, LEVELS } from './doc.mjs';
+import { checkDoc, chapterNumbers, pagesOf, NUMBER_KEY, LEVELS } from './doc.mjs';
 
 export class OpError extends Error {}
 
@@ -132,6 +132,27 @@ function pictureAt(row, id, src) {
 
 const slug = (label) => label.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 
+// A page (design §14), named by its id; refused in the author's words when there is none.
+function pageOf(doc, id) {
+  const page = isText(id) ? pagesOf(doc).find((p) => p.id === id) : undefined;
+  if (!page) refuse(`There is no page ${id}.`);
+  return page;
+}
+const pageTitle = (title) => { if (!isText(title) || !title.trim()) refuse('A page needs a title.'); return title.trim(); };
+
+// A page's address, made once from its title when the page is made and never after, so that a link
+// to it and its public address hold when it is renamed: the title's accents taken off, in lower
+// case, each run of anything but a-z and 0-9 one dash, none at either end, at most 60 characters,
+// "page" when nothing is left; one another page of the draft has gets -2, -3 and on.
+const ADDRESS_LENGTH = 60;
+function pageAddress(title, pages) {
+  const base = slug(title).slice(0, ADDRESS_LENGTH).replace(/-+$/, '') || 'page';
+  const taken = new Set(pages.map((page) => page.address));
+  let address = base;
+  for (let n = 2; taken.has(address); n++) address = `${base}-${n}`;
+  return address;
+}
+
 const OPS = {
   'set-row'(doc, { id, fields }) {
     const row = rowOf(doc, id);
@@ -243,10 +264,13 @@ const OPS = {
     rowOf(doc, id).hidden = hidden === true;
     return {};
   },
+  // The row's pages go with it: a page about a row that is gone has nothing to open with and no
+  // way back. Both come back together from an older publish, as the row's own words do.
   'remove-row'(doc, { id }) {
     rowOf(doc, id);
     takeOut(doc, id);
     delete doc.rows[id];
+    if (Array.isArray(doc.pages)) doc.pages = doc.pages.filter((page) => page.row !== id);
     return {};
   },
   'add-row'(doc, { chapter, index, title, type }) {
@@ -325,6 +349,51 @@ const OPS = {
   'set-about'(doc, { text }) {
     if (!isText(text)) refuse('The about page must be text.');
     doc.about = text;
+    return {};
+  },
+  // Pages (design §14). A site page (row null) has a tab between Map and About, in the order of the
+  // site pages among the pages; a row page expands on one row. A document from before the pages
+  // has neither `pages` nor next.page, and is given both by its first page.
+  'add-page'(doc, { title, row = null }) {
+    const name = pageTitle(title);
+    if (row !== null) rowOf(doc, row);
+    doc.pages = pagesOf(doc);
+    doc.next.page ??= 1;
+    const id = `p${doc.next.page++}`;
+    const address = pageAddress(name, doc.pages);
+    doc.pages.push({ id, address, title: name, text: '', row, hidden: false });
+    return { id, address };
+  },
+  // Its title, its text (Markdown, kept as typed, as About is), or both; the address stays.
+  'set-page'(doc, { id, title, text }) {
+    const page = pageOf(doc, id);
+    if (title !== undefined) page.title = pageTitle(title);
+    if (text !== undefined) {
+      if (!isText(text)) refuse('The text of a page must be text.');
+      page.text = text;
+    }
+    return {};
+  },
+  // A site page's tab one place on (+1) or back (-1) among the site pages, held at the ends; the
+  // row pages between them keep their places.
+  'move-page'(doc, { id, step }) {
+    const page = pageOf(doc, id);
+    if (page.row !== null) refuse('Only a site page has a tab to move.');
+    if (step !== 1 && step !== -1) refuse('A tab moves one place on or back.');
+    const sites = doc.pages.filter((p) => p.row === null);
+    const other = sites[sites.indexOf(page) + step];
+    if (!other) return {};
+    const [at, to] = [doc.pages.indexOf(page), doc.pages.indexOf(other)];
+    [doc.pages[at], doc.pages[to]] = [other, page];
+    return {};
+  },
+  'hide-page'(doc, { id, hidden }) {
+    pageOf(doc, id).hidden = hidden === true;
+    return {};
+  },
+  'remove-page'(doc, { id }) {
+    const page = pageOf(doc, id);
+    doc.pages.splice(doc.pages.indexOf(page), 1);
     return {};
   },
 };

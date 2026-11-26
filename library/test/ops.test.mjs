@@ -366,6 +366,103 @@ test('set-idea drops the stand-in line, and says what it stored', () => {
 });
 test('set-about stores the text', () => assert.equal(applyOp(sample(), { op: 'set-about', text: 'Hello' }).doc.about, 'Hello'));
 
+// Pages (design §14): a site page has a tab between Map and About; a row page expands on one row.
+// A document moved in before pages has neither `pages` nor next.page; both read as none and 1.
+const page = (doc, title, row = null) => applyOp(doc, { op: 'add-page', title, row });
+test('add-page makes p1 with an address from its title, then p2; a document without pages takes one', () => {
+  const doc = sample();
+  assert.equal(doc.pages, undefined);
+  const one = page(doc, '  Über die Brücke ');
+  assert.deepEqual(one.result, { id: 'p1', address: 'uber-die-brucke' });
+  assert.deepEqual(one.doc.pages, [{ id: 'p1', address: 'uber-die-brucke', title: 'Über die Brücke', text: '', row: null, hidden: false }]);
+  assert.equal(one.doc.next.page, 2);
+  const two = page(one.doc, 'On the bridge', 'c');
+  assert.deepEqual(two.result, { id: 'p2', address: 'on-the-bridge' });
+  assert.deepEqual(two.doc.pages[1], { id: 'p2', address: 'on-the-bridge', title: 'On the bridge', text: '', row: 'c', hidden: false });
+  assert.deepEqual(checkDoc(two.doc), []);
+});
+test('an address: accents off, lower case, a run of anything else one -, none at either end, at most 60, "page" when nothing is left, -2 and on when taken', () => {
+  assert.equal(page(sample(), 'Über die Brücke').result.address, 'uber-die-brucke');
+  assert.equal(page(sample(), '!!!').result.address, 'page');
+  assert.equal(page(sample(), '«Città»  &  1938: the "new" town!').result.address, 'citta-1938-the-new-town');
+  const long = 'The Drusus bridge over the Talfer: the town that grew up on either side of it, 1927 – 1938';
+  assert.equal(long.length, 90);
+  const cut = page(sample(), long).result.address;
+  assert.equal(cut, 'the-drusus-bridge-over-the-talfer-the-town-that-grew-up-on-e');
+  assert.ok(cut.length <= 60 && !cut.endsWith('-'), cut);
+  assert.equal(page(sample(), `${'a'.repeat(59)} b`).result.address, 'a'.repeat(59), 'no - left at the end of the cut');
+  let doc = sample();
+  const addresses = [];
+  for (const title of ['Über die Brücke', 'UBER DIE BRUCKE', 'über-die-brücke', '!!!', '?']) {
+    const made = page(doc, title);
+    addresses.push(made.result.address);
+    doc = made.doc;
+  }
+  assert.deepEqual(addresses, ['uber-die-brucke', 'uber-die-brucke-2', 'uber-die-brucke-3', 'page', 'page-2']);
+  doc = applyOp(doc, { op: 'remove-page', id: 'p2' }).doc;
+  assert.equal(page(doc, 'Uber die Brucke').result.address, 'uber-die-brucke-2', 'free again once its page is removed from the draft');
+});
+test('a renamed page keeps its address; set-page changes the title and the text', () => {
+  const { doc } = page(sample(), 'Über die Brücke');
+  const renamed = applyOp(doc, { op: 'set-page', id: 'p1', title: '  On the Druso bridge ' }).doc;
+  assert.deepEqual(renamed.pages[0], { id: 'p1', address: 'uber-die-brucke', title: 'On the Druso bridge', text: '', row: null, hidden: false });
+  const written = applyOp(renamed, { op: 'set-page', id: 'p1', text: '## A heading\n\nWords [[more|@a]].\n' }).doc;
+  assert.equal(written.pages[0].text, '## A heading\n\nWords [[more|@a]].\n', 'kept as typed');
+  assert.equal(written.pages[0].title, 'On the Druso bridge');
+  assert.deepEqual(applyOp(written, { op: 'set-page', id: 'p1', title: 'Both', text: '' }).doc.pages[0], { ...written.pages[0], title: 'Both', text: '' });
+});
+test('the pages\' refusals, each in its sentence', () => {
+  const { doc } = page(page(sample(), 'Site').doc, 'About c', 'c');
+  for (const title of ['', '   ', null, 7, ['x']]) refused(sample(), { op: 'add-page', title, row: null }, 'A page needs a title.');
+  refused(sample(), { op: 'add-page', title: 'x', row: 'zz' }, 'There is no row zz.');
+  refused(sample(), { op: 'add-page', title: 'x', row: ['a'] });
+  refused(doc, { op: 'set-page', id: 'p9', title: 'x' }, 'There is no page p9.');
+  refused(doc, { op: 'set-page', id: 'p1', title: '  ' }, 'A page needs a title.');
+  refused(doc, { op: 'set-page', id: 'p1', text: ['x'] }, 'The text of a page must be text.');
+  refused(doc, { op: 'hide-page', id: 'p9', hidden: true }, 'There is no page p9.');
+  refused(doc, { op: 'remove-page', id: 'p9' }, 'There is no page p9.');
+  refused(doc, { op: 'move-page', id: 'p9', step: 1 }, 'There is no page p9.');
+  refused(doc, { op: 'move-page', id: 'p2', step: -1 }, 'Only a site page has a tab to move.');
+  refused(doc, { op: 'move-page', id: 'p1', step: 2 }, 'A tab moves one place on or back.');
+  const line = 'The text holds a character that cannot be saved: an invisible NUL or half of an emoji. Type that part again.';
+  refused(doc, { op: 'set-page', id: 'p1', text: 'a\u0000b' }, line);
+  refused(doc, { op: 'set-page', id: 'p1', title: 'x\uD83D' }, line);
+  refused(sample(), { op: 'add-page', title: '\uDE00 alone', row: null }, line);
+});
+test('move-page moves a site page\'s tab among the site pages, held at the ends; the row pages keep their places', () => {
+  let doc = sample();
+  for (const [title, row] of [['One', null], ['About a', 'a'], ['Two', null], ['Three', null]]) doc = page(doc, title, row).doc;
+  const order = (d) => d.pages.map((p) => p.title);
+  assert.deepEqual(order(applyOp(doc, { op: 'move-page', id: 'p3', step: -1 }).doc), ['Two', 'About a', 'One', 'Three']);
+  assert.deepEqual(order(applyOp(doc, { op: 'move-page', id: 'p3', step: 1 }).doc), ['One', 'About a', 'Three', 'Two']);
+  assert.deepEqual(order(applyOp(doc, { op: 'move-page', id: 'p1', step: -1 }).doc), order(doc), 'the first stays first');
+  assert.deepEqual(order(applyOp(doc, { op: 'move-page', id: 'p4', step: 1 }).doc), order(doc), 'the last stays last');
+});
+test('hide-page hides and shows a page; remove-page takes it out; a row removed takes its pages with it', () => {
+  let doc = sample();
+  for (const [title, row] of [['Site', null], ['About b', 'b'], ['More on b', 'b'], ['About c', 'c']]) doc = page(doc, title, row).doc;
+  const hidden = applyOp(doc, { op: 'hide-page', id: 'p2', hidden: true }).doc;
+  assert.equal(hidden.pages[1].hidden, true);
+  assert.equal(applyOp(hidden, { op: 'hide-page', id: 'p2', hidden: false }).doc.pages[1].hidden, false);
+  assert.deepEqual(applyOp(doc, { op: 'remove-page', id: 'p1' }).doc.pages.map((p) => p.id), ['p2', 'p3', 'p4']);
+  const without = applyOp(doc, { op: 'remove-row', id: 'b' }).doc;
+  assert.deepEqual(without.pages.map((p) => p.id), ['p1', 'p4']);
+  assert.equal(without.next.page, 5, 'their ids are not given again');
+  assert.deepEqual(checkDoc(without), []);
+});
+test('pages that differ from the publish: the summary says pages changed', () => {
+  const doc = sample();
+  const { doc: added } = page(doc, 'Site');
+  assert.equal(diffDocs(doc, added).pages, true);
+  assert.equal(diffDocs(doc, added).count, 1);
+  assert.equal(summaryOf(doc, added), 'pages changed');
+  const { doc: written } = applyOp(added, { op: 'set-page', id: 'p1', text: 'Words.' });
+  assert.equal(summaryOf(added, written), 'pages changed');
+  assert.equal(summaryOf(written, applyOp(written, { op: 'hide-page', id: 'p1', hidden: true }).doc), 'pages changed');
+  assert.equal(diffDocs(added, structuredClone(added)).pages, false);
+  assert.equal(diffDocs(doc, { ...structuredClone(doc), pages: [] }).count, 0, 'no pages and an empty list are the same');
+});
+
 // A NUL, or half of a surrogate pair (half an emoji, from a broken paste), cannot reach a page as
 // typed: the operation is refused with a sentence and nothing changes.
 test('text holding a NUL or half an emoji is refused with a sentence; a whole emoji is text', () => {
@@ -409,6 +506,14 @@ test('malformed requests are refused as OpError and change nothing', () => {
     { op: 'add-picture', id: ['a'], picture: { src: '/p/1.jpg', w: 1, h: 1 } },
     { op: 'add-picture', id: 'constructor', picture: { src: '/p/1.jpg', w: 1, h: 1 } },
     { op: 'add-picture', id: 'a', picture: JSON.parse('{"__proto__": {"src": "/p/1.jpg"}, "w": 1, "h": 1}') },
+    { op: 'add-page', title: 'x', row: '__proto__' },
+    { op: 'add-page', title: 'x', row: 'constructor' },
+    { op: 'add-page', title: { toString: 'x' }, row: null },
+    { op: 'set-page', id: ['p1'], title: 'x' },
+    { op: 'set-page', id: '__proto__', title: 'x' },
+    { op: 'hide-page', id: 'constructor', hidden: true },
+    { op: 'move-page', id: 'p1', step: 1 },
+    { op: 'remove-page' },
     { op: '__proto__' },
     { op: ['set-about'], text: 'x' },
     { op: 'constructor' },

@@ -260,8 +260,35 @@ dl.meta dd .ed-field .ed-error { flex-basis: 100%; }
 .ed-block { display: block; margin-bottom: 14px; }
 
 /* A link typed in a text whose target the public may not see (lib/links.mjs): its words, dotted,
-   its title saying why; the public site shows the words alone. */
+   its title saying why; the public site shows the words alone. A hidden page's tab and its Read:
+   line are dotted the same way, and still lead to the page in edit mode. */
 .dead-link { text-decoration: underline dotted; text-underline-offset: 3px; cursor: help; }
+.tabs a.dead-link { text-decoration: underline dotted; text-underline-offset: 4px; cursor: pointer; }
+.reads a.dead-link { cursor: pointer; }
+
+/* Pages (design §14, edit/pages.js): "＋ page" after the tabs, "＋ page about this row" under the
+   pages of an open row. A page in edit mode: the bar across the top as on the Library, over the
+   page its ← → (a site page's tab), Hide or Show and Remove, ✎ beside its title and under its text;
+   the title's field in the title's own size. */
+/* In the tabs' line, which holds to the words' baseline, ＋ page is a line of words too, its icon
+   set on that line; as a flex box its baseline would be the icon's foot. */
+.tabs button.ed-add-page { display: inline-block; margin: -3px 0; }
+.tabs button.ed-add-page .ed-icon { vertical-align: -2px; }
+.reads .ed-add-read { margin-top: 6px; font-size: var(--size-meta); }
+.ed-on-page main { padding-top: 0; }
+.ed-on-page main > .ed-bar { margin: 0 calc(-1 * var(--gutter)) 30px; }
+.ed-page-acts { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 18px; margin: 0 0 22px; font-size: var(--size-meta); }
+.ed-page-acts > button.ed:not(.ed-words) { align-self: center; } /* an icon alone has no baseline of words */
+.ed-page-acts button.ed-words { text-decoration: underline; text-underline-offset: 4px; }
+.ed-page-acts button.ed-words:hover { background: none; color: inherit; text-decoration-thickness: 2px; }
+.ed-page-unseen { color: var(--grey); }
+main > h1 > button.ed { vertical-align: 0.35em; margin-left: 4px; }
+main > h1 > .ed-field { display: block; }
+.ed-in-page-title { width: 100% !important; font: inherit !important; }
+.ed-on-page main > .ed-block { max-width: var(--measure); }
+.ed-in-page { min-height: 18em; }
+.ed-page-text { margin: 0; font-size: var(--size-meta); color: var(--grey); }
+.ed-page-text button.ed { color: var(--ink); }
 
 /* 🔗 over a text field (the idea, About, a row's text) and the legend under it, for as long as the
    field is open (edit/linker.js). The finder opens under 🔗, over the field, as the keywords' list

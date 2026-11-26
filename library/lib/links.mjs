@@ -20,16 +20,18 @@ const PAGE = 'page:';
 
 // What a text's links know of a `lib` (lib/pages.mjs's, from the files or from the document): its
 // rows, by their key, with their numbers, titles and whether shown (a lib from the document in edit
-// mode holds the hidden rows too, marked); no pages yet; the keywords some shown row carries, in
-// edit mode as on the public site, so that a keyword only hidden rows carry is dotted there. The
-// one making of it, for the pages and for the search alike. `edit`: the page is edit mode's.
+// mode holds the hidden rows too, marked); its pages, by their addresses (cloud/doc.mjs, libFromDoc:
+// on the public site those a publish shows, in edit mode the others too, not shown); the keywords
+// some shown row carries, in edit mode as on the public site, so that a keyword only hidden rows
+// carry is dotted there. The one making of it, for the pages and for the search alike. `edit`: the
+// page is edit mode's.
 export function linksOf(lib, { edit = false } = {}) {
   const shown = lib.entries.filter((entry) => entry.hidden !== true);
   return {
     keywords: lib.keywords ?? {},
     aliases: lib.aliases ?? {},
     rows: new Map(lib.entries.map((entry) => [entry.id ?? entry.no, { no: entry.no, title: entry.title, shown: entry.hidden !== true }])),
-    pages: new Map(),
+    pages: new Map((lib.pages ?? []).map((page) => [page.address, { title: page.title, shown: page.shown !== false }])),
     carried: new Set(shown.flatMap((entry) => entry.keywords ?? [])),
     edit,
   };
@@ -72,7 +74,9 @@ export function targetOf(target, ctx) {
 
 // One link as HTML: a keyword's button on the Library (library.js filters by it) or a link to the
 // Library so filtered; a row's link, which on the Library opens the row in place (data-row) and
-// elsewhere leads to the Library with the row open; a page's link. A dead one as its words.
+// elsewhere leads to the Library with the row open; a page's link. A dead one as its words. In edit
+// mode the Library is /edit/ and a page is at /edit/pages/<address>, so that a link followed there
+// stays in edit mode, where a page not yet published is.
 export function linkHtml(link, ctx) {
   const found = targetOf(link.target, ctx);
   const words = esc(wordsFor(link, found, ctx));
@@ -80,10 +84,11 @@ export function linkHtml(link, ctx) {
   const id = esc(found.id);
   const address = esc(encodeURIComponent(found.id));
   const up = ctx.up ?? '';
-  const library = ctx.here === 'library';
-  if (found.kind === 'keyword') return library ? `<button type="button" data-k="${id}">${words}</button>` : `<a href="${up}index.html#k=${address}">${words}</a>`;
-  if (found.kind === 'row') return library ? `<a href="#o=${address}" data-row="${id}">${words}</a>` : `<a href="${up}index.html#o=${address}">${words}</a>`;
-  return `<a href="${up}pages/${address}.html">${words}</a>`;
+  const here = ctx.here === 'library';
+  const library = ctx.edit ? `${up}edit/` : `${up}index.html`;
+  if (found.kind === 'keyword') return here ? `<button type="button" data-k="${id}">${words}</button>` : `<a href="${library}#k=${address}">${words}</a>`;
+  if (found.kind === 'row') return here ? `<a href="#o=${address}" data-row="${id}">${words}</a>` : `<a href="${library}#o=${address}">${words}</a>`;
+  return ctx.edit ? `<a href="${up}edit/pages/${address}">${words}</a>` : `<a href="${up}pages/${address}.html">${words}</a>`;
 }
 
 // A text with its links drawn and every other character escaped.

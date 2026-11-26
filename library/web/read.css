@@ -13,6 +13,13 @@ main { padding: 44px var(--gutter) 80px; }
 .back { font-size: var(--size-meta); text-underline-offset: 4px; }
 main > h1 { margin: 26px 0 40px; max-width: var(--wide); overflow-wrap: break-word; }
 
+/* A page about one row (design §14) opens with the row: its first picture, small, its number and
+   title, and the way back to it in the Library. */
+.page-row { max-width: var(--measure); margin: 0 0 8px; font-size: var(--size-meta); }
+.page-row img { display: block; width: auto; height: auto; max-width: 100%; max-height: 200px; margin: 0 0 10px; }
+.page-row-head { margin: 0 0 6px; }
+.page-row-head .no { color: var(--grey); font-variant-numeric: tabular-nums; }
+
 /* In parts: the whole's title small above the part's, the parts on a line under it, the part
    before and the part after at the foot. */
 .series { margin: 26px 0 0; font-size: var(--size-meta); color: var(--grey); }

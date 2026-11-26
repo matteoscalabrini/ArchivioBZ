@@ -74,3 +74,13 @@ test('pictures come from the picture folder, and nothing outside a folder is ser
   assert.equal((await fetch(`${base}/web/nope.js`)).status, 404);
   assert.equal((await fetch(`${base}/elsewhere`)).status, 404);
 });
+
+// vercel.json's two rewrites for the pages (design §14), as this server reads them.
+test('a page\'s two addresses reach their functions: /pages/<file> the public one, /edit/pages/<address> edit mode\'s', async () => {
+  const site = await fetch(`${base}/pages/on-the-bridge.html`);
+  assert.equal(site.status, 404, 'no page is published');
+  assert.equal(await site.text(), 'Not found');
+  const edit = await fetch(`${base}/edit/pages/on-the-bridge`);
+  assert.equal(edit.status, 401);
+  assert.match(await edit.text(), /<form class="login" method="post" action="\.\.\/login">/);
+});
