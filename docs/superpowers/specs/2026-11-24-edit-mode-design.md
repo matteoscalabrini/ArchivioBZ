@@ -446,6 +446,13 @@ published with everything else:
   row's first picture. The summary line says `pages changed`. The map is unchanged.
 - In the document: `pages: [{ id: 'p1', address, title, text, row: null | '<row id>', hidden }]`
   and `next.page`; a site page has `row: null`, and the tabs follow the list's order. **(call)**
+- As built (26 Nov 2026), after the task review: the document also keeps `addresses`, every
+  address ever given, so a removed page's address is never given to another (a link to it stays
+  dead rather than coming alive on a stranger page); every page's address must be in it, and a
+  restore, a discard and a session's push keep the union. A row that has pages is not removed
+  ("remove them first, or hide the row"), so a page never published cannot go with its row. A
+  page whose row is hidden says "Its row is hidden."; a `#` heading at the top of a page's text
+  is drawn as a heading. **(call)**
 
 ### 13. Tests
 
