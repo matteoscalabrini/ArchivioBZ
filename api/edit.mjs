@@ -22,8 +22,9 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const LATER_MS = 5000;
 const later = (task) => waitUntil(new Promise((resolve) => setTimeout(resolve, LATER_MS)).then(task));
 
-// The two Blob stores of the pictures added. Without either token the edit page offers no ＋ picture,
-// its routes answer with what is missing, and the function's log says so once.
+// The two Blob stores of the pictures added. Without either token the edit page's ＋ picture is off
+// and says "Adding pictures is off on this server.", its routes answer with what is missing, and
+// the function's log says so once.
 const { BLOB_READ_WRITE_TOKEN: ORIGINALS, PICTURES_READ_WRITE_TOKEN: PICTURES } = process.env;
 if (!ORIGINALS || !PICTURES) console.warn('BLOB_READ_WRITE_TOKEN or PICTURES_READ_WRITE_TOKEN is not set: pictures cannot be added.');
 const pictures = ORIGINALS && PICTURES ? cloudStores({ originals: ORIGINALS, pictures: PICTURES }) : null;

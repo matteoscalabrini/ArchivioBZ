@@ -26,8 +26,9 @@ button.ed {
   text-decoration: none;
   letter-spacing: 0;
 }
-button.ed:hover:not(:disabled) { background: var(--ink); color: var(--paper); }
-button.ed:disabled { color: var(--grey); cursor: default; opacity: 0.45; }
+button.ed:hover:not(:disabled, [aria-disabled="true"]) { background: var(--ink); color: var(--paper); }
+button.ed:disabled,
+button.ed[aria-disabled="true"] { color: var(--grey); cursor: default; opacity: 0.45; } /* the latter off, but a press says why */
 button.ed-words { font: 400 var(--size-meta)/1.2 var(--sans); }
 button.ed-words .ed-icon { display: inline-block; }
 

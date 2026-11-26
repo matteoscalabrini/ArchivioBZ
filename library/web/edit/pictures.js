@@ -27,6 +27,8 @@ const LARGEST = 104857600; // 100 MB
 // The session ended while files were waiting: the files still waiting are not sent, and nothing
 // keeps them, so the author chooses them again once logged in.
 const LOGGED_OUT_WAITING = 'Logged out. Log in again and choose the pictures not yet added.';
+// Said by ＋ picture, off, where the server has no stores for pictures.
+const PICTURES_OFF = 'Adding pictures is off on this server.';
 
 // Each figure's tools carry its picture's source, as the row was drawn: the page's draft may run
 // ahead of a row that waits to be drawn again (core.js), so an index would name another picture.
@@ -71,19 +73,27 @@ function dressFigures(el, pics) {
 }
 
 // The line of ＋ picture: the button, the file chooser it opens, and the words said while the
-// row's pictures are being added. Not drawn where the server has no stores for pictures.
+// row's pictures are being added. Where the server has no stores for pictures (api/edit.mjs: a
+// token missing), the button stands all the same, off, with no chooser: its title says why, and so
+// does the bar when it is pressed, so the author is told rather than left to look for it.
 function dressAdd(el, pics) {
   const detail = el.querySelector('.row-body .detail');
-  if (!state.originals || !detail) return;
+  if (!detail) return;
   const line = document.createElement('p');
   line.className = 'ed-add-pic';
   const button = wordButton('picture', { first: 'add', className: 'ed-add-picture' });
   button.dataset.ed = 'pic-add';
-  const chooser = Object.assign(document.createElement('input'), { type: 'file', multiple: true, accept: Object.keys(EXTENSIONS).join(','), hidden: true });
-  chooser.dataset.ed = 'pic-file';
   const adding = Object.assign(document.createElement('span'), { className: 'ed-adding' });
   adding.setAttribute('role', 'status');
-  line.append(button, chooser, adding);
+  if (state.originals) {
+    const chooser = Object.assign(document.createElement('input'), { type: 'file', multiple: true, accept: Object.keys(EXTENSIONS).join(','), hidden: true });
+    chooser.dataset.ed = 'pic-file';
+    line.append(button, chooser, adding);
+  } else {
+    button.setAttribute('aria-disabled', 'true'); // not disabled: a press still says why, in the bar
+    button.title = PICTURES_OFF;
+    line.append(button, adding);
+  }
   if (pics) {
     pics.append(line);
   } else {
@@ -98,7 +108,8 @@ list.addEventListener('click', (event) => {
   const target = event.target instanceof Element ? event.target : null;
   const add = target?.closest('button.ed[data-ed="pic-add"]');
   if (add) {
-    add.closest('.ed-add-pic').querySelector('input[type=file]').click();
+    if (add.getAttribute('aria-disabled') === 'true') say(PICTURES_OFF);
+    else add.closest('.ed-add-pic').querySelector('input[type=file]').click();
     return;
   }
   const button = target?.closest('.ed-pic button.ed, figcaption button.ed');

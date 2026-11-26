@@ -11,11 +11,12 @@
 // library/.cache/check-edit/.
 // Not part of npm test, since it needs Chrome. Then steps add pictures (＋ picture): on this
 // computer's stores first, then as the cloud's page does, the Blob client in the page given a
-// stand-in for Vercel's Blob service, so that nothing leaves this computer. The last steps follow
-// the links typed in a row's text and the way back from them, in edit mode and, once published,
-// on the public page; then such links are written with 🔗 in a row's text, the idea and About,
-// with the legend under each field; and the last make pages, a site page and a page about a row,
-// in edit mode and on the public site.
+// stand-in for Vercel's Blob service, so that nothing leaves this computer, and with no stores at
+// all, where ＋ picture stands off and says so. The last steps follow the links typed in a row's
+// text and the way back from them, in edit mode and, once published, on the public page; then
+// such links are written with 🔗 in a row's text, the idea and About, with the legend under each
+// field; and the last make pages, a site page and a page about a row, in edit mode and on the
+// public site.
 //
 // The fixtures' draft, by row id: chapter c1 "Zero" [0.01], c2 "Five" [5.00 5.01 5.02 5.03],
 // c3 "Twelve" [12.01]; numbered 1.01, 2.01 to 2.04 and 3.01 to begin with. The steps build on
@@ -1863,6 +1864,48 @@ async function main() {
     const shown = await figuresOf('12.01');
     check(/^\*\/dev-img\/12\.01-/.test(shown[1]), `12.01 shows ${JSON.stringify(shown)}`);
     check(away.length === 0, `requests left this computer: ${away.join(', ')}`);
+  });
+
+  // A server without the stores (in the cloud, BLOB_READ_WRITE_TOKEN or PICTURES_READ_WRITE_TOKEN
+  // not set): ＋ picture stands all the same, off, and says why, rather than being nowhere to find
+  // (final review of Tasks 14–19, Important 2). Then the server as the step before had it.
+  await step('with no stores for pictures, an open row shows ＋ picture off; its title and a press say Adding pictures is off on this server., and nothing opens or is sent', async () => {
+    const OFF = 'Adding pictures is off on this server.';
+    await dev.close();
+    dev = await startDev({ port: 0, dataDir, imgDir, originalsDir, password: 'dev', pictures: null });
+    base = dev.url.replace(/\/edit\/$/, '');
+    await logIn(page, base);
+    check(await page.evaluate(() => JSON.parse(document.getElementById('edit-data').textContent).originals) === null, 'the page sends its originals somewhere');
+    const row = rowOf('5.00');
+    await page.click(`${row} .c-title button`);
+    const add = `${row}.open button.ed[data-ed="pic-add"]`;
+    await page.waitForSelector(add);
+    await stillAt(page, `${row} > .ed-here`);
+    const shown = await page.$eval(add, (button) => ({
+      words: button.textContent.trim(),
+      off: button.getAttribute('aria-disabled'),
+      title: button.title,
+      drawn: button.getClientRects().length > 0,
+      faint: Number(getComputedStyle(button).opacity) < 1,
+      chooser: Boolean(button.closest('.ed-add-pic').querySelector('input[type=file]')),
+    }));
+    check(shown.words === 'picture' && shown.off === 'true' && shown.title === OFF && shown.drawn && shown.faint && !shown.chooser, `＋ picture is ${JSON.stringify(shown)}`);
+    const before = sent.length;
+    const asked = pictureRequests.length;
+    let chose = false;
+    page.waitForFileChooser({ timeout: 1500 }).then(() => { chose = true; }, () => {});
+    await page.click(add);
+    await page.waitForFunction((words) => document.querySelector('.ed-msg')?.textContent.startsWith(words), { timeout: WAIT }, OFF)
+      .catch(async () => { throw new Error(`pressed, the bar says ${JSON.stringify(await page.$eval('.ed-msg', (el) => (el.hidden ? '' : el.textContent)))}`); });
+    await pause(1600);
+    check(!chose && pictureRequests.length === asked && sent.length === before, `pressed, ${chose ? 'a chooser opened, ' : ''}${pictureRequests.length - asked} picture requests and ${sent.length - before} edits went`);
+    await page.click('.ed-msg button.ed-dismiss');
+    await dev.close();
+    const folders = localStores({ originals: originalsDir, pictures: imgDir });
+    const cloud = cloudStores({ originals: 'vercel_blob_rw_checkstore_standin', pictures: 'vercel_blob_rw_unused_standin' });
+    dev = await startDev({ port: 0, dataDir, imgDir, originalsDir, password: 'dev', pictures: { handshake: cloud.handshake, picture: folders.picture } });
+    base = dev.url.replace(/\/edit\/$/, '');
+    await logIn(page, base);
   });
 
   // Links in a row's text (Task 17), given through the draft's op set-row as the text field sends
