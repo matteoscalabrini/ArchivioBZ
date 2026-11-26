@@ -188,10 +188,16 @@ function applied(op, answer, field) {
 // The draft the page holds, brought up to what the server stored, for the fields' values. An edit
 // of a row is answered with the row as stored (`stored`), which the page takes as it is: what each
 // field then starts from is the server's own, and the next edit is built on it. Every answer
-// carries the draft's pages as stored (🔗's finder lists them; a page in edit mode reads its own).
+// carries the draft's pages as stored (🔗's finder lists them; a page in edit mode reads its own),
+// without their text but for the page an edit of a page was of (cloud/render.mjs, pagesHeld): a
+// text the page holds stays until an answer brings it anew, so that a page in edit mode keeps its
+// own through an edit of anything else (About saved from its bar).
 function keep(op, answer) {
   const { doc } = state;
-  if (Array.isArray(answer?.pages)) doc.pages = answer.pages;
+  if (Array.isArray(answer?.pages)) {
+    const texts = new Map((doc.pages ?? []).filter((page) => typeof page.text === 'string').map((page) => [page.id, page.text]));
+    doc.pages = answer.pages.map((page) => (typeof page.text === 'string' || !texts.has(page.id) ? page : { ...page, text: texts.get(page.id) }));
+  }
   if (answer?.stored && typeof answer.stored === 'object') doc.rows[answer.result?.id ?? op.id] = answer.stored;
   else if (op.op === 'remove-row') delete doc.rows[op.id];
   else if (op.op === 'add-keyword' && answer.result?.id && !answer.result.existed) {

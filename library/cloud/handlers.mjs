@@ -14,7 +14,7 @@ import { createHash } from 'node:crypto';
 import { applyOp, OpError } from './ops.mjs';
 import { ConflictError } from './store.mjs';
 import { numbering, chapterNumbers } from './doc.mjs';
-import { renderSite, renderEditPage, renderEditRow, renderEditStrip, renderRelinked, renderPageEdit, renderPageParts, editSearch, summaryOf, publishLine } from './render.mjs';
+import { renderSite, renderEditPage, renderEditRow, renderEditStrip, renderRelinked, renderPageEdit, renderPageParts, pagesHeld, editSearch, summaryOf, publishLine } from './render.mjs';
 import { verifyPassword, makeSession, readSession, sessionCookie, clearedCookie } from './auth.mjs';
 import { page, esc } from '../lib/shell.mjs';
 
@@ -240,7 +240,9 @@ ${line ? `<p class="login-line" role="alert">${esc(line)}</p>\n` : ''}</form>`,
       summary: summaryOf(published, doc),
       strip: renderEditStrip(doc), // "All keywords" as the edit page would now draw it
       result, // the new id after add-row, add-chapter and add-keyword; the id and address after add-page
-      pages: doc.pages ?? [], // the draft's pages, for the page to hold (🔗's finder, a page in edit mode)
+      // The draft's pages, for the page to hold (🔗's finder, the tabs, a page in edit mode): their
+      // text only for the page an edit of a page was of, which its own edit view reads.
+      pages: pagesHeld(doc, PAGE_OPS.includes(wanted.op) ? wanted.id : null),
     };
     if (PAGE_OPS.includes(wanted.op)) reply.page = renderPageParts(doc, wanted.id, lists);
     const skip = [];

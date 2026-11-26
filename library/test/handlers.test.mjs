@@ -58,6 +58,8 @@ const login = (password, options) => new Request('https://a.test/api/edit?route=
 });
 const site = (path) => h.site(new Request(`https://a.test/api/site?path=${path}`));
 const hide = (id, version = 1) => post('op', { version, op: { op: 'hide-row', id, hidden: true } });
+// What a page of edit mode is given as #edit-data.
+const editDataOf = (html) => JSON.parse(/<script type="application\/json" id="edit-data">([\s\S]*?)<\/script>/.exec(html)[1]);
 
 test('the public page carries the cache tag and the published body', async () => {
   const res = await site('index.html');
@@ -774,18 +776,48 @@ test('/edit/pages/<address>: 401 without the cookie, the page in edit mode with 
 test('an op answers with the draft\'s pages, and an edit of a page with its tabs and its text as the page in edit mode draws them', async () => {
   const added = await (await h.edit(post('op', { version: 1, op: { op: 'add-page', title: 'On the bridge', row: null } }))).json();
   assert.deepEqual(added.result, { id: 'p1', address: 'on-the-bridge' });
-  assert.deepEqual(added.pages, [{ id: 'p1', address: 'on-the-bridge', title: 'On the bridge', text: '', row: null, hidden: false }]);
+  assert.deepEqual(added.pages, [{ id: 'p1', address: 'on-the-bridge', title: 'On the bridge', row: null, hidden: false }]);
   assert.equal(added.summary, 'pages changed');
   const written = await (await h.edit(post('op', { version: 2, op: { op: 'set-page', id: 'p1', text: 'Words on the [[bridge|@b]].' } }))).json();
+  assert.deepEqual(written.pages, [{ id: 'p1', address: 'on-the-bridge', title: 'On the bridge', text: 'Words on the [[bridge|@b]].', row: null, hidden: false }], 'the page edited, with its text');
   const html = await (await h.edit(get('pages/on-the-bridge'))).text();
   assert.ok(html.includes(written.page.article), 'the text as the page draws it');
   assert.ok(html.includes(written.page.nav), 'the tabs as the page draws them');
   assert.match(written.page.article, /<a href="\.\.\/\.\.\/edit\/#o=b">bridge<\/a>/);
   const hidden = await (await h.edit(post('op', { version: 3, op: { op: 'hide-page', id: 'p1', hidden: true } }))).json();
   assert.match(hidden.page.nav, /<a href="\.\.\/\.\.\/edit\/pages\/on-the-bridge" aria-current="page" class="dead-link" title="The page is hidden\.">On the bridge<\/a>/);
+  assert.deepEqual(hidden.pages.map((page) => page.text), ['Words on the [[bridge|@b]].']);
   const plain = await (await h.edit(hide('a', 4))).json();
   assert.equal(plain.page, undefined, 'an edit of a row draws no page');
-  assert.equal(plain.pages[0].hidden, true);
+  assert.deepEqual(plain.pages, [{ id: 'p1', address: 'on-the-bridge', title: 'On the bridge', row: null, hidden: true }], 'no page\'s text');
   const removed = await (await h.edit(post('op', { version: 5, op: { op: 'remove-page', id: 'p1' } }))).json();
   assert.deepEqual([removed.pages, removed.page], [[], undefined]);
+});
+
+// A page's text travels to its own edit view and with the edits of it, never with the others: 20
+// pages of 5,000 characters were 100 KB more in every answer, at every keyword pressed on a phone.
+test('an answer, the Library in edit mode and a page in edit mode carry each page\'s id, address, title, row and hidden; a page\'s text only its own view and an edit of it', async () => {
+  const long = (n) => `Page ${n}: ${'words '.repeat(1000)}`; // 5,000 characters and more
+  let version = 1;
+  for (let n = 1; n <= 20; n += 1) {
+    for (const op of [{ op: 'add-page', title: `Page ${n}`, row: n === 20 ? 'b' : null }, { op: 'set-page', id: `p${n}`, text: long(n) }]) {
+      assert.equal((await h.edit(post('op', { version: version++, op }))).status, 200, JSON.stringify(op).slice(0, 60));
+    }
+  }
+  const SHAPE = ['id', 'address', 'title', 'row', 'hidden'];
+  const answer = await h.edit(post('op', { version, op: { op: 'give-keyword', id: 'a', keyword: 'wall' } }));
+  const body = await answer.text();
+  const reply = JSON.parse(body);
+  assert.equal(reply.pages.length, 20);
+  for (const page of reply.pages) assert.deepEqual(Object.keys(page), SHAPE, page.id);
+  assert.ok(!body.includes('words words'), 'no page\'s text in the answer');
+  assert.ok(body.length < 20000, `the answer is ${body.length} characters`);
+  const library = editDataOf(await (await h.edit(get(''))).text());
+  for (const page of library.doc.pages) assert.deepEqual(Object.keys(page), SHAPE, `the Library holds ${page.id}`);
+  const own = editDataOf(await (await h.edit(get('pages/page-7'))).text());
+  assert.equal(own.page, 'p7');
+  for (const page of own.doc.pages) assert.deepEqual(Object.keys(page), page.id === 'p7' ? ['id', 'address', 'title', 'text', 'row', 'hidden'] : SHAPE, `page-7 holds ${page.id}`);
+  assert.equal(own.doc.pages.find((page) => page.id === 'p7').text, long(7));
+  const moved = await (await h.edit(post('op', { version: version + 1, op: { op: 'move-page', id: 'p7', step: -1 } }))).json();
+  assert.deepEqual(moved.pages.filter((page) => 'text' in page).map((page) => [page.id, page.text]), [['p7', long(7)]], 'an edit of a page carries its text alone');
 });

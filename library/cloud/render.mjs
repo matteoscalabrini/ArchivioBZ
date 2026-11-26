@@ -74,17 +74,28 @@ function pageFile(lib, shown, links, { depth, extra = null }) {
   return textPage(lib, { page: shown, html, entry, depth, extra });
 }
 
+// The draft's pages as a page of edit mode holds them (state.doc.pages): each page's id, address,
+// title, row and hidden, which the tabs, an open row's Read: lines, 🗑's count and 🔗's finder read;
+// a page's text only for the page `own`, in its own edit view and in the answer to an edit of it
+// (handlers.mjs), so that the Library and every answer do not carry every page's whole text.
+export function pagesHeld(doc, own = null) {
+  return (doc.pages ?? []).map(({ id, address, title, text, row, hidden }) => (id === own ? { id, address, title, text, row, hidden } : { id, address, title, row, hidden }));
+}
+// The draft as a page of edit mode is given it (#edit-data), its pages as pagesHeld holds them; a
+// draft from before pages, which has none, as it is.
+const docHeld = (doc, own = null) => (doc.pages ? { ...doc, pages: pagesHeld(doc, own) } : doc);
+
 // A page of the draft in edit mode, at /edit/pages/<address>: drawn as a publish would draw it, every
 // row and page of the draft known to its links (a hidden one dotted), in edit mode's frame (its
 // tabs lead to the pages in edit mode, a hidden one dotted), with the draft itself as #edit-data for
-// web/edit/pages.js: as the Library's, and the rows' numbers (`numbers`, for 🔗's finder) and the
-// page's id. Null when the draft has no page at that address.
+// web/edit/pages.js: as the Library's, its own text with it, and the rows' numbers (`numbers`, for
+// 🔗's finder) and the page's id. Null when the draft has no page at that address.
 export function renderPageEdit(doc, address, { version, published, lists, originals = null }) {
   const lib = libFromDoc(doc, { hidden: true, lists });
   const shown = lib.pages.find((p) => p.address === address);
   if (!shown) return null;
   const data = {
-    version, doc, types: TYPES, summary: summaryOf(published, doc), changed: [...changedRows(doc, published)],
+    version, doc: docHeld(doc, shown.id), types: TYPES, summary: summaryOf(published, doc), changed: [...changedRows(doc, published)],
     published: published ? Object.keys(published.rows) : [], originals, numbers: Object.fromEntries(numbering(doc)), page: shown.id,
   };
   return pageEdit(lib, shown, data);
@@ -105,16 +116,16 @@ export function renderPageParts(doc, id, lists) {
 const pageEdit = (lib, shown, data) => pageFile(lib, shown, editLinks(lib), { depth: 2, extra: { css: ['web/edit.css'], js: ['web/edit/pages.js'], data } });
 
 // The Library in edit mode, at /edit/: every row of the draft, hidden ones too, a hidden row marked
-// data-hidden and a row that differs from the latest publish data-changed; the draft itself, its
-// version, the row types, the summary line, the changed rows' ids, the ids of the rows the
-// latest publish holds (which a removal can bring back) and where the page sends the original of a
-// picture added (`originals`: the route 'upload' or 'original', null when pictures cannot be
-// added; handlers.mjs) as #edit-data for web/edit.js.
+// data-hidden and a row that differs from the latest publish data-changed; the draft itself (its
+// pages without their text, pagesHeld), its version, the row types, the summary line, the changed
+// rows' ids, the ids of the rows the latest publish holds (which a removal can bring back) and
+// where the page sends the original of a picture added (`originals`: the route 'upload' or
+// 'original', null when pictures cannot be added; handlers.mjs) as #edit-data for web/edit.js.
 // `published`: the latest publish's document, or null when there is none: then no row is marked,
 // since every one would be, and the summary counts what the first publish would show.
 export function renderEditPage(doc, { version, published, lists, originals = null }) {
   const changed = changedRows(doc, published);
-  const data = { version, doc, types: TYPES, summary: summaryOf(published, doc), changed: [...changed], published: published ? Object.keys(published.rows) : [], originals };
+  const data = { version, doc: docHeld(doc), types: TYPES, summary: summaryOf(published, doc), changed: [...changed], published: published ? Object.keys(published.rows) : [], originals };
   return editPage(doc, lists, changed, data);
 }
 

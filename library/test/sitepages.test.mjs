@@ -184,7 +184,9 @@ test('a page in edit mode: drawn from the draft at /edit/pages/<address>, its sc
   const data = editData(html);
   assert.equal(data.version, 7);
   assert.equal(data.page, 'p2');
-  assert.deepEqual(data.doc, doc);
+  // The draft, its pages without their text but for this page's own (render.mjs, pagesHeld).
+  assert.deepEqual(data.doc, { ...doc, pages: doc.pages.map(({ text, ...page }) => (page.id === 'p2' ? { ...page, text } : page)) });
+  assert.deepEqual(Object.keys(data.doc.pages[1]), ['id', 'address', 'title', 'text', 'row', 'hidden']);
   assert.deepEqual(data.numbers, { a: '1.01', b: '1.02', c: '1.03', d: '2.01' });
   assert.equal(data.summary, 'Nothing published yet: 4 rows in 2 chapters');
   const kept = renderPageEdit(doc, 'kept-back', { version: 7, published: null, lists });

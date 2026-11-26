@@ -2593,6 +2593,7 @@ async function main() {
   // public Library leads to it and it back to the row; the hidden page answers 404.
   const tabsRead = () => page.$$eval('header.site nav.tabs > a', (tabs) => tabs.map((a) => `${a.textContent}${a.classList.contains('dead-link') ? ' (dotted)' : ''}`));
   const SITE_PAGE = 'On the bridges';
+  const PAGE_TEXT = '## Two crossings\n\nThe [[postcard|@5.03]] of the bridge.'; // its text, once written with 🔗
   const sitePage = '/edit/pages/on-the-bridges';
   let rowPage = null; // the page about 5.00: { title, address }
 
@@ -2656,7 +2657,7 @@ async function main() {
     await page.waitForSelector(option);
     check(await page.$eval(option, (li) => li.textContent) === `${target.no} · ${target.title}`, `the first match reads ${await page.$eval(option, (li) => li.textContent)}`);
     await page.keyboard.press('Enter');
-    const want = '## Two crossings\n\nThe [[postcard|@5.03]] of the bridge.';
+    const want = PAGE_TEXT;
     check((await fieldIs(area)).value === want, `the field holds ${JSON.stringify((await fieldIs(area)).value)}`);
     const answered = answerTo(page, 'op');
     await page.keyboard.down('Control');
@@ -2669,6 +2670,31 @@ async function main() {
     check(!shown.hidden && shown.html === '<h2>Two crossings</h2>\n<p>The <a href="../../edit/#o=5.03">postcard</a> of the bridge.</p>', `the page shows ${JSON.stringify(shown)}`);
     check(await page.$eval('.ed-page-text .ed-empty', (el) => el.hidden), 'Text still stands under a text');
     check(await page.$eval('.ed-page-text button.ed', (el) => el === document.activeElement), 'the focus is not back on ✎');
+  });
+
+  // An answer carries a page's text only after an edit of that page (final review of Tasks 14–19,
+  // Minor 6); the text a page in edit mode holds of its own stays through any other edit.
+  await step('About saved from a page\'s bar: the page\'s text field opens with its text still', async () => {
+    await page.click('.ed-bar .ed-about');
+    const area = 'dialog.ed-about-dialog[open] textarea';
+    await page.waitForSelector(area);
+    await page.$eval(area, (el) => {
+      el.focus();
+      el.setSelectionRange(el.value.length, el.value.length);
+    });
+    await page.keyboard.type(' Typed from a page.');
+    const answered = answerTo(page, 'op');
+    await page.click('dialog.ed-about-dialog[open] .ed-yes');
+    check((await answered).status() === 200, 'About was not saved');
+    check(sent.at(-1).body.op.op === 'set-about' && sent.at(-1).body.op.text.endsWith(' Typed from a page.'), `the edit sent was ${JSON.stringify(sent.at(-1).body.op).slice(0, 120)}`);
+    await page.waitForSelector('dialog.ed-about-dialog', { hidden: true });
+    await page.click('.ed-page-text button.ed[data-ed="page-text"]');
+    const field = '.ed-field[data-ed="page-text"] textarea';
+    await page.waitForSelector(field);
+    const value = await page.$eval(field, (el) => el.value);
+    check(value === PAGE_TEXT, `the text's field opens with ${JSON.stringify(value)}`);
+    await page.keyboard.press('Escape');
+    await page.waitForSelector('.ed-field[data-ed="page-text"]', { hidden: true });
   });
 
   await step('Hide dots the page\'s tab and says the public does not see it; drawn again, the page and the Library show it so', async () => {
