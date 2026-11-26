@@ -13,10 +13,10 @@
 // computer's stores first, then as the cloud's page does, the Blob client in the page given a
 // stand-in for Vercel's Blob service, so that nothing leaves this computer, and with no stores at
 // all, where ＋ picture stands off and says so. The last steps follow the links typed in a row's
-// text and the way back from them, in edit mode and, once published, on the public page; then
-// such links are written with 🔗 in a row's text, the idea and About, with the legend under each
-// field; and the last make pages, a site page and a page about a row, in edit mode and on the
-// public site.
+// text and the way back from them, in edit mode (in the compact view too) and, once published, on
+// the public page; then such links are written with 🔗 in a row's text, the idea and About, with
+// the legend under each field; and the last make pages, a site page and a page about a row, in
+// edit mode and on the public site.
 //
 // The fixtures' draft, by row id: chapter c1 "Zero" [0.01], c2 "Five" [5.00 5.01 5.02 5.03],
 // c3 "Twelve" [12.01]; numbered 1.01, 2.01 to 2.04 and 3.01 to begin with. The steps build on
@@ -2136,6 +2136,59 @@ async function main() {
     check(button.shown && button.words === '↩ Back', `from the hidden row the button reads ${JSON.stringify(button)}`);
     await page.click('button.way-back');
     await returned(from, ['5.01'], ['5.00'], null, 'back to the hidden row');
+  });
+
+  // In the compact view, a jump into a folded chapter unfolds it, and it stays unfolded after the
+  // way back: every row of it then stands above the row the jump started from, so the page's height
+  // of then no longer shows the link. The way back puts the link where it stood on the screen (final
+  // review of Tasks 14–19, Minor 3). By now 12.01 stands in 5.00's chapter (the compact steps moved
+  // it there), so the first row shown in a chapter after it is given a link to 5.00 for this step,
+  // and its text back after. The browser's own putting back of a step's height is left as a visit
+  // has it: the page is loaded afresh, so history.scrollRestoration is the browser's 'auto'.
+  await step('Compact on and 5.00\'s chapter folded: after the jump unfolds it, ↩ Back and the browser\'s Back put the link followed at the height it stood on the screen, within 2 px', async () => {
+    await page.goto(`${base}/edit/`);
+    await page.waitForSelector('.ed-bar');
+    const was = await page.evaluate(() => {
+      const { doc } = JSON.parse(document.getElementById('edit-data').textContent);
+      const to = doc.chapters.findIndex((chapter) => chapter.rows.includes('5.00'));
+      const from = doc.chapters.slice(to + 1).flatMap((chapter) => chapter.rows).find((id) => doc.rows[id].hidden !== true) ?? null;
+      return { from, text: from === null ? null : doc.rows[from].record.text };
+    });
+    check(was.from !== null, 'no row shown stands in a chapter after 5.00\'s');
+    const from = was.from;
+    await sendOps(page, base, [{ op: 'set-row', id: from, fields: { text: [...was.text, 'See [[the fixture notes|@5.00]] again.'] } }]);
+    await setCompact(page, true);
+    const chapter = await page.$eval(rowAt('5.00'), (el) => el.dataset.chapter);
+    const folded = () => page.$eval(rowAt('5.00'), (el) => getComputedStyle(el).display === 'none');
+    const foldIt = async () => {
+      await fold(page, chapter);
+      await page.waitForFunction((sel) => getComputedStyle(document.querySelector(sel)).display === 'none', { timeout: WAIT }, rowAt('5.00'))
+        .catch(() => { throw new Error(`chapter ${chapter} did not fold`); });
+    };
+    await foldIt();
+    await page.click(`${rowAt(from)} .c-title > button:not(.ed)`);
+    await page.waitForSelector(`${rowAt(from)}.open`);
+    const link = linkTo(from, '5.00');
+    const topOf = () => page.$eval(link, (el) => el.getBoundingClientRect().top);
+    for (const how of ['↩ Back', 'the browser\'s Back']) {
+      const start = await before(link);
+      const top = await topOf();
+      await follow(link, '5.00');
+      check(!(await folded()), `after the jump chapter ${chapter} is still folded`);
+      if (how === '↩ Back') await page.click('button.way-back');
+      else await page.goBack();
+      await page.waitForFunction((sel) => !document.querySelector(sel).classList.contains('open'), { timeout: WAIT }, rowAt('5.00'))
+        .catch(() => { throw new Error(`after ${how}, 5.00 is still open`); });
+      await stillAt(page, rowAt(from));
+      const now = { top: await topOf(), y: (await where()).y };
+      check(!(await folded()), `after ${how} chapter ${chapter} is folded again, so nothing above the link changed`);
+      check(Math.abs(now.top - top) <= 2, `after ${how} the link in ${from} stands ${Math.round(now.top)} px from the window's top, not ${Math.round(top)} (the page at ${now.y}, at ${start.y} before the jump)`);
+      check(now.y - start.y > 300, `after ${how} the page stands at ${now.y}, ${now.y - start.y} px from ${start.y}: the unfolded chapter is not above the link`);
+      check((await where()).hash === start.hash && !(await backReads()).shown, `after ${how} the address is ${(await where()).hash}, not ${start.hash}, or the button still shows`);
+      await foldIt(); // folded again for the browser's Back
+    }
+    await setCompact(page, false);
+    await sendOps(page, base, [{ op: 'set-row', id: from, fields: { text: was.text } }]);
   });
 
   // An edit redraws every link to what it changed, the idea's and other rows' too, at once: hidden,

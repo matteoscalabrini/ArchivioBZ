@@ -67,8 +67,9 @@ let addressing = 0; // the wait before the address follows what is typed
 let state = parseState(location.hash, known);
 
 // The jumps made by a row link, the last the one a step back returns from: each with where it
-// started (the state, the page's height, the step in the address that holds it, the link) and the
-// words of the button that returns there. Kept by this page only: a reload starts with none.
+// started (the state, the page's height, the step in the address that holds it, the link, and how
+// far the link and what holds it, its row or the idea, stood from the window's top) and the words
+// of the button that returns there. Kept by this page only: a reload starts with none.
 const jumps = [];
 let jumpsMade = 0;
 // Names each jump's starting step in the address (history.state.jumpAt): this page's own, so that
@@ -439,20 +440,51 @@ function openRow(row) {
 
 // From a row link in a text: the row opens as from a Sources number, and the jump is a step in
 // the address of its own (#o= as writeAddress writes it), so that the browser's Back returns too.
-// The step it starts from is marked (history.state.jumpAt) with the jump that returns there.
+// The step it starts from is marked (history.state.jumpAt) with the jump that returns there, and
+// its height is this page's to put back (placeBack), not the browser's: a browser puts back the
+// page's height of then after a step back, which no longer shows the link once a chapter has
+// unfolded above it (scrollRestoration, 'manual' on that step alone, the jump's own left as any
+// other; 'auto' again once returned there).
 function jumpTo(link, row) {
   clearTimeout(addressing);
   writeAddress(); // the step it starts from holds what was typed too
   const at = `${loaded}-${++jumpsMade}`;
   try {
+    history.scrollRestoration = 'manual';
     history.replaceState({ ...history.state, jumpAt: at }, '');
     history.pushState({ jumpTo: row.no }, '');
   } catch {
+    history.scrollRestoration = 'auto';
     return openRow(row); // the browser refused the step: the row opens all the same, with no way back
   }
-  jumps.push({ at, state: { ...state, o: [...state.o] }, allPossible, y: scrollY, link, words: backWords(link) });
+  history.scrollRestoration = 'auto';
+  const holder = link.closest('article.row, section.idea');
+  jumps.push({
+    at, state: { ...state, o: [...state.o] }, allPossible, y: scrollY, link, words: backWords(link),
+    top: topOf(link), row: holder?.matches('article.row') ? holder.dataset.no : null, holderTop: topOf(holder),
+  });
   openRow(row);
   showBack();
+}
+
+// How far an element stands from the window's top; null when it is not on the page or not drawn.
+function topOf(el) {
+  return el?.isConnected && el.getClientRects().length ? el.getBoundingClientRect().top : null;
+}
+
+// The page put back at the height a jump started from: the link followed where it was on the
+// screen, or, once edit mode has drawn it anew, its row or the idea where that was; whatever was
+// unfolded, opened or redrawn above it meanwhile (a folded chapter the jump unfolded stays so) is
+// above it still. Without either on the page, the page's own height then.
+function placeBack(jump) {
+  let now = topOf(jump.link);
+  let then = jump.top;
+  if (now === null) {
+    now = topOf(jump.row === null ? document.querySelector('section.idea') : byNo.get(jump.row)?.el);
+    then = jump.holderTop;
+  }
+  const top = now === null || then === null ? jump.y : scrollY + now - then;
+  scrollTo({ top, behavior: 'auto' });
 }
 
 // The page as a jump found it: the same rows open, the same search, keyword, kind and sort, at the
@@ -466,7 +498,9 @@ function returnTo(jump) {
   if (field && field.value !== state.q) field.value = state.q;
   list.classList.add('still');
   render();
-  scrollTo({ top: jump.y, behavior: 'auto' });
+  placeBack(jump);
+  // The step is the browser's again once this step back is over (a later visit from another page).
+  setTimeout(() => { history.scrollRestoration = 'auto'; });
   requestAnimationFrame(() => requestAnimationFrame(() => list.classList.remove('still')));
   showBack();
   if (jump.link.isConnected) jump.link.focus({ preventScroll: true });
