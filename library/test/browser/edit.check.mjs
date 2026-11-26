@@ -1590,7 +1590,7 @@ async function main() {
       await page.emulateNetworkConditions(null);
     }
     const shown = await figuresOf('12.01');
-    check(shown.length === 1 && /^\*\/dev-img\/12\.01-[0-9a-z]+-[0-9a-f]{16}\.jpg$/.test(shown[0]), `12.01 shows ${JSON.stringify(shown)}`);
+    check(shown.length === 1 && /^\*\/dev-img\/12\.01-[0-9a-f]{16}\.jpg$/.test(shown[0]), `12.01 shows ${JSON.stringify(shown)}`);
     const img = await page.$eval(`${row} .pics figure img`, (el) => new Promise((resolve) => {
       const done = () => resolve({ w: el.naturalWidth, h: el.naturalHeight, width: el.getAttribute('width'), height: el.getAttribute('height') });
       if (el.complete && el.naturalWidth) done(); else { el.addEventListener('load', done); el.addEventListener('error', done); }
@@ -1663,7 +1663,7 @@ async function main() {
       .catch(async () => { throw new Error(`0.01 shows ${JSON.stringify(await figuresOf('0.01'))}`); });
     await sentSince(before, 1);
     const shown = await figuresOf('0.01');
-    check(shown[0] === had[0].replace(/^\*/, '') && /^\*\/dev-img\/0\.01-[0-9a-z]+-[0-9a-f]{16}\.jpg$/.test(shown[1]), `0.01 shows ${JSON.stringify(shown)}: not the new picture last and showing`);
+    check(shown[0] === had[0].replace(/^\*/, '') && /^\*\/dev-img\/0\.01-[0-9a-f]{16}\.jpg$/.test(shown[1]), `0.01 shows ${JSON.stringify(shown)}: not the new picture last and showing`);
     const order = await page.$$eval(`${row} .pics > *`, (els) => els.map((el) => (el.matches('figure') ? 'figure' : el.className)).join(' '));
     check(order === 'figure figure ed-switch ed-add-pic', `under 0.01's pictures: ${order}`);
     const op = sent.at(-1).body.op;

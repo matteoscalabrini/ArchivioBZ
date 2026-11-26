@@ -103,8 +103,10 @@ export function publicPut(token, { blob = loadBlob, fetch = (...args) => globalT
 }
 
 // What both sets of stores answer /edit/picture with: the original at `pathname` read back
-// (`read`, null when there is none), its two JPEGs made and put (`put`) as
-// pictures/<row id>-<time in base 36>.jpg and …-small.jpg, and the picture for add-picture.
+// (`read`, null when there is none), its two JPEGs made and put (`put`) as pictures/<row id>.jpg
+// and pictures/<row id>-small.jpg, each followed by the store's random suffix, and the picture for
+// add-picture. A public address says no more than the row: not when the picture was added (the
+// suffix alone keeps two pictures of a row apart); the private original's name keeps its time.
 function picturesFrom({ read, put }) {
   return async (id, pathname) => {
     if (!isOriginal(pathname)) throw new OpError(NOT_AN_ORIGINAL);
@@ -112,7 +114,7 @@ function picturesFrom({ read, put }) {
     const original = await read(pathname);
     if (!original) throw new OpError(`There is no original ${pathname}.`);
     const { large, small } = await makePictures(original);
-    const name = `pictures/${id}-${Date.now().toString(36)}`;
+    const name = `pictures/${id}`;
     const src = await put(large.buf, `${name}.jpg`);
     const smallSrc = await put(small.buf, `${name}-small.jpg`);
     return { src, w: large.w, h: large.h, small: { src: smallSrc, w: small.w, h: small.h } };

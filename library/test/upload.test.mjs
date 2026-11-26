@@ -221,8 +221,8 @@ test('in the cloud, the original is read from the private store by its name, and
   const picture = await store.picture('18.04', 'originals/18.04-mf3k2a-Xy12.jpg');
   const [get, putLarge, headLarge, putSmall, headSmall] = stand.calls;
   assert.deepEqual(get, ['get', 'originals/18.04-mf3k2a-Xy12.jpg', { access: 'private', token: ORIGINALS_TOKEN }], 'by its name and the token, never by an address');
-  assert.match(putLarge[1], /^pictures\/18\.04-[0-9a-z]+\.jpg$/);
-  assert.equal(putSmall[1], putLarge[1].replace(/\.jpg$/, '-small.jpg'));
+  assert.equal(putLarge[1], 'pictures/18.04.jpg', 'named by the row alone: the store adds its random suffix');
+  assert.equal(putSmall[1], 'pictures/18.04-small.jpg');
   for (const put of [putLarge, putSmall]) {
     assert.deepEqual(put[2], { access: 'public', addRandomSuffix: true, contentType: 'image/jpeg', token: PICTURES_TOKEN });
   }
@@ -268,8 +268,8 @@ test('on this computer an original is kept as sent in its own folder, and the pi
   assert.match(pathname, /^originals\/a-mf3k2a-[0-9a-f]{16}\.png$/, 'a random suffix, as the store adds one');
   assert.ok((await readFile(path.join(originals, pathname.slice('originals/'.length)))).equals(photo), 'kept as sent');
   const picture = await store.picture('a', pathname);
-  assert.match(picture.src, /^\/dev-img\/a-[0-9a-z]+-[0-9a-f]{16}\.jpg$/);
-  assert.match(picture.small.src, /^\/dev-img\/a-[0-9a-z]+-small-[0-9a-f]{16}\.jpg$/);
+  assert.match(picture.src, /^\/dev-img\/a-[0-9a-f]{16}\.jpg$/, 'the row and the random suffix, no time');
+  assert.match(picture.small.src, /^\/dev-img\/a-small-[0-9a-f]{16}\.jpg$/);
   assert.deepEqual([picture.w, picture.h, picture.small.w, picture.small.h], [900, 600, 220, 147]);
   assert.deepEqual((await readdir(served)).sort(), [picture.src, picture.small.src].map((src) => src.slice('/dev-img/'.length)).sort(), 'the original is not among the served files');
   for (const [pathname, type] of [['originals/a.gif', 'image/gif'], ['originals/a.txt', 'text/plain'], ['pictures/a.png', 'image/png'], ['originals/../a.png', 'image/png'], ['originals/..', 'image/png'],

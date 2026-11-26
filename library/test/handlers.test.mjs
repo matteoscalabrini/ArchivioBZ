@@ -671,7 +671,7 @@ test('end to end on this computer: original, picture, add-picture; the row holds
   assert.equal(made.status, 200);
   const { picture } = await made.json();
   assert.deepEqual([picture.w, picture.h, picture.small.w, picture.small.h], [1600, 1200, 220, 165]);
-  assert.match(picture.src, /^\/dev-img\/a-[0-9a-z]+-[0-9a-f]+\.jpg$/);
+  assert.match(picture.src, /^\/dev-img\/a-[0-9a-f]{16}\.jpg$/);
   for (const src of [picture.src, picture.small.src]) {
     const file = await readFile(path.join(local.served, src.slice('/dev-img/'.length)));
     assert.ok(stripJpeg(file).equals(file), `${src} carries no metadata`);
