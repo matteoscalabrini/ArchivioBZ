@@ -7,11 +7,12 @@
 import path from 'node:path';
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
-import { libFromDoc, diffDocs, numbering } from './doc.mjs';
+import { libFromDoc, diffDocs } from './doc.mjs';
 import { libraryPage, mapPage, aboutPage, keywordStrip } from '../lib/pages.mjs';
 import { searchIndex } from '../lib/searchindex.mjs';
 import { parseIdea } from '../lib/idea.mjs';
 import { renderMarkdown } from '../lib/markdown.mjs'; // not longread.mjs, which loads mammoth
+import { linksOf, withLinks } from '../lib/links.mjs';
 import { readKinds } from '../lib/kinds.mjs';
 import { readSearchLists } from '../lib/find.mjs';
 import { TYPES } from '../lib/records.mjs';
@@ -45,7 +46,7 @@ export async function loadLists(root) {
 // functions warn of (a type no kind names, a place the dot data was made without).
 export function renderSite(doc, lists) {
   const lib = publicLib(doc, lists);
-  const links = linkContext(doc);
+  const links = linksOf(lib);
   const { idea, problems } = theIdea(doc, links);
   const library = libraryPage(lib, { idea, kinds: lists.kinds, links });
   const map = mapPage(lib, { meta: lists.mapMeta, links });
@@ -78,11 +79,37 @@ export function renderEditPage(doc, { version, published, lists, originals = nul
 // out of it, so the two cannot differ: every word of a row is escaped, so the first </article>
 // after the row's start is its end.
 export function renderEditRow(doc, id, lists, { published = null } = {}) {
-  const html = editPage(doc, lists, changedRows(doc, published), null);
-  const start = html.indexOf(`<article class="row" data-no="${esc(id)}"`);
-  if (start < 0) throw new Error(`no row ${id} in the draft`);
-  const end = html.indexOf('</article>', start) + '</article>'.length;
-  return html.slice(start, end);
+  return cut(editPage(doc, lists, changedRows(doc, published), null), `<article class="row" data-no="${esc(id)}"`, '</article>', `no row ${id} in the draft`);
+}
+
+// What else of the edit page an edit changed, from the document `before` it to the one `after`:
+// the rows, but those in `skip` (which the answer carries already), whose text has a link that now
+// reads otherwise (the row it names hidden, shown, removed or retitled, the keyword it names now
+// carried by a shown row or no longer), and the idea likewise, unless the edit was to the idea,
+// which draws itself again. Each exactly as renderEditPage draws it for the same `published`, so
+// that the page shows every link as it now stands without a reload.
+// -> { rows: { id: <article> }, idea: <section class="idea"> or null }
+export function renderRelinked(before, after, lists, { published = null, skip = [] } = {}) {
+  const was = { ...editLinks(libFromDoc(before, { hidden: true })), here: 'library', up: '../' };
+  const now = { ...editLinks(libFromDoc(after, { hidden: true })), here: 'library', up: '../' };
+  const relinked = (text) => text.includes('[[') && withLinks(text, was) !== withLinks(text, now);
+  const ids = after.chapters.flatMap((chapter) => chapter.rows)
+    .filter((id) => !skip.includes(id) && (after.rows[id]?.record.text ?? []).some(relinked));
+  const idea = before.idea === after.idea && theIdea(before, was, '../').idea.html !== theIdea(after, now, '../').idea.html;
+  if (!ids.length && !idea) return { rows: {}, idea: null };
+  const html = editPage(after, lists, changedRows(after, published), null);
+  return {
+    rows: Object.fromEntries(ids.map((id) => [id, cut(html, `<article class="row" data-no="${esc(id)}"`, '</article>', `no row ${id} in the draft`)])),
+    idea: idea ? cut(html, '<section class="idea">', '</section>', 'no idea on the page') : null,
+  };
+}
+
+// The part of a page from `start` to the first `end` after it. Every word of a row and of the idea
+// is escaped, so neither holds the tag that ends it.
+function cut(html, start, end, missing) {
+  const at = html.indexOf(start);
+  if (at < 0) throw new Error(missing);
+  return html.slice(at, html.indexOf(end, at) + end.length);
 }
 
 // "All keywords" of the edit page, exactly as renderEditPage draws it: from the rows that page
@@ -151,17 +178,10 @@ function publicLib(doc, lists) {
   return lib;
 }
 
-// What the links typed in a text know of the document (lib/links.mjs): each row with its number,
-// its title and whether a publish shows it; no pages yet; the keywords and their folded ids; the
-// keywords some shown row carries. In edit mode (`edit`) every row is on the page, so a keyword
-// any row carries counts; a link to a hidden row is still drawn dead there, with its sentence,
-// since the public would not see it.
-export function linkContext(doc, { edit = false } = {}) {
-  const numbers = numbering(doc);
-  const rows = new Map(Object.entries(doc.rows).map(([id, row]) => [id, { no: numbers.get(id) ?? '', title: row.record.title, shown: !row.hidden }]));
-  const carried = new Set(Object.values(doc.rows).filter((row) => edit || !row.hidden).flatMap((row) => row.record.keywords ?? []));
-  return { keywords: doc.keywords, aliases: doc.aliases, rows, pages: new Map(), carried, edit };
-}
+// What the links typed in a text know on the edit page (lib/links.mjs): every row of the draft,
+// a hidden one dead with its sentence, since the public would not see it; the keywords some shown
+// row carries, as on the public site.
+const editLinks = (lib) => linksOf(lib, { edit: true });
 
 // The idea as the Library page takes it, parsed against the document's keywords and its links
 // against `links`; its stand-in label stays while the text starts with `status: stand-in` (the
@@ -185,7 +205,7 @@ function changedRows(doc, published) {
 // /edit/, one folder down.
 function editPage(doc, lists, changed, data) {
   const lib = libFromDoc(doc, { hidden: true, lists });
-  const links = linkContext(doc, { edit: true });
+  const links = editLinks(lib);
   const mark = (entry) => (entry.hidden ? ' data-hidden="true"' : '') + (changed.has(entry.id) ? ' data-changed="true"' : '');
   const extra = { css: ['web/edit.css'], js: ['web/edit.js'], data, mark };
   return libraryPage(lib, { idea: theIdea(doc, links, '../').idea, kinds: lists.kinds, depth: 1, extra, links }).html;

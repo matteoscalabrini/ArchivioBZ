@@ -24,7 +24,7 @@ export function openField({ controls, read, save, place, hide = [], opener = nul
   place(box);
   if (errorPlace) errorPlace(error);
   else box.append(error);
-  const row = box.closest('article.row');
+  const row = box.closest('article.row, section.idea'); // told when the field closes (core.js)
   for (const el of hide) el.hidden = true;
   const initial = JSON.stringify(read());
   let saving = null;

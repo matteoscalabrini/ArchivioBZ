@@ -1864,30 +1864,58 @@ async function main() {
 
   // Links in a row's text (Task 17), given through the draft's op set-row as the text field sends
   // them: 12.01, at the foot of the list, links 5.00 far above it and 5.01, which is hidden; 5.00
-  // links 5.03, so that two jumps stack. A link followed opens its row where it stands and leaves
-  // "↩ Back to <n>" at the bottom of the screen; that button and the browser's Back return to where
-  // the jump started, the same rows open at the same height.
+  // links 5.03, so that two jumps stack; 5.01 links 5.00 from a hidden row, and the idea links 5.00
+  // too. A link followed opens its row where it stands and leaves "↩ Back to <n>" at the bottom of
+  // the screen; that button and the browser's Back return to where the jump started, the same rows
+  // open at the same height.
   const rowAt = (id) => `article.row[data-no="${id}"]`;
   const linkTo = (from, to) => `${rowAt(from)} .txt a[data-row="${to}"]`;
   const isOpen = (id) => page.$eval(rowAt(id), (el) => el.classList.contains('open'));
-  const backReads = () => page.$eval('button.way-back', (b) => ({
-    shown: !b.hidden && getComputedStyle(b).display !== 'none',
-    words: b.textContent,
-    gap: Math.round(innerHeight - b.getBoundingClientRect().bottom),
-  }));
+  const backReads = () => page.$eval('button.way-back', (b) => {
+    const box = b.getBoundingClientRect();
+    return {
+      shown: !b.hidden && getComputedStyle(b).display !== 'none',
+      words: b.textContent,
+      gap: Math.round(innerHeight - box.bottom),
+      left: Math.round(box.left),
+      right: Math.round(box.right),
+    };
+  });
   const where = () => page.evaluate(() => ({ y: scrollY, hash: decodeURIComponent(location.hash), steps: history.length }));
-  // The link brought into the middle of the window and still, then where the page stands.
+  // The link brought into the middle of the window and still, then where the page stands. Its row
+  // first ends opening: scrolled into view meanwhile, the link would scroll the row's clipped inside
+  // too (.row-inner hides what overflows), which springs back once the row is open.
   const before = async (selector) => {
+    const row = await page.$eval(selector, (el) => el.closest('article.row')?.dataset.no ?? null);
+    if (row) await stillAt(page, rowAt(row));
     await page.$eval(selector, (el) => el.scrollIntoView({ block: 'center' }));
     await stillAt(page, selector);
     return where();
+  };
+  // The link brought into the middle of the window and clicked where it stands, as a pointer
+  // clicks (page.click may scroll first, after the height was read), then the row it names waited
+  // for, open and still. -> where the page stood at the click.
+  const follow = async (selector, id) => {
+    const at = await before(selector);
+    const point = await page.$eval(selector, (el) => {
+      const line = el.getClientRects()[0];
+      const x = line.left + Math.min(line.width / 2, 8);
+      const y = line.top + line.height / 2;
+      const there = document.elementFromPoint(x, y);
+      return { x, y, there: el.contains(there) ? null : there?.outerHTML.slice(0, 120) ?? 'nothing' };
+    });
+    check(point.there === null, `at the link ${selector} (${Math.round(point.x)}, ${Math.round(point.y)}) stands ${point.there}`);
+    await page.mouse.click(point.x, point.y);
+    await page.waitForSelector(`${rowAt(id)}.open`);
+    await stillAt(page, `${rowAt(id)} > .row-head`);
+    return at;
   };
   // Waits until the page stands where `from` was, with the rows `open` open and the others of
   // `closed` closed, the button reading `words` or gone (null).
   const returned = async (from, open, closed, words, when) => {
     await page.waitForFunction((shut) => shut.every((id) => !document.querySelector(`article.row[data-no="${id}"]`).classList.contains('open')), { timeout: WAIT }, closed)
       .catch(() => { throw new Error(`${when}, ${closed.join(' or ')} is still open`); });
-    await stillAt(page, rowAt(open[0]));
+    await stillAt(page, open.length ? rowAt(open[0]) : '.list');
     const now = await where();
     check(Math.abs(now.y - from.y) <= 2, `${when}, the page stands at ${now.y}, not ${from.y}`);
     check(now.hash === from.hash, `${when}, the address is ${now.hash}, not ${from.hash}`);
@@ -1895,14 +1923,23 @@ async function main() {
     const button = await backReads();
     check(words === null ? !button.shown : button.shown && button.words === words, `${when}, the button reads ${JSON.stringify(button)}`);
   };
+  // What is pressed: the keyword, the kind and the sort.
+  const pressed = () => page.evaluate(() => ({
+    k: [...document.querySelectorAll('.keywords button[data-k][aria-pressed="true"]')].map((b) => b.dataset.k),
+    t: [...document.querySelectorAll('.kinds button[data-kind][aria-pressed="true"]')].map((b) => b.dataset.kind),
+    s: document.querySelector('.colhead button[data-sort][aria-pressed="true"]')?.dataset.sort,
+  }));
   let fromNo = '';
 
   await step('a row\'s text given links by set-row: the link to another row drawn as a link, the one to a hidden row dotted, its sentence as its title', async () => {
     await page.setViewport({ width: 1280, height: 900 });
     await sendOps(page, base, [
-      { op: 'set-row', id: '12.01', fields: { text: ['Compare [[the fixture notes|@5.00]] with [[the hidden one|@5.01]].'] } },
+      { op: 'set-row', id: '12.01', fields: { text: ['Compare [[the fixture notes|@5.00]] with [[the hidden one|@5.01]] in Quokkaland.'] } },
       { op: 'set-row', id: '5.00', fields: { text: ['Then [[the catalogue|@5.03]].'] } },
+      { op: 'set-row', id: '5.01', fields: { text: ['Kept back; see [[the notes|@5.00]].'] } },
+      { op: 'set-idea', text: 'The [[fixture notes|@5.00]] are where it starts.' },
       { op: 'hide-row', id: '5.01', hidden: true },
+      { op: 'give-keyword', id: '12.01', keyword: 'humour' }, // which 5.00 does not carry, for a filter that leaves it out
     ]);
     await setCompact(page, false);
     await page.click(`${rowAt('12.01')} .c-title > button:not(.ed)`);
@@ -1930,11 +1967,9 @@ async function main() {
     // Chrome puts the height back itself on a step back; turned off here, so that the page's own
     // return is what the steps of edit mode check. The public page's step leaves it on.
     await page.evaluate(() => { history.scrollRestoration = 'manual'; });
-    start = await before(linkTo('12.01', '5.00'));
+    await before(linkTo('12.01', '5.00'));
     check(!(await inView(page, `${rowAt('5.00')} > .row-head`)), '5.00 is in view before the jump, so the jump would show nothing');
-    await page.click(linkTo('12.01', '5.00'));
-    await page.waitForSelector(`${rowAt('5.00')}.open`);
-    await stillAt(page, `${rowAt('5.00')} > .row-head`);
+    start = await follow(linkTo('12.01', '5.00'), '5.00');
     check(await inView(page, `${rowAt('5.00')} > .row-head`), '5.00 is not in view');
     check(await isOpen('12.01'), '12.01 closed');
     const now = await where();
@@ -1953,25 +1988,16 @@ async function main() {
   });
 
   await step('the browser\'s Back does the same', async () => {
-    start = await before(linkTo('12.01', '5.00'));
-    await page.click(linkTo('12.01', '5.00'));
-    await page.waitForSelector(`${rowAt('5.00')}.open`);
-    await stillAt(page, `${rowAt('5.00')} > .row-head`);
+    start = await follow(linkTo('12.01', '5.00'), '5.00');
     check((await backReads()).shown, 'no way back after the jump');
     await page.goBack();
     await returned(start, ['12.01'], ['5.00'], null, 'after the browser\'s Back');
   });
 
-  await step('jumps stack: from 12.01 to 5.00 to 5.03, back goes to 5.00, then to 12.01; a reload starts with none', async () => {
-    start = await before(linkTo('12.01', '5.00'));
-    await page.click(linkTo('12.01', '5.00'));
-    await page.waitForSelector(`${rowAt('5.00')}.open`);
-    await stillAt(page, `${rowAt('5.00')} > .row-head`);
-    const middle = await before(linkTo('5.00', '5.03'));
+  await step('jumps stack: from 12.01 to 5.00 to 5.03, back goes to 5.00, then to 12.01; Forward leaves no way back that does not fit; a reload starts with none', async () => {
+    start = await follow(linkTo('12.01', '5.00'), '5.00');
     const middleNo = await page.$eval(`${rowAt('5.00')} .c-no`, (el) => el.textContent.trim());
-    await page.click(linkTo('5.00', '5.03'));
-    await page.waitForSelector(`${rowAt('5.03')}.open`);
-    await stillAt(page, `${rowAt('5.03')} > .row-head`);
+    const middle = await follow(linkTo('5.00', '5.03'), '5.03');
     check(await inView(page, `${rowAt('5.03')} > .row-head`), '5.03 is not in view');
     let button = await backReads();
     check(button.shown && button.words === `↩ Back to ${middleNo}`, `after two jumps the button reads ${JSON.stringify(button)}`);
@@ -1980,13 +2006,168 @@ async function main() {
     await page.goBack();
     await returned(start, ['12.01'], ['5.00', '5.03'], null, 'two steps back');
 
-    await page.click(linkTo('12.01', '5.00'));
-    await page.waitForSelector(`${rowAt('5.00')}.open`);
+    // Forward from 5.00 to 5.03 again: the jump the button would undo is no longer the last step.
+    await follow(linkTo('12.01', '5.00'), '5.00');
+    await follow(linkTo('5.00', '5.03'), '5.03');
+    await page.goBack();
+    await page.waitForFunction((sel) => !document.querySelector(sel).classList.contains('open'), { timeout: WAIT }, rowAt('5.03'));
+    check((await backReads()).words === `↩ Back to ${fromNo}`, 'one step back, the way back to 12.01 is not offered');
+    await page.goForward();
+    await page.waitForSelector(`${rowAt('5.03')}.open`);
+    button = await backReads();
+    check(!button.shown, `after Forward the button reads ${JSON.stringify(button)}`);
+
+    await follow(linkTo('12.01', '5.00'), '5.00');
     check((await backReads()).shown, 'no way back after the jump');
     await page.reload();
     await page.waitForSelector(`${rowAt('5.00')}.open`);
     button = await backReads();
     check(!button.shown, `after a reload the button reads ${JSON.stringify(button)}`);
+  });
+
+  await step('with a keyword and a kind pressed and the list sorted by type, the link clears the keyword and the kind and keeps the sort; ↩ Back presses them again', async () => {
+    await page.goto(`${base}/edit/`);
+    await page.waitForSelector('.ed-bar');
+    const rows = await page.evaluate(() => Object.fromEntries(['12.01', '5.00'].map((id) => {
+      const el = document.querySelector(`article.row[data-no="${id}"]`);
+      return [id, { kw: el.dataset.kw.split(' ').filter(Boolean), kind: el.dataset.kind }];
+    })));
+    const keyword = rows['12.01'].kw.find((k) => !rows['5.00'].kw.includes(k));
+    const kind = rows['12.01'].kind;
+    check(keyword && kind && kind !== rows['5.00'].kind, `no keyword and kind of 12.01 leave 5.00 out: ${JSON.stringify(rows)}`);
+    await page.click('.colhead button[data-sort="type"]');
+    await page.click(`.keywords button[data-k="${keyword}"]`);
+    await page.click(`.kinds button[data-kind="${kind}"]`);
+    check(await page.$eval(rowAt('5.00'), (el) => el.hidden), '5.00 shows under the keyword and the kind');
+    await page.click(`${rowAt('12.01')} .c-title > button:not(.ed)`);
+    await page.waitForSelector(`${rowAt('12.01')}.open`);
+    check(JSON.stringify(await pressed()) === JSON.stringify({ k: [keyword], t: [kind], s: 'type' }), `before the jump ${JSON.stringify(await pressed())} is pressed`);
+    const from = await follow(linkTo('12.01', '5.00'), '5.00');
+    check(await inView(page, `${rowAt('5.00')} > .row-head`), '5.00 is not in view');
+    const after = await pressed();
+    check(after.k.length === 0 && after.t.length === 0 && after.s === 'type', `after the jump ${JSON.stringify(after)} is pressed`);
+    check(!/[#&](k|t)=/.test((await where()).hash), `the address still filters: ${(await where()).hash}`);
+    await page.click('button.way-back');
+    await returned(from, ['12.01'], ['5.00'], null, 'after ↩ Back');
+    check(JSON.stringify(await pressed()) === JSON.stringify({ k: [keyword], t: [kind], s: 'type' }), `after ↩ Back ${JSON.stringify(await pressed())} is pressed`);
+    check(await page.$eval(rowAt('5.00'), (el) => el.hidden), '5.00 shows again under the keyword and the kind');
+  });
+
+  await step('with a search typed, the link clears it; ↩ Back puts its words back in the field and the list it found', async () => {
+    await page.goto(`${base}/edit/`); // the story order, nothing pressed
+    await page.waitForSelector('.ed-bar');
+    await page.click('form.find input');
+    await page.keyboard.type('Quokkaland');
+    await page.waitForFunction((hidden, found) => document.querySelector(hidden).hidden && !document.querySelector(found).hidden, { timeout: WAIT }, rowAt('5.00'), rowAt('12.01'))
+      .catch(() => { throw new Error('the search did not leave 5.00 out and 12.01 in'); });
+    await page.click(`${rowAt('12.01')} .c-title > button:not(.ed)`);
+    await page.waitForSelector(`${rowAt('12.01')}.open`);
+    const from = await follow(linkTo('12.01', '5.00'), '5.00');
+    check(from.hash.includes('q=Quokkaland'), `the address before the jump was ${from.hash}`);
+    check(await inView(page, `${rowAt('5.00')} > .row-head`), '5.00 is not in view');
+    check(await page.$eval('form.find input', (el) => el.value) === '', 'the search field still holds words');
+    check(!(await where()).hash.includes('q='), 'the address still searches');
+    await page.click('button.way-back');
+    await returned(from, ['12.01'], ['5.00'], null, 'after ↩ Back');
+    check(await page.$eval('form.find input', (el) => el.value) === 'Quokkaland', 'the search field lost its words');
+    check(await page.$eval(rowAt('5.00'), (el) => el.hidden), 'the search no longer leaves 5.00 out');
+  });
+
+  await step('from the idea the button reads ↩ Back to the idea, from a hidden row ↩ Back, and each returns', async () => {
+    await page.goto(`${base}/edit/`);
+    await page.waitForSelector('.ed-bar');
+    const idea = 'section.idea a[data-row="5.00"]';
+    let from = await follow(idea, '5.00');
+    let button = await backReads();
+    check(button.shown && button.words === '↩ Back to the idea', `from the idea the button reads ${JSON.stringify(button)}`);
+    await page.click('button.way-back');
+    await returned(from, [], ['5.00'], null, 'back to the idea');
+
+    await page.click(`${rowAt('5.01')} .c-title > button:not(.ed)`);
+    await page.waitForSelector(`${rowAt('5.01')}.open`);
+    from = await follow(linkTo('5.01', '5.00'), '5.00');
+    button = await backReads();
+    check(button.shown && button.words === '↩ Back', `from the hidden row the button reads ${JSON.stringify(button)}`);
+    await page.click('button.way-back');
+    await returned(from, ['5.01'], ['5.00'], null, 'back to the hidden row');
+  });
+
+  // An edit redraws every link to what it changed, the idea's and other rows' too, at once: hidden,
+  // 5.00's links are dotted with the sentence; shown again, they are links. An answer that comes
+  // while the idea's field is open waits for the field to close.
+  await step('5.00 hidden: the links to it in 12.01, in 5.01 and in the idea are dotted at once with The row is hidden.; shown again, links again; the idea waits for its open field', async () => {
+    await page.goto(`${base}/edit/`);
+    await page.waitForSelector('.ed-bar');
+    await page.evaluate(() => { window.notReloaded = true; });
+    const links = () => page.evaluate(() => ({
+      live: [...document.querySelectorAll('a[data-row="5.00"]')].map((a) => a.closest('article.row')?.dataset.no ?? 'idea').sort(),
+      dead: [...document.querySelectorAll('.dead-link[title="The row is hidden."]')].map((s) => `${s.closest('article.row')?.dataset.no ?? 'idea'}:${s.textContent}`).sort(),
+      pencils: document.querySelectorAll('section.idea button.ed[data-ed="idea"]').length,
+      same: window.notReloaded === true,
+    }));
+    const linksRead = async (want, when) => {
+      const deadline = Date.now() + WAIT;
+      let seen = await links();
+      while (JSON.stringify(seen) !== JSON.stringify(want) && Date.now() < deadline) {
+        await pause(50);
+        seen = await links();
+      }
+      check(JSON.stringify(seen) === JSON.stringify(want), `${when}, the links read ${JSON.stringify(seen)}`);
+    };
+    const shown = { live: ['12.01', '5.01', 'idea'], dead: ['12.01:the hidden one'], pencils: 1, same: true };
+    const hidden = { live: [], dead: ['12.01:the fixture notes', '12.01:the hidden one', '5.01:the notes', 'idea:fixture notes'], pencils: 1, same: true };
+    await linksRead(shown, 'at first');
+    let answered = answerTo(page, 'op');
+    await page.click(`${rowAt('5.00')} button.ed[data-ed="hide"]`);
+    check((await answered).status() === 200, 'the row was not hidden');
+    await linksRead(hidden, '5.00 hidden');
+    answered = answerTo(page, 'op');
+    await page.click(`${rowAt('5.00')} button.ed[data-ed="hide"]`);
+    check((await answered).status() === 200, 'the row was not shown again');
+    await linksRead(shown, '5.00 shown again');
+
+    // The idea's field opened before the answer comes: the idea it brings waits until Escape.
+    await page.emulateNetworkConditions({ offline: false, download: 100e6, upload: 100e6, latency: 1500 });
+    try {
+      answered = answerTo(page, 'op');
+      await page.click(`${rowAt('5.00')} button.ed[data-ed="hide"]`);
+      await page.click('section.idea button.ed[data-ed="idea"]');
+      await page.waitForSelector('section.idea .ed-field textarea');
+      check((await answered).status() === 200, 'the row was not hidden');
+      await pause(300);
+      const open = await page.evaluate(() => ({
+        field: Boolean(document.querySelector('section.idea .ed-field textarea')),
+        live: Boolean(document.querySelector('section.idea a[data-row="5.00"]')),
+      }));
+      check(open.field && open.live, `with the idea's field open, the idea is ${JSON.stringify(open)}`);
+    } finally {
+      await page.emulateNetworkConditions(null);
+    }
+    await page.keyboard.press('Escape');
+    await page.waitForSelector('section.idea .ed-field', { hidden: true });
+    await linksRead(hidden, 'the idea\'s field closed');
+    answered = answerTo(page, 'op');
+    await page.click(`${rowAt('5.00')} button.ed[data-ed="hide"]`);
+    check((await answered).status() === 200, 'the row was not shown again');
+    await linksRead(shown, '5.00 shown again');
+  });
+
+  await step('at a phone\'s width the way back stands at the bottom, inside the screen, and returns', async () => {
+    await page.setViewport({ width: 390, height: 844, isMobile: true, hasTouch: true });
+    await page.goto(`${base}/edit/`);
+    await page.waitForSelector('.ed-bar');
+    await page.evaluate(() => { history.scrollRestoration = 'manual'; });
+    await page.click(`${rowAt('12.01')} .c-title > button:not(.ed)`);
+    await page.waitForSelector(`${rowAt('12.01')}.open`);
+    const from = await follow(linkTo('12.01', '5.00'), '5.00');
+    check(await inView(page, `${rowAt('5.00')} > .row-head`), '5.00 is not in view');
+    const button = await backReads();
+    check(button.shown && button.words === `↩ Back to ${fromNo}`, `the button reads ${JSON.stringify(button)}`);
+    check(button.gap >= 0 && button.gap <= 40 && button.left >= 0 && button.right <= 390, `the button stands at ${JSON.stringify(button)}`);
+    check(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'the page is wider than the screen');
+    await page.click('button.way-back');
+    await returned(from, ['12.01'], ['5.00'], null, 'after ↩ Back at a phone\'s width');
+    await page.setViewport({ width: 1280, height: 900 });
   });
 
   await step('on the public site, once published: the link to the hidden row is its words alone, the other opens its row, and ↩ Back returns', async () => {
@@ -2001,12 +2182,9 @@ async function main() {
     await page.click(`${rowAt('12.01')} .c-title button`);
     await page.waitForSelector(`${rowAt('12.01')}.open`);
     const words = await page.$eval(`${rowAt('12.01')} .txt p`, (p) => ({ text: p.textContent, html: p.innerHTML }));
-    check(words.text === 'Compare the fixture notes with the hidden one.', `the text reads ${JSON.stringify(words.text)}`);
+    check(words.text === 'Compare the fixture notes with the hidden one in Quokkaland.', `the text reads ${JSON.stringify(words.text)}`);
     check(!words.html.includes('5.01') && !words.html.includes('dead-link'), `the text holds ${words.html}`);
-    start = await before(linkTo('12.01', '5.00'));
-    await page.click(linkTo('12.01', '5.00'));
-    await page.waitForSelector(`${rowAt('5.00')}.open`);
-    await stillAt(page, `${rowAt('5.00')} > .row-head`);
+    start = await follow(linkTo('12.01', '5.00'), '5.00');
     check(await inView(page, `${rowAt('5.00')} > .row-head`), '5.00 is not in view');
     const publicNo = await page.$eval(`${rowAt('12.01')} .c-no`, (el) => el.textContent.trim());
     const button = await backReads();

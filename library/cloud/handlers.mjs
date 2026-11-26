@@ -12,7 +12,7 @@ import { createHash } from 'node:crypto';
 import { applyOp, OpError } from './ops.mjs';
 import { ConflictError } from './store.mjs';
 import { numbering, chapterNumbers } from './doc.mjs';
-import { renderSite, renderEditPage, renderEditRow, renderEditStrip, editSearch, summaryOf, publishLine } from './render.mjs';
+import { renderSite, renderEditPage, renderEditRow, renderEditStrip, renderRelinked, editSearch, summaryOf, publishLine } from './render.mjs';
 import { verifyPassword, makeSession, readSession, sessionCookie, clearedCookie } from './auth.mjs';
 import { page, esc } from '../lib/shell.mjs';
 
@@ -213,11 +213,16 @@ ${line ? `<p class="login-line" role="alert">${esc(line)}</p>\n` : ''}</form>`,
       strip: renderEditStrip(doc), // "All keywords" as the edit page would now draw it
       result, // the new id after add-row, add-chapter and add-keyword
     };
+    const skip = [];
     if (ROW_OPS.includes(wanted.op)) {
       const id = result.id ?? wanted.id;
       reply.row = renderEditRow(doc, id, lists, { published });
       reply.stored = doc.rows[id]; // what the page's fields then start from: the server's own words
+      skip.push(id);
     }
+    // The other rows and the idea whose links now read otherwise (a row hidden, retitled, removed).
+    const relinked = renderRelinked(draft.doc, doc, lists, { published, skip });
+    if (Object.keys(relinked.rows).length || relinked.idea) reply.relinked = relinked;
     return json(200, reply);
   }
 

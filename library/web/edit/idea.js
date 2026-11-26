@@ -1,9 +1,12 @@
 // ✎ on the idea at the top: its Markdown in one field, [[word|Keyword]] as ever. The idea's words
 // are drawn by the server (lib/idea.mjs, which knows the keywords), so once saved the page asks
-// for itself again and takes the idea from it.
-import { state, send, redraw } from './core.js';
+// for itself again and takes the idea from it. The idea an answer brings (core.js: an edit changed
+// what one of its links names) is dressed here too.
+import { state, send, redraw, onIdea } from './core.js';
 import { iconButton } from './icons.js';
 import { openField, textarea } from './field.js';
+
+onIdea(() => dressIdea());
 
 export function dressIdea() {
   const section = document.querySelector('section.idea');

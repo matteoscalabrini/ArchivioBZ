@@ -7,7 +7,7 @@ import { loadLibrary, TYPES } from '../lib/records.mjs';
 import { locatePlaces } from '../lib/places.mjs';
 import { docFromLibrary } from '../cloud/doc.mjs';
 import { applyOp } from '../cloud/ops.mjs';
-import { loadLists, renderSite, renderEditPage, renderEditRow, renderEditStrip, editSearch, summaryLine, summaryOf, publishLine } from '../cloud/render.mjs';
+import { loadLists, renderSite, renderEditPage, renderEditRow, renderEditStrip, renderRelinked, editSearch, summaryLine, summaryOf, publishLine } from '../cloud/render.mjs';
 import { parseState } from '../web/state.js';
 import { esc } from '../lib/shell.mjs';
 import { cleanRoot } from './helpers.mjs';
@@ -173,6 +173,63 @@ test('a row whose text links another: in the Library, in the map\'s panel, and o
   assert.match(edit, /<p>See <span class="dead-link" title="The row is hidden\.">the bridge<\/span> again\.<\/p>/);
   assert.match(edit, /<p>And <span class="dead-link" title="The row is hidden\.">Alpenzeitung, 29 October 1931, page 3<\/span>\.<\/p>/);
   assert.equal(renderEditRow(doc, '5.01', lists), edit, 'one row drawn as the page draws it');
+});
+
+// A keyword only hidden rows carry filters nothing on the public site, where its links are words;
+// edit mode dots them, as it dots a link to a hidden row, so that the author sees it before a publish.
+test('a keyword only hidden rows carry: words on the public site, dotted in edit mode with its sentence', () => {
+  const doc = fixtureDoc(); // 5.01 alone carries ponte-druso
+  doc.idea = 'The [[press]] at [[Ponte Druso]].';
+  doc.rows['5.02'].record.text = ['On [[the bridge|ponte druso]].'];
+  doc.rows['5.01'].hidden = true;
+  const index = renderSite(doc, lists).files.get('index.html').body;
+  assert.match(index, /<p>The <button data-k="press">press<\/button> at Ponte Druso\.<\/p>/);
+  assert.match(articleOf(index, '5.02'), /<p>On the bridge\.<\/p>/);
+  const edit = renderEditPage(doc, { version: 1, published: null, lists });
+  const dead = (words) => `<span class="dead-link" title="No row shown carries this keyword.">${words}</span>`;
+  assert.ok(edit.includes(`<p>The <button data-k="press">press</button> at ${dead('Ponte Druso')}.</p>`), 'the idea');
+  assert.ok(articleOf(edit, '5.02').includes(`<p>On ${dead('the bridge')}.</p>`), 'a row\'s text');
+});
+
+// After an edit the page swaps in what the answer carries: the row edited, and, from this, every
+// other row and the idea whose links now read otherwise, each exactly as the edit page draws it.
+test('after an edit, the other rows and the idea whose links it changed are drawn again; nothing else', () => {
+  const before = fixtureDoc();
+  before.idea = 'The [[notes|@5.00]] and the [[press]].';
+  before.rows['5.01'].record.text = ['See [[@5.00]].'];
+  before.rows['5.02'].record.text = ['Also [[the notes|@5.00]], and [[the bridge|ponte-druso]].'];
+  before.rows['5.03'].record.text = ['Nothing linked.'];
+  const ideaOf = (html) => /<section class="idea">[\s\S]*?<\/section>/.exec(html)[0];
+
+  const hidden = applyOp(before, { op: 'hide-row', id: '5.00', hidden: true }).doc;
+  const parts = renderRelinked(before, hidden, lists, { skip: ['5.00'] });
+  const page = renderEditPage(hidden, { version: 1, published: null, lists });
+  assert.deepEqual(Object.keys(parts.rows), ['5.01', '5.02']);
+  for (const id of ['5.01', '5.02']) assert.equal(parts.rows[id], articleOf(page, id), id);
+  assert.match(parts.rows['5.02'], /<span class="dead-link" title="The row is hidden\.">the notes<\/span>/);
+  assert.equal(parts.idea, ideaOf(page));
+  assert.match(parts.idea, /<span class="dead-link" title="The row is hidden\.">notes<\/span>/);
+  const published = fixtureDoc();
+  assert.equal(renderRelinked(before, hidden, lists, { published, skip: ['5.00'] }).rows['5.02'],
+    articleOf(renderEditPage(hidden, { version: 1, published, lists }), '5.02'), 'marked changed as the page marks it');
+
+  const removed = applyOp(before, { op: 'remove-row', id: '5.00' }).doc;
+  const gone = renderRelinked(before, removed, lists);
+  assert.deepEqual(Object.keys(gone.rows), ['5.01', '5.02']);
+  assert.match(gone.rows['5.01'], /<span class="dead-link" title="There is no such row\.">@5\.00<\/span>/);
+
+  const retitled = applyOp(before, { op: 'set-row', id: '5.00', fields: { title: 'Notes, retitled' } }).doc;
+  const again = renderRelinked(before, retitled, lists, { skip: ['5.00'] });
+  assert.deepEqual(Object.keys(again.rows), ['5.01'], 'only the link that shows the title');
+  assert.match(again.rows['5.01'], /<a href="#o=5\.00" data-row="5\.00">Notes, retitled<\/a>/);
+  assert.equal(again.idea, null, 'the idea names 5.00 in words of its own');
+
+  const uncarried = applyOp(before, { op: 'hide-row', id: '5.01', hidden: true }).doc; // ponte-druso's one row
+  assert.deepEqual(Object.keys(renderRelinked(before, uncarried, lists, { skip: ['5.01'] }).rows), ['5.02']);
+  const unrelated = applyOp(before, { op: 'set-row', id: '5.03', fields: { title: 'Other' } }).doc;
+  assert.deepEqual(renderRelinked(before, unrelated, lists, { skip: ['5.03'] }), { rows: {}, idea: null });
+  const idea = applyOp(hidden, { op: 'set-idea', text: 'The [[notes|@5.00]], once more.' }).doc;
+  assert.equal(renderRelinked(hidden, idea, lists).idea, null, 'the idea edited draws itself again');
 });
 
 test('About links a row and a keyword to the Library; a hidden row\'s link is its words', () => {

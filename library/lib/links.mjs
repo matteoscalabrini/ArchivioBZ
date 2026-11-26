@@ -18,6 +18,23 @@ const LINK = /\[\[([^[\]]*)\]\]/g;
 const ROW = '@';
 const PAGE = 'page:';
 
+// What a text's links know of a `lib` (lib/pages.mjs's, from the files or from the document): its
+// rows, by their key, with their numbers, titles and whether shown (a lib from the document in edit
+// mode holds the hidden rows too, marked); no pages yet; the keywords some shown row carries, in
+// edit mode as on the public site, so that a keyword only hidden rows carry is dotted there. The
+// one making of it, for the pages and for the search alike. `edit`: the page is edit mode's.
+export function linksOf(lib, { edit = false } = {}) {
+  const shown = lib.entries.filter((entry) => entry.hidden !== true);
+  return {
+    keywords: lib.keywords ?? {},
+    aliases: lib.aliases ?? {},
+    rows: new Map(lib.entries.map((entry) => [entry.id ?? entry.no, { no: entry.no, title: entry.title, shown: entry.hidden !== true }])),
+    pages: new Map(),
+    carried: new Set(shown.flatMap((entry) => entry.keywords ?? [])),
+    edit,
+  };
+}
+
 // -> [{ start, end, words, target }]: each link, where it stands in `text`, its words (null for
 // none) and its target, both with their spaces tidied. `[[` without its `]]`, and a link with
 // empty words or no target (`[[|x]]`, `[[x|]]`), stay as typed.

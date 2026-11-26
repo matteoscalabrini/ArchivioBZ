@@ -70,7 +70,10 @@ let state = parseState(location.hash, known);
 // started (the state, the page's height, the step in the address that holds it, the link) and the
 // words of the button that returns there. Kept by this page only: a reload starts with none.
 const jumps = [];
-let jumpsMade = 0; // names each jump's starting step in the address (history.state.jumpAt)
+let jumpsMade = 0;
+// Names each jump's starting step in the address (history.state.jumpAt): this page's own, so that
+// a step marked before a reload, which the history keeps, is never taken for one of these jumps.
+const loaded = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
 const back = Object.assign(document.createElement('button'), { type: 'button', className: 'way-back', hidden: true });
 document.body.append(back);
 back.addEventListener('click', () => history.back());
@@ -92,13 +95,15 @@ if (field) {
 }
 restore();
 
-// A step back to where a jump started: the page as it was then, at the same height. A step the
-// page did not make, or made before a reload, is left to the address (hashchange).
+// A step back to where a jump started: the page as it was then, at the same height, and the jumps
+// made after it forgotten. Any other step (forward, past the first jump, one marked before a
+// reload) is left to the address (hashchange), and no way back fits it any longer: the button goes.
 addEventListener('popstate', () => {
   const at = history.state?.jumpAt;
   const i = at === undefined ? -1 : jumps.findIndex((jump) => jump.at === at);
-  if (i < 0) return;
-  returnTo(jumps.splice(i)[0]);
+  if (i >= 0) return returnTo(jumps.splice(i)[0]);
+  jumps.length = 0;
+  showBack();
 });
 
 addEventListener('hashchange', () => {
@@ -438,7 +443,7 @@ function openRow(row) {
 function jumpTo(link, row) {
   clearTimeout(addressing);
   writeAddress(); // the step it starts from holds what was typed too
-  const at = ++jumpsMade;
+  const at = `${loaded}-${++jumpsMade}`;
   try {
     history.replaceState({ ...history.state, jumpAt: at }, '');
     history.pushState({ jumpTo: row.no }, '');

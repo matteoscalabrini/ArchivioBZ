@@ -244,6 +244,24 @@ test('an op saves, renumbers and gives back the row', async () => {
   assert.equal(draft.doc.rows.b.hidden, true);
 });
 
+// The page shows every link as it now stands after an edit, without a reload: the answer carries
+// the other rows and the idea whose links the edit changed (render.mjs, renderRelinked).
+test('an op answers with the other rows and the idea whose links it changed', async () => {
+  const linked = await (await h.edit(post('op', { version: 1, op: { op: 'set-row', id: 'a', fields: { text: ['See [[the next|@b]].'] } } }))).json();
+  assert.equal(linked.relinked, undefined, 'a link written changes no other part');
+  await h.edit(post('op', { version: 2, op: { op: 'set-idea', text: 'The [[row b|@b]].' } }));
+  const hidden = await (await h.edit(hide('b', 3))).json();
+  assert.match(hidden.row, /^<article class="row" data-no="b"/);
+  assert.deepEqual(Object.keys(hidden.relinked.rows), ['a']);
+  const page = await (await h.edit(get(''))).text();
+  assert.ok(page.includes(hidden.relinked.rows.a), 'row a as the page draws it');
+  assert.match(hidden.relinked.rows.a, /<span class="dead-link" title="The row is hidden\.">the next<\/span>/);
+  assert.ok(page.includes(hidden.relinked.idea), 'the idea as the page draws it');
+  assert.match(hidden.relinked.idea, /^<section class="idea">[\s\S]*<span class="dead-link" title="The row is hidden\.">row b<\/span>/);
+  const shown = await (await h.edit(post('op', { version: 4, op: { op: 'hide-row', id: 'b', hidden: false } }))).json();
+  assert.match(shown.relinked.rows.a, /<a href="#o=b" data-row="b">the next<\/a>/);
+});
+
 test('the row given back is marked changed only when it differs from the latest publish', async () => {
   const same = await (await h.edit(post('op', { version: 1, op: { op: 'set-row', id: 'a', fields: { title: 'Row a' } } }))).json();
   assert.doesNotMatch(same.row, /data-changed/);
