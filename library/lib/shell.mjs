@@ -14,8 +14,8 @@ const HIDDEN_PAGE = 'The page is hidden.';
 
 // `tab`: the tab of the page, 'library', 'map', 'about' or 'page:<address>' for a site page.
 // `pages`: the site pages, [{ address, title, hidden }], in their order. `edit`: the frame of edit
-// mode, whose Library is /edit/ and whose page tabs lead to the pages in edit mode, a hidden one
-// dotted, its title saying why; on the public site a hidden page has no tab.
+// mode, whose Library (its tab and the search) is /edit/ and whose page tabs lead to the pages in
+// edit mode, a hidden one dotted, its title saying why; on the public site a hidden page has no tab.
 export function page({ title, tab, body, css = [], js = [], depth = 0, head = '', pages = [], edit = false }) {
   const up = '../'.repeat(depth);
   const styles = [BASE_CSS, ...css.filter((href) => href !== BASE_CSS)]
@@ -24,8 +24,9 @@ export function page({ title, tab, body, css = [], js = [], depth = 0, head = ''
     .map((src) => `<script type="module" src="${esc(up + src)}"></script>`);
   const tabs = tabList(pages, edit).map(({ id, label, href, hidden }) => `<a href="${esc(up + href)}"${id === tab ? ' aria-current="page"' : ''}`
     + `${hidden ? ` class="dead-link" title="${HIDDEN_PAGE}"` : ''}>${esc(label)}</a>`);
-  // The search: on the Library it narrows the list as one types, elsewhere Enter leads there.
-  const find = `<form class="find" role="search" action="${up}index.html">`
+  // The search: on the Library it narrows the list as one types, elsewhere Enter leads there (in
+  // edit mode to edit mode's Library).
+  const find = `<form class="find" role="search" action="${up}${edit ? 'edit/' : 'index.html'}">`
     + '<input type="text" name="q" placeholder="Search" aria-label="Search the library" autocomplete="off" spellcheck="false"></form>';
   return `<!doctype html>
 <html lang="en">

@@ -47,3 +47,9 @@ test('the site pages\' tabs stand between Map and About, in their order; in edit
   const edit = page({ title: 'x', tab: 'library', body: '', depth: 1, pages, edit: true });
   assert.match(edit, /<nav class="tabs" aria-label="Sections"><a href="\.\.\/edit\/" aria-current="page">Library<\/a><a href="\.\.\/map\.html">Map<\/a><a href="\.\.\/edit\/pages\/on-the-bridge">On &lt;the&gt; bridge<\/a><a href="\.\.\/edit\/pages\/second">Second<\/a><a href="\.\.\/edit\/pages\/kept" class="dead-link" title="The page is hidden\.">Kept<\/a><a href="\.\.\/about\.html">About<\/a><form/);
 });
+
+// The search leads to the Library (find.js): in edit mode to edit mode's, as the Library tab does.
+test('in edit mode the search field leads to the Library in edit mode', () => {
+  assert.match(page({ title: 'x', tab: null, body: '', depth: 2, edit: true }), /<form class="find" role="search" action="\.\.\/\.\.\/edit\/">/);
+  assert.match(page({ title: 'x', tab: null, body: '', depth: 2 }), /<form class="find" role="search" action="\.\.\/\.\.\/index\.html">/);
+});

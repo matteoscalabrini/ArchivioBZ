@@ -5,7 +5,7 @@
 // as a broken publish later.
 import { TYPES } from '../lib/records.mjs';
 import { parseIdea, withoutStandin } from '../lib/idea.mjs';
-import { checkDoc, chapterNumbers, pagesOf, NUMBER_KEY, LEVELS } from './doc.mjs';
+import { checkDoc, chapterNumbers, numbering, pagesOf, addressesOf, NUMBER_KEY, LEVELS } from './doc.mjs';
 
 export class OpError extends Error {}
 
@@ -143,11 +143,12 @@ const pageTitle = (title) => { if (!isText(title) || !title.trim()) refuse('A pa
 // A page's address, made once from its title when the page is made and never after, so that a link
 // to it and its public address hold when it is renamed: the title's accents taken off, in lower
 // case, each run of anything but a-z and 0-9 one dash, none at either end, at most 60 characters,
-// "page" when nothing is left; one another page of the draft has gets -2, -3 and on.
+// "page" when nothing is left; one given before, to a page of the draft or to one removed since
+// (doc.addresses), gets -2, -3 and on: an address is never given twice, as a row's id is not.
 const ADDRESS_LENGTH = 60;
-function pageAddress(title, pages) {
+function pageAddress(title, doc) {
   const base = slug(title).slice(0, ADDRESS_LENGTH).replace(/-+$/, '') || 'page';
-  const taken = new Set(pages.map((page) => page.address));
+  const taken = new Set([...addressesOf(doc), ...pagesOf(doc).map((page) => page.address)]);
   let address = base;
   for (let n = 2; taken.has(address); n++) address = `${base}-${n}`;
   return address;
@@ -264,13 +265,13 @@ const OPS = {
     rowOf(doc, id).hidden = hidden === true;
     return {};
   },
-  // The row's pages go with it: a page about a row that is gone has nothing to open with and no
-  // way back. Both come back together from an older publish, as the row's own words do.
+  // A row with pages about it, hidden ones too, is not removed: they would go with it unasked, and
+  // a page is removed only when asked (design §14). Its pages first, or the row hidden.
   'remove-row'(doc, { id }) {
     rowOf(doc, id);
+    if (pagesOf(doc).some((page) => page.row === id)) refuse(`Row ${numbering(doc).get(id) || id} has pages; remove them first, or hide the row.`);
     takeOut(doc, id);
     delete doc.rows[id];
-    if (Array.isArray(doc.pages)) doc.pages = doc.pages.filter((page) => page.row !== id);
     return {};
   },
   'add-row'(doc, { chapter, index, title, type }) {
@@ -353,14 +354,15 @@ const OPS = {
   },
   // Pages (design §14). A site page (row null) has a tab between Map and About, in the order of the
   // site pages among the pages; a row page expands on one row. A document from before the pages
-  // has neither `pages` nor next.page, and is given both by its first page.
+  // has neither `pages`, `addresses` nor next.page, and is given them by its first page.
   'add-page'(doc, { title, row = null }) {
     const name = pageTitle(title);
     if (row !== null) rowOf(doc, row);
+    const address = pageAddress(name, doc);
     doc.pages = pagesOf(doc);
+    doc.addresses = [...addressesOf(doc), address];
     doc.next.page ??= 1;
     const id = `p${doc.next.page++}`;
-    const address = pageAddress(name, doc.pages);
     doc.pages.push({ id, address, title: name, text: '', row, hidden: false });
     return { id, address };
   },

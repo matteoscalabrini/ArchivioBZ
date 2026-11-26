@@ -23,19 +23,22 @@ const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '.
 // (absPath) -> the address a picture of the text is published at, or nothing: then it is its alt text.
 // links: what the links typed in the text, [[words|target]], know of the document (lib/links.mjs),
 // for About and the pages; without it such a link stays as typed, as in the long reads.
+// keepTitle: a heading of the first level that opens the text is drawn (as an <h2>, as every heading
+// is); by default it is the file's title, which its page draws as its own <h1>, and is left out.
 export function renderMarkdown(text, options = {}) {
   const md = reader(options);
   const tokens = md.lexer(String(text));
   const first = tokens.findIndex((t) => t.type !== 'space');
-  if (first >= 0 && tokens[first].type === 'heading' && tokens[first].depth === 1) tokens.splice(first, 1);
+  if (!options.keepTitle && first >= 0 && tokens[first].type === 'heading' && tokens[first].depth === 1) tokens.splice(first, 1);
   return sheets(md.parser(tokens));
 }
 
-// A page's text (design §14), as its page draws it: Markdown with its headings and the links typed
-// in it (`links`: what they know, here and up included), web links and #fragments. A picture or a
-// link to a file is its words: pictures inside a page wait, and the files are not on the web.
+// A page's text (design §14), as its page draws it: Markdown with its headings, every one typed,
+// the first too (the page's title is its own, not the text's), and the links typed in it (`links`:
+// what they know, here and up included), web links and #fragments. A picture or a link to a file
+// is its words: pictures inside a page wait, and the files are not on the web.
 export function renderPageText(text, links) {
-  return renderMarkdown(String(text ?? ''), { held: () => null, published: () => null, links });
+  return renderMarkdown(String(text ?? ''), { held: () => null, published: () => null, links, keepTitle: true });
 }
 
 // renderParts(text, options) -> [{title, html}]. A text with two or more headings of the first

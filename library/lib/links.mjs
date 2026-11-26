@@ -6,7 +6,8 @@
 // `page:<address>` a page.
 //
 // What a link knows of the document comes in `ctx`: { keywords, aliases, rows: Map<id, { no,
-// title, shown }>, pages: Map<address, { title, shown }>, carried: Set<keyword id> (the keywords
+// title, shown }>, pages: Map<address, { title, shown, rowHidden }> (rowHidden: not shown only
+// because its row is hidden), carried: Set<keyword id> (the keywords
 // some shown row carries; none given, every keyword counts), here: 'library' | 'other' (the page
 // the link is on), up: '' | '../' (the way from that page to the site's top folder), edit }.
 // A target the public may not see (a hidden or unknown row, a hidden or unknown page, an unknown
@@ -31,7 +32,7 @@ export function linksOf(lib, { edit = false } = {}) {
     keywords: lib.keywords ?? {},
     aliases: lib.aliases ?? {},
     rows: new Map(lib.entries.map((entry) => [entry.id ?? entry.no, { no: entry.no, title: entry.title, shown: entry.hidden !== true }])),
-    pages: new Map((lib.pages ?? []).map((page) => [page.address, { title: page.title, shown: page.shown !== false }])),
+    pages: new Map((lib.pages ?? []).map((page) => [page.address, { title: page.title, shown: page.shown !== false, rowHidden: page.shown === false && page.hidden === false }])),
     carried: new Set(shown.flatMap((entry) => entry.keywords ?? [])),
     edit,
   };
@@ -64,7 +65,7 @@ export function targetOf(target, ctx) {
   if (target.startsWith(PAGE)) {
     const id = target.slice(PAGE.length).trim();
     const page = ctx.pages?.get(id);
-    return { kind: 'page', id, name: page?.title, dead: !page ? 'There is no such page.' : page.shown ? null : 'The page is hidden.' };
+    return { kind: 'page', id, name: page?.title, dead: !page ? 'There is no such page.' : page.shown ? null : page.rowHidden ? 'Its row is hidden.' : 'The page is hidden.' };
   }
   const id = keywordLookup(ctx.keywords ?? {}, ctx.aliases ?? {})(target);
   if (!id) return { kind: 'keyword', id, name: undefined, dead: 'There is no such keyword.' };

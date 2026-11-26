@@ -183,3 +183,24 @@ test('a login try is counted from the moment it is recorded, and one forgotten n
   await store.forgetLoginFailure(second);
   assert.equal(await store.recentLoginFailures(15), 0);
 });
+
+// Pages (design §14): an address once given is never given again, as an id is not (doc.mjs,
+// raiseCounters). A publish restored that does not have a page made since still knows its address.
+test('a restore keeps every address the draft has given, so a page made after it never gets one of them', async () => {
+  let version = await store.createDraft(sample());
+  const edit = async (op) => {
+    const { doc } = await store.getDraft();
+    const { doc: next, result } = applyOp(doc, op);
+    version = await store.saveDraft(next, version);
+    return result;
+  };
+  assert.equal((await edit({ op: 'add-page', title: 'On the bridge', row: null })).address, 'on-the-bridge');
+  const { id: first } = await store.publish(version, files(), 's');
+  await edit({ op: 'remove-page', id: 'p1' });
+  assert.equal((await edit({ op: 'add-page', title: 'Other words', row: null })).address, 'other-words');
+  version = await store.restore(first, version);
+  const { doc } = await store.getDraft();
+  assert.deepEqual(doc.pages.map((p) => p.address), ['on-the-bridge'], 'the publish restored');
+  assert.deepEqual(doc.addresses, ['on-the-bridge', 'other-words']);
+  assert.equal((await edit({ op: 'add-page', title: 'Other words', row: null })).address, 'other-words-2');
+});

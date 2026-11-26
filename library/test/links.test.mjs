@@ -83,9 +83,23 @@ test('in edit mode a page links to the page in edit mode, and from elsewhere tha
 // The pages a lib holds (cloud/doc.mjs, libFromDoc): on the public site those a publish shows, in
 // edit mode every one, `shown` saying whether a publish shows it.
 test('linksOf knows the lib\'s pages by their addresses, and none when it has none', () => {
-  const lib = { entries: [], keywords: {}, aliases: {}, pages: [{ address: 'on-the-bridge', title: 'On the bridge', row: null, shown: true }, { address: 'kept', title: 'Kept', row: 'x', shown: false }] };
-  assert.deepEqual([...linksOf(lib).pages], [['on-the-bridge', { title: 'On the bridge', shown: true }], ['kept', { title: 'Kept', shown: false }]]);
+  const lib = { entries: [], keywords: {}, aliases: {}, pages: [
+    { address: 'on-the-bridge', title: 'On the bridge', row: null, hidden: false, shown: true },
+    { address: 'kept', title: 'Kept', row: null, hidden: true, shown: false },
+    { address: 'of-a-hidden-row', title: 'Of a hidden row', row: 'x', hidden: false, shown: false },
+  ] };
+  assert.deepEqual([...linksOf(lib).pages], [
+    ['on-the-bridge', { title: 'On the bridge', shown: true, rowHidden: false }],
+    ['kept', { title: 'Kept', shown: false, rowHidden: false }],
+    ['of-a-hidden-row', { title: 'Of a hidden row', shown: false, rowHidden: true }],
+  ]);
   assert.deepEqual([...linksOf({ entries: [] }).pages], []);
+});
+
+test('in edit mode a link to a page not shown because its row is hidden says so', () => {
+  const pages = new Map([['of-c', { title: 'Of c', shown: false, rowHidden: true }]]);
+  assert.equal(draw('[[more|page:of-c]]', { ...EDIT, pages }), '<span class="dead-link" title="Its row is hidden.">more</span>');
+  assert.equal(draw('[[more|page:of-c]]', { ...LIBRARY, pages }), 'more', 'the public site: its words alone');
 });
 
 test('the words are escaped in every kind, live or dead, and so is a title drawn as the words', () => {

@@ -15,7 +15,7 @@ import { attachLinker } from './linker.js';
 import { dressPictures } from './pictures.js';
 import { unfold } from './compact.js';
 import { addPage } from './pages.js';
-import { toParagraphs, fromParagraphs, yearValue, numberValue, removeQuestion, placedLine } from '../editmodel.js';
+import { toParagraphs, fromParagraphs, yearValue, numberValue, removeQuestion, pagesFirst, placedLine } from '../editmodel.js';
 
 const CONFIDENCE = [['read', 'Read in the source'], ['secondary', 'From a secondary source'], ['lead', 'Lead, not yet a fact']];
 // The lines under an open row's text, in the order lib/detail.mjs writes them.
@@ -326,8 +326,12 @@ function editLine(row, id, opener, term) {
   });
 }
 
+// A row with pages about it, hidden ones too, is not removed (ops.mjs): the bar says so, and
+// nothing is asked.
 async function removeRow(id) {
   const title = record(id).title ?? id;
+  const pages = (state.doc.pages ?? []).filter((page) => page.row === id).length;
+  if (pages) return say(pagesFirst(title, pages));
   if (!(await ask(removeQuestion(title, state.published.has(id)), 'Remove'))) return;
   await act({ op: 'remove-row', id });
 }

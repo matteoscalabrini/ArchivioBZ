@@ -65,16 +65,17 @@ function pictureBlock(pictures, up, side = false) {
 
 // "Read: <title> →", one line for each page about the row (design §14), in the order they were made.
 // On the public site the row holds only the pages a publish shows; in edit mode (ctx.links.edit)
-// it holds every one, each leading to the page in edit mode, a hidden one dotted, its title saying
-// why the public does not see it.
+// it holds every one, each leading to the page in edit mode, one the public does not see dotted,
+// its title saying why: the page hidden, or else its row (as lib/links.mjs says of a link to it).
 function reads(entry, ctx, up) {
   const pages = Array.isArray(entry.rowPages) ? entry.rowPages : [];
   if (!pages.length) return '';
   const edit = ctx?.links?.edit === true;
-  const line = ({ address, title, shown }) => {
+  const line = ({ address, title, shown, hidden }) => {
     const href = esc(edit ? `${up}edit/pages/${address}` : `${up}pages/${address}.html`);
     const words = `Read: ${esc(title)} →`;
-    return edit && !shown ? `<li><a class="dead-link" href="${href}" title="The page is hidden.">${words}</a></li>` : `<li><a href="${href}">${words}</a></li>`;
+    const why = hidden ? 'The page is hidden.' : 'Its row is hidden.';
+    return edit && !shown ? `<li><a class="dead-link" href="${href}" title="${why}">${words}</a></li>` : `<li><a href="${href}">${words}</a></li>`;
   };
   return `<ul class="reads">${pages.map(line).join('')}</ul>`;
 }

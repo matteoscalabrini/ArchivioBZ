@@ -75,11 +75,14 @@ test('a site page: its title as the one <h1>, then its text in article.read.page
   const html = body(renderSite(pagesDoc(), lists).files, 'pages/on-the-bridge.html');
   assert.match(html, /<title>On the bridge<\/title>/);
   assert.match(html, /<link rel="stylesheet" href="\.\.\/web\/read\.css">/);
-  assert.match(html, /<h1>On the bridge<\/h1>\n<article class="read page">\n<p>The <a href="\.\.\/index\.html#o=b">bridge<\/a> and <a href="\.\.\/index\.html#k=wall">a wall<\/a>\.<\/p>/);
+  // A heading typed at the top, of the first level, is drawn as every other heading is: the page's
+  // title is its own <h1>, and the words typed are kept.
+  assert.match(html, /<h1>On the bridge<\/h1>\n<article class="read page">\n<h2>Not a second title<\/h2>\n<p>The <a href="\.\.\/index\.html#o=b">bridge<\/a> and <a href="\.\.\/index\.html#k=wall">a wall<\/a>\.<\/p>/);
   assert.match(html, /<h2>Built<\/h2>\n<p>In 1928, <em>after<\/em> the <a href="\.\.\/pages\/second\.html">other page<\/a>\.<\/p>/);
   assert.equal(html.match(/<h1>/g).length, 1);
-  assert.ok(!html.includes('Not a second title'), 'a heading of the first level at the top gives way to the title');
   assert.ok(!html.includes('page-row'), 'no row at its top');
+  const only = body(renderSite(run(pagesDoc(), [{ op: 'set-page', id: 'p4', text: '# Only a heading' }]), lists).files, 'pages/second.html');
+  assert.match(only, /<article class="read page">\n<h2>Only a heading<\/h2>\s*<\/article>/);
 });
 
 test('a row page opens with its row: number, title, first picture and the way back to the row; then its title and text', () => {
@@ -138,8 +141,13 @@ test('in edit mode the tabs lead to the pages in edit mode, a hidden one dotted,
   assert.ok(articleOf(html, 'b').includes('<ul class="reads"><li><a class="dead-link" href="../edit/pages/more-on-b" title="The page is hidden.">Read: More on b →</a></li></ul>'));
   assert.ok(articleOf(html, 'c').includes('<ul class="reads"><li><a href="../edit/pages/on-row-c">Read: On row c →</a></li></ul>'));
   assert.equal(renderEditRow(doc, 'b', lists), articleOf(html, 'b'), 'a row drawn alone has them too');
-  const hiddenRow = renderEditPage(run(doc, [{ op: 'hide-row', id: 'c', hidden: true }]), { version: 3, published: null, lists });
-  assert.ok(articleOf(hiddenRow, 'c').includes('<a class="dead-link" href="../edit/pages/on-row-c" title="The page is hidden.">Read: On row c →</a>'), 'a page of a hidden row is not published either');
+  // A page of a hidden row is not published either; its own Hide is not why, so it says the row.
+  const shut = run(doc, [{ op: 'hide-row', id: 'c', hidden: true }, { op: 'set-row', id: 'a', fields: { text: ['See [[this|page:on-row-c]] and [[that|page:more-on-b]].'] } }]);
+  const hiddenRow = renderEditPage(shut, { version: 3, published: null, lists });
+  assert.ok(articleOf(hiddenRow, 'c').includes('<a class="dead-link" href="../edit/pages/on-row-c" title="Its row is hidden.">Read: On row c →</a>'), articleOf(hiddenRow, 'c'));
+  assert.ok(articleOf(hiddenRow, 'a').includes('<span class="dead-link" title="Its row is hidden.">this</span> and <span class="dead-link" title="The page is hidden.">that</span>'), articleOf(hiddenRow, 'a'));
+  const both = renderEditPage(run(shut, [{ op: 'hide-page', id: 'p5', hidden: true }]), { version: 3, published: null, lists });
+  assert.ok(articleOf(both, 'c').includes('title="The page is hidden.">Read: On row c →</a>'), 'hidden itself, the page says so first');
 });
 
 test('a page in edit mode: drawn from the draft at /edit/pages/<address>, its script and the draft as data; a hidden one too; none for an unknown address', () => {

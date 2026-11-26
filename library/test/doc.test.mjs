@@ -271,7 +271,8 @@ const withPages = () => {
     { id: 'p2', address: 'more-on-b', title: 'More on b', text: '', row: 'b', hidden: false },
     { id: 'p3', address: 'kept-back', title: 'Kept back', text: '', row: null, hidden: true },
   ];
-  doc.next.page = 4;
+  doc.addresses = ['on-the-bridge', 'more-on-b', 'gone-since', 'kept-back']; // gone-since: a page removed
+  doc.next.page = 5;
   return doc;
 };
 
@@ -281,8 +282,9 @@ test('a document moved in has no pages yet and next.page 1; one without them is 
   await locatePlaces(lib);
   const doc = docFromLibrary(lib, { root });
   assert.deepEqual(doc.pages, []);
+  assert.deepEqual(doc.addresses, []);
   assert.equal(doc.next.page, 1);
-  assert.deepEqual(Object.keys(doc), ['v', 'chapters', 'rows', 'keywords', 'aliases', 'places', 'idea', 'about', 'pages', 'next']);
+  assert.deepEqual(Object.keys(doc), ['v', 'chapters', 'rows', 'keywords', 'aliases', 'places', 'idea', 'about', 'pages', 'addresses', 'next']);
   assert.deepEqual(checkDoc(sample()), [], 'no pages and no next.page');
   assert.deepEqual(checkDoc(withPages()), []);
 });
@@ -309,6 +311,11 @@ test('checkDoc on pages: an unknown row, an address twice, a bad id, and every o
     [(d) => (d.pages[1] = 'p2'), /a page has no id of the form p1/],
     [(d) => (d.next.page = 3), /page p3 is not below next\.page \(3\)/],
     [(d) => delete d.next.page, /next\.page is not a whole number/],
+    [(d) => (d.addresses = 'on-the-bridge'), /addresses is not a list of addresses/],
+    [(d) => d.addresses.push('Not One'), /addresses is not a list of addresses/],
+    [(d) => d.addresses.push('gone-since'), /the address gone-since is given twice in addresses/],
+    [(d) => d.addresses.splice(0, 1), /page p1's address on-the-bridge is not among the addresses given/],
+    [(d) => delete d.addresses, /page p1's address on-the-bridge is not among the addresses given/],
   ];
   for (const [edit, pattern] of cases) assert.match(text(edit), pattern, String(edit));
   const empty = sample();
@@ -327,9 +334,21 @@ test('diffDocs reports the pages; raiseCounters raises next.page', () => {
   }
   assert.equal(diffDocs(null, withPages()).pages, true, 'the first publish carries them');
   assert.equal(diffDocs(sample(), { ...sample(), pages: [] }).pages, false);
-  assert.deepEqual(raiseCounters(sample(), withPages()).next, { row: 1, chapter: 3, page: 4 });
-  assert.deepEqual(raiseCounters(withPages(), sample()).next, { row: 1, chapter: 3, page: 4 });
+  assert.deepEqual(raiseCounters(sample(), withPages()).next, { row: 1, chapter: 3, page: 5 });
+  assert.deepEqual(raiseCounters(withPages(), sample()).next, { row: 1, chapter: 3, page: 5 });
   assert.deepEqual(raiseCounters({ ...withPages(), next: { row: 1, chapter: 3, page: 9 } }, withPages()).next.page, 9);
+});
+
+// The addresses given are kept as the counters are: a document put in place of the draft (a publish
+// restored, the latest at a discard, a move-in afresh, a session's push) keeps every address the
+// draft has given, so that none is given again.
+test('raiseCounters keeps every address given, the document\'s first, then the others\' it lacks', () => {
+  const older = { ...sample(), pages: [], addresses: ['on-the-bridge', 'first-one'] };
+  const raised = raiseCounters(older, withPages());
+  assert.deepEqual(raised.addresses, ['on-the-bridge', 'first-one', 'more-on-b', 'gone-since', 'kept-back']);
+  assert.deepEqual(raiseCounters(sample(), withPages()).addresses, withPages().addresses, 'a document from before the pages gains them');
+  assert.deepEqual(Object.keys(raiseCounters(sample(), sample())), Object.keys(sample()), 'and with none given, nothing is added');
+  assert.deepEqual(checkDoc(raiseCounters(withPages(), older)), []);
 });
 
 test('libFromDoc: the public lib holds the pages a publish shows, the edit lib every one, and each row its own', () => {

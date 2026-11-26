@@ -58,6 +58,7 @@ export function docFromLibrary(lib, { root, chapterTitles = {}, pictures = new M
     idea,
     about,
     pages: [],
+    addresses: [],
     next: { row: 1, chapter: chapters.length + 1, page: 1 },
   };
 }
@@ -66,18 +67,22 @@ export function docFromLibrary(lib, { root, chapterTitles = {}, pictures = new M
 // that a document put in place of the draft (a publish restored, the latest one at a discard, a
 // move-in afresh, a session's push) never names a new row, chapter or page with an id the draft has
 // given already. The draft's counters then never go back, and every publish is a copy of the draft,
-// so no id held by any publish is given again: a link #o=r1 keeps naming one row. Nothing else
-// changes, and `next` keeps its place among the keys. A document from before the pages has no
-// next.page; it gains one only from another that has.
+// so no id held by any publish is given again: a link #o=r1 keeps naming one row. Likewise the
+// addresses given to pages: `doc`'s, then each of `others`' it lacks, so that no address is given
+// to a second page and a link [[…|page:<address>]] keeps naming one. Nothing else changes, and
+// `next` and `addresses` keep their places among the keys. A document from before the pages has
+// neither next.page nor addresses; it gains them only from another that has.
 export function raiseCounters(doc, ...others) {
   const next = { ...doc.next };
+  const given = [...addressesOf(doc)];
   for (const other of others) {
     for (const what of ['row', 'chapter', 'page']) {
       const n = other?.next?.[what];
       if (Number.isInteger(n) && !(n <= next[what])) next[what] = n;
     }
+    for (const address of addressesOf(other)) if (!given.includes(address)) given.push(address);
   }
-  return { ...doc, next };
+  return doc.addresses !== undefined || given.length ? { ...doc, next, addresses: given } : { ...doc, next };
 }
 
 // Each chapter's number: its place among the chapters that have a row not hidden, from 1. A chapter
@@ -116,6 +121,11 @@ const mapPicture = (row) => row.thumb ?? (row.pictures?.[0] ? { src: row.picture
 // The pages of a document (design §14), in its order: a site page (row null), whose tab stands
 // between Map and About, or a page about one row. A document from before them has none.
 export const pagesOf = (doc) => (Array.isArray(doc?.pages) ? doc.pages : []);
+
+// Every address a page of the document has been given, in the order given: kept after its page is
+// removed, as `next` keeps the counters, since an address is a page's for good, as an id is a
+// row's (ops.mjs, add-page). A document from before the pages has none.
+export const addressesOf = (doc) => (Array.isArray(doc?.addresses) ? doc.addresses.filter((a) => typeof a === 'string') : []);
 
 // Whether a publish shows a page: not hidden, and a row page only while its row is shown, since a
 // hidden row's pages are not published.
@@ -298,12 +308,23 @@ export function checkDoc(doc, { types = TYPES } = {}) {
 const PAGE_FIELDS = ['id', 'address', 'title', 'text', 'row', 'hidden'];
 export const PAGE_ADDRESS = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
-// The faults of the pages: each an id p1, p2…, given once; an address that is one, given once; a
-// title; its text; a site page (row null) or a page about a row the document has; hidden yes or no.
+// The faults of the pages: each an id p1, p2…, given once; an address that is one, given once and
+// among the addresses given; a title; its text; a site page (row null) or a page about a row the
+// document has; hidden yes or no. The addresses given: a list of addresses, each once.
 function pageFaults(doc) {
-  if (doc.pages === undefined) return [];
-  if (!Array.isArray(doc.pages)) return ['pages is not a list'];
   const problems = [];
+  const given = new Set();
+  if (doc.addresses !== undefined) {
+    if (!isList(doc.addresses, (a) => isText(a) && PAGE_ADDRESS.test(a))) problems.push('addresses is not a list of addresses');
+    else {
+      for (const address of doc.addresses) {
+        if (given.has(address)) problems.push(`the address ${address} is given twice in addresses`);
+        given.add(address);
+      }
+    }
+  }
+  if (doc.pages === undefined) return problems;
+  if (!Array.isArray(doc.pages)) return [...problems, 'pages is not a list'];
   const ids = new Set();
   const addresses = new Map(); // address -> ids of the pages that have it
   for (const page of doc.pages) {
@@ -315,7 +336,10 @@ function pageFaults(doc) {
     if (ids.has(id)) problems.push(`page ${id} appears twice`);
     ids.add(id);
     if (!isText(page.address) || !PAGE_ADDRESS.test(page.address)) problems.push(`page ${id} has an address that is not one: ${JSON.stringify(page.address)}`);
-    else addresses.set(page.address, [...(addresses.get(page.address) ?? []), id]);
+    else {
+      addresses.set(page.address, [...(addresses.get(page.address) ?? []), id]);
+      if (!given.has(page.address)) problems.push(`page ${id}'s address ${page.address} is not among the addresses given`);
+    }
     if (!isText(page.title) || !page.title.trim()) problems.push(`page ${id} has no title`);
     if (!isText(page.text)) problems.push(`page ${id}: its text is not text`);
     if (page.row !== null && !isText(page.row)) problems.push(`page ${id} is about no row and is no site page`);

@@ -389,6 +389,12 @@ export function removeQuestion(title, published) {
     : `Remove “${title}”? It has never been published, so it cannot be brought back.`;
 }
 
+// What 🗑 says, instead of asking, for a row that has pages about it (`n`, hidden ones too): the
+// server does not remove such a row (ops.mjs), since its pages would go with it unasked.
+export function pagesFirst(title, n) {
+  return `“${title}” has ${n} ${n === 1 ? 'page' : 'pages'} about it: remove them first, or hide the row.`;
+}
+
 // The question before a publish, from the bar's summary line. Before the first publish it says
 // what the site will show ("Nothing published yet: 277 rows in 18 chapters" asks "Publish for the
 // first time? 277 rows in 18 chapters."); with nothing changed a publish still refreshes the

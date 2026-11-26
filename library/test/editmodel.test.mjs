@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { dropTarget, chapterIndex, toParagraphs, fromParagraphs, OpQueue, Underway, IdeaDrawings, changesIn, publishQuestion, removeQuestion, storyPlaces, headingsOf, placeRow, rowPlace, placeChapter, yearValue, numberValue, offered, placedLine, rowCount, linkMatches, insertLink, linkable } from '../web/editmodel.js';
+import { dropTarget, chapterIndex, toParagraphs, fromParagraphs, OpQueue, Underway, IdeaDrawings, changesIn, publishQuestion, removeQuestion, pagesFirst, storyPlaces, headingsOf, placeRow, rowPlace, placeChapter, yearValue, numberValue, offered, placedLine, rowCount, linkMatches, insertLink, linkable } from '../web/editmodel.js';
 import { linksIn, targetOf } from '../lib/links.mjs';
 import { renderMarkdown } from '../lib/markdown.mjs';
 import { diffDocs } from '../cloud/doc.mjs';
@@ -194,6 +194,12 @@ test('the number of changes is read from the summary line as diffDocs counts the
 test('the question before a row is removed says whether it can come back', () => {
   assert.equal(removeQuestion('Mendola', true), 'Remove “Mendola”? It goes at the next publish and can be brought back from an older publish.');
   assert.equal(removeQuestion('New row', false), 'Remove “New row”? It has never been published, so it cannot be brought back.');
+});
+
+// A row with pages about it is not removed (ops.mjs); 🗑 says why instead of asking.
+test('a row with pages: what 🗑 says instead of the question, page or pages by the count', () => {
+  assert.equal(pagesFirst('Mendola', 1), '“Mendola” has 1 page about it: remove them first, or hide the row.');
+  assert.equal(pagesFirst('Mendola', 3), '“Mendola” has 3 pages about it: remove them first, or hide the row.');
 });
 
 test('the question before a publish, from the summary', () => {

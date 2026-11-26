@@ -375,6 +375,7 @@ test('add-page makes p1 with an address from its title, then p2; a document with
   const one = page(doc, '  Über die Brücke ');
   assert.deepEqual(one.result, { id: 'p1', address: 'uber-die-brucke' });
   assert.deepEqual(one.doc.pages, [{ id: 'p1', address: 'uber-die-brucke', title: 'Über die Brücke', text: '', row: null, hidden: false }]);
+  assert.deepEqual(one.doc.addresses, ['uber-die-brucke']);
   assert.equal(one.doc.next.page, 2);
   const two = page(one.doc, 'On the bridge', 'c');
   assert.deepEqual(two.result, { id: 'p2', address: 'on-the-bridge' });
@@ -399,8 +400,19 @@ test('an address: accents off, lower case, a run of anything else one -, none at
     doc = made.doc;
   }
   assert.deepEqual(addresses, ['uber-die-brucke', 'uber-die-brucke-2', 'uber-die-brucke-3', 'page', 'page-2']);
-  doc = applyOp(doc, { op: 'remove-page', id: 'p2' }).doc;
-  assert.equal(page(doc, 'Uber die Brucke').result.address, 'uber-die-brucke-2', 'free again once its page is removed from the draft');
+  assert.deepEqual(doc.addresses, addresses, 'each address given is kept');
+});
+// An address is a page's for good, as an id is a row's: a link [[…|page:<address>]] written to a
+// page removed since, and the public address it had, must never come to name another page.
+test('an address once given is never given again, though its page is removed', () => {
+  let doc = sample();
+  for (const title of ['Über die Brücke', 'Uber die Brucke', 'Über die Brücke']) doc = page(doc, title).doc;
+  doc = applyOp(applyOp(doc, { op: 'remove-page', id: 'p1' }).doc, { op: 'remove-page', id: 'p2' }).doc;
+  const again = page(doc, 'Über die Brücke');
+  assert.equal(again.result.address, 'uber-die-brucke-4');
+  assert.deepEqual(again.doc.addresses, ['uber-die-brucke', 'uber-die-brucke-2', 'uber-die-brucke-3', 'uber-die-brucke-4']);
+  assert.deepEqual(again.doc.pages.map((p) => p.address), ['uber-die-brucke-3', 'uber-die-brucke-4']);
+  assert.deepEqual(checkDoc(again.doc), []);
 });
 test('a renamed page keeps its address; set-page changes the title and the text', () => {
   const { doc } = page(sample(), 'Über die Brücke');
@@ -438,16 +450,30 @@ test('move-page moves a site page\'s tab among the site pages, held at the ends;
   assert.deepEqual(order(applyOp(doc, { op: 'move-page', id: 'p1', step: -1 }).doc), order(doc), 'the first stays first');
   assert.deepEqual(order(applyOp(doc, { op: 'move-page', id: 'p4', step: 1 }).doc), order(doc), 'the last stays last');
 });
-test('hide-page hides and shows a page; remove-page takes it out; a row removed takes its pages with it', () => {
+test('hide-page hides and shows a page; remove-page takes it out', () => {
   let doc = sample();
   for (const [title, row] of [['Site', null], ['About b', 'b'], ['More on b', 'b'], ['About c', 'c']]) doc = page(doc, title, row).doc;
   const hidden = applyOp(doc, { op: 'hide-page', id: 'p2', hidden: true }).doc;
   assert.equal(hidden.pages[1].hidden, true);
   assert.equal(applyOp(hidden, { op: 'hide-page', id: 'p2', hidden: false }).doc.pages[1].hidden, false);
   assert.deepEqual(applyOp(doc, { op: 'remove-page', id: 'p1' }).doc.pages.map((p) => p.id), ['p2', 'p3', 'p4']);
-  const without = applyOp(doc, { op: 'remove-row', id: 'b' }).doc;
+});
+// A page is removed only when asked (design §14, "Remove (asked first)"); a row removed with its
+// pages would take their words with it unasked, and a publish restored brings back the row alone.
+test('a row with pages, hidden ones too, is not removed: its pages first, or hide the row', () => {
+  let doc = sample();
+  for (const [title, row] of [['Site', null], ['About b', 'b'], ['More on b', 'b'], ['About c', 'c']]) doc = page(doc, title, row).doc;
+  refused(doc, { op: 'remove-row', id: 'b' }, 'Row 1.02 has pages; remove them first, or hide the row.');
+  const kept = applyOp(applyOp(doc, { op: 'hide-page', id: 'p2', hidden: true }).doc, { op: 'hide-page', id: 'p3', hidden: true }).doc;
+  refused(kept, { op: 'remove-row', id: 'b' }, 'Row 1.02 has pages; remove them first, or hide the row.');
+  const shut = applyOp(doc, { op: 'hide-row', id: 'c', hidden: true }).doc;
+  assert.equal(shut.rows.c.hidden, true, 'hiding the row is as it was');
+  refused(shut, { op: 'remove-row', id: 'c' }, 'Row c has pages; remove them first, or hide the row.');
+  let emptied = doc;
+  for (const id of ['p2', 'p3']) emptied = applyOp(emptied, { op: 'remove-page', id }).doc;
+  const without = applyOp(emptied, { op: 'remove-row', id: 'b' }).doc;
+  assert.equal(without.rows.b, undefined);
   assert.deepEqual(without.pages.map((p) => p.id), ['p1', 'p4']);
-  assert.equal(without.next.page, 5, 'their ids are not given again');
   assert.deepEqual(checkDoc(without), []);
 });
 test('pages that differ from the publish: the summary says pages changed', () => {

@@ -2828,6 +2828,36 @@ async function main() {
     check(gone.status() === 404 && (await page.$eval('main', (el) => el.textContent)).includes('There is no page second-page in the draft.'), `the page removed answers ${gone.status()}`);
   });
 
+  // A row with a page about it is not removed (Task 19, fix round 1): its page would go with it
+  // unasked. 🗑 says so in the bar and asks nothing; the server refuses such a removal too.
+  await step('🗑 on a row with a page about it says so in the bar, asks nothing and removes nothing', async () => {
+    await page.goto(`${base}/edit/`);
+    await page.waitForSelector('.ed-bar');
+    const row = rowAt('5.00');
+    const title = await page.$eval(`${row} .c-title > button:not(.ed)`, (b) => b.textContent);
+    const count = sent.length;
+    await page.click(`${row} button.ed[data-ed="remove"]`);
+    const want = `“${title}” has 1 page about it: remove them first, or hide the row.`;
+    await page.waitForFunction((line) => document.querySelector('.ed-msg')?.textContent.startsWith(line), { timeout: WAIT }, want)
+      .catch(async () => { throw new Error(`the bar says ${JSON.stringify(await page.$eval('.ed-msg', (el) => (el.hidden ? '' : el.textContent)))}`); });
+    await pause(300);
+    check(!(await page.$('dialog.ed-dialog[open]')), 'the removal was asked');
+    check(sent.length === count, `${sent.length - count} edits were sent`);
+    check(await page.$(row) !== null, '5.00 is gone from the page');
+    await page.click('.ed-msg button.ed-dismiss');
+  });
+
+  await step('on a page in edit mode the search leads to the Library in edit mode, searched', async () => {
+    await page.goto(`${base}${sitePage}`);
+    await page.waitForSelector('.ed-page-acts');
+    await page.type('form.find input', 'fixture');
+    await Promise.all([page.waitForNavigation(), page.keyboard.press('Enter')]);
+    const at = new URL(page.url());
+    check(at.pathname === '/edit/' && decodeURIComponent(at.hash) === '#q=fixture', `the search led to ${page.url()}`);
+    await page.waitForSelector('.ed-bar');
+    check(await page.$eval('form.find input', (el) => el.value) === 'fixture', 'the Library does not show what was searched');
+  });
+
   console.log(`All ${n} steps hold. Screenshots: ${['edit-page.png', 'public-page.png', 'edit-phone.png', 'edit-compact.png', 'edit-compact-phone.png', 'way-back.png', 'linker.png', 'linker-phone.png', 'page-edit.png', 'page-read.png', 'page-public.png', 'page-phone.png'].map((name) => path.join(SHOTS, name)).join(', ')}`);
 }
 
