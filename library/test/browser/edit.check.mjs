@@ -6,13 +6,14 @@
 // that holds is printed; the first that does not stops the check with what the page showed
 // instead, and the exit code is 1. The server, the browser and the temporary folders go in every
 // outcome. Screenshots of the edit page, of the public page after Publish, of the edit page at a
-// phone's width, of the compact view, at both widths, and of the way back after a row link, are
-// written to library/.cache/check-edit/.
+// phone's width, of the compact view, at both widths, of the way back after a row link, and of 🔗's
+// finder at both widths, are written to library/.cache/check-edit/.
 // Not part of npm test, since it needs Chrome. Then steps add pictures (＋ picture): on this
 // computer's stores first, then as the cloud's page does, the Blob client in the page given a
 // stand-in for Vercel's Blob service, so that nothing leaves this computer. The last steps follow
 // the links typed in a row's text and the way back from them, in edit mode and, once published,
-// on the public page.
+// on the public page; and the last write such links with 🔗 in a row's text, the idea and About,
+// with the legend under each field.
 //
 // The fixtures' draft, by row id: chapter c1 "Zero" [0.01], c2 "Five" [5.00 5.01 5.02 5.03],
 // c3 "Twelve" [12.01]; numbered 1.01, 2.01 to 2.04 and 3.01 to begin with. The steps build on
@@ -2332,7 +2333,190 @@ async function main() {
     await returned(start, ['12.01'], ['5.00'], null, 'after ↩ Back on the public page');
   });
 
-  console.log(`All ${n} steps hold. Screenshots: ${['edit-page.png', 'public-page.png', 'edit-phone.png', 'edit-compact.png', 'edit-compact-phone.png', 'way-back.png'].map((name) => path.join(SHOTS, name)).join(', ')}`);
+  // 🔗 and the legend (Task 18). In an open row's text field: words selected, 🔗, part of another
+  // row's title typed, and Enter write the link around them, which the row shows once saved;
+  // Escape in the finder leaves the text as it was, the field open with the same words selected.
+  // The legend stands under the field while it is open and goes with it. About and the idea have
+  // their own legends; About's finder closes on Escape and leaves the dialog open.
+  const LEGEND = [
+    '[[the bridge|Ponte Druso]] — the words filter the Library by that keyword',
+    '[[the postcard|@1.09]] — the words open that row (the code is its id, kept when it moves)',
+    '[[more|page:on-the-bridge]] — the words open that page',
+    '🔗 writes these for you; you can also type them.',
+  ];
+  const PARAGRAPHS = 'An empty line starts a paragraph.';
+  const MARKDOWN = 'An empty line starts a paragraph · *italic* · **bold** · [words](https://…) a web link';
+  // The legend's lines as they read, its drawn 🔗 read as 🔗.
+  const legendIn = (within) => page.$$eval(`${within} .ed-legend li`, (lines) => lines.map((li) => (li.querySelector('svg.ed-icon-link') ? '🔗' : '') + li.textContent));
+  // The text field, what it holds and where its selection is, whether it has the focus, and
+  // whether its finder is closed.
+  const fieldIs = (area) => page.$eval(area, (el) => ({
+    value: el.value,
+    selection: [el.selectionStart, el.selectionEnd],
+    focused: el === document.activeElement,
+    finderClosed: el.closest('.ed-linker')?.querySelector('.ed-finder')?.hidden ?? 'no finder',
+  }));
+  const textOf = (id) => `${rowAt(id)} .ed-field[data-ed="text"] textarea`;
+  // Opens the row, if it is not, and its text's field, once the row has ended opening and ✎ is
+  // still. -> the field's textarea, as a selector.
+  const openText = async (id) => {
+    if (!(await isOpen(id))) await page.click(`${rowAt(id)} .c-title > button:not(.ed)`);
+    const pencil = `${rowAt(id)}.open button.ed[data-ed="text"]`;
+    await page.waitForSelector(pencil);
+    await stillAt(page, pencil);
+    await page.click(pencil);
+    await page.waitForSelector(textOf(id));
+    return textOf(id);
+  };
+
+  await step('in an open row\'s text, words selected, 🔗, part of another row\'s title typed and Enter write [[words|@<id>]]; saved, the row shows the link; the legend stands under the field while it is open and not after', async () => {
+    await page.goto(`${base}/edit/`);
+    await page.waitForSelector('.ed-bar');
+    const row = rowAt('12.01');
+    const target = await page.$eval(rowAt('5.03'), (el) => ({ no: el.querySelector('.c-no').textContent.trim(), title: el.querySelector('.c-title > button:not(.ed)').textContent }));
+    check(!(await page.$(`${row} .ed-legend`)), 'the legend shows before the field is open');
+    const area = await openText('12.01');
+    const before = (await fieldIs(area)).value;
+    check(before.endsWith(' in Quokkaland.'), `the field holds ${JSON.stringify(before)}`);
+    const placed = await page.$eval(`${row} .ed-field[data-ed="text"]`, (box) => {
+      const [link, text, legend] = ['button.ed-link', 'textarea', '.ed-legend'].map((sel) => box.querySelector(sel)?.getBoundingClientRect());
+      return { label: box.querySelector('button.ed-link')?.getAttribute('aria-label'), above: Boolean(link && text) && link.bottom <= text.top, under: Boolean(text && legend) && legend.top >= text.bottom };
+    });
+    check(placed.label === 'Link the selected words' && placed.above && placed.under, `🔗 and the legend stand ${JSON.stringify(placed)}`);
+    const legend = await legendIn(row);
+    check(JSON.stringify(legend) === JSON.stringify([...LEGEND, PARAGRAPHS]), `the legend reads ${JSON.stringify(legend, null, 1)}`);
+
+    const words = 'Quokkaland';
+    const at = before.lastIndexOf(words);
+    await page.$eval(area, (el, from, to) => el.setSelectionRange(from, to), at, at + words.length);
+    const count = sent.length;
+    await page.click(`${row} button.ed-link`);
+    const find = `${row} .ed-finder input`;
+    await page.waitForSelector(find, { visible: true });
+    check(await page.$eval(find, (el) => el === document.activeElement && el.getAttribute('aria-label') === 'Row number or title, keyword, page'), 'the finder\'s field is not in focus, or not so named');
+    await page.keyboard.type(target.title.slice(0, 9).trim());
+    await page.waitForSelector(`${row} .ed-finder li[aria-selected="true"]`);
+    const first = await page.$eval(`${row} .ed-finder li[aria-selected="true"]`, (li) => li.textContent);
+    check(first === `${target.no} · ${target.title}`, `the first match reads ${JSON.stringify(first)}, not ${target.no} · ${target.title}`);
+    await page.screenshot({ path: path.join(SHOTS, 'linker.png') });
+    await page.keyboard.press('Enter');
+    const link = `[[${words}|@5.03]]`;
+    const want = `${before.slice(0, at)}${link}${before.slice(at + words.length)}`;
+    const caret = at + link.length;
+    const after = await fieldIs(area);
+    check(JSON.stringify(after) === JSON.stringify({ value: want, selection: [caret, caret], focused: true, finderClosed: true }), `after Enter the field is ${JSON.stringify(after)}`);
+    await pause(200);
+    check(sent.length === count, 'Enter in the finder saved the field');
+
+    const answered = answerTo(page, 'op');
+    await page.keyboard.down('Control');
+    await page.keyboard.press('Enter');
+    await page.keyboard.up('Control');
+    check((await answered).status() === 200, 'the text was not saved');
+    check(JSON.stringify(sent.at(-1).body.op) === JSON.stringify({ op: 'set-row', id: '12.01', fields: { text: [want] } }), `the edit sent was ${JSON.stringify(sent.at(-1).body.op)}`);
+    await page.waitForSelector(`${row} .ed-field`, { hidden: true });
+    await page.waitForSelector(linkTo('12.01', '5.03'));
+    check(await page.$eval(linkTo('12.01', '5.03'), (a) => a.textContent) === words, 'the link does not read its words');
+    check(!(await page.$(`${row} .ed-legend`)) && !(await page.$(`${row} button.ed-link`)), 'the legend or 🔗 stays after the field closed');
+  });
+
+  await step('from the keyboard, ⇧Tab and Enter on 🔗 open the finder and save nothing; ↓ and ↑ move along the matches; Escape leaves the text as it was, the same words selected, and Escape again closes the field', async () => {
+    const row = rowAt('12.01');
+    const shown = await page.$eval(`${row} .txt > p`, (p) => p.innerHTML);
+    const area = await openText('12.01');
+    const before = (await fieldIs(area)).value;
+    await page.$eval(area, (el) => el.setSelectionRange(0, 7)); // Compare
+    const count = sent.length;
+    await page.keyboard.down('Shift');
+    await page.keyboard.press('Tab');
+    await page.keyboard.up('Shift');
+    check(await page.$eval(`${row} button.ed-link`, (el) => el === document.activeElement), '⇧Tab from the field does not reach 🔗');
+    await page.keyboard.press('Enter');
+    const find = `${row} .ed-finder input`;
+    await page.waitForSelector(find, { visible: true });
+    check(await page.$eval(find, (el) => el === document.activeElement), 'the finder\'s field is not in focus');
+    check(await page.$(area) !== null, 'Enter on 🔗 closed the field');
+    await page.keyboard.type('a'); // more rows than eight
+    const options = () => page.$$eval(`${row} .ed-finder li`, (lis) => lis.map((li) => `${li.getAttribute('aria-selected')}:${li.textContent}`));
+    await page.waitForFunction((sel) => document.querySelectorAll(sel).length > 1, { timeout: WAIT }, `${row} .ed-finder li`)
+      .catch(async () => { throw new Error(`a lists ${JSON.stringify(await options())}`); });
+    let listed = await options();
+    check(listed.length === 8 && listed[0].startsWith('true:') && listed.every((line) => / · /.test(line)), `a lists ${JSON.stringify(listed)}`);
+    await page.keyboard.press('ArrowDown');
+    listed = await options();
+    check(listed[1].startsWith('true:') && !listed[0].startsWith('true:'), `↓ leaves ${JSON.stringify(listed)}`);
+    await page.keyboard.press('ArrowUp');
+    listed = await options();
+    check(listed[0].startsWith('true:') && !listed[1].startsWith('true:'), `↑ leaves ${JSON.stringify(listed)}`);
+    await page.keyboard.press('Escape');
+    const after = await fieldIs(area);
+    check(JSON.stringify(after) === JSON.stringify({ value: before, selection: [0, 7], focused: true, finderClosed: true }), `after Escape the field is ${JSON.stringify(after)}`);
+    await page.keyboard.press('Escape');
+    await page.waitForSelector(`${row} .ed-field`, { hidden: true });
+    check(await page.$eval(`${row} .txt > p`, (p) => p.innerHTML) === shown, 'the text shows otherwise');
+    check(sent.length === count, `${sent.length - count} edits were sent`);
+  });
+
+  await step('About and the idea have 🔗 and their legends; in About a keyword chosen by a click is written at the caret, and Escape in its finder closes the finder and leaves the dialog open', async () => {
+    await page.click('.ed-bar .ed-about');
+    const dialog = 'dialog.ed-about-dialog[open]';
+    const area = `${dialog} textarea`;
+    await page.waitForSelector(area);
+    const legend = await legendIn(dialog);
+    check(JSON.stringify(legend) === JSON.stringify([...LEGEND, MARKDOWN, '## a heading']), `About's legend reads ${JSON.stringify(legend, null, 1)}`);
+    const before = (await fieldIs(area)).value;
+    await page.click(`${dialog} button.ed-link`);
+    await page.waitForSelector(`${dialog} .ed-finder input`, { visible: true });
+    await page.keyboard.type('zz');
+    await page.keyboard.press('Escape');
+    await pause(200);
+    const kept = await fieldIs(area).catch(() => null);
+    check(kept !== null && JSON.stringify(kept) === JSON.stringify({ value: before, selection: [0, 0], focused: true, finderClosed: true }), `after Escape in About's finder the field is ${JSON.stringify(kept)}`);
+    await page.click(`${dialog} button.ed-link`);
+    await page.keyboard.type('druso');
+    const option = `${dialog} .ed-finder li[aria-selected="true"]`;
+    await page.waitForSelector(option);
+    check(await page.$eval(option, (li) => li.textContent) === 'Keyword · Ponte Druso', 'druso does not list Keyword · Ponte Druso first');
+    await page.click(option);
+    const link = '[[Ponte Druso|Ponte Druso]]';
+    const after = await fieldIs(area);
+    check(JSON.stringify(after) === JSON.stringify({ value: link + before, selection: [link.length, link.length], focused: true, finderClosed: true }), `after a click About's field is ${JSON.stringify({ ...after, value: after.value.slice(0, 60) })}`);
+    await page.keyboard.press('Escape'); // from the field, Escape is the dialog's
+    await page.waitForSelector(dialog, { hidden: true });
+
+    await page.click('section.idea button.ed[data-ed="idea"]');
+    await page.waitForSelector('section.idea .ed-field textarea');
+    const idea = await legendIn('section.idea');
+    check(JSON.stringify(idea) === JSON.stringify([...LEGEND, PARAGRAPHS]), `the idea's legend reads ${JSON.stringify(idea, null, 1)}`);
+    check(await page.$('section.idea .ed-field button.ed-link') !== null, 'the idea has no 🔗');
+    await page.keyboard.press('Escape');
+    await page.waitForSelector('section.idea .ed-field', { hidden: true });
+  });
+
+  await step('at a phone\'s width 🔗\'s finder and the legend stand inside the screen', async () => {
+    await page.setViewport({ width: 390, height: 844, isMobile: true, hasTouch: true });
+    await page.goto(`${base}/edit/`);
+    await page.waitForSelector('.ed-bar');
+    const row = rowAt('12.01');
+    await openText('12.01');
+    await page.click(`${row} button.ed-link`);
+    await page.waitForSelector(`${row} .ed-finder input`, { visible: true });
+    await page.keyboard.type('a');
+    await page.waitForSelector(`${row} .ed-finder li`);
+    const boxes = await page.$eval(`${row} .ed-field`, (box) => [box.querySelector('.ed-finder'), box.querySelector('.ed-legend')].map((el) => {
+      const r = el.getBoundingClientRect();
+      return { left: Math.round(r.left), right: Math.round(r.right) };
+    }));
+    check(boxes.every((b) => b.left >= 0 && b.right <= 390), `the finder and the legend stand at ${JSON.stringify(boxes)}`);
+    check(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'the page is wider than the screen');
+    await page.screenshot({ path: path.join(SHOTS, 'linker-phone.png') });
+    await page.keyboard.press('Escape');
+    await page.keyboard.press('Escape');
+    await page.waitForSelector(`${row} .ed-field`, { hidden: true });
+    await page.setViewport({ width: 1280, height: 900 });
+  });
+
+  console.log(`All ${n} steps hold. Screenshots: ${['edit-page.png', 'public-page.png', 'edit-phone.png', 'edit-compact.png', 'edit-compact-phone.png', 'way-back.png', 'linker.png', 'linker-phone.png'].map((name) => path.join(SHOTS, name)).join(', ')}`);
 }
 
 try {

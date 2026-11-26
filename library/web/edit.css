@@ -263,6 +263,38 @@ dl.meta dd .ed-field .ed-error { flex-basis: 100%; }
    its title saying why; the public site shows the words alone. */
 .dead-link { text-decoration: underline dotted; text-underline-offset: 3px; cursor: help; }
 
+/* 🔗 over a text field (the idea, About, a row's text) and the legend under it, for as long as the
+   field is open (edit/linker.js). The finder opens under 🔗, over the field, as the keywords' list
+   does under ＋; the match chosen by ↑ ↓ is drawn as a pressed button is. The legend is small and
+   grey, its examples in black. */
+.ed-linker:focus { outline: none; }
+.ed-link-bar { position: relative; display: flex; margin: 0 0 6px; font: 400 var(--size-meta)/1.45 var(--sans); letter-spacing: 0; }
+.ed-linker button.ed-link { margin: -3px -1px; padding: 3px 1px; text-decoration: none; }
+.ed-linker button.ed-link[aria-expanded="true"] { background: var(--ink); color: var(--paper); }
+.ed-linker button.ed-link:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; } /* in a field, where only the text's own frame marks the focus */
+.ed-finder {
+  position: absolute;
+  z-index: 6;
+  top: calc(100% + 6px);
+  left: 0;
+  width: min(420px, 100%);
+  padding: 10px 12px;
+  background: var(--paper);
+  border: var(--rule);
+  text-align: left;
+}
+.ed-finder input { width: 100%; }
+.ed-finder ul { max-height: 260px; margin: 8px 0 0; padding: 0; overflow-y: auto; list-style: none; }
+.ed-finder ul:empty { display: none; }
+.ed-finder li { padding: 2px 4px; cursor: pointer; overflow-wrap: anywhere; }
+.ed-finder li:hover { text-decoration: underline; text-underline-offset: 3px; }
+.ed-finder li[aria-selected="true"] { background: var(--ink); color: var(--paper); }
+.ed-match-kind { color: var(--grey); font-variant-numeric: tabular-nums; }
+.ed-finder li[aria-selected="true"] .ed-match-kind { color: inherit; }
+.ed-legend { margin: 8px 0 0; padding: 0; list-style: none; font: 400 var(--size-meta)/1.45 var(--sans); letter-spacing: 0; color: var(--grey); }
+.ed-legend code { color: var(--ink); overflow-wrap: anywhere; }
+.ed-legend .ed-icon { display: inline-block; vertical-align: -2px; color: var(--ink); }
+
 /* The keywords offered to a row, under its ＋. */
 .ed-pick {
   position: absolute;

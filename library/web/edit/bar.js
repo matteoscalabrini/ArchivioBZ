@@ -8,6 +8,7 @@ import { publishQuestion } from '../editmodel.js';
 import { wordButton } from './icons.js';
 import { ask } from './dialog.js';
 import { textarea } from './field.js';
+import { attachLinker } from './linker.js';
 import { compactSwitch } from './compact.js';
 
 const NOTHING = 'No changes since the last publish';
@@ -148,7 +149,8 @@ function hide(message) {
   delete message.dataset.kind;
 }
 
-// About, in a dialog: its Markdown in one field, saved each time the field is left and when the
+// About, in a dialog: its Markdown in one field, with 🔗 over it and the legend under it (linker.js;
+// About has ## headings, as the build draws them), saved each time the field is left and when the
 // dialog is closed with Close, which waits for the save; refused, the dialog stays open with what
 // was typed and the answer under it. Escape closes it and leaves unsaved what was typed since.
 function editAbout() {
@@ -161,7 +163,8 @@ function editAbout() {
   const close = Object.assign(document.createElement('button'), { type: 'button', className: 'ed-yes', textContent: 'Close' });
   const actions = Object.assign(document.createElement('p'), { className: 'ed-dialog-actions' });
   actions.append(close);
-  dialog.append(head, area, error, actions);
+  dialog.append(head, attachLinker(area, { markdown: true, headings: true }).element, actions);
+  area.after(error);
   document.body.append(dialog);
 
   let saved = area.value;

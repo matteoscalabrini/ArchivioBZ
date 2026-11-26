@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { dropTarget, chapterIndex, toParagraphs, fromParagraphs, OpQueue, Underway, IdeaDrawings, changesIn, publishQuestion, removeQuestion, storyPlaces, headingsOf, placeRow, rowPlace, placeChapter, yearValue, numberValue, offered, placedLine, rowCount } from '../web/editmodel.js';
+import { dropTarget, chapterIndex, toParagraphs, fromParagraphs, OpQueue, Underway, IdeaDrawings, changesIn, publishQuestion, removeQuestion, storyPlaces, headingsOf, placeRow, rowPlace, placeChapter, yearValue, numberValue, offered, placedLine, rowCount, linkMatches, insertLink } from '../web/editmodel.js';
 import { diffDocs } from '../cloud/doc.mjs';
 import { summaryLine } from '../cloud/render.mjs';
 import { sampleDoc } from './docs.mjs';
@@ -287,4 +287,94 @@ test('IdeaDrawings: a drawing older than the one shown or waiting is never put i
   assert.equal(ideas.offer('<v11>', 11, { fieldOpen: true }), 'wait');
   ideas.saved();
   assert.equal(ideas.closed(), null);
+});
+
+// What the 🔗 finder lists for what is typed (Task 18): rows by the start of their number as it now
+// stands or by words of their title, keywords by their label, pages by their title, whatever the
+// accents and case; rows first, then keywords, then pages, at most eight.
+const FOUND = {
+  rows: [
+    { id: '2.07', no: '2.07', title: 'Laurin fountain' },
+    { id: '18.04', no: '2.08', title: 'Oltrisarco, postcard with its German caption' },
+    { id: 'r3', no: '2.09', title: 'Über die Brücke' },
+    { id: '3.01', no: '3.01', title: 'A map of 2 bridges' },
+    { id: 'r1', no: '', title: 'Oltrisarco kept back' }, // hidden: no number
+  ],
+  keywords: [{ id: 'ponte-druso', label: 'Ponte Druso' }, { id: 'oltrisarco', label: 'Oltrisarco' }],
+  pages: [{ address: 'on-the-bridge', title: 'On the bridge' }],
+};
+const row = (id, label) => ({ kind: 'row', target: `@${id}`, label });
+
+test('linkMatches: 2.0 finds the rows whose number starts so, in their order, by their id; a comma does as a full stop', () => {
+  const want = [row('2.07', 'Laurin fountain'), row('18.04', 'Oltrisarco, postcard with its German caption'), row('r3', 'Über die Brücke')];
+  assert.deepEqual(linkMatches('2.0', FOUND), want);
+  assert.deepEqual(linkMatches(' 2,0 ', FOUND), want);
+  assert.deepEqual(linkMatches('2.08', FOUND), [want[1]]);
+});
+
+test('linkMatches: rows found by their number come before those found by a word of their title', () => {
+  assert.deepEqual(linkMatches('2', FOUND).map((m) => m.target), ['@2.07', '@18.04', '@r3', '@3.01']);
+});
+
+test('linkMatches: oltri finds the rows whose title has a word so begun, a hidden one too, then the keyword', () => {
+  assert.deepEqual(linkMatches('oltri', FOUND), [
+    row('18.04', 'Oltrisarco, postcard with its German caption'),
+    row('r1', 'Oltrisarco kept back'),
+    { kind: 'keyword', target: 'Oltrisarco', label: 'Oltrisarco' },
+  ]);
+  assert.deepEqual(linkMatches('sarco', FOUND), [], 'a word is found by its start, not its middle');
+  assert.deepEqual(linkMatches('oltri POST', FOUND), [row('18.04', 'Oltrisarco, postcard with its German caption')], 'each word typed begins a word of the title');
+});
+
+test('linkMatches: ÜBER finds Über die Brücke, and so do uber and BRUCKE: case and accents aside', () => {
+  for (const typed of ['ÜBER', 'uber', 'BRUCKE', 'die brü']) assert.deepEqual(linkMatches(typed, FOUND), [row('r3', 'Über die Brücke')], typed);
+});
+
+test('linkMatches: a keyword by its label, written as its label; a page by its title, by its address; rows, keywords, pages in that order', () => {
+  assert.deepEqual(linkMatches('druso', FOUND), [{ kind: 'keyword', target: 'Ponte Druso', label: 'Ponte Druso' }]);
+  assert.deepEqual(linkMatches('PONTE', FOUND), [{ kind: 'keyword', target: 'Ponte Druso', label: 'Ponte Druso' }]);
+  assert.deepEqual(linkMatches('bridge', FOUND), [row('3.01', 'A map of 2 bridges'), { kind: 'page', target: 'page:on-the-bridge', label: 'On the bridge' }]);
+  const all = { ...FOUND, keywords: [...FOUND.keywords, { id: 'bridges', label: 'Bridges' }] };
+  assert.deepEqual(linkMatches('bridge', all).map((m) => m.kind), ['row', 'keyword', 'page']);
+});
+
+test('linkMatches: a keyword whose label reads as another keyword\'s id, or a folded id, is written by its own id, so that the link names it', () => {
+  const keywords = [{ id: 'press', label: 'Newspapers' }, { id: 'papers', label: 'Press' }, { id: 'typeface', label: 'Typeface' }, { id: 'fraktur-2', label: 'Fraktur' }];
+  const aliases = { fraktur: 'typeface' }; // folded into Typeface; a keyword Fraktur made since is fraktur-2 (cloud/ops.mjs)
+  assert.deepEqual(linkMatches('press', { keywords }), [{ kind: 'keyword', target: 'papers', label: 'Press' }]);
+  assert.deepEqual(linkMatches('news', { keywords }), [{ kind: 'keyword', target: 'Newspapers', label: 'Newspapers' }]);
+  assert.deepEqual(linkMatches('fraktur', { keywords, aliases }), [{ kind: 'keyword', target: 'fraktur-2', label: 'Fraktur' }]);
+  assert.deepEqual(linkMatches('typeface', { keywords, aliases }), [{ kind: 'keyword', target: 'Typeface', label: 'Typeface' }]);
+});
+
+test('linkMatches: at most eight, rows first: twelve rows found leave out the keyword and the page found too', () => {
+  const rows = Array.from({ length: 12 }, (_, i) => ({ id: `r${i + 1}`, no: `4.${String(i + 1).padStart(2, '0')}`, title: `Postcard ${i + 1}` }));
+  const found = linkMatches('postcard', { rows, keywords: [{ id: 'postcards', label: 'Postcards' }], pages: [{ address: 'postcards', title: 'Postcards' }] });
+  assert.deepEqual(found.map((m) => m.target), ['@r1', '@r2', '@r3', '@r4', '@r5', '@r6', '@r7', '@r8']);
+  assert.equal(linkMatches('postcards', { rows, keywords: [{ id: 'postcards', label: 'Postcards' }] }).length, 1, 'fewer than eight rows leave room for the keyword');
+});
+
+test('linkMatches: nothing typed, nothing found', () => {
+  assert.deepEqual(linkMatches('', FOUND), []);
+  assert.deepEqual(linkMatches('   ', FOUND), []);
+  assert.deepEqual(linkMatches('2.0', {}), []);
+});
+
+test('insertLink: the words selected become the link\'s words, the caret after its ]]', () => {
+  const text = 'See the bridge here.';
+  const link = '[[the bridge|@1.09]]';
+  assert.deepEqual(insertLink(text, 4, 14, '@1.09', 'Ponte Druso'), { value: `See ${link} here.`, caret: 4 + link.length });
+});
+
+test('insertLink: the spaces of a selection stay outside the brackets', () => {
+  const link = '[[the bridge|@1.09]]';
+  assert.deepEqual(insertLink('See the bridge here.', 3, 15, '@1.09', 'x'), { value: `See ${link} here.`, caret: 4 + link.length });
+  assert.deepEqual(insertLink('One\n\n the bridge\n', 4, 17, '@1.09', 'x'), { value: `One\n\n ${link}\n`, caret: 6 + link.length }, 'line ends too');
+});
+
+test('insertLink: with nothing selected the words given are written where the caret is; a selection of spaces stays and the link follows it', () => {
+  const link = '[[Ponte Druso|Ponte Druso]]';
+  assert.deepEqual(insertLink('Over . Then', 5, 5, 'Ponte Druso', 'Ponte Druso'), { value: `Over ${link}. Then`, caret: 5 + link.length });
+  assert.deepEqual(insertLink('', 0, 0, '@r3', 'Über die Brücke'), { value: '[[Über die Brücke|@r3]]', caret: 23 });
+  assert.deepEqual(insertLink('a  b', 1, 3, 'page:x', 'X'), { value: 'a  [[X|page:x]]b', caret: 3 + '[[X|page:x]]'.length });
 });

@@ -1,8 +1,8 @@
 // What edit mode works out without the page: where a dragged row or chapter lands and what the
 // order is meanwhile, what the bar says after a typed number, a folded chapter's count, a text as
-// paragraphs and back, a typed year, the keywords offered, the queue that sends the edits one at a
-// time, what is under way until the page has settled, and the number of changes the summary names.
-// Pure, shared by edit.js and the tests.
+// paragraphs and back, a typed year, the keywords offered, what 🔗 finds and the link it writes,
+// the queue that sends the edits one at a time, what is under way until the page has settled, and
+// the number of changes the summary names. Pure, shared by edit.js and the tests.
 
 // Where a row dropped in the list goes. `sequence`: the list after the drop, its headings and rows
 // in the order they now stand, [{ kind: 'chapter' | 'row', id, folded? }]. The row joins the
@@ -133,6 +133,57 @@ export function offered(keywords, held, typed = '') {
 }
 
 const fold = (text) => String(text).normalize('NFD').replace(/\p{M}/gu, '').toLowerCase();
+
+// What the 🔗 finder lists for what is typed (edit/linker.js): the rows, then the keywords, then
+// the pages, at most eight, each in the order given. A row is found by the start of its number as
+// it now stands (2.0 finds 2.01 to 2.09; a comma typed for the full stop, as a phone's keypad may)
+// or by its title, a keyword by its label, a page by its title: each word typed the start of a
+// word of it, whatever its accents and case. Rows found by their number come before those found
+// by their title. `target`: what the link names, as lib/links.mjs reads it: a row by its id, which
+// never changes when it moves; a page by its address; a keyword by its label, as the legend shows
+// it, or by its id where another keyword's id or a folded id (`aliases`, the document's) reads as
+// that label, since either wins over a label there. `label`: the row's title, the keyword's label
+// or the page's title, the words of a link when none are selected.
+// -> [{ kind: 'row' | 'keyword' | 'page', target, label }]
+export function linkMatches(query, { rows = [], keywords = [], pages = [], aliases = {} } = {}) {
+  const typed = String(query ?? '').trim();
+  const want = wordsIn(typed);
+  if (!want.length) return [];
+  const has = (name) => {
+    const words = wordsIn(name);
+    return want.every((w) => words.some((word) => word.startsWith(w)));
+  };
+  const number = /^\d+(?:[.,]\d*)?$/.test(typed) ? typed.replace(',', '.') : null;
+  const byNumber = number ? rows.filter((row) => row.no && row.no.startsWith(number)) : [];
+  const byTitle = rows.filter((row) => !byNumber.includes(row) && has(row.title ?? ''));
+  const ids = new Set([...keywords.map((keyword) => keyword.id), ...Object.keys(aliases)].map(linkFold));
+  return [
+    ...[...byNumber, ...byTitle].map((row) => ({ kind: 'row', target: `@${row.id}`, label: row.title ?? '' })),
+    ...keywords.filter((keyword) => has(keyword.label ?? keyword.id)).map(({ id, label = id }) => {
+      const named = ids.has(linkFold(label)) && linkFold(label) !== linkFold(id);
+      return { kind: 'keyword', target: named ? id : label, label };
+    }),
+    ...pages.filter((page) => has(page.title ?? '')).map((page) => ({ kind: 'page', target: `page:${page.address}`, label: page.title ?? '' })),
+  ].slice(0, 8);
+}
+
+const wordsIn = (text) => fold(text).split(/[^\p{L}\p{N}]+/u).filter(Boolean);
+// A keyword's name as lib/links.mjs compares it: case and spacing aside, accents kept.
+const linkFold = (name) => String(name).normalize('NFC').replace(/\s+/g, ' ').trim().toLowerCase();
+
+// The link 🔗 writes: the words selected, from `start` to `end`, become [[words|target]], the
+// spaces at either end of the selection left outside the brackets; with nothing selected, or
+// spaces only, `words` are written, after those spaces. -> { value, caret }: the text with the
+// link, and the place just after its ]].
+export function insertLink(value, start, end, target, words) {
+  const text = String(value ?? '');
+  const chosen = text.slice(start, end);
+  const lead = /^\s*/.exec(chosen)[0];
+  const inner = chosen.slice(lead.length).trimEnd();
+  const before = text.slice(0, start) + lead;
+  const link = `[[${inner || words}|${target}]]`;
+  return { value: before + link + chosen.slice(lead.length + inner.length) + text.slice(end), caret: before.length + link.length };
+}
 
 // A row's text is one field, its paragraphs parted by an empty line (a line of spaces counts as
 // empty). Each paragraph is trimmed; one line end inside a paragraph stays as typed.

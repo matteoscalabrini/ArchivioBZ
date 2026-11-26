@@ -5,6 +5,7 @@
 //
 //   edit/core.js      the draft held, the queue, an answer put on the page
 //   edit/field.js     a field in place of what ✎ follows
+//   edit/linker.js    🔗 over a text field and the legend under it
 //   edit/rows.js      a row's controls, head and open body
 //   edit/pictures.js  a row's pictures, "Side by side" and ＋ picture
 //   edit/keywords.js  the keywords offered under ＋

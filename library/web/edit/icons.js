@@ -13,6 +13,7 @@ const DRAWINGS = {
   trash: '<path d="M2.5 4h9M5.5 4V2.5h3V4M3.8 4l.6 7.5h5.2l.6-7.5M6 6.2v3.3M8 6.2v3.3"/>',
   back: '<path d="M11.5 7h-9M5.5 4 2.5 7l3 3"/>',
   on: '<path d="M2.5 7h9M8.5 4l3 3-3 3"/>',
+  link: '<rect x="1.6" y="6.8" width="7.6" height="3.6" rx="1.8" transform="rotate(-45 5.4 8.6)"/><rect x="4.8" y="3.6" width="7.6" height="3.6" rx="1.8" transform="rotate(-45 8.6 5.4)"/>',
 };
 
 export function icon(name) {

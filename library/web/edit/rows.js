@@ -10,6 +10,7 @@ import { iconButton } from './icons.js';
 import { openField, input, textarea, select } from './field.js';
 import { ask } from './dialog.js';
 import { openPicker } from './keywords.js';
+import { attachLinker } from './linker.js';
 import { dressPictures } from './pictures.js';
 import { unfold } from './compact.js';
 import { toParagraphs, fromParagraphs, yearValue, numberValue, removeQuestion, placedLine } from '../editmodel.js';
@@ -230,7 +231,8 @@ function editDate(row, id, opener) {
   });
 }
 
-// The text in one field, its paragraphs parted by an empty line.
+// The text in one field, its paragraphs parted by an empty line, with 🔗 over it and the legend
+// under it (linker.js); a refusal is said right under the field, above the legend.
 function editText(row, id, opener) {
   const txt = row.querySelector('.row-body .txt');
   const paragraphs = [...txt.children].filter((child) => child.tagName === 'P');
@@ -239,7 +241,11 @@ function editText(row, id, opener) {
     controls: [area],
     read: () => toParagraphs(area.value),
     save: setRow(id, (text) => ({ text })),
-    place: (box) => txt.prepend(box),
+    place: (box) => {
+      box.append(attachLinker(area).element);
+      txt.prepend(box);
+    },
+    errorPlace: (line) => area.after(line),
     hide: paragraphs,
     opener,
     key: 'text',

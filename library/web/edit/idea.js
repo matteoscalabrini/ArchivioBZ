@@ -1,10 +1,13 @@
-// ✎ on the idea at the top: its Markdown in one field, [[word|Keyword]] as ever. The idea's words
+// ✎ on the idea at the top: its text in one field, [[word|Keyword]] as ever, with 🔗 over it and
+// the legend under it (linker.js). Paragraphs and links are all the idea's text holds (lib/idea.mjs
+// reads no *italic*, bold or web link), so its legend is that of a row's text. The idea's words
 // are drawn by the server (lib/idea.mjs, which knows the keywords), so once saved the page asks
 // for itself again and takes the idea from it. The idea an answer brings (core.js: an edit changed
 // what one of its links names) is dressed here too.
 import { state, send, redraw, onIdea, putIdea } from './core.js';
 import { iconButton } from './icons.js';
 import { openField, textarea } from './field.js';
+import { attachLinker } from './linker.js';
 
 onIdea(() => dressIdea());
 
@@ -30,7 +33,11 @@ function editIdea(section, label, opener) {
       await send({ op: 'set-idea', text }, { field: box });
       await redrawIdea();
     },
-    place: (box) => label.after(box),
+    place: (box) => {
+      box.append(attachLinker(area).element);
+      label.after(box);
+    },
+    errorPlace: (line) => area.after(line),
     hide: [...section.children].filter((el) => el !== label),
     opener,
     key: 'idea',
