@@ -2672,6 +2672,39 @@ async function main() {
     check(await page.$eval('.ed-page-text button.ed', (el) => el === document.activeElement), 'the focus is not back on ✎');
   });
 
+  // A page in edit mode loads read.css, not library.css, whose [hidden] rule kept hidden on the
+  // Library what edit.css draws (button.ed, .ed-error); edit.css says it itself now (final review of
+  // Tasks 14–19, Important 1). Drawn: with a box on the page, whatever the hidden attribute says.
+  await step('on a page in edit mode what is hidden is not drawn: ✎ beside the title and under the text while their fields are open, nor a refusal\'s line before any, there, in About and in ＋ page\'s question', async () => {
+    const drawn = (selector) => page.$$eval(selector, (els) => els.filter((el) => el.getClientRects().length > 0).map((el) => el.outerHTML.slice(0, 100)));
+    const count = sent.length;
+    await page.click('main > h1 button.ed[data-ed="page-title"]');
+    await page.waitForSelector('main > h1 .ed-field[data-ed="page-title"] input');
+    let seen = { pencil: await drawn('main > h1 button.ed[data-ed="page-title"]'), refusal: await drawn('.ed-error') };
+    check(!seen.pencil.length && !seen.refusal.length, `with the title's field open, drawn: ${JSON.stringify(seen)}`);
+    await page.keyboard.press('Escape');
+    await page.waitForSelector('main > h1 .ed-field', { hidden: true });
+    await page.click('.ed-page-text button.ed[data-ed="page-text"]');
+    await page.waitForSelector('.ed-field[data-ed="page-text"] textarea');
+    seen = { pencil: await drawn('.ed-page-text button.ed'), refusal: await drawn('.ed-error') };
+    check(!seen.pencil.length && !seen.refusal.length, `with the text's field open, drawn: ${JSON.stringify(seen)}`);
+    await page.keyboard.press('Escape');
+    await page.waitForSelector('.ed-field[data-ed="page-text"]', { hidden: true });
+    await page.click('.ed-bar .ed-about');
+    await page.waitForSelector('dialog.ed-about-dialog[open] textarea');
+    seen = { refusal: await drawn('dialog.ed-about-dialog .ed-error') };
+    check(!seen.refusal.length, `in About, drawn: ${JSON.stringify(seen)}`);
+    await page.keyboard.press('Escape');
+    await page.waitForSelector('dialog.ed-about-dialog', { hidden: true });
+    await page.click('header.site nav.tabs button.ed-add-page');
+    await page.waitForSelector('dialog.ed-dialog[open] input');
+    seen = { refusal: await drawn('dialog.ed-dialog[open] .ed-error') };
+    check(!seen.refusal.length, `in ＋ page's question, drawn: ${JSON.stringify(seen)}`);
+    await page.click('dialog.ed-dialog[open] .ed-no');
+    await page.waitForSelector('dialog.ed-dialog[open]', { hidden: true });
+    check(sent.length === count, `${sent.length - count} edits were sent`);
+  });
+
   // An answer carries a page's text only after an edit of that page (final review of Tasks 14–19,
   // Minor 6); the text a page in edit mode holds of its own stays through any other edit.
   await step('About saved from a page\'s bar: the page\'s text field opens with its text still', async () => {

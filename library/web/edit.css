@@ -8,6 +8,9 @@
   --cols: 64px minmax(0, 1fr) 150px 120px minmax(0, 300px) 44px;
 }
 html { scroll-padding-top: calc(48px + var(--edit-bar, 0px)); }
+/* What edit mode hides stays hidden, though a rule below draws its kind (button.ed, .ed-error):
+   library.css says so on the Library, and a page in edit mode loads read.css, which does not. */
+[hidden] { display: none !important; }
 
 /* Icons: 14 px, lines in the text's colour. */
 .ed-icon { display: block; width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; overflow: visible; }
