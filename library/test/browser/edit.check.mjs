@@ -1379,6 +1379,120 @@ async function main() {
     check(focused === 'button.ed.ed-edit in 5.02', `the focus is on ${focused}`);
   });
 
+  // Fix round 2 of Task 16: a row that is open or holds the focus is never folded away, and a
+  // folded heading counts the rows it hides. 0.01 (chapter 3, numbered 2) is typed into the
+  // folded chapter 2 (numbered 1), and its title ✎ clicked before the answer, 400 ms away.
+  await step('a row typed into a folded chapter while its own title field is open stays in sight with the field, and the count leaves it out', async () => {
+    await page.goto(`${base}/edit/`);
+    await page.waitForSelector('.ed-bar');
+    await setCompact(page, true);
+    await fold(page, 'c2');
+    const hides = await page.$$eval('article.row[data-chapter="c2"]', (els) => els.length);
+    await foldShows(page, 'c2', `${hides} rows`, 'chapter 2 folded');
+    const row = 'article.row[data-no="0.01"]';
+    await page.emulateNetworkConditions({ offline: false, download: 100e6, upload: 100e6, latency: 400 });
+    try {
+      await page.click(`${row} .c-no button.ed-no`);
+      const input = `${row} .ed-field[data-ed="number"] input`;
+      await page.waitForSelector(input);
+      await page.$eval(input, (el) => el.select());
+      await page.keyboard.type('1.01');
+      const before = sent.length;
+      const answered = answerTo(page, 'op');
+      await page.click(`${row} button.ed[data-ed="title"]`); // leaves the number, which saves it
+      const title = `${row} .ed-field[data-ed="title"] input`;
+      await page.waitForSelector(title);
+      await page.keyboard.press('End');
+      await page.keyboard.type(' and more');
+      check((await answered).status() === 200, 'the number was not taken');
+      await page.waitForFunction((sel) => document.querySelector(sel)?.dataset.chapter === 'c2', { timeout: WAIT }, row);
+      await pause(800);
+      const seen = await page.evaluate((rowSel, titleSel) => {
+        const el = document.querySelector(rowSel);
+        const field = document.querySelector(titleSel);
+        const count = document.querySelector('h2.chapter[data-chapter="c2"] .ed-count');
+        return {
+          shown: getComputedStyle(el).display !== 'none',
+          field: Boolean(field),
+          focused: Boolean(field) && document.activeElement === field,
+          typed: field?.value.endsWith(' and more') ?? false,
+          count: count && !count.hidden ? count.textContent : null,
+          hidden: [...document.querySelectorAll('article.row[data-chapter="c2"]')].filter((r) => getComputedStyle(r).display === 'none').length,
+        };
+      }, row, title);
+      check(seen.shown && seen.field && seen.focused && seen.typed, `0.01 with its title field: ${JSON.stringify(seen)}`);
+      check(seen.count === `${hides} rows` && seen.hidden === hides, `the folded chapter counts ${seen.count} and hides ${seen.hidden}, not ${hides}`);
+      const titles = sent.slice(before).filter((s) => s.body?.op?.op === 'set-row');
+      check(!titles.length, `the half-typed title was saved: ${JSON.stringify(titles.map((s) => s.body.op))}`);
+      await page.keyboard.press('Escape');
+      await page.waitForSelector(title, { hidden: true });
+    } finally {
+      await page.emulateNetworkConditions(null);
+    }
+  });
+
+  // A row whose number is answered while another row is held by its grip, or once another row has
+  // been dropped and its move is still on its way: the page does not move under the hand, nor
+  // follow the row to a place the drop is about to change. The page stands at its top, the rows
+  // involved all in the window, and each number is typed as the last place of chapter 2 (numbered
+  // 1), which is where the row goes, so the bar says nothing and stays as tall; the answers are 1.5 s
+  // away, so that the hold and the drag come before them. Unfollowed, the row would be brought to
+  // the middle of the window from the bottom of the page.
+  await step('a number answered while another row is held, or once another is dropped and its move is on its way, moves the page neither time', async () => {
+    await page.setViewport({ width: 1280, height: 1600 });
+    await page.goto(`${base}/edit/`);
+    await page.waitForSelector('.ed-bar');
+    await setCompact(page, false);
+    await page.evaluate(() => scrollTo(0, 0));
+    const ids = await page.$$eval('article.row[data-chapter="c2"]', (els) => els
+      .filter((el) => el.querySelector('.c-no .ed-no').textContent.trim() !== '—').slice(0, 5).map((el) => el.dataset.no));
+    const last = await page.$$eval('article.row[data-chapter="c2"] .c-no .ed-no', (els) => els.filter((el) => el.textContent.trim() !== '—').length);
+    const typeLast = async (id) => {
+      const row = `article.row[data-no="${id}"]`;
+      await page.click(`${row} .c-no button.ed-no`);
+      const input = `${row} .ed-field[data-ed="number"] input`;
+      await page.waitForSelector(input);
+      await page.$eval(input, (el) => el.select());
+      await page.keyboard.type(`1.${String(last).padStart(2, '0')}`);
+      await page.keyboard.press('Enter');
+    };
+    const top = await page.evaluate(() => scrollY);
+    check(top === 0, `the page does not stand at its top (${top})`);
+    await page.emulateNetworkConditions({ offline: false, download: 100e6, upload: 100e6, latency: 1500 });
+    try {
+      // Held: pressed on the grip of a row above the one typed, until the answer has come and gone.
+      let answered = answerTo(page, 'op');
+      await typeLast(ids[1]);
+      const grip = await centre(page, `article.row[data-no="${ids[0]}"] .ed-grip`);
+      await page.mouse.move(grip.x, grip.y);
+      await page.mouse.down();
+      await page.waitForSelector('.sortable-chosen');
+      check((await answered).status() === 200, 'the first number was not taken');
+      await pause(800);
+      const held = await page.evaluate(() => scrollY);
+      await page.mouse.up();
+      check(held === 0, `with a row held, the page scrolled to ${held}`);
+      check(!(await page.$('article.row.open')), 'a row opened');
+
+      // Dropped before the answer: the move waits behind the number in the queue.
+      answered = answerTo(page, 'op');
+      const before = sent.length;
+      await typeLast(ids[2]);
+      await drag(page, `article.row[data-no="${ids[4]}"] .ed-grip`, `article.row[data-no="${ids[3]}"]`, 0.25);
+      check(sent.length === before, 'the drop came after the number\'s answer: the latency is too short for the check');
+      check((await answered).status() === 200, 'the second number was not taken');
+      await sentSince(before, 2);
+      await pause(800);
+      const dropped = await page.evaluate(() => scrollY);
+      check(dropped === 0, `with the move on its way, the page scrolled to ${dropped}`);
+      const ops = sent.slice(before).map((s) => `${s.body?.op?.op} ${s.status}`);
+      check(ops.join(', ') === 'set-number 200, move-row 200', `the edits answered were ${ops.join(', ')}`);
+    } finally {
+      await page.emulateNetworkConditions(null);
+      await page.setViewport({ width: 1280, height: 900 });
+    }
+  });
+
   console.log(`All ${n} steps hold. Screenshots: ${['edit-page.png', 'public-page.png', 'edit-phone.png', 'edit-compact.png', 'edit-compact-phone.png'].map((name) => path.join(SHOTS, name)).join(', ')}`);
 }
 

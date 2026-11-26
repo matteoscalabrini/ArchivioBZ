@@ -5,11 +5,13 @@
 // first in it (dropTarget, from drag.js). Folds act in the story order only, as dragging does:
 // while a keyword, a kind or a search narrows the list, every row it holds is in sight. A row the
 // page opens (its title, a Sources link, an address #o=, a row just added, a typed number) unfolds
-// its chapter, since an open row is shown in full; folding a chapter closes its open rows. The
-// switch and the folds are this browser's own, kept in localStorage when the browser allows it;
-// without, the page works the same for the visit. Switched off, the page is as it was and the folds
-// are forgotten.
-import { state, list } from './core.js';
+// its chapter, since an open row is shown in full; folding a chapter closes its open rows; and a
+// row that is open or holds the focus is never folded away (a row typed or dropped into a folded
+// chapter while it is open, or while a field in it is open), so the count says only what is
+// hidden. The switch and the folds are this browser's own, kept in localStorage when the browser
+// allows it; without, the page works the same for the visit. Switched off, the page is as it was
+// and the folds are forgotten.
+import { list } from './core.js';
 import { rowCount } from '../editmodel.js';
 
 // Absent while the view is off; while it is on, the folded chapters' ids as JSON.
@@ -101,10 +103,11 @@ export function dressFold(heading) {
 }
 
 // After each drawing of the list (chapters.js, with `inStory`: whether the list now stands in the
-// story order) and each fold: the chapters of the rows opened since the last drawing unfolded,
-// every fold's sign and name, the count on a folded heading, and in the story order the rows of a
-// folded chapter out of sight. Out of it (the fold and the count are then out of sight, edit.css)
-// a fold hides nothing.
+// story order) and each fold: the chapters of the rows opened since the last drawing unfolded; in
+// the story order the rows of a folded chapter out of sight, but for one that is open or holds the
+// focus (out of sight, a field in it would close as if left and save what was half typed); every
+// fold's sign and name, and on a folded heading the count of the rows it hides. Out of the story
+// order (the fold and the count are then out of sight, edit.css) a fold hides nothing.
 export function showFolds(inStory = story) {
   story = inStory;
   const open = [...list.querySelectorAll(':scope > article.row.open')];
@@ -112,6 +115,13 @@ export function showFolds(inStory = story) {
   for (const row of open) if (!wasOpen.has(row.dataset.no) && folded.delete(row.dataset.chapter)) opened = true;
   wasOpen = new Set(open.map((row) => row.dataset.no));
   if (opened) keep();
+  const hides = new Map(); // chapter -> how many of its rows the fold hides
+  for (const row of list.querySelectorAll(':scope > article.row')) {
+    const chapter = row.dataset.chapter;
+    const away = story && isFolded(chapter) && !row.classList.contains('open') && !row.contains(document.activeElement);
+    row.classList.toggle('ed-folded', away);
+    if (away) hides.set(chapter, (hides.get(chapter) ?? 0) + 1);
+  }
   for (const heading of list.querySelectorAll(':scope > h2.chapter')) {
     const id = heading.dataset.chapter;
     const button = heading.querySelector('.ed-fold');
@@ -126,8 +136,7 @@ export function showFolds(inStory = story) {
     }
     const count = heading.querySelector('.ed-count');
     count.hidden = !shut;
-    const words = shut ? rowCount(state.chapters.find((c) => c.id === id)?.rows.length ?? 0) : '';
+    const words = shut ? rowCount(hides.get(id) ?? 0) : '';
     if (count.textContent !== words) count.textContent = words;
   }
-  for (const row of list.querySelectorAll(':scope > article.row')) row.classList.toggle('ed-folded', story && isFolded(row.dataset.chapter));
 }
