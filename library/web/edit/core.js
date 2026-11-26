@@ -253,10 +253,14 @@ function putRow(id, html, field) {
 // read otherwise are put in, each in place of its old one. The row itself stays, and with it what
 // is open or under way in it: a field, the keyword list, a file chooser, a held drag, the focus, a
 // link a jump left from. Its text's own field hides those paragraphs and reads none of them, so
-// they are brought up to date under it. A drawing of the row that waits for a field (putRow) is
-// older than this one, which takes its place.
+// they are brought up to date under it. While a drawing of the row waits for a field (putRow), the
+// page's row is older than it, perhaps in its words too: this newer drawing takes its place, to go
+// in when the field closes, and the page is left as it is meanwhile.
 function relink(id, html) {
-  if (waiting.has(id)) waiting.set(id, html);
+  if (waiting.has(id)) {
+    waiting.set(id, html);
+    return;
+  }
   const row = rowEl(id);
   if (!row) return;
   const fresh = [...fromHtml(html).querySelectorAll('.row-body .txt > p')];

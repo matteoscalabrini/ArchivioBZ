@@ -2193,6 +2193,104 @@ async function main() {
     await page.waitForSelector(linkTo('12.01', '5.00'));
   });
 
+  // A drawing of 12.01 waits while a field is open in it (core.js, putRow): the page's row is then
+  // older than the server's, and an edit that relinks it brings that waiting drawing up to date and
+  // leaves the page as it is, so that no old words ever carry new links (Task 17 re-review, round 3).
+  await step('12.01\'s keyword taken off while its title field opens waits for the field; 5.00 hidden meanwhile changes nothing there; the field left, 12.01 shows both edits', async () => {
+    await page.goto(`${base}/edit/`);
+    await page.waitForSelector('.ed-bar');
+    const row = rowAt('12.01');
+    const holds = () => page.$eval(row, (el) => ({
+      keyword: Boolean(el.querySelector('.c-kw button[data-k="humour"]')),
+      live: Boolean(el.querySelector('.txt a[data-row="5.00"]')),
+      field: Boolean(el.querySelector('.ed-field[data-ed="title"]')),
+    }));
+    check(JSON.stringify(await holds()) === JSON.stringify({ keyword: true, live: true, field: false }), `12.01 holds ${JSON.stringify(await holds())} to begin with`);
+    const before = sent.length;
+    await page.emulateNetworkConditions({ offline: false, download: 100e6, upload: 100e6, latency: 1500 });
+    try {
+      await page.click(`${row} .c-kw button.ed[data-ed="kw:humour"]`);
+      await page.click(`${rowAt('5.00')} button.ed[data-ed="hide"]`);
+      await page.click(`${row} button.ed[data-ed="title"]`);
+      await page.waitForSelector(`${row} .ed-field[data-ed="title"] input`);
+      await sentSince(before, 2);
+      check(sent.slice(before).every((s) => s.status === 200), `answered ${sent.slice(before).map((s) => s.status).join(' and ')}`);
+    } finally {
+      await page.emulateNetworkConditions(null);
+    }
+    await pause(300);
+    const meanwhile = await holds();
+    check(JSON.stringify(meanwhile) === JSON.stringify({ keyword: true, live: true, field: true }), `with the title field open, 12.01 holds ${JSON.stringify(meanwhile)}`);
+    await page.keyboard.press('Escape');
+    await page.waitForFunction((sel) => {
+      const el = document.querySelector(sel);
+      return !el.querySelector('.ed-field') && !el.querySelector('.c-kw button[data-k="humour"]')
+        && el.querySelector('.txt .dead-link[title="The row is hidden."]')?.textContent === 'the fixture notes';
+    }, { timeout: WAIT }, row).catch(async () => { throw new Error(`the title field left, 12.01 holds ${JSON.stringify(await holds())}`); });
+    const answered = answerTo(page, 'op');
+    await page.click(`${rowAt('5.00')} button.ed[data-ed="hide"]`);
+    check((await answered).status() === 200, 'the row was not shown again');
+    await page.waitForSelector(linkTo('12.01', '5.00'));
+  });
+
+  // The race of the idea saved and an edit queued behind it (re-review C): the idea is changed and
+  // 5.00's 👁 clicked, which leaves the field, so set-idea goes, then hide-row. Once set-idea is
+  // answered, the page asks for itself again (idea.js) while hide-row goes out: here the page asked
+  // for reads the draft before the hide is saved and answers only after the hide is answered. The
+  // idea shown at the end is the newer, with 5.00 dotted, whatever order the two drawings came in.
+  await step('the idea saved with 5.00 hidden right behind it: the page asked for after the save, older and answering last, does not cover the idea drawn after the hide', async () => {
+    await page.goto(`${base}/edit/`);
+    await page.waitForSelector('.ed-bar');
+    const cookie = (await page.cookies()).map((c) => `${c.name}=${c.value}`).join('; ');
+    let read;
+    let answered;
+    const pageRead = new Promise((resolve) => { read = resolve; });
+    const hideAnswered = new Promise((resolve) => { answered = resolve; });
+    const isHide = (request) => request.method() === 'POST' && new URL(request.url()).pathname === '/edit/op' && /"op":"hide-row"/.test(request.postData() ?? '');
+    const onResponse = (response) => { if (isHide(response.request())) answered(); };
+    const onRequest = async (request) => {
+      if (request.isInterceptResolutionHandled()) return;
+      const url = new URL(request.url());
+      if (request.method() === 'GET' && url.pathname === '/edit/' && request.resourceType() === 'fetch') {
+        const body = await fetch(request.url(), { headers: { cookie, accept: 'text/html' } }).then((r) => r.text());
+        read();
+        await Promise.race([hideAnswered, pause(WAIT)]);
+        return request.respond({ status: 200, contentType: 'text/html; charset=utf-8', body });
+      }
+      if (isHide(request)) await Promise.race([pageRead, pause(WAIT)]);
+      return request.continue();
+    };
+    page.on('response', onResponse);
+    page.on('request', onRequest);
+    await page.setRequestInterception(true);
+    try {
+      await page.click('section.idea button.ed[data-ed="idea"]');
+      const area = 'section.idea .ed-field[data-ed="idea"] textarea';
+      await page.waitForSelector(area);
+      await page.$eval(area, (el) => el.setSelectionRange(el.value.length, el.value.length));
+      await page.keyboard.type(' Again.');
+      await page.click(`${rowAt('5.00')} button.ed[data-ed="hide"]`);
+      await Promise.race([hideAnswered, pause(WAIT).then(() => { throw new Error('the hide was not answered'); })]);
+      await page.waitForSelector('section.idea .ed-field', { hidden: true });
+      await pause(500);
+    } finally {
+      await page.setRequestInterception(false);
+      page.off('request', onRequest);
+      page.off('response', onResponse);
+    }
+    const idea = await page.$eval('section.idea', (el) => ({
+      text: [...el.querySelectorAll('p')].map((p) => p.textContent).join(' '),
+      dead: el.querySelector('.dead-link[title="The row is hidden."]')?.textContent ?? null,
+      live: Boolean(el.querySelector('a[data-row="5.00"]')),
+      pencils: el.querySelectorAll('button.ed[data-ed="idea"]').length,
+    }));
+    check(idea.text.endsWith('Again.') && idea.dead === 'fixture notes' && !idea.live && idea.pencils === 1, `the idea shows ${JSON.stringify(idea)}`);
+    const answeredShow = answerTo(page, 'op');
+    await page.click(`${rowAt('5.00')} button.ed[data-ed="hide"]`);
+    check((await answeredShow).status() === 200, 'the row was not shown again');
+    await page.waitForSelector('section.idea a[data-row="5.00"]');
+  });
+
   await step('at a phone\'s width the way back stands at the bottom, inside the screen, and returns', async () => {
     await page.setViewport({ width: 390, height: 844, isMobile: true, hasTouch: true });
     await page.goto(`${base}/edit/`);

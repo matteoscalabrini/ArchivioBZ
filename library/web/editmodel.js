@@ -200,11 +200,6 @@ export class OpQueue {
   }
 }
 
-// What is under way: each edit from its sending to its answer, and each save around it, from a
-// field left to the field closed (or keeping what was refused). settled() resolves once nothing
-// is: what waits for it (Log out, Public site) then finds every field as its save left it, not
-// still saving in the moment between the answer and the field's own closing. A count, not a list:
-// work begun while settled() waits (the second edit of a keyword added, then given) is waited for.
 // Which drawing of the idea the page shows (edit/core.js). Each comes with the draft version it
 // was drawn from (the page's own, an answer's `relinked.idea`, the page asked again once the idea
 // is saved), and they can come out of order: the page asked for after a save may answer after an
@@ -244,6 +239,11 @@ export class IdeaDrawings {
   }
 }
 
+// What is under way: each edit from its sending to its answer, and each save around it, from a
+// field left to the field closed (or keeping what was refused). settled() resolves once nothing
+// is: what waits for it (Log out, Public site) then finds every field as its save left it, not
+// still saving in the moment between the answer and the field's own closing. A count, not a list:
+// work begun while settled() waits (the second edit of a keyword added, then given) is waited for.
 export class Underway {
   #count = 0;
   #waiting = [];
