@@ -7,6 +7,8 @@
  * agreed to in writing, software distributed under the License is distributed on an "AS IS"
  * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License
  * for the specific language governing permissions and limitations under the License.
+ * The Apache License 2.0 in full, for this package and @vercel/oidc below, is beside this file:
+ * blob-client.LICENSE-APACHE-2.0.txt.
  *
  * Bundled with it, each under its own licence (the notices as each package gives them):
  *   @vercel/oidc 3.8.10: Copyright 2017 Vercel, Inc. Licensed under the Apache License, Version
