@@ -286,6 +286,7 @@ dl.meta dd .ed-field .ed-error { flex-basis: 100%; }
 .ed-finder input { width: 100%; }
 .ed-finder ul { max-height: 260px; margin: 8px 0 0; padding: 0; overflow-y: auto; list-style: none; }
 .ed-finder ul:empty { display: none; }
+.ed-finder-say { margin: 8px 0 0; }
 .ed-finder li { padding: 2px 4px; cursor: pointer; overflow-wrap: anywhere; }
 .ed-finder li:hover { text-decoration: underline; text-underline-offset: 3px; }
 .ed-finder li[aria-selected="true"] { background: var(--ink); color: var(--paper); }

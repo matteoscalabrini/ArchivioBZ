@@ -2407,6 +2407,11 @@ async function main() {
     check(JSON.stringify(after) === JSON.stringify({ value: want, selection: [caret, caret], focused: true, finderClosed: true }), `after Enter the field is ${JSON.stringify(after)}`);
     await pause(200);
     check(sent.length === count, 'Enter in the finder saved the field');
+    // In the field's own history: undone, the words are as they were; done again, the link is back.
+    await page.evaluate(() => document.execCommand('undo'));
+    check((await fieldIs(area)).value === before, `undone, the field holds ${JSON.stringify((await fieldIs(area)).value)}`);
+    await page.evaluate(() => document.execCommand('redo'));
+    check((await fieldIs(area)).value === want, `done again, the field holds ${JSON.stringify((await fieldIs(area)).value)}`);
 
     const answered = answerTo(page, 'op');
     await page.keyboard.down('Control');
@@ -2436,12 +2441,13 @@ async function main() {
     await page.waitForSelector(find, { visible: true });
     check(await page.$eval(find, (el) => el === document.activeElement), 'the finder\'s field is not in focus');
     check(await page.$(area) !== null, 'Enter on 🔗 closed the field');
-    await page.keyboard.type('a'); // more rows than eight
+    await page.keyboard.type('a'); // more rows than eight, and the keyword Archives, which they leave room for
     const options = () => page.$$eval(`${row} .ed-finder li`, (lis) => lis.map((li) => `${li.getAttribute('aria-selected')}:${li.textContent}`));
     await page.waitForFunction((sel) => document.querySelectorAll(sel).length > 1, { timeout: WAIT }, `${row} .ed-finder li`)
       .catch(async () => { throw new Error(`a lists ${JSON.stringify(await options())}`); });
     let listed = await options();
-    check(listed.length === 8 && listed[0].startsWith('true:') && listed.every((line) => / · /.test(line)), `a lists ${JSON.stringify(listed)}`);
+    const rowsListed = listed.filter((line) => /^(true|false):(\d+\.\d+|—) · /.test(line)).length;
+    check(listed[0].startsWith('true:') && rowsListed === 5 && listed.includes('false:Keyword · Archives') && listed.length <= 8, `a lists ${JSON.stringify(listed)}`);
     await page.keyboard.press('ArrowDown');
     listed = await options();
     check(listed[1].startsWith('true:') && !listed[0].startsWith('true:'), `↓ leaves ${JSON.stringify(listed)}`);
@@ -2454,6 +2460,61 @@ async function main() {
     await page.keyboard.press('Escape');
     await page.waitForSelector(`${row} .ed-field`, { hidden: true });
     check(await page.$eval(`${row} .txt > p`, (p) => p.innerHTML) === shown, 'the text shows otherwise');
+    check(sent.length === count, `${sent.length - count} edits were sent`);
+  });
+
+  await step('the finder says Nothing found. when nothing is, and of words inside a link that they cannot be linked; a press on its frame or beside 🔗 keeps it open, the focus in it; nothing is written or sent', async () => {
+    const row = rowAt('12.01');
+    const area = await openText('12.01');
+    const before = (await fieldIs(area)).value;
+    const count = sent.length;
+    const find = `${row} .ed-finder input`;
+    const finder = () => page.$eval(`${row} .ed-finder`, (el) => {
+      const say = el.querySelector('.ed-finder-say');
+      return { open: !el.hidden, says: say.hidden ? '' : say.textContent, listed: el.querySelectorAll('li').length, focused: el.querySelector('input') === document.activeElement };
+    });
+    await page.$eval(area, (el) => el.setSelectionRange(0, 7)); // Compare
+    await page.click(`${row} button.ed-link`);
+    await page.waitForSelector(find, { visible: true });
+    await page.keyboard.type('2.99');
+    const nothing = { open: true, says: 'Nothing found.', listed: 0, focused: true };
+    let seen = await finder();
+    check(JSON.stringify(seen) === JSON.stringify(nothing), `2.99 typed, the finder is ${JSON.stringify(seen)}`);
+    await page.keyboard.press('Enter');
+    seen = await finder();
+    check(JSON.stringify(seen) === JSON.stringify(nothing), `after Enter the finder is ${JSON.stringify(seen)}`);
+    const points = await page.$eval(`${row} .ed-linker`, (el) => {
+      const frame = el.querySelector('.ed-finder').getBoundingClientRect();
+      const bar = el.querySelector('.ed-link-bar').getBoundingClientRect();
+      const link = el.querySelector('button.ed-link').getBoundingClientRect();
+      return [{ at: 'the finder\'s frame', x: frame.left + 3, y: frame.bottom - 3 }, { at: 'the bar beside 🔗', x: link.right + 40, y: bar.top + bar.height / 2 }];
+    });
+    for (const { at, x, y } of points) {
+      await page.mouse.click(x, y);
+      seen = await finder();
+      check(JSON.stringify(seen) === JSON.stringify(nothing), `after a press on ${at} the finder is ${JSON.stringify(seen)}`);
+    }
+    await page.keyboard.press('Escape');
+    let now = await fieldIs(area);
+    check(JSON.stringify(now) === JSON.stringify({ value: before, selection: [0, 7], focused: true, finderClosed: true }), `after Escape the field is ${JSON.stringify(now)}`);
+
+    const words = 'fixture notes'; // the words of the link to 5.00
+    const at = before.indexOf(words);
+    await page.$eval(area, (el, from, to) => el.setSelectionRange(from, to), at, at + words.length);
+    await page.click(`${row} button.ed-link`);
+    await page.waitForSelector(find, { visible: true });
+    const refused = { open: true, says: 'Select words inside one paragraph, outside any other link.', listed: 0, focused: true };
+    seen = await finder();
+    check(JSON.stringify(seen) === JSON.stringify(refused), `with words inside a link selected the finder is ${JSON.stringify(seen)}`);
+    await page.keyboard.type('a');
+    await page.keyboard.press('Enter');
+    seen = await finder();
+    check(JSON.stringify(seen) === JSON.stringify(refused), `a typed and Enter, the finder is ${JSON.stringify(seen)}`);
+    await page.keyboard.press('Escape');
+    now = await fieldIs(area);
+    check(JSON.stringify(now) === JSON.stringify({ value: before, selection: [at, at + words.length], focused: true, finderClosed: true }), `after Escape the field is ${JSON.stringify(now)}`);
+    await page.keyboard.press('Escape');
+    await page.waitForSelector(`${row} .ed-field`, { hidden: true });
     check(sent.length === count, `${sent.length - count} edits were sent`);
   });
 

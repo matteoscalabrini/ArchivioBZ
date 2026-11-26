@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { dropTarget, chapterIndex, toParagraphs, fromParagraphs, OpQueue, Underway, IdeaDrawings, changesIn, publishQuestion, removeQuestion, storyPlaces, headingsOf, placeRow, rowPlace, placeChapter, yearValue, numberValue, offered, placedLine, rowCount, linkMatches, insertLink } from '../web/editmodel.js';
+import { dropTarget, chapterIndex, toParagraphs, fromParagraphs, OpQueue, Underway, IdeaDrawings, changesIn, publishQuestion, removeQuestion, storyPlaces, headingsOf, placeRow, rowPlace, placeChapter, yearValue, numberValue, offered, placedLine, rowCount, linkMatches, insertLink, linkable } from '../web/editmodel.js';
+import { linksIn, targetOf } from '../lib/links.mjs';
 import { diffDocs } from '../cloud/doc.mjs';
 import { summaryLine } from '../cloud/render.mjs';
 import { sampleDoc } from './docs.mjs';
@@ -291,7 +292,8 @@ test('IdeaDrawings: a drawing older than the one shown or waiting is never put i
 
 // What the 🔗 finder lists for what is typed (Task 18): rows by the start of their number as it now
 // stands or by words of their title, keywords by their label, pages by their title, whatever the
-// accents and case; rows first, then keywords, then pages, at most eight.
+// accents and case; a keyword or page named just so first, then rows, keywords, pages, at most
+// eight, the rows at most five of them when a keyword or a page is found too.
 const FOUND = {
   rows: [
     { id: '2.07', no: '2.07', title: 'Laurin fountain' },
@@ -347,11 +349,32 @@ test('linkMatches: a keyword whose label reads as another keyword\'s id, or a fo
   assert.deepEqual(linkMatches('typeface', { keywords, aliases }), [{ kind: 'keyword', target: 'Typeface', label: 'Typeface' }]);
 });
 
-test('linkMatches: at most eight, rows first: twelve rows found leave out the keyword and the page found too', () => {
+test('linkMatches: at most eight; rows alone fill the eight, and take five when a keyword or a page is found too', () => {
   const rows = Array.from({ length: 12 }, (_, i) => ({ id: `r${i + 1}`, no: `4.${String(i + 1).padStart(2, '0')}`, title: `Postcard ${i + 1}` }));
+  assert.deepEqual(linkMatches('postcard', { rows }).map((m) => m.target), ['@r1', '@r2', '@r3', '@r4', '@r5', '@r6', '@r7', '@r8']);
   const found = linkMatches('postcard', { rows, keywords: [{ id: 'postcards', label: 'Postcards' }], pages: [{ address: 'postcards', title: 'Postcards' }] });
-  assert.deepEqual(found.map((m) => m.target), ['@r1', '@r2', '@r3', '@r4', '@r5', '@r6', '@r7', '@r8']);
-  assert.equal(linkMatches('postcards', { rows, keywords: [{ id: 'postcards', label: 'Postcards' }] }).length, 1, 'fewer than eight rows leave room for the keyword');
+  assert.deepEqual(found.map((m) => m.target), ['@r1', '@r2', '@r3', '@r4', '@r5', 'Postcards', 'page:postcards']);
+});
+
+// On the 277 rows, "Semirurali" typed in full listed eight rows and never the keyword: with nothing
+// more to type, 🔗 could not link it (Task 18 review, Important 2).
+test('linkMatches: a keyword or a page named just what is typed comes first, whatever the rows that hold its name', () => {
+  const rows = Array.from({ length: 12 }, (_, i) => ({ id: `r${i + 1}`, no: `9.${String(i + 1).padStart(2, '0')}`, title: `Semirurali houses ${i + 1}` }));
+  const keywords = [{ id: 'semirurali', label: 'Semirurali' }, { id: 'citta', label: 'Città nuova' }];
+  const pages = [{ address: 'citta-nuova', title: 'Città nuova' }];
+  const semirurali = { kind: 'keyword', target: 'Semirurali', label: 'Semirurali' };
+  assert.deepEqual(linkMatches('semirurali', { rows, keywords }), [semirurali, ...['r1', 'r2', 'r3', 'r4', 'r5'].map((id, i) => row(id, `Semirurali houses ${i + 1}`))]);
+  assert.deepEqual(linkMatches(' SÉMIRURALI ', { rows, keywords })[0], semirurali, 'case and accents aside');
+  assert.deepEqual(linkMatches('semi', { rows, keywords }).map((m) => m.kind), ['row', 'row', 'row', 'row', 'row', 'keyword'], 'not named just so: after the rows');
+  assert.deepEqual(linkMatches('citta  NUOVA', { rows, keywords, pages }), [
+    { kind: 'keyword', target: 'Città nuova', label: 'Città nuova' },
+    { kind: 'page', target: 'page:citta-nuova', label: 'Città nuova' },
+  ]);
+});
+
+test('linkMatches: a keyword whose label holds [ ] or |, or reads as a row or a page, is written by its id', () => {
+  const keywords = [{ id: 'radio', label: 'Press | radio' }, { id: 'eiar', label: 'EIAR [radio]' }, { id: 'at', label: '@home' }, { id: 'pg', label: 'page:one' }];
+  for (const { id, label } of keywords) assert.deepEqual(linkMatches(label.replace(/[^\p{L}]+/gu, ' '), { keywords })[0], { kind: 'keyword', target: id, label }, label);
 });
 
 test('linkMatches: nothing typed, nothing found', () => {
@@ -377,4 +400,89 @@ test('insertLink: with nothing selected the words given are written where the ca
   assert.deepEqual(insertLink('Over . Then', 5, 5, 'Ponte Druso', 'Ponte Druso'), { value: `Over ${link}. Then`, caret: 5 + link.length });
   assert.deepEqual(insertLink('', 0, 0, '@r3', 'Über die Brücke'), { value: '[[Über die Brücke|@r3]]', caret: 23 });
   assert.deepEqual(insertLink('a  b', 1, 3, 'page:x', 'X'), { value: 'a  [[X|page:x]]b', caret: 3 + '[[X|page:x]]'.length });
+});
+
+// What 🔗 writes is always one link that lib/links.mjs reads, to what was chosen (Task 18 review,
+// Important 1). Row 15.14's real title holds [EIAR]: written as it is, its link was not one.
+test('insertLink: with nothing selected, a name holding [ ] or | is written with ( ) and /; the target as it is', () => {
+  const title = 'Radio italiana anno XVI [EIAR] (Istituto Luce documentary D032902)';
+  assert.deepEqual(insertLink('See .', 4, 4, '@15.14', title), {
+    value: 'See [[Radio italiana anno XVI (EIAR) (Istituto Luce documentary D032902)|@15.14]].',
+    caret: 4 + '[[Radio italiana anno XVI (EIAR) (Istituto Luce documentary D032902)|@15.14]]'.length,
+  });
+  assert.equal(insertLink('', 0, 0, 'press-radio', 'Press | radio').value, '[[Press / radio|press-radio]]');
+});
+
+test('insertLink and linkable: a selection holding [ ] or |, crossing an empty line, or touching a link already typed is not linked', () => {
+  const text = 'See [[the bridge|@1.09]] here.\n\nOne\n\nTwo [x] a|b';
+  const at = (words) => [text.indexOf(words), text.indexOf(words) + words.length];
+  const refused = [
+    ['the bridge', 'inside a link'],
+    ['bridge|@1.09', 'inside a link, its bar'],
+    ['See [[the', 'across the start of a link'],
+    ['@1.09]] here', 'across the end of a link'],
+    ['See [[the bridge|@1.09]] here', 'around a link'],
+    ['One\n\nTwo', 'across an empty line'],
+    ['[x]', 'holding brackets'],
+    ['a|b', 'holding a bar'],
+  ];
+  for (const [words, why] of refused) {
+    assert.equal(linkable(text, ...at(words)), false, why);
+    assert.equal(insertLink(text, ...at(words), '@2.08', 'x'), null, why);
+  }
+  const inside = text.indexOf('bridge');
+  assert.equal(insertLink(text, inside, inside, '@2.08', 'x'), null, 'nothing selected, the caret inside a link');
+  for (const words of ['See', 'See ', 'here', 'One', 'Two']) assert.equal(linkable(text, ...at(words)), true, words);
+  const [, end] = at('[[the bridge|@1.09]]');
+  assert.equal(insertLink(text, end, end, '@2.08', 'x').value, text.replace('@1.09]]', '@1.09]][[x|@2.08]]'), 'the caret just after a link: the link follows it');
+  assert.equal(linksIn(insertLink(text, end, end, '@2.08', 'x').value).length, 2);
+  assert.equal(insertLink('a\n \nb', 0, 5, '@2.08', 'x'), null, 'an empty line of spaces is an empty line');
+  assert.equal(insertLink('one\ntwo', 0, 7, '@2.08', 'x').value, '[[one\ntwo|@2.08]]', 'one line end inside a paragraph stays');
+});
+
+// The round trip: each match linkMatches gives, written by insertLink with words selected and with
+// none, read back by lib/links.mjs as exactly one link to what was chosen. This also ties the
+// finder's reading of a keyword's name to the one links.mjs uses (ids, then folded ids, then labels).
+test('insertLink round trip: rows, pages and keywords, a folded one and one with | in its label among them, are read back as one link to what was chosen', () => {
+  const vocabulary = {
+    'ponte-druso': { label: 'Ponte Druso' },
+    press: { label: 'Newspapers' },
+    papers: { label: 'Press' },
+    typeface: { label: 'Typeface' },
+    'fraktur-2': { label: 'Fraktur' },
+    radio: { label: 'Press | radio' },
+    eiar: { label: 'EIAR [radio]' },
+    at: { label: '@home' },
+  };
+  const aliases = { fraktur: 'typeface' };
+  const rows = [
+    { id: '15.14', no: '7.02', title: 'Radio italiana anno XVI [EIAR] (Istituto Luce documentary D032902)' },
+    { id: 'r3', no: '2.09', title: 'Über die Brücke | a postcard' },
+  ];
+  const pages = [{ address: 'on-the-bridge', title: 'On the bridge' }];
+  const ctx = {
+    keywords: vocabulary,
+    aliases,
+    rows: new Map(rows.map((r) => [r.id, { no: r.no, title: r.title, shown: true }])),
+    pages: new Map(pages.map((p) => [p.address, { title: p.title, shown: true }])),
+  };
+  const found = { rows, pages, aliases, keywords: Object.entries(vocabulary).map(([id, { label }]) => ({ id, label })) };
+  const chosen = [
+    ...rows.map((r) => ({ query: r.no, kind: 'row', id: r.id })),
+    ...pages.map((p) => ({ query: p.title, kind: 'page', id: p.address })),
+    ...Object.entries(vocabulary).map(([id, { label }]) => ({ query: label.replace(/[^\p{L}]+/gu, ' '), kind: 'keyword', id })),
+  ];
+  const text = 'Before the words here.';
+  for (const want of chosen) {
+    const match = linkMatches(want.query, found).find((m) => m.kind === want.kind);
+    assert.ok(match, `${want.query} finds no ${want.kind}`);
+    for (const [start, end] of [[7, 16], [7, 7]]) {
+      const { value } = insertLink(text, start, end, match.target, match.label);
+      const links = linksIn(value);
+      assert.equal(links.length, 1, `${value}: ${links.length} links read`);
+      const read = targetOf(links[0].target, ctx);
+      assert.deepEqual({ kind: read.kind, id: read.id }, { kind: want.kind, id: want.id }, value);
+      assert.equal(value.slice(0, links[0].start) + value.slice(links[0].end), start === end ? text : 'Before  here.', `${value}: the text around the link`);
+    }
+  }
 });

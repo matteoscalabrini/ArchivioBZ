@@ -134,17 +134,18 @@ export function offered(keywords, held, typed = '') {
 
 const fold = (text) => String(text).normalize('NFD').replace(/\p{M}/gu, '').toLowerCase();
 
-// What the 🔗 finder lists for what is typed (edit/linker.js): the rows, then the keywords, then
-// the pages, at most eight, each in the order given. A row is found by the start of its number as
-// it now stands (2.0 finds 2.01 to 2.09; a comma typed for the full stop, as a phone's keypad may)
-// or by its title, a keyword by its label, a page by its title: each word typed the start of a
-// word of it, whatever its accents and case. Rows found by their number come before those found
-// by their title. `target`: what the link names, as lib/links.mjs reads it: a row by its id, which
-// never changes when it moves; a page by its address; a keyword by its label, as the legend shows
-// it, or by its id where another keyword's id or a folded id (`aliases`, the document's) reads as
-// that label, since either wins over a label there. `label`: the row's title, the keyword's label
-// or the page's title, the words of a link when none are selected.
-// -> [{ kind: 'row' | 'keyword' | 'page', target, label }]
+// What the 🔗 finder lists for what is typed (edit/linker.js), at most eight. A row is found by the
+// start of its number as it now stands (2.0 finds 2.01 to 2.09; a comma typed for the full stop,
+// as a phone's keypad may) or by its title, a keyword by its label, a page by its title: each word
+// typed the start of a word of it, whatever its accents and case. A keyword or a page named just
+// what is typed comes first, so that no number of rows holding its name in their titles can push
+// it out; then the rows, those found by their number before those found by their title, then the
+// keywords, then the pages, each in the order given; when a keyword or a page is found, the rows
+// take at most five of the eight places. `target`: what the link names, as lib/links.mjs reads it:
+// a row by its id, which never changes when it moves; a page by its address; a keyword by its
+// label, as the legend shows it, or by its id where the label would not name it (keywordTarget).
+// `label`: the row's title, the keyword's label or the page's title, the words of a link when none
+// are selected. -> [{ kind: 'row' | 'keyword' | 'page', target, label }]
 export function linkMatches(query, { rows = [], keywords = [], pages = [], aliases = {} } = {}) {
   const typed = String(query ?? '').trim();
   const want = wordsIn(typed);
@@ -153,35 +154,79 @@ export function linkMatches(query, { rows = [], keywords = [], pages = [], alias
     const words = wordsIn(name);
     return want.every((w) => words.some((word) => word.startsWith(w)));
   };
+  const named = (match) => squash(match.label) === squash(typed);
   const number = /^\d+(?:[.,]\d*)?$/.test(typed) ? typed.replace(',', '.') : null;
   const byNumber = number ? rows.filter((row) => row.no && row.no.startsWith(number)) : [];
   const byTitle = rows.filter((row) => !byNumber.includes(row) && has(row.title ?? ''));
-  const ids = new Set([...keywords.map((keyword) => keyword.id), ...Object.keys(aliases)].map(linkFold));
-  return [
-    ...[...byNumber, ...byTitle].map((row) => ({ kind: 'row', target: `@${row.id}`, label: row.title ?? '' })),
-    ...keywords.filter((keyword) => has(keyword.label ?? keyword.id)).map(({ id, label = id }) => {
-      const named = ids.has(linkFold(label)) && linkFold(label) !== linkFold(id);
-      return { kind: 'keyword', target: named ? id : label, label };
-    }),
+  const target = keywordTarget(keywords, aliases);
+  const others = [
+    ...keywords.filter((keyword) => has(keyword.label ?? keyword.id)).map((keyword) => ({ kind: 'keyword', target: target(keyword), label: keyword.label ?? keyword.id })),
     ...pages.filter((page) => has(page.title ?? '')).map((page) => ({ kind: 'page', target: `page:${page.address}`, label: page.title ?? '' })),
+  ];
+  return [
+    ...others.filter(named),
+    ...[...byNumber, ...byTitle].slice(0, others.length ? 5 : 8).map((row) => ({ kind: 'row', target: `@${row.id}`, label: row.title ?? '' })),
+    ...others.filter((match) => !named(match)),
   ].slice(0, 8);
 }
 
+// What names a keyword in a link: its label, unless lib/links.mjs would read that label otherwise.
+// It reads a target starting with @ as a row and page: as a page; a keyword's id, then a folded id
+// (`aliases`), then a label; [ ] and | end a link's words and target. So a label holding [ ] or |,
+// read as a row or a page, or read as another keyword's id, a folded id or another keyword's label,
+// gives way to the keyword's id, which always names it. The tests read each back through links.mjs.
+function keywordTarget(keywords, aliases) {
+  const ids = new Set([...keywords.map((keyword) => keyword.id), ...Object.keys(aliases)].map(linkFold));
+  const labels = new Map();
+  for (const { id, label = id } of keywords) labels.set(linkFold(label), (labels.get(linkFold(label)) ?? 0) + 1);
+  return ({ id, label = id }) => {
+    const name = linkFold(label);
+    const plain = !/[[\]|]/.test(label) && !name.startsWith('@') && !name.startsWith('page:');
+    const own = name === linkFold(id) || (!ids.has(name) && labels.get(name) === 1);
+    return plain && own ? label : id;
+  };
+}
+
 const wordsIn = (text) => fold(text).split(/[^\p{L}\p{N}]+/u).filter(Boolean);
+const squash = (text) => fold(text).replace(/\s+/g, ' ').trim();
 // A keyword's name as lib/links.mjs compares it: case and spacing aside, accents kept.
 const linkFold = (name) => String(name).normalize('NFC').replace(/\s+/g, ' ').trim().toLowerCase();
 
+// A link as lib/links.mjs finds one in a text.
+const LINK = /\[\[([^[\]]*)\]\]/g;
+
+// Whether 🔗 can write a link at the selection from `start` to `end`: its words, the spaces at
+// either end left out, hold no [ ] or | (each would end the link early), cross no empty line (the
+// text would part there, link and all) and stand outside every link already typed; with nothing
+// selected, the caret is not inside a link.
+export function linkable(value, start, end) {
+  const text = String(value ?? '');
+  const chosen = text.slice(start, end);
+  const from = start + /^\s*/.exec(chosen)[0].length;
+  const inner = text.slice(from, end).trimEnd();
+  if (/[[\]|]/.test(inner) || /\n[ \t\r]*\n/.test(inner)) return false;
+  const to = from + inner.length;
+  for (const link of text.matchAll(LINK)) {
+    const [a, b] = [link.index, link.index + link[0].length];
+    if (inner ? from < b && to > a : from > a && from < b) return false;
+  }
+  return true;
+}
+
 // The link 🔗 writes: the words selected, from `start` to `end`, become [[words|target]], the
 // spaces at either end of the selection left outside the brackets; with nothing selected, or
-// spaces only, `words` are written, after those spaces. -> { value, caret }: the text with the
-// link, and the place just after its ]].
+// spaces only, `words` are written, after those spaces, with ( ) and / for any [ ] and |, so that
+// the link stays one. -> { value, caret }: the text with the link, and the place just after its
+// ]]; or null where the selection cannot be linked (linkable), and nothing is written.
 export function insertLink(value, start, end, target, words) {
+  if (!linkable(value, start, end)) return null;
   const text = String(value ?? '');
   const chosen = text.slice(start, end);
   const lead = /^\s*/.exec(chosen)[0];
   const inner = chosen.slice(lead.length).trimEnd();
+  const shown = inner || String(words ?? '').replace(/\[/g, '(').replace(/\]/g, ')').replace(/\|/g, '/').replace(/\s+/g, ' ').trim();
   const before = text.slice(0, start) + lead;
-  const link = `[[${inner || words}|${target}]]`;
+  const link = shown ? `[[${shown}|${target}]]` : `[[${target}]]`;
   return { value: before + link + chosen.slice(lead.length + inner.length) + text.slice(end), caret: before.length + link.length };
 }
 
