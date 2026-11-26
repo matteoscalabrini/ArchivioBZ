@@ -20,7 +20,7 @@ import { makeStore } from '../cloud/store.mjs';
 import { loadLists } from '../cloud/render.mjs';
 import { makeHandlers } from '../cloud/handlers.mjs';
 import { hashPassword } from '../cloud/auth.mjs';
-import { localPictures, MAX_ORIGINAL } from '../cloud/pictures.mjs';
+import { localStores, MAX_ORIGINAL } from '../cloud/pictures.mjs';
 
 const LIBRARY = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const ROOT = path.dirname(LIBRARY);
@@ -95,7 +95,7 @@ export async function startDev({
   originalsDir = path.join(LIBRARY, '.cache', 'dev-originals'),
   // The stores of the pictures added: the two folders, unless a check gives others (the cloud's
   // handshake with the folders behind it, in library/test/browser/edit.check.mjs).
-  pictures = localPictures({ originals: path.resolve(originalsDir), pictures: path.resolve(imgDir) }),
+  pictures = localStores({ originals: path.resolve(originalsDir), pictures: path.resolve(imgDir) }),
 } = {}) {
   const pg = new PGlite(path.resolve(dataDir));
   const lists = await loadLists(ROOT);

@@ -23,7 +23,7 @@ import sharp from 'sharp';
 import { PGlite } from '@electric-sql/pglite';
 import { pgliteDb } from '../../cloud/db.mjs';
 import { makeStore } from '../../cloud/store.mjs';
-import { blobPictures, localPictures } from '../../cloud/pictures.mjs';
+import { cloudStores, localStores } from '../../cloud/pictures.mjs';
 import { stripJpeg } from '../../lib/metadata.mjs';
 import { moveIn, devPictures } from '../../tools/move-in.mjs';
 import { startDev } from '../../tools/dev.mjs';
@@ -1660,6 +1660,121 @@ async function main() {
     check(await page.$eval(`${row} .ed-add-pic`, (el) => !el.querySelector('button').hidden && el.querySelector('.ed-adding').textContent === ''), 'the line does not stand as before');
   });
 
+  // Several files at once, as the author chooses a handful: they go in the order chosen, the line
+  // saying which, and one the server cannot read (notes saved as .png, which the page takes by its
+  // type and /edit/picture refuses) is said in the bar while the next one goes on.
+  const scanFile = path.join(files, 'scan.png');
+  await writeFile(scanFile, scan);
+  const fakePng = path.join(files, 'notes.png');
+  await writeFile(fakePng, 'Notes saved under the wrong name, not a picture.\n');
+  // Records each text the line of ＋ picture of row `id` shows, through every drawing of the row.
+  const watchLine = (id) => page.evaluate((rowId) => {
+    window.lineSaid = [];
+    const read = () => {
+      const words = document.querySelector(`article.row[data-no="${rowId}"] .ed-add-pic .ed-adding`)?.textContent;
+      if (words !== undefined && words !== window.lineSaid.at(-1)) window.lineSaid.push(words);
+    };
+    new MutationObserver(read).observe(document.querySelector('.list'), { subtree: true, childList: true, characterData: true });
+  }, id);
+  const lineSaid = () => page.evaluate(() => window.lineSaid.filter((words, i, all) => words !== '' || all.slice(0, i).some(Boolean)));
+
+  await step('three files chosen at once go in their order, the line saying Adding picture 1, 2 and 3 of 3…; the one the server cannot read is said in the bar and the next goes on', async () => {
+    await page.goto(`${base}/edit/`);
+    await page.waitForSelector('.ed-bar');
+    const row = rowOf('5.00');
+    await openRow('5.00');
+    check((await figuresOf('5.00')).length === 0, '5.00 has pictures already');
+    await watchLine('5.00');
+    const before = sent.length;
+    const asked = pictureRequests.length;
+    await page.emulateNetworkConditions({ offline: false, download: 100e6, upload: 100e6, latency: 200 });
+    try {
+      const [chooser] = await Promise.all([page.waitForFileChooser(), page.click(`${row} button.ed[data-ed="pic-add"]`)]);
+      await chooser.accept([photo, fakePng, scanFile]);
+      await page.waitForFunction((sel) => document.querySelectorAll(`${sel} .pics figure`).length === 2 && document.querySelector(`${sel} .ed-adding`)?.textContent === '',
+        { timeout: 20000 }, row)
+        .catch(async () => { throw new Error(`5.00 shows ${JSON.stringify(await figuresOf('5.00'))}; the line said ${JSON.stringify(await lineSaid())}`); });
+    } finally {
+      await page.emulateNetworkConditions(null);
+    }
+    const said = await lineSaid();
+    check(JSON.stringify(said) === JSON.stringify(['Adding picture 1 of 3…', 'Adding picture 2 of 3…', 'Adding picture 3 of 3…', '']), `the line said ${JSON.stringify(said)}`);
+    const bar = await page.$eval('.ed-msg', (el) => el.textContent);
+    check(bar.startsWith('That file is not a picture the site can take: JPEG, PNG or WebP.'), `the bar says ${JSON.stringify(bar)}`);
+    const routes = pictureRequests.slice(asked).map((r) => r.route).join(' ');
+    check(routes === 'original picture original picture original picture', `the picture routes asked were ${routes}`);
+    const ops = sent.slice(before).map((s) => `${s.body?.op?.op} ${s.body?.op?.picture?.w}×${s.body?.op?.picture?.h} ${s.status}`);
+    check(ops.join(', ') === 'add-picture 1067×1600 200, add-picture 600×400 200', `the edits answered were ${ops.join(', ')}`);
+    const shown = await figuresOf('5.00');
+    check(!shown[0].startsWith('*') && shown[1].startsWith('*'), `5.00 shows ${JSON.stringify(shown)}: the last one added is not last and showing`);
+  });
+
+  // Another window has saved: every add-picture this page sends now is refused (409), each after
+  // its original and its two JPEGs are sent. The first is; those still waiting are not sent.
+  await step('after another window has changed the draft, the first file is refused with the conflict line and the files still waiting are not sent', async () => {
+    const other = watch(await browser.newPage());
+    try {
+      await other.goto(`${base}/edit/`);
+      await other.waitForSelector('.ed-bar');
+      const saved = await other.evaluate(async () => {
+        const { version } = JSON.parse(document.getElementById('edit-data').textContent);
+        const op = { op: 'set-row', id: '12.01', fields: { title: 'Changed in another window' } };
+        return (await fetch('op', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ version, op }) })).status;
+      });
+      check(saved === 200, `the other window's edit was answered ${saved}`);
+    } finally {
+      await other.close();
+    }
+    const row = rowOf('5.00');
+    await openRow('5.00');
+    const before = sent.length;
+    const asked = pictureRequests.length;
+    const [chooser] = await Promise.all([page.waitForFileChooser(), page.click(`${row} button.ed[data-ed="pic-add"]`)]);
+    await chooser.accept([scanFile, photo, scanFile]);
+    await page.waitForFunction(() => document.querySelector('.ed-msg')?.dataset.kind === 'conflict', { timeout: 15000 })
+      .catch(async () => { throw new Error(`the bar says ${JSON.stringify(await page.$eval('.ed-msg', (el) => el.textContent))}`); });
+    await pause(800);
+    const routes = pictureRequests.slice(asked).map((r) => r.route).join(' ');
+    check(routes === 'original picture', `the picture routes asked were ${routes}: the files waiting were sent`);
+    const ops = sent.slice(before).map((s) => `${s.body?.op?.op} ${s.status}`);
+    check(ops.join(', ') === 'add-picture 409', `the edits answered were ${ops.join(', ')}`);
+    check(await page.$eval(`${row} .ed-add-pic`, (line) => !line.querySelector('button').hidden && line.querySelector('.ed-adding').textContent === ''), 'the line still says pictures are being added');
+    // Nothing waits any more: the page goes without asking (a question would count as a problem).
+    await page.goto(`${base}/edit/`);
+    await page.waitForSelector('.ed-bar');
+  });
+
+  await step('with the session ended, the first file is refused, the files waiting are not sent, and the bar says to choose them again; with the server out of reach, the bar says so', async () => {
+    const row = rowOf('5.00');
+    await openRow('5.00');
+    const cookies = (await browser.cookies()).filter((c) => c.name === 'archivio_edit');
+    check(cookies.length === 1, 'there is no session cookie to delete');
+    await browser.deleteCookie(...cookies);
+    const asked = pictureRequests.length;
+    const [chooser] = await Promise.all([page.waitForFileChooser(), page.click(`${row} button.ed[data-ed="pic-add"]`)]);
+    await chooser.accept([scanFile, photo, scanFile]);
+    const line = 'Logged out. Log in again and choose the pictures not yet added.';
+    await page.waitForFunction((words) => document.querySelector('.ed-msg a')?.textContent === words, { timeout: WAIT }, line)
+      .catch(async () => { throw new Error(`the bar says ${JSON.stringify(await page.$eval('.ed-msg', (el) => el.textContent))}`); });
+    await pause(500);
+    const routes = pictureRequests.slice(asked).map((r) => r.route).join(' ');
+    check(routes === 'original', `the picture routes asked were ${routes}: the files waiting were sent`);
+    check(await page.$eval(`${row} .ed-add-pic`, (el) => !el.querySelector('button').hidden && el.querySelector('.ed-adding').textContent === ''), 'the line still says pictures are being added');
+    await logIn(page, base);
+    await openRow('5.00');
+    await page.setOfflineMode(true);
+    try {
+      const [again] = await Promise.all([page.waitForFileChooser(), page.click(`${row} button.ed[data-ed="pic-add"]`)]);
+      await again.accept([scanFile]);
+      const unreached = 'The server could not be reached. Nothing was saved; try again.';
+      await page.waitForFunction((words) => document.querySelector('.ed-msg')?.textContent.startsWith(words), { timeout: WAIT }, unreached)
+        .catch(async () => { throw new Error(`offline, the bar says ${JSON.stringify(await page.$eval('.ed-msg', (el) => el.textContent))}`); });
+    } finally {
+      await page.setOfflineMode(false);
+    }
+    check((await figuresOf('5.00')).length === 2, '5.00 changed');
+  });
+
   // The cloud's way, on this computer: the server's handshake as the cloud's (a token made by
   // @vercel/blob/client from a stand-in read-write token), the original put by the page's Blob
   // client (web/vendor/blob-client.esm.js), and the pictures made from the folders as above. The
@@ -1667,8 +1782,8 @@ async function main() {
   // keeps the file where the folders' /edit/picture reads it; no request leaves this computer.
   await step('as in the cloud: the token asked of /edit/upload, the original put by the page\'s Blob client into the private store, then made and added', async () => {
     await dev.close();
-    const folders = localPictures({ originals: originalsDir, pictures: imgDir });
-    const cloud = blobPictures({ originals: 'vercel_blob_rw_checkstore_standin', pictures: 'vercel_blob_rw_unused_standin' });
+    const folders = localStores({ originals: originalsDir, pictures: imgDir });
+    const cloud = cloudStores({ originals: 'vercel_blob_rw_checkstore_standin', pictures: 'vercel_blob_rw_unused_standin' });
     dev = await startDev({ port: 0, dataDir, imgDir, originalsDir, password: 'dev', pictures: { handshake: cloud.handshake, picture: folders.picture } });
     base = dev.url.replace(/\/edit\/$/, '');
     const puts = [];
@@ -1702,8 +1817,6 @@ async function main() {
     await openRow('12.01');
     const before = sent.length;
     const asked = pictureRequests.length;
-    const scanFile = path.join(files, 'scan.png');
-    await writeFile(scanFile, scan);
     const [chooser] = await Promise.all([page.waitForFileChooser(), page.click(`${row} button.ed[data-ed="pic-add"]`)]);
     await chooser.accept([scanFile]);
     await page.waitForFunction((sel) => document.querySelectorAll(`${sel} .pics figure`).length === 2, { timeout: 15000 }, row)

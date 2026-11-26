@@ -123,7 +123,9 @@ export function act(op) {
   });
 }
 
-function wordsFor(error) {
+// The sentence for a refused request, by its status (0: no answer came); pictures.js says its own
+// requests' refusals in the same words.
+export function wordsFor(error) {
   if (error.status === 401) return LOGGED_OUT;
   if (error.status === 409) return CONFLICT;
   if (error.status === 0) return 'The server could not be reached. Nothing was saved; try again.';

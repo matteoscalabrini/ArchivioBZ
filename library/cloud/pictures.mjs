@@ -31,9 +31,10 @@ const QUALITY = 75;
 const FORMATS = ['jpeg', 'png', 'webp'];
 
 // An original's name in the private store: originals/ and one name, which the page makes from the
-// row's id and the time (originals/18.04-mf3k2a.jpg) and the store follows with a random suffix.
-// Nothing deeper, and not . or .., which an address would read as a step.
-const isOriginal = (pathname) => typeof pathname === 'string' && /^originals\/[^/]+$/.test(pathname) && !/^originals\/\.\.?$/.test(pathname);
+// row's id and the time (originals/18.04-mf3k2a.jpg) and the store follows with a random suffix:
+// letters, digits, _, - and . only, and not . or .. alone. @vercel/blob puts the name into the
+// store's address as it is, where %2e%2e would be a step up as .. is, and # or ? would end the path.
+const isOriginal = (pathname) => typeof pathname === 'string' && /^originals\/[\w.-]+$/.test(pathname) && !/^originals\/\.\.?$/.test(pathname);
 // A row's id as it can stand in a file's name: today's numbers (18.04) and r1, r2… Checked against
 // the draft by handlers.mjs; here, so that no other id can ever name a file.
 const isRowId = (id) => typeof id === 'string' && /^[\w.-]+$/.test(id) && !/^\.\.?$/.test(id);
@@ -42,24 +43,31 @@ const isObject = (value) => value !== null && typeof value === 'object' && !Arra
 // The two JPEGs of the site made from an original: { large, small }, each { buf, w, h }. The
 // photograph is turned as its Exif orientation says, laid on white where it is transparent, fitted
 // inside 1600 × 1600 and 220 × 220 and never enlarged, and written at quality 75 with no metadata:
-// sharp keeps none unless asked. A file sharp cannot read, or reads as another kind than JPEG, PNG
-// or WebP (a GIF, a TIFF, an SVG sent under another type), is refused with the sentence.
-export async function makePictures(original) {
-  const { default: sharp } = await import('sharp');
+// sharp keeps none unless asked. The original is decoded once, into the large picture's pixels, and
+// the small one is made from those, so that an original of 100 MB is held and read once in the
+// function. A file sharp cannot read, or reads as another kind than JPEG, PNG or WebP (a GIF, a
+// TIFF, an SVG sent under another type), is refused with the sentence. `sharp`: given only by the
+// tests.
+export async function makePictures(original, { sharp } = {}) {
+  sharp ??= (await import('sharp')).default;
   try {
     // failOn 'error': a camera's harmless warning does not refuse a photograph; a file cut short does.
-    const read = () => sharp(original, { failOn: 'error' });
-    const { format } = await read().metadata();
+    const { format } = await sharp(original, { failOn: 'error' }).metadata();
     if (!FORMATS.includes(format)) throw new OpError(NOT_A_PICTURE);
-    const upright = read().rotate().flatten({ background: '#ffffff' });
-    const make = async (side) => {
-      const { data, info } = await upright.clone()
-        .resize(side, side, { fit: 'inside', withoutEnlargement: true })
-        .jpeg({ quality: QUALITY })
-        .toBuffer({ resolveWithObject: true });
+    const inside = (side) => [side, side, { fit: 'inside', withoutEnlargement: true }];
+    const pixels = await sharp(original, { failOn: 'error' })
+      .rotate()
+      .flatten({ background: '#ffffff' })
+      .resize(...inside(LARGE))
+      .raw()
+      .toBuffer({ resolveWithObject: true });
+    const { width, height, channels } = pixels.info;
+    const jpeg = async (image) => {
+      const { data, info } = await image.jpeg({ quality: QUALITY }).toBuffer({ resolveWithObject: true });
       return { buf: data, w: info.width, h: info.height };
     };
-    return { large: await make(LARGE), small: await make(SMALL) };
+    const raw = () => sharp(pixels.data, { raw: { width, height, channels } });
+    return { large: await jpeg(raw()), small: await jpeg(raw().resize(...inside(SMALL))) };
   } catch (error) {
     if (error instanceof OpError) throw error;
     throw new OpError(NOT_A_PICTURE);
@@ -111,7 +119,7 @@ function picturesFrom({ read, put }) {
 // archiviobz-media); `pictures`, the public store's (PICTURES_READ_WRITE_TOKEN,
 // archiviobz-pictures). `blob` and `fetch` are @vercel/blob and the HEAD's fetch, given otherwise
 // only by the tests.
-export function blobPictures({ originals, pictures, blob = loadBlob, fetch } = {}) {
+export function cloudStores({ originals, pictures, blob = loadBlob, fetch } = {}) {
   return {
     // The client-upload handshake of @vercel/blob/client: a token with which the browser puts one
     // original into the private store, under originals/ only, of the three kinds, at most 100 MB,
@@ -157,7 +165,7 @@ const suffix = () => randomBytes(8).toString('hex');
 // `originals`, which the local server never serves, and the pictures in `pictures`, which it
 // serves at `base` (/dev-img/), each named as the store would name it. The page sends an original
 // to /edit/original, which hands it here (`receive`), since there is no store to send it to.
-export function localPictures({ originals, pictures, base = '/dev-img/' }) {
+export function localStores({ originals, pictures, base = '/dev-img/' }) {
   const inFolder = (dir, name) => {
     const file = path.resolve(dir, name);
     if (path.dirname(file) !== path.resolve(dir)) throw new OpError(NOT_AN_ORIGINAL);

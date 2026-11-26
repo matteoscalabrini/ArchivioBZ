@@ -70,8 +70,8 @@ export function makeHandlers({
   store,
   env = {},
   lists,
-  // The stores of the pictures added (cloud/pictures.mjs): blobPictures in the cloud, with the
-  // client-upload handshake; localPictures on this computer, which takes the original itself.
+  // The stores of the pictures added (cloud/pictures.mjs): cloudStores in the cloud, with the
+  // client-upload handshake; localStores on this computer, which takes the original itself.
   // Without them, pictures cannot be added.
   pictures = null,
   purge = async () => {},

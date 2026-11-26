@@ -1,19 +1,44 @@
 /*!
  * @vercel/blob 2.9.0, its `client` entry as the browser runs it: `put`, which sends a file to a
- * Blob store with a client token (edit/pictures.js asks /edit/upload for the token first). Copyright
- * 2023 Vercel, Inc. Licensed under the Apache License, Version 2.0 (the "License"); you may not use
- * this file except in compliance with the License. You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0. Unless required by applicable law or agreed to in
- * writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific
- * language governing permissions and limitations under the License.
+ * Blob store with a client token (edit/pictures.js asks /edit/upload for the token first).
+ * Copyright 2023 Vercel, Inc. Licensed under the Apache License, Version 2.0 (the "License"); you
+ * may not use this file except in compliance with the License. You may obtain a copy of the
+ * License at http://www.apache.org/licenses/LICENSE-2.0. Unless required by applicable law or
+ * agreed to in writing, software distributed under the License is distributed on an "AS IS"
+ * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License
+ * for the specific language governing permissions and limitations under the License.
  *
- * Bundled with what it imports: @vercel/oidc 3.8.10 (Apache-2.0, Vercel, Inc.); jose 5.10.0,
- * async-retry 1.3.3, retry 0.13.1, throttleit 2.1.0, is-buffer 2.0.5, is-node-process 1.2.0 (each
- * MIT); their notices kept at the end.
+ * Bundled with it, each under its own licence (the notices as each package gives them):
+ *   @vercel/oidc 3.8.10: Copyright 2017 Vercel, Inc. Licensed under the Apache License, Version
+ *     2.0, on the terms above.
+ *   jose 5.10.0: Copyright (c) 2018 Filip Skokan. MIT.
+ *   async-retry 1.3.3: Copyright (c) 2021 Vercel, Inc. MIT.
+ *   retry 0.13.1: Copyright (c) 2011: Tim Koschützki (tim@debuggable.com), Felix Geisendörfer
+ *     (felix@debuggable.com). MIT.
+ *   throttleit 2.1.0: Copyright (c) TJ Holowaychuk <tj@tjholowaychuk.com>, Copyright (c) Sindre
+ *     Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com). MIT.
+ *   is-buffer 2.0.5: Copyright (c) Feross Aboukhadijeh. MIT.
+ *   is-node-process 1.2.0: MIT, as its package.json says (github.com/mswjs/is-node-process,
+ *     maintained by kettanaito); the package carries no licence text of its own.
+ *   bytes, inlined in @vercel/blob's own code: Copyright(c) 2012-2014 TJ Holowaychuk, Copyright(c)
+ *     2015 Jed Watson. MIT.
+ *
+ * The MIT licence, as each of the packages marked MIT gives it under its copyright notice above:
+ *   Permission is hereby granted, free of charge, to any person obtaining a copy of this software
+ *   and associated documentation files (the "Software"), to deal in the Software without
+ *   restriction, including without limitation the rights to use, copy, modify, merge, publish,
+ *   distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the
+ *   Software is furnished to do so, subject to the following conditions:
+ *   The above copyright notice and this permission notice shall be included in all copies or
+ *   substantial portions of the Software.
+ *   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
+ *   BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ *   NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ *   DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  * Made from this repository's node_modules (package-lock.json) with esbuild 0.28.2, and this
- * comment put above it:
+ * comment put above it (the notices esbuild keeps, is-buffer's and bytes', stand at the end):
  *   printf "export { put } from '@vercel/blob/client';\n" | npx esbuild@0.28.2 --bundle --format=esm \
  *     --platform=browser --target=es2022 --outfile=library/web/vendor/blob-client.esm.js
  */

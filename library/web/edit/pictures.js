@@ -10,9 +10,11 @@
 // (to the private store with a token from /edit/upload, or on this computer to /edit/original),
 // /edit/picture makes the site's two JPEGs of it, and add-picture puts them last in the row
 // through the queue, which draws the row anew showing the new picture. A file refused is said in
-// the bar, and the next one goes on. Until the last is added, the work is under way: leaving the
-// page asks first, and Log out and Publish wait for it.
-import { state, list, send, act, say, post, during, watchUnsaved, showPicture, rowEl, LOGGED_OUT } from './core.js';
+// the bar, and the next one goes on; but once the session has ended or another window has changed
+// the draft, every file after would be refused too, after its upload: those still waiting are not
+// sent, and the bar says so. Until the last is added, the work is under way: leaving the page asks
+// first, and Log out and Publish wait for it.
+import { state, list, send, act, say, post, during, watchUnsaved, showPicture, rowEl, wordsFor } from './core.js';
 import { iconButton, wordButton } from './icons.js';
 import { openField, input } from './field.js';
 
@@ -22,7 +24,9 @@ const held = (id) => (state.doc.rows[id]?.pictures ?? []).filter((p) => p?.src);
 // server takes them (cloud/pictures.mjs).
 const EXTENSIONS = { 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp' };
 const LARGEST = 104857600; // 100 MB
-const UNREACHED = 'The server could not be reached. Nothing was saved; try again.';
+// The session ended while files were waiting: the files still waiting are not sent, and nothing
+// keeps them, so the author chooses them again once logged in.
+const LOGGED_OUT_WAITING = 'Logged out. Log in again and choose the pictures not yet added.';
 
 // Each figure's tools carry its picture's source, as the row was drawn: the page's draft may run
 // ahead of a row that waits to be drawn again (core.js), so an index would name another picture.
@@ -189,11 +193,22 @@ document.addEventListener('dragleave', (event) => {
 });
 
 // The files on their way, one after the other in the order given, whichever rows they go to; and,
-// for each row with files on their way, which of them is being added: { at, of }.
+// for each row with files on their way, which of them is being added: { at, of }. `round`: a file
+// refused for the session's end or for another window's change ends the round, and a file of an
+// earlier round is not sent; files chosen after it go on.
 let chain = Promise.resolve();
 let waiting = 0;
 const runs = new Map();
+let round = 0;
 watchUnsaved(() => waiting > 0);
+
+function endRound() {
+  round += 1;
+  for (const id of [...runs.keys()]) {
+    runs.delete(id);
+    showRun(rowEl(id));
+  }
+}
 
 // Why a file is not sent, in the words of the bar; or '' when it is taken.
 function refusal(file) {
@@ -212,17 +227,19 @@ function addFiles(id, files) {
   run.of += taken.length;
   runs.set(id, run);
   showRun(rowEl(id));
+  const mine = round;
   for (const file of taken) {
     waiting++;
     const job = chain
       .then(() => {
+        if (mine !== round) return undefined;
         run.at++;
         showRun(rowEl(id));
         return addOne(id, file);
       })
       .finally(() => {
         waiting--;
-        if (run.at === run.of) runs.delete(id);
+        if (runs.get(id) === run && run.at === run.of) runs.delete(id);
         showRun(rowEl(id));
       });
     chain = job.catch(() => {}); // addOne says what went wrong; the next file goes on all the same
@@ -231,7 +248,9 @@ function addFiles(id, files) {
 }
 
 // One file: its original sent, its pictures made, then added to the row. Never rejects: what goes
-// wrong is said in the bar, and the next file goes on.
+// wrong is said in the bar, and the next file goes on, unless the session has ended (401) or
+// another window has changed the draft (409, which the queue says in the bar itself): then the
+// round ends.
 async function addOne(id, file) {
   try {
     if (!state.doc.rows[id]) return; // the row was removed meanwhile
@@ -242,8 +261,9 @@ async function addOne(id, file) {
     await send({ op: 'add-picture', id, picture });
   } catch (error) {
     showPicture.delete(id);
-    if (error.status === 401) say(LOGGED_OUT, 'logged-out');
-    else if (error.status !== 409) say(error.message); // a conflict is said by the queue (core.js)
+    if (error.status === 401 || error.status === 409) endRound();
+    if (error.status === 401) say(LOGGED_OUT_WAITING, 'logged-out');
+    else if (error.status !== 409) say(error.message);
   }
 }
 
@@ -269,16 +289,18 @@ async function sendOriginal(id, file) {
 }
 
 // A request of edit mode outside the queue (`request()` -> { status, body }), answered with its
-// JSON; refused with an Error whose message is the sentence to show, and its status.
+// JSON; refused with an Error whose message is the sentence to show (core.js's words), and its
+// status.
 async function answered(request) {
   let response;
   try {
     response = await request();
   } catch {
-    throw Object.assign(new Error(UNREACHED), { status: 0 });
+    throw Object.assign(new Error(wordsFor({ status: 0 })), { status: 0 });
   }
   if (response.status === 200) return response.body;
-  throw Object.assign(new Error(response.status === 401 ? LOGGED_OUT : response.body?.error ?? `The server answered ${response.status}.`), { status: response.status });
+  const refusal = { status: response.status, message: response.body?.error ?? `The server answered ${response.status}.` };
+  throw Object.assign(new Error(wordsFor(refusal)), { status: response.status });
 }
 const ask = (route, body) => answered(() => post(route, body));
 

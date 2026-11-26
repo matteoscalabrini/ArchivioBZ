@@ -8,7 +8,7 @@ import path from 'node:path';
 import { readFile, readdir } from 'node:fs/promises';
 import sharp from 'sharp';
 import { getPayloadFromClientToken } from '@vercel/blob/client';
-import { makePictures, blobPictures, localPictures, publicPut, NOT_A_PICTURE, TAKEN, MAX_ORIGINAL } from '../cloud/pictures.mjs';
+import { makePictures, cloudStores, localStores, publicPut, NOT_A_PICTURE, TAKEN, MAX_ORIGINAL } from '../cloud/pictures.mjs';
 import { OpError } from '../cloud/ops.mjs';
 import { stripJpeg } from '../lib/metadata.mjs';
 import { tempDir } from './helpers.mjs';
@@ -57,6 +57,37 @@ test('a photograph turned by its orientation comes out upright, 1067 × 1600 and
   }
 });
 
+// sharp as makePictures is given it, counting the pictures it writes out from a pipeline that reads
+// `original`: each is a decoding of the original whole (a clone decodes it again).
+function countingSharp(original) {
+  let decodes = 0;
+  const watch = (instance) => {
+    const toBuffer = instance.toBuffer.bind(instance);
+    instance.toBuffer = (...args) => {
+      decodes += 1;
+      return toBuffer(...args);
+    };
+    const clone = instance.clone.bind(instance);
+    instance.clone = () => watch(clone());
+    return instance;
+  };
+  const counted = (input, options) => (input === original ? watch(sharp(input, options)) : sharp(input, options));
+  return { sharp: counted, decodes: () => decodes };
+}
+
+test('the original is decoded once for both pictures, the small one made from the large one\'s pixels', async () => {
+  const input = await phonePhoto();
+  const counting = countingSharp(input);
+  const { large, small } = await makePictures(input, { sharp: counting.sharp });
+  assert.equal(counting.decodes(), 1);
+  assert.deepEqual([large.w, large.h, small.w, small.h], [1067, 1600, 147, 220]);
+  for (const out of [large, small]) assert.ok(stripJpeg(out.buf).equals(out.buf));
+  const grey = await sharp({ create: { width: 2000, height: 1000, channels: 3, background: '#777' } }).greyscale().png().toBuffer();
+  const fromGrey = await makePictures(grey);
+  assert.deepEqual([fromGrey.large.w, fromGrey.large.h, fromGrey.small.w, fromGrey.small.h], [1600, 800, 220, 110], 'a picture of one channel');
+  assert.equal((await sharp(fromGrey.small.buf).metadata()).format, 'jpeg');
+});
+
 test('a picture smaller than 1600 px keeps its size: never enlarged', async () => {
   const input = await sharp({ create: { width: 500, height: 300, channels: 3, background: '#336699' } }).png().toBuffer();
   const { large, small } = await makePictures(input);
@@ -97,11 +128,14 @@ const ORIGINALS_TOKEN = 'vercel_blob_rw_privatestore_secretone';
 const PICTURES_TOKEN = 'vercel_blob_rw_publicstore_secrettwo';
 const asked = (pathname, type = 'blob.generate-client-token') => ({ type, payload: { pathname, clientPayload: null, multipart: false } });
 const anyRequest = new Request('https://a.test/api/edit?route=upload', { method: 'POST' });
+// Names an address reads otherwise than as one name: @vercel/blob pastes the name into the store's
+// address as it is, and %2e%2e is a step up there as .. is; # and ? end the path.
+const ODD_NAMES = ['originals/%2e%2e', 'originals/.%2E', 'originals/%2E%2E', 'originals/a%2fb.jpg', 'originals/a#b.jpg', 'originals/a?b.jpg', 'originals/a b.jpg', 'originals/\\..'];
 
 test('the handshake gives a token for a name under originals/ only: the three types, 100 MB, a random suffix, no callback', async () => {
   assert.deepEqual(TAKEN, ['image/jpeg', 'image/png', 'image/webp']);
   assert.equal(MAX_ORIGINAL, 104857600);
-  const store = blobPictures({ originals: ORIGINALS_TOKEN, pictures: PICTURES_TOKEN });
+  const store = cloudStores({ originals: ORIGINALS_TOKEN, pictures: PICTURES_TOKEN });
   const answer = await store.handshake(asked('originals/r1-mf3k2a.jpg'), anyRequest);
   assert.equal(answer.type, 'blob.generate-client-token');
   assert.match(answer.clientToken, /^vercel_blob_client_privatestore_/, 'a token for the private store');
@@ -112,7 +146,7 @@ test('the handshake gives a token for a name under originals/ only: the three ty
   assert.equal(payload.addRandomSuffix, true);
   assert.equal(payload.onUploadCompleted, undefined, 'no onUploadCompleted: Vercel calls nothing back');
   assert.equal(payload.allowOverwrite, undefined, 'an original is never written over');
-  for (const pathname of ['pictures/x.jpg', '../x', 'originals/a/b.jpg', 'originals/', 'originals/..', 'x/originals/a.jpg', '', null, 7]) {
+  for (const pathname of ['pictures/x.jpg', '../x', 'originals/a/b.jpg', 'originals/', 'originals/..', 'x/originals/a.jpg', '', null, 7, ...ODD_NAMES]) {
     await assert.rejects(store.handshake(asked(pathname), anyRequest), OpError, `the name ${JSON.stringify(pathname)}`);
   }
   await assert.rejects(store.handshake(asked('originals/a.jpg', 'blob.upload-completed'), anyRequest), OpError, 'only a token is asked for');
@@ -147,7 +181,7 @@ function standIns({ original = null, heldSize = null } = {}) {
 test('in the cloud, the original is read from the private store by its name, and each JPEG put in the public store, checked', async () => {
   const original = await sharp({ create: { width: 2400, height: 1200, channels: 3, background: '#aa8844' } }).jpeg().toBuffer();
   const stand = standIns({ original });
-  const store = blobPictures({ originals: ORIGINALS_TOKEN, pictures: PICTURES_TOKEN, blob: stand.blob, fetch: stand.fetch });
+  const store = cloudStores({ originals: ORIGINALS_TOKEN, pictures: PICTURES_TOKEN, blob: stand.blob, fetch: stand.fetch });
   const picture = await store.picture('18.04', 'originals/18.04-mf3k2a-Xy12.jpg');
   const [get, putLarge, headLarge, putSmall, headSmall] = stand.calls;
   assert.deepEqual(get, ['get', 'originals/18.04-mf3k2a-Xy12.jpg', { access: 'private', token: ORIGINALS_TOKEN }], 'by its name and the token, never by an address');
@@ -162,11 +196,11 @@ test('in the cloud, the original is read from the private store by its name, and
   assert.deepEqual(picture, { src: largeUrl, w: 1600, h: 800, small: { src: smallUrl, w: 220, h: 110 } });
   assert.equal(stand.calls.length, 5);
 
-  const missing = blobPictures({ originals: ORIGINALS_TOKEN, pictures: PICTURES_TOKEN, ...standIns() });
+  const missing = cloudStores({ originals: ORIGINALS_TOKEN, pictures: PICTURES_TOKEN, ...standIns() });
   await assert.rejects(missing.picture('a', 'originals/a-1.jpg'), (e) => e instanceof OpError && e.message === 'There is no original originals/a-1.jpg.');
-  for (const pathname of ['../x', 'pictures/x.jpg', 'originals/a/b.jpg', 'originals/..', null]) {
+  for (const pathname of ['../x', 'pictures/x.jpg', 'originals/a/b.jpg', 'originals/..', null, ...ODD_NAMES]) {
     const refusing = standIns({ original });
-    const nowhere = blobPictures({ originals: ORIGINALS_TOKEN, pictures: PICTURES_TOKEN, blob: refusing.blob, fetch: refusing.fetch });
+    const nowhere = cloudStores({ originals: ORIGINALS_TOKEN, pictures: PICTURES_TOKEN, blob: refusing.blob, fetch: refusing.fetch });
     await assert.rejects(nowhere.picture('a', pathname), OpError, JSON.stringify(pathname));
     assert.equal(refusing.calls.length, 0, `${JSON.stringify(pathname)}: nothing asked of the stores`);
   }
@@ -192,7 +226,7 @@ test('on this computer an original is kept as sent in its own folder, and the pi
   const dir = await tempDir('local-pictures-');
   const originals = path.join(dir, 'originals');
   const served = path.join(dir, 'img');
-  const store = localPictures({ originals, pictures: served });
+  const store = localStores({ originals, pictures: served });
   const photo = await sharp({ create: { width: 900, height: 600, channels: 3, background: '#123456' } }).png().toBuffer();
   const { pathname } = await store.receive({ pathname: 'originals/a-mf3k2a.png', type: 'image/png', bytes: photo });
   assert.match(pathname, /^originals\/a-mf3k2a-[0-9a-f]{16}\.png$/, 'a random suffix, as the store adds one');
@@ -202,7 +236,8 @@ test('on this computer an original is kept as sent in its own folder, and the pi
   assert.match(picture.small.src, /^\/dev-img\/a-[0-9a-z]+-small-[0-9a-f]{16}\.jpg$/);
   assert.deepEqual([picture.w, picture.h, picture.small.w, picture.small.h], [900, 600, 220, 147]);
   assert.deepEqual((await readdir(served)).sort(), [picture.src, picture.small.src].map((src) => src.slice('/dev-img/'.length)).sort(), 'the original is not among the served files');
-  for (const [pathname, type] of [['originals/a.gif', 'image/gif'], ['originals/a.txt', 'text/plain'], ['pictures/a.png', 'image/png'], ['originals/../a.png', 'image/png'], ['originals/..', 'image/png']]) {
+  for (const [pathname, type] of [['originals/a.gif', 'image/gif'], ['originals/a.txt', 'text/plain'], ['pictures/a.png', 'image/png'], ['originals/../a.png', 'image/png'], ['originals/..', 'image/png'],
+    ...ODD_NAMES.map((name) => [name, 'image/png'])]) {
     await assert.rejects(store.receive({ pathname, type, bytes: photo }), OpError, `${pathname} as ${type}`);
   }
   await assert.rejects(store.picture('a', 'originals/nothing.png'), (e) => e instanceof OpError && e.message === 'There is no original originals/nothing.png.');

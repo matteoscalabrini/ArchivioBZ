@@ -12,7 +12,7 @@ import { neonDb } from '../library/cloud/db.mjs';
 import { loadLists } from '../library/cloud/render.mjs';
 import { makeHandlers } from '../library/cloud/handlers.mjs';
 import { deleteTag } from '../library/cloud/purge.mjs';
-import { blobPictures } from '../library/cloud/pictures.mjs';
+import { cloudStores } from '../library/cloud/pictures.mjs';
 
 // The repository as the function holds it: library/content/*.json and library/map-data/dots.json
 // reach it through vercel.json's includeFiles.
@@ -26,7 +26,7 @@ const later = (task) => waitUntil(new Promise((resolve) => setTimeout(resolve, L
 // its routes answer with what is missing, and the function's log says so once.
 const { BLOB_READ_WRITE_TOKEN: ORIGINALS, PICTURES_READ_WRITE_TOKEN: PICTURES } = process.env;
 if (!ORIGINALS || !PICTURES) console.warn('BLOB_READ_WRITE_TOKEN or PICTURES_READ_WRITE_TOKEN is not set: pictures cannot be added.');
-const pictures = ORIGINALS && PICTURES ? blobPictures({ originals: ORIGINALS, pictures: PICTURES }) : null;
+const pictures = ORIGINALS && PICTURES ? cloudStores({ originals: ORIGINALS, pictures: PICTURES }) : null;
 
 // Made once per instance and kept between its requests; the lists are read once.
 const handlers = loadLists(ROOT).then((lists) => {

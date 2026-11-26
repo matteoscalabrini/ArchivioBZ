@@ -11,7 +11,7 @@ import { hashPassword, makeSession, SESSION_MS } from '../cloud/auth.mjs';
 import { makeHandlers } from '../cloud/handlers.mjs';
 import { sampleDoc } from './docs.mjs';
 import { cleanRoot, tempDir } from './helpers.mjs';
-import { blobPictures, localPictures } from '../cloud/pictures.mjs';
+import { cloudStores, localStores } from '../cloud/pictures.mjs';
 import { stripJpeg } from '../lib/metadata.mjs';
 
 // A draft from sample() published once, on PGlite; a session cookie from makeSession. The wait is
@@ -558,12 +558,12 @@ test('the store is set up once per instance, not on every request', async () => 
 // site's two JPEGs by /edit/picture, and added to the row by the op add-picture.
 const ORIGINALS_TOKEN = 'vercel_blob_rw_privatestore_secretone';
 const PICTURES_TOKEN = 'vercel_blob_rw_publicstore_secrettwo';
-const cloudPictures = () => blobPictures({ originals: ORIGINALS_TOKEN, pictures: PICTURES_TOKEN });
+const cloudPictures = () => cloudStores({ originals: ORIGINALS_TOKEN, pictures: PICTURES_TOKEN });
 async function localStore() {
   const dir = await tempDir('edit-pictures-');
   const originals = path.join(dir, 'originals');
   const served = path.join(dir, 'img');
-  return { originals, served, pictures: localPictures({ originals, pictures: served }) };
+  return { originals, served, pictures: localStores({ originals, pictures: served }) };
 }
 const sendOriginal = (bytes, { pathname = 'originals/a-mf3k2a.jpg', type = 'image/jpeg', ...options } = {}) => new Request('https://a.test/api/edit?route=original', {
   method: 'POST', headers: { ...headersOf({ type, ...options }), 'x-pathname': pathname }, body: bytes,
@@ -594,7 +594,7 @@ test('the handshake answers a token for a name under originals/ and refuses any 
   const body = await res.json();
   assert.equal(body.type, 'blob.generate-client-token');
   assert.match(body.clientToken, /^vercel_blob_client_privatestore_/);
-  for (const pathname of ['pictures/x.jpg', '../x', 'originals/a/b.jpg']) {
+  for (const pathname of ['pictures/x.jpg', '../x', 'originals/a/b.jpg', 'originals/%2e%2e', 'originals/a#b.jpg']) {
     const refused = await cloud.edit(handshake(pathname));
     assert.equal(refused.status, 422, pathname);
     assert.equal(typeof (await refused.json()).error, 'string');
@@ -611,7 +611,7 @@ test('the handshake answers a token for a name under originals/ and refuses any 
 test('picture refuses a name outside originals/, a row that does not exist, and a file that is not a picture, and leaves the draft as it was', async () => {
   const local = await localStore();
   const dev = make({ pictures: local.pictures });
-  for (const pathname of ['../x', 'pictures/x.jpg', 'originals/a/b.jpg', 'originals/..', 7]) {
+  for (const pathname of ['../x', 'pictures/x.jpg', 'originals/a/b.jpg', 'originals/..', 'originals/%2e%2e', 'originals/.%2E', 'originals/a?b.jpg', 7]) {
     const res = await dev.edit(post('picture', { id: 'a', pathname }));
     assert.equal(res.status, 422, JSON.stringify(pathname));
   }
