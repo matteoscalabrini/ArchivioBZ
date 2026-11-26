@@ -59,3 +59,19 @@ test('a row with an id is indexed under its id, and its number is the first word
   assert.equal(row.no, '18.04');
   assert.deepEqual(row.line.slice(0, 2), ['3.07', 'A title']);
 });
+
+// A link in a text (lib/links.mjs) is found by its words, as the reader reads them, never by its code.
+test('a link in a row\'s text or a read is indexed as its words', () => {
+  const lib = {
+    entries: [
+      { id: '1.01', no: '1.01', title: 'The bridge in 1928', type: 'Photograph', date: '', keywords: ['ponte-druso'], text: ['See [[the bridge|@1.01]].', 'At [[ponte druso]], [[@1.01]] and [[more|page:on-it]].'] },
+      { id: 'r2', no: '1.02', title: 'A note', type: 'Notes', date: '', keywords: [], text: [], pages: [{ title: 'Notes', html: '<p>Read [[it|@1.01]].</p>' }] },
+    ],
+    keywords: { 'ponte-druso': { label: 'Ponte Druso' } },
+    aliases: {},
+  };
+  const [first, second] = searchIndex(lib).rows;
+  assert.deepEqual(first.text, ['See the bridge.', 'At Ponte Druso, The bridge in 1928 and more.']);
+  assert.deepEqual(second.read, ['Notes', 'Read it.']);
+  assert.ok(!JSON.stringify(searchIndex(lib)).includes('[['));
+});

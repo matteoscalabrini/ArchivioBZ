@@ -148,6 +148,43 @@ test('a row that cites a hidden or a removed row names neither in the public pag
   assert.match(articleOf(page, '5.03'), /3 rows: .*5\.01.*r404.*2\.02/, 'edit mode shows the draft as it is');
 });
 
+// A link in a row's text (lib/links.mjs): on the Library it opens the row in place, in the map's
+// panel it leads to the Library; once the row it names is hidden, no public file holds its id in a
+// link, while edit mode draws it dotted, its title saying why.
+test('a row whose text links another: in the Library, in the map\'s panel, and only while that row is shown', () => {
+  const doc = fixtureDoc();
+  doc.rows['5.01'].record.text = ['See [[the bridge|@5.02]] again.', 'And [[@5.02]].'];
+  const { files } = renderSite(doc, lists);
+  const row = articleOf(files.get('index.html').body, '5.01');
+  assert.match(row, /<p>See <a href="#o=5\.02" data-row="5\.02">the bridge<\/a> again\.<\/p><p>And <a href="#o=5\.02" data-row="5\.02">Alpenzeitung, 29 October 1931, page 3<\/a>\.<\/p>/);
+  const panel = /<article class="entry" data-no="5\.01"[\s\S]*?<\/article>/.exec(files.get('map.html').body)[0];
+  assert.match(panel, /<p>See <a href="index\.html#o=5\.02">the bridge<\/a> again\.<\/p>/);
+  assert.deepEqual(JSON.parse(files.get('search.json').body).rows.find((r) => r.no === '5.01').text, ['See the bridge again.', 'And Alpenzeitung, 29 October 1931, page 3.']);
+
+  doc.rows['5.02'].hidden = true;
+  const hidden = renderSite(doc, lists).files;
+  for (const [path, { body }] of hidden) {
+    assert.doesNotMatch(body, /<a\b[^>]*5\.02/, `a link to 5.02 in ${path}`);
+    assert.ok(!body.includes('data-row="5.02"') && !body.includes('#o=5.02'), `5.02 named in ${path}`);
+    assert.ok(!body.includes('Alpenzeitung'), `the hidden row's title in ${path}`);
+  }
+  assert.match(articleOf(hidden.get('index.html').body, '5.01'), /<p>See the bridge again\.<\/p><p>And \.<\/p>/);
+  const edit = articleOf(renderEditPage(doc, { version: 1, published: null, lists }), '5.01');
+  assert.match(edit, /<p>See <span class="dead-link" title="The row is hidden\.">the bridge<\/span> again\.<\/p>/);
+  assert.match(edit, /<p>And <span class="dead-link" title="The row is hidden\.">Alpenzeitung, 29 October 1931, page 3<\/span>\.<\/p>/);
+  assert.equal(renderEditRow(doc, '5.01', lists), edit, 'one row drawn as the page draws it');
+});
+
+test('About links a row and a keyword to the Library; a hidden row\'s link is its words', () => {
+  const doc = fixtureDoc();
+  doc.about = 'See [[x|@5.02]], the [[press]] and [[y|@5.01]].\n\n[[*not* emphasis|@5.03]] and `[[code|@5.02]]`.';
+  doc.rows['5.01'].hidden = true;
+  const about = renderSite(doc, lists).files.get('about.html').body;
+  assert.match(about, /<p>See <a href="index\.html#o=5\.02">x<\/a>, the <a href="index\.html#k=press">Press<\/a> and y\.<\/p>/);
+  assert.match(about, /<p><a href="index\.html#o=5\.03">\*not\* emphasis<\/a> and <code>\[\[code\|@5\.02\]\]<\/code>\.<\/p>/);
+  assert.ok(!about.includes('5.01'));
+});
+
 test('markup typed into a title, a text, a chapter title and the idea stays words', () => {
   const doc = fixtureDoc(); const id = firstId(doc);
   doc.rows[id].record.title = '<script>alert(1)</script> & "q"';

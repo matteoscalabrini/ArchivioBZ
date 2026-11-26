@@ -24,14 +24,16 @@ import { placesWithRows } from './places.mjs';
 // from the site's top the page stands. `sourceUrl(abs)`: the address of a file a row holds, or null.
 // `extra`, for edit mode: { css, js, data, mark }: its stylesheets and scripts join the page's,
 // `data` is written as the JSON of #edit-data, and mark(entry) gives the attributes it adds to
-// that row's <article>. -> { html, problems }: the problems are the rows whose type no kind names.
+// that row's <article>. `links`: what the links typed in a row's text know of the document
+// (lib/links.mjs, less `here` and `up`, which each page knows), or null to leave them as typed.
+// -> { html, problems }: the problems are the rows whose type no kind names.
 // The labels the page script reads (#keyword-labels) are those of the keywords the rows carry or
 // the idea marks (idea.keywords), so that a keyword only a hidden row carries is not in the public
 // page; edit mode, whose picker offers the whole vocabulary, has every label.
-export function libraryPage(lib, { idea = null, kinds = [], present = false, depth = 0, sourceUrl = () => null, extra = null } = {}) {
+export function libraryPage(lib, { idea = null, kinds = [], present = false, depth = 0, sourceUrl = () => null, extra = null, links = null } = {}) {
   const { entries, keywords, places } = lib;
   const up = '../'.repeat(depth);
-  const ctx = { sourceUrl }; // what an open row asks of the build
+  const ctx = { sourceUrl, links }; // what an open row asks of the build, and of the document
   const problems = [];
   const label = (id) => keywords[id]?.label ?? id;
   const { used } = keywordCounts(lib);
@@ -198,10 +200,11 @@ const IMPORT_MAP = { imports: { three: './web/vendor/three.module.js', 'three/ad
 //
 // `meta`: dots.json, as locatePlaces (lib/places.mjs) returns it. The places must be located
 // already: this reads place.inside, x, y and z and works out none of them.
+// `links`: as for the Library page.
 // -> { html, problems }: the one problem is the places drawn before the dot data knew they had rows.
-export function mapPage(lib, { meta, sourceUrl = () => null } = {}) {
+export function mapPage(lib, { meta, sourceUrl = () => null, links = null } = {}) {
   const { places, entries, keywords } = lib;
-  const ctx = { sourceUrl }; // what a row in the panel asks of the build
+  const ctx = { sourceUrl, links }; // what a row in the panel asks of the build, and of the document
   const problems = [];
 
   const rowsAt = new Map();

@@ -14,6 +14,9 @@
 // headings follow them; and once an edit is saved it calls forgetIndex(), since the search's
 // index is the draft's as it was. After each drawing the list says whether it stands in the story
 // order (the event "drawn"), for edit mode, which drags only then.
+//
+// A link to a row in a text (lib/links.mjs, a[data-row]) opens that row where it stands in the list
+// and moves the page to it, and keeps the way back: see jumpTo below.
 import { parseState, formatState, matches, compare } from './state.js';
 import { prepare, search } from './search.js';
 import { layout, summary, reasonHtml, inChapters, headingPlan } from './results.js';
@@ -63,6 +66,15 @@ let typing = false; // this drawing follows a keystroke in the search field
 let addressing = 0; // the wait before the address follows what is typed
 let state = parseState(location.hash, known);
 
+// The jumps made by a row link, the last the one a step back returns from: each with where it
+// started (the state, the page's height, the step in the address that holds it, the link) and the
+// words of the button that returns there. Kept by this page only: a reload starts with none.
+const jumps = [];
+let jumpsMade = 0; // names each jump's starting step in the address (history.state.jumpAt)
+const back = Object.assign(document.createElement('button'), { type: 'button', className: 'way-back', hidden: true });
+document.body.append(back);
+back.addEventListener('click', () => history.back());
+
 if (field) {
   form.dataset.live = ''; // find.js leaves Enter to this page
   field.addEventListener('focus', needIndex);
@@ -80,7 +92,17 @@ if (field) {
 }
 restore();
 
+// A step back to where a jump started: the page as it was then, at the same height. A step the
+// page did not make, or made before a reload, is left to the address (hashchange).
+addEventListener('popstate', () => {
+  const at = history.state?.jumpAt;
+  const i = at === undefined ? -1 : jumps.findIndex((jump) => jump.at === at);
+  if (i < 0) return;
+  returnTo(jumps.splice(i)[0]);
+});
+
 addEventListener('hashchange', () => {
+  if (location.hash === formatState(state)) return; // drawn already, by a step back
   state = parseState(location.hash, known);
   allPossible = false;
   restore();
@@ -112,6 +134,11 @@ document.addEventListener('click', (event) => {
   }
   const arrow = target.closest('.pic-nav button[data-step]');
   if (arrow) return stepPicture(arrow, Number(arrow.dataset.step));
+  const link = target.closest('a[data-row]');
+  if (link && byNo.has(link.dataset.row) && !(event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)) {
+    event.preventDefault();
+    return jumpTo(link, byNo.get(link.dataset.row));
+  }
   const jump = target.closest('a[data-jump]');
   if (jump && byNo.has(jump.dataset.jump) && !(event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)) {
     event.preventDefault();
@@ -326,7 +353,7 @@ function writeAddress() {
   const hash = formatState(state);
   if (hash === location.hash) return;
   try {
-    history.replaceState(null, '', hash || location.pathname + location.search);
+    history.replaceState(history.state, '', hash || location.pathname + location.search); // a jump's mark stays on its step
   } catch {
     // The browser refused this change of the address; the page is right, the next change will tell.
   }
@@ -403,6 +430,56 @@ function openRow(row) {
   }
   reveal(row.el, motion());
   row.title.focus({ preventScroll: true });
+}
+
+// From a row link in a text: the row opens as from a Sources number, and the jump is a step in
+// the address of its own (#o= as writeAddress writes it), so that the browser's Back returns too.
+// The step it starts from is marked (history.state.jumpAt) with the jump that returns there.
+function jumpTo(link, row) {
+  clearTimeout(addressing);
+  writeAddress(); // the step it starts from holds what was typed too
+  const at = ++jumpsMade;
+  try {
+    history.replaceState({ ...history.state, jumpAt: at }, '');
+    history.pushState({ jumpTo: row.no }, '');
+  } catch {
+    return openRow(row); // the browser refused the step: the row opens all the same, with no way back
+  }
+  jumps.push({ at, state: { ...state, o: [...state.o] }, allPossible, y: scrollY, link, words: backWords(link) });
+  openRow(row);
+  showBack();
+}
+
+// The page as a jump found it: the same rows open, the same search, keyword, kind and sort, at the
+// same height, at once; less what edit mode has taken off the page meanwhile. The focus goes back
+// to the link followed, while it is on the page, rather than to nowhere with the button it was on.
+function returnTo(jump) {
+  state = { ...jump.state, o: jump.state.o.filter((no) => known.rows.has(no)) };
+  if (state.k && !known.keywords.has(state.k)) state.k = null;
+  if (state.t && !known.kinds.has(state.t)) state.t = null;
+  allPossible = jump.allPossible;
+  if (field && field.value !== state.q) field.value = state.q;
+  list.classList.add('still');
+  render();
+  scrollTo({ top: jump.y, behavior: 'auto' });
+  requestAnimationFrame(() => requestAnimationFrame(() => list.classList.remove('still')));
+  showBack();
+  if (jump.link.isConnected) jump.link.focus({ preventScroll: true });
+}
+
+// "↩ Back to 2.08", the number of the row the link was in; "↩ Back to the idea"; or "↩ Back" from
+// anywhere else, a hidden row among them, which has no number.
+function backWords(link) {
+  if (link.closest('section.idea')) return '↩ Back to the idea';
+  const no = link.closest('article.row')?.querySelector('.c-no')?.textContent.trim() ?? '';
+  return /^\d+\.\d+$/.test(no) ? `↩ Back to ${no}` : '↩ Back';
+}
+
+// The button at the bottom of the screen, while there is a jump to return from.
+function showBack() {
+  const last = jumps.at(-1);
+  back.hidden = !last;
+  if (last) setText(back, last.words);
 }
 
 function setOpen(row, open) {

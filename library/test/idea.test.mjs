@@ -65,6 +65,27 @@ test('an unknown keyword is an error that names it', () => {
   assert.deepEqual(parsed.keywords, ['press']);
 });
 
+// The idea's links to a row or a page are drawn as every text's (lib/links.mjs); its keywords keep
+// the idea's own buttons, as above.
+test('a row and a page linked from the idea, given what the document holds', () => {
+  const links = {
+    rows: new Map([['1.09', { no: '2.08', title: 'The postcard', shown: true }], ['r7', { no: '', title: 'Kept back', shown: false }]]),
+    pages: new Map([['on-the-bridge', { title: 'On the bridge', shown: true }]]),
+    carried: new Set(['press', 'ponte-druso']),
+    edit: false,
+  };
+  const text = 'Read [[the postcard|@1.09]], [[more|page:on-the-bridge]] and [[@r7]], in the [[press]], at [[Ponte Druso]], on [[typeface]].';
+  const parsed = parseIdea(text, { ...VOCABULARY, links });
+  assert.equal(parsed.html, '<p>Read <a href="#o=1.09" data-row="1.09">the postcard</a>, <a href="pages/on-the-bridge.html">more</a> and , '
+    + 'in the <button data-k="press">press</button>, at <button data-k="ponte-druso">Ponte Druso</button>, on typeface.</p>');
+  assert.deepEqual(parsed.keywords, ['press', 'ponte-druso'], 'a keyword no shown row carries is words, and its label stays out of the page');
+  assert.deepEqual(parsed.problems, [], 'only an unknown keyword is an error');
+  const edit = parseIdea(text, { ...VOCABULARY, links: { ...links, edit: true } });
+  assert.match(edit.html, / and <span class="dead-link" title="The row is hidden\.">Kept back<\/span>, /);
+  assert.match(edit.html, /on <span class="dead-link" title="No row shown carries this keyword\.">Typeface<\/span>\./);
+  assert.equal(parseIdea('[[the postcard|@1.09]]', VOCABULARY).html, '<p>the postcard</p>', 'knowing no rows, the words alone');
+});
+
 test('status: stand-in sets standin and is not printed', () => {
   const standin = parseIdea('status: stand-in\n\nFirst paragraph,\nset over two lines.\n\n\nSecond [[press]].\n', VOCABULARY);
   assert.equal(standin.standin, true);

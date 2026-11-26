@@ -259,6 +259,10 @@ dl.meta dd .ed-field .ed-error { flex-basis: 100%; }
 .ed-in-idea { min-height: 12em; font: 400 var(--size-title)/1.3 var(--serif) !important; letter-spacing: 0; }
 .ed-block { display: block; margin-bottom: 14px; }
 
+/* A link typed in a text whose target the public may not see (lib/links.mjs): its words, dotted,
+   its title saying why; the public site shows the words alone. */
+.dead-link { text-decoration: underline dotted; text-underline-offset: 3px; cursor: help; }
+
 /* The keywords offered to a row, under its ＋. */
 .ed-pick {
   position: absolute;

@@ -25,6 +25,7 @@ html { scroll-padding-top: 48px; } /* keeps a focused row clear of the sticky st
 }
 .idea button:hover,
 .idea button[aria-pressed="true"] { background: var(--ink); color: var(--paper); text-decoration-color: transparent; }
+.idea a { text-decoration-thickness: 1.5px; text-underline-offset: 6px; } /* a row or a page linked, as the keywords are */
 .kw { white-space: nowrap; } /* a keyword and its comma: the line breaks only between them */
 .kw button { white-space: normal; }
 .idea .sep { color: var(--grey); }
@@ -117,6 +118,24 @@ html { scroll-padding-top: 48px; } /* keeps a focused row clear of the sticky st
 .why span + span::before { content: "  ·  "; white-space: pre; }
 .none { margin: 0; padding: 22px var(--gutter); border-top: var(--rule); color: var(--grey); }
 .more-possible { display: block; width: 100%; padding: 10px var(--gutter); border-top: var(--rule); font-size: var(--size-meta); text-decoration: underline; text-underline-offset: 4px; }
+
+/* The links typed in a row's text (lib/links.mjs): a row, a page, a keyword, underlined alike. */
+.detail .txt p a,
+.detail .txt p button[data-k] { text-decoration: underline; text-underline-offset: 3px; }
+.detail .txt p button[data-k][aria-pressed="true"] { background: var(--ink); color: var(--paper); text-decoration-color: transparent; }
+
+/* The way back from a row link followed, at the bottom of the screen (library.js). */
+.way-back {
+  position: fixed;
+  z-index: 8; /* over the status line and the edit bar; under a picture shown full screen */
+  left: var(--gutter);
+  bottom: 18px;
+  padding: 6px 14px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: var(--size-meta);
+}
+.way-back:hover { outline: 1px solid var(--ink); background: var(--paper); color: var(--ink); }
 
 /* An open row: 0fr to 1fr, so the body opens downward to its own height. */
 .row-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .38s cubic-bezier(.2, .7, .2, 1); }

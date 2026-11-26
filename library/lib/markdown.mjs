@@ -8,6 +8,7 @@ import { fileURLToPath } from 'node:url';
 import { Marked } from 'marked';
 import { esc } from './shell.mjs';
 import { sourceUrl } from './records.mjs';
+import { linksIn, linkHtml } from './links.mjs';
 
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 
@@ -20,6 +21,8 @@ const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '.
 // For the web, where the originals under /source/ are not: held: (absPath) -> {no, href} when a
 // row holds that file, else nothing, so the link leads to the row or is words; published:
 // (absPath) -> the address a picture of the text is published at, or nothing: then it is its alt text.
+// links: what the links typed in the text, [[words|target]], know of the document (lib/links.mjs),
+// for About and the pages; without it such a link stays as typed, as in the long reads.
 export function renderMarkdown(text, options = {}) {
   const md = reader(options);
   const tokens = md.lexer(String(text));
@@ -43,9 +46,10 @@ export function renderParts(text, options = {}) {
   });
 }
 
-function reader({ linkBase = REPO, root = REPO, rowLink, held, published } = {}) {
+function reader({ linkBase = REPO, root = REPO, rowLink, held, published, links } = {}) {
   return new Marked({
     gfm: true,
+    extensions: links ? [textLinks(links)] : [],
     renderer: {
       html: ({ text: raw }) => esc(raw),
       heading({ tokens, depth }) {
@@ -83,6 +87,27 @@ function reader({ linkBase = REPO, root = REPO, rowLink, held, published } = {})
       },
     },
   });
+}
+
+// [[words|target]] as one piece of a line, read before anything else there, so that its words
+// stay as typed (no emphasis, no link of Markdown's own inside); a code span that starts before it
+// keeps it as code.
+function textLinks(ctx) {
+  return {
+    name: 'textLink',
+    level: 'inline',
+    start(src) {
+      const at = src.indexOf('[[');
+      return at < 0 ? undefined : at;
+    },
+    tokenizer(src) {
+      const end = src.startsWith('[[') ? src.indexOf(']]') + 2 : 0;
+      const [link] = end > 2 ? linksIn(src.slice(0, end)) : [];
+      if (link?.start === 0) return { type: 'textLink', raw: src.slice(0, link.end), link };
+      return undefined;
+    },
+    renderer: ({ link }) => linkHtml(link, ctx),
+  };
 }
 
 // Each table goes in a strip of its own, <div class="sheet">: read.css lets the strip run wider

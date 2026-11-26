@@ -4,6 +4,7 @@
 // the three cannot drift apart.
 import path from 'node:path';
 import { esc } from './shell.mjs';
+import { withLinks } from './links.mjs';
 
 const CONFIDENCE = { read: 'Read in the source', secondary: 'From a secondary source', lead: 'Lead, not yet a fact' };
 const NO_CONFIDENCE = new Set(['Report', 'Notes', 'Map']);
@@ -22,11 +23,14 @@ export const pictureSrc = (src, up = '') => (ABSOLUTE.test(src) ? src : up + enc
 // The <div class="detail …"> of a row. `onMap`: for the Map page's panel, where the Place line is
 // left out. `away`: anywhere but the Library page, so a link to another row leads to the Library.
 // `up`: the way from the page to the site's top folder ('../' on a read page). What earlier steps
-// add is optional: entry.pictures, entry.preview, entry.page; a place's `inside`.
+// add is optional: entry.pictures, entry.preview, entry.page; a place's `inside`. The text's
+// paragraphs are words, escaped, and the links typed in them (lib/links.mjs) when ctx.links says
+// what those know of the document; a build from the files gives none, and they stay as typed.
 export function rowDetail(entry, { ctx, places, onMap = false, away = onMap, up = '' }) {
   const pictures = (Array.isArray(entry.pictures) ? entry.pictures : []).filter((p) => p?.src);
   const preview = !pictures.length && entry.preview?.rows?.length ? entry.preview : null;
-  const text = entry.text.filter((p) => String(p).trim()).map((p) => `<p>${esc(p)}</p>`).join('');
+  const links = ctx?.links ? { ...ctx.links, here: away ? 'other' : 'library', up } : null;
+  const text = entry.text.filter((p) => String(p).trim()).map((p) => `<p>${links ? withLinks(p, links) : esc(p)}</p>`).join('');
   const txt = `<div class="txt">${text}${meta(entry, places, { onMap, away, up })}${more(entry, ctx, up)}</div>`;
   return pictures.length ? `<div class="detail">${pictureBlock(pictures, up, entry.side_by_side === true)}${txt}</div>`
     : preview ? `<div class="detail table">${previewTable(preview)}${txt}</div>`

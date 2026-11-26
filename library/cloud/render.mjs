@@ -7,7 +7,7 @@
 import path from 'node:path';
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
-import { libFromDoc, diffDocs } from './doc.mjs';
+import { libFromDoc, diffDocs, numbering } from './doc.mjs';
 import { libraryPage, mapPage, aboutPage, keywordStrip } from '../lib/pages.mjs';
 import { searchIndex } from '../lib/searchindex.mjs';
 import { parseIdea } from '../lib/idea.mjs';
@@ -40,15 +40,16 @@ export async function loadLists(root) {
   return { colours, names, glossary, kinds: kinds.kinds, mapMeta, problems };
 }
 
-// The four public files of a publish, hidden rows left out of each:
-// path -> { body, type }. `problems`: the idea's unknown keywords (errors) and what the page
+// The four public files of a publish, hidden rows left out of each, and a link to one drawn as its
+// words: path -> { body, type }. `problems`: the idea's unknown keywords (errors) and what the page
 // functions warn of (a type no kind names, a place the dot data was made without).
 export function renderSite(doc, lists) {
   const lib = publicLib(doc, lists);
-  const { idea, problems } = theIdea(doc);
-  const library = libraryPage(lib, { idea, kinds: lists.kinds });
-  const map = mapPage(lib, { meta: lists.mapMeta });
-  const aboutHtml = renderMarkdown(doc.about ?? '', { linkBase: CONTENT, root: REPO });
+  const links = linkContext(doc);
+  const { idea, problems } = theIdea(doc, links);
+  const library = libraryPage(lib, { idea, kinds: lists.kinds, links });
+  const map = mapPage(lib, { meta: lists.mapMeta, links });
+  const aboutHtml = renderMarkdown(doc.about ?? '', { linkBase: CONTENT, root: REPO, links: { ...links, here: 'other', up: '' } });
   const files = new Map([
     ['index.html', { body: library.html, type: HTML }],
     ['map.html', { body: map.html, type: HTML }],
@@ -150,10 +151,23 @@ function publicLib(doc, lists) {
   return lib;
 }
 
-// The idea as the Library page takes it, parsed against the document's keywords; its stand-in label
-// stays while the text starts with `status: stand-in` (the cloud has no build for a showing).
-function theIdea(doc) {
-  const { html, standin, keywords, problems } = parseIdea(doc.idea ?? '', doc);
+// What the links typed in a text know of the document (lib/links.mjs): each row with its number,
+// its title and whether a publish shows it; no pages yet; the keywords and their folded ids; the
+// keywords some shown row carries. In edit mode (`edit`) every row is on the page, so a keyword
+// any row carries counts; a link to a hidden row is still drawn dead there, with its sentence,
+// since the public would not see it.
+export function linkContext(doc, { edit = false } = {}) {
+  const numbers = numbering(doc);
+  const rows = new Map(Object.entries(doc.rows).map(([id, row]) => [id, { no: numbers.get(id) ?? '', title: row.record.title, shown: !row.hidden }]));
+  const carried = new Set(Object.values(doc.rows).filter((row) => edit || !row.hidden).flatMap((row) => row.record.keywords ?? []));
+  return { keywords: doc.keywords, aliases: doc.aliases, rows, pages: new Map(), carried, edit };
+}
+
+// The idea as the Library page takes it, parsed against the document's keywords and its links
+// against `links`; its stand-in label stays while the text starts with `status: stand-in` (the
+// cloud has no build for a showing). `up`: the way from the page to the site's top folder.
+function theIdea(doc, links, up = '') {
+  const { html, standin, keywords, problems } = parseIdea(doc.idea ?? '', { keywords: doc.keywords, aliases: doc.aliases, links: { ...links, up } });
   return { idea: { html, standin, keywords }, problems: problems.map(({ level, message }) => ({ level, where: 'the idea', message })) };
 }
 
@@ -167,10 +181,12 @@ function changedRows(doc, published) {
   return new Set(doc.chapters.flatMap((chapter) => chapter.rows).filter((id) => ids.has(id)));
 }
 
-// The edit page, with `data` as #edit-data (null when only a row is wanted from it).
+// The edit page, with `data` as #edit-data (null when only a row is wanted from it). It stands at
+// /edit/, one folder down.
 function editPage(doc, lists, changed, data) {
   const lib = libFromDoc(doc, { hidden: true, lists });
+  const links = linkContext(doc, { edit: true });
   const mark = (entry) => (entry.hidden ? ' data-hidden="true"' : '') + (changed.has(entry.id) ? ' data-changed="true"' : '');
   const extra = { css: ['web/edit.css'], js: ['web/edit.js'], data, mark };
-  return libraryPage(lib, { idea: theIdea(doc).idea, kinds: lists.kinds, depth: 1, extra }).html;
+  return libraryPage(lib, { idea: theIdea(doc, links, '../').idea, kinds: lists.kinds, depth: 1, extra, links }).html;
 }
