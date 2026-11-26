@@ -71,6 +71,8 @@ export function watchUnsaved(check) {
   return () => unsavedChecks.delete(check);
 }
 export const unsaved = () => pending > 0 || [...unsavedChecks].some((check) => check());
+// Edits sent and not yet answered: the order the page shows may still change.
+export const onTheirWay = () => pending > 0;
 let leaving = false;
 export function leave(go) {
   leaving = true;

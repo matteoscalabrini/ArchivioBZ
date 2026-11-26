@@ -414,6 +414,11 @@ async function main() {
   const store = makeStore(pgliteDb(pg));
   await store.init();
   await moveIn({ root, store, putPicture: devPictures(imgDir), chapterTitles: CHAPTER_TITLES });
+  // 0.01 cites 5.03, so that an open row has a Sources link to another row (lib/detail.mjs), as
+  // rows of the real library do; the fixtures' entries cite none, and no edit gives a row sources.
+  const draft = await store.getDraft();
+  draft.doc.rows['0.01'].record.sources = ['5.03'];
+  await store.saveDraft(draft.doc, draft.version);
   await pg.close();
   dev = await startDev({ port: 0, dataDir, imgDir, password: 'dev' });
   const base = dev.url.replace(/\/edit\/$/, '');
@@ -1221,6 +1226,157 @@ async function main() {
     await fold(other, 'c2');
     await foldShows(other, 'c2', '39 rows', 'storage refused');
     await other.close();
+  });
+
+  // Fix round 1 of Task 16. A row the page opens or adds unfolds its chapter: an open row is shown
+  // in full. At this point chapters 1 and 3 are empty and chapter 2 holds every row.
+  await step('＋ row here under a folded empty chapter adds the row open and in sight, and unfolds the chapter', async () => {
+    await page.goto(`${base}/edit/`);
+    await page.waitForSelector('.ed-bar');
+    await setCompact(page, true);
+    await fold(page, 'c3');
+    await foldShows(page, 'c3', '0 rows', 'the empty chapter 3 folded');
+    await page.click('h2.chapter[data-chapter="c3"] .ed-end button.ed-add-row');
+    await page.waitForSelector('dialog.ed-dialog[open] input');
+    await page.keyboard.type('Added under a fold');
+    const answered = answerTo(page, 'op');
+    await page.click('dialog.ed-dialog[open] .ed-yes');
+    check((await answered).status() === 200, 'the row was not added');
+    const id = await page.waitForFunction(() => [...document.querySelectorAll('.list > article.row')]
+      .find((el) => el.querySelector('.c-title > button:not(.ed)')?.textContent === 'Added under a fold')?.dataset.no, { timeout: WAIT })
+      .then((handle) => handle.jsonValue());
+    const row = `article.row[data-no="${id}"]`;
+    await foldShows(page, 'c3', null, 'the row added');
+    await stillAt(page, row);
+    const seen = await page.$eval(row, (el) => ({ open: el.classList.contains('open'), display: getComputedStyle(el).display }));
+    check(seen.open && seen.display !== 'none', `the new row is ${JSON.stringify(seen)}`);
+    check(await inView(page, `${row} > .row-head`), 'the new row is not in view');
+  });
+
+  // 0.01 cites 5.03 (set up above). 0.01 goes to chapter 3 by its number; chapter 2 is folded.
+  await step('a Sources link to a row of a folded chapter opens that row in sight and unfolds its chapter; so does an address #o=', async () => {
+    const from = 'article.row[data-no="0.01"]';
+    await page.click(`${from} .c-no button.ed-no`);
+    const input = `${from} .ed-field[data-ed="number"] input`;
+    await page.waitForSelector(input);
+    await page.$eval(input, (el) => el.select());
+    await page.keyboard.type('2.99');
+    const answered = answerTo(page, 'op');
+    await page.keyboard.press('Enter');
+    check((await answered).status() === 200, 'the number was not taken');
+    await page.waitForFunction((sel) => document.querySelector(sel)?.dataset.chapter === 'c3', { timeout: WAIT }, from);
+    await fold(page, 'c2');
+    await foldShows(page, 'c2', '38 rows', 'chapter 2 folded');
+    await page.click(`${from} .c-title > button:not(.ed)`);
+    await page.waitForSelector(`${from}.open a[data-jump="5.03"]`);
+    await stillAt(page, `${from} a[data-jump="5.03"]`);
+    await page.click(`${from} a[data-jump="5.03"]`);
+    const target = 'article.row[data-no="5.03"]';
+    await page.waitForSelector(`${target}.open`);
+    await foldShows(page, 'c2', null, 'the Sources link followed');
+    await stillAt(page, `${target} > .row-head`);
+    check(await inView(page, `${target} > .row-head`), `5.03 is not in view: ${JSON.stringify(await page.$eval(target, (el) => ({ display: getComputedStyle(el).display, box: el.getBoundingClientRect().toJSON() })))}`);
+
+    // Folding a chapter puts away its open rows: the address no longer opens them.
+    await fold(page, 'c2');
+    await foldShows(page, 'c2', '38 rows', 'chapter 2 folded again');
+    check(!(await page.$eval(target, (el) => el.classList.contains('open'))), 'the open row 5.03 stays open in the folded chapter');
+    check(!decodeURIComponent(await page.evaluate(() => location.hash)).includes('5.03'), 'the address still opens 5.03');
+    await page.goto(`${base}/edit/#o=5.02`);
+    await page.waitForSelector('article.row[data-no="5.02"].open');
+    await foldShows(page, 'c2', null, 'at #o=5.02');
+    await stillAt(page, 'article.row[data-no="5.02"] > .row-head');
+    check(await inView(page, 'article.row[data-no="5.02"] > .row-head'), '5.02 is not in view at #o=5.02');
+  });
+
+  // While a keyword, a kind or a search narrows the list, a fold hides nothing, and its fold and
+  // count are out of sight, as the grips are: both act only in the story order.
+  await step('with a keyword pressed, a folded chapter\'s rows that hold it show and its fold is out of sight; the keyword let go, the chapter is folded again', async () => {
+    await page.goto(`${base}/edit/`);
+    await page.waitForSelector('.list.compact');
+    await fold(page, 'c2');
+    await foldShows(page, 'c2', '38 rows', 'folded');
+    await page.click('.keywords button[data-k="press"]');
+    await page.waitForSelector('.list:not(.story)');
+    const narrowed = await page.evaluate(() => {
+      const heading = document.querySelector('h2.chapter[data-chapter="c2"]');
+      const shown = (el) => el && getComputedStyle(el).display !== 'none';
+      return {
+        row: shown(document.querySelector('article.row[data-no="5.02"]')),
+        fold: shown(heading.querySelector('.ed-fold')),
+        count: shown(heading.querySelector('.ed-count')),
+      };
+    });
+    check(narrowed.row && !narrowed.fold && !narrowed.count, `with press pressed: ${JSON.stringify(narrowed)}`);
+    await page.click('.keywords button[data-k="press"]');
+    await page.waitForSelector('.list.story');
+    await foldShows(page, 'c2', '38 rows', 'press let go');
+  });
+
+  // The number's answer comes after the author has gone on to another field (here 400 ms of
+  // latency, as online): the page stays at the field being typed in, and the bar says where the
+  // row went.
+  await step('a number left by a click on another row\'s ✎: answered, the page stays at the field being typed in, and the bar says where the row went', async () => {
+    await page.goto(`${base}/edit/`);
+    await page.waitForSelector('.ed-bar');
+    await setCompact(page, false);
+    const moved = 'article.row[data-no="12.01"]';
+    const other = 'article.row[data-no="r2"]';
+    await page.$eval(other, (el) => el.scrollIntoView({ block: 'center' }));
+    await page.emulateNetworkConditions({ offline: false, download: 100e6, upload: 100e6, latency: 400 });
+    try {
+      await page.click(`${moved} .c-no button.ed-no`);
+      const input = `${moved} .ed-field[data-ed="number"] input`;
+      await page.waitForSelector(input);
+      await page.$eval(input, (el) => el.select());
+      await page.keyboard.type('1.99');
+      const answered = answerTo(page, 'op');
+      await page.click(`${other} button.ed[data-ed="title"]`); // leaves the number, which saves it
+      const title = `${other} .ed-field[data-ed="title"] input`;
+      await page.waitForSelector(title);
+      // Where the field stands in the window: the line said in the bar makes the bar taller, and the
+      // browser keeps what is on the screen in place, so the page's scroll may change by that much.
+      const before = await page.$eval(title, (el) => el.getBoundingClientRect().top);
+      check((await answered).status() === 200, 'the number was not taken');
+      const placed = await page.waitForFunction((sel) => document.querySelector(sel)?.dataset.chapter === 'c2'
+        && document.querySelector('.ed-msg')?.textContent.startsWith('Placed at ') && document.querySelector(sel).querySelector('.c-no .ed-no').textContent,
+      { timeout: WAIT }, moved).then((handle) => handle.jsonValue());
+      await pause(800); // a smooth scroll would be well under way
+      const after = await page.evaluate((sel) => ({
+        top: document.querySelector(sel)?.getBoundingClientRect().top ?? null,
+        focused: document.activeElement === document.querySelector(sel),
+        line: document.querySelector('.ed-msg').textContent,
+      }), title);
+      check(after.top !== null && Math.abs(after.top - before) <= 2, `the title field moved in the window from ${before} to ${after.top}`);
+      check(await inView(page, title), 'the title field is out of view');
+      check(after.focused, 'the title field lost the focus');
+      check(after.line === `Placed at ${placed}, the end of chapter 1.`, `the bar says ${JSON.stringify(after.line)}`);
+      await page.keyboard.press('Escape');
+      await page.waitForSelector(title, { hidden: true });
+    } finally {
+      await page.emulateNetworkConditions(null);
+    }
+  });
+
+  // The number and its ✎ are two controls: after a row is drawn anew, the focus is back on the one
+  // that had it (core.js finds it by data-ed).
+  await step('the focus on ✎ beside a number is on that ✎ again once its row is drawn anew', async () => {
+    const row = 'article.row[data-no="5.02"]';
+    await page.$eval(row, (el) => { el.dataset.drawn = 'before'; }); // a row drawn anew is a new element
+    await page.focus(`${row} .c-no button.ed-edit`);
+    const answered = answerTo(page, 'op');
+    await page.$eval(`${row} .c-type select`, (choice) => {
+      choice.value = [...choice.options].find((option) => option.value !== choice.value).value;
+      choice.dispatchEvent(new Event('change', { bubbles: true }));
+    });
+    check((await answered).status() === 200, 'the type was not saved');
+    await page.waitForFunction((sel) => document.querySelector(sel)?.dataset.drawn !== 'before', { timeout: WAIT }, row)
+      .catch(() => { throw new Error('the row was not drawn anew'); });
+    const focused = await page.evaluate(() => {
+      const el = document.activeElement;
+      return el ? `${el.tagName.toLowerCase()}.${[...el.classList].join('.')} in ${el.closest('article.row')?.dataset.no}` : 'nothing';
+    });
+    check(focused === 'button.ed.ed-edit in 5.02', `the focus is on ${focused}`);
   });
 
   console.log(`All ${n} steps hold. Screenshots: ${['edit-page.png', 'public-page.png', 'edit-phone.png', 'edit-compact.png', 'edit-compact-phone.png'].map((name) => path.join(SHOTS, name)).join(', ')}`);

@@ -268,7 +268,7 @@ function render() {
     wanted = sorted.map((row) => row.el);
   }
   // Moved only when the order changes: a row put back in the list would lose the keyboard's focus.
-  if (wanted.length !== list.children.length || wanted.some((el, n) => el !== list.children[n])) list.replaceChildren(...wanted);
+  if (wanted.length !== list.children.length || wanted.some((el, n) => el !== list.children[n])) order(wanted);
 
   for (const row of rows) {
     const reasons = shown.get(row);
@@ -305,6 +305,21 @@ function render() {
 
   // The story order: the No. sort, nothing typed in the search, no keyword and no kind.
   list.dispatchEvent(new CustomEvent('drawn', { detail: { story: state.s === 'no' && !typed && !state.k && !state.t } }));
+}
+
+// The list in the order wanted. The line that holds the keyboard's focus stays where it is in the
+// page while the others are put around it: taken out and put back, it would lose the focus, and
+// in edit mode a field open in it would close, as if left, at an answer that moves other rows.
+function order(wanted) {
+  const held = [...list.children].find((el) => el.contains(document.activeElement));
+  const at = held ? wanted.indexOf(held) : -1;
+  if (at < 0) {
+    list.replaceChildren(...wanted);
+    return;
+  }
+  for (const el of [...list.children]) if (el !== held) el.remove();
+  held.before(...wanted.slice(0, at));
+  held.after(...wanted.slice(at + 1));
 }
 
 function writeAddress() {

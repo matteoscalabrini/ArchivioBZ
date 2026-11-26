@@ -5,7 +5,7 @@
 // on each line under it (Holder, Creator, Rights, Confidence, Source, Place), shown even when
 // empty so that it can be filled. A click on any of these never opens or closes the row. Once a
 // typed number is answered, the page follows the row to where it went.
-import { state, list, onRow, send, act, say, rowEl } from './core.js';
+import { state, list, onRow, send, act, say, rowEl, onTheirWay } from './core.js';
 import { iconButton } from './icons.js';
 import { openField, input, textarea, select } from './field.js';
 import { ask } from './dialog.js';
@@ -35,7 +35,7 @@ function dressHead(el) {
   // row's head is as it was.
   const no = head.querySelector('.c-no');
   const number = Object.assign(document.createElement('button'), { type: 'button', className: 'ed ed-no', textContent: no.textContent || '—', title: 'Change the number' });
-  number.dataset.ed = 'number';
+  number.dataset.ed = 'no'; // not ✎'s 'number': after the row is drawn anew, the focus finds the one it was on
   no.replaceChildren(number, iconButton('edit', 'Change the number', { key: 'number' }));
 
   head.querySelector('.c-title button').after(iconButton('edit', 'Edit the title', { key: 'title' }));
@@ -119,7 +119,7 @@ list.addEventListener('click', (event) => {
   if (!button || !row) return;
   const key = button.dataset.ed;
   const id = row.dataset.no;
-  if (key === 'number') return editNumber(row, id, button);
+  if (key === 'number' || key === 'no') return editNumber(row, id, button);
   if (key === 'title') return editTitle(row, id, button);
   if (key === 'date') return editDate(row, id, button);
   if (key === 'text') return editText(row, id, button);
@@ -178,13 +178,16 @@ function editNumber(row, id, opener) {
 // window (at once for a reader who asks for less motion), an outline that fades on it for a moment,
 // and, when it is not at the number typed (past its chapter's end, or the chapters closed up after
 // the one it left), a line in the bar that says where it is. A drag does not come here: the row is
-// under the pointer already.
+// under the pointer already. Nor does the page move when the author has gone on by the time the
+// answer comes (another field open, a question asked, a row or a keyword held) or more edits are on
+// their way, which will move the rows again: then the line alone says where the row went.
 function follow(id, typed) {
   const row = rowEl(id);
   if (!row) return;
-  unfold(row.dataset.chapter);
   const line = placedLine(typed, state.numbers[id]);
   if (line) say(line, 'info');
+  if (document.querySelector('.ed-field, dialog[open], .sortable-chosen') || onTheirWay()) return;
+  unfold(row.dataset.chapter);
   row.querySelector('.row-head').scrollIntoView({ block: 'center', behavior: reduced.matches ? 'instant' : 'smooth' });
   row.classList.remove('ed-placed');
   void row.offsetWidth; // the outline starts again on a row marked a moment ago

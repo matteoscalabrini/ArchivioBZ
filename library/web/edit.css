@@ -167,7 +167,8 @@ button.ed-words .ed-icon { display: inline-block; }
 .list.compact h2.chapter > .ed-grip { top: calc(24px + 14px); }
 .ch-line button.ed-fold { width: 1em; font: 400 24px/1 var(--sans); letter-spacing: 0; vertical-align: 0.15em; }
 .ch-line .ed-count { font: 400 var(--size-meta)/1 var(--sans); letter-spacing: 0; color: var(--grey); vertical-align: 0.4em; }
-.list:not(.compact) :is(.ed-fold, .ed-count) { display: none; }
+.list:not(.compact) :is(.ed-fold, .ed-count),
+.list:not(.story) :is(.ed-fold, .ed-count) { display: none; } /* folds act in the story order only */
 
 /* "All keywords": each keyword is dragged into the author's order (edit/strip.js) and still
    filters on a press, so the pointer is an open hand over it, and a closed one over the strip

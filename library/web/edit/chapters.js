@@ -15,7 +15,7 @@ const dressed = new WeakSet();
 
 // After each drawing of the list: the headings dressed, the lines at the ends of the chapters
 // where they now are, 🗑 on the empty chapters only, the folds as they stand.
-list.addEventListener('drawn', () => {
+list.addEventListener('drawn', (event) => {
   const ends = new Map(); // the element that ends each chapter -> the chapter
   for (const chapter of state.chapters) {
     const last = chapter.rows.at(-1);
@@ -36,7 +36,7 @@ list.addEventListener('drawn', () => {
   for (const row of list.querySelectorAll('article.row')) {
     if (!row.querySelector(':scope > .ed-here')) row.append(hereLine());
   }
-  showFolds();
+  showFolds(event.detail?.story === true);
 });
 
 // A heading as the server wrote it holds its title as text after the number: the title goes into

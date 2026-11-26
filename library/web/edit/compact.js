@@ -2,9 +2,13 @@
 // one short line (edit.css, .list.compact) and gives each chapter's heading a fold, so that a
 // chapter fits on the screen and a drag is short. A folded chapter's rows stay on the page, out of
 // sight (.ed-folded), and its heading says how many they are; a row dropped just under it goes
-// first in it (dropTarget, from drag.js). The switch and the folds are this browser's own, kept in
-// localStorage when the browser allows it; without, the page works the same for the visit.
-// Switched off, the page is as it was and the folds are forgotten.
+// first in it (dropTarget, from drag.js). Folds act in the story order only, as dragging does:
+// while a keyword, a kind or a search narrows the list, every row it holds is in sight. A row the
+// page opens (its title, a Sources link, an address #o=, a row just added, a typed number) unfolds
+// its chapter, since an open row is shown in full; folding a chapter closes its open rows. The
+// switch and the folds are this browser's own, kept in localStorage when the browser allows it;
+// without, the page works the same for the visit. Switched off, the page is as it was and the folds
+// are forgotten.
 import { state, list } from './core.js';
 import { rowCount } from '../editmodel.js';
 
@@ -13,15 +17,16 @@ const KEY = 'archivio-edit-compact';
 
 let on = false;
 const folded = new Set();
+let story = false; // the list stands in the story order (the last drawing said so)
+let wasOpen = new Set(); // the rows open at the last drawing, by id
 try {
   const kept = localStorage.getItem(KEY);
-  if (kept !== null) {
-    on = true;
-    const ids = JSON.parse(kept);
-    if (Array.isArray(ids)) for (const id of ids) if (typeof id === 'string') folded.add(id);
-  }
+  on = kept !== null;
+  const ids = on ? JSON.parse(kept) : [];
+  if (Array.isArray(ids)) for (const id of ids) if (typeof id === 'string') folded.add(id);
 } catch {
-  // Nothing kept, or nothing that can be read: the view is off, as the page comes.
+  // Storage refused: the view is off, as the page comes. A kept value that cannot be read leaves
+  // it on, with nothing folded.
 }
 list.classList.toggle('compact', on);
 
@@ -69,11 +74,18 @@ export function unfold(chapter) {
   showFolds();
 }
 
+// Folded, a chapter's open rows close as a reader closes them (library.js, which keeps the address
+// in step): out of sight, they would stay open in the address and unfold the chapter at a reload.
 list.addEventListener('click', (event) => {
   const button = event.target instanceof Element ? event.target.closest('h2.chapter button.ed-fold') : null;
   if (!button) return;
   const chapter = button.closest('h2.chapter').dataset.chapter;
-  if (!folded.delete(chapter)) folded.add(chapter);
+  if (!folded.delete(chapter)) {
+    folded.add(chapter);
+    for (const row of list.querySelectorAll(':scope > article.row.open')) {
+      if (row.dataset.chapter === chapter) row.querySelector('.c-title > button:not(.ed)').click();
+    }
+  }
   keep();
   showFolds();
 });
@@ -88,14 +100,20 @@ export function dressFold(heading) {
   line.append(' ', count);
 }
 
-// After each drawing of the list (chapters.js) and each fold: every fold's sign and name, the
-// count on a folded heading, and the rows of a folded chapter out of sight while its heading
-// stands in the list; a search or another sort lists the rows without headings, every one in sight.
-export function showFolds() {
-  const standing = new Set();
+// After each drawing of the list (chapters.js, with `inStory`: whether the list now stands in the
+// story order) and each fold: the chapters of the rows opened since the last drawing unfolded,
+// every fold's sign and name, the count on a folded heading, and in the story order the rows of a
+// folded chapter out of sight. Out of it (the fold and the count are then out of sight, edit.css)
+// a fold hides nothing.
+export function showFolds(inStory = story) {
+  story = inStory;
+  const open = [...list.querySelectorAll(':scope > article.row.open')];
+  let opened = false;
+  for (const row of open) if (!wasOpen.has(row.dataset.no) && folded.delete(row.dataset.chapter)) opened = true;
+  wasOpen = new Set(open.map((row) => row.dataset.no));
+  if (opened) keep();
   for (const heading of list.querySelectorAll(':scope > h2.chapter')) {
     const id = heading.dataset.chapter;
-    standing.add(id);
     const button = heading.querySelector('.ed-fold');
     if (!button) continue;
     const shut = isFolded(id);
@@ -111,8 +129,5 @@ export function showFolds() {
     const words = shut ? rowCount(state.chapters.find((c) => c.id === id)?.rows.length ?? 0) : '';
     if (count.textContent !== words) count.textContent = words;
   }
-  for (const row of list.querySelectorAll(':scope > article.row')) {
-    const chapter = row.dataset.chapter;
-    row.classList.toggle('ed-folded', standing.has(chapter) && isFolded(chapter));
-  }
+  for (const row of list.querySelectorAll(':scope > article.row')) row.classList.toggle('ed-folded', story && isFolded(row.dataset.chapter));
 }
