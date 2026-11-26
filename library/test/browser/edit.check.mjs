@@ -2463,7 +2463,7 @@ async function main() {
     check(sent.length === count, `${sent.length - count} edits were sent`);
   });
 
-  await step('the finder says Nothing found. when nothing is, and of words inside a link that they cannot be linked; a press on its frame or beside 🔗 keeps it open, the focus in it; nothing is written or sent', async () => {
+  await step('the finder says Nothing found. when nothing is, and of words inside a link that they cannot be linked; a press on its frame, beside 🔗 or between them keeps it open, the focus in it; nothing is written or sent', async () => {
     const row = rowAt('12.01');
     const area = await openText('12.01');
     const before = (await fieldIs(area)).value;
@@ -2483,11 +2483,17 @@ async function main() {
     await page.keyboard.press('Enter');
     seen = await finder();
     check(JSON.stringify(seen) === JSON.stringify(nothing), `after Enter the finder is ${JSON.stringify(seen)}`);
+    // A press on any of these: the finder's padding, the bar beside 🔗, the space between 🔗 and
+    // the finder.
     const points = await page.$eval(`${row} .ed-linker`, (el) => {
       const frame = el.querySelector('.ed-finder').getBoundingClientRect();
       const bar = el.querySelector('.ed-link-bar').getBoundingClientRect();
       const link = el.querySelector('button.ed-link').getBoundingClientRect();
-      return [{ at: 'the finder\'s frame', x: frame.left + 3, y: frame.bottom - 3 }, { at: 'the bar beside 🔗', x: link.right + 40, y: bar.top + bar.height / 2 }];
+      return [
+        { at: 'the finder\'s frame', x: frame.left + 3, y: frame.bottom - 3 },
+        { at: 'the bar beside 🔗', x: link.right + 40, y: bar.top + bar.height / 2 },
+        { at: 'the space between 🔗 and the finder', x: link.right + 40, y: Math.round((link.bottom + frame.top) / 2) },
+      ];
     });
     for (const { at, x, y } of points) {
       await page.mouse.click(x, y);

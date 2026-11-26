@@ -268,14 +268,14 @@ dl.meta dd .ed-field .ed-error { flex-basis: 100%; }
    does under ＋; the match chosen by ↑ ↓ is drawn as a pressed button is. The legend is small and
    grey, its examples in black. */
 .ed-linker:focus { outline: none; }
-.ed-link-bar { position: relative; display: flex; margin: 0 0 6px; font: 400 var(--size-meta)/1.45 var(--sans); letter-spacing: 0; }
+.ed-link-bar { position: relative; display: flex; padding: 0 0 6px; font: 400 var(--size-meta)/1.45 var(--sans); letter-spacing: 0; } /* the space under 🔗 is the bar's, so a press there keeps the focus (linker.js) */
 .ed-linker button.ed-link { margin: -3px -1px; padding: 3px 1px; text-decoration: none; }
 .ed-linker button.ed-link[aria-expanded="true"] { background: var(--ink); color: var(--paper); }
 .ed-linker button.ed-link:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; } /* in a field, where only the text's own frame marks the focus */
 .ed-finder {
   position: absolute;
   z-index: 6;
-  top: calc(100% + 6px);
+  top: 100%;
   left: 0;
   width: min(420px, 100%);
   padding: 10px 12px;

@@ -4,13 +4,13 @@
 // click is written as a link around the words selected in the field, or with its own name for
 // words when none are (insertLink), in the form lib/links.mjs reads, through the field's own
 // editing, so that ⌘Z takes it out again. Words that cannot be a link's (holding [ ] or |, across
-// an empty line, touching a link already typed) are not linked: the finder says so and lists
-// nothing; it says so too when nothing is found. Escape closes the finder and gives the field its
-// focus and selection back. Under the field, for as long as it is open, the legend: a line and an
-// example for each kind of link, and what else the field holds.
+// an empty line, in Markdown across any line end, touching a link already typed) are not linked:
+// the finder says so and lists nothing; it says so too when nothing is found. Escape closes the
+// finder and gives the field its focus and selection back. Under the field, for as long as it is
+// open, the legend: a line and an example for each kind of link, and what else the field holds.
 //
-// The field keeps its focus and selection while 🔗 is pressed, and a press anywhere in the finder
-// but its own field leaves the focus where it is. The finder stands inside the field's place
+// The field keeps its focus and selection while 🔗 is pressed, and a press anywhere on 🔗's bar,
+// the finder and the space between them, but the finder's own field, leaves the focus where it is. The finder stands inside the field's place
 // (field.js), so going to it does not leave the field, and its Enter and Escape are its own: they
 // neither save the field nor put back what was there, nor close the About dialog.
 import { state } from './core.js';
@@ -107,7 +107,7 @@ export function attachLinker(field, { markdown = false, headings = false } = {})
   const open = () => {
     if (field.readOnly) return;
     selection = [field.selectionStart, field.selectionEnd];
-    unlinkable = !linkable(field.value, ...selection);
+    unlinkable = !linkable(field.value, ...selection, { markdown });
     find.value = '';
     draw();
     finder.hidden = false;
@@ -137,7 +137,7 @@ export function attachLinker(field, { markdown = false, headings = false } = {})
   // watches for unsaved text see it, and ⌘Z takes it out; where the browser does not take that (a
   // field read only while About saves), the value is set and its input event fired.
   const choose = (match) => {
-    const made = insertLink(field.value, selection[0], selection[1], match.target, match.label);
+    const made = insertLink(field.value, selection[0], selection[1], match.target, match.label, { markdown });
     if (!made) return;
     close(false);
     const [start, end] = selection;

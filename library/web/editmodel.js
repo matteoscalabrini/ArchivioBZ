@@ -198,13 +198,15 @@ const LINK = /\[\[([^[\]]*)\]\]/g;
 // Whether 🔗 can write a link at the selection from `start` to `end`: its words, the spaces at
 // either end left out, hold no [ ] or | (each would end the link early), cross no empty line (the
 // text would part there, link and all) and stand outside every link already typed; with nothing
-// selected, the caret is not inside a link.
-export function linkable(value, start, end) {
+// selected, the caret is not inside a link. `markdown`: the field is Markdown (About, a page),
+// where one line end can end a paragraph too (a heading, an item or a quote on the next line), so
+// the words hold none; a row's text and the idea part only at empty lines.
+export function linkable(value, start, end, { markdown = false } = {}) {
   const text = String(value ?? '');
   const chosen = text.slice(start, end);
   const from = start + /^\s*/.exec(chosen)[0].length;
   const inner = text.slice(from, end).trimEnd();
-  if (/[[\]|]/.test(inner) || /\n[ \t\r]*\n/.test(inner)) return false;
+  if (/[[\]|]/.test(inner) || (markdown ? /\n/ : /\n[ \t\r]*\n/).test(inner)) return false;
   const to = from + inner.length;
   for (const link of text.matchAll(LINK)) {
     const [a, b] = [link.index, link.index + link[0].length];
@@ -217,9 +219,10 @@ export function linkable(value, start, end) {
 // spaces at either end of the selection left outside the brackets; with nothing selected, or
 // spaces only, `words` are written, after those spaces, with ( ) and / for any [ ] and |, so that
 // the link stays one. -> { value, caret }: the text with the link, and the place just after its
-// ]]; or null where the selection cannot be linked (linkable), and nothing is written.
-export function insertLink(value, start, end, target, words) {
-  if (!linkable(value, start, end)) return null;
+// ]]; or null where the selection cannot be linked (linkable, given `markdown`), and nothing is
+// written.
+export function insertLink(value, start, end, target, words, { markdown = false } = {}) {
+  if (!linkable(value, start, end, { markdown })) return null;
   const text = String(value ?? '');
   const chosen = text.slice(start, end);
   const lead = /^\s*/.exec(chosen)[0];

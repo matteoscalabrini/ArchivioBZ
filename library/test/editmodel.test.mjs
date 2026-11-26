@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { dropTarget, chapterIndex, toParagraphs, fromParagraphs, OpQueue, Underway, IdeaDrawings, changesIn, publishQuestion, removeQuestion, storyPlaces, headingsOf, placeRow, rowPlace, placeChapter, yearValue, numberValue, offered, placedLine, rowCount, linkMatches, insertLink, linkable } from '../web/editmodel.js';
 import { linksIn, targetOf } from '../lib/links.mjs';
+import { renderMarkdown } from '../lib/markdown.mjs';
 import { diffDocs } from '../cloud/doc.mjs';
 import { summaryLine } from '../cloud/render.mjs';
 import { sampleDoc } from './docs.mjs';
@@ -485,4 +486,22 @@ test('insertLink round trip: rows, pages and keywords, a folded one and one with
       assert.equal(value.slice(0, links[0].start) + value.slice(links[0].end), start === end ? text : 'Before  here.', `${value}: the text around the link`);
     }
   }
+});
+
+// In Markdown (About, the pages) one line end can end a paragraph: a heading, an item or a quote
+// may start on the next line, and the link would be cut in two (Task 18 re-review). There a
+// selection holding a line end is not linked; a row's text and the idea part only at empty lines.
+test('linkable and insertLink in a Markdown field: a selection holding a line end is not linked; one on one line is', () => {
+  const md = { markdown: true };
+  for (const text of ['Intro words\n## A heading', 'One line\n- an item', 'A line\n> quoted']) {
+    assert.equal(linkable(text, 0, text.length, md), false, text);
+    assert.equal(insertLink(text, 0, text.length, '@2.08', 'x', md), null, text);
+    assert.equal(linkable(text, 0, text.length), true, `${text}: a row's text and the idea keep one line end`);
+  }
+  const text = 'Intro words\n## A heading';
+  const made = insertLink(text, 0, 12, '@2.08', 'x', md); // the line end selected too, outside the brackets
+  assert.deepEqual(made, { value: '[[Intro words|@2.08]]\n## A heading', caret: 21 });
+  const ctx = { keywords: {}, aliases: {}, rows: new Map([['2.08', { no: '2.08', title: 'Oltrisarco', shown: true }]]), pages: new Map(), here: 'other', up: '' };
+  assert.match(renderMarkdown(made.value, { links: ctx }), /^<p><a href="index\.html#o=2\.08">Intro words<\/a><\/p>\s*<h2>A heading<\/h2>/, 'drawn as a link, the heading after it');
+  assert.match(renderMarkdown('[[Intro words\n## A heading|@2.08]]', { links: ctx }), /<p>\[\[Intro words<\/p>/, 'what it would have written: two halves');
 });
