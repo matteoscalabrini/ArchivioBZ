@@ -185,6 +185,16 @@ dl.meta dd button.ed { margin-left: 2px; }
 .ed-pic { display: flex; gap: 12px; margin: 8px 0 0; }
 figcaption.ed-unset { margin-top: 6px; }
 
+/* ＋ picture: a line under a row's pictures, after Side by side, or where the pictures would be in
+   a row with none (edit/pictures.js); while pictures are being added, the words that say which. An
+   open row with files dragged over it is outlined. */
+.ed-add-pic { margin: 16px 0 0; font-size: var(--size-meta); }
+.pics > .ed-add-pic { grid-column: 1 / -1; justify-self: start; }
+.detail > .ed-pics { grid-column: 2; min-width: 0; margin-bottom: 14px; }
+.detail > .ed-pics > .ed-add-pic { margin-top: 0; }
+.ed-adding { color: var(--grey); }
+.row.ed-drop { outline: 1px dashed var(--ink); outline-offset: -4px; }
+
 /* Side by side: a small switch. */
 .pics > .ed-switch { grid-column: 1 / -1; justify-self: start; }
 .ed-switch { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; font-size: var(--size-meta); cursor: pointer; }

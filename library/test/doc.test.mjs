@@ -192,6 +192,11 @@ test('checkDoc names every shape the edit operations never leave', () => {
     [(d) => (d.rows.a.pictures = [{ src: '/p/1.jpg', w: '4', h: 3 }]), /row a: pictures is not a list of pictures/],
     [(d) => (d.rows.a.pictures = [{ src: '/p/1.jpg', w: 4, h: 3, caption: null }]), /row a: pictures is not a list of pictures/],
     [(d) => (d.rows.a.thumb = { src: '/t.jpg' }), /row a: thumb is not a small picture/],
+    [(d) => (d.rows.a.pictures = [{ src: '/p/1.jpg', w: 4, h: 3, small: { src: '/s.jpg' } }]), /row a: pictures is not a list of pictures/],
+    [(d) => (d.rows.a.pictures = [{ src: '/p/1.jpg', w: 4, h: 3, small: { src: '', w: 2, h: 1 } }]), /row a: pictures is not a list of pictures/],
+    [(d) => (d.rows.a.pictures = [{ src: '/p/1.jpg', w: 4, h: 3, small: { src: '/s.jpg', w: '2', h: 1 } }]), /row a: pictures is not a list of pictures/],
+    [(d) => (d.rows.a.pictures = [{ src: '/p/1.jpg', w: 4, h: 3, small: '/s.jpg' }]), /row a: pictures is not a list of pictures/],
+    [(d) => (d.rows.a.pictures = [{ src: '/p/1.jpg', w: 4, h: 3, small: null }]), /row a: pictures is not a list of pictures/],
     [(d) => { d.rows.r1 = structuredClone(d.rows.a); d.chapters[0].rows.push('r1'); }, /row r1 is not below next\.row \(1\)/],
     [(d) => d.chapters.push({ id: 'c3', title: 'Three', rows: [] }), /chapter c3 is not below next\.chapter \(3\)/],
     [(d) => (d.chapters[0].title = ''), /chapter c1 has no title/],
@@ -206,7 +211,8 @@ test('checkDoc names every shape the edit operations never leave', () => {
   for (const [edit, pattern] of cases) assert.match(text(edit), pattern, String(edit));
   const fine = sample();
   fine.rows.a.record = { title: 'A', type: 'Poster', date: '1931', year: 1931, keywords: ['wall'], text: ['p'], confidence: { level: 'lead', note: 'n' }, facts: ['f'], source: { label: 'l', url: 'https://x' }, rights: 'r', file: 'f.pdf', more: { kind: 'source' }, creator: 'c', holder: 'h', place: 'piazza', side_by_side: true, sources: ['b'] };
-  fine.rows.a.pictures = [{ src: '/p/1.jpg', w: 4, h: 3, caption: '' }, { src: '/p/2.jpg', w: 4, h: 3 }];
+  fine.rows.a.pictures = [{ src: '/p/1.jpg', w: 4, h: 3, caption: '' }, { src: '/p/2.jpg', w: 4, h: 3 },
+    { src: 'https://p.test/3.jpg', w: 1600, h: 1067, small: { src: 'https://p.test/3-small.jpg', w: 220, h: 147 } }];
   fine.rows.a.thumb = { src: '/t.jpg', w: 2, h: 1 };
   fine.rows.r4 = structuredClone(fine.rows.b); fine.chapters[1].rows.push('r4'); fine.next.row = 5;
   fine.places.away = { name: 'Away', lat: 45, lon: 11, inside: false, x: null, y: null, z: null };

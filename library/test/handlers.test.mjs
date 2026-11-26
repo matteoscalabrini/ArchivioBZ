@@ -1,5 +1,8 @@
 import { test, beforeEach, afterEach } from 'node:test';
 import assert from 'node:assert/strict';
+import path from 'node:path';
+import { readFile, readdir } from 'node:fs/promises';
+import sharp from 'sharp';
 import { PGlite } from '@electric-sql/pglite';
 import { pgliteDb } from '../cloud/db.mjs';
 import { makeStore, ConflictError } from '../cloud/store.mjs';
@@ -7,7 +10,9 @@ import { loadLists, renderSite, renderEditPage } from '../cloud/render.mjs';
 import { hashPassword, makeSession, SESSION_MS } from '../cloud/auth.mjs';
 import { makeHandlers } from '../cloud/handlers.mjs';
 import { sampleDoc } from './docs.mjs';
-import { cleanRoot } from './helpers.mjs';
+import { cleanRoot, tempDir } from './helpers.mjs';
+import { blobPictures, localPictures } from '../cloud/pictures.mjs';
+import { stripJpeg } from '../lib/metadata.mjs';
 
 // A draft from sample() published once, on PGlite; a session cookie from makeSession. The wait is
 // a stub that records what it was asked to wait, so the tests do not sleep.
@@ -545,4 +550,123 @@ test('the store is set up once per instance, not on every request', async () => 
   await once.edit(get(''));
   await once.edit(hide('b', 1));
   assert.equal(inits, 1);
+});
+
+// ＋ picture (design §6). The cloud's stores are stood in for by the production adapter's token
+// checks (the handshake makes its token here, with no request to Vercel); the rest runs on the
+// local server's adapter, on a temporary folder: an original sent to /edit/original, made into the
+// site's two JPEGs by /edit/picture, and added to the row by the op add-picture.
+const ORIGINALS_TOKEN = 'vercel_blob_rw_privatestore_secretone';
+const PICTURES_TOKEN = 'vercel_blob_rw_publicstore_secrettwo';
+const cloudPictures = () => blobPictures({ originals: ORIGINALS_TOKEN, pictures: PICTURES_TOKEN });
+async function localStore() {
+  const dir = await tempDir('edit-pictures-');
+  const originals = path.join(dir, 'originals');
+  const served = path.join(dir, 'img');
+  return { originals, served, pictures: localPictures({ originals, pictures: served }) };
+}
+const sendOriginal = (bytes, { pathname = 'originals/a-mf3k2a.jpg', type = 'image/jpeg', ...options } = {}) => new Request('https://a.test/api/edit?route=original', {
+  method: 'POST', headers: { ...headersOf({ type, ...options }), 'x-pathname': pathname }, body: bytes,
+});
+const handshake = (pathname, options) => post('upload', { type: 'blob.generate-client-token', payload: { pathname, clientPayload: null, multipart: false } }, options);
+
+test('upload, picture and original answer 401 without the cookie and 403 from another origin, and keep nothing', async () => {
+  const local = await localStore();
+  const dev = make({ pictures: local.pictures });
+  const photo = await sharp({ create: { width: 40, height: 30, channels: 3, background: '#000' } }).jpeg().toBuffer();
+  for (const options of [{ cookie: '' }, { origin: 'https://evil.test' }]) {
+    const status = options.cookie === '' ? 401 : 403;
+    for (const req of [handshake('originals/a-1.jpg', options), post('picture', { id: 'a', pathname: 'originals/a-1.jpg' }, options), sendOriginal(photo, options)]) {
+      const res = await dev.edit(req);
+      assert.equal(res.status, status, `${new URL(req.url).searchParams.get('route')} ${JSON.stringify(options)}`);
+    }
+    assert.equal((await make({ pictures: cloudPictures() }).edit(handshake('originals/a-1.jpg', options))).status, status, 'the cloud\'s handshake too');
+  }
+  await assert.rejects(readdir(local.originals), { code: 'ENOENT' }, 'no original kept');
+  assert.equal((await store.getDraft()).version, 1);
+});
+
+test('the handshake answers a token for a name under originals/ and refuses any other; original is not found in the cloud', async () => {
+  const cloud = make({ pictures: cloudPictures() });
+  const res = await cloud.edit(handshake('originals/a-mf3k2a.jpg'));
+  assert.equal(res.status, 200);
+  assert.equal(res.headers.get('cache-control'), 'no-store');
+  const body = await res.json();
+  assert.equal(body.type, 'blob.generate-client-token');
+  assert.match(body.clientToken, /^vercel_blob_client_privatestore_/);
+  for (const pathname of ['pictures/x.jpg', '../x', 'originals/a/b.jpg']) {
+    const refused = await cloud.edit(handshake(pathname));
+    assert.equal(refused.status, 422, pathname);
+    assert.equal(typeof (await refused.json()).error, 'string');
+  }
+  const photo = await sharp({ create: { width: 40, height: 30, channels: 3, background: '#000' } }).jpeg().toBuffer();
+  assert.equal((await cloud.edit(sendOriginal(photo))).status, 404, 'original is the local server\'s alone');
+  const local = await localStore();
+  assert.equal((await make({ pictures: local.pictures }).edit(handshake('originals/a-1.jpg'))).status, 404, 'the local server has no handshake');
+  const none = await h.edit(post('picture', { id: 'a', pathname: 'originals/a-1.jpg' }));
+  assert.equal(none.status, 500, 'without stores, pictures cannot be added');
+  assert.match((await none.json()).error, /BLOB_READ_WRITE_TOKEN and PICTURES_READ_WRITE_TOKEN/);
+});
+
+test('picture refuses a name outside originals/, a row that does not exist, and a file that is not a picture, and leaves the draft as it was', async () => {
+  const local = await localStore();
+  const dev = make({ pictures: local.pictures });
+  for (const pathname of ['../x', 'pictures/x.jpg', 'originals/a/b.jpg', 'originals/..', 7]) {
+    const res = await dev.edit(post('picture', { id: 'a', pathname }));
+    assert.equal(res.status, 422, JSON.stringify(pathname));
+  }
+  const photo = await sharp({ create: { width: 40, height: 30, channels: 3, background: '#000' } }).jpeg().toBuffer();
+  const { pathname } = await (await dev.edit(sendOriginal(photo))).json();
+  const nowhere = await dev.edit(post('picture', { id: 'z', pathname }));
+  assert.deepEqual([nowhere.status, await nowhere.json()], [422, { error: 'There is no row z.' }]);
+  const text = await (await dev.edit(sendOriginal(Buffer.from('Notes, not a picture.\n'), { pathname: 'originals/a-mf3k2b.jpg' }))).json();
+  const notPicture = await dev.edit(post('picture', { id: 'a', pathname: text.pathname }));
+  assert.deepEqual([notPicture.status, await notPicture.json()], [422, { error: 'That file is not a picture the site can take: JPEG, PNG or WebP.' }]);
+  await assert.rejects(readdir(local.served), { code: 'ENOENT' }, 'nothing made, nothing served');
+  assert.equal((await store.getDraft()).version, 1, 'the draft is untouched');
+  for (const [bytes, options] of [[photo, { type: 'text/plain' }], [photo, { type: 'image/heic' }], [photo, { pathname: 'pictures/a.jpg' }]]) {
+    assert.equal((await dev.edit(sendOriginal(bytes, options))).status, 422, JSON.stringify(options));
+  }
+  const declared = await dev.edit(new Request('https://a.test/api/edit?route=original', {
+    method: 'POST', headers: { ...headersOf({ type: 'image/jpeg' }), 'x-pathname': 'originals/a-big.jpg', 'content-length': String(100 * 1024 * 1024 + 1) }, body: photo,
+  }));
+  assert.equal(declared.status, 413, 'an original over 100 MB is refused before it is read');
+});
+
+test('end to end on this computer: original, picture, add-picture; the row holds the picture, its thumb is the small one, and the row as drawn shows it', async () => {
+  const local = await localStore();
+  const dev = make({ pictures: local.pictures });
+  const page = await (await dev.edit(get(''))).text();
+  assert.equal(JSON.parse(/<script type="application\/json" id="edit-data">([\s\S]*?)<\/script>/.exec(page)[1]).originals, 'original', 'the page sends its originals to /edit/original');
+  const cloudPage = await (await make({ pictures: cloudPictures() }).edit(get(''))).text();
+  assert.equal(JSON.parse(/<script type="application\/json" id="edit-data">([\s\S]*?)<\/script>/.exec(cloudPage)[1]).originals, 'upload', 'in the cloud, by the handshake');
+
+  const photo = await sharp({ create: { width: 2000, height: 1500, channels: 3, background: '#a07040' } }).withExif({ IFD0: { Make: 'Phone' } }).jpeg().toBuffer();
+  const sent = await dev.edit(sendOriginal(photo));
+  assert.equal(sent.status, 200);
+  const { pathname } = await sent.json();
+  assert.match(pathname, /^originals\/a-mf3k2a-[0-9a-f]+\.jpg$/);
+  assert.ok((await readFile(path.join(local.originals, pathname.slice('originals/'.length)))).equals(photo), 'the original kept as sent');
+
+  const made = await dev.edit(post('picture', { id: 'a', pathname }));
+  assert.equal(made.status, 200);
+  const { picture } = await made.json();
+  assert.deepEqual([picture.w, picture.h, picture.small.w, picture.small.h], [1600, 1200, 220, 165]);
+  assert.match(picture.src, /^\/dev-img\/a-[0-9a-z]+-[0-9a-f]+\.jpg$/);
+  for (const src of [picture.src, picture.small.src]) {
+    const file = await readFile(path.join(local.served, src.slice('/dev-img/'.length)));
+    assert.ok(stripJpeg(file).equals(file), `${src} carries no metadata`);
+  }
+  assert.equal((await store.getDraft()).version, 1, 'making the pictures leaves the draft as it was');
+
+  const added = await dev.edit(post('op', { version: 1, op: { op: 'add-picture', id: 'a', picture } }));
+  assert.equal(added.status, 200);
+  const body = await added.json();
+  assert.deepEqual(body.stored.pictures, [picture]);
+  assert.deepEqual(body.stored.thumb, picture.small);
+  assert.match(body.row, new RegExp(`<img data-src="${picture.src.replace(/[.]/g, '\\.')}" alt="" width="1600" height="1200">`), 'the row as drawn shows it');
+  assert.ok(!body.row.includes(picture.small.src), 'the small one is not drawn in the row');
+  const draft = await store.getDraft();
+  assert.deepEqual([draft.version, draft.doc.rows.a.pictures, draft.doc.rows.a.thumb], [2, [picture], picture.small]);
+  assert.equal(body.summary, '1 row changed');
 });

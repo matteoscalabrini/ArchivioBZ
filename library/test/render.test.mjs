@@ -226,7 +226,8 @@ test('the edit page carries hidden rows, marked, and the draft as data', () => {
   assert.match(page, /<link rel="stylesheet" href="\.\.\/web\/edit\.css">/);
   assert.match(page, /<script type="module" src="\.\.\/web\/edit\.js"><\/script>/);
   assert.match(page, /<a href="\.\.\/map\.html"/, 'the page lives one folder down, at /edit/');
-  assert.deepEqual(editData(page), { version: 1, doc, types: TYPES, summary: '1 hidden', changed: [id], published: ids(published) });
+  assert.deepEqual(editData(page), { version: 1, doc, types: TYPES, summary: '1 hidden', changed: [id], published: ids(published), originals: null });
+  assert.equal(editData(renderEditPage(doc, { version: 1, published, lists, originals: 'upload' })).originals, 'upload', 'where the page sends an original');
 });
 
 test('the edit page marks what changed since the last publish', () => {

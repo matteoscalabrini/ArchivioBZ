@@ -15,6 +15,7 @@ import { parseArgs } from 'node:util';
 import { checkDoc, docFromLibrary, numbering } from '../cloud/doc.mjs';
 import { loadLibrary } from '../lib/records.mjs';
 import { stripJpeg } from '../lib/metadata.mjs';
+import { publicPut } from '../cloud/pictures.mjs';
 import { locatePlaces } from '../lib/places.mjs';
 import pictureStep from '../steps/10-pictures.mjs';
 
@@ -39,19 +40,12 @@ export function devPictures(dir) {
   };
 }
 
-// The public Blob store. The address has a random suffix, so it cannot be guessed. Each upload is
-// asked for again with HEAD and its size compared with the file's: a script that has finished is
-// not an upload that has (16 Nov 2026, "[object Promise]" for 730 files).
+// The public Blob store, as pictures/<name> with a random suffix, so that the address cannot be
+// guessed; each upload checked as every public picture is (publicPut in cloud/pictures.mjs: no
+// metadata left to strip, and its size asked for again with HEAD).
 export function blobPictures(token) {
-  return async (file, name) => {
-    const { put } = await import('@vercel/blob');
-    const body = await readFile(file);
-    const { url } = await put(`pictures/${name}`, body, { access: 'public', addRandomSuffix: true, token, contentType: 'image/jpeg' });
-    const head = await fetch(url, { method: 'HEAD' });
-    const size = Number(head.headers.get('content-length'));
-    if (!head.ok || size !== body.length) throw new Error(`${name}: uploaded as ${url}, but it holds ${head.headers.get('content-length')} bytes, not ${body.length}`);
-    return url;
-  };
+  const put = publicPut(token);
+  return async (file, name) => put(await readFile(file), `pictures/${name}`);
 }
 
 // -> { doc, rows, pictures, problems }; `pictures` is how many files were (or, in a dry run,

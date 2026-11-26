@@ -26,6 +26,7 @@ export const state = {
   confirmed: copy(data.doc.chapters),
   numbers: Object.fromEntries([...list.querySelectorAll('article.row')].map((el) => [el.dataset.no, el.querySelector('.c-no').textContent.trim()])),
   published: new Set(data.published ?? []), // the rows some publish holds; a removal can bring them back
+  originals: data.originals ?? null, // where a picture's original goes: 'upload' (the cloud) or 'original' (this computer)
 };
 
 // What the parts say to each other: 'summary' (the bar's line changed), 'say' ({ text, kind }:

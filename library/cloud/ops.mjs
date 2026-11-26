@@ -108,6 +108,21 @@ function checkedField(doc, name, value) {
 }
 const LIVE = (value) => value !== null && typeof value === 'object' && !Array.isArray(value);
 
+// A picture's address as add-picture takes it: a web address on https (a store's), or a path from
+// the site's root (/dev-img/… on this computer); nothing the page would read against its own folder
+// or fetch from wherever the page is (//elsewhere/…).
+const PICTURE_SRC = /^(https:\/\/[^/\s]|\/(?!\/))/;
+const isWhole = (value) => Number.isInteger(value) && value > 0;
+
+// { src, w, h } as add-picture stores it, from what was sent; `what` names it in the refusal.
+function sizedPicture(value, what) {
+  if (!LIVE(value)) refuse(`The ${what} needs an address, a width and a height.`);
+  const { src, w, h } = value;
+  if (!isText(src) || !PICTURE_SRC.test(src)) refuse(`The ${what}'s address must begin with https:// or /.`);
+  if (!isWhole(w) || !isWhole(h)) refuse(`The ${what}'s width and height must be whole numbers above 0.`);
+  return { src, w, h };
+}
+
 function pictureAt(row, id, src) {
   if (!isText(src)) refuse('A picture is named by its source.');
   const at = row.pictures.findIndex((p) => p.src === src);
@@ -189,6 +204,16 @@ const OPS = {
     const at = pictureAt(row, id, src);
     if (!isText(caption)) refuse('A caption must be text.');
     row.pictures[at] = { ...row.pictures[at], caption: caption.trim() };
+    return {};
+  },
+  // A picture made by /edit/picture (its 1600 px JPEG and its small one) put last in the row; a
+  // session may add one without a small one. Only the address, the size and the small one are kept.
+  'add-picture'(doc, { id, picture }) {
+    const row = rowOf(doc, id);
+    const added = sizedPicture(picture, 'picture');
+    if (picture.small !== undefined) added.small = sizedPicture(picture.small, 'small picture');
+    if (row.pictures.some((p) => p.src === added.src)) refuse(`Row ${id} already has that picture.`);
+    row.pictures.push(added);
     return {};
   },
   'move-row'(doc, { id, chapter, index }) {
@@ -313,12 +338,16 @@ function unsavable(value) {
   return LIVE(value) && Object.values(value).some(unsavable);
 }
 
-// A row's small picture (`thumb`, the one the map shows) was made at the move-in from its first
-// picture. Whatever operation changes which picture is first lets it go; the map then shows the
-// first picture as it is now (libFromDoc), until a small one can be made in the cloud.
+// The thumb rule. A row's small picture (`thumb`, the one the map shows) is its first picture's:
+// made at the move-in, or made with a picture added in edit mode (its `small`). Whatever operation
+// changes which picture is first (add, remove, move, set-pictures) makes the thumb the new first
+// picture's small one, or null when it has none (a moved-in picture, whose small one was made for
+// the picture that was first then); the map then shows that picture itself (mapPicture, doc.mjs).
 function letThumbsFollow(before, after) {
   for (const [id, row] of Object.entries(after.rows)) {
-    if (row.thumb && row.pictures[0]?.src !== before.rows[id]?.pictures?.[0]?.src) row.thumb = null;
+    const first = row.pictures[0];
+    if (first?.src === before.rows[id]?.pictures?.[0]?.src) continue;
+    row.thumb = first?.small ? { src: first.small.src, w: first.small.w, h: first.small.h } : null;
   }
 }
 

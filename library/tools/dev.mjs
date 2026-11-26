@@ -4,7 +4,9 @@
 // same addresses, against a PGlite database in library/.cache/dev-db/ instead of Neon. It never
 // reads DATABASE_URL, so work on the code cannot touch the author's real draft. Fill the database
 // first with `npm run move-in -- --dev --replace`. The cookie is not Secure (the page is http),
-// the secret is new at each start, and nothing is purged.
+// the secret is new at each start, and nothing is purged. A picture added is kept as the stores
+// would keep it, in two folders: its original in library/.cache/dev-originals/, never served, and
+// the site's two JPEGs in library/.cache/dev-img/, served at /dev-img/ beside the moved-in ones.
 import http from 'node:http';
 import path from 'node:path';
 import { createReadStream, readFileSync, realpathSync } from 'node:fs';
@@ -18,6 +20,7 @@ import { makeStore } from '../cloud/store.mjs';
 import { loadLists } from '../cloud/render.mjs';
 import { makeHandlers } from '../cloud/handlers.mjs';
 import { hashPassword } from '../cloud/auth.mjs';
+import { localPictures, MAX_ORIGINAL } from '../cloud/pictures.mjs';
 
 const LIBRARY = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const ROOT = path.dirname(LIBRARY);
@@ -35,6 +38,8 @@ const TYPES = {
   '.webp': 'image/webp',
   '.woff2': 'font/woff2',
 };
+// What a request may carry: a Vercel function takes 4.5 MB at most; an original sent to
+// /edit/original, which stands in for the private store, as much as the store takes (MAX_ORIGINAL).
 const MAX_BODY = 4 * 1024 * 1024;
 
 // vercel.json's redirects and rewrites as functions of the path: a literal source, a regex with
@@ -71,18 +76,27 @@ async function fileIn(dir, rest) {
   }
 }
 
-const body = (req) => new Promise((resolve, reject) => {
+const body = (req, max) => new Promise((resolve, reject) => {
   const chunks = [];
   let size = 0;
   req.on('data', (chunk) => {
     size += chunk.length;
-    if (size > MAX_BODY) { reject(new Error('body too large')); req.destroy(); } else chunks.push(chunk);
+    if (size > max) { reject(new Error('body too large')); req.destroy(); } else chunks.push(chunk);
   });
   req.on('end', () => resolve(Buffer.concat(chunks)));
   req.on('error', reject);
 });
 
-export async function startDev({ port = 5180, dataDir = path.join(LIBRARY, '.cache', 'dev-db'), password = 'dev', imgDir = path.join(LIBRARY, '.cache', 'dev-img') } = {}) {
+export async function startDev({
+  port = 5180,
+  dataDir = path.join(LIBRARY, '.cache', 'dev-db'),
+  password = 'dev',
+  imgDir = path.join(LIBRARY, '.cache', 'dev-img'),
+  originalsDir = path.join(LIBRARY, '.cache', 'dev-originals'),
+  // The stores of the pictures added: the two folders, unless a check gives others (the cloud's
+  // handshake with the folders behind it, in library/test/browser/edit.check.mjs).
+  pictures = localPictures({ originals: path.resolve(originalsDir), pictures: path.resolve(imgDir) }),
+} = {}) {
   const pg = new PGlite(path.resolve(dataDir));
   const lists = await loadLists(ROOT);
   for (const { level, where, message } of lists.problems) console.warn(`${level}: ${where}: ${message}`);
@@ -90,6 +104,7 @@ export async function startDev({ port = 5180, dataDir = path.join(LIBRARY, '.cac
     store: makeStore(pgliteDb(pg)),
     env: { EDIT_PASSWORD_HASH: await hashPassword(password), SESSION_SECRET: randomBytes(32).toString('base64') },
     lists,
+    pictures,
     secure: false,
   });
   const { redirects, rewrites } = readRoutes();
@@ -125,7 +140,7 @@ export async function startDev({ port = 5180, dataDir = path.join(LIBRARY, '.cac
       const request = new Request(new URL(target.pathname + target.search, `http://${req.headers.host ?? '127.0.0.1'}`), {
         method: req.method,
         headers,
-        body: hasBody ? await body(req) : undefined,
+        body: hasBody ? await body(req, target.searchParams.get('route') === 'original' ? MAX_ORIGINAL : MAX_BODY) : undefined,
       });
       const response = await handler(request);
       const out = new Headers(response.headers);

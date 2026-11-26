@@ -6,7 +6,7 @@
 //   edit/core.js      the draft held, the queue, an answer put on the page
 //   edit/field.js     a field in place of what ✎ follows
 //   edit/rows.js      a row's controls, head and open body
-//   edit/pictures.js  a row's pictures and "Side by side"
+//   edit/pictures.js  a row's pictures, "Side by side" and ＋ picture
 //   edit/keywords.js  the keywords offered under ＋
 //   edit/chapters.js  the headings, ＋ row here, ＋ chapter here
 //   edit/drag.js      dragging rows and chapters

@@ -7,7 +7,9 @@
 // instead, and the exit code is 1. The server, the browser and the temporary folders go in every
 // outcome. Screenshots of the edit page, of the public page after Publish, of the edit page at a
 // phone's width and of the compact view, at both widths, are written to library/.cache/check-edit/.
-// Not part of npm test, since it needs Chrome.
+// Not part of npm test, since it needs Chrome. The last steps add pictures (＋ picture): on this
+// computer's stores first, then as the cloud's page does, the Blob client in the page given a
+// stand-in for Vercel's Blob service, so that nothing leaves this computer.
 //
 // The fixtures' draft, by row id: chapter c1 "Zero" [0.01], c2 "Five" [5.00 5.01 5.02 5.03],
 // c3 "Twelve" [12.01]; numbered 1.01, 2.01 to 2.04 and 3.01 to begin with. The steps build on
@@ -15,11 +17,14 @@
 import path from 'node:path';
 import os from 'node:os';
 import { fileURLToPath } from 'node:url';
-import { cp, mkdir, mkdtemp, rm } from 'node:fs/promises';
+import { cp, mkdir, mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import puppeteer from 'puppeteer-core';
+import sharp from 'sharp';
 import { PGlite } from '@electric-sql/pglite';
 import { pgliteDb } from '../../cloud/db.mjs';
 import { makeStore } from '../../cloud/store.mjs';
+import { blobPictures, localPictures } from '../../cloud/pictures.mjs';
+import { stripJpeg } from '../../lib/metadata.mjs';
 import { moveIn, devPictures } from '../../tools/move-in.mjs';
 import { startDev } from '../../tools/dev.mjs';
 
@@ -407,6 +412,7 @@ async function main() {
   const root = path.join(work, 'root');
   const dataDir = path.join(work, 'db');
   const imgDir = path.join(work, 'img');
+  const originalsDir = path.join(work, 'originals');
   // The fixtures as cleanRoot (test/helpers.mjs) copies them, without the deliberately broken
   // folder; helpers.mjs is not imported, since it hooks into node:test, which this is not.
   await cp(FIXTURES, root, { recursive: true, filter: (src) => path.basename(src) !== 'bad' });
@@ -420,8 +426,8 @@ async function main() {
   draft.doc.rows['0.01'].record.sources = ['5.03'];
   await store.saveDraft(draft.doc, draft.version);
   await pg.close();
-  dev = await startDev({ port: 0, dataDir, imgDir, password: 'dev' });
-  const base = dev.url.replace(/\/edit\/$/, '');
+  dev = await startDev({ port: 0, dataDir, imgDir, originalsDir, password: 'dev' });
+  let base = dev.url.replace(/\/edit\/$/, '');
 
   browser = await puppeteer.launch({
     executablePath: CHROME,
@@ -1491,6 +1497,233 @@ async function main() {
       await page.emulateNetworkConditions(null);
       await page.setViewport({ width: 1280, height: 900 });
     }
+  });
+
+  // ＋ picture (design §6). The files the author would choose: a photograph as a phone hands it
+  // over (stored on its side, orientation 6, a GPS position in its Exif), a scan as PNG, and notes.
+  const files = path.join(work, 'files');
+  await mkdir(files, { recursive: true });
+  const photo = path.join(files, 'IMG_2041.jpg');
+  await writeFile(photo, await sharp({ create: { width: 1800, height: 1200, channels: 3, background: '#7a6a5a' } })
+    .withMetadata({ orientation: 6 })
+    .withExif({ IFD0: { Make: 'Phone' }, IFD3: { GPSLatitudeRef: 'N', GPSLatitude: '46/1 30/1 0/1' } })
+    .jpeg().toBuffer());
+  const scan = await sharp({ create: { width: 600, height: 400, channels: 3, background: '#e8e0d0' } }).png().toBuffer();
+  const notes = path.join(files, 'notes.txt');
+  await writeFile(notes, 'Notes from the archive, not a picture.\n');
+  // Every request to the picture routes, by route; and any request that leaves this computer.
+  const pictureRequests = [];
+  const away = [];
+  page.on('request', (request) => {
+    const url = new URL(request.url());
+    const route = url.pathname.match(/^\/edit\/(upload|original|picture)$/)?.[1];
+    if (route) pictureRequests.push({ route, body: request.postData() ?? null, headers: request.headers() });
+    if (!['127.0.0.1', 'localhost'].includes(url.hostname) && !['data:', 'blob:'].includes(url.protocol)) away.push(request.url());
+  });
+  const rowOf = (id) => `article.row[data-no="${id}"]`;
+  // The pictures of a row as drawn: each figure's data-src, the one shown marked with *.
+  const figuresOf = (id) => page.$$eval(`${rowOf(id)} .pics figure`, (figs) => figs.map((f) => `${f.hidden ? '' : '*'}${f.querySelector('img')?.dataset.src}`));
+  // Opens the row and waits until it has opened in full: while it grows, the ＋ row here on its
+  // lower rule passes over the line of ＋ picture.
+  const openRow = async (id) => {
+    if (!(await page.$(`${rowOf(id)}.open`))) await page.click(`${rowOf(id)} .c-title button`);
+    await page.waitForSelector(`${rowOf(id)}.open button.ed[data-ed="pic-add"]`);
+    await stillAt(page, `${rowOf(id)} > .ed-here`);
+  };
+
+  await step('＋ picture in an open row with no picture opens the chooser; the JPEG chosen is added while the line says Adding picture 1 of 1… and leaving asks first; the row shows it upright, its small one the thumb, and no metadata goes public', async () => {
+    await page.setViewport({ width: 1280, height: 1600 });
+    await page.goto(`${base}/edit/`);
+    await page.waitForSelector('.ed-bar');
+    await openRow('12.01');
+    const row = rowOf('12.01');
+    const where = await page.$eval(`${row} button.ed[data-ed="pic-add"]`, (button) => ({
+      words: button.textContent.trim(),
+      icon: Boolean(button.querySelector('.ed-icon-add')),
+      place: button.closest('.ed-pics')?.parentElement.matches('.detail') && button.closest('.ed-pics') === button.closest('.detail').firstElementChild,
+      accept: button.parentElement.querySelector('input[type=file]').accept,
+    }));
+    check(where.words === 'picture' && where.icon, `the button reads ${JSON.stringify(where.words)}${where.icon ? '' : ' with no ＋'}`);
+    check(where.place, 'the line is not where the pictures would be, first in the open row');
+    check(where.accept === 'image/jpeg,image/png,image/webp', `the chooser accepts ${where.accept}`);
+    const before = sent.length;
+    const [chooser] = await Promise.all([page.waitForFileChooser(), page.click(`${row} button.ed[data-ed="pic-add"]`)]);
+    check(chooser.isMultiple(), 'the chooser takes one file at a time');
+    await page.emulateNetworkConditions({ offline: false, download: 100e6, upload: 100e6, latency: 400 });
+    try {
+      await chooser.accept([photo]);
+      await page.waitForFunction((sel) => document.querySelector(`${sel} .ed-adding`)?.textContent === 'Adding picture 1 of 1…', { timeout: WAIT }, row)
+        .catch(async () => { throw new Error(`while adding, the line reads ${JSON.stringify(await page.$eval(`${row} .ed-add-pic`, (el) => el.textContent))}`); });
+      const asked = browserAsks();
+      await page.evaluate(() => { location.reload(); });
+      const said = await Promise.race([asked, pause(3000).then(() => null)]);
+      check(said, 'leaving while the picture was being added asked nothing');
+      problems.length = 0; // the question was the point
+      await page.waitForFunction((sel) => document.querySelectorAll(`${sel} .pics figure`).length === 1, { timeout: 15000 }, row);
+    } finally {
+      await page.emulateNetworkConditions(null);
+    }
+    const shown = await figuresOf('12.01');
+    check(shown.length === 1 && /^\*\/dev-img\/12\.01-[0-9a-z]+-[0-9a-f]{16}\.jpg$/.test(shown[0]), `12.01 shows ${JSON.stringify(shown)}`);
+    const img = await page.$eval(`${row} .pics figure img`, (el) => new Promise((resolve) => {
+      const done = () => resolve({ w: el.naturalWidth, h: el.naturalHeight, width: el.getAttribute('width'), height: el.getAttribute('height') });
+      if (el.complete && el.naturalWidth) done(); else { el.addEventListener('load', done); el.addEventListener('error', done); }
+    }));
+    check(img.w === 1067 && img.h === 1600 && img.width === '1067' && img.height === '1600', `the picture shown is ${JSON.stringify(img)}, not 1067 × 1600 upright`);
+    check(await page.$eval(`${row} .ed-add-pic`, (line) => line.parentElement.matches('.pics') && !line.querySelector('button').hidden && line.querySelector('.ed-adding').textContent === ''),
+      'once added, ＋ picture is not back under the picture');
+    const ops = sent.slice(before).map((s) => `${s.body?.op?.op} ${s.status}`);
+    check(ops.join(', ') === 'add-picture 200', `the edits answered were ${ops.join(', ')}`);
+    const added = sent.at(-1).body.op.picture;
+    const routes = pictureRequests.map((r) => r.route).join(' ');
+    check(routes === 'original picture', `the picture routes asked were ${routes}`);
+    check(pictureRequests[0].headers['x-pathname']?.match(/^originals\/12\.01-[0-9a-z]+\.jpg$/), `the original was named ${pictureRequests[0].headers['x-pathname']}, not by the row and the time`);
+    // The original is kept as it was chosen, out of the served folder; what is served has no metadata.
+    const kept = await readdir(originalsDir);
+    check(kept.length === 1 && (await readFile(path.join(originalsDir, kept[0]))).equals(await readFile(photo)), `the originals folder holds ${JSON.stringify(kept)}`);
+    for (const src of [added.src, added.small.src]) {
+      const buf = await readFile(path.join(imgDir, src.slice('/dev-img/'.length)));
+      check(stripJpeg(buf).equals(buf) && !buf.includes(Buffer.from('Phone')), `${src} carries metadata`);
+    }
+    check(!(await readdir(imgDir)).some((name) => name.startsWith('IMG_2041') || kept.includes(name)), 'the original or its name is among the served files');
+    await page.goto(`${base}/edit/`);
+    await page.waitForSelector('.ed-bar');
+    const stored = await page.evaluate(() => JSON.parse(document.getElementById('edit-data').textContent).doc.rows['12.01']);
+    check(JSON.stringify(stored.thumb) === JSON.stringify(added.small) && added.small.w === 147 && added.small.h === 220,
+      `after a reload 12.01's thumb is ${JSON.stringify(stored.thumb)}, not its small picture ${JSON.stringify(added.small)}`);
+  });
+
+  await step('a picture dropped on an open row that has one goes last and shows; Side by side and then ＋ picture stand under them; files let go on a closed row or elsewhere do nothing', async () => {
+    const row = rowOf('0.01');
+    await openRow('0.01');
+    const had = await figuresOf('0.01');
+    check(had.length === 1, `0.01 has ${had.length} pictures, not 1`);
+    const before = sent.length;
+    const asked = pictureRequests.length;
+    // Let go on a closed row and on the bar: refused, so the browser does not open the file.
+    const elsewhere = await page.evaluate(async (bytes) => {
+      const file = new File([Uint8Array.from(atob(bytes), (c) => c.charCodeAt(0))], 'scan.png', { type: 'image/png' });
+      const results = [];
+      for (const target of [document.querySelector('article.row:not(.open) .c-title'), document.querySelector('.ed-bar')]) {
+        const dt = new DataTransfer();
+        dt.items.add(file);
+        const over = new DragEvent('dragover', { bubbles: true, cancelable: true, dataTransfer: dt });
+        target.dispatchEvent(over);
+        const drop = new DragEvent('drop', { bubbles: true, cancelable: true, dataTransfer: dt });
+        target.dispatchEvent(drop);
+        results.push({ marked: Boolean(document.querySelector('article.row.ed-drop')), kept: drop.defaultPrevented });
+      }
+      return results;
+    }, scan.toString('base64'));
+    // A synthetic drag's dropEffect cannot be read back; what shows is that no row is marked, the
+    // browser is kept from opening the file, and nothing is sent.
+    check(elsewhere.every((r) => !r.marked && r.kept), `files let go elsewhere: ${JSON.stringify(elsewhere)}`);
+    await pause(300);
+    check(pictureRequests.length === asked, 'files let go elsewhere were sent');
+    const dropped = await page.evaluate(async (sel, bytes) => {
+      const file = new File([Uint8Array.from(atob(bytes), (c) => c.charCodeAt(0))], 'scan.png', { type: 'image/png' });
+      const dt = new DataTransfer();
+      dt.items.add(file);
+      const target = document.querySelector(`${sel} .txt`);
+      const over = new DragEvent('dragover', { bubbles: true, cancelable: true, dataTransfer: dt });
+      target.dispatchEvent(over);
+      const marked = document.querySelector(sel).classList.contains('ed-drop');
+      const drop = new DragEvent('drop', { bubbles: true, cancelable: true, dataTransfer: dt });
+      target.dispatchEvent(drop);
+      return { taken: over.defaultPrevented && drop.defaultPrevented, marked, unmarked: !document.querySelector(sel).classList.contains('ed-drop') };
+    }, row, scan.toString('base64'));
+    check(dropped.taken && dropped.marked && dropped.unmarked, `the drop on the open row: ${JSON.stringify(dropped)}`);
+    await page.waitForFunction((sel) => document.querySelectorAll(`${sel} .pics figure`).length === 2, { timeout: 15000 }, row)
+      .catch(async () => { throw new Error(`0.01 shows ${JSON.stringify(await figuresOf('0.01'))}`); });
+    await sentSince(before, 1);
+    const shown = await figuresOf('0.01');
+    check(shown[0] === had[0].replace(/^\*/, '') && /^\*\/dev-img\/0\.01-[0-9a-z]+-[0-9a-f]{16}\.jpg$/.test(shown[1]), `0.01 shows ${JSON.stringify(shown)}: not the new picture last and showing`);
+    const order = await page.$$eval(`${row} .pics > *`, (els) => els.map((el) => (el.matches('figure') ? 'figure' : el.className)).join(' '));
+    check(order === 'figure figure ed-switch ed-add-pic', `under 0.01's pictures: ${order}`);
+    const op = sent.at(-1).body.op;
+    check(op.op === 'add-picture' && op.picture.w === 600 && op.picture.h === 400 && sent.at(-1).status === 200, `the edit sent was ${JSON.stringify(op)}`);
+  });
+
+  await step('a file of another type is refused in the bar with the sentence, and nothing is sent', async () => {
+    const row = rowOf('0.01');
+    await openRow('0.01');
+    const before = sent.length;
+    const asked = pictureRequests.length;
+    const [chooser] = await Promise.all([page.waitForFileChooser(), page.click(`${row} button.ed[data-ed="pic-add"]`)]);
+    await chooser.accept([notes]);
+    const line = 'notes.txt: only JPEG, PNG and WebP pictures are taken.';
+    await page.waitForFunction((words) => document.querySelector('.ed-msg')?.textContent.startsWith(words), { timeout: WAIT }, line)
+      .catch(async () => { throw new Error(`the bar says ${JSON.stringify(await page.$eval('.ed-msg', (el) => el.textContent))}`); });
+    await pause(300);
+    check(pictureRequests.length === asked && sent.length === before, 'a file of another type was sent');
+    check((await figuresOf('0.01')).length === 2, '0.01 changed');
+    check(await page.$eval(`${row} .ed-add-pic`, (el) => !el.querySelector('button').hidden && el.querySelector('.ed-adding').textContent === ''), 'the line does not stand as before');
+  });
+
+  // The cloud's way, on this computer: the server's handshake as the cloud's (a token made by
+  // @vercel/blob/client from a stand-in read-write token), the original put by the page's Blob
+  // client (web/vendor/blob-client.esm.js), and the pictures made from the folders as above. The
+  // client's one request to Vercel's Blob service is answered in the page by a stand-in, which
+  // keeps the file where the folders' /edit/picture reads it; no request leaves this computer.
+  await step('as in the cloud: the token asked of /edit/upload, the original put by the page\'s Blob client into the private store, then made and added', async () => {
+    await dev.close();
+    const folders = localPictures({ originals: originalsDir, pictures: imgDir });
+    const cloud = blobPictures({ originals: 'vercel_blob_rw_checkstore_standin', pictures: 'vercel_blob_rw_unused_standin' });
+    dev = await startDev({ port: 0, dataDir, imgDir, originalsDir, password: 'dev', pictures: { handshake: cloud.handshake, picture: folders.picture } });
+    base = dev.url.replace(/\/edit\/$/, '');
+    const puts = [];
+    await page.exposeFunction('blobStandIn', async (url, method, headers, bytes) => {
+      const pathname = new URL(url).searchParams.get('pathname');
+      const kept = pathname.replace(/\.(\w+)$/, '-St4nd1n.$1');
+      const body = Buffer.from(bytes, 'base64');
+      puts.push({ url, method, headers, size: body.length, pathname });
+      await writeFile(path.join(originalsDir, kept.slice('originals/'.length)), body);
+      const at = `https://checkstore.private.blob.vercel-storage.com/${kept}`;
+      return { url: at, downloadUrl: `${at}?download=1`, pathname: kept, contentType: headers['x-content-type'] ?? '', contentDisposition: 'inline', etag: '"1"' };
+    });
+    // Before the page's scripts: fetch to Vercel's Blob service answered by the stand-in. The
+    // Blob client takes fetch as it is when it loads, which is at the first original sent.
+    await page.evaluateOnNewDocument(() => {
+      const real = window.fetch.bind(window);
+      window.fetch = async (input, init = {}) => {
+        const url = String(input instanceof Request ? input.url : input);
+        if (!url.startsWith('https://vercel.com/api/blob')) return real(input, init);
+        const bytes = new Uint8Array(await new Response(init.body).arrayBuffer());
+        let binary = '';
+        for (let i = 0; i < bytes.length; i += 0x8000) binary += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+        const answer = await window.blobStandIn(url, init.method, Object.fromEntries(new Headers(init.headers)), btoa(binary));
+        return new Response(JSON.stringify(answer), { status: 200, headers: { 'content-type': 'application/json' } });
+      };
+    });
+    await logIn(page, base);
+    const originals = await page.evaluate(() => JSON.parse(document.getElementById('edit-data').textContent).originals);
+    check(originals === 'upload', `the page sends its originals to ${originals}`);
+    const row = rowOf('12.01');
+    await openRow('12.01');
+    const before = sent.length;
+    const asked = pictureRequests.length;
+    const scanFile = path.join(files, 'scan.png');
+    await writeFile(scanFile, scan);
+    const [chooser] = await Promise.all([page.waitForFileChooser(), page.click(`${row} button.ed[data-ed="pic-add"]`)]);
+    await chooser.accept([scanFile]);
+    await page.waitForFunction((sel) => document.querySelectorAll(`${sel} .pics figure`).length === 2, { timeout: 15000 }, row)
+      .catch(async () => { throw new Error(`12.01 shows ${JSON.stringify(await figuresOf('12.01'))}; the bar says ${JSON.stringify(await page.$eval('.ed-msg', (el) => el.textContent))}`); });
+    await sentSince(before, 1);
+    const routes = pictureRequests.slice(asked).map((r) => r.route).join(' ');
+    check(routes === 'upload picture', `the picture routes asked were ${routes}`);
+    const handshake = JSON.parse(pictureRequests[asked].body);
+    check(handshake.type === 'blob.generate-client-token' && /^originals\/12\.01-[0-9a-z]+\.png$/.test(handshake.payload?.pathname), `the handshake asked ${JSON.stringify(handshake)}`);
+    check(puts.length === 1, `${puts.length} files were put`);
+    const [put] = puts;
+    check(put.method === 'PUT' && put.pathname === handshake.payload.pathname, `the Blob client sent ${put.method} ${put.url}`);
+    check(/^Bearer vercel_blob_client_checkstore_/.test(put.headers.authorization ?? ''), `with ${put.headers.authorization}, not the token the handshake gave`);
+    check(put.headers['x-vercel-blob-access'] === 'private' && put.headers['x-content-type'] === 'image/png', `with the headers ${JSON.stringify(put.headers)}`);
+    check(put.size === scan.length, `${put.size} bytes were put, not ${scan.length}`);
+    const made = JSON.parse(pictureRequests.at(-1).body);
+    check(made.id === '12.01' && made.pathname === put.pathname.replace(/\.png$/, '-St4nd1n.png'), `the picture was asked of ${JSON.stringify(made)}`);
+    const shown = await figuresOf('12.01');
+    check(/^\*\/dev-img\/12\.01-/.test(shown[1]), `12.01 shows ${JSON.stringify(shown)}`);
+    check(away.length === 0, `requests left this computer: ${away.join(', ')}`);
   });
 
   console.log(`All ${n} steps hold. Screenshots: ${['edit-page.png', 'public-page.png', 'edit-phone.png', 'edit-compact.png', 'edit-compact-phone.png'].map((name) => path.join(SHOTS, name)).join(', ')}`);

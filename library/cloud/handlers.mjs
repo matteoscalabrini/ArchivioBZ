@@ -5,7 +5,9 @@
 // them on PGlite, the local server runs them on its own, and api/ only wires them to Neon.
 // The route is a query parameter because vercel.json rewrites /index.html to /api/site?path=… and
 // /edit/<route> to /api/edit?route=<route>; a request without it is read by its own path (/,
-// /map.html, /edit/op), which names the same file or route.
+// /map.html, /edit/op), which names the same file or route. The pictures the author adds go through
+// stores given as `pictures` (cloud/pictures.mjs, which this file never imports, so that the public
+// site's function does not carry sharp): the cloud's, or this computer's.
 import { createHash } from 'node:crypto';
 import { applyOp, OpError } from './ops.mjs';
 import { ConflictError } from './store.mjs';
@@ -47,7 +49,8 @@ const FAILURE_WAIT_MS = 1000;
 const CONFLICT = 'Changed in another window. Reload to see it.';
 const NOT_PURGED = 'Published, but the public site may still show the old version. Publish again to refresh it.';
 // The ops after which the page swaps in the row as drawn again, and holds the row as stored.
-const ROW_OPS = ['set-row', 'set-pictures', 'add-row', 'hide-row', 'give-keyword', 'remove-keyword', 'remove-picture', 'move-picture', 'set-caption'];
+const ROW_OPS = ['set-row', 'set-pictures', 'add-row', 'hide-row', 'give-keyword', 'remove-keyword', 'remove-picture', 'move-picture', 'set-caption', 'add-picture'];
+const NO_PICTURES = 'Pictures cannot be added: BLOB_READ_WRITE_TOKEN and PICTURES_READ_WRITE_TOKEN are needed in the environment.';
 
 // A request refused with a status and a sentence, answered as { error }.
 class Refused extends Error {
@@ -67,6 +70,10 @@ export function makeHandlers({
   store,
   env = {},
   lists,
+  // The stores of the pictures added (cloud/pictures.mjs): blobPictures in the cloud, with the
+  // client-upload handshake; localPictures on this computer, which takes the original itself.
+  // Without them, pictures cannot be added.
+  pictures = null,
   purge = async () => {},
   secure = true,
   wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms)),
@@ -127,7 +134,7 @@ ${line ? `<p class="login-line" role="alert">${esc(line)}</p>\n` : ''}</form>`,
     }
     // As typed: the form's encoding undone and nothing else; auth.mjs normalises it itself. Read
     // first, so a body too large is refused before it is counted.
-    const password = new URLSearchParams(await readBody(request)).get('password') ?? '';
+    const password = new URLSearchParams((await readBody(request)).toString('utf8')).get('password') ?? '';
     const tried = await store.recordLoginFailure();
     if ((await store.recentLoginFailures(LOGIN_WINDOW_MINUTES)) > LOGIN_LIMIT) {
       await store.forgetLoginFailure(tried);
@@ -145,7 +152,44 @@ ${line ? `<p class="login-line" role="alert">${esc(line)}</p>\n` : ''}</form>`,
   async function editPage(request, loggedIn) {
     if (!loggedIn) return html(200, loginPage());
     const [draft, published] = await Promise.all([theDraft(), publishedDoc()]);
-    return html(200, renderEditPage(draft.doc, { version: draft.version, published, lists }));
+    return html(200, renderEditPage(draft.doc, { version: draft.version, published, lists, originals: originalsRoute() }));
+  }
+
+  // Where the page sends an original: through the handshake at upload to the private store, or,
+  // on this computer, to original; null when pictures cannot be added.
+  const originalsRoute = () => (!pictures ? null : pictures.receive ? 'original' : 'upload');
+  const thePictures = () => {
+    if (!pictures) throw new Refused(500, NO_PICTURES);
+    return pictures;
+  };
+
+  // The client-upload handshake (@vercel/blob/client): a token for one original, in the cloud only.
+  async function upload(request) {
+    const { handshake } = thePictures();
+    if (!handshake) throw new Refused(404, 'Not found.');
+    return json(200, await handshake(await readObject(request), request));
+  }
+
+  // On this computer, the original itself, as the browser sends a file: its type in Content-Type,
+  // the name the page gives it in X-Pathname. Answered with the name it is kept under.
+  async function original(request) {
+    const { receive, largest } = thePictures();
+    if (!receive) throw new Refused(404, 'Not found.');
+    const type = request.headers.get('content-type') ?? '';
+    const pathname = request.headers.get('x-pathname') ?? '';
+    const bytes = await readBody(request, largest);
+    return json(200, await receive({ pathname, type, bytes }));
+  }
+
+  // The site's two JPEGs made from an original kept under `pathname`, for the row `id`, and put
+  // where the public sees them: { picture: { src, w, h, small } }. The draft is untouched; the page
+  // sends add-picture with the picture through its queue.
+  async function picture(request) {
+    const stores = thePictures();
+    const { id, pathname } = await readObject(request);
+    const { doc } = await theDraft();
+    if (typeof id !== 'string' || !Object.hasOwn(doc.rows, id)) throw new Refused(422, `There is no row ${id}.`);
+    return json(200, { picture: await stores.picture(id, pathname) });
   }
 
   async function search() {
@@ -225,6 +269,9 @@ ${line ? `<p class="login-line" role="alert">${esc(line)}</p>\n` : ''}</form>`,
     op: { POST: op },
     publish: { POST: publish },
     discard: { POST: discard },
+    upload: { POST: upload },
+    picture: { POST: picture },
+    original: { POST: original },
   };
   const OPEN = ['', 'login'];
 
@@ -302,11 +349,11 @@ function sameOrigin(request) {
   }
 }
 
-// The body as text, refused with 413 once it passes MAX_BODY: at once when its declared length
-// does, else as it arrives, so a large body is never held whole.
-async function readBody(request) {
-  if (Number(request.headers.get('content-length')) > MAX_BODY) throw new Refused(413, 'The request is too large.');
-  if (!request.body) return '';
+// The body's bytes, refused with 413 once they pass `max` (MAX_BODY, or the largest original): at
+// once when its declared length does, else as it arrives, so a large body is never held whole.
+async function readBody(request, max = MAX_BODY) {
+  if (Number(request.headers.get('content-length')) > max) throw new Refused(413, 'The request is too large.');
+  if (!request.body) return Buffer.alloc(0);
   const reader = request.body.getReader();
   const chunks = [];
   let size = 0;
@@ -314,25 +361,31 @@ async function readBody(request) {
     const { done, value } = await reader.read();
     if (done) break;
     size += value.byteLength;
-    if (size > MAX_BODY) {
+    if (size > max) {
       await reader.cancel();
       throw new Refused(413, 'The request is too large.');
     }
     chunks.push(value);
   }
-  return Buffer.concat(chunks).toString('utf8');
+  return Buffer.concat(chunks);
 }
 
-// A JSON body: an object with the draft's version the page holds, a whole number.
-async function readJson(request) {
+// A JSON body that is an object.
+async function readObject(request) {
   let body;
   try {
-    body = JSON.parse(await readBody(request));
+    body = JSON.parse((await readBody(request)).toString('utf8'));
   } catch (error) {
     if (error instanceof Refused) throw error;
     throw new Refused(400, 'The request is not JSON.');
   }
   if (body === null || typeof body !== 'object' || Array.isArray(body)) throw new Refused(400, 'The request is not an object.');
+  return body;
+}
+
+// A JSON body with the draft's version the page holds, a whole number.
+async function readJson(request) {
+  const body = await readObject(request);
   if (!Number.isInteger(body.version)) throw new Refused(400, 'The request does not say which version of the draft it was made on.');
   return body;
 }

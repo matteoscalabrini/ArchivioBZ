@@ -104,9 +104,11 @@ export function numbering(doc) {
   return numbers;
 }
 
-// The small picture a row shows on the map: the one made at the move-in, or, once an edit has
-// changed which picture is first (the operations then set thumb to null) or for a row given its
-// place after the move-in, the first picture itself, which the map draws at the same small size.
+// The small picture a row shows on the map: the one made at the move-in, or the small one made with
+// a picture added in edit mode while that picture is first (the thumb rule in ops.mjs), or else
+// the first picture itself, which the map draws at the same small size: once an edit has put a
+// moved-in picture first (the operations then set thumb to null), or for a row given its place
+// after the move-in.
 const mapPicture = (row) => row.thumb ?? (row.pictures?.[0] ? { src: row.pictures[0].src, w: row.pictures[0].w, h: row.pictures[0].h } : null);
 
 // The `lib` the page functions take, from a document. Entries are in story order; hidden rows
@@ -310,7 +312,10 @@ function rowFaults(doc, id, row, types) {
     if (!RECORD_FIELDS.includes(field)) problems.push(`row ${id} has a field "${field}" that a record does not have`);
   }
   if (!isObject(row.find) || !FIND.every((list) => isList(row.find[list], isText))) problems.push(`row ${id}: find is not four lists of text`);
-  const picture = (p) => isObject(p) && isText(p.src) && p.src !== '' && isSize(p.w) && isSize(p.h) && (p.caption === undefined || isText(p.caption));
+  // A picture added in edit mode carries its small one (`small`), which the map shows while it is
+  // the row's first (the thumb rule in ops.mjs); a moved-in picture has none.
+  const small = (p) => isObject(p) && isText(p.src) && p.src !== '' && isSize(p.w) && isSize(p.h);
+  const picture = (p) => small(p) && (p.caption === undefined || isText(p.caption)) && (p.small === undefined || small(p.small));
   if (!isList(row.pictures, picture)) problems.push(`row ${id}: pictures is not a list of pictures`);
   if (row.thumb !== null && !(isObject(row.thumb) && isText(row.thumb.src) && isSize(row.thumb.w) && isSize(row.thumb.h))) problems.push(`row ${id}: thumb is not a small picture`);
   return problems;

@@ -285,6 +285,73 @@ test('remove-picture, move-picture and set-caption change one picture, named by 
   refused(doc, { op: 'remove-picture', id: 'a', src: 7 });
 });
 
+// ＋ picture (design §6): a picture made in the cloud is 1600 px with a small one of 220 px, the
+// map's picture for the row while it is first. A session may add a picture without a small one.
+const ADDED = {
+  src: 'https://p.public.blob.vercel-storage.com/pictures/a-mf3k2a-R4nd.jpg',
+  w: 1600,
+  h: 1067,
+  small: { src: 'https://p.public.blob.vercel-storage.com/pictures/a-mf3k2a-small-S7mL.jpg', w: 220, h: 147 },
+};
+const MOVED_IN = { src: 'https://p.public.blob.vercel-storage.com/pictures/18.04-1-Old.jpg', w: 1600, h: 1200, caption: 'one' };
+
+test('add-picture puts the picture last in the row, with its small one, or without for a session', () => {
+  const doc = sample();
+  doc.rows.a.pictures = [MOVED_IN];
+  const { doc: out, result } = applyOp(doc, { op: 'add-picture', id: 'a', picture: ADDED });
+  assert.deepEqual(out.rows.a.pictures, [MOVED_IN, ADDED]);
+  assert.deepEqual(result, {});
+  assert.deepEqual(checkDoc(out), []);
+  const plain = applyOp(sample(), { op: 'add-picture', id: 'b', picture: { src: '/dev-img/b-1.jpg', w: 4, h: 3 } }).doc;
+  assert.deepEqual(plain.rows.b.pictures, [{ src: '/dev-img/b-1.jpg', w: 4, h: 3 }]);
+  const extra = applyOp(sample(), { op: 'add-picture', id: 'b', picture: { ...ADDED, caption: 'x', original: '/elsewhere', small: { ...ADDED.small, more: 1 } } }).doc;
+  assert.deepEqual(extra.rows.b.pictures, [ADDED], 'only the source, the size and the small one are kept');
+  assert.deepEqual(diffDocs(doc, out).changed, ['a'], 'a picture added is a row changed');
+});
+
+test('add-picture refuses a row that does not exist, a source that is not an address, a size that is not one, and a picture the row has', () => {
+  refused(sample(), { op: 'add-picture', id: 'z', picture: ADDED }, 'There is no row z.');
+  for (const src of [undefined, null, 7, '', 'img/x.jpg', 'http://p.test/x.jpg', 'javascript:alert(1)', 'data:image/jpeg;base64,AA', '//elsewhere.test/x.jpg', ' https://p.test/x.jpg']) {
+    refused(sample(), { op: 'add-picture', id: 'a', picture: { ...ADDED, src } }, undefined);
+    refused(sample(), { op: 'add-picture', id: 'a', picture: { ...ADDED, small: { ...ADDED.small, src } } }, undefined);
+  }
+  for (const [w, h] of [[0, 3], [4, 0], [-4, 3], [1.5, 3], ['4', 3], [4, null], [4, undefined], [NaN, 3], [Infinity, 3]]) {
+    refused(sample(), { op: 'add-picture', id: 'a', picture: { ...ADDED, w, h } }, undefined);
+    refused(sample(), { op: 'add-picture', id: 'a', picture: { ...ADDED, small: { ...ADDED.small, w, h } } }, undefined);
+  }
+  for (const picture of [null, 'x.jpg', [ADDED], undefined]) refused(sample(), { op: 'add-picture', id: 'a', picture }, undefined);
+  for (const small of [null, 'x.jpg', [ADDED.small]]) refused(sample(), { op: 'add-picture', id: 'a', picture: { ...ADDED, small } }, undefined);
+  const held = applyOp(sample(), { op: 'add-picture', id: 'a', picture: ADDED }).doc;
+  refused(held, { op: 'add-picture', id: 'a', picture: ADDED }, 'Row a already has that picture.');
+  refused(held, { op: 'add-picture', id: 'a', picture: { src: ADDED.src, w: 1, h: 1 } }, 'Row a already has that picture.');
+  assert.equal(applyOp(held, { op: 'add-picture', id: 'b', picture: ADDED }).doc.rows.b.pictures.length, 1, 'another row may hold it');
+});
+
+// The thumb rule: whenever the first picture of a row changes, its thumb is the new first picture's
+// small one, or null for a picture that has none (the moved-in ones), which the map then draws from
+// the picture itself (mapPicture in doc.mjs).
+test('the thumb follows the first picture: its small one, or null', () => {
+  const first = applyOp(sample(), { op: 'add-picture', id: 'a', picture: ADDED }).doc;
+  assert.deepEqual(first.rows.a.thumb, ADDED.small, 'a row with no picture: the new one sets the thumb');
+
+  const doc = sample();
+  doc.rows.a.pictures = [MOVED_IN];
+  doc.rows.a.thumb = { src: 'https://p.public.blob.vercel-storage.com/pictures/t-18.04-Old.jpg', w: 220, h: 165 };
+  let out = applyOp(doc, { op: 'add-picture', id: 'a', picture: ADDED }).doc;
+  assert.deepEqual(out.rows.a.thumb, doc.rows.a.thumb, 'added second, the first and its thumb stay');
+  out = applyOp(out, { op: 'move-picture', id: 'a', src: ADDED.src, step: -1 }).doc;
+  assert.deepEqual(out.rows.a.thumb, ADDED.small, 'its second picture moved first: the thumb follows');
+  assert.notEqual(out.rows.a.thumb, out.rows.a.pictures[0].small, 'a copy, not the same object');
+  const back = applyOp(out, { op: 'move-picture', id: 'a', src: MOVED_IN.src, step: -1 }).doc;
+  assert.equal(back.rows.a.thumb, null, 'a moved-in picture moved first: null');
+  assert.deepEqual(applyOp(back, { op: 'remove-picture', id: 'a', src: MOVED_IN.src }).doc.rows.a.thumb, ADDED.small, 'the first removed: the next one\'s small');
+  assert.deepEqual(applyOp(back, { op: 'set-pictures', id: 'a', pictures: [{ src: ADDED.src, caption: '' }, { src: MOVED_IN.src, caption: 'one' }] }).doc.rows.a.thumb, ADDED.small);
+  assert.equal(applyOp(out, { op: 'remove-picture', id: 'a', src: ADDED.src }).doc.rows.a.thumb, null);
+  const none = applyOp(first, { op: 'remove-picture', id: 'a', src: ADDED.src }).doc;
+  assert.equal(none.rows.a.thumb, null, 'no picture left: no thumb');
+  assert.deepEqual(applyOp(out, { op: 'set-caption', id: 'a', src: ADDED.src, caption: 'New' }).doc.rows.a.thumb, ADDED.small, 'a caption changes nothing of it');
+});
+
 test('set-idea refuses an unknown marked keyword, accepts a known one', () => {
   assert.equal(applyOp(sample(), { op: 'set-idea', text: 'A [[wall]] and [[Walls]].' }).doc.idea, 'A [[wall]] and [[Walls]].');
   refused(sample(), { op: 'set-idea', text: 'A [[nothing]] here.' });
@@ -339,6 +406,9 @@ test('malformed requests are refused as OpError and change nothing', () => {
     { op: 'move-keyword', id: 'wall', before: '__proto__' },
     { op: 'move-keyword', id: 'wall' },
     { op: 'move-keyword', id: 'walls', before: null },
+    { op: 'add-picture', id: ['a'], picture: { src: '/p/1.jpg', w: 1, h: 1 } },
+    { op: 'add-picture', id: 'constructor', picture: { src: '/p/1.jpg', w: 1, h: 1 } },
+    { op: 'add-picture', id: 'a', picture: JSON.parse('{"__proto__": {"src": "/p/1.jpg"}, "w": 1, "h": 1}') },
     { op: '__proto__' },
     { op: ['set-about'], text: 'x' },
     { op: 'constructor' },

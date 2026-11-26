@@ -38,3 +38,18 @@ for (const entry of ['api/site.mjs', 'api/edit.mjs']) {
     assert.deepEqual(packages.filter((name) => !Object.hasOwn(dependencies, name)), []);
   });
 }
+
+// ＋ picture: sharp (a native image library) and @vercel/blob are the edit function's
+// alone. handlers.mjs is given the picture stores and never imports them, so the public site's
+// function, which every visit runs, carries neither.
+test('api/site.mjs reaches neither sharp nor @vercel/blob; api/edit.mjs reaches both, as runtime dependencies', () => {
+  const site = reached('api/site.mjs');
+  assert.ok(!site.files.includes('library/cloud/pictures.mjs'));
+  assert.deepEqual(site.packages.filter((name) => ['sharp', '@vercel/blob'].includes(name)), []);
+  const edit = reached('api/edit.mjs');
+  assert.ok(edit.files.includes('library/cloud/pictures.mjs'));
+  for (const name of ['sharp', '@vercel/blob']) {
+    assert.ok(edit.packages.includes(name), name);
+    assert.ok(Object.hasOwn(dependencies, name), `${name} is a runtime dependency`);
+  }
+});

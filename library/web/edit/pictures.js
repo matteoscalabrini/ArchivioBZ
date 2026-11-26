@@ -3,17 +3,36 @@
 // Each change names the one picture it is about, by its source (remove-picture, move-picture,
 // set-caption), and the server applies it to the row as it then stands: two clicks made before the
 // first is answered both count, which a whole list sent from the page could not promise.
-import { state, list, send, act, say, showPicture } from './core.js';
-import { iconButton } from './icons.js';
+//
+// ＋ picture, in an open row, under its pictures (after "Side by side") or, in a row with none,
+// where they would be: it opens the file chooser, several files at once; files dropped on an open
+// row do the same. The files go one at a time, in the order given: each original is sent as it is
+// (to the private store with a token from /edit/upload, or on this computer to /edit/original),
+// /edit/picture makes the site's two JPEGs of it, and add-picture puts them last in the row
+// through the queue, which draws the row anew showing the new picture. A file refused is said in
+// the bar, and the next one goes on. Until the last is added, the work is under way: leaving the
+// page asks first, and Log out and Publish wait for it.
+import { state, list, send, act, say, post, during, watchUnsaved, showPicture, rowEl, LOGGED_OUT } from './core.js';
+import { iconButton, wordButton } from './icons.js';
 import { openField, input } from './field.js';
 
 const held = (id) => (state.doc.rows[id]?.pictures ?? []).filter((p) => p?.src);
+
+// The kinds of file taken and the name each original is given, and the largest original, as the
+// server takes them (cloud/pictures.mjs).
+const EXTENSIONS = { 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp' };
+const LARGEST = 104857600; // 100 MB
+const UNREACHED = 'The server could not be reached. Nothing was saved; try again.';
 
 // Each figure's tools carry its picture's source, as the row was drawn: the page's draft may run
 // ahead of a row that waits to be drawn again (core.js), so an index would name another picture.
 export function dressPictures(el) {
   const pics = el.querySelector('.row-body .pics');
-  if (!pics) return;
+  if (pics) dressFigures(el, pics);
+  dressAdd(el, pics);
+}
+
+function dressFigures(el, pics) {
   const figures = [...pics.querySelectorAll(':scope > figure')];
   const pictures = held(el.dataset.no);
   figures.forEach((figure, n) => {
@@ -47,8 +66,38 @@ export function dressPictures(el) {
   }
 }
 
+// The line of ＋ picture: the button, the file chooser it opens, and the words said while the
+// row's pictures are being added. Not drawn where the server has no stores for pictures.
+function dressAdd(el, pics) {
+  const detail = el.querySelector('.row-body .detail');
+  if (!state.originals || !detail) return;
+  const line = document.createElement('p');
+  line.className = 'ed-add-pic';
+  const button = wordButton('picture', { first: 'add', className: 'ed-add-picture' });
+  button.dataset.ed = 'pic-add';
+  const chooser = Object.assign(document.createElement('input'), { type: 'file', multiple: true, accept: Object.keys(EXTENSIONS).join(','), hidden: true });
+  chooser.dataset.ed = 'pic-file';
+  const adding = Object.assign(document.createElement('span'), { className: 'ed-adding' });
+  adding.setAttribute('role', 'status');
+  line.append(button, chooser, adding);
+  if (pics) {
+    pics.append(line);
+  } else {
+    const place = Object.assign(document.createElement('div'), { className: 'ed-pics' }); // where the pictures would be
+    place.append(line);
+    detail.prepend(place);
+  }
+  showRun(el);
+}
+
 list.addEventListener('click', (event) => {
-  const button = event.target instanceof Element ? event.target.closest('.ed-pic button.ed, figcaption button.ed') : null;
+  const target = event.target instanceof Element ? event.target : null;
+  const add = target?.closest('button.ed[data-ed="pic-add"]');
+  if (add) {
+    add.closest('.ed-add-pic').querySelector('input[type=file]').click();
+    return;
+  }
+  const button = target?.closest('.ed-pic button.ed, figcaption button.ed');
   if (!button) return;
   const row = button.closest('article.row');
   const id = row.dataset.no;
@@ -69,7 +118,13 @@ list.addEventListener('click', (event) => {
 });
 
 list.addEventListener('change', (event) => {
-  const box = event.target instanceof HTMLInputElement && event.target.dataset.ed === 'side' ? event.target : null;
+  const target = event.target instanceof HTMLInputElement ? event.target : null;
+  if (target?.dataset.ed === 'pic-file') {
+    addFiles(target.closest('article.row').dataset.no, target.files);
+    target.value = ''; // the same file can be chosen again
+    return;
+  }
+  const box = target?.dataset.ed === 'side' ? target : null;
   if (!box) return;
   const id = box.closest('article.row').dataset.no;
   send({ op: 'set-row', id, fields: { side_by_side: box.checked } }).catch((error) => {
@@ -91,4 +146,149 @@ function editCaption(opener, id, n, src) {
     opener,
     key: `pic-caption:${n}`,
   });
+}
+
+// Files dragged from the computer onto an open row: the row is marked while they are over it, and
+// they are added as if chosen. Only a drag that carries files counts; rows and keywords are
+// dragged by the pointer's own events (drag.js, strip.js) and never come here. Files let go
+// anywhere else on the page are refused, so that the browser does not leave the page to show one.
+const carriesFiles = (event) => [...(event.dataTransfer?.types ?? [])].includes('Files');
+const openRowAt = (event) => (state.originals && event.target instanceof Element ? event.target.closest('article.row.open') : null);
+function markDrop(row) {
+  for (const el of list.querySelectorAll('article.row.ed-drop')) if (el !== row) el.classList.remove('ed-drop');
+  row?.classList.add('ed-drop');
+}
+
+list.addEventListener('dragover', (event) => {
+  const row = carriesFiles(event) ? openRowAt(event) : null;
+  if (!row) return;
+  event.preventDefault();
+  event.dataTransfer.dropEffect = 'copy';
+  markDrop(row);
+});
+list.addEventListener('drop', (event) => {
+  const row = carriesFiles(event) ? openRowAt(event) : null;
+  if (!row) return;
+  event.preventDefault();
+  markDrop(null);
+  addFiles(row.dataset.no, event.dataTransfer.files);
+});
+document.addEventListener('dragover', (event) => {
+  if (!carriesFiles(event) || event.defaultPrevented) return;
+  event.preventDefault();
+  event.dataTransfer.dropEffect = 'none';
+  markDrop(null);
+});
+document.addEventListener('drop', (event) => {
+  if (!carriesFiles(event)) return;
+  event.preventDefault();
+  markDrop(null);
+});
+document.addEventListener('dragleave', (event) => {
+  if (!event.relatedTarget) markDrop(null); // out of the window
+});
+
+// The files on their way, one after the other in the order given, whichever rows they go to; and,
+// for each row with files on their way, which of them is being added: { at, of }.
+let chain = Promise.resolve();
+let waiting = 0;
+const runs = new Map();
+watchUnsaved(() => waiting > 0);
+
+// Why a file is not sent, in the words of the bar; or '' when it is taken.
+function refusal(file) {
+  if (!Object.hasOwn(EXTENSIONS, file.type)) return `${file.name}: only JPEG, PNG and WebP pictures are taken.`;
+  if (file.size > LARGEST) return `${file.name} is larger than 100 MB.`;
+  return '';
+}
+
+function addFiles(id, files) {
+  const given = [...(files ?? [])];
+  const refused = given.map(refusal).filter(Boolean);
+  if (refused.length) say(refused.join(' '));
+  const taken = given.filter((file) => !refusal(file));
+  if (!taken.length) return;
+  const run = runs.get(id) ?? { at: 0, of: 0 };
+  run.of += taken.length;
+  runs.set(id, run);
+  showRun(rowEl(id));
+  for (const file of taken) {
+    waiting++;
+    const job = chain
+      .then(() => {
+        run.at++;
+        showRun(rowEl(id));
+        return addOne(id, file);
+      })
+      .finally(() => {
+        waiting--;
+        if (run.at === run.of) runs.delete(id);
+        showRun(rowEl(id));
+      });
+    chain = job.catch(() => {}); // addOne says what went wrong; the next file goes on all the same
+    during(chain);
+  }
+}
+
+// One file: its original sent, its pictures made, then added to the row. Never rejects: what goes
+// wrong is said in the bar, and the next file goes on.
+async function addOne(id, file) {
+  try {
+    if (!state.doc.rows[id]) return; // the row was removed meanwhile
+    const pathname = await sendOriginal(id, file);
+    const { picture } = await ask('picture', { id, pathname });
+    if (!state.doc.rows[id]) return;
+    showPicture.set(id, held(id).length); // the new picture, last, is the one shown
+    await send({ op: 'add-picture', id, picture });
+  } catch (error) {
+    showPicture.delete(id);
+    if (error.status === 401) say(LOGGED_OUT, 'logged-out');
+    else if (error.status !== 409) say(error.message); // a conflict is said by the queue (core.js)
+  }
+}
+
+// The original as it is, under a name made of the row's id and the time (never the name it has on
+// the author's computer), into the private store with a token from /edit/upload, or on this
+// computer to /edit/original. -> the name the store keeps it under, its random suffix added.
+async function sendOriginal(id, file) {
+  const pathname = `originals/${id}-${Date.now().toString(36)}.${EXTENSIONS[file.type]}`;
+  if (state.originals === 'original') {
+    const sent = await answered(async () => {
+      const response = await fetch('original', { method: 'POST', headers: { 'Content-Type': file.type, 'X-Pathname': pathname }, body: file });
+      return { status: response.status, body: await response.json().catch(() => null) };
+    });
+    return sent.pathname;
+  }
+  const { clientToken } = await ask('upload', { type: 'blob.generate-client-token', payload: { pathname, clientPayload: null, multipart: false } });
+  const { put } = await import('../vendor/blob-client.esm.js');
+  try {
+    return (await put(pathname, file, { access: 'private', token: clientToken, contentType: file.type })).pathname;
+  } catch (error) {
+    throw new Error(`${file.name} could not be sent: ${error.message}`);
+  }
+}
+
+// A request of edit mode outside the queue (`request()` -> { status, body }), answered with its
+// JSON; refused with an Error whose message is the sentence to show, and its status.
+async function answered(request) {
+  let response;
+  try {
+    response = await request();
+  } catch {
+    throw Object.assign(new Error(UNREACHED), { status: 0 });
+  }
+  if (response.status === 200) return response.body;
+  throw Object.assign(new Error(response.status === 401 ? LOGGED_OUT : response.body?.error ?? `The server answered ${response.status}.`), { status: response.status });
+}
+const ask = (route, body) => answered(() => post(route, body));
+
+// The line of ＋ picture as the row's run stands: the button, or "Adding picture 2 of 3…".
+function showRun(row) {
+  const line = row?.querySelector('.ed-add-pic');
+  if (!line) return;
+  const run = runs.get(row.dataset.no);
+  const words = run ? `Adding picture ${Math.max(1, run.at)} of ${run.of}…` : '';
+  line.querySelector('button').hidden = Boolean(run);
+  const adding = line.querySelector('.ed-adding');
+  if (adding.textContent !== words) adding.textContent = words;
 }
